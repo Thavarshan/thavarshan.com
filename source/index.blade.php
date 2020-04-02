@@ -54,7 +54,7 @@
                     <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                         <div>
                             <div class="text-gray-700 font-bold text-xl mb-2">
-                                <a target="_blank" href="/">Alta Vision Solar (Pvt) Ltd</a>
+                                <a target="_blank" href="https://altavision.lk">Alta Vision Solar (Pvt) Ltd</a>
                             </div>
 
                             <div class="text-gray-500 text-xs mb-4">
@@ -74,7 +74,7 @@
                     <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                         <div>
                             <div class="text-gray-700 font-bold text-xl mb-2">
-                                <a target="_blank" href="/">Design470 (Pvt) Ltd</a>
+                                <a target="_blank" href="https://design470.com">Design470 (Pvt) Ltd</a>
                             </div>
 
                             <div class="text-gray-500 text-xs mb-4">
@@ -94,7 +94,7 @@
                     <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                         <div>
                             <div class="text-gray-700 font-bold text-xl mb-2">
-                                <a target="_blank" href="/">H Fashion <sup>&reg;</sup></a>
+                                <a target="_blank" href="https://hfashiondesign.com">H Fashion <sup>&reg;</sup></a>
                             </div>
 
                             <div class="text-gray-500 text-xs mb-4">
@@ -114,7 +114,7 @@
                     <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                         <div>
                             <div class="text-gray-700 font-bold text-xl mb-2">
-                                <a target="_blank" href="/">Subodha Charles <sup>&reg;</sup></a>
+                                <a target="_blank" href="https://subodhacharles.net">Subodha Charles <sup>&reg;</sup></a>
                             </div>
 
                             <div class="text-gray-500 text-xs mb-4">

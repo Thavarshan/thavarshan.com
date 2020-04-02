@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 
 return [
-    'baseUrl' => '',
+    'baseUrl' => 'https://thavarshan.com',
     'production' => false,
     'siteName' => 'Thavarshan',
     'siteTitle' => 'Thavarshan | Personal Portfolio',

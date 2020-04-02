@@ -4,7 +4,7 @@
             <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                 <div>
                     <div class="text-gray-700 font-bold text-xl mb-2">
-                        <a target="_blank" :href="repo.links.self.href">{{ repo.name }}</a>
+                        <a target="_blank" :href="repo.links.html.href">{{ repo.name }}</a>
                     </div>
 
                     <div class="text-gray-500 text-xs mb-4">
@@ -43,8 +43,6 @@
                 axios.get(`https://api.bitbucket.org/2.0/repositories/Thavarshan`)
                     .then((response) => {
                         this.repos = response.data.values;
-
-                        console.log(this.repos);
                     });
             },
 
