@@ -20,7 +20,19 @@
         @stack('meta')
 
         @if ($page->production)
-            <!-- Insert analytics code here -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162757472-1"></script>
+
+            <script>
+                window.dataLayer = window.dataLayer || [];
+
+                function gtag(){
+                    dataLayer.push(arguments);
+                }
+
+                gtag('js', new Date());
+
+                gtag('config', 'UA-162757472-1');
+            </script>
         @endif
 
         <script src="https://kit.fontawesome.com/2bfa06249e.js" crossorigin="anonymous"></script>
