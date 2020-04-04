@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section id="section-common-sites" class="pt-16 bg-image">
+    <section id="section-common-sites" class="pt-16 bg-image hidden">
         <div class="container">
             <div class="row mb-5">
                 <div class="col">
