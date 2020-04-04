@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="flex items-center justify-between">
-                    <a href="https://www.dropbox.com/s/cuylkapkyyjxqt5/Thavarshan%20Resum%C3%A9.pdf?dl=0" class="text-white hover:no-underline">Resumé <span class="ml-1">&rarr;</span></a>
+                    <a href="https://www.dropbox.com/s/cuylkapkyyjxqt5/Thavarshan%20Resum%C3%A9.pdf?dl=0" class="text-white hover:text-white hover:no-underline">Resumé <span class="ml-1">&rarr;</span></a>
 
                     <div class="flex items-center">
                         <a class="text-gray-400 hover:text-white inline-block ml-4" href="mailto:tjthavarshan@gmail.com">
