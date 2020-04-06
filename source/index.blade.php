@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section id="section-common-sites" class="pt-16 bg-image hidden">
+    <section id="section-common-sites" class="pt-16 bg-image">
         <div class="container">
             <div class="row mb-5">
                 <div class="col">
@@ -64,7 +64,7 @@
 
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">
-                                23 July 2016
+                                23 Aug 2016
                             </span>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
 
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">
-                                23 July 2016
+                                23 Apr 2015
                             </span>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
 
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">
-                                23 July 2016
+                                23 Aug 2015
                             </span>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
 
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">
-                                23 July 2016
+                                16 July 2016
                             </span>
                         </div>
                     </div>
