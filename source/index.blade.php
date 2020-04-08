@@ -25,7 +25,7 @@
                         </p>
 
                         <p>
-                            Right now I'm working on <a class="font-semibold underline" target="_blank" href="https://github.com/emberfuse/emberfuse">Emberfuse PHP</a> &amp; <a class="font-semibold underline" target="_blank" href="https://cratespace.netlify.com/">Cratespace</a>, and I share updates about my progress on <a class="font-semibold underline" href="/blog">my blog</a> which I'm not done with yet.
+                            Right now I'm working on my very own, open source, PHP framework called <a class="font-semibold underline" target="_blank" href="https://github.com/emberfuse/emberfuse">Emberfuse PHP</a>, and I share updates about my progress on <a class="font-semibold underline" href="/blog">my blog</a> which I'm not done with yet.
                         </p>
 
                         <p class="mb-0">
