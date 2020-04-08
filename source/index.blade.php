@@ -25,7 +25,7 @@
                         </p>
 
                         <p>
-                            Right now I'm working on my very own, open source, PHP framework called <a class="font-semibold underline" target="_blank" href="https://github.com/emberfuse/emberfuse">Emberfuse PHP</a>, and I share updates about my progress on <a class="font-semibold underline" href="/blog">my blog</a> which I'm not done with yet.
+                            Right now I'm working for a Software development company called <a class="font-semibold underline" target="_blank" href="https://www.elegantmedia.com.au/">Elegant Media Australia (Pvt) Ltd</a>.
                         </p>
 
                         <p class="mb-0">
@@ -162,26 +162,6 @@
             </div>
 
             <bitbucket></bitbucket>
-        </div>
-    </section>
-
-    <section id="portfoilo-github-section" class="pt-16 pb-16 bg-image">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col">
-                    <h4>Emberfuse PHP</h4>
-
-                    <p class="max-w-md text-sm text-gray-600">
-                        Emberfuse is a simple PHP framework and Svelt a nano PHP framework. These are attempts at making my own PHP framework using all the knowledge and experience I've gained so far learning PHP.
-                    </p>
-
-                    <div>
-                        <a href="https://emberfuse.netlify.com" target="_blank" class="text-blue-500 hover:text-blue-400 text-sm">View official site <span>&rarr;</span></a>
-                    </div>
-                </div>
-            </div>
-
-            <emberfuse></emberfuse>
         </div>
     </section>
 @endsection
