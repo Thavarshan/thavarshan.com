@@ -149,7 +149,7 @@
         </div>
     </section>
 
-    <section id="portfoilo-github-section" class="pt-16 bg-image">
+    <section id="portfoilo-github-section" class="py-16 bg-image">
         <div class="container">
             <div class="row mb-5">
                 <div class="col">
