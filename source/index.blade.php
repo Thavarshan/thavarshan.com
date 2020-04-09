@@ -25,7 +25,7 @@
                         </p>
 
                         <p>
-                            Right now I'm working for a Software development company called <a class="font-semibold underline" target="_blank" href="https://www.elegantmedia.com.au/">Elegant Media Australia (Pvt) Ltd</a>.
+                            Right now I'm working for a Software Development company called <a class="font-semibold underline" target="_blank" href="https://www.elegantmedia.com.au/">Elegant Media Australia (Pvt) Ltd</a>.
                         </p>
 
                         <p class="mb-0">
