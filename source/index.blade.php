@@ -17,15 +17,15 @@
                         </h4>
 
                         <p>
-                            I'm <a class="font-semibold underline" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a> , a Full-Stack Developer, Electronics &amp; Telecommunications Engineer, Graphic Designer and Part-time Artist.
+                            I'm <a class="font-semibold underline" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
                         </p>
 
                         <p>
-                            Basically, I love to create, make and build. I spend countless hours sitting in front of a computer screen making something amazing for my clients or drawing a pencil sketch portrait of them.
+                            Basically, I love to create, make, and build. I spend countless hours sitting in front of a computer screen making something amazing for my clients or drawing a pencil sketch portrait of them.
                         </p>
 
                         <p>
-                            Right now I'm working for a Software Development company called <a class="font-semibold underline" target="_blank" href="https://www.elegantmedia.com.au/">Elegant Media Australia (Pvt) Ltd</a>.
+                            Right now I'm working for a software development company called <a class="font-semibold underline" target="_blank" href="https://www.elegantmedia.com.au/">Elegant Media Australia (Pvt) Ltd</a>.
                         </p>
 
                         <p class="mb-0">
