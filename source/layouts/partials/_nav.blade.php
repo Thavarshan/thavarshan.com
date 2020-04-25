@@ -18,7 +18,7 @@
                             <span class="fab fa-github"></span>
                         </a>
 
-                        <a target="_blank" class="text-gray-400 hover:text-white inline-block ml-4" href="https://www.linkedin.com/in/thavarshan-thayananthajothy-9a7bb2106/">
+                        <a target="_blank" class="text-gray-400 hover:text-white inline-block ml-4" href="https://www.linkedin.com/in/thavarshan/">
                             <span class="fab fa-linkedin"></span>
                         </a>
 
