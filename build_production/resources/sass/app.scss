@@ -1,0 +1,11 @@
+@tailwind base;
+
+@tailwind components;
+
+@import '~highlight.js/styles/a11y-light.css';
+@import 'vendor/bootstrap/bootstrap';
+
+@import 'markdown';
+@import 'custom';
+
+@tailwind utilities;
