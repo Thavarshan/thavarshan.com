@@ -1,8 +1,4 @@
 module.exports = {
-   purge: [
-    './source/**/*.html',
-    './source/resources/js/components/*.vue',
-  ],
   theme: {
     extend: {
       colors: {
