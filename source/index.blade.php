@@ -153,7 +153,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col">
-                    <h4>Coding Challenges on BitBucket</h4>
+                    <h4>Practice Apps on BitBucket</h4>
 
                     <p class="max-w-md text-sm text-gray-600 m-0">
                         A list of code katas and coding challenges I did and am doing.
