@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-lg-3 col-md-6 flex flex-col" v-for="repo in repos" :key="repo.id">
+        <div class="col-lg-3 col-md-6 flex flex-col" v-for="repo in repos.values" :key="repo.id">
             <div class="bg-white hover:shadow-xl p-4 flex flex-col justify-between leading-normal flex flex-col flex-1 mb-4">
                 <div>
                     <div class="text-gray-700 font-bold text-xl mb-2">
@@ -25,30 +25,15 @@
 </template>
 
 <script>
-    import moment from 'moment';
+    import helpers from '../mixins/helpers';
 
     export default {
-        data() {
-            return {
-                repos: null,
-            }
-        },
+        mixins: [helpers],
 
         mounted() {
-            this.getRepos();
+            this.getRepos(
+                `https://api.bitbucket.org/2.0/users/thavarshan/repositories`
+            );
         },
-
-        methods: {
-            getRepos() {
-                axios.get(`https://api.bitbucket.org/2.0/repositories/Thavarshan`)
-                    .then((response) => {
-                        this.repos = response.data.values;
-                    });
-            },
-
-            updated(time) {
-                return moment(time).fromNow();
-            },
-        }
     }
 </script>

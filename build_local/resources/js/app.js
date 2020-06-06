@@ -36,7 +36,6 @@ Vue.config.productionTip = false;
 
 Vue.component('github', require('./components/GitHub.vue').default);
 Vue.component('bitbucket', require('./components/BitBucket.vue').default);
-Vue.component('emberfuse', require('./components/Emberfuse.vue').default);
 
 const app = new Vue({
     el: '#app',

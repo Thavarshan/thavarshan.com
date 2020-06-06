@@ -25,32 +25,21 @@
 </template>
 
 <script>
-    import moment from 'moment';
+    import helpers from "../mixins/helpers";
 
     export default {
-        data() {
-            return {
-                repos: null,
-                id: '3a44ed97f2c2ae9b4518',
-                secret: '9b37ddce757474c93558dc9f90052b3756f24426'
-            }
-        },
+        mixins: [helpers],
 
         mounted() {
-            this.getRepos();
+            this.getRepos(
+                `https://api.github.com/users/thavarshan/repos`,
+                {},
+                {
+                    auth: {
+                        token: 'b421dc8182eb0e0ca0b8acd9fe403ee8c03efbdd',
+                    }
+                }
+            );
         },
-
-        methods: {
-            getRepos() {
-                axios.get(`https://api.github.com/users/Thavarshan/repos?client_id=${this.id}&client_secret=${this.secret}`)
-                    .then((response) => {
-                        this.repos = response.data;
-                    });
-            },
-
-            updated(time) {
-                return moment(time).fromNow();
-            },
-        }
     }
 </script>
