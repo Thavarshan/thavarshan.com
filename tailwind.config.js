@@ -1,6 +1,5 @@
 module.exports = {
    purge: [
-    enabled: true,
     './source/**/*.html',
     './source/resources/js/components/*.vue',
   ],
