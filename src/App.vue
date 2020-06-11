@@ -5,7 +5,7 @@
         </header>
 
         <main role="main">
-            <Hero />
+            <Profile />
 
             <Projects />
         </main>
@@ -18,7 +18,7 @@
 
 <script>
     import Nav from './components/Nav';
-    import Hero from './components/Hero';
+    import Profile from './components/Profile';
     import Projects from './components/Projects';
     import Credits from './components/Credits';
 
@@ -27,13 +27,9 @@
 
         components: {
             Nav,
-            Hero,
+            Profile,
             Projects,
             Credits,
         },
-
-        created () {
-            document.title = "Thavarshan | Personal Portfolio";
-        }
     }
 </script>

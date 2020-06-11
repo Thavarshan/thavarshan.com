@@ -16,7 +16,7 @@
                             </h4>
 
                             <p class="text-gray-700 text-lg mt-4">
-                                I'm <a class="font-semibold underline hover:text-blue-400" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
+                                I'm <a class="font-semibold hover:text-blue-400" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
                             </p>
 
                             <p class="text-gray-700 text-lg mt-4">
@@ -28,8 +28,8 @@
                             </p>
 
                             <div class="mt-10">
-                                <a class="inline-flex items-center text-blue-500 hover:text-blue-400" href="mailto:tjthavarshan@gmail.com">
-                                    Contact me <span class="fas fa-chevron-right ml-2 text-xs"></span>
+                                <a class="inline-flex items-center font-semibold text-blue-500 hover:text-blue-400" href="mailto:tjthavarshan@gmail.com">
+                                    Contact me <span class="ml-1">&rarr;</span>
                                 </a>
                             </div>
                         </div>

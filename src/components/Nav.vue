@@ -2,7 +2,7 @@
     <nav class="py-2 bg-gray-800">
         <div class="container mx-auto">
             <div class="flex items-center justify-between">
-                <a target="_blank" href="https://www.dropbox.com/s/cuylkapkyyjxqt5/Thavarshan%20Resum%C3%A9.pdf?dl=0" class="text-gray-400 hover:text-white inline-block text-sm font-medium hover:no-underline">Resumé <span class="fas fa-chevron-right ml-1 text-xs"></span></a>
+                <a target="_blank" href="https://www.dropbox.com/s/cuylkapkyyjxqt5/Thavarshan%20Resum%C3%A9.pdf?dl=0" class="text-gray-400 hover:text-white inline-block text-sm font-medium hover:no-underline">Resumé <span class="ml-1">&rarr;</span></a>
 
                 <div class="flex items-center">
                     <a class="text-gray-400 hover:text-white inline-block ml-4" href="mailto:tjthavarshan@gmail.com">
