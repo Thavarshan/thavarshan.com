@@ -16,7 +16,7 @@
                             </h4>
 
                             <p class="text-gray-700 text-lg mt-4">
-                                I'm <a class="font-semibold hover:text-blue-400" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
+                                I'm <a class="font-semibold" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
                             </p>
 
                             <p class="text-gray-700 text-lg mt-4">
@@ -24,11 +24,11 @@
                             </p>
 
                             <p class="text-gray-700 text-lg mt-4">
-                                Currently I'm trying to expand my knowledge about Python and JavaScript and at the sametime try to complete as many personal projects as I can.
+                                I love PHP and I consider myself pretty good at it, so currently I'm trying to expand my knowledge about Python and JavaScript and at the sametime try to complete as many personal projects as I can. Take a look down below to see what I'm up to on <a href="https://github.com/Thavarshan">GitHub</a> an <a href="https://bitbucket.org/thavarshan/">BitBucket</a>
                             </p>
 
                             <div class="mt-10">
-                                <a class="inline-flex items-center font-semibold text-blue-500 hover:text-blue-400" href="mailto:tjthavarshan@gmail.com">
+                                <a class="inline-flex items-center font-semibold text-blue-500" href="mailto:tjthavarshan@gmail.com">
                                     Contact me <span class="ml-1">&rarr;</span>
                                 </a>
                             </div>
