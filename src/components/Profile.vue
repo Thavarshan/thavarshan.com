@@ -16,7 +16,7 @@
                             </h4>
 
                             <p class="text-gray-700 text-lg mt-4">
-                                I'm <a class="font-semibold" target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
+                                I'm <a target="_blank" href="https://twitter.com/thavarshan">@thavarshan</a>, a Full-Stack Developer, Electronics & Telecommunications Engineer, Graphic Designer, and Part-time Artist.
                             </p>
 
                             <p class="text-gray-700 text-lg mt-4">
