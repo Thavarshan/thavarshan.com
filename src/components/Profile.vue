@@ -24,7 +24,7 @@
                             </p>
 
                             <p class="text-gray-700 text-lg mt-4">
-                                I love PHP and I consider myself pretty good at it, so currently I'm trying to expand my knowledge about Python and JavaScript and at the sametime try to complete as many personal projects as I can. Take a look down below to see what I'm up to on <a href="https://github.com/Thavarshan">GitHub</a> an <a href="https://bitbucket.org/thavarshan/">BitBucket</a>
+                                I love PHP and I consider myself pretty good at it, so currently I'm trying to expand my knowledge about Python and JavaScript and at the sametime try to complete as many personal projects as I can. Take a look down below to see what I'm up to on <a href="https://github.com/Thavarshan">GitHub</a> an <a href="https://bitbucket.org/thavarshan/">BitBucket</a>.
                             </p>
 
                             <div class="mt-10">
