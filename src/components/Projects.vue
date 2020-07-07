@@ -17,7 +17,7 @@
                 <h4 class="text-xl font-bold text-gray-800 leading-6">Personal Projects on GitHub</h4>
 
                 <p class="mt-2 max-w-lg text-sm leading-relaxed text-gray-600">
-                    A list of personal projects (GitHub repos) now hosted as open source projects or as templates on <span class="font-bold">GitHub</span>.
+                    A list of personal projects (GitHub repos) now hosted as open source projects or as templates on <span class="font-bold">GitHub</span> pulled in live using GitHub API.
                 </p>
             </div>
 
@@ -29,7 +29,7 @@
                 <h4 class="text-xl font-bold text-gray-800 leading-6">Practice Apps on BitBucket</h4>
 
                 <p class="mt-2 max-w-lg text-sm leading-relaxed text-gray-600">
-                    A list of coding challenges and practice apps I built and am working on.
+                    A list of coding challenges and practice apps I built and am working on, pulled in live using BitBucket API.
                 </p>
             </div>
 
