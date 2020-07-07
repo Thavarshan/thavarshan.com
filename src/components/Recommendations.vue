@@ -10,7 +10,7 @@
                     <h6 class="text-gray-600">LinkedIn recommedations received from superiors and colleagues.</h6>
                 </div>
 
-                <div class="border-t border-gray-800 my-6 h-px bg-white w-1/2"></div>
+                <div class="border-t border-gray-700 my-6 h-px bg-white w-1/2"></div>
 
                 <hooper :settings="settings" class="text-center flex items-center justify-center md:max-w-xl xl:max-w-2xl">
                     <slide v-for="recommendation in recommendations" :key="recommendation.id" :index="recommendation.id" class="text-center flex justify-center">
