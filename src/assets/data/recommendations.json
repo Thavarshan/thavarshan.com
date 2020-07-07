@@ -1,0 +1,74 @@
+{
+    "recommendations": [
+        {
+            "id": 1,
+            "name": "Saranga Abeykoon",
+            "title": "Tech Lead at Elegant Media Australi",
+            "relationship": "Saranga managed Thavarshan directly",
+            "message": "Thavarshan is a highly talented, young personnel with multiple skills. I had the pleasure of working with him for short time period. He was able to impress me with his knowledge on Laravel PHP framework. He was always looking for new knowledge and wanting to improve himself to the next level. I'm sure he would continue to improve these qualities and soon meet his career goals."
+        },
+        {
+            "id": 2,
+            "name": "Gautham Sritharan",
+            "title": "Trainee Associate Software Engineer at Elegant Media Australia",
+            "relationship": "Thavarshan worked with Gautham in the same group",
+            "message": "I worked with Thavarshan for a very short period of time. His work ethics is immaculate and so easy to work together with. He always comes up with efficient solutions when there is an issue during the development. He is always ready to accept new challenges. His contribution to the team is really valuable. I’m sure he will be a great asset to any team he joins. Best of luck."
+        },
+        {
+            "id": 3,
+            "name": "Banujan Balendrakumar",
+            "title": "Senior Software Engineer | Cloud Developer",
+            "relationship": "Banujan was senior to Thavarshan but didn’t manage directly",
+            "message": "I had the pleasure of working with Thavarshan at the Elegant Media, collaborating on several project teams. He has very innovative mindset and always updating his knowledge in new and modern technologies and best practices. He always things about solving problems in modern and efficient way."
+        },
+        {
+            "id": 4,
+            "name": "Ashan Senevirathne",
+            "title": "Passionate Project Manager | Enthusiastic System Analyst | Aspiring Data Scientist",
+            "relationship": "Ashan managed Thavarshan directly",
+            "message": "Thavarshan was an outstanding team member in terms of many aspects. He was not only a very cooperative and hardworking member in my team but also showed great extents of knowledge as a software engineer while working on multiple projects. During his period of work, I was impressed by his dedication and high levels of expertise. Good luck with your new job and future career!"
+        },
+        {
+            "id": 5,
+            "name": "Mathi Vathanan",
+            "title": "Software Engineering at Elegant Media Australia",
+            "relationship": "Thavarshan worked with Mathi in the same group",
+            "message": "I had the pleasure of working with Thavarshan at the Elegant Media, collaborating on several project teams. He is a hardworking person, highly knowledgable. Few people have the opportunity to work with someone ‘Ridiculously efficient’ like Thavarshan."
+        },
+        {
+            "id": 6,
+            "name": "Nisala Thalagala",
+            "title": "Senior Software Engineer / Team Lead at Elegant Media Australia",
+            "relationship": "Nisala managed Thavarshan directly",
+            "message": "Thavarshan is very hardworking and extremely talented software developer and has a deep technical background. Every time he is moving with new technologies."
+        },
+        {
+            "id": 7,
+            "name": "Thileepan Beniel",
+            "title": "Engineer - Accelerated Systems at LSEG Technology",
+            "relationship": "Thileepan was Thavarshan’s teacher",
+            "message": "I have known Thavershan for long, where he is more design oriented developer who care about detail and quality of his work. He is so passionated about web and app interfaces where his artistic ideas can change businesses to another level. If you are looking for someone who is such a professional in attitude towards software development, I strongly recommend him."
+        },
+        {
+            "id": 8,
+            "name": "Gayan Nallaperuma",
+            "title": "Software Engineer at Elegant Media Australia",
+            "relationship": "Thavarshan worked with Gayan in the same group",
+            "message": "Thavarshan is one of the most talented and experienced Backend developers. Highly recommended."
+        },
+        {
+            "id": 9,
+            "name": "Kasun Thennakoon",
+            "title": "Associate Software Engineer at Elegant Media Australia",
+            "relationship": "Thavarshan worked with Kasun in the same group",
+            "message": "Good teammate. Really knew the things he do. recommended"
+        },
+        {
+            "id": 10,
+            "name": "Subodha Charles",
+            "title": "Researcher in Hardware Security | Serial Entrepreneur",
+            "relationship": "Subodha was Thavarshan’s mentor",
+            "message": "I have known Thavarshan for over an year as a student as well as a designer. He is immensely talented when it comes to software engineering. Quite professional in his design thinking. As a client, you expect your service provider to be responsive, responsible, and creative. He is the whole package. If you agree upon a delivery date for a project, rest assured that you will get it on time! He is showing a great deal of promise to be a prolific software engineer. With his thirst to learn, I'm sure he will keep improving over time! I will not hesitate to hand over the next design project I come across to him."
+        }
+    ]
+}
