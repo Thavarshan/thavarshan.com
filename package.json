@@ -14,7 +14,6 @@
     "hooper": "^0.3.4",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
-    "vue-pdf": "^4.1.0",
     "vue-router": "^3.3.4",
     "vue-ua": "^1.7.0"
   },
