@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 import App from './App.vue';
 import Landing from './components/Landing.vue';
-import Resume from './components/Resume.vue';
+import VueAnalytics from 'vue-ua';
 import './assets/css/app.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 
@@ -14,16 +14,19 @@ const routes = [
     {
         path: '/',
         component: Landing
-    },
-    {
-        path: '/resume',
-        component: Resume
-    },
+    }
 ];
 
 const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
+});
+
+Vue.use(VueAnalytics, {
+    appName: 'Thavarshan',
+    appVersion: '2.0.1',
+    trackingId: 'UA-162757472-1',
+    vueRouter: router,
 });
 
 new Vue({
