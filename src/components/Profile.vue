@@ -28,7 +28,7 @@
                             </p>
 
                             <div class="mt-10">
-                                <a class="inline-flex items-center font-semibold text-blue-500" href="mailto:tjthavarshan@gmail.com">
+                                <a class="inline-flex items-center font-semibold" href="mailto:tjthavarshan@gmail.com">
                                     Contact me <span class="ml-1">&rarr;</span>
                                 </a>
                             </div>

@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-gray-800">
+    <section class="py-16 bg-indigo-900">
         <div class="container mx-auto px-6">
             <div class="flex flex-col justify-center items-center">
                 <div class="text-center">
@@ -7,21 +7,21 @@
                         What Other People Say about Me
                     </h4>
 
-                    <h6 class="text-gray-600">LinkedIn recommedations received from superiors and colleagues.</h6>
+                    <h6 class="text-indigo-300">LinkedIn recommedations received from superiors and colleagues.</h6>
                 </div>
 
-                <div class="border-t border-gray-700 my-6 h-px bg-white w-1/2"></div>
+                <div class="border-t border-indigo-800 my-6 h-px bg-white w-1/2"></div>
 
-                <hooper :settings="settings" class="text-center flex items-center justify-center md:max-w-xl xl:max-w-2xl">
+                <hooper :settings="settings" class="outline-none focus:outline-none text-center flex items-center justify-center">
                     <slide v-for="recommendation in recommendations" :key="recommendation.id" :index="recommendation.id" class="text-center flex justify-center">
                         <div class="md:max-w-xl xl:max-w-2xl">
-                            <p class="text-lg leading-relaxed text-gray-100 italic">
+                            <p class="text-lg leading-relaxed text-white italic">
                                 {{ recommendation.message }}
                             </p>
 
                             <div class="mt-6 flex flex-col items-center">
                                 <h5 class="text-lg text-white font-semibold">{{ recommendation.name }}</h5>
-                                <h6 class="text-gray-600 text-sm max-w-sm">{{ recommendation.title }}</h6>
+                                <h6 class="text-indigo-300 text-sm max-w-sm">{{ recommendation.title }}</h6>
                             </div>
                         </div>
                     </slide>
@@ -50,6 +50,8 @@
                     pagination: 'no',
                     autoPlay: true,
                     playSpeed: 7000,
+                    wheelControl: false,
+                    keysControl: false
                 }
             }
         },
