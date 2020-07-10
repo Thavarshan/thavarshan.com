@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-indigo-900 hidden md:block">
+    <section class="py-16 bg-blue-900 hidden md:block">
         <div class="container mx-auto px-6">
             <div class="flex flex-col justify-center items-center">
                 <div class="text-center">
@@ -7,10 +7,10 @@
                         What Other People Say about Me
                     </h4>
 
-                    <h6 class="text-indigo-300">LinkedIn recommedations received from superiors and colleagues.</h6>
+                    <h6 class="text-blue-300">LinkedIn recommedations received from superiors and colleagues.</h6>
                 </div>
 
-                <div class="border-t border-indigo-800 my-6 h-px bg-white w-1/2"></div>
+                <div class="border-t border-blue-800 my-6 h-px bg-white w-1/2"></div>
 
                 <hooper :settings="settings" class="outline-none focus:outline-none text-center flex items-center justify-center">
                     <slide v-for="recommendation in recommendations" :key="recommendation.id" :index="recommendation.id" class="text-center flex justify-center">
@@ -21,7 +21,7 @@
 
                             <div class="mt-6 flex flex-col items-center">
                                 <h5 class="text-lg text-white font-semibold">{{ recommendation.name }}</h5>
-                                <h6 class="text-indigo-300 text-sm max-w-sm">{{ recommendation.title }}</h6>
+                                <h6 class="text-blue-300 text-sm max-w-sm">{{ recommendation.title }}</h6>
                             </div>
                         </div>
                     </slide>

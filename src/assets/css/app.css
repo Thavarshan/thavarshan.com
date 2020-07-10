@@ -1,12 +1,12 @@
 @tailwind base;
 
 a {
-    @apply .text-indigo-500;
+    @apply .text-blue-500;
 }
 
 a:hover,
 a:focus {
-    @apply .text-indigo-600;
+    @apply .text-blue-600;
 }
 
 @tailwind components;
