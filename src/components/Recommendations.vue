@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-indigo-900">
+    <section class="py-16 bg-indigo-900 hidden md:block">
         <div class="container mx-auto px-6">
             <div class="flex flex-col justify-center items-center">
                 <div class="text-center">
