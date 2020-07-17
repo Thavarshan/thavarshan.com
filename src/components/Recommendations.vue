@@ -25,6 +25,8 @@
                             </div>
                         </div>
                     </slide>
+
+                    <hooper-pagination slot="hooper-addons"></hooper-pagination>
                 </hooper>
             </div>
         </div>
@@ -33,13 +35,14 @@
 
 <script>
     import data from '../assets/data/recommendations.json';
-    import { Hooper, Slide } from 'hooper';
+    import { Hooper, Slide, Pagination as HooperPagination } from 'hooper';
     import 'hooper/dist/hooper.css';
 
     export default {
         components: {
             Hooper,
-            Slide
+            Slide,
+            HooperPagination
         },
 
         data() {
