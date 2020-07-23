@@ -7,6 +7,8 @@
         <main role="main">
             <Profile />
 
+            <!-- <Recommendations /> -->
+
             <Projects />
         </main>
 
@@ -21,7 +23,7 @@
     import Profile from './Profile';
     import Projects from './Projects';
     import Credits from './Credits';
-    import Recommendations from './Recommendations';
+    // import Recommendations from './Recommendations';
 
     export default {
         components: {
@@ -29,7 +31,7 @@
             Profile,
             Projects,
             Credits,
-            Recommendations
+            // Recommendations
         },
     }
 </script>
