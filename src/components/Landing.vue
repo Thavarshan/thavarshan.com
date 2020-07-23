@@ -7,7 +7,7 @@
         <main role="main">
             <Profile />
 
-            <Recommendations />
+            <!-- <Recommendations /> -->
 
             <Projects />
         </main>
