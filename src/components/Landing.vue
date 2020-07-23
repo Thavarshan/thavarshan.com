@@ -7,8 +7,6 @@
         <main role="main">
             <Profile />
 
-            <!-- <Recommendations /> -->
-
             <Projects />
         </main>
 
