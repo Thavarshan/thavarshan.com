@@ -4,24 +4,8 @@
             <div class="text-gray-500 mb-3">&copy; {{ year }} <span class="font-semibold">Thavarshan</span></div>
 
             <div class="flex justify-center items-center">
-                <a class="text-gray-500 hover:text-gray-600 inline-block mx-2" href="mailto:tjthavarshan@gmail.com">
-                    <span class="fas fa-envelope"></span>
-                </a>
-
-                <a target="_blank" class="text-gray-500 hover:text-gray-600 inline-block mx-2" href="https://twitter.com/thavarshan">
-                    <span class="fab fa-twitter"></span>
-                </a>
-
-                <a target="_blank" class="text-gray-500 hover:text-gray-600 inline-block mx-2" href="https://github.com/Thavarshan">
-                    <span class="fab fa-github"></span>
-                </a>
-
-                <a target="_blank" class="text-gray-500 hover:text-gray-600 inline-block mx-2" href="https://www.linkedin.com/in/thavarshan/">
-                    <span class="fab fa-linkedin"></span>
-                </a>
-
-                <a target="_blank" class="text-gray-500 hover:text-gray-600 inline-block mx-2" href="https://dribbble.com/thavarshan">
-                    <span class="fab fa-dribbble"></span>
+                <a v-for="link in social" v-bind:key="link.name" class="text-gray-500 hover:text-gray-600 inline-block mx-2" :href="link.href">
+                    <span :class="link.icon"></span>
                 </a>
             </div>
         </div>
@@ -30,6 +14,8 @@
 
 <script>
     export default {
+        props: ['social'],
+
         data() {
             return {
                 year: new Date().getFullYear()
