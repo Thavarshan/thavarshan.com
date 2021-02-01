@@ -29,7 +29,7 @@
 
         mounted() {
             this.getRepos(
-                `location: https://api.bitbucket.org/2.0/repositories/thavarshan`
+                `https://api.bitbucket.org/2.0/repositories/thavarshan`
             );
         },
     }
