@@ -1,14 +1,14 @@
-name: ci
+name: Tests
 
 on:
   push:
     branches:
       - main
-      - master
+      - development
   pull_request:
     branches:
       - main
-      - master
+      - development
 
 jobs:
   ci:
