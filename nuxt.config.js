@@ -34,6 +34,7 @@ export default {
     buildModules: [
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
+        '@nuxtjs/moment'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
@@ -48,7 +49,14 @@ export default {
 
     publicRuntimeConfig: {
         axios: {
-            browserBaseURL: process.env.BROWSER_BASE_URL
+            credentials: true,
+            browserBaseURL: process.env.BROWSER_BASE_URL,
+            headers: {
+                common: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `token ${process.env.GITHUB_API_KEY}`
+                }
+            }
         }
     },
 

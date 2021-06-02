@@ -1,5 +1,5 @@
 <template>
-    <div class="py-16 bg-gray-50">
+    <div>
         <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-10 lg:grid lg:grid-cols-12 gap-6">
                 <div class="col-span-full md:col-span-6">
@@ -15,17 +15,15 @@
                 </div>
             </div>
 
-            <grid></grid>
+            <provider uri="https://api.github.com/users/thavarshan/repos">
+                <div slot-scope="{ data }">
+                    <grid :projects="data"></grid>
+                </div>
+            </provider>
         </div>
     </div>
 </template>
 
 <script>
-import Grid from './Grid';
-
-export default {
-    components: {
-        Grid,
-    }
-}
+export default {}
 </script>
