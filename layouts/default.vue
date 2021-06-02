@@ -4,7 +4,7 @@
             <nav class="bg-gray-800">
                 <div class="container mx-auto px-4 sm:px-6">
                     <div class="flex items-center justify-between h-12">
-                        <nuxt-link to="/thavarshan-resume.pdf" class="inline-flex items-center text-gray-300 hover:text-gray-100 focus:text-gray-100 active:text-gray-300">
+                        <a target="_blank" href="/thavarshan-resume.pdf" class="inline-flex items-center text-gray-300 hover:text-gray-100 focus:text-gray-100 active:text-gray-300">
                             <span class="font-semibold text-sm">
                                 Resumé
                             </span>
@@ -14,7 +14,7 @@
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </span>
-                        </nuxt-link>
+                        </a>
 
                         <a target="_blank" href="https://github.com/Thavarshan" class="text-gray-300 hover:text-gray-100 focus:text-gray-100 active:text-gray-300">
                             <span>
