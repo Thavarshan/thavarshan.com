@@ -15,7 +15,7 @@
                                 </h4>
 
                                 <p class="mt-4 leading-relaxed text-lg">
-                                    I'm <a class="text-blue-500 hover:text-blue-600 focus:text-blue-600 active:text-blue-700" href="#">@thavarshan</a>, a Professional Software Engineer, Electronics & Telecommunications Engineer, Graphic Designer, and part-time Artist.
+                                    I'm <a class="text-blue-500 hover:text-blue-600 focus:text-blue-600 active:text-blue-700" href="mailto:tjthavarshan@gmail.com">@thavarshan</a>, a Professional Software Engineer, Electronics & Telecommunications Engineer, Graphic Designer, and part-time Artist.
                                 </p>
 
                                 <p class="mt-4 leading-relaxed text-lg">
