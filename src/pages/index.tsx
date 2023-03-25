@@ -22,14 +22,23 @@ import axios from 'axios';
 import { Octokit } from 'octokit';
 import moment from 'moment';
 import SimpleBar from 'simplebar-react';
+import { NextSeo } from 'next-seo';
 
 const Home = ({ projects }: any) => {
     return (
         <>
-            <Head>
-                <title>Jerome Thayananthajothy</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <NextSeo
+                title='Jerome Thayananthajothy'
+                description='Jerome Thayananthajothy | Personal Portfolio'
+                openGraph={{
+                    url: 'https://www.thavarshan.xyz',
+                    title: 'Jerome Thayananthajothy',
+                    description: 'Jerome Thayananthajothy | Personal Portfolio',
+                    images: [
+                        { url: 'https://www.thavarshan.xyz/images/jerome.jpg' }
+                    ],
+                    siteName: 'Jerome Thayananthajothy',
+                }} />
 
             <Container maxW='container.lg' py={{ base: 6, md: 20 }}>
                 <Box>
