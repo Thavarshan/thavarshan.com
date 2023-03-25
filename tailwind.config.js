@@ -1,34 +1,22 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    mode: 'jit',
+    content: [
+        "./app/**/*.{js,ts,jsx,tsx}",
+        "./src/pages/**/*.{js,ts,jsx,tsx}",
+        "./src/components/**/*.{js,ts,jsx,tsx}",
 
-    purge: {
-        content: [
-            `components/**/*.{vue,js}`,
-            `layouts/**/*.vue`,
-            `pages/**/*.vue`,
-            `plugins/**/*.{js,ts}`,
-            `nuxt.config.{js,ts}`
-        ]
-    },
-
-    darkMode: false, // or 'media' or 'class'
+        // Or if using `src` directory:
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
 
     theme: {
-        container: {
-            center: true,
-        },
-
         extend: {
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                sans: ['var(--font-inter)', ...fontFamily.sans],
             },
         },
-    },
-
-    variants: {
-        extend: {},
     },
 
     plugins: [],
