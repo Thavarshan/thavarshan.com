@@ -40,7 +40,7 @@ const Home = ({ projects }: any) => {
                     siteName: 'Jerome Thayananthajothy',
                 }} />
 
-            <Container maxW='container.lg' py={{ base: 6, md: 20 }}>
+            <Container maxW='container.lg' py={{ base: 6, md: 12 }}>
                 <Box>
                     <SimpleGrid columns={{ base: 1, lg: 12 }} spacing={6}>
                         <GridItem colSpan={{ base: 12, lg: 7 }}>
