@@ -138,7 +138,7 @@ const Home = ({ projects }: any) => {
 
 export async function getStaticProps () {
     const octokit = new Octokit({ auth: process.env.NEXT_PUBLIC_GITHUB_API_KEY });
-    const { data } = await octokit.request('GET /users/{owner}/repos?type=public', {
+    const { data } = await octokit.request('GET /users/{owner}/repos', {
         owner: process.env.NEXT_PUBLIC_GITHUB_REPO_OWNER,
         headers: {
             'X-GitHub-Api-Version': process.env.NEXT_PUBLIC_GITHUB_API_VERSION
