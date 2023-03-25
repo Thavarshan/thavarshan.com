@@ -8,6 +8,7 @@ import {
     HStack,
     Link,
     SimpleGrid,
+    Spacer,
     Stack,
     Tag,
     Text
@@ -30,10 +31,10 @@ const Home = ({ projects }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Container maxW='container.lg' py='20'>
+            <Container maxW='container.lg' py={{ base: 6, md: 20 }}>
                 <Box>
                     <SimpleGrid columns={{ base: 1, lg: 12 }} spacing={6}>
-                        <GridItem colSpan={7}>
+                        <GridItem colSpan={{ base: 12, lg: 7 }}>
                             <Stack spacing={6}>
                                 <Heading as='h3' color='white' size='lg'>Jerome <span className='font-light'>Thayananthajothy</span></Heading>
 
@@ -88,7 +89,13 @@ const Home = ({ projects }: any) => {
                             </Stack>
                         </GridItem>
 
-                        <GridItem colSpan={5}>
+                        <GridItem mt={{ base: 6, lg: 0 }} colSpan={{ base: 12, md: 5 }}>
+                            <Box mb='6'>
+                                <Heading as='h6' size='xs' color='white' textTransform='uppercase'>
+                                    Personal Projects
+                                </Heading>
+                            </Box>
+
                             <SimpleBar style={{ maxHeight: '710px' }} autoHide>
                                 {projects.map((project: any) => (
                                     <Box key={project.id} border='1px' className='bg-gray-900 border border-gray-800 mb-4' rounded='xl' p={4}>
@@ -102,11 +109,13 @@ const Home = ({ projects }: any) => {
                                             {project.description}
                                         </Text>
 
-                                        <HStack mt={4} spacing={4}>
+                                        <Flex mt={4} align='center'>
                                             <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
 
+                                            <Spacer />
+
                                             <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at).fromNow()}</Box>
-                                        </HStack>
+                                        </Flex>
                                     </Box>
                                 ))}
                             </SimpleBar>
