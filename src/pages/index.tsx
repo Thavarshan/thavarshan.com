@@ -48,7 +48,7 @@ const Home = ({ projects }: any) => {
                                 <Heading as='h3' color='white' size='lg'>Jerome <span className='font-light'>Thayananthajothy</span></Heading>
 
                                 <Text color='gray.400' maxW={{ base: 'full', md: 'xl', xl: 'lg' }}>
-                                    Hey, I&apos;m Jerome. I&apos;m a professional Software Engineer, Graphic design enthusiate, and part-time Artist. I love to create, make, and build stuff. I spend countless hours sitting in front of a computer screen making something amazing and when I&apos;m not, I draw pencil sketch portraits.
+                                    Hey, I&apos;m Jerome. I&apos;m a professional Software Engineer, Graphic design enthusiast, and part-time Artist. I love to create, make, and build stuff. I spend countless hours sitting in front of a computer screen making something amazing and when I&apos;m not, I draw pencil sketch portraits.
                                 </Text>
 
                                 <Flex align='start'>
@@ -93,7 +93,7 @@ const Home = ({ projects }: any) => {
                                 </Flex>
 
                                 <Text color='gray.400' maxW={{ base: 'full', md: 'xl', xl: 'lg' }}>
-                                    Althought I specialize in PHP & TypeScript, I do have mid-level experience with C++, Java and Python. I am now working on broadening my horizon by exploring Machine Learning, Rust and Golang.
+                                    Although I specialize in PHP & TypeScript, I do have mid-level experience with C++, Java, and Python. I am now working on broadening my horizon by exploring Machine Learning, Rust, and Golang.
                                 </Text>
                             </Stack>
                         </GridItem>
