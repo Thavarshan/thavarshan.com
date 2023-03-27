@@ -24,7 +24,7 @@ import moment from 'moment';
 import SimpleBar from 'simplebar-react';
 import { NextSeo } from 'next-seo';
 
-const Home = ({ projects }: any) => {
+const Home = ({ personal, practice }: any) => {
     return (
         <>
             <NextSeo
@@ -40,10 +40,10 @@ const Home = ({ projects }: any) => {
                     siteName: 'Jerome Thayananthajothy',
                 }} />
 
-            <Container maxW='container.lg' py={{ base: 6, md: 12 }}>
+            <Container maxW='container.xl' py={{ base: 6, md: 12 }}>
                 <Box>
                     <SimpleGrid columns={{ base: 1, lg: 12 }} spacing={6}>
-                        <GridItem colSpan={{ base: 12, lg: 7 }}>
+                        <GridItem colSpan={{ base: 1, md: 5, lg: 6 }}>
                             <Stack spacing={6}>
                                 <Heading as='h3' color='white' size='lg'>Jerome <span className='font-light'>Thayananthajothy</span></Heading>
 
@@ -98,36 +98,80 @@ const Home = ({ projects }: any) => {
                             </Stack>
                         </GridItem>
 
-                        <GridItem mt={{ base: 6, lg: 0 }} colSpan={{ base: 12, md: 5 }}>
-                            <Box mb='6'>
-                                <Heading as='h6' size='xs' color='white' textTransform='uppercase'>
-                                    Personal Projects
-                                </Heading>
-                            </Box>
-
-                            <SimpleBar style={{ maxHeight: '710px' }} autoHide>
-                                {projects.map((project: any) => (
-                                    <Box key={project.id} border='1px' className='bg-gray-900 border border-gray-800 mb-4' rounded='xl' p={4}>
-                                        <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
-
-                                        <Link href={project.website ? project.website : (project.html_url || project.links.html.href)} isExternal>
-                                            <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
-                                        </Link>
-
-                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500'>
-                                            {project.description}
-                                        </Text>
-
-                                        <Flex mt={4} align='center'>
-                                            <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
-
-                                            <Spacer />
-
-                                            <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at).fromNow()}</Box>
-                                        </Flex>
+                        <GridItem colSpan={{ base: 1, md: 7, lg: 6 }}>
+                            <SimpleGrid columns={{ base: 1, md: 12 }} spacing={6}>
+                                <GridItem mt={{ base: 6, md: 0 }} colSpan={{ base: 1, md: 6 }}>
+                                    <Box mb='6'>
+                                        <Heading as='h6' size='xs' color='white' textTransform='uppercase'>
+                                            Personal Projects
+                                        </Heading>
                                     </Box>
-                                ))}
-                            </SimpleBar>
+
+                                    <SimpleBar style={{ maxHeight: '710px' }} autoHide>
+                                        {personal.map((project: any) => (
+                                            <Flex direction='column' minH={'180px'} key={project.id} border='1px' className='bg-gray-900 border border-gray-800 mb-4' rounded='xl' p={4}>
+                                                <Box>
+                                                    <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
+
+                                                    <Link href={project.website ? project.website : (project.html_url || project.links.html.href)} isExternal>
+                                                        <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
+                                                    </Link>
+
+                                                    <Text mt={3} fontSize='sm' maxW='sm' color='gray.500'>
+                                                        {project.description}
+                                                    </Text>
+                                                </Box>
+
+                                                <Spacer />
+
+                                                <Flex mt={4} align='center'>
+                                                    <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
+
+                                                    <Spacer />
+
+                                                    <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at).fromNow()}</Box>
+                                                </Flex>
+                                            </Flex>
+                                        ))}
+                                    </SimpleBar>
+                                </GridItem>
+
+                                <GridItem mt={{ base: 6, md: 0 }} colSpan={{ base: 1, md: 6 }}>
+                                    <Box mb='6'>
+                                        <Heading as='h6' size='xs' color='white' textTransform='uppercase'>
+                                            Practice Projects
+                                        </Heading>
+                                    </Box>
+
+                                    <SimpleBar style={{ maxHeight: '710px' }} autoHide>
+                                        {practice.map((project: any) => (
+                                            <Flex direction='column' minH={'180px'} key={project.id} border='1px' className='bg-gray-900 border border-gray-800 mb-4' rounded='xl' p={4}>
+                                                <Box>
+                                                    <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
+
+                                                    <Link href={project.website ? project.website : (project.html_url || project.links.html.href)} isExternal>
+                                                        <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
+                                                    </Link>
+
+                                                    <Text mt={3} fontSize='sm' maxW='sm' color='gray.500'>
+                                                        {project.description}
+                                                    </Text>
+                                                </Box>
+
+                                                <Spacer />
+
+                                                <Flex mt={4} align='center'>
+                                                    <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
+
+                                                    <Spacer />
+
+                                                    <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at || project.updated_on).fromNow()}</Box>
+                                                </Flex>
+                                            </Flex>
+                                        ))}
+                                    </SimpleBar>
+                                </GridItem>
+                            </SimpleGrid>
                         </GridItem>
                     </SimpleGrid>
                 </Box>
@@ -138,14 +182,16 @@ const Home = ({ projects }: any) => {
 
 export async function getStaticProps () {
     const octokit = new Octokit({ auth: process.env.NEXT_PUBLIC_GITHUB_API_KEY });
-    const { data } = await octokit.request('GET /users/{owner}/repos', {
+    const { data: personal } = await octokit.request('GET /users/{owner}/repos', {
         owner: process.env.NEXT_PUBLIC_GITHUB_REPO_OWNER,
         headers: {
             'X-GitHub-Api-Version': process.env.NEXT_PUBLIC_GITHUB_API_VERSION
         }
     });
 
-    return { props: { projects: data } };
+    const { data: { values: practice } } = await axios.get('https://api.bitbucket.org/2.0/repositories/thavarshan?pagelen=100');
+
+    return { props: { personal, practice } };
 }
 
 export default Home;
