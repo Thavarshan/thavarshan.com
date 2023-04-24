@@ -44,7 +44,7 @@ const Home = ({ personal, practice }: any) => {
             <Box>
                 <Box>
                     <Box mb='10'>
-                        <Heading as='h3' color='white' size='lg'>Practice Projects</Heading>
+                        <Heading as='h3' color='white' size='lg'>Personal Projects</Heading>
 
                         <Text mt='4' color='gray.500' maxW='md'>
                             All projects that are random ideas, opensource contributions, and other projects that I&apos;m working on.
