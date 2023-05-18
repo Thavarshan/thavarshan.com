@@ -1,60 +1,39 @@
 import {
     Badge,
     Box,
-    Container,
-    Divider,
     Flex,
     GridItem,
     Heading,
-    HStack,
     Link,
     SimpleGrid,
     Spacer,
     Stack,
-    Tag,
     Text
 } from '@chakra-ui/react';
-import Head from 'next/head';
-import Image from 'next/image';
-import photo from '@/assets/images/jerome.jpg';
-import { FaLinkedin, FaBitbucket, FaGithub, FaPaperPlane } from 'react-icons/fa';
-import { CgFileDocument } from 'react-icons/cg';
 import axios from 'axios';
 import { Octokit } from 'octokit';
 import moment from 'moment';
-import SimpleBar from 'simplebar-react';
-import { NextSeo } from 'next-seo';
+import SEO from '@/components/SEO';
 
-const Home = ({ personal, practice }: any) => {
+const Projects = ({ personal, practice }: any) => {
     return (
         <>
-            <NextSeo
-                title='Jerome Thayananthajothy'
-                description='Jerome Thayananthajothy | Personal Portfolio'
-                openGraph={{
-                    url: 'https://www.thavarshan.xyz',
-                    title: 'Jerome Thayananthajothy',
-                    description: 'Jerome Thayananthajothy | Personal Portfolio',
-                    images: [
-                        { url: 'https://www.thavarshan.xyz/images/jerome.jpg' }
-                    ],
-                    siteName: 'Jerome Thayananthajothy',
-                }} />
+            <SEO />
 
-            <Box>
-                <Box>
-                    <Box mb='10'>
+            <Box w='full' className="mt-10 lg:mt-0">
+                <Box w='full'>
+                    <Box mb='10' className='text-center md:text-left'>
                         <Heading as='h3' color='white' size='lg'>Personal Projects</Heading>
 
-                        <Text mt='4' color='gray.500' maxW='md'>
+                        <Text mt='4' color='gray.500' maxW={{ base: 'full', lg: 'md' }}>
                             All projects that are random ideas, opensource contributions, and other projects that I&apos;m working on.
                         </Text>
                     </Box>
 
-                    <SimpleGrid columns={12} spacing={6}>
+                    <SimpleGrid columns={{ base: 1, md: 12 }} spacing={6}>
                         {personal.map((project: any) => (
-                            <GridItem colSpan={4} key={project.id}>
-                                <Flex direction='column' minH={'200px'} maxW='md' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
+                            <GridItem colSpan={{ base: 1, md: 4 }} key={project.id}>
+                                <Flex direction='column' minH='200px' maxW='full' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
                                     <Box>
                                         <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
 
@@ -62,7 +41,7 @@ const Home = ({ personal, practice }: any) => {
                                             <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
                                         </Link>
 
-                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='truncate ...'>
+                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='whitespace-normal truncate ...'>
                                             {project.description}
                                         </Text>
                                     </Box>
@@ -83,18 +62,18 @@ const Home = ({ personal, practice }: any) => {
                 <div className='border-b border-gray-700 mt-16 mb-12'></div>
 
                 <Box>
-                    <Box mb='10'>
+                    <Box mb='10' className='text-center md:text-left'>
                         <Heading as='h3' color='white' size='lg'>Practice Projects</Heading>
 
-                        <Text mt='4' color='gray.500' maxW='md'>
+                        <Text mt='4' color='gray.500' maxW={{ sm: 'full', lg: 'md' }}>
                             All projects that were created for practice, learning, and/or testing.
                         </Text>
                     </Box>
 
-                    <SimpleGrid columns={12} spacing={6}>
+                    <SimpleGrid columns={{ sm: 1, md: 12 }} spacing={6}>
                         {practice.map((project: any) => (
-                            <GridItem colSpan={4} key={project.id}>
-                                <Flex direction='column' minH={'200px'} maxW='md' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
+                            <GridItem colSpan={{ sm: 1, md: 4 }} key={project.id}>
+                                <Flex direction='column' minH='200px' maxW='full' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
                                     <Box>
                                         <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
 
@@ -102,7 +81,7 @@ const Home = ({ personal, practice }: any) => {
                                             <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
                                         </Link>
 
-                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='truncate ...'>
+                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='whitespace-normal truncate ...'>
                                             {project.description}
                                         </Text>
                                     </Box>
@@ -140,4 +119,4 @@ export async function getStaticProps () {
     return { props: { personal, practice } };
 }
 
-export default Home;
+export default Projects;
