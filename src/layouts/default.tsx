@@ -12,16 +12,16 @@ const Layout = ({ children }: any) => {
     return (
         <>
             <NextSeo
-                title='Jerome Thayananthajothy'
+                title='Jerome (Thavarshan) Thayananthajothy'
                 description='Jerome Thayananthajothy | Personal Portfolio'
                 openGraph={{
                     url: 'https://www.thavarshan.xyz',
-                    title: 'Jerome Thayananthajothy',
+                    title: 'Jerome (Thavarshan) Thayananthajothy',
                     description: 'Jerome Thayananthajothy | Personal Portfolio',
                     images: [
                         { url: 'https://www.thavarshan.xyz/images/jerome.jpg' }
                     ],
-                    siteName: 'Jerome Thayananthajothy',
+                    siteName: 'Jerome (Thavarshan) Thayananthajothy',
                 }} />
 
             <Container maxW='container.xl' py={{ base: 6, lg: 24 }}>
