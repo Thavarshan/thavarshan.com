@@ -5,7 +5,7 @@ export default function Document () {
         <Html lang="en">
             <Head />
 
-            <body className='bg-gray-900 leading-normal text-gray-600 antialiased'>
+            <body className='bg-gradient-to-br from-slate-700 to-slate-950 bg-fixed leading-normal text-gray-600 antialiased min-h-screen'>
                 <Main />
 
                 <NextScript />

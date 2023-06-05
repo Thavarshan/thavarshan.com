@@ -16,6 +16,15 @@ import moment from 'moment';
 import SEO from '@/components/SEO';
 
 const Projects = ({ personal, practice }: any) => {
+    const highlights = [
+        'euclidius',
+        'nesbot',
+        'ignite',
+        'cerberus',
+        'gym',
+        'bookshop'
+    ];
+
     return (
         <>
             <SEO />
@@ -23,17 +32,57 @@ const Projects = ({ personal, practice }: any) => {
             <Box w='full' className="mt-10 lg:mt-0">
                 <Box w='full'>
                     <Box mb='10' className='text-center md:text-left'>
+                        <Heading as='h3' color='white' size='lg'>Highlights</Heading>
+
+                        <Text mt='4' color='gray.400' maxW={{ base: 'full', lg: 'md' }}>
+                            Projects of interests that I&apos;ve worked on in the past.
+                        </Text>
+                    </Box>
+
+                    <SimpleGrid columns={{ base: 1, md: 12 }} spacing={6}>
+                        {personal.filter((project: any) => highlights.includes(project.name)).map((project: any) => (<GridItem colSpan={{ base: 1, md: 4 }} key={project.id}>
+                            <Flex direction='column' minH='230px' maxW='full' className='bg-transparent border border-gray-600 rounded-xl p-4'>
+                                <Box>
+                                    <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
+
+                                    <Link href={project.website ? project.website : (project.html_url || project.links.html.href)} isExternal>
+                                        <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
+                                    </Link>
+
+                                    <Text mt={3} fontSize='sm' maxW='sm' color='gray.400' className='whitespace-normal truncate ...'>
+                                        {project.description}
+                                    </Text>
+                                </Box>
+
+                                <Spacer />
+
+                                <Stack mt={4} direction='row' spacing='3'>
+                                    <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
+
+                                    <Spacer />
+
+                                    <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at).fromNow()}</Box>
+                                </Stack>
+                            </Flex>
+                        </GridItem>))}
+                    </SimpleGrid>
+                </Box>
+
+                <div className='border-b border-gray-700 mt-16 mb-12'></div>
+
+                <Box w='full'>
+                    <Box mb='10' className='text-center md:text-left'>
                         <Heading as='h3' color='white' size='lg'>Personal Projects</Heading>
 
-                        <Text mt='4' color='gray.500' maxW={{ base: 'full', lg: 'md' }}>
+                        <Text mt='4' color='gray.400' maxW={{ base: 'full', lg: 'md' }}>
                             All projects that are random ideas, opensource contributions, and other projects that I&apos;m working on.
                         </Text>
                     </Box>
 
                     <SimpleGrid columns={{ base: 1, md: 12 }} spacing={6}>
-                        {personal.map((project: any) => (
+                        {personal.filter((project: any) => !highlights.includes(project.name)).map((project: any) => (
                             <GridItem colSpan={{ base: 1, md: 4 }} key={project.id}>
-                                <Flex direction='column' minH='200px' maxW='full' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
+                                <Flex direction='column' minH='230px' maxW='full' className='bg-transparent border border-gray-600 rounded-xl p-4'>
                                     <Box>
                                         <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
 
@@ -41,7 +90,7 @@ const Projects = ({ personal, practice }: any) => {
                                             <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
                                         </Link>
 
-                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='whitespace-normal truncate ...'>
+                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.400' className='whitespace-normal truncate ...'>
                                             {project.description}
                                         </Text>
                                     </Box>
@@ -51,7 +100,9 @@ const Projects = ({ personal, practice }: any) => {
                                     <Stack mt={4} direction='row' spacing='3'>
                                         <Badge rounded='md'>{(project.language || 'Markdown').toLowerCase()}</Badge>
 
-                                        <Box fontSize='xs' color='gray.500'>Last updated {moment(project.updated_at).fromNow()}</Box>
+                                        <Spacer />
+
+                                        <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at).fromNow()}</Box>
                                     </Stack>
                                 </Flex>
                             </GridItem>
@@ -65,15 +116,15 @@ const Projects = ({ personal, practice }: any) => {
                     <Box mb='10' className='text-center md:text-left'>
                         <Heading as='h3' color='white' size='lg'>Practice Projects</Heading>
 
-                        <Text mt='4' color='gray.500' maxW={{ sm: 'full', lg: 'md' }}>
+                        <Text mt='4' color='gray.400' maxW={{ sm: 'full', lg: 'md' }}>
                             All projects that were created for practice, learning, and/or testing.
                         </Text>
                     </Box>
 
                     <SimpleGrid columns={{ sm: 1, md: 12 }} spacing={6}>
                         {practice.map((project: any) => (
-                            <GridItem colSpan={{ sm: 1, md: 4 }} key={project.id}>
-                                <Flex direction='column' minH='200px' maxW='full' className='bg-gray-900 border border-gray-700 rounded-xl p-4'>
+                            <GridItem colSpan={{ sm: 1, md: 4 }} key={project.uuid}>
+                                <Flex direction='column' minH='230px' maxW='full' className='bg-transparent border border-gray-600 rounded-xl p-4'>
                                     <Box>
                                         <Heading as='h5' color='white' size='sm'>{project.name}</Heading>
 
@@ -81,7 +132,7 @@ const Projects = ({ personal, practice }: any) => {
                                             <Text mt={1} as='h6' color='white' fontSize='xs'>{project.full_name}</Text>
                                         </Link>
 
-                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.500' className='whitespace-normal truncate ...'>
+                                        <Text mt={3} fontSize='sm' maxW='sm' color='gray.400' className='whitespace-normal truncate ...'>
                                             {project.description}
                                         </Text>
                                     </Box>
@@ -93,7 +144,7 @@ const Projects = ({ personal, practice }: any) => {
 
                                         <Spacer />
 
-                                        <Box fontSize='xs' color='gray.500'>Last updated {moment(project.updated_at || project.updated_on).fromNow()}</Box>
+                                        <Box fontSize='xs' color='gray.400'>Last updated {moment(project.updated_at || project.updated_on).fromNow()}</Box>
                                     </Flex>
                                 </Flex>
                             </GridItem>
