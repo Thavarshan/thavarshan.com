@@ -23,7 +23,7 @@ const Home = () => {
                     <Heading as='h3' color='white' size='lg'>Jerome <span className='font-light text-gray-300'>(Thavarshan) Thayananthajothy</span></Heading>
 
                     <Text color='gray.400' maxW={{ base: 'full', md: 'xl', xl: 'lg' }} mx={{ base: 0, md: 'auto' }}>
-                        Hello, my name is Jerome. I am a professional Software Engineer with a passion for graphic design and a part-time artist. I thrive on finding innovative solutions to everyday problems and take pride in continually refining my skills. Outside of work, I enjoy creating unique traditional pencil sketch portraits.
+                        Hi, I&apos;m [Your Name], a seasoned software engineer with over 7 years of experience in the field. I excel in creating efficient and robust solutions, leveraging my keen eye for detail to deliver high-quality results. When I&apos;m not immersed in coding and problem-solving, you&apos;ll often find me pursuing my artistic side through traditional pencil sketches.
                     </Text>
 
                     <Flex align='center' justify={{ base: 'center', lg: 'start' }}>
