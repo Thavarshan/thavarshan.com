@@ -35,7 +35,7 @@ const Projects = ({ personal, practice }: any) => {
                         <Heading as='h3' color='white' size='lg'>Highlights</Heading>
 
                         <Text mt='4' color='gray.400' maxW={{ base: 'full', lg: 'md' }}>
-                            Projects of interests that I&apos;ve worked on in the past.
+                            Projects of interests that I&apos;ve worked on and am working on.
                         </Text>
                     </Box>
 
