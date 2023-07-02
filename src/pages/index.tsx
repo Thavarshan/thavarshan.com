@@ -11,14 +11,9 @@ import Image from 'next/image';
 import { FaLinkedin, FaBitbucket, FaGithub, FaPaperPlane } from 'react-icons/fa';
 import { CgFileDocument } from 'react-icons/cg';
 import SEO from '@/components/SEO';
-import JsGravatar from 'js-gravatar';
 
 const Home = () => {
-    const profileImage = JsGravatar({
-        email: process.env.NEXT_PUBLIC_GRAVATAR_EMAIL || '',
-        size: 10,
-        defaultImage: 'identicon'
-    });
+    const gravatarEmailHash = process.env.NEXT_PUBLIC_GRAVATAR_EMAIL;
 
     return (
         <>
@@ -34,7 +29,7 @@ const Home = () => {
 
                     <Flex align='center' justify={{ base: 'center', lg: 'start' }}>
                         <Flex align='start'>
-                            <Image alt='Jerome' className='rounded-full grayscale' src={profileImage} width={100} height={100} priority />
+                            <Image alt='Jerome' className='rounded-full grayscale' src={`https://www.gravatar.com/${gravatarEmailHash}`} width={100} height={100} priority />
 
                             <Stack spacing={2} ml='6' my='auto'>
                                 <Link href='https://www.linkedin.com/in/thavarshan/' color='white' isExternal display='flex' className='items-center'>
