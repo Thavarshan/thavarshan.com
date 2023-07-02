@@ -8,12 +8,14 @@ import {
     Text
 } from '@chakra-ui/react';
 import Image from 'next/image';
-import photo from '@/assets/images/jerome.jpg';
 import { FaLinkedin, FaBitbucket, FaGithub, FaPaperPlane } from 'react-icons/fa';
 import { CgFileDocument } from 'react-icons/cg';
 import SEO from '@/components/SEO';
+import md5 from 'js-md5';
 
 const Home = () => {
+    const gravatarEmailHash = md5(process.env.NEXT_PUBLIC_GRAVATAR_EMAIL || '');
+
     return (
         <>
             <SEO />
@@ -28,7 +30,7 @@ const Home = () => {
 
                     <Flex align='center' justify={{ base: 'center', lg: 'start' }}>
                         <Flex align='start'>
-                            <Image alt='Jerome' className='rounded-full grayscale' src={photo.src} width={100} height={100} priority />
+                            <Image alt='Jerome' className='rounded-full grayscale' src={`https://www.gravatar.com/${gravatarEmailHash}`} width={100} height={100} priority />
 
                             <Stack spacing={2} ml='6' my='auto'>
                                 <Link href='https://www.linkedin.com/in/thavarshan/' color='white' isExternal display='flex' className='items-center'>
