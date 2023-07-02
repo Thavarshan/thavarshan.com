@@ -29,7 +29,7 @@ const Home = () => {
 
                     <Flex align='center' justify={{ base: 'center', lg: 'start' }}>
                         <Flex align='start'>
-                            <Image alt='Jerome' className='rounded-full grayscale' src={`https://www.gravatar.com/avatar/${gravatarEmailHash}`} width={100} height={100} priority />
+                            <Image alt='Jerome' className='rounded-full grayscale' src={`https://www.gravatar.com/avatar/${gravatarEmailHash}?s=200`} width={100} height={100} priority />
 
                             <Stack spacing={2} ml='6' my='auto'>
                                 <Link href='https://www.linkedin.com/in/thavarshan/' color='white' isExternal display='flex' className='items-center'>
