@@ -37,12 +37,12 @@ interface Props {
 		<!-- Discord -->
 		<meta name="theme-color" content="#92400e" />
 	</head>
-	<body class="antialiased mx-auto max-w-3xl px-4 text-amber-950 bg-amber-50">
+	<body class="antialiased mx-auto max-w-3xl px-4 text-amber-950 bg-animated gif-background">
 		<header class="flex place-content-between place-items-center pb-2 pt-6">
 			<a class="block" href="/">
 				<img src="/profile.jpeg"
 					alt="profile picture"
-					class="h-8 w-8 rounded-full bg-amber-100 transition-transform duration-200 ease-in-out hover:scale-110 sm:h-10 sm:w-10"/>
+					class="h-8 w-8 rounded-full bg-animated transition-transform duration-200 ease-in-out hover:scale-110 sm:h-10 sm:w-10"/>
             </a>
 			<div class="flex gap-x-4 text-amber-950">
 				<a href="https://github.com/Thavarshan" class="hover:text-main hover:underline">Github</a>
@@ -69,5 +69,11 @@ interface Props {
 				Liberation Mono,
 				monospace;
 		}
+        .gif-background {
+            background-image: url('/animation.gif');
+            background-position: center bottom;
+            background-repeat: repeat-x;
+            background-attachment: fixed;
+        }
 	</style>
 </html>

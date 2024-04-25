@@ -5,6 +5,8 @@ import { getPosts } from "@utils/posts";
 import { getProjects } from "@utils/projects";
 import type { Project } from "@utils/projects";
 import { ENABLE_BLOG } from "@utils/env";
+import { truncate } from "@utils/str";
+import { Icon } from 'astro-icon/components'
 
 const projects = await getProjects();
 const posts = await getPosts();
@@ -17,11 +19,16 @@ const posts = await getPosts();
 
 const pinnedProjects = projects.filter((project: Project) => {
     return [
-        'filterable',
+        'birthdays',
         'bookshop',
         'gym',
+        'composer-upgrade-helper',
         'euclidius',
+        'filterable',
     ].includes(project.name);
+})
+.sort((a: Project, b: Project) => {
+    return b.stargazers_count - a.stargazers_count;
 });
 ---
 
@@ -32,21 +39,36 @@ const pinnedProjects = projects.filter((project: Project) => {
 	</p>
 	<p class="mt-4 text-amber-950">Feel free to message me on Twitter or Discord!</p>
 	<section class="mt-8">
-		<h2 class="mb-2 text-2xl font-semibold">Projects</h2>
-		<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<h2 class="mb-4 text-2xl font-semibold">Projects</h2>
+		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 			{
 				pinnedProjects.map((project: Project) => {
 					return (
-						<article class="group rounded-md border border-amber-200 bg-amber-100 px-4 pb-3 pt-2 hover:shadow-sm">
-							<a href={new URL(project.html_url, "https://github.com")} class="block">
-								<h3 class="w-fit group-hover:text-main group-hover:underline">{project.name}</h3>
-								<p class="mt-1 text-sm text-amber-800">{project.description}</p>
+						<article class="group rounded-md border border-yellow-200 bg-yellow-300 px-4 pb-3 pt-2 hover:shadow-sm">
+							<a href={new URL(project.html_url, "https://github.com")} class="flex flex-col justify-between min-h-36">
+								<div class="flex flex-col flex-1">
+                                    <h3 class="w-fit group-hover:text-main group-hover:underline font-medium">{project.name}</h3>
+								    <p class="mt-2 text-sm text-amber-800">{truncate(project.description, 120)}</p>
+                                </div>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <div class="inline-flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-amber-800 bg-yellow-200 rounded-md">{project.language}</div>
+                                    <div class="inline-flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-amber-800 bg-yellow-200 rounded-md">
+                                        <Icon name="mdi:star" class="text-sm" />
+                                        <span>{project.stargazers_count}</span>
+                                    </div>
+                                </div>
 							</a>
 						</article>
 					);
 				})
 			}
 		</div>
+        <div class="mt-6 text-center">
+            <!-- View more projects -->
+            <a href="https://github.com/Thavarshan?tab=repositories" class="inline-flex space-x-1 items-center mt-4 text-sm hover:underline font-medium">
+                <span>View more projects</span> <Icon name="mdi:arrow-right" />
+            </a>
+        </div>
 	</section>
 	{ENABLE_BLOG !== 'false' ? <section class="mt-12">
 		<h2 class="mb-4 text-2xl font-semibold">Blog</h2>
