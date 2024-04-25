@@ -4,6 +4,8 @@ interface Props {
 	description: string;
 	ogId?: string;
 }
+
+const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -50,9 +52,16 @@ interface Props {
 				<a href="https://github.com/sponsors/Thavarshan" class="hover:text-main hover:underline">Donate</a>
 			</div>
 		</header>
-		<main class="pb-32 pt-8 leading-relaxed sm:pt-12">
+		<main class="py-8 leading-relaxed">
 			<slot />
 		</main>
+        <footer class="flex items-center space-x-2 text-xs justify-center">
+            <p class="text-center text-amber-800">Website created by <a target="_blank" href="https://twitter.com/tjthavarshan" class="text-amber-950 hover:text-main hover:underline">Jerome</a></p>
+            <span>|</span>
+            <p class="text-center text-amber-800">
+                Animated <a target="_blank" href="https://www.behance.net/gallery/65838927/Game-Backgrounds" class="text-amber-950 hover:text-main hover:underline">background</a> by <a target="_blank" href="https://www.behance.net/hendzaky2020" class="text-amber-950 hover:text-main hover:underline">Hend Zaky</a> and <a target="_blank" href="https://www.behance.net/m_moh" class="text-amber-950 hover:text-main hover:underline">Mohamed M</a>
+            </p>
+        </footer>
 	</body>
 	<style>
 		html {
