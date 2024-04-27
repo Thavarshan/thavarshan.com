@@ -16,8 +16,8 @@ const currentYear = new Date().getFullYear();
 		<meta name="description" content={Astro.props.description} />
 		<title>{Astro.props.title}</title>
 		<link rel="preconnect" href="/" crossorigin />
-		<link rel="preload" href="/profile.jpeg" as="image" />
-		<link rel="icon" href="/profile.jpeg" />
+		<link rel="preload" href="/profile.png" as="image" />
+		<link rel="icon" href="/profile.png" />
 		<link rel="alternate" type="application/rss+xml" title="Jerome" href={`${Astro.site}rss.xml`} />
 
 		<!-- OpenGraph tags -->
@@ -28,7 +28,7 @@ const currentYear = new Date().getFullYear();
 		<meta property="og:description" content={Astro.props.description} />
 		<meta property="og:site_name" content="Jerome" />
 		<meta property="og:url" content="https://thavarshan.com" />
-		<meta property="og:image" content="https://thavarshan.com/profile.jpeg" />
+		<meta property="og:image" content="https://thavarshan.com/profile.png" />
 
 		<!-- Twitter tags -->
 		<meta name="twitter:card" content="summary" />
@@ -39,27 +39,27 @@ const currentYear = new Date().getFullYear();
 		<!-- Discord -->
 		<meta name="theme-color" content="#92400e" />
 	</head>
-	<body class="antialiased mx-auto max-w-3xl px-4 text-amber-950 bg-animated gif-background">
-		<header class="flex place-content-between place-items-center pb-2 pt-6">
+	<body class="antialiased mx-auto max-w-3xl px-4 text-zinc-400 bg-zinc-900 gif-background">
+		<header class="flex place-content-between place-items-center py-6">
 			<a class="block" href="/">
-				<img src="/profile.jpeg"
+				<img src="/profile.png"
 					alt="profile picture"
-					class="h-8 w-8 rounded-full bg-animated transition-transform duration-200 ease-in-out hover:scale-110 sm:h-10 sm:w-10"/>
+					class="h-8 w-8 rounded-full transition-transform duration-200 ease-in-out hover:scale-110 sm:h-10 sm:w-10"/>
             </a>
-			<div class="flex gap-x-4 text-amber-950">
-				<a href="https://github.com/Thavarshan" class="hover:text-main hover:underline">Github</a>
-				<a href="https://twitter.com/tjthavarshan" class="hover:text-main hover:underline">Twitter</a>
-				<a href="https://github.com/sponsors/Thavarshan" class="hover:text-main hover:underline">Donate</a>
+			<div class="flex gap-x-4 text-white">
+				<a href="https://github.com/Thavarshan" class="hover:text-zinc-100 hover:underline">Github</a>
+				<a href="https://twitter.com/tjthavarshan" class="hover:text-zinc-100 hover:underline">Twitter</a>
+				<a href="https://github.com/sponsors/Thavarshan" class="hover:text-zinc-100 hover:underline">Donate</a>
 			</div>
 		</header>
-		<main class="py-8 leading-relaxed">
+		<main class="px-4 sm:px-6 py-5 leading-relaxed border border-zinc-800 rounded-lg backdrop-blur-md bg-zinc-800/10">
 			<slot />
 		</main>
-        <footer class="flex items-center space-x-2 text-xs justify-center">
-            <p class="text-center text-amber-800">Website created by <a target="_blank" href="https://twitter.com/tjthavarshan" class="text-amber-950 hover:text-main hover:underline">Jerome</a></p>
+        <footer class="mt-6 flex items-center space-x-2 text-xs justify-center">
+            <p class="text-center">Website created by <a target="_blank" href="https://twitter.com/tjthavarshan" class="text-white hover:text-zinc-100 hover:underline">Jerome</a></p>
             <span>|</span>
-            <p class="text-center text-amber-800">
-                Animated <a target="_blank" href="https://www.behance.net/gallery/65838927/Game-Backgrounds" class="text-amber-950 hover:text-main hover:underline">background</a> by <a target="_blank" href="https://www.behance.net/hendzaky2020" class="text-amber-950 hover:text-main hover:underline">Hend Zaky</a> and <a target="_blank" href="https://www.behance.net/m_moh" class="text-amber-950 hover:text-main hover:underline">Mohamed M</a>
+            <p class="text-center">
+                Animated <a target="_blank" href="https://giphy.com/stickers/star-stars-twinkle-Bpm9iMpbGiKg2Q2rM1" class="text-white hover:text-zinc-100 hover:underline">background</a> by <a target="_blank" href="https://littlekingdoms.ca/" class="text-white hover:text-zinc-100 hover:underline">littlekingdoms</a>
             </p>
         </footer>
 	</body>
@@ -79,9 +79,9 @@ const currentYear = new Date().getFullYear();
 				monospace;
 		}
         .gif-background {
-            background-image: url('/animation.gif');
-            background-position: center bottom;
-            background-repeat: repeat-x;
+            background-image: url('/space.gif');
+            background-position: center;
+            background-repeat: repeat;
             background-attachment: fixed;
         }
 	</style>
