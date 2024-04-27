@@ -57,10 +57,10 @@ const { post } = Astro.props;
         @apply mt-4 list-disc list-inside ;
     }
     :global(#md blockquote) {
-        @apply text-amber-800 mt-4 border-l-2 border-amber-800 pl-4 text-base;
+        @apply text-zinc-300 mt-4 border-l-2 border-zinc-300 pl-4 text-base;
     }
     :global(#md a) {
-        @apply text-main underline hover:text-black;
+        @apply text-white underline hover:text-black;
     }
     :global(#md p code, #md ul code, #md ol code) {
 		@apply text-base;
@@ -69,7 +69,7 @@ const { post } = Astro.props;
 		@apply text-sm;
 	}
 	:global(#md .astro-code) {
-		@apply !bg-amber-100 mt-4 overflow-scroll rounded-lg px-4 py-3 !leading-tight;
+		@apply !bg-zin-900 mt-4 overflow-scroll rounded-lg px-4 py-3 !leading-tight;
 		scrollbar-width: none;
 	}
 	:global(#md .astro-code span) {
@@ -85,17 +85,17 @@ const { post } = Astro.props;
 		@apply w-full overflow-auto whitespace-nowrap;
 	}
 	:global(#md td) {
-		@apply border-b border-amber-200 py-1.5 px-1;
+		@apply border-b border-zinc-950 py-1.5 px-1;
 	}
 	:global(#md table th) {
-		@apply text-xs font-medium py-1.5 px-1 border-b border-amber-800;
+		@apply text-xs font-medium py-1.5 px-1 border-b border-zinc-300;
 	}
 	:global(#md p > code) {
 		@apply text-sm;
 	}
 	:root {
-		--astro-code-color-background: rgb(252, 211, 77);
-		--astro-code-token-string-expression: rgb(180, 83, 9);
-		--astro-code-token-comment: rgb(245, 158, 11);
+		--astro-code-color-background: rgb(203, 213, 225);
+		--astro-code-token-string-expression: rgb(51, 65, 85);
+		--astro-code-token-comment: rgb(100, 116, 139);
 	}
 </style>
