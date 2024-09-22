@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { Octokit } from '@octokit/core';
 import GitHubCard from '@/components/blocks/GitHubCard.vue';
 import type { Repository } from '@/types/repository';
-import { SITE_TITLE } from '../seo';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../seo';
 
 definePageMeta({
   title: SITE_TITLE
@@ -12,11 +12,11 @@ definePageMeta({
 const config = useRuntimeConfig();
 
 useHead({
-  title: 'Jerome Thayananthajothy',
+  title: SITE_TITLE,
   meta: [
     {
       name: 'description',
-      content: 'Jerome Thayananthajothy is a full-stack developer, open-source contributor, and tech enthusiast based in Birmingham, United Kingdom.'
+      content: SITE_DESCRIPTION
     }
   ],
 });
@@ -37,10 +37,10 @@ async function fetchRepositories() {
   try {
     const [userReposResponse, orgReposResponse] = await Promise.all([
       octokit.request('GET /users/{username}/repos', {
-        username: config.githubUser as string
+        username: config.githubUser as string || 'Thavarshan'
       }),
       octokit.request('GET /orgs/{org}/repos', {
-        org: config.githubOrg as string
+        org: config.githubOrg as string || 'stellar-comet'
       }),
     ]);
 
