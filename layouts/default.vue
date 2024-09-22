@@ -19,8 +19,8 @@ const NAME = 'Jerome Thayananthajothy';
 </script>
 
 <template>
-  <div class="container py-20 pxx-24">
-    <div class="flex items-start justify-center gap-x-12">
+  <div class="py-20 px-24">
+    <div class="flex items-start justify-center gap-x-12 max-w-5xl mx-auto">
       <div class="flex flex-col items-center flex-shrink-0">
         <TooltipProvider>
           <Tooltip>
@@ -80,7 +80,7 @@ const NAME = 'Jerome Thayananthajothy';
           </TooltipProvider>
         </div>
       </div>
-      <div>
+      <div class="w-full">
         <div>
           <h1 class="text-3xl font-bold text-slate-800">{{ NAME }}</h1>
           <!-- Navbar -->
@@ -91,7 +91,7 @@ const NAME = 'Jerome Thayananthajothy';
             <a href="mailto:tjthavarshan@gmail.com" class="text-slate-500 hover:text-slate-800 uppercase text-xs font-medium tracking-widest">Contact</a>
           </div>
         </div>
-        <div>
+        <div class="w-full">
           <slot />
         </div>
       </div>

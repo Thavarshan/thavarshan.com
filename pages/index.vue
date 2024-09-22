@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { SITE_TITLE } from '../seo';
+
 definePageMeta({
-  title: 'Jerome Thayananthajothy | Personal Portfolio'
+  title: SITE_TITLE
 });
 </script>
 
