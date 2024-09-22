@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     redirectToCanonicalSiteUrl: true
   },
   site: {
-    url: 'https://comet.thavarshan.com',
+    url: 'https://thavarshan.com',
     name: SITE_TITLE,
     description: SITE_DESCRIPTION,
     defaultLocale: LOCALE,
@@ -34,15 +34,6 @@ export default defineNuxtConfig({
     urls: [
       {
         loc: '/',
-        images: [
-          {
-            loc: 'https://comet.thavarshan.com/images/screenshot_1.png',
-            caption: 'Comet Media Converter',
-            geoLocation: 'United Kingdom',
-            title: 'Comet Media Converter',
-            license: 'https://creativecommons.org/licenses/by/4.0/'
-          }
-        ]
       }
     ]
   }
