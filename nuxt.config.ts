@@ -11,10 +11,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     githubApiKey: process.env.NUXT_GITHUB_API_KEY,
-    public: {
-      githubOrg: process.env.NUXT_PUBLIC_GITHUB_ORG,
-      githubUser: process.env.NUXT_PUBLIC_GITHUB_USERNAME,
-    }
+    githubOrg: process.env.NUXT_GITHUB_ORG,
+    githubUser: process.env.NUXT_GITHUB_USERNAME
   },
   seo: {
     redirectToCanonicalSiteUrl: true
