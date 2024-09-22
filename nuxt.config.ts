@@ -1,4 +1,4 @@
-import { SITE_TITLE, SITE_DECRIPTION, LOCALE } from './seo';
+import { SITE_TITLE, SITE_DESCRIPTION, LOCALE } from './seo';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://comet.thavarshan.com',
     name: SITE_TITLE,
-    description: SITE_DECRIPTION,
+    description: SITE_DESCRIPTION,
     defaultLocale: LOCALE,
     trailingSlash: true
   },
