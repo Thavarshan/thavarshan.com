@@ -27,8 +27,7 @@ const octokit = new Octokit({ auth: config.githubApiKey });
 const pinnedRepos = [
   'filterable',
   'fetch-php',
-  'secrets-loader',
-  'phpunit-code-katas',
+  'matrix',
   'euclidius',
   'comet'
 ];
