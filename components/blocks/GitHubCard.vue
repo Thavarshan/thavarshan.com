@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="repository.html_url" class="flex flex-col flex-1" target="_blank">
+  <NuxtLink :to="repository.homepage || repository.html_url" class="flex flex-col flex-1" target="_blank">
     <Card class="hover:shadow-md flex flex-col justify-between flex-1">
       <CardHeader>
         <div>
