@@ -34,18 +34,11 @@ const pinnedRepos = [
 
 async function fetchRepositories() {
   try {
-    const [userReposResponse, orgReposResponse] = await Promise.all([
-      octokit.request('GET /users/{username}/repos', {
-        username: config.githubUser as string || 'Thavarshan'
-      }),
-      octokit.request('GET /orgs/{org}/repos', {
-        org: config.githubOrg as string || 'stellar-comet'
-      }),
-    ]);
+    const response = await octokit.request('GET /users/{username}/repos', {
+      username: config.githubUser as string || 'Thavarshan'
+    });
 
-    const allRepos = [...userReposResponse.data, ...orgReposResponse.data];
-
-    repositories.value = allRepos
+    repositories.value = response.data
       .filter((repo: any) => pinnedRepos.includes(repo.name))
       .map((repo: any) => ({
         ...repo,
