@@ -28,7 +28,7 @@ const pinnedRepos = [
   'filterable',
   'fetch-php',
   'matrix',
-  'euclidius',
+  'phpvm',
   'comet'
 ];
 
