@@ -29,7 +29,8 @@ const pinnedRepos = [
   'fetch-php',
   'matrix',
   'phpvm',
-  'comet'
+  'comet',
+  'formlink'
 ];
 
 async function fetchRepositories() {
