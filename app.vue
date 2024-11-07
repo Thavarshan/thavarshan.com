@@ -1,12 +1,16 @@
 <script setup lang="ts">
-const SITE_DECRIPTION = 'Jerome ';
+import {
+  NAME,
+  SITE_TITLE,
+  SITE_DESCRIPTION
+} from './seo';
 
 useHead({
-  title: 'Jerome Thayananthajothy',
+  title: SITE_TITLE,
   meta: [
     {
       name: 'description',
-      content: SITE_DECRIPTION
+      content: SITE_DESCRIPTION
     },
     {
       name: 'robots',
@@ -19,11 +23,11 @@ useHead({
 });
 
 useSeoMeta({
-  title: 'Jerome Thayananthajothy',
-  ogTitle: 'Jerome Thayananthajothy',
-  description: SITE_DECRIPTION,
-  ogDescription: SITE_DECRIPTION,
-  ogImage: 'https://github.com/stellar-comet/comet/blob/main/src/assets/images/Banner.jpg',
+  title: NAME,
+  ogTitle: NAME,
+  description: SITE_DESCRIPTION,
+  ogDescription: SITE_DESCRIPTION,
+  ogImage: 'https://thavarshan.com/images/Banner.jpg',
 });
 </script>
 
