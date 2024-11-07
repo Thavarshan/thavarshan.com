@@ -3,23 +3,12 @@ import { ref, onMounted } from 'vue';
 import { Octokit } from '@octokit/core';
 import GitHubCard from '@/components/blocks/GitHubCard.vue';
 import type { Repository } from '@/types/repository';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../seo';
 
 definePageMeta({
-  title: SITE_TITLE
+  title: 'Projects'
 });
 
 const config = useRuntimeConfig();
-
-useHead({
-  title: SITE_TITLE,
-  meta: [
-    {
-      name: 'description',
-      content: SITE_DESCRIPTION
-    }
-  ],
-});
 
 const loading = ref(true);
 const repositories = ref<Repository[]>([]);

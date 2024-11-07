@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { SITE_TITLE } from '../seo';
-
 definePageMeta({
-  title: SITE_TITLE
+  title: 'Welcome'
 });
 </script>
 
