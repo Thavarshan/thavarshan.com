@@ -14,14 +14,13 @@ import {
   Linkedin,
   Heart
 } from 'lucide-vue-next';
-
-const NAME = 'Jerome Thayananthajothy';
+import { NAME } from '../seo';
 </script>
 
 <template>
-  <div class="py-20 px-24">
-    <div class="flex items-start justify-center gap-x-12 max-w-5xl mx-auto">
-      <div class="flex flex-col items-center flex-shrink-0">
+  <div class="py-6 md:py-20 px-0 md:px-24">
+    <div class="flex flex-col md:flex-row items-start justify-center gap-x-0 md:gap-x-12 w-full md:max-w-5xl mx-auto">
+      <div class="flex flex-col mx-auto md:mx-0 items-center flex-shrink-0">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
@@ -35,7 +34,7 @@ const NAME = 'Jerome Thayananthajothy';
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <div class="mt-6 flex flex-col gap-y-3">
+        <div class="mt-6 flex flex-row md:flex-col gap-x-3 md:gap-x-0 md:gap-y-3">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -80,18 +79,18 @@ const NAME = 'Jerome Thayananthajothy';
           </TooltipProvider>
         </div>
       </div>
-      <div class="w-full">
+      <div class="w-full flex flex-col mt-4 md:mt-0">
         <div>
-          <h1 class="text-3xl font-bold text-slate-800">{{ NAME }}</h1>
+          <h1 class="text-lg text-center md:text-left md:text-3xl font-bold text-gray-800">{{ NAME }}</h1>
           <!-- Navbar -->
-          <div class="flex items-center gap-x-10 mt-4">
-            <NuxtLink to="/" class="text-slate-500 hover:text-slate-800 uppercase text-xs font-medium tracking-widest" active-class="text-slate-800 underline">About</NuxtLink>
-            <NuxtLink to="/projects" class="text-slate-500 hover:text-slate-800 uppercase text-xs font-medium tracking-widest" active-class="text-slate-800 underline">Projects</NuxtLink>
-            <NuxtLink to="/blog" class="text-slate-500 hover:text-slate-800 uppercase text-xs font-medium tracking-widest" active-class="text-slate-800 underline">Blog</NuxtLink>
-            <a href="mailto:tjthavarshan@gmail.com" class="text-slate-500 hover:text-slate-800 uppercase text-xs font-medium tracking-widest">Contact</a>
+          <div class="flex items-center justify-center md:justify-start gap-x-0 md:gap-x-10 mt-4 divide-x divide-gray-100 border-y border-gray-100 md:border-0">
+            <NuxtLink to="/" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" active-class="text-gray-800 underline">About</NuxtLink>
+            <NuxtLink to="/projects" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" active-class="text-gray-800 underline">Projects</NuxtLink>
+            <NuxtLink to="/blog" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" active-class="text-gray-800 underline">Blog</NuxtLink>
+            <a href="mailto:tjthavarshan@gmail.com" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest">Contact</a>
           </div>
         </div>
-        <div class="w-full">
+        <div class="w-full px-4 md:px-0">
           <slot />
         </div>
       </div>

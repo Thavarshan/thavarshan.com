@@ -60,10 +60,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mt-10">
+  <div class="mt-4 md:mt-10">
     <div class="max-w-xl space-y-4">
-      <h3 class="text-slate-800 font-bold text-2xl">Project 📁</h3>
-      <p class="text-slate-600 text-lg">
+      <h3 class="text-gray-800 font-bold text-2xl">Project 📁</h3>
+      <p class="text-gray-600 text-lg">
         I'm coding so fast to finish this page, even my keyboard needs a coffee break!
       </p>
     </div>
@@ -74,7 +74,7 @@ onMounted(async () => {
       </svg>
     </div>
     <div v-else class="mt-4 grid grid-cols-12 gap-4 w-full">
-      <div class="col-span-6 flex flex-col flex-1" v-for="repository in repositories" :key="repository.id">
+      <div class="col-span-full sm:col-span-6 flex flex-col flex-1" v-for="repository in repositories" :key="repository.id">
         <GitHubCard :repository="repository" />
       </div>
     </div>
