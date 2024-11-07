@@ -64,7 +64,7 @@ onMounted(async () => {
     <div class="max-w-xl space-y-4">
       <h3 class="text-gray-800 font-bold text-2xl">Project 📁</h3>
       <p class="text-gray-600 text-lg">
-        I'm coding so fast to finish this page, even my keyboard needs a coffee break!
+        These are a few of my more popular projects. You can find more on my <a target="_blank" href="https://github.com/Thavarshan" class="text-gray-800 underline">GitHub</a> profile.
       </p>
     </div>
     <div v-if="loading" class="h-56 flex items-center justify-center">
