@@ -15,7 +15,6 @@ import {
   Heart
 } from 'lucide-vue-next';
 import { NAME } from '../seo';
-import resume from '../assets/docs/Jerome-Resume.pdf';
 </script>
 
 <template>
@@ -89,7 +88,7 @@ import resume from '../assets/docs/Jerome-Resume.pdf';
             <NuxtLink to="/projects" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" active-class="text-gray-800 underline">Projects</NuxtLink>
             <NuxtLink to="/blog" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" active-class="text-gray-800 underline">Blog</NuxtLink>
             <a href="mailto:tjthavarshan@gmail.com" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest">Contact</a>
-            <a :href="resume" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" download>Résumé</a>
+            <a href="https://github.com/Thavarshan/thavarshan.com/blob/8a67f4a42afa7a7aec8d69510558a632f7b545e9/assets/docs/Jerome-Resume.pdf" target="_blank" class="p-2 md:p-0 bg-white  hover:bg-gray-100 md:hover:bg-white text-gray-500 hover:text-gray-800 uppercase text-xs font-medium tracking-widest" download>Résumé</a>
           </div>
         </div>
         <div class="w-full px-4 md:px-0">
