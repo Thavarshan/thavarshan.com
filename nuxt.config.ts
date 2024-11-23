@@ -2,9 +2,18 @@ import { SITE_TITLE, SITE_DESCRIPTION, LOCALE } from './seo';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", '@nuxtjs/seo', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-link-checker'],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    '@nuxtjs/seo',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    'nuxt-link-checker',
+    '@nuxt/content'
+  ],
   shadcn: {
     prefix: '',
     componentDir: './components/ui'
