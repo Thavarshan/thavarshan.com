@@ -1,6 +1,7 @@
 ---
 title: "Filterable: Simplify Data Handling in Your Laravel Applications"
 description: "Efficient data management is pivotal in web development, shaping the user experience fundamentally. [Filterable] is a PHP package that empowers developers with sophisticated filtering capabilities, thereby enhancing data interaction within Laravel applications."
+published_at: Apr 21, 2024
 ---
 
 # Filterable: Simplify Data Handling in Your Laravel Applications

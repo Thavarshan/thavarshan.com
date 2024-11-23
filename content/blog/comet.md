@@ -1,6 +1,7 @@
 ---
 title: "Comet: A Free, Cross-Platform Video Converter Powered by FFmpeg"
 description: "It all started with a simple need: I had a folder full of video files in various formats that I needed to convert to MP4 so I could watch them on my TV"
+published_at: Aug 10, 2024
 ---
 
 # Comet: A Free, Cross-Platform Video Converter Powered by FFmpeg

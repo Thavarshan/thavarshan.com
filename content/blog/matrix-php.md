@@ -1,6 +1,7 @@
 ---
 title: "Exploring Matrix: Bringing JavaScript-like Async to PHP"
 description: "Are you a PHP developer who's envied the simplicity of JavaScript's `async/await` paradigm? Do you wish you could manage asynchronous tasks in PHP with the same ease? Look no further! Today, we're diving deep into Matrix, a cutting-edge PHP library that brings the power of JavaScript-like async operations to the PHP ecosystem."
+published_at: Sep 29, 2024
 ---
 
 # Exploring Matrix: Bringing JavaScript-like Async to PHP

@@ -1,6 +1,7 @@
 ---
 title: "Meet phpvm: Your New PHP Best Friend Forever!"
 description: "Picture this, You're working on a legacy project that runs on PHP 7.2, but your shiny new side project is built on PHP 8.1. Normally, this would be the part where you pull your hair out and question your life choices. But not anymore! Enter phpvm, your new PHP version management bestie."
+published_at: Oct 05, 2024
 ---
 
 ## What's the Big Deal?

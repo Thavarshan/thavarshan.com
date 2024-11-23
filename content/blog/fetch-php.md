@@ -1,6 +1,7 @@
 ---
 title: "FetchPHP: A Simple, Powerful HTTP Library for PHP, Inspired by JavaScript’s fetch API"
 description: "I’m excited to introduce **FetchPHP**, a lightweight HTTP library for PHP that takes direct inspiration from JavaScript’s `fetch` API. If you’ve ever found yourself making HTTP requests in PHP and thinking *'I wish this was as simple as JavaScript’s fetch,'* then this package is for you!"
+published_at: Sep 13, 2024
 ---
 
 # FetchPHP: A Simple, Powerful HTTP Library for PHP, Inspired by JavaScript’s fetch API

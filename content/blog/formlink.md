@@ -1,6 +1,7 @@
 ---
 title: "Type-Safe Form Handling in Laravel + Vue.js with Formlink"
 description: "Forms are the backbone of web applications, yet handling them properly can be surprisingly complex. From validation to file uploads, CSRF protection to progress tracking, there's a lot that can go wrong. That's where Formlink comes in - a TypeScript-first form handling library that bridges Laravel and Vue.js applications with elegant simplicity."
+published_at: Oct 18, 2024
 ---
 
 # Type-Safe Form Handling in Laravel + Vue.js with Formlink

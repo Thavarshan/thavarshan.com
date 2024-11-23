@@ -11,13 +11,15 @@ definePageMeta({
       <p class="text-slate-600 text-lg">
         Over the years I’ve published a few dozen articles — some more noteworthy than others.
       </p>
-      <Separator class="my-10" />
-      <div class="space-y-4">
+      <div class="divide-y">
         <ContentList path="/blog" v-slot="{ list }">
-          <NuxtLink v-for="post in list" :key="post._path" :to="post._path" class="block">
+          <NuxtLink v-for="post in list" :key="post._path" :to="post._path" class="block py-6">
             <article class="flex max-w-xl flex-col items-start justify-between leading-normal">
+              <div class="flex items-center gap-x-4 text-xs">
+                <time :datetime="post.published_at" class="text-gray-500">{{ post.published_at }}</time>
+              </div>
               <div class="group relative">
-                <h3 class="text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
                   <a href="#">
                     <span class="absolute inset-0"></span>
                     {{ post.title }}

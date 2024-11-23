@@ -1,6 +1,7 @@
 ---
 title: "Effortless Secret Management for Laravel & JS Projects with Secrets Loader"
 description: "Managing sensitive data like API keys, tokens, and credentials across various environments can be quite tricky, especially when developing and deploying applications. Ensuring secrets are securely stored and fetched when needed, without hardcoding them into version control, is crucial for maintaining security."
+published_at: Sep 19, 2024
 ---
 
 # Effortless Secret Management for Laravel & JS Projects with Secrets Loader

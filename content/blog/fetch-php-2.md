@@ -1,6 +1,7 @@
 ---
 title: "FetchPHP 2.0: An Update To Bring Javascript's Fetch & True Async To PHP (Now With Superpowers!)"
 description: "I am thrilled to announce the release of FetchPHP 2.0! This new version is crafted to simplify HTTP requests in PHP, enhancing your development experience with greater ease and efficiency. If you have ever faced challenges with asynchronous operations in PHP, FetchPHP 2.0 is the perfect solution for you."
+published_at: Sep 30, 2024
 ---
 
 # FetchPHP 2.0: An Update To Bring Javascript's Fetch & True Async To PHP (Now With Superpowers!)
