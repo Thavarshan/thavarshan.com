@@ -12,8 +12,15 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     'nuxt-link-checker',
-    '@nuxt/content'
+    '@nuxt/content',
+    'nuxt-gtag'
   ],
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    config: {
+      page_title: SITE_TITLE
+    },
+  },
   shadcn: {
     prefix: '',
     componentDir: './components/ui'
