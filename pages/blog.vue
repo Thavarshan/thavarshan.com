@@ -2,6 +2,12 @@
 definePageMeta({
   title: 'Blog'
 });
+
+function sortByDate(list: any[]): any[] {
+  return list.sort((a, b) => {
+    return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
+  });
+}
 </script>
 
 <template>
@@ -13,7 +19,7 @@ definePageMeta({
       </p>
       <div class="divide-y">
         <ContentList path="/blog" v-slot="{ list }">
-          <NuxtLink v-for="post in list" :key="post._path" :to="post._path" class="block py-6">
+          <NuxtLink v-for="(post, index) in sortByDate(list)" :key="index" :to="post._path" class="block py-6">
             <article class="flex max-w-xl flex-col items-start justify-between leading-normal">
               <div class="flex items-center gap-x-4 text-xs">
                 <time :datetime="post.published_at" class="text-gray-500">{{ post.published_at }}</time>
