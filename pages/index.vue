@@ -12,7 +12,7 @@ definePageMeta({
         I'm Jerome—a full-stack engineer, open-source contributor, and tech enthusiast based in Birmingham, United Kingdom.
       </p>
       <p class="text-gray-600 text-lg">
-        I’m the creator of <a target="_blank" href="https://comet.thavarshan.com" class="text-gray-800 underline">Comet Video Converter</a>, the author of <a target="_blank" href="https://github.com/Thavarshan/fetch-php" class="text-gray-800 underline">FetchPHP</a>, and <a target="_blank" href="https://github.com/Thavarshan/filterable" class="text-gray-800 underline">Laravel Filterable</a>, along with many other open-source contributions.
+        I’m the creator of <a target="_blank" href="https://github.com/Thavarshan/comet" class="text-gray-800 underline">Comet Video Converter</a>, the author of <a target="_blank" href="https://fetch-php.thavarshan.com" class="text-gray-800 underline">FetchPHP</a>, and <a target="_blank" href="https://github.com/Thavarshan/filterable" class="text-gray-800 underline">Laravel Filterable</a>, along with many other open-source contributions.
       </p>
       <p class="text-gray-600 text-lg">
         I’m passionate about design patterns, Test-Driven Development (TDD), and building solutions that make people's lives easier. From enhancing Laravel queries to enhancing async capabilities in PHP with <a target="_blank" href="https://github.com/Thavarshan/matrix" class="text-gray-800 underline">Matrix</a>, my work is all about empowering developers with flexible and efficient tools.
