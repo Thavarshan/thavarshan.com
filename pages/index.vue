@@ -9,7 +9,7 @@ definePageMeta({
     <div class="space-y-4 max-w-xl text-center md:text-left mx-auto md:mx-0">
       <h3 class="text-gray-800 font-bold text-2xl">Hiya 👋</h3>
       <p class="text-gray-600 text-lg">
-        I'm Jerome—a full-stack engineer, open-source contributor, and tech enthusiast based in Sri Lanka.
+        I'm Jerome, a full-stack engineer, open-source contributor, and tech enthusiast based in Sri Lanka.
       </p>
       <p class="text-gray-600 text-lg">
         I'm the creator of <a target="_blank" href="https://github.com/altus4/core" class="text-gray-800 underline font-medium">Altus 4</a>, a production-ready AI-enhanced MySQL search platform that bridges traditional database search with modern AI capabilities. Built with TypeScript, MySQL, Redis, and OpenAI integration, it's designed to enhance existing applications without requiring migrations.
