@@ -21,7 +21,9 @@ import { NAME } from '../seo';
 </script>
 
 <template>
-  <Banner />
+  <a href="https://altus4.thavarshan.com/" target="_blank" class="block">
+    <Banner />
+  </a>
   <div class="py-6 md:py-20 px-0 md:px-24">
     <div class="flex flex-col md:flex-row items-start justify-center gap-x-0 md:gap-x-12 w-full md:max-w-5xl mx-auto">
       <div class="flex flex-col mx-auto md:mx-0 items-center flex-shrink-0">
