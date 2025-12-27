@@ -1,120 +1,162 @@
-# My Personal Website
+# Personal Website Rebuild: Space/Warp Travel Portfolio
 
-A personal website built with [Nuxt.js](https://nuxtjs.org/) to showcase my projects, blog, and contact information.
+## Overview
 
-## Table of Contents
+This project is a rebuild of my personal website with a space and warp-travel themed experience. The goal is to present my work and story as an interactive journey that showcases my projects, career, writing, and personal interests in a way that feels modern, memorable, and technically polished.
 
-- [Features](#features)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Steps](#steps)
-- [Development](#development)
-- [Building for Production](#building-for-production)
-- [Deployment](#deployment)
-- [Customization](#customization)
-- [License](#license)
+The site is designed to be content-first and performance-conscious: the 3D layer enhances the experience but never blocks access to the core content.
 
-## Features
+## Goals
 
-- **Responsive Design:** Optimized for all devices.
-- **Dynamic Content:** Easily manage blog posts and projects.
-- **SEO Optimized:** Enhanced visibility on search engines.
-- **Smooth Navigation:** Intuitive user experience.
+- Create a distinctive portfolio experience inspired by space exploration and warp travel visuals.
+- Showcase my featured projects, career timeline, blog, and interests in a cohesive narrative format.
+- Keep the site fast, accessible, and SEO-friendly with progressive enhancement.
+- Use modern web technologies (React + Three.js) while maintaining clean architecture and maintainability.
 
-## Installation
+## Core Experience
 
-### Prerequisites
+The website should feel like a guided journey through different “stations” of my professional and personal profile.
 
-- **Node.js:** Version 14 or higher. [Download Node.js](https://nodejs.org/)
-- **npm or Yarn:** Comes with Node.js, but you can also install [Yarn](https://yarnpkg.com/) if preferred.
+### Journey Structure
 
-### Steps
+- Landing: Intro and quick navigation, with a subtle starfield backdrop.
+- Projects Station: Featured projects with live GitHub metadata and curated summaries.
+- Career Station: Timeline of roles, milestones, and highlights.
+- Skills and Stack: A structured view of technologies and areas of expertise, optionally represented visually as a constellation or cluster map.
+- Interests Station: Personal interests and themes that influence my work (e.g., music, tooling, systems design, design, gaming, AI).
+- Writing Station: Blog posts presented as “transmissions” or logs.
+- Contact/Docking: Clear contact links, resume, and social profiles.
 
-1. **Clone the Repository**
+## Design Principles
 
-   ```bash
-   git clone https://github.com/Thavarshan/thavarshan.com.git
-   ```
+### Content First
 
-2. **Navigate to the Project Directory**
+- All critical content is rendered as HTML to remain searchable, accessible, and readable.
+- The 3D scene is a visual layer that enhances navigation and storytelling.
 
-   ```bash
-   cd thavarshan.com
-   ```
+### Progressive Enhancement
 
-3. **Install Dependencies**
+- The site must work without WebGL.
+- Users with reduced-motion preferences receive minimal animation.
+- Mobile devices can use a “lite” 3D mode or a static fallback to preserve battery and performance.
 
-   Using npm:
+### Simple Navigation
 
-   ```bash
-   npm install
-   ```
+- A persistent navigation element (HUD-style) provides direct access to each section.
+- Deep linking to sections should work (hash anchors, or route-based pages where appropriate).
 
-   Or using Yarn:
+### Accessibility
 
-   ```bash
-   yarn install
-   ```
+- Respect `prefers-reduced-motion`.
+- Ensure keyboard navigation and focus visibility.
+- Maintain readable typography and strong contrast.
+- Provide fallbacks if WebGL is not supported.
 
-## Development
+## Technical Direction
 
-To start the development server with hot-reloading:
+### Framework and UI
 
-Using npm:
+- React with Next.js for routing, SEO, and static generation.
+- TypeScript for maintainability.
+- Tailwind CSS or equivalent for consistent styling and speed of iteration.
 
-```bash
-npm run dev
-```
+### 3D Layer
 
-Using Yarn:
+- Three.js via react-three-fiber (R3F) for scene rendering.
+- Drei helpers for common primitives and utilities.
+- Carefully limited postprocessing for subtle polish where appropriate.
 
-```bash
-yarn dev
-```
+### Motion and Interaction
 
-Open your browser and navigate to `http://localhost:3000` to view the website.
+- Scroll or section-driven transitions that feel like traveling through space.
+- Camera movement between stations (e.g., spline path) triggered by navigation and/or scroll position.
+- Warp effects used sparingly to transition between sections.
 
-## Building for Production
+### Content and Data Sources
 
-To build the application for production:
+- Featured projects are curated and displayed with rich metadata.
+- GitHub data is fetched at build time or revalidated periodically to avoid live, per-visitor API calls.
+- Blog content is managed via MDX or a content pipeline (e.g., Contentlayer).
 
-Using npm:
+## Featured Projects Strategy
 
-```bash
-npm run build
-```
+Instead of listing all repositories, the site should emphasize curated work:
 
-Using Yarn:
+- Maintain a `featured` list with:
+  - Repository identifier
+  - Short, human-written summary
+  - Tags and highlights
+  - Links (demo, docs, release, etc.) where relevant
+- Merge in live GitHub metadata:
+  - Stars, forks, last updated
+  - Primary languages
+  - Optional: pinned/readme highlights
 
-```bash
-yarn build
-```
+This balances authenticity (live stats) with intentional presentation (curation).
 
-After building, you can start the production server:
+## Performance Requirements
 
-Using npm:
+- Fast initial load and minimal layout shift.
+- 3D code loaded client-side only, and only when appropriate.
+- Efficient starfield rendering (instancing, reduced draw calls).
+- Mobile-first performance constraints and optional “lite mode.”
+- Maintain strong Lighthouse scores across performance, accessibility, best practices, and SEO.
 
-```bash
-npm run start
-```
+## SEO Requirements
 
-Using Yarn:
+- Pre-render content with SSG/SSR where appropriate.
+- Use proper metadata: titles, descriptions, Open Graph, Twitter cards.
+- Generate sitemap and robots configuration.
+- Ensure each major section can be linked to and indexed.
 
-```bash
-yarn start
-```
+## Proposed Information Architecture
 
-## Deployment
+### Routes
 
-You can deploy your Nuxt.js application to various platforms such as [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or [Heroku](https://www.heroku.com/). Follow the respective platform's documentation for deployment instructions.
+- `/` Home journey (sections: projects, career, skills, interests, writing, contact)
+- `/projects` Optional deep dive with filtering and full project list
+- `/blog` Blog index
+- `/blog/[slug]` Blog post page
+- `/about` Optional expanded biography and values
+- `/uses` Optional tools and setup page
+- `/resume` Optional resume page or download link
 
-## Customization
+## Success Criteria
 
-- **Configuration:** Modify the `nuxt.config.js` file to customize settings like plugins, modules, and build configurations.
-- **Content:** Add or edit content in the `pages`, `components`, and `assets` directories.
-- **Styling:** Customize styles using CSS, SCSS, or Tailwind CSS as configured.
+- The site clearly communicates who I am, what I build, and what I’m interested in within the first 10 seconds.
+- Visitors can discover my best work and understand impact without needing to dig.
+- The 3D experience adds personality without harming usability.
+- The site remains maintainable: content updates are simple and visuals are modular.
+
+## Non-Goals
+
+- Building a fully immersive 3D-only website that hides content.
+- Complex WebGL scenes that sacrifice readability, accessibility, or performance.
+- Real-time GitHub calls that risk rate limits or inconsistent performance.
+
+## Roadmap
+
+### Phase 1: Foundation
+
+- Next.js site scaffold with layout and routing
+- Content model: projects, career, interests, writing
+- Featured projects pipeline with GitHub metadata caching
+- Baseline starfield backdrop with safe fallbacks
+
+### Phase 2: Journey and Visual Identity
+
+- Section-based transitions and warp effects
+- Camera movement between stations
+- HUD navigation and deep linking
+- Visual polish and typography system
+
+### Phase 3: Refinement and Optimization
+
+- Lite mode and reduced-motion support
+- Performance profiling and GPU optimization
+- SEO finalization and analytics
+- Final design pass and cross-device QA
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
+TBD
