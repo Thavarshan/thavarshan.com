@@ -23,22 +23,34 @@ const pinnedRepos = [
 ];
 
 async function fetchRepositories() {
-  try {
-    const response = await octokit.request('GET /users/{username}/repos', {
-      username: config.githubUser as string || 'Thavarshan'
-    });
+  loading.value = true;
 
-    repositories.value = response.data
-      .filter((repo: any) => pinnedRepos.includes(repo.name))
-      .map((repo: any) => ({
-        ...repo,
-        master_branch: repo.default_branch,
+  try {
+    const owner = (config.githubUser as string) || 'Thavarshan';
+
+    const results = await Promise.allSettled(
+      pinnedRepos.map((repo) =>
+        octokit.request('GET /repos/{owner}/{repo}', { owner, repo })
+      )
+    );
+
+    repositories.value = results
+      .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')
+      .map((r) => ({
+        ...r.value.data,
+        master_branch: r.value.data.default_branch,
       }))
       .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count);
 
-    loading.value = false;
+    // Helpful debug: tells you exactly which pinned repo failed and why
+    results.forEach((r, i) => {
+      if (r.status === 'rejected') {
+        console.warn(`Repo fetch failed: ${owner}/${pinnedRepos[i]}`, r.reason);
+      }
+    });
   } catch (error) {
-    console.error('Error fetching repositories:', error);
+    console.error('Error fetching pinned repositories:', error);
+  } finally {
     loading.value = false;
   }
 }
