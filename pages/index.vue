@@ -9,7 +9,7 @@ definePageMeta({
     <div class="space-y-4 max-w-xl text-center md:text-left mx-auto md:mx-0">
       <h3 class="text-gray-800 font-bold text-2xl">Hiya 👋</h3>
       <p class="text-gray-600 text-lg">
-        I'm Jerome — a full-stack engineer, open-source contributor, and product builder based in Sri Lanka. I care about performance, clean architecture, and shipping software that feels great to use. Right now, my focus is simple: build and sell Honeymelon.
+        I'm Jerome, a full-stack engineer, open-source contributor, and product builder based in Sri Lanka. I care about performance, clean architecture, and shipping software that feels great to use. Right now, my focus is simple: build and sell Honeymelon.
       </p>
       <p class="text-gray-600 text-lg">
         <a target="_blank" href="https://honeymelon.app" class="text-gray-800 underline font-medium">Honeymelon</a> is a premium Apple Silicon macOS app for fast, reliable media conversion. At work, I'm at <span class="text-gray-800 font-medium">KAYA Global</span>, where we build and sell the <span class="text-gray-800 font-medium">Kaya Platform</span> — workflow orchestration for scalable automation and observability. I'm also building <span class="text-gray-800 font-medium">Mixtape</span>, an audio analysis & feedback product.
