@@ -92,9 +92,10 @@ The CV publishing workflow also accepts this GitHub Actions secret:
 
 ```bash
 NETLIFY_BUILD_HOOK=
+BING_INDEXNOW_KEY=
 ```
 
-When configured, a successful weekly CV publication triggers a fresh Netlify deployment.
+When configured, the scheduled content refresh workflow can trigger a fresh Netlify deployment and submit updated URLs to Bing IndexNow.
 
 ## Profile Data
 
@@ -385,7 +386,10 @@ Coverage includes archive variants and partial imports, invalid dates, source co
 
 `.github/workflows/ci.yml` runs type checking, linting, tests, audit, production build, Playwright, and Lighthouse checks.
 
-`.github/workflows/cv.yml` runs after profile-related changes, every Monday, or manually. It refreshes GitHub, compiles and verifies the CV, publishes the stable `cv-latest` release asset, and optionally triggers Netlify.
+`.github/workflows/content-refresh.yml` runs every Monday, manually, and after profile/CV-related changes land on `main`. It has two lanes:
+
+- `refresh` runs on scheduled/manual events only. It updates public generated snapshots, renders the LaTeX CV source, validates the site, and opens a reviewable pull request when generated files change.
+- `publish-cv` runs on scheduled/manual events and matching `main` pushes. It refreshes GitHub metrics for the current run, compiles and verifies the PDF, publishes the stable `cv-latest` release asset, optionally triggers Netlify through `NETLIFY_BUILD_HOOK`, and optionally submits URLs through IndexNow.
 
 Netlify configuration is stored in `netlify.toml`. The production project should use the `main` branch, run `npm run build`, and publish the generated `out/` directory.
 

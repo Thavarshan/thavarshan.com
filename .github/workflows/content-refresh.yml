@@ -1,0 +1,110 @@
+name: Content Refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/profile.generated.json"
+      - "data/github.generated.json"
+      - "data/package-registry.generated.json"
+      - "lib/latex.ts"
+      - "cv/**"
+      - "scripts/cv/**"
+      - "scripts/profile/github.ts"
+      - "scripts/marketing/registry.ts"
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: content-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Refresh public snapshots
+        run: |
+          npm run profile:github
+          npm run registry:sync
+      - run: npm run cv:render
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run insights:bundle
+      - run: GITHUB_STATS_DISABLED=1 npm run build
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if git diff --quiet -- data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit refresh branch
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C automation/content-refresh
+          git add data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex
+          git commit -m "Refresh public profile content"
+          git push --force-with-lease origin automation/content-refresh
+      - name: Open or update refresh pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh pr view automation/content-refresh --base main >/dev/null 2>&1; then
+            gh pr edit automation/content-refresh --base main --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
+          else
+            gh pr create --base main --head automation/content-refresh --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
+          fi
+      - name: No generated changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No generated snapshot changes detected."
+
+  publish-cv:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+      BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run profile:github
+      - run: npm run cv:build
+      - run: npm run cv:verify
+      - name: Publish stable CV release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view cv-latest >/dev/null 2>&1 || gh release create cv-latest --title "Latest professional CV" --notes "Automatically generated from the validated professional profile and current GitHub metadata." --latest=false
+          gh release upload cv-latest cv/output/Jerome-Resume.pdf --clobber
+      - name: Trigger Netlify refresh
+        if: ${{ env.NETLIFY_BUILD_HOOK != '' }}
+        run: curl --fail --silent --show-error --request POST --data '{}' "$NETLIFY_BUILD_HOOK"
+      - name: Submit URLs to IndexNow
+        if: ${{ env.BING_INDEXNOW_KEY != '' }}
+        run: npm run seo:indexnow
