@@ -12,6 +12,7 @@ const repositoryRedirects = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   async redirects() {
     return [
       {
