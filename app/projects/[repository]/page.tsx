@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, GitFork, Star } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Download, GitFork, Mail, Network, Star } from "lucide-react";
 import githubData from "@/data/github.generated.json";
 import { ButtonLink } from "@/components/button-link";
+import { InsightCard } from "@/components/insight-card";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { getProjectCaseStudy } from "@/data/project-case-studies";
 import { site } from "@/data/site";
 import { githubSnapshotSchema } from "@/lib/github-model";
+import { getRelatedInsightsForProject } from "@/lib/insights";
+import { formatPackageProvider, getPackageStatsByRepository } from "@/lib/package-registry";
 import { getFeaturedGitHubProject } from "@/lib/projects";
 
 type ProjectPageProps = {
@@ -45,6 +49,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     notFound();
   }
+  const caseStudy = getProjectCaseStudy(project.repository);
+  const packageStats = getPackageStatsByRepository(project.repository);
+  const relatedInsights = getRelatedInsightsForProject(project.repository);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -57,8 +64,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         codeRepository: project.repositoryUrl,
         programmingLanguage: project.primaryLanguage,
         author: { "@id": `${site.url}/#person` },
+        creator: { "@id": `${site.url}/#person` },
         dateModified: project.updatedAt,
-        keywords: project.topics.join(", ")
+        keywords: project.topics.join(", "),
+        discussionUrl: `${site.url}/projects/${project.repository}`,
+        ...(packageStats
+          ? {
+              softwareVersion: packageStats.latestVersion,
+              isBasedOn: {
+                "@type": "CreativeWork",
+                name: packageStats.packageName,
+                url:
+                  packageStats.provider === "packagist"
+                    ? `https://packagist.org/packages/${packageStats.packageName}`
+                    : undefined
+              }
+            }
+          : {})
       },
       {
         "@type": "BreadcrumbList",
@@ -92,8 +114,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.primaryLanguage ? <span>{project.primaryLanguage}</span> : null}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />}>View repository</ButtonLink>
-              {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />}>Documentation</ButtonLink> : null}
+              <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />} eventName="Repository Visit">View repository</ButtonLink>
+              {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />} eventName="Repository Visit">Documentation</ButtonLink> : null}
             </div>
           </div>
         </header>
@@ -106,6 +128,47 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <p key={paragraph} className="text-base leading-8 text-[var(--muted)]">{paragraph}</p>
               ))}
             </div>
+            {caseStudy ? (
+              <div className="mt-12 space-y-10">
+                <section aria-labelledby="project-problem">
+                  <h2 id="project-problem" className="font-display text-3xl text-[var(--ink)]">Problem</h2>
+                  <p className="mt-5 text-base leading-8 text-[var(--muted)]">{caseStudy.problem}</p>
+                </section>
+                <section aria-labelledby="project-architecture">
+                  <h2 id="project-architecture" className="font-display text-3xl text-[var(--ink)]">Architecture</h2>
+                  <p className="mt-5 text-base leading-8 text-[var(--muted)]">{caseStudy.architecture}</p>
+                </section>
+                <section aria-labelledby="project-decisions">
+                  <h2 id="project-decisions" className="font-display text-3xl text-[var(--ink)]">Design decisions</h2>
+                  <ul className="mt-5 space-y-3 text-base leading-8 text-[var(--ink)]">
+                    {caseStudy.designDecisions.map((decision) => (
+                      <li key={decision} className="flex gap-3">
+                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                        <span>{decision}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+                <section aria-labelledby="project-lessons">
+                  <h2 id="project-lessons" className="font-display text-3xl text-[var(--ink)]">Constraints and lessons</h2>
+                  <div className="mt-5 grid gap-5 md:grid-cols-2">
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Constraints</h3>
+                      <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
+                        {caseStudy.constraints.map((constraint) => <li key={constraint}>{constraint}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Lessons</h3>
+                      <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
+                        {caseStudy.lessons.map((lesson) => <li key={lesson}>{lesson}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="mt-6 text-sm font-semibold text-[var(--cool)]">{caseStudy.status}</p>
+                </section>
+              </div>
+            ) : null}
           </section>
           <aside aria-label="Repository details">
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Repository details</h2>
@@ -120,6 +183,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(project.updatedAt))}
                 </dd>
               </div>
+              {packageStats ? (
+                <>
+                  <div>
+                    <dt className="font-semibold text-[var(--ink)]">Registry</dt>
+                    <dd className="mt-1 text-[var(--muted)]">{formatPackageProvider(packageStats.provider)} · {packageStats.packageName}</dd>
+                  </div>
+                  {packageStats.downloads !== undefined ? (
+                    <div>
+                      <dt className="font-semibold text-[var(--ink)]">Downloads</dt>
+                      <dd className="mt-1 text-[var(--muted)]">{packageStats.downloads.toLocaleString()}</dd>
+                    </div>
+                  ) : null}
+                  {packageStats.latestVersion ? (
+                    <div>
+                      <dt className="font-semibold text-[var(--ink)]">Latest version</dt>
+                      <dd className="mt-1 text-[var(--muted)]">{packageStats.latestVersion}</dd>
+                    </div>
+                  ) : null}
+                </>
+              ) : null}
             </dl>
             <div className="mt-6 flex flex-wrap gap-2">
               {project.topics.map((topic) => (
@@ -128,9 +211,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </span>
               ))}
             </div>
+            <div className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Next step</h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Want to discuss platform architecture, AI systems, or developer tooling?</p>
+              <div className="mt-5 grid gap-3">
+                <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
+                <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
+                <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
+              </div>
+            </div>
           </aside>
         </div>
       </article>
+      {relatedInsights.length ? (
+        <section aria-labelledby="project-related-insights" className="mx-auto w-full max-w-5xl px-5 pb-16 lg:px-8">
+          <h2 id="project-related-insights" className="font-display text-3xl text-[var(--ink)]">Related insights</h2>
+          <div className="mt-7 grid gap-4 md:grid-cols-2">
+            {relatedInsights.map((insight) => (
+              <InsightCard key={insight.slug} insight={insight} />
+            ))}
+          </div>
+        </section>
+      ) : null}
       <SiteFooter />
     </main>
   );

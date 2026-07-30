@@ -17,9 +17,9 @@ export function SiteNav() {
           ))}
         </div>
         <div className="flex shrink-0 items-center gap-2">
-          <ButtonLink href={site.github} variant="ghost" className="hidden px-3 md:inline-flex" icon={<GitBranch size={16} />}>GitHub</ButtonLink>
-          <ButtonLink href={site.emailHref} variant="secondary" className="px-3" icon={<Mail size={16} />}>Email</ButtonLink>
-          <ButtonLink href={site.resume} variant="primary" className="px-3" icon={<Download size={16} />}>Resume</ButtonLink>
+          <ButtonLink href={site.github} variant="ghost" className="hidden px-3 md:inline-flex" icon={<GitBranch size={16} />} eventName="GitHub Visit">GitHub</ButtonLink>
+          <ButtonLink href={site.emailHref} variant="secondary" className="px-3" icon={<Mail size={16} />} eventName="Contact">Email</ButtonLink>
+          <ButtonLink href={site.resume} variant="primary" className="px-3" icon={<Download size={16} />} eventName="Resume Download">Resume</ButtonLink>
         </div>
       </nav>
     </header>

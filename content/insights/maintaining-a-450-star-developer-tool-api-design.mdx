@@ -1,0 +1,54 @@
+---
+slug: maintaining-a-450-star-developer-tool-api-design
+title: What maintaining a 450-star developer tool taught me about API design
+description: Lessons from Fetch PHP on naming, defaults, documentation, backwards compatibility, and designing APIs that developers can remember.
+publishedAt: 2026-07-30
+topics:
+  - API design
+  - Open source
+  - Developer experience
+relatedProjects:
+  - fetch-php
+featured: true
+draft: false
+---
+
+Fetch PHP started from a simple idea: PHP developers should be able to reach for an HTTP client with the familiar shape of JavaScript's fetch API. The adoption signal is encouraging, but the deeper lesson has been about API design restraint.
+
+A developer tool is not successful because it exposes every possible capability. It is successful when developers can predict it under pressure.
+
+## Familiarity is a feature
+
+Borrowing an API shape from another ecosystem is not a shortcut. It creates a promise. If a method name, option, or response behavior looks familiar, developers will bring expectations with them.
+
+That means the implementation has to respect the mental model, and every deviation needs a good reason.
+
+## Defaults carry product judgment
+
+Defaults are not neutral. They tell users what the library considers safe, common, and worth optimizing. Sensible defaults reduce documentation load, but weak defaults multiply support questions.
+
+For an HTTP client, this includes headers, error behavior, JSON handling, redirects, timeouts, and how clearly response objects expose the important path.
+
+## Documentation is part of the API
+
+Open-source users often meet the documentation before they meet the code. The first examples should help them succeed quickly, but the deeper sections should explain trade-offs and edge cases.
+
+Good documentation does not only show syntax. It teaches the shape of the library.
+
+## Backwards compatibility is emotional
+
+Breaking changes cost users attention. Even when a change is technically justified, maintainers should assume someone has built workflow knowledge around the existing behavior.
+
+Versioning, migration notes, deprecation windows, and clear release notes are a way of respecting that hidden cost.
+
+## Names should survive memory
+
+The best API names are boring in a useful way. A developer should be able to leave the project for a month, come back, and guess the method they need.
+
+If an API needs a long explanation every time it appears in code review, the design is probably carrying too much cleverness.
+
+## The leadership lesson
+
+Maintaining a developer tool sharpens product taste. You learn to value clarity over novelty, compatibility over excitement, and user trust over internal elegance.
+
+Those same instincts matter inside engineering teams. A platform API, an internal service contract, and an open-source package all ask the same question: can another developer use this correctly when I am not in the room?

@@ -1,0 +1,59 @@
+---
+slug: observable-reliable-production-ai-workflows
+title: Building observable and reliable production AI workflows
+description: A practical operating model for AI workflow reliability: contracts, traces, evaluations, fallbacks, and release discipline.
+publishedAt: 2026-07-30
+topics:
+  - AI workflows
+  - Observability
+  - Platform architecture
+relatedProjects:
+  - comet
+featured: true
+draft: false
+---
+
+Production AI workflows fail differently from ordinary request-response software. The model may answer with the wrong shape, a retrieval step may surface weak context, a tool call may time out, or an orchestration graph may choose a path that looked reasonable during demos but behaves badly under real traffic.
+
+The engineering job is not to make the system feel magical. The job is to make the system legible, recoverable, and measurable enough that product teams can trust it.
+
+## Start with explicit workflow contracts
+
+Every AI step should have a contract that a normal service boundary would recognize. Inputs should be validated before the model sees them. Outputs should be checked before downstream code consumes them. Tool calls should have bounded permissions, retries, timeouts, and clear failure states.
+
+The best early design question is simple: what must be true before this step is allowed to influence a customer-facing decision?
+
+## Trace decisions, not only errors
+
+Classic logging tells you when something broke. AI workflows also need to explain why a successful response was produced. Useful traces capture the prompt version, retrieval query, selected documents, model, tool calls, latency, token usage, validation result, fallback path, and user-visible outcome.
+
+That trace becomes the difference between "the AI is weird today" and a precise diagnosis such as stale retrieval content, a brittle routing prompt, or a slow dependency pushing the system into timeout fallback.
+
+## Treat evaluation as release infrastructure
+
+Evaluation should not live as a one-off spreadsheet. A useful evaluation set grows from real production edge cases, support incidents, and product decisions. It should include expected behavior, unacceptable behavior, and examples that are intentionally awkward.
+
+The practical pattern is:
+
+- keep a small regression suite that runs on every meaningful prompt or graph change
+- keep a larger scheduled suite for deeper quality trends
+- review failures manually before deciding whether the system or the test is wrong
+- tie evaluation results to release notes so quality changes are visible
+
+## Build graceful degradation from day one
+
+An AI system should know how to be less capable without becoming unsafe. That may mean using cached context, skipping an optional summarization step, falling back to deterministic rules, asking for clarification, or handing the workflow to a human.
+
+The fallback path should be designed as product behavior, not as an error afterthought.
+
+## Measure the boring things
+
+Reliability work becomes easier when the team agrees on a small set of measures: successful completion rate, validation failure rate, retrieval confidence, tool-call failure rate, p95 latency, fallback rate, cost per successful workflow, and human escalation rate.
+
+Those numbers will not tell the whole product story, but they keep architecture discussions grounded.
+
+## The leadership lesson
+
+AI workflow reliability is a team habit. Architecture, product, QA, support, and operations need a shared vocabulary for what the system promised, what it observed, and what it did when uncertainty appeared.
+
+The teams that win with AI will not be the ones with the most dramatic demos. They will be the teams that make complex workflows understandable enough to improve every week.

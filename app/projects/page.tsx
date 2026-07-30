@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Download, Mail, Network } from "lucide-react";
+import { ButtonLink } from "@/components/button-link";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { SiteFooter } from "@/components/site-footer";
@@ -46,6 +48,11 @@ export default async function ProjectsPage() {
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--muted)]">
             These projects are selected automatically from public, maintained GitHub repositories and ranked by current stars.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
+            <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
+            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
+          </div>
         </div>
       </header>
       <section aria-label="Featured repositories" className="mx-auto grid w-full max-w-6xl gap-5 px-5 py-16 lg:grid-cols-2 lg:px-8">

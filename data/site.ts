@@ -4,7 +4,7 @@ export const site = {
   name: profile.identity.name,
   shortName: "Jerome T.",
   title: `${profile.identity.name} | Technical Lead and AI Systems Architect`,
-  description: "Technical Lead and AI systems architect building scalable platforms, cloud-native products, and open-source developer tools.",
+  description: "Technical Lead for AI workflows, scalable platforms, cloud architecture, and open-source developer tools.",
   url: profile.identity.website,
   locale: "en",
   location: profile.identity.location,
@@ -18,8 +18,9 @@ export const site = {
 
 export const navigation = [
   { label: "Work", href: "/#projects" },
+  { label: "Lead", href: "/#leadership" },
+  { label: "Insights", href: "/insights" },
   { label: "Career", href: "/#experience" },
   { label: "Expertise", href: "/#expertise" },
-  { label: "Education", href: "/#education" },
   { label: "Contact", href: "/#contact" }
 ] as const;

@@ -1,5 +1,6 @@
 import { ContactBand } from "@/components/contact-band";
 import { Hero } from "@/components/hero";
+import { InsightCard } from "@/components/insight-card";
 import { JsonLd } from "@/components/json-ld";
 import { MetricCounter } from "@/components/metric-counter";
 import { ProjectCard } from "@/components/project-card";
@@ -11,14 +12,20 @@ import { Timeline } from "@/components/timeline";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
 import { expertiseGroups } from "@/data/expertise";
+import { sameAsProfiles } from "@/data/external-profiles";
+import { leadershipCapabilities } from "@/data/leadership";
 import { profile } from "@/data/profile";
 import { honeymelon } from "@/data/projects";
 import { site } from "@/data/site";
+import { getApprovedTestimonials } from "@/data/testimonials";
+import { getFeaturedInsights } from "@/lib/insights";
 import { formatStarTotal } from "@/lib/project-model";
 import { getFeaturedProjects } from "@/lib/projects";
 
 export default async function Home() {
   const projects = await getFeaturedProjects();
+  const featuredInsights = getFeaturedInsights(3);
+  const approvedTestimonials = getApprovedTestimonials();
   const totalStars = projects.reduce((total, project) => total + (project.stats?.stars ?? 0), 0);
   const starMetric = formatStarTotal(totalStars);
 
@@ -46,7 +53,11 @@ export default async function Home() {
         "@id": personId,
         name: site.name,
         url: site.url,
-        image: `${site.url}${site.avatar}`,
+        image: [
+          `${site.url}/images/profile-1x1.jpg`,
+          `${site.url}/images/profile-4x3.jpg`,
+          `${site.url}/images/profile-16x9.jpg`
+        ],
         jobTitle: profile.identity.headline,
         description: profile.summary,
         email: site.email,
@@ -55,7 +66,7 @@ export default async function Home() {
           addressLocality: "Colombo",
           addressCountry: "LK"
         },
-        sameAs: [site.github, site.linkedin],
+        sameAs: sameAsProfiles,
         alumniOf: education.map((item) => ({
           "@type": "CollegeOrUniversity",
           name: item.institution
@@ -81,6 +92,24 @@ export default async function Home() {
       </Section>
 
       <Section
+        id="leadership"
+        eyebrow="What I can lead"
+        title="Senior engineering work where architecture, product judgment, and team standards meet."
+        intro="The site is positioned for focused conversations around work where technical leadership has to create leverage, not only write code."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {leadershipCapabilities.map((capability, index) => (
+            <Reveal key={capability.title} delay={index * 0.04}>
+              <article className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+                <h3 className="text-lg font-semibold text-[var(--ink)]">{capability.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{capability.summary}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section
         id="projects"
         eyebrow="Selected Work"
         title="Open-source tools with real adoption, plus product work with commercial intent."
@@ -93,6 +122,21 @@ export default async function Home() {
           {projects.map((project, index) => (
             <Reveal key={project.repository} delay={index * 0.04}>
               <ProjectCard project={project} detailsHref={`/projects/${project.repository}`} />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="insights"
+        eyebrow="Insights"
+        title="First-hand notes on AI systems, platform modernization, and developer tools."
+        intro="A curated publication for practical engineering judgment: decisions, trade-offs, architecture lessons, and reusable patterns."
+      >
+        <div className="grid gap-4 lg:grid-cols-3">
+          {featuredInsights.map((insight, index) => (
+            <Reveal key={insight.slug} delay={index * 0.04}>
+              <InsightCard insight={insight} />
             </Reveal>
           ))}
         </div>
@@ -151,6 +195,25 @@ export default async function Home() {
           ))}
         </div>
       </Section>
+
+      {approvedTestimonials.length ? (
+        <Section
+          id="testimonials"
+          eyebrow="Testimonials"
+          title="Approved words from people who have worked with me."
+        >
+          <div className="grid gap-4 md:grid-cols-2">
+            {approvedTestimonials.map((testimonial) => (
+              <blockquote key={`${testimonial.name}-${testimonial.role}`} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+                <p className="text-base leading-8 text-[var(--ink)]">"{testimonial.quote}"</p>
+                <footer className="mt-5 text-sm text-[var(--muted)]">
+                  {testimonial.name}, {testimonial.role}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       <ContactBand />
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, Download, GitBranch, Mail, Network } from "lucide-react";
+import { ArrowDown, Download, Mail, Network } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { ButtonLink } from "@/components/button-link";
 import { getCurrentExperience, profile } from "@/data/profile";
@@ -33,22 +33,24 @@ export function Hero() {
           className="max-w-4xl"
         >
           <motion.p variants={item} className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">
-            {currentExperience.role} and AI Systems Architect
+            Technical leadership for AI workflows, scalable platforms, cloud architecture, and developer tooling
           </motion.p>
           <motion.h1 variants={item} className="break-anywhere mt-5 font-display text-5xl leading-[1.02] text-balance text-[var(--ink)] sm:text-6xl md:text-7xl">
             {site.name}
           </motion.h1>
           <motion.p variants={item} className="mt-6 max-w-3xl text-xl leading-9 text-pretty text-[var(--muted)]">
-            {site.description}
+            {profile.identity.headline}
+          </motion.p>
+          <motion.p variants={item} className="mt-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cool)]">
+            Open to selected global technical-leadership conversations.
           </motion.p>
           <motion.p variants={item} className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">
             {profile.summary}
           </motion.p>
           <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />}>Contact</ButtonLink>
-            <ButtonLink href={site.resume} icon={<Download size={16} />}>Resume</ButtonLink>
-            <ButtonLink href={site.github} icon={<GitBranch size={16} />}>GitHub</ButtonLink>
-            <ButtonLink href={site.linkedin} icon={<Network size={16} />}>LinkedIn</ButtonLink>
+            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
+            <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
+            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
           </motion.div>
         </motion.div>
 

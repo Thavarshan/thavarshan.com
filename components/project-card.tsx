@@ -54,11 +54,11 @@ export function ProjectCard({ project, variant = "repository", detailsHref }: Pr
             Project details
           </ButtonLink>
         ) : null}
-        <ButtonLink href={actionUrl} variant="secondary" icon={<ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}>
+        <ButtonLink href={actionUrl} variant="secondary" icon={<ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />} eventName={variant === "product" ? undefined : "Repository Visit"}>
           {variant === "product" ? "Visit Product" : "Repository"}
         </ButtonLink>
         {project.homepage ? (
-          <ButtonLink href={project.homepage} variant="ghost" icon={<ArrowUpRight size={16} />}>
+          <ButtonLink href={project.homepage} variant="ghost" icon={<ArrowUpRight size={16} />} eventName={variant === "product" ? undefined : "Repository Visit"}>
             Docs
           </ButtonLink>
         ) : null}

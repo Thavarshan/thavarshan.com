@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { site } from "@/data/site";
@@ -26,7 +27,10 @@ export const metadata: Metadata = {
     "Sri Lanka"
   ],
   alternates: {
-    canonical: "/"
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml"
+    }
   },
   robots: {
     index: true,
@@ -85,9 +89,21 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ?? new URL(site.url).hostname;
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {plausibleDomain ? (
+          <Script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.file-downloads.outbound-links.tagged-events.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
+        {children}
+      </body>
     </html>
   );
 }

@@ -37,7 +37,28 @@ test("SEO discovery endpoints list public profile routes", async ({ request }) =
 
   expect(await sitemap.text()).toContain("https://thavarshan.com/projects/fetch-php");
   expect(await sitemap.text()).toContain("https://thavarshan.com/cv");
+  expect(await sitemap.text()).toContain("https://thavarshan.com/insights/observable-reliable-production-ai-workflows");
   expect(await robots.text()).toContain("https://thavarshan.com/sitemap.xml");
+});
+
+test("insights routes, RSS, and article structured data are crawlable", async ({ page, request }) => {
+  await page.goto("/insights");
+  await expect(page.getByRole("heading", { name: /practical notes from building ai systems/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /building observable and reliable production ai workflows/i })).toHaveAttribute(
+    "href",
+    "/insights/observable-reliable-production-ai-workflows"
+  );
+
+  await page.goto("/insights/observable-reliable-production-ai-workflows");
+  await expect(page.getByRole("heading", { name: "Building observable and reliable production AI workflows" })).toBeVisible();
+  expect(await page.locator('script[type="application/ld+json"]').textContent()).toContain("Article");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://thavarshan.com/insights/observable-reliable-production-ai-workflows"
+  );
+
+  const feed = await request.get("/feed.xml");
+  expect(await feed.text()).toContain("Building observable and reliable production AI workflows");
 });
 
 test("mobile layout has no horizontal overflow", async ({ page }) => {
@@ -50,7 +71,7 @@ test("mobile layout has no horizontal overflow", async ({ page }) => {
 test("contact primary link remains readable while active", async ({ page }) => {
   await page.goto("/#contact");
 
-  const emailLink = page.getByRole("link", { name: /email/i }).last();
+  const emailLink = page.getByRole("link", { name: /start a conversation/i }).last();
   await expect(emailLink).toBeVisible();
 
   const normalColors = await emailLink.evaluate((element) => {
@@ -73,10 +94,12 @@ test("contact primary link remains readable while active", async ({ page }) => {
   expect(activeColors.color).not.toBe(activeColors.background);
 });
 
-test("old blog routes redirect to relevant destinations", async ({ page }) => {
-  const response = await page.goto("/blog/fetch-php");
+test("old blog routes are preserved in the Netlify redirect manifest", async ({ request }) => {
+  const response = await request.get("/_redirects");
+  const redirects = await response.text();
 
-  expect(response?.url()).toContain("github.com/Thavarshan/fetch-php");
+  expect(redirects).toContain("/blog/fetch-php https://github.com/Thavarshan/fetch-php 301!");
+  expect(redirects).toContain("/blog /projects 301!");
 });
 
 test("resume is served from public docs", async ({ request }) => {

@@ -12,6 +12,16 @@
     X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
+  for = "/indexnow-key.txt"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+
+[[headers]]
   for = "/*"
   [headers.values]
     Referrer-Policy = "strict-origin-when-cross-origin"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Download, GitBranch, Network, Star } from "lucide-react";
+import { Download, Mail, Network, Star } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +7,7 @@ import { SiteNav } from "@/components/site-nav";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
 import { expertiseGroups } from "@/data/expertise";
+import { sameAsProfiles } from "@/data/external-profiles";
 import { formatProfilePeriod, profile } from "@/data/profile";
 import { site } from "@/data/site";
 import { getFeaturedGitHubProjects } from "@/lib/projects";
@@ -37,7 +38,7 @@ export default async function CvPage() {
       "@id": `${site.url}/#person`,
       name: site.name,
       jobTitle: profile.identity.headline,
-      sameAs: [site.linkedin, site.github]
+      sameAs: sameAsProfiles
     },
     hasPart: projects.map((project) => ({
       "@type": "SoftwareSourceCode",
@@ -57,9 +58,9 @@ export default async function CvPage() {
           <h1 className="mt-4 font-display text-5xl leading-tight text-[var(--ink)] md:text-6xl">{site.name}</h1>
           <p className="mt-5 max-w-3xl text-xl leading-9 text-[var(--muted)]">{profile.identity.headline}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href={site.resume} variant="primary" icon={<Download size={16} />}>Download PDF</ButtonLink>
-            <ButtonLink href={site.linkedin} icon={<Network size={16} />}>LinkedIn</ButtonLink>
-            <ButtonLink href={site.github} icon={<GitBranch size={16} />}>GitHub</ButtonLink>
+            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
+            <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
+            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
           </div>
         </div>
       </header>

@@ -2,7 +2,7 @@
 
 A source-driven professional portfolio and CV system for [thavarshan.com](https://thavarshan.com). LinkedIn is authoritative for career and education data, GitHub is authoritative for open-source work, and both feed the same validated profile model used by the website and LaTeX CV.
 
-The public experience is intentionally minimal and recruiter-focused. It includes an editorial homepage, an indexable HTML CV, substantive project pages, live GitHub adoption metrics, structured data, dynamic social images, and a stable generated PDF résumé.
+The public experience is intentionally minimal and recruiter-focused. It includes an editorial homepage, an indexable HTML CV, substantive project pages, an Insights publication, GitHub and package-registry adoption metrics, structured data, dynamic social images, privacy-respecting analytics hooks, and a stable generated PDF résumé.
 
 ## Architecture
 
@@ -40,6 +40,10 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 | `/cv` | Indexable HTML version of the professional CV |
 | `/projects` | Automatically ranked featured open-source projects |
 | `/projects/[repository]` | Source-driven project detail pages |
+| `/insights` | Curated technical writing for AI, architecture, platforms, and developer tools |
+| `/insights/[slug]` | Static canonical Insight articles with Article JSON-LD |
+| `/feed.xml` | RSS feed for published Insights |
+| `/privacy` | Cookie-free analytics and external-link privacy notes |
 | `/docs/Jerome-Resume.pdf` | Stable generated CV URL with local fallback |
 | `/sitemap.xml` | Sitemap containing all indexable profile and project routes |
 | `/robots.txt` | Crawler rules and sitemap discovery |
@@ -71,12 +75,16 @@ GITHUB_TOKEN=
 GITHUB_STATS_DISABLED=
 GOOGLE_SITE_VERIFICATION=
 BING_SITE_VERIFICATION=
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
+BING_INDEXNOW_KEY=
 ```
 
 - `GITHUB_TOKEN` is optional and server-only. A fine-grained token with public repository metadata access increases API limits.
 - `GITHUB_STATS_DISABLED=1` forces the checked-in GitHub snapshot for deterministic builds and browser tests.
 - `GOOGLE_SITE_VERIFICATION` adds the Google Search Console verification metadata.
 - `BING_SITE_VERIFICATION` adds the Bing Webmaster Tools verification metadata.
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. It defaults to `thavarshan.com`.
+- `BING_INDEXNOW_KEY` enables `npm run seo:indexnow` to submit updated public URLs and builds `/indexnow-key.txt`.
 
 Never prefix tokens with `NEXT_PUBLIC_`; public variables can be included in browser JavaScript.
 
@@ -204,19 +212,114 @@ The website requests public GitHub metadata on the server and caches it for six 
 
 Only the five qualifying highest-starred repositories receive detail pages. This avoids thin automatically generated pages for every repository.
 
+## Package Registry Evidence
+
+Package-registry adoption is stored in:
+
+```text
+data/package-registry.generated.json
+```
+
+The current implementation includes Packagist snapshots for the public PHP packages under the `jerome/*` namespace. Project pages use this checked-in snapshot at build time, so registry outages do not break the website.
+
+Refresh the snapshot:
+
+```bash
+npm run registry:sync
+```
+
+## Insights Publishing
+
+Insights are authored as local `.mdx` files in:
+
+```text
+content/insights/
+```
+
+Each file must include validated frontmatter:
+
+```ts
+interface InsightDefinition {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  updatedAt?: string;
+  topics: string[];
+  relatedProjects: string[];
+  featured: boolean;
+  draft: boolean;
+  linkedinUrl?: string;
+  devToUrl?: string;
+}
+```
+
+The site statically generates `/insights`, every published `/insights/[slug]`, RSS, sitemap entries, canonical metadata, Open Graph images, Article JSON-LD, related Insights, and recruiter CTAs. Draft articles are excluded by default.
+
+Generate reviewable distribution assets:
+
+```bash
+npm run insights:bundle
+```
+
+This writes ignored local files under `marketing/generated/` for each published Insight:
+
+- LinkedIn post draft
+- LinkedIn newsletter summary
+- DEV canonical cross-post draft
+- Two follow-up posts
+- Metadata with tracked URLs and social-image URLs
+
+Social publishing is intentionally review-based. Nothing auto-posts to LinkedIn, DEV, or any external channel.
+
+## Analytics and Measurement
+
+The layout includes the Plausible Cloud script with file-download, outbound-link, and tagged-event extensions. High-intent actions are tagged for these goals:
+
+- `Contact`
+- `Resume Download`
+- `LinkedIn Visit`
+- `GitHub Visit`
+- `Repository Visit`
+- `Newsletter Visit`
+- `Insight 75% Read`
+
+Article read-depth is tracked once per page view when a reader reaches roughly 75% scroll progress and Plausible is available. If analytics is blocked or unavailable, the site continues normally.
+
+Submit new or materially updated URLs to Bing IndexNow:
+
+```bash
+npm run seo:indexnow
+```
+
+Without `BING_INDEXNOW_KEY`, the command prints the URLs that are ready for manual submission.
+
+## External Profile Consistency
+
+The website can publish canonical identity signals, but external services still need manual review. Use:
+
+```text
+marketing/external-profile-checklist.md
+```
+
+That checklist keeps LinkedIn, GitHub, DEV Community, Stack Overflow, Packagist, and the website aligned around the current Sino Lanka Group role, location, headline, website URL, and availability language.
+
 ## SEO
 
 The SEO implementation includes:
 
 - server-rendered, crawlable profile and project content
+- a canonical Insights publication and RSS feed
 - route-specific titles, descriptions, canonical URLs, and social metadata
 - generated 1200×630 profile and project Open Graph images
-- `ProfilePage`, `Person`, `WebSite`, `WebPage`, `CollectionPage`, `SoftwareSourceCode`, and `BreadcrumbList` JSON-LD
+- `ProfilePage`, `Person`, `WebSite`, `WebPage`, `CollectionPage`, `Article`, `SoftwareSourceCode`, and `BreadcrumbList` JSON-LD
 - `sameAs`, `alumniOf`, `knowsAbout`, authorship, repository, and modification-date relationships
-- sitemap modification dates sourced from profile imports and GitHub activity
+- expanded `sameAs` references for LinkedIn, GitHub, DEV Community, Stack Overflow, and Packagist
+- sitemap modification dates sourced from profile imports, GitHub activity, and Insight publication dates
 - crawler directives with large image and unrestricted snippet previews
 - permanent legacy redirects
 - Google Search Console and Bing verification hooks
+- Plausible conversion goals for high-intent actions
 - a canonical HTML CV and non-indexable PDF
 
 After production deployment:
@@ -226,7 +329,8 @@ After production deployment:
 3. Submit `https://thavarshan.com/sitemap.xml`.
 4. Inspect `/`, `/cv`, `/projects`, and one project URL.
 5. Test deployed JSON-LD with Google Rich Results Test.
-6. Enable Netlify Web Analytics for privacy-respecting traffic measurement.
+6. Configure Plausible Cloud for `thavarshan.com` and confirm custom goals.
+7. Review LinkedIn creator analytics, Search Console, Bing Webmaster Tools, and Plausible monthly.
 
 SEO improves discovery and machine understanding but does not guarantee rankings. Search performance should be evaluated through impressions, queries, click-through rates, indexed URLs, and Core Web Vitals over several weeks.
 
@@ -246,6 +350,9 @@ npm run profile:import   # import LinkedIn archive
 npm run profile:github   # refresh GitHub snapshot
 npm run profile:sync     # full source and CV synchronization
 npm run profile:publish  # open generated-data pull request
+npm run insights:bundle  # generate reviewed social distribution drafts
+npm run registry:sync    # refresh package-registry adoption snapshot
+npm run seo:indexnow     # submit or print updated URLs for Bing IndexNow
 npm run cv:render        # generate LaTeX source
 npm run cv:build         # compile the PDF in Docker
 npm run cv:verify        # inspect PDF pages, text, and privacy

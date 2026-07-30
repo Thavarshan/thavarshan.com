@@ -16,6 +16,9 @@
     "profile:github": "tsx scripts/profile/github.ts",
     "profile:sync": "tsx scripts/profile/sync.ts",
     "profile:publish": "tsx scripts/profile/publish.ts",
+    "insights:bundle": "tsx scripts/marketing/distribution.ts",
+    "registry:sync": "tsx scripts/marketing/registry.ts",
+    "seo:indexnow": "tsx scripts/marketing/indexnow.ts",
     "cv:render": "tsx scripts/cv/render.ts",
     "cv:build": "tsx scripts/cv/build.ts",
     "cv:verify": "tsx scripts/cv/verify.ts"

@@ -16,3 +16,4 @@ cv/generated/*.fls
 cv/generated/*.log
 cv/generated/*.out
 .lighthouseci/
+marketing/generated/
