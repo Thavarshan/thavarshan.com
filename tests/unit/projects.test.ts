@@ -51,7 +51,8 @@ describe("project data", () => {
   });
 
   it("rounds star totals down to a recruiter-friendly threshold", () => {
-    expect(formatStarTotal(1026)).toEqual({ value: 1000, label: "1,000+" });
-    expect(formatStarTotal(0)).toEqual({ value: 1000, label: "1,000+" });
+    expect(formatStarTotal(1026)).toEqual({ value: 1000, label: "1,000+", suffix: "+" });
+    expect(formatStarTotal(842)).toEqual({ value: 842, label: "842", suffix: "" });
+    expect(formatStarTotal(0)).toEqual({ value: 0, label: "0", suffix: "" });
   });
 });

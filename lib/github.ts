@@ -38,18 +38,15 @@ type GitHubRepositoryResponse = {
 
 type GitHubFetchOptions = {
   token?: string;
-  revalidate?: number;
   now?: Date;
   fetcher?: typeof fetch;
 };
 
-type NextFetchInit = RequestInit & {
-  next?: {
-    revalidate: number;
-  };
-};
-
 export const fallbackGitHubSnapshot = githubSnapshotSchema.parse(fallbackData);
+
+export function getStaticGitHubSnapshot() {
+  return fallbackGitHubSnapshot;
+}
 
 function githubHeaders(token?: string): HeadersInit {
   return {
@@ -61,9 +58,8 @@ function githubHeaders(token?: string): HeadersInit {
 
 async function requestJson<T>(url: string, options: GitHubFetchOptions): Promise<T> {
   const fetcher = options.fetcher ?? fetch;
-  const init: NextFetchInit = {
-    headers: githubHeaders(options.token),
-    ...(options.revalidate ? { next: { revalidate: options.revalidate } } : {})
+  const init: RequestInit = {
+    headers: githubHeaders(options.token)
   };
   const response = await fetcher(url, init);
 
@@ -82,9 +78,8 @@ async function requestReadme(repository: string, options: GitHubFetchOptions) {
       headers: {
         ...githubHeaders(options.token),
         Accept: "application/vnd.github.raw+json"
-      },
-      ...(options.revalidate ? { next: { revalidate: options.revalidate } } : {})
-    } as NextFetchInit
+      }
+    }
   );
 
   return response.ok ? response.text() : "";
@@ -152,19 +147,4 @@ export async function fetchGitHubSnapshot(options: GitHubFetchOptions = {}): Pro
     syncedAt: (options.now ?? new Date()).toISOString(),
     projects
   });
-}
-
-export async function getGitHubSnapshot() {
-  if (process.env.GITHUB_STATS_DISABLED === "1") {
-    return fallbackGitHubSnapshot;
-  }
-
-  try {
-    return await fetchGitHubSnapshot({
-      token: process.env.GITHUB_TOKEN,
-      revalidate: 60 * 60 * 6
-    });
-  } catch {
-    return fallbackGitHubSnapshot;
-  }
 }

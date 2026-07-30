@@ -77,7 +77,7 @@ describe("LinkedIn archive import", () => {
     expect(normalizeLinkedInDate("05/2026")).toBe("2026-05");
     expect(splitLinkedInDescription("Led architecture.\n• Improved delivery.")).toEqual({
       summary: "Led architecture.",
-      highlights: ["Led architecture.", "Improved delivery."]
+      highlights: ["Improved delivery."]
     });
   });
 });

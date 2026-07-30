@@ -1,6 +1,6 @@
 import "server-only";
 import type { FeaturedProject } from "@/data/projects";
-import { getGitHubSnapshot } from "@/lib/github";
+import { getStaticGitHubSnapshot } from "@/lib/github";
 import type { GitHubProject } from "@/lib/github-model";
 
 function toFeaturedProject(project: GitHubProject, displayOrder: number): FeaturedProject {
@@ -24,14 +24,14 @@ function toFeaturedProject(project: GitHubProject, displayOrder: number): Featur
 }
 
 export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
-  const snapshot = await getGitHubSnapshot();
+  const snapshot = getStaticGitHubSnapshot();
   return snapshot.projects.map(toFeaturedProject);
 }
 
 export async function getFeaturedGitHubProjects() {
-  return (await getGitHubSnapshot()).projects;
+  return getStaticGitHubSnapshot().projects;
 }
 
 export async function getFeaturedGitHubProject(repository: string) {
-  return (await getGitHubSnapshot()).projects.find((project) => project.repository === repository);
+  return getStaticGitHubSnapshot().projects.find((project) => project.repository === repository);
 }

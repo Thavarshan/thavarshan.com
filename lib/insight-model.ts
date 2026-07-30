@@ -1,20 +1,47 @@
 import { z } from "zod";
 
-const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Expected YYYY-MM-DD");
+function isCalendarDate(value: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/u.exec(value);
+  if (!match) {
+    return false;
+  }
 
-export const insightDefinitionSchema = z.object({
-  slug: z.string().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  title: z.string().min(1),
-  description: z.string().min(1),
-  publishedAt: dateSchema,
-  updatedAt: dateSchema.optional(),
-  topics: z.array(z.string().min(1)).default([]),
-  relatedProjects: z.array(z.string().min(1)).default([]),
-  featured: z.boolean(),
-  draft: z.boolean(),
-  linkedinUrl: z.string().url().optional(),
-  devToUrl: z.string().url().optional()
-});
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
+
+const dateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "Expected YYYY-MM-DD")
+  .refine(isCalendarDate, "Expected a valid calendar date");
+
+export const insightDefinitionSchema = z
+  .object({
+    slug: z.string().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    title: z.string().min(1),
+    description: z.string().min(1),
+    publishedAt: dateSchema,
+    updatedAt: dateSchema.optional(),
+    topics: z.array(z.string().min(1)).default([]),
+    relatedProjects: z.array(z.string().min(1)).default([]),
+    featured: z.boolean(),
+    draft: z.boolean(),
+    linkedinUrl: z.string().url().optional(),
+    devToUrl: z.string().url().optional()
+  })
+  .superRefine((definition, context) => {
+    if (definition.updatedAt && definition.updatedAt < definition.publishedAt) {
+      context.addIssue({
+        code: "custom",
+        path: ["updatedAt"],
+        message: "updatedAt must be on or after publishedAt"
+      });
+    }
+  });
 
 export type InsightDefinition = z.infer<typeof insightDefinitionSchema>;
 

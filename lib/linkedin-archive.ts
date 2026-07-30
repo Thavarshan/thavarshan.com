@@ -130,7 +130,7 @@ export function splitLinkedInDescription(description?: string) {
 
   return {
     summary: items[0] ?? normalized,
-    highlights: items.length > 1 ? items.slice(0, 4) : []
+    highlights: items.length > 1 ? items.slice(1, 5) : []
   };
 }
 
