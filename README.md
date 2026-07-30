@@ -44,11 +44,11 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 | `/insights/[slug]` | Static canonical Insight articles with Article JSON-LD |
 | `/feed.xml` | RSS feed for published Insights |
 | `/privacy` | Cookie-free analytics and external-link privacy notes |
-| `/docs/Jerome-Resume.pdf` | Stable generated CV URL with local fallback |
+| `/docs/Jerome-Resume.pdf` | Stable generated CV PDF |
 | `/sitemap.xml` | Sitemap containing all indexable profile and project routes |
 | `/robots.txt` | Crawler rules and sitemap discovery |
 
-The PDF route looks for the `Jerome-Resume.pdf` asset on the `cv-latest` GitHub release. If it is not available, it redirects to the checked-in fallback PDF. PDF responses are marked `noindex` so `/cv` remains the canonical searchable version.
+The PDF is checked in at `public/docs/Jerome-Resume.pdf` and is refreshed from the generated LaTeX build during CV publishing. The `cv-latest` GitHub release is a secondary distribution copy of the same verified artifact.
 
 ## Getting Started
 
@@ -68,19 +68,17 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Environment Variables
 
-The site works without environment variables by using its checked-in GitHub snapshot.
+The site works without environment variables. Static rendering uses the checked-in GitHub snapshot.
 
 ```bash
 GITHUB_TOKEN=
-GITHUB_STATS_DISABLED=
 GOOGLE_SITE_VERIFICATION=
 BING_SITE_VERIFICATION=
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
 BING_INDEXNOW_KEY=
 ```
 
-- `GITHUB_TOKEN` is optional and server-only. A fine-grained token with public repository metadata access increases API limits.
-- `GITHUB_STATS_DISABLED=1` forces the checked-in GitHub snapshot for deterministic builds and browser tests.
+- `GITHUB_TOKEN` is optional and server-only. A fine-grained token with public repository metadata access increases API limits for `npm run profile:github` and automation.
 - `GOOGLE_SITE_VERIFICATION` adds the Google Search Console verification metadata.
 - `BING_SITE_VERIFICATION` adds the Bing Webmaster Tools verification metadata.
 - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. Set it to `thavarshan.com` in Netlify to enable analytics.
@@ -205,11 +203,17 @@ Verify that the PDF is at most two pages, has extractable ATS-readable text, con
 npm run cv:verify
 ```
 
+Build, verify, and copy the stable public PDF into `public/docs/Jerome-Resume.pdf`:
+
+```bash
+npm run cv:publish
+```
+
 The CV deliberately uses a one-column layout, standard text, semantic section headings, and normal hyperlinks. It contains no photograph, icon font, skill chart, phone number, or decorative table.
 
-## GitHub Data at Runtime
+## GitHub Data
 
-The website requests public GitHub metadata on the server and caches it for six hours. If GitHub is unavailable or rate-limited, the site uses `data/github.generated.json`, so pages, metrics, and CV content still render.
+The website renders project pages, metrics, Open Graph images, and sitemap entries from `data/github.generated.json`. Runtime builds do not request GitHub; live public metadata is fetched only by `npm run profile:github` and the content-refresh workflow.
 
 Only the five qualifying highest-starred repositories receive detail pages. This avoids thin automatically generated pages for every repository.
 
@@ -356,6 +360,7 @@ npm run registry:sync    # refresh package-registry adoption snapshot
 npm run seo:indexnow     # submit or print updated URLs for Bing IndexNow
 npm run cv:render        # generate LaTeX source
 npm run cv:build         # compile the PDF in Docker
+npm run cv:publish       # build, verify, and copy the public PDF
 npm run cv:verify        # inspect PDF pages, text, and privacy
 ```
 
@@ -373,10 +378,9 @@ Before shipping:
 npm run typecheck
 npm run lint
 npm run test
-GITHUB_STATS_DISABLED=1 npm run build
+npm run build
 npm run test:e2e
-npm run cv:build
-npm run cv:verify
+npm run cv:publish
 npm run audit
 ```
 
@@ -388,8 +392,8 @@ Coverage includes archive variants and partial imports, invalid dates, source co
 
 `.github/workflows/content-refresh.yml` runs every Monday, manually, and after profile/CV-related changes land on `main`. It has two lanes:
 
-- `refresh` runs on scheduled/manual events only. It updates public generated snapshots, renders the LaTeX CV source, validates the site, and opens a reviewable pull request when generated files change.
-- `publish-cv` runs on scheduled/manual events and matching `main` pushes. It refreshes GitHub metrics for the current run, compiles and verifies the PDF, publishes the stable `cv-latest` release asset, optionally triggers Netlify through `NETLIFY_BUILD_HOOK`, and optionally submits URLs through IndexNow.
+- `refresh` runs on scheduled/manual events only. It updates public generated snapshots, builds and verifies the public CV PDF, validates the site, and opens or updates a reviewable pull request when generated files change.
+- `publish-cv` runs on manual events and matching `main` pushes. It verifies the checked-in public PDF, publishes the stable `cv-latest` release asset, optionally triggers Netlify through `NETLIFY_BUILD_HOOK`, and optionally submits URLs through IndexNow.
 
 Netlify configuration is stored in `netlify.toml`. The production project should use the `main` branch, run `npm run build`, and publish the generated `out/` directory.
 
@@ -398,7 +402,6 @@ Netlify configuration is stored in `netlify.toml`. The production project should
 - Never commit a LinkedIn ZIP, extracted account data, token, phone number, or private runtime configuration.
 - Keep generated source facts in the normalized profile files; do not hard-code current employers in components.
 - Update display/privacy policy in `data/profile-policy.ts`.
-- Preserve the fallback PDF at `public/docs/Jerome-Resume-fallback.pdf`.
 - Keep GitHub and LinkedIn tokens server-side.
 - Review automated pull requests before merging professional profile changes.
 - Do not add speculative achievements or AI-generated career claims.

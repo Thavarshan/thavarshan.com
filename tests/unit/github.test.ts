@@ -1,18 +1,19 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fallbackGitHubSnapshot, fetchGitHubSnapshot, getGitHubSnapshot } from "@/lib/github";
+import { fallbackGitHubSnapshot, fetchGitHubSnapshot, getStaticGitHubSnapshot } from "@/lib/github";
 
 afterEach(() => {
   vi.unstubAllGlobals();
 });
 
 describe("GitHub source adapter", () => {
-  it("falls back to the last-known snapshot when GitHub is unavailable", async () => {
+  it("reads the checked-in snapshot without touching GitHub", () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("Unavailable", { status: 503 })));
 
-    const snapshot = await getGitHubSnapshot();
+    const snapshot = getStaticGitHubSnapshot();
 
     expect(snapshot.syncedAt).toBe(fallbackGitHubSnapshot.syncedAt);
     expect(snapshot.projects[0].repository).toBe("fetch-php");
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it("fetches owner repositories and README context", async () => {

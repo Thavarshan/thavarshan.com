@@ -1,6 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
+import { profile } from "../../data/profile";
 import { renderCvSource } from "./render";
 
 const texLiveImage =
@@ -9,6 +10,7 @@ const texLiveImage =
 export async function buildCv() {
   await renderCvSource();
   const workspace = resolve(".");
+  const sourceDateEpoch = Math.floor(new Date(profile.modifiedAt).getTime() / 1000).toString();
   await mkdir(resolve("cv/output"), { recursive: true });
 
   const result = spawnSync(
@@ -18,6 +20,10 @@ export async function buildCv() {
       "--rm",
       "--platform",
       "linux/amd64",
+      "-e",
+      `SOURCE_DATE_EPOCH=${sourceDateEpoch}`,
+      "-e",
+      "FORCE_SOURCE_DATE=1",
       "-v",
       `${workspace}:/work`,
       "-w",

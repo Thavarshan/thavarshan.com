@@ -52,6 +52,60 @@ Body.`)
     ).toThrow();
   });
 
+  it("rejects impossible calendar dates and stale updated dates", () => {
+    expect(() =>
+      parseInsightSource(`---
+slug: impossible-date
+title: Impossible Date
+description: Invalid date.
+publishedAt: 2026-99-99
+topics:
+  - SEO
+relatedProjects:
+  - fetch-php
+featured: true
+draft: false
+---
+Body.`)
+    ).toThrow("Expected a valid calendar date");
+
+    expect(() =>
+      parseInsightSource(`---
+slug: stale-update
+title: Stale Update
+description: Invalid update order.
+publishedAt: 2026-07-30
+updatedAt: 2026-07-29
+topics:
+  - SEO
+relatedProjects:
+  - fetch-php
+featured: true
+draft: false
+---
+Body.`)
+    ).toThrow("updatedAt must be on or after publishedAt");
+  });
+
+  it("accepts valid leap-day dates", () => {
+    const insight = parseInsightSource(`---
+slug: leap-day
+title: Leap Day
+description: Valid leap day.
+publishedAt: 2024-02-29
+updatedAt: 2024-02-29
+topics:
+  - SEO
+relatedProjects:
+  - fetch-php
+featured: true
+draft: false
+---
+Body.`);
+
+    expect(insight.publishedAt).toBe("2024-02-29");
+  });
+
   it("excludes drafts by default and validates related project references", () => {
     const insights = getAllInsights();
     const repositories = githubSnapshotSchema.parse(githubData).projects.map((project) => project.repository);

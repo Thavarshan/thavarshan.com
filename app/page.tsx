@@ -85,7 +85,7 @@ export default async function Home() {
       <Section id="credibility" ariaLabel="Professional credibility">
         <div className="grid gap-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">
           <MetricCounter value={11} suffix="+" label="Years experience" detail="Technical leadership and product engineering" />
-          <MetricCounter value={starMetric.value} suffix="+" label="Open-source stars" detail="Across the featured GitHub projects" />
+          <MetricCounter value={starMetric.value} suffix={starMetric.suffix} label="Open-source stars" detail="Across the featured GitHub projects" />
           <MetricCounter value={100} suffix="K+" label="Daily users" detail="Platforms built for high-volume operations" />
           <MetricCounter value={4} label="Core strengths" detail="AI, architecture, full stack, and delivery" />
         </div>

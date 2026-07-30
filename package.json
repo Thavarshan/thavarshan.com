@@ -21,6 +21,7 @@
     "seo:indexnow": "tsx scripts/marketing/indexnow.ts",
     "cv:render": "tsx scripts/cv/render.ts",
     "cv:build": "tsx scripts/cv/build.ts",
+    "cv:publish": "tsx scripts/cv/publish.ts",
     "cv:verify": "tsx scripts/cv/verify.ts"
   },
   "dependencies": {

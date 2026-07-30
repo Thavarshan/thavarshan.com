@@ -24,11 +24,11 @@ export function mergeProjectDefinitions(
 
 export function formatStarTotal(totalStars: number) {
   if (totalStars < 1000) {
-    return { value: 1000, label: "1,000+" };
+    return { value: totalStars, label: totalStars.toLocaleString(), suffix: "" };
   }
 
   const rounded = Math.floor(totalStars / 100) * 100;
-  return { value: rounded, label: `${rounded.toLocaleString()}+` };
+  return { value: rounded, label: `${rounded.toLocaleString()}+`, suffix: "+" };
 }
 
 export function getResumeHref() {

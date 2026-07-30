@@ -7,6 +7,7 @@ on:
       - "data/profile.generated.json"
       - "data/github.generated.json"
       - "data/package-registry.generated.json"
+      - "public/docs/Jerome-Resume.pdf"
       - "lib/latex.ts"
       - "cv/**"
       - "scripts/cv/**"
@@ -43,16 +44,16 @@ jobs:
         run: |
           npm run profile:github
           npm run registry:sync
-      - run: npm run cv:render
+      - run: npm run cv:publish
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test
       - run: npm run insights:bundle
-      - run: GITHUB_STATS_DISABLED=1 npm run build
+      - run: npm run build
       - name: Detect generated changes
         id: changes
         run: |
-          if git diff --quiet -- data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex; then
+          if git diff --quiet -- data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -63,7 +64,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -C automation/content-refresh
-          git add data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex
+          git add data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
           git commit -m "Refresh public profile content"
           git push --force-with-lease origin automation/content-refresh
       - name: Open or update refresh pull request
@@ -71,8 +72,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if gh pr view automation/content-refresh --base main >/dev/null 2>&1; then
-            gh pr edit automation/content-refresh --base main --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
+          pr_number="$(gh pr list --head automation/content-refresh --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
           else
             gh pr create --base main --head automation/content-refresh --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
           fi
@@ -81,6 +83,7 @@ jobs:
         run: echo "No generated snapshot changes detected."
 
   publish-cv:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
       NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
@@ -93,15 +96,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run profile:github
-      - run: npm run cv:build
-      - run: npm run cv:verify
+      - run: npm run cv:verify -- public/docs/Jerome-Resume.pdf
       - name: Publish stable CV release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release view cv-latest >/dev/null 2>&1 || gh release create cv-latest --title "Latest professional CV" --notes "Automatically generated from the validated professional profile and current GitHub metadata." --latest=false
-          gh release upload cv-latest cv/output/Jerome-Resume.pdf --clobber
+          gh release upload cv-latest public/docs/Jerome-Resume.pdf --clobber
       - name: Trigger Netlify refresh
         if: ${{ env.NETLIFY_BUILD_HOOK != '' }}
         run: curl --fail --silent --show-error --request POST --data '{}' "$NETLIFY_BUILD_HOOK"

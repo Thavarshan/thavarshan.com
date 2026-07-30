@@ -31,6 +31,26 @@ test("project details render source-driven metadata and structured data", async 
   );
 });
 
+test("exported project links resolve and are discoverable", async ({ page, request }) => {
+  await page.goto("/projects");
+
+  const projectLinks = await page
+    .getByRole("link", { name: /project details/i })
+    .evaluateAll((links) =>
+      Array.from(new Set(links.map((link) => link.getAttribute("href")).filter((href): href is string => Boolean(href))))
+    );
+  expect(projectLinks.length).toBeGreaterThan(0);
+
+  const sitemap = await request.get("/sitemap.xml");
+  const sitemapText = await sitemap.text();
+
+  for (const href of projectLinks) {
+    const response = await request.get(href);
+    expect(response.ok()).toBe(true);
+    expect(sitemapText).toContain(`https://thavarshan.com${href}`);
+  }
+});
+
 test("SEO discovery endpoints list public profile routes", async ({ request }) => {
   const sitemap = await request.get("/sitemap.xml");
   const robots = await request.get("/robots.txt");
@@ -104,8 +124,10 @@ test("old blog routes are preserved in the Netlify redirect manifest", async ({ 
 
 test("resume is served from public docs", async ({ request }) => {
   const response = await request.get("/docs/Jerome-Resume.pdf");
+  const body = await response.body();
 
   expect(response.ok()).toBe(true);
   expect(response.headers()["content-type"]).toContain("application/pdf");
-  expect(response.url()).toContain("Jerome-Resume");
+  expect(response.url()).toBe("http://127.0.0.1:4173/docs/Jerome-Resume.pdf");
+  expect(body.subarray(0, 5).toString()).toBe("%PDF-");
 });

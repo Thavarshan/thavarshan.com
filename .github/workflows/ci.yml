@@ -24,8 +24,6 @@ jobs:
       - run: npm run insights:bundle
       - run: npm run audit
       - run: npm run build
-        env:
-          GITHUB_STATS_DISABLED: "1"
 
   browser:
     runs-on: ubuntu-latest
@@ -48,12 +46,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run cv:build
-      - run: npm run cv:verify
+      - run: npm run cv:publish
+      - run: git diff --exit-code -- cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: professional-cv-preview
-          path: cv/output/Jerome-Resume.pdf
+          path: public/docs/Jerome-Resume.pdf
 
   lighthouse:
     runs-on: ubuntu-latest
@@ -65,8 +63,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          GITHUB_STATS_DISABLED: "1"
       - run: |
           npm start -- --hostname 127.0.0.1 --port 3000 &
           for attempt in {1..30}; do
