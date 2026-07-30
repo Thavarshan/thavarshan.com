@@ -64,6 +64,7 @@ export function Hero() {
             width={176}
             height={176}
             priority
+            unoptimized
             className="h-28 w-28 rounded-lg border border-[var(--line)] object-cover md:h-44 md:w-44"
           />
           <div className="max-w-[16rem] md:mt-5">
