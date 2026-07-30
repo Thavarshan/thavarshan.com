@@ -30,7 +30,7 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 - GitHub REST API with six-hour Next.js revalidation
 - LaTeX compiled with LuaLaTeX in a pinned TeX Live container
 - Vitest, Testing Library, Playwright, and Lighthouse CI
-- Netlify with its modern Next.js adapter
+- Netlify serving the static Next.js export from `out/`
 
 ## Public Routes
 
@@ -387,7 +387,7 @@ Coverage includes archive variants and partial imports, invalid dates, source co
 
 `.github/workflows/cv.yml` runs after profile-related changes, every Monday, or manually. It refreshes GitHub, compiles and verifies the CV, publishes the stable `cv-latest` release asset, and optionally triggers Netlify.
 
-Netlify configuration is stored in `netlify.toml`. The production project should use the `main` branch and allow Netlify to apply its current Next.js adapter automatically.
+Netlify configuration is stored in `netlify.toml`. The production project should use the `main` branch, run `npm run build`, and publish the generated `out/` directory.
 
 ## Privacy and Maintenance
 
@@ -398,3 +398,4 @@ Netlify configuration is stored in `netlify.toml`. The production project should
 - Keep GitHub and LinkedIn tokens server-side.
 - Review automated pull requests before merging professional profile changes.
 - Do not add speculative achievements or AI-generated career claims.
+- Do not restore Nuxt build artifacts such as `.nuxt/` or `.output/`; this project is now a Next.js static export.
