@@ -1,0 +1,44 @@
+name: Publish CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/profile.generated.json"
+      - "data/github.generated.json"
+      - "lib/latex.ts"
+      - "cv/**"
+      - "scripts/cv/**"
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run profile:github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run cv:build
+      - run: npm run cv:verify
+      - name: Publish stable CV release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view cv-latest >/dev/null 2>&1 || gh release create cv-latest --title "Latest professional CV" --notes "Automatically generated from the validated professional profile and current GitHub metadata." --latest=false
+          gh release upload cv-latest cv/output/Jerome-Resume.pdf --clobber
+      - name: Trigger Netlify refresh
+        if: ${{ env.NETLIFY_BUILD_HOOK != '' }}
+        run: curl --fail --silent --show-error --request POST --data '{}' "$NETLIFY_BUILD_HOOK"

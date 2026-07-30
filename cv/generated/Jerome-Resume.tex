@@ -1,0 +1,132 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.35cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist[itemize]{leftmargin=1.25em,itemsep=0pt,topsep=2pt,parsep=0pt}
+\definecolor{accent}{HTML}{7A4B12}
+\newcommand{\cvsection}[1]{
+  \vspace{6pt}{\large\bfseries\color{accent}#1}\par
+  \vspace{1pt}\rule{\linewidth}{0.4pt}\vspace{2pt}
+}
+\newcommand{\resumeHeading}[4]{
+  \textbf{#1} \hfill #3\\
+  \textit{#2}\if\relax\detokenize{#4}\relax\else\enspace---\enspace#4\fi\par\vspace{1pt}
+}
+\newcommand{\projectHeading}[2]{\textbf{#1}\hfill #2\\}
+\hypersetup{
+  pdftitle={Jerome Thayananthajothy - Professional CV},
+  pdfauthor={Jerome Thayananthajothy},
+  pdfsubject={Technical leadership, AI systems architecture, and full-stack engineering}
+}
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Jerome Thayananthajothy}\\[3pt]
+  {\large Technical Lead | AI-Driven Systems Architect | AWS \& Full-Stack Expert | Open Source Contributor}\\[4pt]
+  Colombo, Sri Lanka
+  \enspace|\enspace \href{mailto:tjthavarshan@gmail.com}{tjthavarshan@gmail.com}
+  \enspace|\enspace \href{https://thavarshan.com}{thavarshan.com}\\
+  \href{https://www.linkedin.com/in/thavarshan}{linkedin.com/in/thavarshan}
+  \enspace|\enspace \href{https://github.com/Thavarshan}{github.com/Thavarshan}
+\end{center}
+
+\cvsection{Professional Summary}
+Technical Lead and AI-driven systems architect with more than a decade of experience building scalable platforms, modernizing full-stack architectures, and leading cloud delivery. Experienced across AI workflows, semantic search, developer tooling, and high-volume commercial systems, with a practical focus on performance, observability, and helping engineering teams ship confidently.
+
+\cvsection{Core Expertise}
+\textbf{Leadership}: Technical leadership, Architecture reviews, Engineering standards, Mentoring, Product thinking\\
+\textbf{AI \& Architecture}: Generative AI, LangGraph, Semantic search, Microservices, Event-driven systems\\
+\textbf{Full Stack}: React, Vue, TypeScript, Node.js, Laravel, PostgreSQL\\
+\textbf{Cloud \& Delivery}: AWS, Docker, Kubernetes, CI/CD, Observability
+
+\cvsection{Experience}
+\resumeHeading{Technical Lead}{Sino Lanka Group}{May 2026 -- Present}{Colombo, Sri Lanka}
+\begin{itemize}
+  \item Driving architecture direction across full-stack systems, AI capabilities, and cloud delivery.
+  \item Focusing on observability, developer ecosystems, and reliable engineering practices.
+  \item Bringing senior technical leadership across AI-enhanced infrastructure and product delivery.
+\end{itemize}
+
+\resumeHeading{Technical Lead}{KAYA}{Oct 2025 -- May 2026}{}
+\begin{itemize}
+  \item Designed dynamic AI workflow engines with LangGraph and cloud-native delivery practices.
+  \item Led distributed application work across multiple Kubernetes clusters.
+  \item Shaped Node.js, TypeScript, Laravel, PostgreSQL, and platform engineering standards.
+\end{itemize}
+
+\resumeHeading{Technical Lead}{Brompton Bicycle}{Dec 2024 -- Oct 2025}{}
+\begin{itemize}
+  \item Built Express microservices and full-stack platform capabilities for systems serving more than 100,000 daily users.
+  \item Modernized legacy PHP services toward TypeScript and Node.js, improving performance by 40\%.
+  \item Introduced standards that reduced technical debt by 30\% across delivery streams.
+\end{itemize}
+
+\resumeHeading{Full Stack Engineer}{NetWatch Global}{Jul 2023 -- Dec 2024}{}
+\begin{itemize}
+  \item Built maintainable backend services and frontend workflows for business-critical platforms.
+  \item Worked across PostgreSQL, DynamoDB, API design, and production delivery.
+\end{itemize}
+
+\resumeHeading{Senior Software Engineer}{MacroActive}{Jun 2021 -- Nov 2022}{}
+\begin{itemize}
+  \item Delivered full-stack product work across Laravel, JavaScript, and relational databases.
+  \item Collaborated with product and engineering teams to improve reliability and maintainability.
+\end{itemize}
+
+\resumeHeading{Software Engineer}{Elegant Media}{Apr 2019 -- Jul 2020}{}
+\smallskip
+Developed web and mobile platform features across client projects, APIs, and production support.
+
+\resumeHeading{Software Developer}{Seven's Idea}{Jan 2018 -- Mar 2019}{}
+\smallskip
+Built application features and integrations across early-stage product and client delivery work.
+
+\resumeHeading{Software Developer}{Alta Vision Solar}{Jun 2015 -- Jan 2018}{}
+\smallskip
+Started in software delivery with practical engineering work across business systems and web applications.
+
+\newpage
+\cvsection{Selected Open-Source Work}
+\projectHeading{\href{https://github.com/Thavarshan/fetch-php}{Fetch PHP}}{450 stars \enspace|\enspace PHP}
+Modern PHP HTTP client inspired by JavaScript's fetch API. Async/await, streaming, SSE, middleware, RFC 7234 caching, and full PSR-7/18 compliance.
+
+\projectHeading{\href{https://github.com/Thavarshan/filterable}{Filterable}}{196 stars \enspace|\enspace PHP}
+Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.
+
+\projectHeading{\href{https://github.com/Thavarshan/phpvm}{phpvm}}{162 stars \enspace|\enspace Shell}
+Simple PHP version manager for MacOS and Linux.
+
+\projectHeading{\href{https://github.com/Thavarshan/comet}{Comet}}{158 stars \enspace|\enspace TypeScript}
+A cross-platform desktop app powered by FFmpeg for easy, beautiful media conversion.
+
+\projectHeading{\href{https://github.com/Thavarshan/matrix}{Matrix}}{60 stars \enspace|\enspace PHP}
+Bringing JavaScript-style async to PHP! Manage asynchronous tasks with ease using a modern, fiber-powered API for seamless concurrency and error handling.
+
+\cvsection{Product Work}
+\projectHeading{\href{https://honeymelon.app}{Honeymelon}}{Founder and builder}
+A premium Apple Silicon macOS app for fast, reliable media conversion, built as a focused commercial product.
+\begin{itemize}
+  \item Product-led work covering UX, packaging, performance, and release quality.
+  \item Connects engineering craft with market-facing product judgment.
+\end{itemize}
+
+\cvsection{Education}
+\resumeHeading{BSc Computer Systems Engineering}{University of Sunderland}{Sep 2022 -- Jun 2023}{}
+\resumeHeading{Higher National Diploma in Software Engineering}{ICBT}{Aug 2020 -- Mar 2022}{}
+\resumeHeading{Graduate Diploma in Telecommunications Engineering}{IESL College of Engineering}{Feb 2015 -- Mar 2019}{}
+
+\cvsection{Certifications}
+AWS Certified Solutions Architect -- Associate --- Amazon Web Services \enspace|\enspace AWS Certified Cloud Practitioner --- Amazon Web Services
+
+\cvsection{Languages}
+English (Native or bilingual proficiency) \enspace|\enspace Tamil (Native or bilingual proficiency) \enspace|\enspace Sinhala (Limited working proficiency)
+
+\end{document}

@@ -1,0 +1,153 @@
+{
+  "username": "Thavarshan",
+  "name": "Jerome Thayananthajothy",
+  "company": "@edusight-ai",
+  "location": "Colombo, Sri Lanka",
+  "bio": "I code...? 🤷‍♂️",
+  "profileUrl": "https://github.com/Thavarshan",
+  "followers": 71,
+  "publicRepositories": 47,
+  "syncedAt": "2026-07-30T08:11:16.043Z",
+  "projects": [
+    {
+      "repository": "fetch-php",
+      "name": "Fetch PHP",
+      "description": "Modern PHP HTTP client inspired by JavaScript's fetch API. Async/await, streaming, SSE, middleware, RFC 7234 caching, and full PSR-7/18 compliance.",
+      "topics": [
+        "fetch",
+        "fetch-api",
+        "fetch-php",
+        "guzzle",
+        "guzzle-php-library",
+        "guzzlehttp",
+        "http",
+        "http-client",
+        "javascript-fetch",
+        "javascript-fetch-api",
+        "php"
+      ],
+      "primaryLanguage": "PHP",
+      "stars": 450,
+      "forks": 28,
+      "homepage": "https://fetch-php.thavarshan.com",
+      "repositoryUrl": "https://github.com/Thavarshan/fetch-php",
+      "updatedAt": "2026-07-23T06:57:36Z",
+      "readmeExcerpt": [
+        "Fetch PHP is a modern HTTP client library for PHP that brings JavaScript's fetch API experience to PHP. Built on top of Guzzle, Fetch PHP allows you to write HTTP code with a clean, intuitive JavaScript-like syntax while still maintaining PHP's familiar patterns.",
+        "With support for both synchronous and asynchronous requests, a fluent chainable API, and powerful retry mechanics, Fetch PHP streamlines HTTP operations in your PHP applications.",
+        "Key Features JavaScript-like Syntax : Write HTTP requests just like you would in JavaScript with the fetch() function and async / await patterns Promise-based API : Use familiar .then() , .catch() , and .finally() methods for async operations Fluent Interface : Build requests with a clean, chainable API Built on Guzzle : Benefit from Guzzle's robust functionality with a more elegant API Streaming & Server-Sent Eve…"
+      ]
+    },
+    {
+      "repository": "filterable",
+      "name": "Filterable",
+      "description": "Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.",
+      "topics": [
+        "database-queries",
+        "eloquent",
+        "eloquent-orm",
+        "eloquent-orm-models",
+        "filter",
+        "filterable",
+        "laravel"
+      ],
+      "primaryLanguage": "PHP",
+      "stars": 196,
+      "forks": 10,
+      "repositoryUrl": "https://github.com/Thavarshan/filterable",
+      "updatedAt": "2026-07-10T07:32:59Z",
+      "readmeExcerpt": [
+        "Filterable is a Laravel package for turning HTTP request parameters into rich, composable Eloquent query filters. The base Filter class exposes a stateful pipeline that you can extend, toggle, and compose with traits to add validation, caching, logging, rate limiting, memory management, and more. Everything is opt-in, so you enable only the behaviour you need while keeping type-safe, testable filters.",
+        "Laravel 11.x, 12.x, or 13.x components ( illuminate/cache , illuminate/contracts , illuminate/database , illuminate/http , illuminate/support )",
+        "A configured cache store when you enable caching features"
+      ]
+    },
+    {
+      "repository": "phpvm",
+      "name": "phpvm",
+      "description": "Simple PHP version manager for MacOS and Linux.",
+      "topics": [
+        "amd64",
+        "apple-silicon",
+        "arm64",
+        "bash",
+        "bash-script",
+        "cli",
+        "linux",
+        "macos",
+        "php",
+        "phpvm",
+        "shell",
+        "shell-script",
+        "version-manager"
+      ],
+      "primaryLanguage": "Shell",
+      "stars": 162,
+      "forks": 10,
+      "repositoryUrl": "https://github.com/Thavarshan/phpvm",
+      "updatedAt": "2026-07-29T06:07:51Z",
+      "readmeExcerpt": [
+        "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
+        "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
+        "Auto-switch PHP versions based on project .phpvmrc (configurable depth via PHPVM PHPVMRC MAX DEPTH )."
+      ]
+    },
+    {
+      "repository": "comet",
+      "name": "Comet",
+      "description": "A cross-platform desktop app powered by FFmpeg for easy, beautiful media conversion.",
+      "topics": [
+        "comet",
+        "cross-platform",
+        "electron",
+        "eslint",
+        "ffmpeg",
+        "ffmpeg-static",
+        "ffprobe",
+        "javascript",
+        "json",
+        "tailwlindcss",
+        "typescript",
+        "video",
+        "video-converter",
+        "vue3",
+        "vuejs"
+      ],
+      "primaryLanguage": "TypeScript",
+      "stars": 158,
+      "forks": 10,
+      "homepage": "https://comet.thavarshan.com",
+      "repositoryUrl": "https://github.com/Thavarshan/comet",
+      "updatedAt": "2026-06-29T12:55:38Z",
+      "readmeExcerpt": [
+        "Comet is a cross-platform media converter application designed to make the conversion of video, audio, and image files as easy and accessible as possible. Built on top of FFmpeg, Jimp , and Electron , Comet offers a seamless and efficient user experience for media conversions, all within a simple, intuitive interface.",
+        "Comet's goal is to provide a free, user-friendly, and visually appealing application for converting media files. Whether you need to convert a single file or multiple files at once, Comet is designed to make the process straightforward.",
+        "Key Features Cross-Platform Compatibility: Works seamlessly on macOS, Windows, and Linux. Video, Audio, and Image Conversion:"
+      ]
+    },
+    {
+      "repository": "matrix",
+      "name": "Matrix",
+      "description": "Bringing JavaScript-style async to PHP! Manage asynchronous tasks with ease using a modern, fiber-powered API for seamless concurrency and error handling.",
+      "topics": [
+        "async",
+        "fiber",
+        "javascript",
+        "matrix",
+        "non-blocking",
+        "php",
+        "task"
+      ],
+      "primaryLanguage": "PHP",
+      "stars": 60,
+      "forks": 2,
+      "repositoryUrl": "https://github.com/Thavarshan/matrix",
+      "updatedAt": "2026-05-26T03:45:36Z",
+      "readmeExcerpt": [
+        "Matrix is a PHP library that brings event-driven, asynchronous programming to PHP, inspired by JavaScript's async / await syntax. Built on top of ReactPHP's event loop, Matrix makes it easier to write non-blocking I/O operations and manage concurrency with a simple, intuitive API.",
+        "Important : PHP runs in a single-threaded environment. Matrix doesn't create true parallelism but enables event-driven, non-blocking I/O operations through ReactPHP's event loop. This means: ✅ Non-blocking I/O : Network requests, file operations, and timers don't block execution ✅ Concurrent operations : Multiple I/O operations can run simultaneously ❌ CPU-bound tasks : Heavy computations will still block the even…",
+        "Matrix shines when dealing with I/O-heavy applications like API clients, web scrapers, or microservices."
+      ]
+    }
+  ]
+}

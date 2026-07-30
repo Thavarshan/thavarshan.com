@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "identity": {
+    "name": "Jerome Thayananthajothy",
+    "givenName": "Jerome",
+    "familyName": "Thayananthajothy",
+    "headline": "Technical Lead | AI-Driven Systems Architect | AWS & Full-Stack Expert | Open Source Contributor",
+    "location": "Colombo, Sri Lanka",
+    "email": "tjthavarshan@gmail.com",
+    "website": "https://thavarshan.com",
+    "linkedin": "https://www.linkedin.com/in/thavarshan",
+    "github": "https://github.com/Thavarshan",
+    "avatar": "/images/avatar.jpg"
+  },
+  "summary": "Technical Lead and AI-driven systems architect with more than a decade of experience building scalable platforms, modernizing full-stack architectures, and leading cloud delivery. Experienced across AI workflows, semantic search, developer tooling, and high-volume commercial systems, with a practical focus on performance, observability, and helping engineering teams ship confidently.",
+  "experience": [
+    {
+      "id": "sino-lanka-group-technical-lead",
+      "role": "Technical Lead",
+      "company": "Sino Lanka Group",
+      "location": "Colombo, Sri Lanka",
+      "startDate": "2026-05",
+      "endDate": null,
+      "summary": "Leading AI-driven systems architecture and full-stack engineering across scalable business platforms.",
+      "highlights": [
+        "Driving architecture direction across full-stack systems, AI capabilities, and cloud delivery.",
+        "Focusing on observability, developer ecosystems, and reliable engineering practices.",
+        "Bringing senior technical leadership across AI-enhanced infrastructure and product delivery."
+      ]
+    },
+    {
+      "id": "kaya-technical-lead",
+      "role": "Technical Lead",
+      "company": "KAYA",
+      "startDate": "2025-10",
+      "endDate": "2026-05",
+      "summary": "Led enterprise full-stack systems and AI workflow engineering for the KAYA Platform and client-facing systems.",
+      "highlights": [
+        "Designed dynamic AI workflow engines with LangGraph and cloud-native delivery practices.",
+        "Led distributed application work across multiple Kubernetes clusters.",
+        "Shaped Node.js, TypeScript, Laravel, PostgreSQL, and platform engineering standards."
+      ]
+    },
+    {
+      "id": "brompton-bicycle-technical-lead",
+      "role": "Technical Lead",
+      "company": "Brompton Bicycle",
+      "startDate": "2024-12",
+      "endDate": "2025-10",
+      "summary": "Led modernization across microservices and a unified Laravel and Vue platform serving high-volume commercial operations.",
+      "highlights": [
+        "Built Express microservices and full-stack platform capabilities for systems serving more than 100,000 daily users.",
+        "Modernized legacy PHP services toward TypeScript and Node.js, improving performance by 40%.",
+        "Introduced standards that reduced technical debt by 30% across delivery streams."
+      ]
+    },
+    {
+      "id": "netwatch-global-full-stack-engineer",
+      "role": "Full Stack Engineer",
+      "company": "NetWatch Global",
+      "startDate": "2023-07",
+      "endDate": "2024-12",
+      "summary": "Delivered full-stack product features and operational systems across modern JavaScript and PHP stacks.",
+      "highlights": [
+        "Built maintainable backend services and frontend workflows for business-critical platforms.",
+        "Worked across PostgreSQL, DynamoDB, API design, and production delivery."
+      ]
+    },
+    {
+      "id": "macroactive-senior-software-engineer",
+      "role": "Senior Software Engineer",
+      "company": "MacroActive",
+      "startDate": "2021-06",
+      "endDate": "2022-11",
+      "summary": "Built scalable product features and backend services for customer-facing fitness and coaching platforms.",
+      "highlights": [
+        "Delivered full-stack product work across Laravel, JavaScript, and relational databases.",
+        "Collaborated with product and engineering teams to improve reliability and maintainability."
+      ]
+    },
+    {
+      "id": "elegant-media-software-engineer",
+      "role": "Software Engineer",
+      "company": "Elegant Media",
+      "startDate": "2019-04",
+      "endDate": "2020-07",
+      "summary": "Developed web and mobile platform features across client projects, APIs, and production support.",
+      "highlights": []
+    },
+    {
+      "id": "sevens-idea-software-developer",
+      "role": "Software Developer",
+      "company": "Seven's Idea",
+      "startDate": "2018-01",
+      "endDate": "2019-03",
+      "summary": "Built application features and integrations across early-stage product and client delivery work.",
+      "highlights": []
+    },
+    {
+      "id": "alta-vision-solar-software-developer",
+      "role": "Software Developer",
+      "company": "Alta Vision Solar",
+      "startDate": "2015-06",
+      "endDate": "2018-01",
+      "summary": "Started in software delivery with practical engineering work across business systems and web applications.",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "id": "university-of-sunderland-bsc",
+      "qualification": "BSc Computer Systems Engineering",
+      "institution": "University of Sunderland",
+      "fieldOfStudy": "Computer Systems Engineering",
+      "startDate": "2022-09",
+      "endDate": "2023-06"
+    },
+    {
+      "id": "icbt-hnd",
+      "qualification": "Higher National Diploma in Software Engineering",
+      "institution": "ICBT",
+      "fieldOfStudy": "Software Engineering",
+      "startDate": "2020-08",
+      "endDate": "2022-03"
+    },
+    {
+      "id": "iesl-graduate-diploma",
+      "qualification": "Graduate Diploma in Telecommunications Engineering",
+      "institution": "IESL College of Engineering",
+      "fieldOfStudy": "Telecommunications Engineering",
+      "startDate": "2015-02",
+      "endDate": "2019-03"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "aws-solutions-architect-associate",
+      "name": "AWS Certified Solutions Architect – Associate",
+      "authority": "Amazon Web Services"
+    },
+    {
+      "id": "aws-cloud-practitioner",
+      "name": "AWS Certified Cloud Practitioner",
+      "authority": "Amazon Web Services"
+    }
+  ],
+  "skills": [
+    { "name": "Technical leadership", "category": "leadership" },
+    { "name": "Architecture reviews", "category": "leadership" },
+    { "name": "Engineering standards", "category": "leadership" },
+    { "name": "Mentoring", "category": "leadership" },
+    { "name": "Product thinking", "category": "leadership" },
+    { "name": "Generative AI", "category": "ai-architecture" },
+    { "name": "LangGraph", "category": "ai-architecture" },
+    { "name": "Semantic search", "category": "ai-architecture" },
+    { "name": "Microservices", "category": "ai-architecture" },
+    { "name": "Event-driven systems", "category": "ai-architecture" },
+    { "name": "React", "category": "full-stack" },
+    { "name": "Vue", "category": "full-stack" },
+    { "name": "TypeScript", "category": "full-stack" },
+    { "name": "Node.js", "category": "full-stack" },
+    { "name": "Laravel", "category": "full-stack" },
+    { "name": "PostgreSQL", "category": "full-stack" },
+    { "name": "AWS", "category": "cloud-delivery" },
+    { "name": "Docker", "category": "cloud-delivery" },
+    { "name": "Kubernetes", "category": "cloud-delivery" },
+    { "name": "CI/CD", "category": "cloud-delivery" },
+    { "name": "Observability", "category": "cloud-delivery" }
+  ],
+  "languages": [
+    { "name": "English", "proficiency": "Native or bilingual proficiency" },
+    { "name": "Tamil", "proficiency": "Native or bilingual proficiency" },
+    { "name": "Sinhala", "proficiency": "Limited working proficiency" }
+  ],
+  "professionalProjects": [
+    {
+      "id": "honeymelon",
+      "name": "Honeymelon",
+      "role": "Founder and builder",
+      "description": "A premium Apple Silicon macOS app for fast, reliable media conversion, built as a focused commercial product.",
+      "highlights": [
+        "Product-led work covering UX, packaging, performance, and release quality.",
+        "Connects engineering craft with market-facing product judgment."
+      ],
+      "tags": ["macOS", "Media tooling", "Product engineering", "Performance"],
+      "url": "https://honeymelon.app"
+    }
+  ],
+  "sources": {
+    "linkedin": {
+      "kind": "linkedin-archive",
+      "importedAt": "2026-07-30T00:00:00.000Z",
+      "fingerprint": "bootstrap-from-verified-profile"
+    },
+    "github": {
+      "kind": "github-api",
+      "username": "Thavarshan",
+      "syncedAt": "2026-07-30T00:00:00.000Z"
+    }
+  },
+  "modifiedAt": "2026-07-30T00:00:00.000Z"
+}

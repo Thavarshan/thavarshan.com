@@ -1,0 +1,80 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run audit
+      - run: npm run build
+        env:
+          GITHUB_STATS_DISABLED: "1"
+
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+  cv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run cv:build
+      - run: npm run cv:verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: professional-cv-preview
+          path: cv/output/Jerome-Resume.pdf
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          GITHUB_STATS_DISABLED: "1"
+      - run: |
+          GITHUB_STATS_DISABLED=1 npm start -- --hostname 127.0.0.1 &
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:3000/ >/dev/null && break
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:3000/ >/dev/null
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false

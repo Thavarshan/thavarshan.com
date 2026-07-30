@@ -116,7 +116,6 @@ My expertise spans:
 - **💼 LinkedIn**: [in/thavarshan](https://www.linkedin.com/in/thavarshan)
 - **🌐 Personal Website**: [thavarshan.com](https://thavarshan.com)
 - **📧 Email**: tjthavarshan@gmail.com
-- **📱 Mobile**: +94 742729879
 - **🐙 GitHub**: [github.com/Thavarshan](https://github.com/Thavarshan)
 
 ---

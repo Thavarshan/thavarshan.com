@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+[[headers]]
+  for = "/docs/*.pdf"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

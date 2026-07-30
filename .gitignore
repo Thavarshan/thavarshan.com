@@ -1,24 +1,17 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
-
-# Node dependencies
-node_modules
-
-# Logs
-logs
-*.log
-
-# Misc
-.DS_Store
-.fleet
-.idea
-
-# Local env files
-.env
-.env.*
-!.env.example
+.next/
+.nuxt/
+.output/
+node_modules/
+playwright-report/
+test-results/
+tsconfig.tsbuildinfo
+linkedin*.zip
+LinkedIn*.zip
+profile-imports/
+cv/output/
+cv/generated/*.aux
+cv/generated/*.fdb_latexmk
+cv/generated/*.fls
+cv/generated/*.log
+cv/generated/*.out
+.lighthouseci/
