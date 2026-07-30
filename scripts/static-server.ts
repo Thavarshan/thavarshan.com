@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { extname, join, normalize, relative, resolve } from "node:path";
+import { createGzip } from "node:zlib";
 
 const mimeTypes: Record<string, string> = {
   ".css": "text/css; charset=utf-8",
@@ -16,6 +17,8 @@ const mimeTypes: Record<string, string> = {
   ".webmanifest": "application/manifest+json; charset=utf-8",
   ".xml": "application/xml; charset=utf-8"
 };
+
+const compressibleTypes = new Set([".css", ".html", ".js", ".json", ".txt", ".webmanifest", ".xml"]);
 
 function parseArguments(argv: string[]) {
   const options = {
@@ -105,10 +108,28 @@ const server = createServer(async (request, response) => {
   }
 
   const isNotFound = path.endsWith("404.html");
-  response.writeHead(isNotFound ? 404 : 200, {
-    "Content-Type": mimeTypes[extname(path)] ?? "application/octet-stream"
-  });
-  createReadStream(path).pipe(response);
+  const extension = extname(path);
+  const shouldCompress = compressibleTypes.has(extension) && request.headers["accept-encoding"]?.includes("gzip");
+  const headers: Record<string, string> = {
+    "Cache-Control": path.includes(`${resolve(root, "_next", "static")}`) ? "public, max-age=31536000, immutable" : "public, max-age=0, must-revalidate",
+    "Content-Type": mimeTypes[extension] ?? "application/octet-stream",
+    ...(shouldCompress ? { "Content-Encoding": "gzip", Vary: "Accept-Encoding" } : {})
+  };
+
+  response.writeHead(isNotFound ? 404 : 200, headers);
+
+  if (request.method === "HEAD") {
+    response.end();
+    return;
+  }
+
+  const stream = createReadStream(path);
+  if (shouldCompress) {
+    stream.pipe(createGzip()).pipe(response);
+    return;
+  }
+
+  stream.pipe(response);
 });
 
 server.listen(options.port, options.hostname, () => {

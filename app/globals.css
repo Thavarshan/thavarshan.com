@@ -54,6 +54,22 @@ body {
   overflow-wrap: anywhere;
 }
 
+.reveal-on-load {
+  animation: reveal-on-load 0.42s ease-out both;
+}
+
+@keyframes reveal-on-load {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -62,5 +78,9 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-load {
+    animation: none !important;
   }
 }

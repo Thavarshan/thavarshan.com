@@ -24,7 +24,7 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 ## Stack
 
 - Next.js App Router, React, and TypeScript
-- Tailwind CSS and Motion
+- Tailwind CSS with CSS-based reduced-motion-aware transitions
 - Zod for runtime profile validation
 - `fflate` and `csv-parse` for safe LinkedIn archive ingestion
 - GitHub REST API with six-hour Next.js revalidation
@@ -83,7 +83,7 @@ BING_INDEXNOW_KEY=
 - `GITHUB_STATS_DISABLED=1` forces the checked-in GitHub snapshot for deterministic builds and browser tests.
 - `GOOGLE_SITE_VERIFICATION` adds the Google Search Console verification metadata.
 - `BING_SITE_VERIFICATION` adds the Bing Webmaster Tools verification metadata.
-- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. It defaults to `thavarshan.com`.
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. Set it to `thavarshan.com` in Netlify to enable analytics.
 - `BING_INDEXNOW_KEY` enables `npm run seo:indexnow` to submit updated public URLs and builds `/indexnow-key.txt`.
 
 Never prefix tokens with `NEXT_PUBLIC_`; public variables can be included in browser JavaScript.
