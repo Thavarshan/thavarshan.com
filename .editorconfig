@@ -1,6 +1,6 @@
 root = true
 
-[{*.html,*.js,*.json,*.md,*.ts,*.vue,*.yml,*eslintrc}]
+[{*.html,*.js,*.jsx,*.json,*.md,*.ts,*.tsx,*.vue,*.yml,*eslintrc}]
 indent_style = space
 indent_size = 2
 insert_final_newline = false
