@@ -1,9 +1,16 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
+import githubData from "@/data/github.generated.json";
 import { getFeaturedGitHubProject } from "@/lib/projects";
+import { githubSnapshotSchema } from "@/lib/github-model";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
+
+export function generateStaticParams() {
+  return githubSnapshotSchema.parse(githubData).projects.map((project) => ({ repository: project.repository }));
+}
 
 export default async function ProjectOpenGraphImage({ params }: { params: Promise<{ repository: string }> }) {
   const { repository } = await params;

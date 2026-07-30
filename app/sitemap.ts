@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import githubData from "@/data/github.generated.json";
 import { profile } from "@/data/profile";
 import { site } from "@/data/site";
+
+export const dynamic = "force-static";
 import { githubSnapshotSchema } from "@/lib/github-model";
 
 export default function sitemap(): MetadataRoute.Sitemap {

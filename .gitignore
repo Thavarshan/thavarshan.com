@@ -1,4 +1,5 @@
 .next/
+out/
 .nuxt/
 .output/
 node_modules/

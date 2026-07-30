@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@netlify/plugin-nextjs": "^5.15.13",
     "@playwright/test": "^1.62.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",
