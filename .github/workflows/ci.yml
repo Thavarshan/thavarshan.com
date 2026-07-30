@@ -1,4 +1,4 @@
-name: Quality
+name: CI
 
 on:
   pull_request:
@@ -68,7 +68,7 @@ jobs:
         env:
           GITHUB_STATS_DISABLED: "1"
       - run: |
-          GITHUB_STATS_DISABLED=1 npm start -- --hostname 127.0.0.1 &
+          npm start -- --hostname 127.0.0.1 --port 3000 &
           for attempt in {1..30}; do
             curl --fail --silent http://127.0.0.1:3000/ >/dev/null && break
             sleep 1

@@ -340,7 +340,7 @@ SEO improves discovery and machine understanding but does not guarantee rankings
 ```bash
 npm run dev              # development server
 npm run build            # production Next.js build
-npm run start            # production server
+npm run start            # preview the exported out/ directory
 npm run typecheck        # TypeScript validation
 npm run lint             # ESLint
 npm run test             # unit and component tests
