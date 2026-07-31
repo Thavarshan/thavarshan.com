@@ -11,16 +11,16 @@ export function Hero() {
     <section className="relative border-b border-[var(--line)] bg-[var(--surface)]">
       <div className="mx-auto grid min-h-[calc(100svh-72px)] w-full max-w-6xl content-center gap-8 px-5 pb-14 pt-28 sm:gap-10 md:min-h-[720px] md:grid-cols-[1fr_220px] md:items-center md:pb-16 lg:px-8">
         <div className="max-w-4xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)] sm:text-sm sm:tracking-[0.18em]">
             Technical leadership for AI workflows, scalable platforms, cloud architecture, and developer tooling
           </p>
-          <h1 className="break-anywhere mt-5 font-display text-[clamp(2.75rem,13vw,4rem)] leading-[1.02] text-balance text-[var(--ink)] sm:text-6xl md:text-7xl">
+          <h1 className="break-words mt-5 font-display text-[clamp(2.25rem,10vw,3rem)] leading-[1.04] text-balance text-[var(--ink)] sm:text-5xl md:text-7xl">
             {site.name}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-pretty text-[var(--muted)] sm:text-xl sm:leading-9">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-pretty text-[var(--muted)] sm:text-xl sm:leading-9">
             {profile.identity.headline}
           </p>
-          <p className="mt-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cool)]">
+          <p className="mt-4 max-w-2xl text-xs font-semibold uppercase tracking-[0.12em] text-[var(--cool)] sm:text-sm sm:tracking-[0.14em]">
             Open to selected global technical-leadership conversations.
           </p>
           <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">
