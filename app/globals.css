@@ -61,8 +61,40 @@ body {
 }
 
 .mobile-navigation {
-  max-height: min(70svh, 30rem);
+  max-height: calc(100svh - 72px - env(safe-area-inset-top));
   overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-navigation[data-state="open"] {
+  animation: mobile-navigation-in 0.18s ease-out both;
+}
+
+.mobile-navigation-backdrop {
+  animation: mobile-navigation-backdrop-in 0.18s ease-out both;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes mobile-navigation-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-navigation-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 639px) {

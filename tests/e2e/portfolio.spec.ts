@@ -121,6 +121,48 @@ test("mobile navigation is accessible and closes with Escape", async ({ page }) 
   await expect(page.locator("#mobile-navigation")).toBeHidden();
 });
 
+test("the menu toggle stays inside the viewport on narrow screens", async ({ page }) => {
+  for (const width of [320, 375, 430, 768, 900]) {
+    await page.setViewportSize({ width, height: 812 });
+    await page.goto("/");
+
+    const menuButton = page.getByRole("button", { name: "Open navigation menu" });
+    await expect(menuButton, `menu toggle hidden at ${width}px`).toBeVisible();
+
+    const box = await menuButton.boundingBox();
+    expect(box, `menu toggle has no box at ${width}px`).not.toBeNull();
+    expect(box!.x, `menu toggle starts offscreen at ${width}px`).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width, `menu toggle overflows at ${width}px`).toBeLessThanOrEqual(width);
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+
+    // The header keeps only the essentials until there is room for the full bar.
+    const headerLinks = page.locator("header a", { hasText: "GitHub" });
+    await expect(headerLinks.locator("visible=true")).toHaveCount(0);
+  }
+});
+
+test("mobile navigation closes when the backdrop is tapped", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  await page.getByRole("button", { name: "Open navigation menu" }).click();
+  await expect(page.locator("#mobile-navigation")).toBeVisible();
+
+  await page.mouse.click(188, 780);
+
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+  await expect(page.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
+});
+
+test("the desktop bar exposes navigation without a menu toggle", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/");
+
+  await expect(page.getByRole("button", { name: /navigation menu/i })).toBeHidden();
+  await expect(page.locator("header a", { hasText: "Insights" }).first()).toBeVisible();
+  await expect(page.locator("header a", { hasText: "GitHub" }).locator("visible=true")).toHaveCount(1);
+});
+
 test("mobile CTA links preserve touch-friendly target sizes", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
