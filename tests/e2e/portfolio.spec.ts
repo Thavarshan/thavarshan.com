@@ -88,6 +88,59 @@ test("mobile layout has no horizontal overflow", async ({ page }) => {
   expect(overflow).toBe(false);
 });
 
+test("narrow mobile layout stays readable and overflow-free", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+
+  for (const route of ["/", "/projects", "/cv", "/insights", "/privacy"]) {
+    await page.goto(route);
+    const dimensions = await page.evaluate(() => ({
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      width: document.documentElement.clientWidth
+    }));
+
+    expect(dimensions.overflow, `${route} overflows at 320px`).toBe(false);
+    expect(dimensions.width).toBe(320);
+  }
+});
+
+test("mobile navigation is accessible and closes with Escape", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const menuButton = page.getByRole("button", { name: "Open navigation menu" });
+  await expect(menuButton).toHaveAttribute("aria-expanded", "false");
+  await menuButton.focus();
+  await menuButton.press("Enter");
+
+  await expect(page.getByRole("button", { name: "Close navigation menu" })).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("#mobile-navigation")).toBeVisible();
+  await expect(page.locator("#mobile-navigation")).toContainText("Insights");
+
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+});
+
+test("mobile CTA links preserve touch-friendly target sizes", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const heights = await page.locator(".mobile-stack-actions a").evaluateAll((links) =>
+    links.map((link) => Math.round(link.getBoundingClientRect().height))
+  );
+
+  expect(heights.length).toBeGreaterThan(0);
+  expect(Math.min(...heights)).toBeGreaterThanOrEqual(44);
+});
+
+test("anchor navigation accounts for the fixed header", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/#projects");
+
+  const top = await page.locator("#projects").evaluate((element) => Math.round(element.getBoundingClientRect().top));
+  expect(top).toBeGreaterThanOrEqual(65);
+});
+
 test("contact primary link remains readable while active", async ({ page }) => {
   await page.goto("/#contact");
 

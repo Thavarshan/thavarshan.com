@@ -7,8 +7,8 @@ type MetricCounterProps = {
 
 export function MetricCounter({ value, suffix = "", label, detail }: MetricCounterProps) {
   return (
-    <div className="bg-[var(--surface)] p-6" data-testid="metric">
-      <p className="font-display text-4xl text-[var(--ink)]">
+    <div className="bg-[var(--surface)] p-4 sm:p-6" data-testid="metric">
+      <p className="font-display text-3xl text-[var(--ink)] sm:text-4xl">
         {value.toLocaleString()}
         {suffix}
       </p>

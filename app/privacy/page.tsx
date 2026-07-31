@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <SiteNav />
       <article className="mx-auto w-full max-w-3xl px-5 pb-20 pt-32 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Privacy</p>
-        <h1 className="mt-4 font-display text-5xl leading-tight text-[var(--ink)]">Privacy on this website</h1>
+        <h1 className="mt-4 font-display text-[clamp(2.5rem,11vw,3.75rem)] leading-tight text-balance text-[var(--ink)]">Privacy on this website</h1>
         <div className="mt-8 space-y-6 text-base leading-8 text-[var(--muted)]">
           <p>
             This personal website is designed to be light on data collection. It does not include a contact form, advertising pixels, or public phone-number capture.

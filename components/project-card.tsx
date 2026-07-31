@@ -13,16 +13,16 @@ export function ProjectCard({ project, variant = "repository", detailsHref }: Pr
   const actionUrl = "repository" in project ? project.stats?.url ?? `https://github.com/Thavarshan/${project.repository}` : project.url;
 
   return (
-    <article className="group h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6 transition hover:-translate-y-0.5 hover:border-[var(--accent)]">
+    <article className="group h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] sm:p-6">
       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">
             {variant === "product" ? "Product" : project.role}
           </p>
-          <h3 className="mt-3 text-2xl font-semibold text-[var(--ink)]">{project.name}</h3>
+          <h3 className="mt-3 break-anywhere text-xl font-semibold text-[var(--ink)] sm:text-2xl">{project.name}</h3>
         </div>
         {isRepository && project.stats ? (
-          <div className="flex gap-3 text-sm font-semibold text-[var(--muted)]" aria-label={`${project.stats.stars} stars and ${project.stats.forks} forks`}>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm font-semibold text-[var(--muted)]" aria-label={`${project.stats.stars} stars and ${project.stats.forks} forks`}>
             <span className="inline-flex items-center gap-1"><Star size={15} aria-hidden />{project.stats.stars.toLocaleString()}</span>
             <span className="inline-flex items-center gap-1"><GitFork size={15} aria-hidden />{project.stats.forks.toLocaleString()}</span>
           </div>
@@ -48,7 +48,7 @@ export function ProjectCard({ project, variant = "repository", detailsHref }: Pr
         ))}
       </div>
 
-      <div className="mt-7 flex flex-wrap gap-3">
+      <div className="mobile-stack-actions mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         {detailsHref ? (
           <ButtonLink href={detailsHref} variant="primary" icon={<ArrowUpRight size={16} />}>
             Project details

@@ -83,7 +83,7 @@ export default async function Home() {
       <Hero />
 
       <Section id="credibility" ariaLabel="Professional credibility">
-        <div className="grid gap-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">
           <MetricCounter value={11} suffix="+" label="Years experience" detail="Technical leadership and product engineering" />
           <MetricCounter value={starMetric.value} suffix={starMetric.suffix} label="Open-source stars" detail="Across the featured GitHub projects" />
           <MetricCounter value={100} suffix="K+" label="Daily users" detail="Platforms built for high-volume operations" />
@@ -100,7 +100,7 @@ export default async function Home() {
         <div className="grid gap-4 md:grid-cols-2">
           {leadershipCapabilities.map((capability, index) => (
             <Reveal key={capability.title} delay={index * 0.04}>
-              <article className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+              <article className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
                 <h3 className="text-lg font-semibold text-[var(--ink)]">{capability.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{capability.summary}</p>
               </article>
@@ -159,7 +159,7 @@ export default async function Home() {
         <div className="grid gap-4 md:grid-cols-2">
           {expertiseGroups.map((group, index) => (
             <Reveal key={group.title} delay={index * 0.04}>
-              <div className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+              <div className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
                 <h3 className="text-lg font-semibold text-[var(--ink)]">{group.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{group.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -186,7 +186,7 @@ export default async function Home() {
         <div className="grid gap-4 md:grid-cols-3">
           {education.map((item, index) => (
             <Reveal key={item.institution} delay={index * 0.04}>
-              <article className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+              <article className="h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
                 <p className="text-sm font-medium text-[var(--accent-dark)]">{item.period}</p>
                 <h3 className="mt-3 text-lg font-semibold text-[var(--ink)]">{item.qualification}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{item.institution}</p>
@@ -204,7 +204,7 @@ export default async function Home() {
         >
           <div className="grid gap-4 md:grid-cols-2">
             {approvedTestimonials.map((testimonial) => (
-              <blockquote key={`${testimonial.name}-${testimonial.role}`} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
+              <blockquote key={`${testimonial.name}-${testimonial.role}`} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
                 <p className="text-base leading-8 text-[var(--ink)]">"{testimonial.quote}"</p>
                 <footer className="mt-5 text-sm text-[var(--muted)]">
                   {testimonial.name}, {testimonial.role}

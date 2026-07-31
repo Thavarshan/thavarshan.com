@@ -106,14 +106,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <p className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">
               Open-source project
             </p>
-            <h1 className="mt-4 font-display text-5xl leading-tight text-[var(--ink)] md:text-7xl">{project.name}</h1>
+            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">{project.name}</h1>
             <p className="mt-6 max-w-3xl text-xl leading-9 text-[var(--muted)]">{project.description}</p>
             <div className="mt-7 flex flex-wrap items-center gap-5 text-sm font-semibold text-[var(--muted)]">
               <span className="inline-flex items-center gap-1.5"><Star size={17} />{project.stars.toLocaleString()} stars</span>
               <span className="inline-flex items-center gap-1.5"><GitFork size={17} />{project.forks.toLocaleString()} forks</span>
               {project.primaryLanguage ? <span>{project.primaryLanguage}</span> : null}
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />} eventName="Repository Visit">View repository</ButtonLink>
               {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />} eventName="Repository Visit">Documentation</ButtonLink> : null}
             </div>
@@ -211,7 +211,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </span>
               ))}
             </div>
-            <div className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5">
+            <div className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--surface)] p-4 sm:p-5">
               <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Next step</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Want to discuss platform architecture, AI systems, or developer tooling?</p>
               <div className="mt-5 grid gap-3">

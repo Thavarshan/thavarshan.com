@@ -55,9 +55,9 @@ export default async function CvPage() {
       <header className="border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="mx-auto w-full max-w-5xl px-5 pb-14 pt-32 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Professional CV</p>
-          <h1 className="mt-4 font-display text-5xl leading-tight text-[var(--ink)] md:text-6xl">{site.name}</h1>
+          <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,3.75rem)] leading-tight text-[var(--ink)] md:text-6xl">{site.name}</h1>
           <p className="mt-5 max-w-3xl text-xl leading-9 text-[var(--muted)]">{profile.identity.headline}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
             <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
             <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
@@ -106,7 +106,7 @@ export default async function CvPage() {
           <h2 id="cv-open-source" className="font-display text-3xl text-[var(--ink)]">Selected open-source work</h2>
           <div className="mt-7 space-y-4">
             {projects.map((project) => (
-              <article key={project.repository} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5">
+              <article key={project.repository} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-4 sm:p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="font-semibold text-[var(--ink)]">
                     <a href={project.repositoryUrl} target="_blank" rel="noreferrer" className="hover:text-[var(--accent-dark)]">

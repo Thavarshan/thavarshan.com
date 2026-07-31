@@ -9,13 +9,13 @@ type InsightCardProps = {
 
 export function InsightCard({ insight }: InsightCardProps) {
   return (
-    <article className="group relative h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6 transition hover:-translate-y-0.5 hover:border-[var(--accent)]">
+    <article className="group relative h-full rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] sm:p-6">
       <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">
         {new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" }).format(new Date(insight.publishedAt))}
         {" · "}
         {insight.readingTimeMinutes} min read
       </p>
-      <h3 className="mt-4 text-2xl font-semibold leading-snug text-[var(--ink)]">
+      <h3 className="mt-4 break-anywhere text-xl font-semibold leading-snug text-[var(--ink)] sm:text-2xl">
         <Link href={getInsightUrl(insight.slug)} className="focus-visible:outline-none">
           <span className="absolute inset-0" aria-hidden />
           {insight.title}

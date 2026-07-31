@@ -15,8 +15,8 @@ export function Timeline({ items }: TimelineProps) {
             <article className="relative grid gap-4 pl-10 md:grid-cols-[8rem_1fr] md:gap-8 md:pl-0">
               <div className="absolute left-[0.45rem] top-2 h-3 w-3 rounded-full border-2 border-[var(--surface)] bg-[var(--accent)] md:left-[9.1rem]" aria-hidden />
               <p className="text-sm font-semibold text-[var(--accent-dark)] md:text-right">{item.period}</p>
-              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6">
-                <h3 className="text-xl font-semibold text-[var(--ink)]">{item.role}</h3>
+              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
+                <h3 className="break-anywhere text-xl font-semibold text-[var(--ink)]">{item.role}</h3>
                 <p className="mt-1 text-sm font-medium text-[var(--cool)]">{item.company}</p>
                 <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{item.summary}</p>
                 {item.highlights.length > 0 ? (

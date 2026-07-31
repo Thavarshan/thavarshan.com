@@ -66,13 +66,13 @@ export default function InsightsPage() {
       <header className="border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-32 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Insights</p>
-          <h1 className="mt-4 max-w-4xl font-display text-5xl leading-tight text-[var(--ink)] md:text-7xl">
+          <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">
             Practical notes from building AI systems, platforms, and developer tools.
           </h1>
           <p className="mt-6 max-w-3xl text-xl leading-9 text-[var(--muted)]">
             A curated publication for first-hand engineering decisions, trade-offs, failures, architecture lessons, and reusable patterns.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
             <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
             <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>

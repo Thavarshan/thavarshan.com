@@ -112,9 +112,9 @@ export default async function InsightPage({ params }: InsightPageProps) {
               {" · "}
               {insight.readingTimeMinutes} min read
             </p>
-            <h1 className="mt-4 font-display text-5xl leading-tight text-[var(--ink)] md:text-7xl">{insight.title}</h1>
+            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">{insight.title}</h1>
             <p className="mt-6 text-xl leading-9 text-[var(--muted)]">{insight.description}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
               <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
               <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>

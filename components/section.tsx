@@ -12,12 +12,12 @@ type SectionProps = {
 
 export function Section({ id, title, eyebrow, intro, ariaLabel, children }: SectionProps) {
   return (
-    <section id={id} aria-label={ariaLabel} className="mx-auto w-full max-w-6xl px-5 py-16 md:py-24 lg:px-8">
+    <section id={id} aria-label={ariaLabel} className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-16 md:py-24 lg:px-8">
       {title ? (
         <Reveal>
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-8 max-w-3xl sm:mb-10">
             {eyebrow ? <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">{eyebrow}</p> : null}
-            <h2 className="mt-4 font-display text-4xl leading-tight text-balance text-[var(--ink)] md:text-5xl">{title}</h2>
+            <h2 className="mt-4 font-display text-[clamp(2rem,9vw,3rem)] leading-tight text-balance text-[var(--ink)] md:text-5xl">{title}</h2>
             {intro ? <p className="mt-5 text-base leading-8 text-pretty text-[var(--muted)]">{intro}</p> : null}
           </div>
         </Reveal>

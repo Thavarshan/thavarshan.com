@@ -19,11 +19,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(72px + env(safe-area-inset-top));
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: var(--paper);
   color: var(--ink);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -52,6 +54,31 @@ body {
 
 .break-anywhere {
   overflow-wrap: anywhere;
+}
+
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+.mobile-navigation {
+  max-height: min(70svh, 30rem);
+  overflow-y: auto;
+}
+
+@media (max-width: 639px) {
+  .mobile-stack-actions > * {
+    width: 100%;
+  }
+
+  .mobile-stack-actions > a {
+    min-height: 46px;
+  }
+}
+
+@media (min-width: 640px) {
+  .mobile-stack-actions {
+    flex-direction: row;
+  }
 }
 
 .reveal-on-load {

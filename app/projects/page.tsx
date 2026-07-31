@@ -42,13 +42,13 @@ export default async function ProjectsPage() {
       <header className="border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-32 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Open source</p>
-          <h1 className="mt-4 max-w-4xl font-display text-5xl leading-tight text-[var(--ink)] md:text-6xl">
+          <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.5rem,11vw,3.75rem)] leading-tight text-balance text-[var(--ink)] md:text-6xl">
             Developer tools with measurable adoption.
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--muted)]">
             These projects are selected automatically from public, maintained GitHub repositories and ranked by current stars.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
             <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
             <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
