@@ -6,8 +6,8 @@
   "bio": "I code...? 🤷‍♂️",
   "profileUrl": "https://github.com/Thavarshan",
   "followers": 71,
-  "publicRepositories": 47,
-  "syncedAt": "2026-07-30T11:24:53.773Z",
+  "publicRepositories": 48,
+  "syncedAt": "2026-08-03T04:29:44.796Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -28,7 +28,7 @@
       ],
       "primaryLanguage": "PHP",
       "stars": 450,
-      "forks": 28,
+      "forks": 27,
       "homepage": "https://fetch-php.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/fetch-php",
       "updatedAt": "2026-07-23T06:57:36Z",
@@ -142,11 +142,11 @@
       "stars": 60,
       "forks": 2,
       "repositoryUrl": "https://github.com/Thavarshan/matrix",
-      "updatedAt": "2026-05-26T03:45:36Z",
+      "updatedAt": "2026-07-30T14:30:33Z",
       "readmeExcerpt": [
-        "Matrix is a PHP library that brings event-driven, asynchronous programming to PHP, inspired by JavaScript's async / await syntax. Built on top of ReactPHP's event loop, Matrix makes it easier to write non-blocking I/O operations and manage concurrency with a simple, intuitive API.",
-        "Important : PHP runs in a single-threaded environment. Matrix doesn't create true parallelism but enables event-driven, non-blocking I/O operations through ReactPHP's event loop. This means: ✅ Non-blocking I/O : Network requests, file operations, and timers don't block execution ✅ Concurrent operations : Multiple I/O operations can run simultaneously ❌ CPU-bound tasks : Heavy computations will still block the even…",
-        "Matrix shines when dealing with I/O-heavy applications like API clients, web scrapers, or microservices."
+        "Matrix provides small, event-driven async helpers for ReactPHP. It makes promise composition, concurrency limits, retries, timeouts, cancellation, and rate limiting consistent without pretending to create threads or process-level parallelism.",
+        "PHP 8.3 or newer react/event-loop 1.6 or newer react/promise 3.3 or newer",
+        "No pcntl , posix , or sockets extension is required."
       ]
     }
   ]
