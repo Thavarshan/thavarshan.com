@@ -7,7 +7,7 @@
   "profileUrl": "https://github.com/Thavarshan",
   "followers": 71,
   "publicRepositories": 48,
-  "syncedAt": "2026-08-17T03:34:52.621Z",
+  "syncedAt": "2026-08-24T03:37:39.759Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -52,10 +52,10 @@
         "laravel"
       ],
       "primaryLanguage": "PHP",
-      "stars": 196,
+      "stars": 195,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/filterable",
-      "updatedAt": "2026-07-10T07:32:59Z",
+      "updatedAt": "2026-08-20T10:43:24Z",
       "readmeExcerpt": [
         "Filterable is a Laravel package for turning HTTP request parameters into rich, composable Eloquent query filters. The base Filter class exposes a stateful pipeline that you can extend, toggle, and compose with traits to add validation, caching, logging, rate limiting, memory management, and more. Everything is opt-in, so you enable only the behaviour you need while keeping type-safe, testable filters.",
         "Laravel 11.x, 12.x, or 13.x components ( illuminate/cache , illuminate/contracts , illuminate/database , illuminate/http , illuminate/support )",
@@ -82,10 +82,10 @@
         "version-manager"
       ],
       "primaryLanguage": "Shell",
-      "stars": 164,
+      "stars": 163,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-08-06T01:03:17Z",
+      "updatedAt": "2026-08-20T10:43:24Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
@@ -114,11 +114,11 @@
         "vuejs"
       ],
       "primaryLanguage": "TypeScript",
-      "stars": 158,
+      "stars": 157,
       "forks": 10,
       "homepage": "https://comet.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/comet",
-      "updatedAt": "2026-06-29T12:55:38Z",
+      "updatedAt": "2026-08-20T10:43:23Z",
       "readmeExcerpt": [
         "Comet is a cross-platform media converter application designed to make the conversion of video, audio, and image files as easy and accessible as possible. Built on top of FFmpeg, Jimp , and Electron , Comet offers a seamless and efficient user experience for media conversions, all within a simple, intuitive interface.",
         "Comet's goal is to provide a free, user-friendly, and visually appealing application for converting media files. Whether you need to convert a single file or multiple files at once, Comet is designed to make the process straightforward.",
@@ -139,10 +139,10 @@
         "task"
       ],
       "primaryLanguage": "PHP",
-      "stars": 60,
+      "stars": 59,
       "forks": 2,
       "repositoryUrl": "https://github.com/Thavarshan/matrix",
-      "updatedAt": "2026-07-30T14:30:33Z",
+      "updatedAt": "2026-08-20T10:43:20Z",
       "readmeExcerpt": [
         "Matrix provides small, event-driven async helpers for ReactPHP. It makes promise composition, concurrency limits, retries, timeouts, cancellation, and rate limiting consistent without pretending to create threads or process-level parallelism.",
         "PHP 8.3 or newer react/event-loop 1.6 or newer react/promise 3.3 or newer",
