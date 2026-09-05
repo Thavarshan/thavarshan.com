@@ -1,10 +1,10 @@
 {
-  "syncedAt": "2026-08-24T03:37:41.074Z",
+  "syncedAt": "2026-08-31T03:34:22.571Z",
   "packages": [
     {
       "provider": "packagist",
       "packageName": "jerome/fetch-php",
-      "downloads": 10220,
+      "downloads": 10374,
       "dependents": 1,
       "latestVersion": "3.8.1",
       "updatedAt": "2026-07-23T06:43:00.000Z",
@@ -13,7 +13,7 @@
     {
       "provider": "packagist",
       "packageName": "jerome/filterable",
-      "downloads": 38562,
+      "downloads": 39078,
       "dependents": 0,
       "latestVersion": "2.1.2",
       "updatedAt": "2026-03-19T12:04:10.000Z",
@@ -22,8 +22,8 @@
     {
       "provider": "packagist",
       "packageName": "jerome/matrix",
-      "downloads": 12530,
-      "dependents": 2,
+      "downloads": 12669,
+      "dependents": 1,
       "latestVersion": "4.0.0-beta.1",
       "updatedAt": "2026-07-30T14:24:53.000Z",
       "repository": "matrix"

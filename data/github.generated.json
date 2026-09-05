@@ -7,7 +7,7 @@
   "profileUrl": "https://github.com/Thavarshan",
   "followers": 71,
   "publicRepositories": 48,
-  "syncedAt": "2026-08-24T03:37:39.759Z",
+  "syncedAt": "2026-08-31T03:34:21.472Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -82,10 +82,10 @@
         "version-manager"
       ],
       "primaryLanguage": "Shell",
-      "stars": 163,
+      "stars": 164,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-08-20T10:43:24Z",
+      "updatedAt": "2026-08-26T18:09:17Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
