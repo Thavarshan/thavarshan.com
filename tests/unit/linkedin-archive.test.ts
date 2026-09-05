@@ -72,6 +72,35 @@ describe("LinkedIn archive import", () => {
     ).toThrow(/Unsupported LinkedIn date/);
   });
 
+  it("rejects supplied sections that cannot be mapped before replacing data", () => {
+    expect(() =>
+      importLinkedInArchive(
+        archive({
+          "Skills.csv": "Unexpected Header\nTypeScript"
+        }),
+        previous
+      )
+    ).toThrow(/Skills.csv is missing a required Name column/);
+
+    expect(() =>
+      importLinkedInArchive(
+        archive({
+          "Languages.csv": "Name\nEnglish\n"
+        }),
+        previous
+      )
+    ).not.toThrow();
+
+    expect(() =>
+      importLinkedInArchive(
+        archive({
+          "Languages.csv": "Name\nEnglish\n,"
+        }),
+        previous
+      )
+    ).toThrow(/Languages.csv contains a row without a Name/);
+  });
+
   it("normalizes common dates and deterministic bullets", () => {
     expect(normalizeLinkedInDate("May 2026")).toBe("2026-05");
     expect(normalizeLinkedInDate("05/2026")).toBe("2026-05");

@@ -15,14 +15,31 @@ function run(command: string, args: string[], capture = false) {
   if (result.status !== 0) {
     throw new Error(`${command} ${args.join(" ")} failed`);
   }
-  return result.stdout?.trim() ?? "";
+  return result.stdout ?? "";
+}
+
+export function parseChangedFiles(statusOutput: string) {
+  const records = statusOutput.split("\0");
+  const changedFiles: string[] = [];
+
+  for (let index = 0; index < records.length; index += 1) {
+    const record = records[index];
+    if (!record) {
+      continue;
+    }
+
+    changedFiles.push(record.slice(3));
+    if (/^[RC]/u.test(record.slice(0, 2)) && records[index + 1]) {
+      changedFiles.push(records[index + 1]);
+      index += 1;
+    }
+  }
+
+  return changedFiles;
 }
 
 function main() {
-  const changedFiles = run("git", ["status", "--porcelain"], true)
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => line.slice(3));
+  const changedFiles = parseChangedFiles(run("git", ["status", "--porcelain=v1", "-z"], true));
   const unrelated = changedFiles.filter((path) => !generatedPaths.includes(path));
 
   if (unrelated.length > 0) {
@@ -51,9 +68,11 @@ function main() {
   ]);
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
+if (import.meta.url === `file://${process.argv[1]}`) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  }
 }

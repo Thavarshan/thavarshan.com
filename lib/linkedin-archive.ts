@@ -67,6 +67,19 @@ function value(row: CsvRow, ...aliases: string[]) {
   return undefined;
 }
 
+function assertNamedRows(rows: CsvRow[], filename: string, ...aliases: string[]) {
+  const normalizedAliases = aliases.map(normalizeHeader);
+  const hasExpectedColumn = rows.some((row) => normalizedAliases.some((alias) => alias in row));
+
+  if (!hasExpectedColumn) {
+    throw new Error(`${filename} is missing a required ${aliases[0]} column`);
+  }
+
+  if (rows.some((row) => !value(row, ...aliases))) {
+    throw new Error(`${filename} contains a row without a ${aliases[0]}`);
+  }
+}
+
 function slugify(valueToSlug: string) {
   return valueToSlug
     .toLowerCase()
@@ -343,6 +356,7 @@ export function importLinkedInArchive(
 
   const skills = rowsByFile.get("skills.csv");
   if (skills) {
+    assertNamedRows(skills, "Skills.csv", "Name", "Skill Name");
     next.skills = skills
       .map((row) => value(row, "Name", "Skill Name"))
       .filter((name): name is string => Boolean(name))
@@ -352,6 +366,7 @@ export function importLinkedInArchive(
 
   const languages = rowsByFile.get("languages.csv");
   if (languages) {
+    assertNamedRows(languages, "Languages.csv", "Name", "Language");
     next.languages = languages
       .map<LanguageRecord | null>((row) => {
         const name = value(row, "Name", "Language");

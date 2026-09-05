@@ -1,4 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
+
+const githubData = JSON.parse(readFileSync(new URL("../../data/github.generated.json", import.meta.url), "utf8")) as {
+  projects: Array<{ repository: string; stars: number }>;
+};
 
 test("homepage renders the professional narrative", async ({ page }) => {
   await page.goto("/");
@@ -23,7 +28,9 @@ test("project details render source-driven metadata and structured data", async 
   await page.goto("/projects/fetch-php");
 
   await expect(page.getByRole("heading", { name: "Fetch PHP" })).toBeVisible();
-  await expect(page.getByText(/450 stars/i)).toBeVisible();
+  const fetchPhp = githubData.projects.find((project) => project.repository === "fetch-php");
+  expect(fetchPhp).toBeDefined();
+  await expect(page.getByText(new RegExp(`${fetchPhp!.stars.toLocaleString()} stars`, "i"))).toBeVisible();
   expect(await page.locator('script[type="application/ld+json"]').textContent()).toContain("SoftwareSourceCode");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
