@@ -7,7 +7,7 @@
   "profileUrl": "https://github.com/Thavarshan",
   "followers": 71,
   "publicRepositories": 48,
-  "syncedAt": "2026-08-31T03:34:21.472Z",
+  "syncedAt": "2026-09-07T03:34:36.142Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -27,11 +27,11 @@
         "php"
       ],
       "primaryLanguage": "PHP",
-      "stars": 451,
+      "stars": 450,
       "forks": 27,
       "homepage": "https://fetch-php.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/fetch-php",
-      "updatedAt": "2026-08-12T05:13:01Z",
+      "updatedAt": "2026-09-05T11:07:50Z",
       "readmeExcerpt": [
         "Fetch PHP is a modern HTTP client library for PHP that brings JavaScript's fetch API experience to PHP. Built on top of Guzzle, Fetch PHP allows you to write HTTP code with a clean, intuitive JavaScript-like syntax while still maintaining PHP's familiar patterns.",
         "With support for both synchronous and asynchronous requests, a fluent chainable API, and powerful retry mechanics, Fetch PHP streamlines HTTP operations in your PHP applications.",
@@ -82,10 +82,10 @@
         "version-manager"
       ],
       "primaryLanguage": "Shell",
-      "stars": 164,
+      "stars": 166,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-08-26T18:09:17Z",
+      "updatedAt": "2026-08-31T16:33:41Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
@@ -114,11 +114,11 @@
         "vuejs"
       ],
       "primaryLanguage": "TypeScript",
-      "stars": 157,
+      "stars": 156,
       "forks": 10,
       "homepage": "https://comet.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/comet",
-      "updatedAt": "2026-08-20T10:43:23Z",
+      "updatedAt": "2026-09-03T12:22:07Z",
       "readmeExcerpt": [
         "Comet is a cross-platform media converter application designed to make the conversion of video, audio, and image files as easy and accessible as possible. Built on top of FFmpeg, Jimp , and Electron , Comet offers a seamless and efficient user experience for media conversions, all within a simple, intuitive interface.",
         "Comet's goal is to provide a free, user-friendly, and visually appealing application for converting media files. Whether you need to convert a single file or multiple files at once, Comet is designed to make the process straightforward.",
