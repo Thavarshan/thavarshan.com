@@ -7,10 +7,9 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
-  group: jobs-refresh
+  group: automated-generated-content
   cancel-in-progress: false
 
 jobs:
@@ -37,26 +36,15 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Commit refresh branch
+      - name: Commit generated jobs directly to main
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -C automation/jobs-refresh
           git add data/jobs.generated.json
           git commit -m "Refresh Laravel job opportunities"
-          git push --force-with-lease origin automation/jobs-refresh
-      - name: Open or update refresh pull request
-        if: steps.changes.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pr_number="$(gh pr list --head automation/jobs-refresh --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -n "$pr_number" ]; then
-            gh pr edit "$pr_number" --title "Refresh Laravel job opportunities" --body "Automated refresh of the reviewable Laravel job dataset. No applications are submitted by this workflow."
-          else
-            gh pr create --base main --head automation/jobs-refresh --title "Refresh Laravel job opportunities" --body "Automated refresh of the reviewable Laravel job dataset. No applications are submitted by this workflow."
-          fi
+          git pull --rebase origin main
+          git push origin HEAD:main
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No Laravel job opportunity changes detected."
