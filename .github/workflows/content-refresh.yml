@@ -19,10 +19,9 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
-  group: content-refresh
+  group: automated-generated-content
   cancel-in-progress: false
 
 jobs:
@@ -58,32 +57,22 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Commit refresh branch
+      - name: Commit generated content directly to main
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -C automation/content-refresh
           git add data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
           git commit -m "Refresh public profile content"
-          git push --force-with-lease origin automation/content-refresh
-      - name: Open or update refresh pull request
-        if: steps.changes.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pr_number="$(gh pr list --head automation/content-refresh --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -n "$pr_number" ]; then
-            gh pr edit "$pr_number" --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
-          else
-            gh pr create --base main --head automation/content-refresh --title "Refresh public profile content" --body-file .github/workflows/content-refresh-pr-body.md
-          fi
+          git pull --rebase origin main
+          git push origin HEAD:main
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No generated snapshot changes detected."
 
   publish-cv:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: refresh
+    if: always() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && (needs.refresh.result == 'success' || needs.refresh.result == 'skipped')
     runs-on: ubuntu-latest
     env:
       NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
