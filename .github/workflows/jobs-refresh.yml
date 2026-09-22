@@ -1,0 +1,62 @@
+name: Refresh Laravel Jobs
+
+on:
+  schedule:
+    - cron: "41 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: jobs-refresh
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run jobs:collect
+      - run: npm run typecheck
+      - run: npm run test -- tests/unit/job-opportunities.test.ts
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if git diff --quiet -- data/jobs.generated.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit refresh branch
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C automation/jobs-refresh
+          git add data/jobs.generated.json
+          git commit -m "Refresh Laravel job opportunities"
+          git push --force-with-lease origin automation/jobs-refresh
+      - name: Open or update refresh pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number="$(gh pr list --head automation/jobs-refresh --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "Refresh Laravel job opportunities" --body "Automated refresh of the reviewable Laravel job dataset. No applications are submitted by this workflow."
+          else
+            gh pr create --base main --head automation/jobs-refresh --title "Refresh Laravel job opportunities" --body "Automated refresh of the reviewable Laravel job dataset. No applications are submitted by this workflow."
+          fi
+      - name: No generated changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No Laravel job opportunity changes detected."
