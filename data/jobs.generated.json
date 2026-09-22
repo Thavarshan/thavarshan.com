@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-22T00:00:00.000Z",
+  "candidate": {
+    "location": "Sri Lanka",
+    "preferredStack": ["Laravel", "PHP", "React", "Vue", "Inertia", "AWS"],
+    "experienceYears": 11,
+    "workModes": ["remote", "relocation-with-sponsorship"]
+  },
+  "sources": [],
+  "opportunities": []
+}
