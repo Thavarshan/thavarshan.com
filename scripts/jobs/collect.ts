@@ -120,15 +120,28 @@ async function collectLaravelNewsLinks(page: Page) {
   );
 }
 
+const unusableRedirectHosts = new Set(["accounts.google.com", "docs.google.com"]);
+
 async function enrichLaravelNewsOnlyLinks(page: Page, links: string[], known: Set<string>) {
   const records: Opportunity[] = [];
   for (const link of links.slice(0, 20)) {
     const canonicalUrl = canonicalizeJobUrl(link);
     if (known.has(canonicalUrl)) continue;
-    await page.goto(canonicalUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
-    const title = (await page.locator("h1").first().textContent())?.trim() || (await page.title()).trim();
-    const description = (await page.locator("main").textContent()) || (await page.locator("body").textContent()) || "";
-    if (title) records.push(buildOpportunity({ title, url: canonicalUrl, description, source: "laravel-news" }, new Date().toISOString()));
+    try {
+      await page.goto(canonicalUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
+      if (unusableRedirectHosts.has(new URL(page.url()).hostname)) continue;
+
+      const title =
+        (await page.locator("h1").first().textContent({ timeout: 10_000 }).catch(() => null))?.trim() ||
+        (await page.title()).trim();
+      const description =
+        (await page.locator("main").first().textContent({ timeout: 10_000 }).catch(() => null)) ??
+        (await page.locator("body").textContent({ timeout: 10_000 }).catch(() => null)) ??
+        "";
+      if (title) records.push(buildOpportunity({ title, url: canonicalUrl, description, source: "laravel-news" }, new Date().toISOString()));
+    } catch (error) {
+      console.warn(`Skipping ${canonicalUrl}: ${error instanceof Error ? error.message : error}`);
+    }
     await page.waitForTimeout(350);
   }
   return records;
