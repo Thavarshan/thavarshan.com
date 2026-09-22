@@ -17,7 +17,7 @@ The collector uses Playwright for two bounded, public-source operations:
 
 Records are canonicalized and deduplicated by job URL. Laravel News currently points to LaraJobs, so those links are merged rather than presented as independent jobs. The collector does not sign in, bypass access controls, complete application forms, or submit applications.
 
-The scheduled workflow writes only `data/jobs.generated.json` to a review branch and opens or updates a pull request. This keeps scraped changes visible before they reach `main`.
+After collection, type checking, and focused tests succeed, the scheduled workflow commits only `data/jobs.generated.json` directly to `main`. The job and profile refresh workflows share a concurrency group so they cannot push generated changes simultaneously.
 
 ## Ranking and eligibility
 
