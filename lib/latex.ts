@@ -74,11 +74,21 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
 
   const skillCategoryOrder = tailoring?.emphasizedSkillCategories ?? [...skillGroups.keys()];
 
+  // Chronologically oldest entries beyond this count are condensed into a single "Early Career"
+  // line instead of a full heading each, to keep the CV within its two-page limit regardless of
+  // how many positions the profile accumulates. This is always based on chronological age, not
+  // tailoring's relevance-based reorder below — an old internship shouldn't earn a full page-one
+  // heading just because a job description happens to mention a matching keyword.
+  const EARLY_CAREER_ENTRY_LIMIT = 9;
+  const chronologicalExperience = [...profile.experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
+  const featuredPool = chronologicalExperience.slice(0, EARLY_CAREER_ENTRY_LIMIT);
+  const condensedExperience = chronologicalExperience.slice(EARLY_CAREER_ENTRY_LIMIT);
+
   const orderedExperience: ExperienceRecord[] = tailoring
     ? tailoring.experienceOrder
-        .map((id) => profile.experience.find((role) => role.id === id))
+        .map((id) => featuredPool.find((role) => role.id === id))
         .filter((role): role is ExperienceRecord => role !== undefined)
-    : profile.experience;
+    : featuredPool;
 
   const experience = orderedExperience
     .map((role, index) => {
@@ -91,6 +101,36 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
       )}}${role.location ? `{${escapeLatex(role.location)}}` : "{}"}\n${body}`;
     })
     .join("\n\n");
+
+  const yearOf = (date: string) => date.slice(0, 4);
+
+  const earlyCareerSection =
+    condensedExperience.length > 0
+      ? (() => {
+          const overallStartYear = yearOf(
+            condensedExperience.reduce((min, role) => (role.startDate < min ? role.startDate : min), condensedExperience[0].startDate)
+          );
+          const hasOngoing = condensedExperience.some((role) => !role.endDate);
+          const overallEndYear = hasOngoing
+            ? "Present"
+            : yearOf(
+                condensedExperience.reduce(
+                  (max, role) => (role.endDate && role.endDate > max ? role.endDate : max),
+                  condensedExperience[0].endDate ?? condensedExperience[0].startDate
+                )
+              );
+          const items = condensedExperience
+            .map((role) => {
+              const startYear = yearOf(role.startDate);
+              const endYear = role.endDate ? yearOf(role.endDate) : "Present";
+              const range = endYear !== startYear ? `${startYear}--${endYear}` : startYear;
+              return `${escapeLatex(role.role)}, ${escapeLatex(role.company)} (${range})`;
+            })
+            .join("; ");
+
+          return `\\textbf{Early Career} \\hfill ${overallStartYear}--${overallEndYear}\\\\\n${items}.`;
+        })()
+      : "";
 
   const projects = github.projects
     .slice(0, 5)
@@ -193,7 +233,8 @@ ${skills}
 \cvsection{Experience}
 ${experience}
 
-\newpage
+${earlyCareerSection}
+
 \cvsection{Selected Open-Source Work}
 ${projects}
 

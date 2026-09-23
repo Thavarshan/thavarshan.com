@@ -12,13 +12,13 @@
     "github": "https://github.com/Thavarshan",
     "avatar": "/images/avatar.jpg"
   },
-  "summary": "Technical Lead and AI-driven systems architect with more than a decade of experience building scalable platforms, modernizing full-stack architectures, and leading cloud delivery. Experienced across AI workflows, semantic search, developer tooling, and high-volume commercial systems, with a practical focus on performance, observability, and helping engineering teams ship confidently.",
+  "summary": "I'm a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.\nOver the past decade, I've led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.\nI'm particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
   "experience": [
     {
-      "id": "sino-lanka-group-technical-lead",
+      "id": "sino-lanka-group-technical-lead-2026-05",
       "role": "Technical Lead",
       "company": "Sino Lanka Group",
-      "location": "Colombo, Sri Lanka",
+      "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2026-05",
       "endDate": null,
       "summary": "Leading AI-driven systems architecture and full-stack engineering across scalable business platforms.",
@@ -29,9 +29,10 @@
       ]
     },
     {
-      "id": "kaya-technical-lead",
+      "id": "kaya-technical-lead-2025-10",
       "role": "Technical Lead",
       "company": "KAYA",
+      "location": "Colombo",
       "startDate": "2025-10",
       "endDate": "2026-05",
       "summary": "Led enterprise full-stack systems and AI workflow engineering for the KAYA Platform and client-facing systems.",
@@ -42,94 +43,134 @@
       ]
     },
     {
-      "id": "brompton-bicycle-technical-lead",
+      "id": "brompton-bicycle-technical-lead-2024-12",
       "role": "Technical Lead",
       "company": "Brompton Bicycle",
+      "location": "Greenford, England, United Kingdom",
       "startDate": "2024-12",
-      "endDate": "2025-10",
-      "summary": "Led modernization across microservices and a unified Laravel and Vue platform serving high-volume commercial operations.",
+      "endDate": "2025-09",
+      "summary": "Led architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by £130K/month (~£1.56M/yr) and eliminating revenue-based fees.",
       "highlights": [
-        "Built Express microservices and full-stack platform capabilities for systems serving more than 100,000 daily users.",
-        "Modernized legacy PHP services toward TypeScript and Node.js, improving performance by 40%.",
-        "Introduced standards that reduced technical debt by 30% across delivery streams."
+        "Built an AI-powered full-text search engine, augmenting MySQL's native capabilities with semantic and vector-based search for product discovery and analytics.",
+        "Integrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation.",
+        "Reduced checkout latency from 4.2s to 1.5s (60%+ improvement), boosting conversion rates by 12%.",
+        "Shifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards."
       ]
     },
     {
-      "id": "netwatch-global-full-stack-engineer",
-      "role": "Full Stack Engineer",
+      "id": "netwatch-global-senior-software-engineer-2023-07",
+      "role": "Senior Software Engineer",
       "company": "NetWatch Global",
+      "location": "Birmingham, England, United Kingdom",
       "startDate": "2023-07",
       "endDate": "2024-12",
-      "summary": "Delivered full-stack product features and operational systems across modern JavaScript and PHP stacks.",
+      "summary": "Rebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability.",
       "highlights": [
-        "Built maintainable backend services and frontend workflows for business-critical platforms.",
-        "Worked across PostgreSQL, DynamoDB, API design, and production delivery."
+        "Established and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process.",
+        "Worked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions.",
+        "Designed, developed, and deployed three major projects, each meeting critical business objectives and user needs."
       ]
     },
     {
-      "id": "macroactive-senior-software-engineer",
+      "id": "macroactive-senior-software-engineer-2021-06",
       "role": "Senior Software Engineer",
       "company": "MacroActive",
+      "location": "Auckland, Auckland, New Zealand",
       "startDate": "2021-06",
       "endDate": "2022-11",
-      "summary": "Built scalable product features and backend services for customer-facing fitness and coaching platforms.",
+      "summary": "Worked extensively with PHP, TypeScript, VueJS, ReactJS, AWS DynamoDB and MongoDB.",
       "highlights": [
-        "Delivered full-stack product work across Laravel, JavaScript, and relational databases.",
-        "Collaborated with product and engineering teams to improve reliability and maintainability."
+        "Designed, developed and deployed three major projects and was working on a fourth project before resignation.",
+        "Responsibilities included but were not limited to training new recruits, performing code reviews, and planning weekly sprints."
       ]
     },
     {
-      "id": "elegant-media-software-engineer",
-      "role": "Software Engineer",
-      "company": "Elegant Media",
-      "startDate": "2019-04",
+      "id": "elegant-media-australia-senior-software-engineer-2020-01",
+      "role": "Senior Software Engineer",
+      "company": "Elegant Media Australia",
+      "location": "Colombo, Western Province, Sri Lanka",
+      "startDate": "2020-01",
       "endDate": "2020-07",
-      "summary": "Developed web and mobile platform features across client projects, APIs, and production support.",
+      "summary": "Senior Software Engineer delivering client and platform features at Elegant Media Australia.",
       "highlights": []
     },
     {
-      "id": "sevens-idea-software-developer",
-      "role": "Software Developer",
-      "company": "Seven's Idea",
+      "id": "elegant-media-australia-software-engineer-2019-04",
+      "role": "Software Engineer",
+      "company": "Elegant Media Australia",
+      "location": "Colombo, Western Province, Sri Lanka",
+      "startDate": "2019-04",
+      "endDate": "2020-01",
+      "summary": "Software Engineer delivering client and platform features at Elegant Media Australia.",
+      "highlights": []
+    },
+    {
+      "id": "seven-s-idea-pvt-ltd-software-engineer-2018-01",
+      "role": "Software Engineer",
+      "company": "Seven's Idea (PVT) Ltd",
+      "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2018-01",
       "endDate": "2019-03",
-      "summary": "Built application features and integrations across early-stage product and client delivery work.",
+      "summary": "Software Engineer building application features and client integrations at Seven's Idea.",
       "highlights": []
     },
     {
-      "id": "alta-vision-solar-software-developer",
-      "role": "Software Developer",
+      "id": "alta-vision-solar-software-engineer-2017-01",
+      "role": "Software Engineer",
       "company": "Alta Vision Solar",
-      "startDate": "2015-06",
+      "location": "Colombo, Western Province, Sri Lanka",
+      "startDate": "2017-01",
       "endDate": "2018-01",
-      "summary": "Started in software delivery with practical engineering work across business systems and web applications.",
+      "summary": "Software Engineer delivering business systems and web applications at Alta Vision Solar.",
+      "highlights": []
+    },
+    {
+      "id": "sri-lanka-telecom-telecommunications-engineering-intern-2016-10",
+      "role": "Telecommunications Engineering Intern",
+      "company": "Sri Lanka Telecom",
+      "location": "Trincomalee, Eastern Province, Sri Lanka",
+      "startDate": "2016-10",
+      "endDate": "2016-12",
+      "summary": "Telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "highlights": []
+    },
+    {
+      "id": "sri-lanka-telecom-telecommunications-engineering-intern-2015-10",
+      "role": "Telecommunications Engineering Intern",
+      "company": "Sri Lanka Telecom",
+      "location": "Trincomalee, Eastern Province, Sri Lanka",
+      "startDate": "2015-10",
+      "endDate": "2016-01",
+      "summary": "Telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "highlights": []
+    },
+    {
+      "id": "alta-vision-solar-associate-software-engineer-2015-06",
+      "role": "Associate Software Engineer",
+      "company": "Alta Vision Solar",
+      "location": "Colombo, Western Province, Sri Lanka",
+      "startDate": "2015-06",
+      "endDate": "2017-01",
+      "summary": "Associate Software Engineer building business systems and web applications at Alta Vision Solar.",
       "highlights": []
     }
   ],
   "education": [
     {
-      "id": "university-of-sunderland-bsc",
-      "qualification": "BSc Computer Systems Engineering",
+      "id": "university-of-sunderland-bachelor-of-science-bs-computer-science",
+      "qualification": "Bachelor of Science - BS, Computer Science",
       "institution": "University of Sunderland",
-      "fieldOfStudy": "Computer Systems Engineering",
+      "fieldOfStudy": "Computer Science",
       "startDate": "2022-09",
-      "endDate": "2023-06"
+      "endDate": "2023-07"
     },
     {
-      "id": "icbt-hnd",
-      "qualification": "Higher National Diploma in Software Engineering",
-      "institution": "ICBT",
-      "fieldOfStudy": "Software Engineering",
+      "id": "icbt-campus-higher-national-diploma",
+      "qualification": "Higher National Diploma",
+      "institution": "ICBT Campus",
+      "fieldOfStudy": "Computing and Software Engineering",
       "startDate": "2020-08",
       "endDate": "2022-03"
-    },
-    {
-      "id": "iesl-graduate-diploma",
-      "qualification": "Graduate Diploma in Telecommunications Engineering",
-      "institution": "IESL College of Engineering",
-      "fieldOfStudy": "Telecommunications Engineering",
-      "startDate": "2015-02",
-      "endDate": "2019-03"
     }
   ],
   "certifications": [
@@ -145,32 +186,104 @@
     }
   ],
   "skills": [
-    { "name": "Technical leadership", "category": "leadership" },
-    { "name": "Architecture reviews", "category": "leadership" },
-    { "name": "Engineering standards", "category": "leadership" },
-    { "name": "Mentoring", "category": "leadership" },
-    { "name": "Product thinking", "category": "leadership" },
-    { "name": "Generative AI", "category": "ai-architecture" },
-    { "name": "LangGraph", "category": "ai-architecture" },
-    { "name": "Semantic search", "category": "ai-architecture" },
-    { "name": "Microservices", "category": "ai-architecture" },
-    { "name": "Event-driven systems", "category": "ai-architecture" },
-    { "name": "React", "category": "full-stack" },
-    { "name": "Vue", "category": "full-stack" },
-    { "name": "TypeScript", "category": "full-stack" },
-    { "name": "Node.js", "category": "full-stack" },
-    { "name": "Laravel", "category": "full-stack" },
-    { "name": "PostgreSQL", "category": "full-stack" },
-    { "name": "AWS", "category": "cloud-delivery" },
-    { "name": "Docker", "category": "cloud-delivery" },
-    { "name": "Kubernetes", "category": "cloud-delivery" },
-    { "name": "CI/CD", "category": "cloud-delivery" },
-    { "name": "Observability", "category": "cloud-delivery" }
+    {
+      "name": "Technical leadership",
+      "category": "leadership"
+    },
+    {
+      "name": "Architecture reviews",
+      "category": "leadership"
+    },
+    {
+      "name": "Engineering standards",
+      "category": "leadership"
+    },
+    {
+      "name": "Mentoring",
+      "category": "leadership"
+    },
+    {
+      "name": "Product thinking",
+      "category": "leadership"
+    },
+    {
+      "name": "Generative AI",
+      "category": "ai-architecture"
+    },
+    {
+      "name": "LangGraph",
+      "category": "ai-architecture"
+    },
+    {
+      "name": "Semantic search",
+      "category": "ai-architecture"
+    },
+    {
+      "name": "Microservices",
+      "category": "ai-architecture"
+    },
+    {
+      "name": "Event-driven systems",
+      "category": "ai-architecture"
+    },
+    {
+      "name": "React",
+      "category": "full-stack"
+    },
+    {
+      "name": "Vue",
+      "category": "full-stack"
+    },
+    {
+      "name": "TypeScript",
+      "category": "full-stack"
+    },
+    {
+      "name": "Node.js",
+      "category": "full-stack"
+    },
+    {
+      "name": "Laravel",
+      "category": "full-stack"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "full-stack"
+    },
+    {
+      "name": "AWS",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "Docker",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "Kubernetes",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "CI/CD",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "Observability",
+      "category": "cloud-delivery"
+    }
   ],
   "languages": [
-    { "name": "English", "proficiency": "Native or bilingual proficiency" },
-    { "name": "Tamil", "proficiency": "Native or bilingual proficiency" },
-    { "name": "Sinhala", "proficiency": "Limited working proficiency" }
+    {
+      "name": "English",
+      "proficiency": "Native or bilingual proficiency"
+    },
+    {
+      "name": "Tamil",
+      "proficiency": "Native or bilingual proficiency"
+    },
+    {
+      "name": "Sinhala",
+      "proficiency": "Limited working proficiency"
+    }
   ],
   "professionalProjects": [
     {
@@ -182,15 +295,20 @@
         "Product-led work covering UX, packaging, performance, and release quality.",
         "Connects engineering craft with market-facing product judgment."
       ],
-      "tags": ["macOS", "Media tooling", "Product engineering", "Performance"],
+      "tags": [
+        "macOS",
+        "Media tooling",
+        "Product engineering",
+        "Performance"
+      ],
       "url": "https://honeymelon.app"
     }
   ],
   "sources": {
     "linkedin": {
       "kind": "linkedin-archive",
-      "importedAt": "2026-07-30T00:00:00.000Z",
-      "fingerprint": "bootstrap-from-verified-profile"
+      "importedAt": "2026-09-23T10:12:29.546Z",
+      "fingerprint": "f3c5a0cde906fb70db1d7135120c6abf9eeda9635855ad4191020d5c949e2c46"
     },
     "github": {
       "kind": "github-api",
@@ -198,5 +316,5 @@
       "syncedAt": "2026-07-30T00:00:00.000Z"
     }
   },
-  "modifiedAt": "2026-07-30T00:00:00.000Z"
+  "modifiedAt": "2026-09-23T10:12:29.546Z"
 }
