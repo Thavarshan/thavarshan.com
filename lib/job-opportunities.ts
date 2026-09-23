@@ -88,6 +88,10 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
     if (pattern.test(text)) concerns.push(concern);
   }
 
+  if (input.location && !/\b(remote|worldwide|anywhere|distributed)\b/i.test(input.location)) {
+    concerns.push(`Posting location (${input.location}) does not confirm remote-friendly hiring`);
+  }
+
   const sponsorship = /\b(?:no|without) (?:visa )?sponsorship\b|\bdo not sponsor\b/i.test(text)
     ? "unavailable" as const
     : /\b(?:visa )?sponsor(?:ship|ed)?\b/i.test(text)

@@ -57,6 +57,27 @@ function splitTitle(value: string) {
   return { title: value.trim(), company: null };
 }
 
+function normalizeJobType(value: string) {
+  if (!value) return null;
+  return value
+    .toLowerCase()
+    .split(/[_\s]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("-");
+}
+
+function buildSyntheticSummary(input: { company?: string | null; location?: string | null; employmentType?: string | null; salary?: string | null }) {
+  return [
+    input.company ? `Company: ${input.company}.` : null,
+    input.location ? `Location: ${input.location}.` : null,
+    input.employmentType ? `Type: ${input.employmentType}.` : null,
+    input.salary ? `Salary: ${input.salary}.` : null
+  ].filter(Boolean).join(" ");
+}
+
+const knownTagPattern = /\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind)\b/gi;
+
 function buildOpportunity(input: {
   title: string;
   company?: string | null;
@@ -64,11 +85,19 @@ function buildOpportunity(input: {
   description?: string;
   publishedAt?: string | null;
   source: Opportunity["source"];
+  location?: string | null;
+  employmentType?: string | null;
+  salary?: string | null;
+  feedTags?: string[];
 }, now: string): Opportunity {
   const canonicalUrl = canonicalizeJobUrl(input.url);
-  const descriptionText = stripHtml(input.description ?? "");
-  const tags = [...new Set((`${input.title} ${descriptionText}`.match(/\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind)\b/gi) ?? []).map((tag) => tag.toLowerCase()))];
-  const assessment = assessOpportunity({ title: input.title, descriptionText, location: null, tags });
+  const location = input.location ?? null;
+  const employmentType = input.employmentType ?? null;
+  const salary = input.salary ?? null;
+  const descriptionText = stripHtml(input.description ?? "") || buildSyntheticSummary({ company: input.company, location, employmentType, salary });
+  const regexTags = (`${input.title} ${descriptionText}`.match(knownTagPattern) ?? []).map((tag) => tag.toLowerCase());
+  const tags = [...new Set([...(input.feedTags ?? []).map((tag) => tag.toLowerCase()), ...regexTags])];
+  const assessment = assessOpportunity({ title: input.title, descriptionText, location, tags });
 
   return {
     id: opportunityId(canonicalUrl),
@@ -77,9 +106,9 @@ function buildOpportunity(input: {
     canonicalUrl,
     title: input.title,
     company: input.company ?? null,
-    location: null,
-    employmentType: null,
-    salary: null,
+    location,
+    employmentType,
+    salary,
     descriptionText,
     tags,
     publishedAt: input.publishedAt ?? null,
@@ -95,14 +124,22 @@ export function parseLaraJobsFeed(xml: string, now = new Date().toISOString()) {
     const link = xmlValue(item, "link");
     const rawTitle = xmlValue(item, "title");
     if (!link || !rawTitle || !/larajobs\.com\/job\//i.test(link)) return [];
-    const { title, company } = splitTitle(rawTitle);
+
+    const feedCompany = xmlValue(item, "job:company") || null;
+    const { title, company } = feedCompany ? { title: rawTitle, company: feedCompany } : splitTitle(rawTitle);
+    const feedTags = xmlValue(item, "job:tags");
+
     return [buildOpportunity({
       title,
       company,
       url: link,
       description: xmlValue(item, "content:encoded") || xmlValue(item, "description"),
       publishedAt: safeDate(xmlValue(item, "pubDate")),
-      source: "larajobs"
+      source: "larajobs",
+      location: xmlValue(item, "job:location") || null,
+      employmentType: normalizeJobType(xmlValue(item, "job:job_type")),
+      salary: xmlValue(item, "job:salary") || null,
+      feedTags: feedTags ? feedTags.split(",").map((tag) => tag.trim()).filter(Boolean) : []
     }, now)];
   });
 }
