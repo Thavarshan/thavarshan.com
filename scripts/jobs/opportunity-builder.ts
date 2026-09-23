@@ -32,6 +32,23 @@ export function buildSyntheticSummary(input: { company?: string | null; location
 
 export const knownTagPattern = /\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind|TypeScript|Next\.js|Nuxt(?:\.js)?|GraphQL|Terraform|Stripe|PHPUnit|Pest|Alpine\.js|Filament|Statamic|Nova|Elasticsearch|RabbitMQ|Kafka)\b/gi;
 
+const laravelPhpPattern = /\b(laravel|php)\b/i;
+
+/**
+ * Generalist multi-language boards (Remotive, WeWorkRemotely) sometimes tag every listing from
+ * a given employer with that employer's entire company-wide tech stack, regardless of the
+ * specific role — e.g. a "Senior QA Engineer" post tagged with 40+ technologies including
+ * "laravel" purely because the company also uses Laravel somewhere. A long tag list is a
+ * reasonably reliable signal that the tags are boilerplate rather than curated for this
+ * specific posting, so a tag-only match is only trusted when the tag list is short; the title
+ * (and, for Remotive, the category) is always trusted since it's role-specific by construction.
+ */
+export function isLaravelPhpRelevant(input: { title: string; tags: string[]; category?: string | null }): boolean {
+  if (laravelPhpPattern.test(input.title)) return true;
+  if (input.category && laravelPhpPattern.test(input.category)) return true;
+  return input.tags.length <= 8 && laravelPhpPattern.test(input.tags.join(" "));
+}
+
 export interface BuildOpportunityInput {
   title: string;
   company?: string | null;
