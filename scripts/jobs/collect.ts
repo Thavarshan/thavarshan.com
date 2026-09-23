@@ -1,196 +1,70 @@
-import { readFile } from "node:fs/promises";
+import { appendFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { chromium, type APIRequestContext, type Page } from "@playwright/test";
+import { chromium } from "@playwright/test";
 import {
-  assessOpportunity,
-  canonicalizeJobUrl,
   mergeOpportunities,
-  opportunityId,
   opportunitySnapshotSchema,
   type Opportunity,
-  type OpportunitySnapshot
+  type OpportunitySnapshot,
+  type SourceCollectionOutcome
 } from "../../lib/job-opportunities";
 import { writeJsonAtomic } from "../profile/io";
+import { collectLaraJobs, laraJobsFeedUrl } from "./sources/larajobs";
+import { collectLaravelNews, laravelNewsUrl } from "./sources/laravel-news";
+
+export { parseLaraJobsFeed } from "./sources/larajobs";
 
 const outputPath = resolve("data/jobs.generated.json");
-const laraJobsFeed = "https://larajobs.com/feed";
-const laravelNewsUrl = "https://laravel-news.com/";
 const userAgent = "JeromeJobCollector/1.0 (+https://thavarshan.com)";
 
-function decodeXml(value: string) {
-  return value
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;|&apos;/g, "'");
-}
-
-function stripHtml(value: string) {
-  return decodeXml(value)
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 12_000);
-}
-
-function xmlValue(item: string, tag: string) {
-  const match = item.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`, "i"));
-  return match ? decodeXml(match[1]).trim() : "";
-}
-
-function safeDate(value: string) {
-  if (!value) return null;
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? null : date.toISOString();
-}
-
-function splitTitle(value: string) {
-  const separators = [" at ", " – ", " — ", " - "];
-  for (const separator of separators) {
-    const index = value.lastIndexOf(separator);
-    if (index > 0) return { title: value.slice(0, index).trim(), company: value.slice(index + separator.length).trim() || null };
-  }
-  return { title: value.trim(), company: null };
-}
-
-function normalizeJobType(value: string) {
-  if (!value) return null;
-  return value
-    .toLowerCase()
-    .split(/[_\s]+/)
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join("-");
-}
-
-function buildSyntheticSummary(input: { company?: string | null; location?: string | null; employmentType?: string | null; salary?: string | null }) {
-  return [
-    input.company ? `Company: ${input.company}.` : null,
-    input.location ? `Location: ${input.location}.` : null,
-    input.employmentType ? `Type: ${input.employmentType}.` : null,
-    input.salary ? `Salary: ${input.salary}.` : null
-  ].filter(Boolean).join(" ");
-}
-
-const knownTagPattern = /\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind)\b/gi;
-
-function buildOpportunity(input: {
-  title: string;
-  company?: string | null;
-  url: string;
-  description?: string;
-  publishedAt?: string | null;
-  source: Opportunity["source"];
-  location?: string | null;
-  employmentType?: string | null;
-  salary?: string | null;
-  feedTags?: string[];
-}, now: string): Opportunity {
-  const canonicalUrl = canonicalizeJobUrl(input.url);
-  const location = input.location ?? null;
-  const employmentType = input.employmentType ?? null;
-  const salary = input.salary ?? null;
-  const descriptionText = stripHtml(input.description ?? "") || buildSyntheticSummary({ company: input.company, location, employmentType, salary });
-  const regexTags = (`${input.title} ${descriptionText}`.match(knownTagPattern) ?? []).map((tag) => tag.toLowerCase());
-  const tags = [...new Set([...(input.feedTags ?? []).map((tag) => tag.toLowerCase()), ...regexTags])];
-  const assessment = assessOpportunity({ title: input.title, descriptionText, location, tags });
-
-  return {
-    id: opportunityId(canonicalUrl),
-    source: input.source,
-    sourceUrl: input.source === "laravel-news" ? laravelNewsUrl : laraJobsFeed,
-    canonicalUrl,
-    title: input.title,
-    company: input.company ?? null,
-    location,
-    employmentType,
-    salary,
-    descriptionText,
-    tags,
-    publishedAt: input.publishedAt ?? null,
-    firstSeenAt: now,
-    lastSeenAt: now,
-    ...assessment
-  };
-}
-
-export function parseLaraJobsFeed(xml: string, now = new Date().toISOString()) {
-  const items = xml.match(/<item(?:\s[^>]*)?>[\s\S]*?<\/item>/gi) ?? [];
-  return items.flatMap((item) => {
-    const link = xmlValue(item, "link");
-    const rawTitle = xmlValue(item, "title");
-    if (!link || !rawTitle || !/larajobs\.com\/job\//i.test(link)) return [];
-
-    const feedCompany = xmlValue(item, "job:company") || null;
-    const { title, company } = feedCompany ? { title: rawTitle, company: feedCompany } : splitTitle(rawTitle);
-    const feedTags = xmlValue(item, "job:tags");
-
-    return [buildOpportunity({
-      title,
-      company,
-      url: link,
-      description: xmlValue(item, "content:encoded") || xmlValue(item, "description"),
-      publishedAt: safeDate(xmlValue(item, "pubDate")),
-      source: "larajobs",
-      location: xmlValue(item, "job:location") || null,
-      employmentType: normalizeJobType(xmlValue(item, "job:job_type")),
-      salary: xmlValue(item, "job:salary") || null,
-      feedTags: feedTags ? feedTags.split(",").map((tag) => tag.trim()).filter(Boolean) : []
-    }, now)];
-  });
-}
-
-async function collectLaraJobs(request: APIRequestContext) {
-  const response = await request.get(laraJobsFeed, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } });
-  if (!response.ok()) throw new Error(`LaraJobs feed returned ${response.status()}`);
-  return parseLaraJobsFeed(await response.text());
-}
-
-async function collectLaravelNewsLinks(page: Page) {
-  await page.goto(laravelNewsUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  return page.locator('a[href*="larajobs.com/job/"]').evaluateAll((anchors) =>
-    [...new Set(anchors.map((anchor) => (anchor as HTMLAnchorElement).href).filter(Boolean))]
-  );
-}
-
-const unusableRedirectHosts = new Set(["accounts.google.com", "docs.google.com"]);
-
-async function enrichLaravelNewsOnlyLinks(page: Page, links: string[], known: Set<string>) {
-  const records: Opportunity[] = [];
-  for (const link of links.slice(0, 20)) {
-    const canonicalUrl = canonicalizeJobUrl(link);
-    if (known.has(canonicalUrl)) continue;
-    try {
-      await page.goto(canonicalUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
-      if (unusableRedirectHosts.has(new URL(page.url()).hostname)) continue;
-
-      const title =
-        (await page.locator("h1").first().textContent({ timeout: 10_000 }).catch(() => null))?.trim() ||
-        (await page.title()).trim();
-      const description =
-        (await page.locator("main").first().textContent({ timeout: 10_000 }).catch(() => null)) ??
-        (await page.locator("body").textContent({ timeout: 10_000 }).catch(() => null)) ??
-        "";
-      if (title) records.push(buildOpportunity({ title, url: canonicalUrl, description, source: "laravel-news" }, new Date().toISOString()));
-    } catch (error) {
-      console.warn(`Skipping ${canonicalUrl}: ${error instanceof Error ? error.message : error}`);
-    }
-    await page.waitForTimeout(350);
-  }
-  return records;
-}
+const sourceMeta: Record<Opportunity["source"], { name: string; url: string }> = {
+  larajobs: { name: "LaraJobs RSS", url: laraJobsFeedUrl },
+  "laravel-news": { name: "Laravel News", url: laravelNewsUrl },
+  remotive: { name: "Remotive", url: "https://remotive.com/api/remote-jobs?category=software-dev" },
+  weworkremotely: { name: "WeWorkRemotely", url: "https://weworkremotely.com/categories/remote-programming-jobs.rss" }
+};
 
 async function readExisting(): Promise<OpportunitySnapshot | null> {
+  let raw: string;
   try {
-    return opportunitySnapshotSchema.parse(JSON.parse(await readFile(outputPath, "utf8")));
+    raw = await readFile(outputPath, "utf8");
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
     throw error;
   }
+
+  const parsed = opportunitySnapshotSchema.safeParse(JSON.parse(raw));
+  if (!parsed.success) {
+    console.warn(`Existing ${outputPath} does not match the current schema; starting fresh (${parsed.error.issues.length} issue(s)).`);
+    return null;
+  }
+  return parsed.data;
+}
+
+async function appendStepSummary(sources: OpportunitySnapshot["sources"], opportunities: Opportunity[]) {
+  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+  if (!summaryPath) return;
+
+  const sourceRows = sources.map((source) =>
+    `| ${source.name} | ${source.status} | ${source.recordsFound} | ${source.added} | ${source.updated} | ${source.closed} | ${source.skipped} | ${source.rejected} |`
+  );
+  const top = opportunities
+    .filter((item) => item.status !== "closed")
+    .slice(0, 5)
+    .map((item) => `- **${item.score}** ${item.title} @ ${item.company ?? "Unknown"} (${item.eligibility})`);
+
+  const lines = [
+    "## Laravel jobs refresh",
+    "",
+    "| Source | Status | Records | Added | Updated | Closed | Skipped | Rejected |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...sourceRows,
+    "",
+    "### Top 5 by score",
+    ...(top.length > 0 ? top : ["_None_"])
+  ];
+
+  await appendFile(summaryPath, `${lines.join("\n")}\n`, "utf8");
 }
 
 export async function collectJobs() {
@@ -198,31 +72,74 @@ export async function collectJobs() {
   try {
     const context = await browser.newContext({ userAgent });
     const page = await context.newPage();
-    const collectedAt = new Date().toISOString();
-    const laraJobs = await collectLaraJobs(context.request);
-    const laravelNewsLinks = await collectLaravelNewsLinks(page);
-    const known = new Set(laraJobs.map((item) => item.canonicalUrl));
-    const laravelNewsOnly = await enrichLaravelNewsOnlyLinks(page, laravelNewsLinks, known);
+    const now = new Date().toISOString();
     const existing = await readExisting();
 
+    const results: SourceCollectionOutcome[] = [];
+
+    let laraJobsCanonicalUrls = new Set(
+      (existing?.opportunities ?? []).filter((item) => item.source === "larajobs").map((item) => item.canonicalUrl)
+    );
+
+    try {
+      const laraJobsResult = await collectLaraJobs(context.request, now);
+      results.push(laraJobsResult);
+      laraJobsCanonicalUrls = new Set([...laraJobsCanonicalUrls, ...laraJobsResult.opportunities.map((item) => item.canonicalUrl)]);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`LaraJobs collection failed: ${message}`);
+      results.push({ source: "larajobs", failed: true, error: message });
+    }
+
+    try {
+      results.push(await collectLaravelNews(page, laraJobsCanonicalUrls, now));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`Laravel News collection failed: ${message}`);
+      results.push({ source: "laravel-news", failed: true, error: message });
+    }
+
+    const { opportunities, stats } = mergeOpportunities(existing?.opportunities ?? [], results, now);
+
+    const sources = results.map((result) => {
+      const meta = sourceMeta[result.source];
+      const stat = stats[result.source] ?? { added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0 };
+      const failed = "failed" in result;
+      return {
+        name: meta.name,
+        url: meta.url,
+        collectedAt: now,
+        status: failed ? "failed" as const : "ok" as const,
+        recordsFound: failed ? 0 : result.opportunities.length,
+        added: stat.added,
+        updated: stat.updated,
+        closed: stat.closed,
+        skipped: failed ? 0 : result.skipped,
+        rejected: failed ? 0 : result.rejected,
+        error: failed ? result.error : null
+      };
+    });
+
     const snapshot = opportunitySnapshotSchema.parse({
-      schemaVersion: 1,
-      generatedAt: collectedAt,
+      schemaVersion: 2,
+      generatedAt: now,
       candidate: {
         location: "Sri Lanka",
         preferredStack: ["Laravel", "PHP", "React", "Vue", "Inertia", "AWS"],
         experienceYears: 11,
         workModes: ["remote", "relocation-with-sponsorship"]
       },
-      sources: [
-        { name: "LaraJobs RSS", url: laraJobsFeed, collectedAt, recordsFound: laraJobs.length },
-        { name: "Laravel News", url: laravelNewsUrl, collectedAt, recordsFound: laravelNewsLinks.length }
-      ],
-      opportunities: mergeOpportunities(existing?.opportunities ?? [], [...laraJobs, ...laravelNewsOnly])
+      sources,
+      opportunities
     });
 
     await writeJsonAtomic(outputPath, snapshot);
-    console.log(`Updated ${outputPath} with ${snapshot.opportunities.length} ranked opportunities`);
+    await appendStepSummary(snapshot.sources, snapshot.opportunities);
+    console.log(`Updated ${outputPath} with ${snapshot.opportunities.length} opportunities across ${sources.length} sources`);
+
+    if (results.some((result) => "failed" in result)) {
+      process.exitCode = 1;
+    }
   } finally {
     await browser.close();
   }

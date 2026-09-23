@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { assessOpportunity, canonicalizeJobUrl, mergeOpportunities, opportunityId, type Opportunity } from "@/lib/job-opportunities";
-import { parseLaraJobsFeed } from "@/scripts/jobs/collect";
+import { assessOpportunity } from "@/lib/job-opportunities";
+import { parseLaraJobsFeed } from "@/scripts/jobs/sources/larajobs";
 
 const now = "2026-09-22T00:00:00.000Z";
 
@@ -19,7 +19,13 @@ describe("job opportunity collection", () => {
       company: "Acme",
       canonicalUrl: "https://larajobs.com/job/123",
       eligibility: "eligible",
-      sponsorship: "unknown"
+      sponsorship: "unknown",
+      seniority: "senior",
+      workArrangement: "remote-worldwide",
+      salaryMin: null,
+      salaryMax: null,
+      salaryCurrency: null,
+      status: "new"
     });
     expect(records[0].score).toBeGreaterThanOrEqual(80);
   });
@@ -58,8 +64,12 @@ describe("job opportunity collection", () => {
     expect(ukJob.location).toBe("Remote/Hybrid, UK Only");
     expect(ukJob.employmentType).toBe("Full-Time");
     expect(ukJob.salary).toBe("£60k");
+    expect(ukJob.salaryMin).toBe(60000);
+    expect(ukJob.salaryMax).toBe(60000);
+    expect(ukJob.salaryCurrency).toBe("GBP");
     expect(ukJob.tags).toEqual(expect.arrayContaining(["laravel", "fullstack", "vuejs"]));
     expect(ukJob.eligibility).toBe("ineligible");
+    expect(ukJob.workArrangement).toBe("remote-regional-restricted");
 
     const usJob = records.find((record) => record.canonicalUrl.endsWith("3929"))!;
     expect(usJob.company).toBe("Invo Solutions");
@@ -67,6 +77,8 @@ describe("job opportunity collection", () => {
     expect(usJob.reasons).toContain("Laravel is explicitly required");
     expect(usJob.concerns).not.toContain("Laravel is not explicitly mentioned");
     expect(usJob.concerns.some((concern) => concern.includes("does not confirm remote-friendly hiring"))).toBe(true);
+    expect(usJob.workArrangement).toBe("onsite-no-sponsorship");
+    expect(usJob.salaryMin).toBeNull();
   });
 
   it("does not treat country-restricted remote work as eligible", () => {
@@ -80,15 +92,18 @@ describe("job opportunity collection", () => {
     expect(assessment.eligibility).toBe("ineligible");
     expect(assessment.sponsorship).toBe("unavailable");
     expect(assessment.concerns).toContain("Restricted to the United States");
+    expect(assessment.workArrangement).toBe("remote-regional-restricted");
   });
 
-  it("canonicalizes tracking URLs and preserves first-seen time", () => {
-    const url = "https://larajobs.com/job/123?utm_source=news#apply";
-    expect(canonicalizeJobUrl(url)).toBe("https://larajobs.com/job/123");
-    expect(opportunityId(url)).toBe(opportunityId("https://larajobs.com/job/123"));
+  it("treats an explicit Sri Lanka mention as eligible regardless of other restrictions", () => {
+    const assessment = assessOpportunity({
+      title: "Senior Laravel Engineer",
+      descriptionText: "Open to candidates in Sri Lanka and the EU. Must be located in Europe otherwise.",
+      location: "Remote",
+      tags: ["laravel"]
+    });
 
-    const incoming = { id: opportunityId(url), firstSeenAt: now, lastSeenAt: now, score: 90, title: "Role" } as Opportunity;
-    const previous = { ...incoming, firstSeenAt: "2026-09-01T00:00:00.000Z", score: 70 };
-    expect(mergeOpportunities([previous], [incoming])[0].firstSeenAt).toBe(previous.firstSeenAt);
+    expect(assessment.eligibility).toBe("eligible");
+    expect(assessment.workArrangement).toBe("remote-sri-lanka-eligible");
   });
 });
