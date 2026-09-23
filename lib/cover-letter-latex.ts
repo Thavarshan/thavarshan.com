@@ -30,6 +30,7 @@ export function renderCoverLetterLatex(profile: ProfessionalProfile, job: CoverL
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 \usepackage[hidelinks,unicode]{hyperref}
 \usepackage{microtype}
 \pagestyle{empty}

@@ -147,6 +147,16 @@ export function splitLinkedInDescription(description?: string) {
   };
 }
 
+// LinkedIn's Skills export includes personal/hobby endorsements alongside professional ones
+// (e.g. "Guitar Playing", "Sketching") that have no place on a professional CV. Filtered by exact
+// name (case-insensitive) rather than a broader heuristic, since a false-positive exclusion here
+// silently drops a real skill with no warning — an explicit, reviewable list is safer.
+const irrelevantSkillNames = new Set(
+  ["Fundraising", "Mathematics", "Sketching", "Guitar Playing", "Pencil Rendering", "Piano Playing", "Hosting Events"].map((name) =>
+    name.toLowerCase()
+  )
+);
+
 function categoryForSkill(name: string, previous: ProfessionalProfile): SkillRecord["category"] {
   const known = previous.skills.find((skill) => skill.name.toLowerCase() === name.toLowerCase());
   if (known) {
@@ -360,6 +370,7 @@ export function importLinkedInArchive(
     next.skills = skills
       .map((row) => value(row, "Name", "Skill Name"))
       .filter((name): name is string => Boolean(name))
+      .filter((name) => !irrelevantSkillNames.has(name.toLowerCase()))
       .map((name) => ({ name, category: categoryForSkill(name, previous) }));
     importedSections.push("skills");
   }

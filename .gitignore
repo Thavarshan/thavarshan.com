@@ -6,6 +6,8 @@ test-results/
 tsconfig.tsbuildinfo
 linkedin*.zip
 LinkedIn*.zip
+*LinkedInDataExport*
+*.zip.zip
 profile-imports/
 cv/output/
 cv/generated/*.aux
