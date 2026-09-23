@@ -2,6 +2,7 @@ import { appendFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import {
+  canonicalizeJobUrl,
   mergeOpportunities,
   opportunitySnapshotSchema,
   type Opportunity,
@@ -9,19 +10,25 @@ import {
   type SourceCollectionOutcome
 } from "../../lib/job-opportunities";
 import { writeJsonAtomic } from "../profile/io";
-import { collectLaraJobs, laraJobsFeedUrl } from "./sources/larajobs";
-import { collectLaravelNews, laravelNewsUrl } from "./sources/laravel-news";
+import { recordSourceFailure } from "./diagnostics";
+import { enrichAndFinalize, enrichUnknownLinks } from "./enrichment";
+import { buildOpportunity } from "./opportunity-builder";
+import { collectLaraJobsDrafts, finalizeLaraJobsDraft, laraJobsFeedUrl } from "./sources/larajobs";
+import { collectLaravelNewsLinks, laravelNewsUrl } from "./sources/laravel-news";
+import { collectRemotiveJobs, remotiveUrl } from "./sources/remotive";
+import { collectWeWorkRemotely, weWorkRemotelyUrl } from "./sources/weworkremotely";
 
 export { parseLaraJobsFeed } from "./sources/larajobs";
 
 const outputPath = resolve("data/jobs.generated.json");
 const userAgent = "JeromeJobCollector/1.0 (+https://thavarshan.com)";
+const ENRICHMENT_CONCURRENCY = 4;
 
 const sourceMeta: Record<Opportunity["source"], { name: string; url: string }> = {
   larajobs: { name: "LaraJobs RSS", url: laraJobsFeedUrl },
   "laravel-news": { name: "Laravel News", url: laravelNewsUrl },
-  remotive: { name: "Remotive", url: "https://remotive.com/api/remote-jobs?category=software-dev" },
-  weworkremotely: { name: "WeWorkRemotely", url: "https://weworkremotely.com/categories/remote-programming-jobs.rss" }
+  remotive: { name: "Remotive", url: remotiveUrl },
+  weworkremotely: { name: "WeWorkRemotely", url: weWorkRemotelyUrl }
 };
 
 async function readExisting(): Promise<OpportunitySnapshot | null> {
@@ -71,32 +78,71 @@ export async function collectJobs() {
   const browser = await chromium.launch({ headless: true });
   try {
     const context = await browser.newContext({ userAgent });
-    const page = await context.newPage();
+    const discoveryPage = await context.newPage();
     const now = new Date().toISOString();
     const existing = await readExisting();
 
     const results: SourceCollectionOutcome[] = [];
-
     let laraJobsCanonicalUrls = new Set(
       (existing?.opportunities ?? []).filter((item) => item.source === "larajobs").map((item) => item.canonicalUrl)
     );
 
     try {
-      const laraJobsResult = await collectLaraJobs(context.request, now);
-      results.push(laraJobsResult);
-      laraJobsCanonicalUrls = new Set([...laraJobsCanonicalUrls, ...laraJobsResult.opportunities.map((item) => item.canonicalUrl)]);
+      const drafts = await collectLaraJobsDrafts(context.request);
+      const opportunities = await enrichAndFinalize(
+        context,
+        drafts,
+        (draft) => draft.canonicalUrl,
+        (draft, finalizeNow, scrapedDescription) => finalizeLaraJobsDraft(draft, finalizeNow, scrapedDescription),
+        { concurrency: ENRICHMENT_CONCURRENCY },
+        now
+      );
+      results.push({ source: "larajobs", opportunities, skipped: 0, rejected: 0 });
+      laraJobsCanonicalUrls = new Set([...laraJobsCanonicalUrls, ...opportunities.map((item) => item.canonicalUrl)]);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`LaraJobs collection failed: ${message}`);
+      await recordSourceFailure("larajobs", error, discoveryPage);
       results.push({ source: "larajobs", failed: true, error: message });
     }
 
     try {
-      results.push(await collectLaravelNews(page, laraJobsCanonicalUrls, now));
+      const links = await collectLaravelNewsLinks(discoveryPage);
+      const candidates = [...new Set(links.map((link) => canonicalizeJobUrl(link)))]
+        .filter((url) => !laraJobsCanonicalUrls.has(url))
+        .slice(0, 20);
+      const { opportunities, rejected } = await enrichUnknownLinks(
+        context,
+        candidates,
+        (url, title, description, finalizeNow) =>
+          buildOpportunity({ title, url, sourceUrl: laravelNewsUrl, description, source: "laravel-news" }, finalizeNow),
+        { concurrency: ENRICHMENT_CONCURRENCY },
+        now
+      );
+      results.push({ source: "laravel-news", opportunities, skipped: 0, rejected });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`Laravel News collection failed: ${message}`);
+      await recordSourceFailure("laravel-news", error, discoveryPage);
       results.push({ source: "laravel-news", failed: true, error: message });
+    }
+
+    try {
+      results.push(await collectRemotiveJobs(context.request, now));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`Remotive collection failed: ${message}`);
+      await recordSourceFailure("remotive", error);
+      results.push({ source: "remotive", failed: true, error: message });
+    }
+
+    try {
+      results.push(await collectWeWorkRemotely(context.request, now));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`WeWorkRemotely collection failed: ${message}`);
+      await recordSourceFailure("weworkremotely", error);
+      results.push({ source: "weworkremotely", failed: true, error: message });
     }
 
     const { opportunities, stats } = mergeOpportunities(existing?.opportunities ?? [], results, now);
@@ -109,7 +155,7 @@ export async function collectJobs() {
         name: meta.name,
         url: meta.url,
         collectedAt: now,
-        status: failed ? "failed" as const : "ok" as const,
+        status: failed ? ("failed" as const) : ("ok" as const),
         recordsFound: failed ? 0 : result.opportunities.length,
         added: stat.added,
         updated: stat.updated,
