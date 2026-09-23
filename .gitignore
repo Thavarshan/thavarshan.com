@@ -16,3 +16,5 @@ cv/generated/*.out
 .lighthouseci/
 marketing/generated/
 .jobs-diagnostics/
+.applications-build/
+.applications-private/
