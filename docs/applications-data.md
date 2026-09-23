@@ -36,6 +36,19 @@ If either secret is missing, `npm run applications:generate` logs a message and 
 - `cover-letter.pdf` — AI-drafted cover letter.
 - `summary.md` — job title/company, direct application link, score/eligibility/work arrangement/salary, why it was selected, any flagged terms to double-check, and generation metadata (timestamp, model, content hash).
 
+## Reviewing and actually applying
+
+Generation stops at drafting — nothing gets sent automatically. `scripts/applications/review.ts` (`npm run applications:review -- /path/to/local/clone`) is a **local, interactive** tool for working through the pile:
+
+1. Clone the private repo yourself once with your own GitHub credentials (`gh repo clone Thavarshan/job-applications`) — this tool intentionally does **not** use `APPLICATIONS_REPO_DEPLOY_KEY`; that credential exists for the unattended Actions workflow, and reusing it for an interactive session run by a human would be the wrong tool for the job. Plain `git`, authenticated as you, is enough.
+2. Run `npm run applications:review -- <path to that clone>`. Each package with `status: "pending"` in `state.json` is shown one at a time (title, company, score, eligibility, work arrangement, salary, the direct apply link, local paths to `cv.pdf`/`cover-letter.pdf`, and any flagged terms from `summary.md`) — the tool never opens a browser or attempts to submit anything itself.
+3. For each: `a` marks it `applied`, `s` marks it `skipped`, `q` stops the session leaving the rest `pending` for next time.
+4. On exit, if anything changed, the tool commits and pushes the updated `state.json` back to the private repo using your own ambient git credentials.
+
+This is the actual apply step, and it's why it stays a manual, per-job decision rather than something automated: every package is AI-drafted and needs a human read-through (see the flagged-terms mechanism above) before it goes to a real employer.
+
+**Lifecycle**: `pending` → `applied` (terminal — `generate.ts` will never regenerate or touch this job again, even if the listing's data later changes) or `skipped` (not terminal — if the job's content later changes materially, it's eligible to be regenerated and re-reviewed, since "skip" was a call made on the version reviewed at the time, not a permanent judgment on the role).
+
 ## Operational notes
 
 - Reuses the exact same Docker + `latexmk` compilation pipeline as the public CV (`scripts/cv/build.ts`'s `compileLatexToPdf`), just with a tailoring plan and different output paths — the untailored `npm run cv:build` path is unaffected.

@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { z } from "zod";
 import { validateCvTailoringPlan } from "../../lib/application-tailoring";
 import { renderCoverLetterLatex } from "../../lib/cover-letter-latex";
 import { githubSnapshotSchema, type GitHubSnapshot } from "../../lib/github-model";
@@ -13,35 +12,15 @@ import { compileLatexToPdf } from "../cv/build";
 import { generateTailoringAndCoverLetter, type RawTailoringResult } from "./openai-client";
 import { buildSystemPrompt, buildUserPrompt } from "./prompts";
 import { applicationsRepoSlug, clonePrivateRepo, commitAndPush } from "./private-repo";
+import { readState, writeState, type ApplicationState } from "./state";
 
 const DEFAULT_MODEL = "gpt-4o-mini";
 const MIN_SCORE = Number(process.env.APPLICATIONS_MIN_SCORE ?? 60);
 const MAX_NEW_PACKAGES_PER_RUN = Number(process.env.APPLICATIONS_MAX_PER_RUN ?? 5);
 const buildDirRelative = ".applications-build";
 
-const stateSchema = z.object({
-  schemaVersion: z.literal(1),
-  entries: z.array(z.object({
-    opportunityId: z.string(),
-    inputHash: z.string(),
-    generatedAt: z.string().datetime(),
-    model: z.string()
-  }))
-});
-type State = z.infer<typeof stateSchema>;
-
 async function readJson<T>(path: string, parse: (value: unknown) => T): Promise<T> {
   return parse(JSON.parse(await readFile(resolve(path), "utf8")));
-}
-
-async function readState(dir: string): Promise<State> {
-  try {
-    return stateSchema.parse(JSON.parse(await readFile(resolve(dir, "state.json"), "utf8")));
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return { schemaVersion: 1, entries: [] };
-    console.warn(`Existing application state does not match the current schema; starting fresh: ${error instanceof Error ? error.message : error}`);
-    return { schemaVersion: 1, entries: [] };
-  }
 }
 
 function computeInputHash(job: Opportunity): string {
@@ -144,6 +123,7 @@ export async function generateApplications() {
 
   const candidates = jobs.opportunities
     .filter((job) => job.eligibility === "eligible" && job.status !== "closed" && job.score >= MIN_SCORE)
+    .filter((job) => stateById.get(job.id)?.status !== "applied")
     .filter((job) => {
       const existing = stateById.get(job.id);
       return !existing || existing.inputHash !== computeInputHash(job);
@@ -208,7 +188,14 @@ export async function generateApplications() {
         "utf8"
       );
 
-      stateById.set(job.id, { opportunityId: job.id, inputHash: computeInputHash(job), generatedAt, model });
+      stateById.set(job.id, {
+        opportunityId: job.id,
+        inputHash: computeInputHash(job),
+        generatedAt,
+        model,
+        status: "pending",
+        respondedAt: null
+      });
       generated++;
     } catch (error) {
       failed++;
@@ -216,8 +203,8 @@ export async function generateApplications() {
     }
   }
 
-  const nextState: State = { schemaVersion: 1, entries: [...stateById.values()] };
-  await writeFile(resolve(repoDir, "state.json"), `${JSON.stringify(nextState, null, 2)}\n`, "utf8");
+  const nextState: ApplicationState = { schemaVersion: 1, entries: [...stateById.values()] };
+  await writeState(repoDir, nextState);
 
   const pushed = await commitAndPush(repoDir, deployKey, `Generate ${generated} tailored application package(s)`);
   console.log(`Generated ${generated} package(s), ${failed} failed. ${pushed ? "Pushed to" : "No changes to push to"} ${applicationsRepoSlug}.`);

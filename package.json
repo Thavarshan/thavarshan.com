@@ -24,7 +24,8 @@
     "cv:publish": "tsx scripts/cv/publish.ts",
     "cv:verify": "tsx scripts/cv/verify.ts",
     "jobs:collect": "tsx scripts/jobs/collect.ts",
-    "applications:generate": "tsx scripts/applications/generate.ts"
+    "applications:generate": "tsx scripts/applications/generate.ts",
+    "applications:review": "tsx scripts/applications/review.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
