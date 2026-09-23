@@ -124,10 +124,10 @@ function buildSummaryMarkdown(params: {
 
 export async function generateApplications() {
   const openaiApiKey = process.env.OPENAI_API_KEY;
-  const repoToken = process.env.APPLICATIONS_REPO_TOKEN;
+  const deployKey = process.env.APPLICATIONS_REPO_DEPLOY_KEY;
 
-  if (!openaiApiKey || !repoToken) {
-    console.log("OPENAI_API_KEY or APPLICATIONS_REPO_TOKEN is not set; skipping application generation.");
+  if (!openaiApiKey || !deployKey) {
+    console.log("OPENAI_API_KEY or APPLICATIONS_REPO_DEPLOY_KEY is not set; skipping application generation.");
     return;
   }
 
@@ -138,7 +138,7 @@ export async function generateApplications() {
   const github = await readJson("data/github.generated.json", (value) => githubSnapshotSchema.parse(value));
 
   console.log(`Cloning ${applicationsRepoSlug}...`);
-  const repoDir = await clonePrivateRepo(repoToken);
+  const repoDir = await clonePrivateRepo(deployKey);
   const state = await readState(repoDir);
   const stateById = new Map(state.entries.map((entry) => [entry.opportunityId, entry]));
 
@@ -219,7 +219,7 @@ export async function generateApplications() {
   const nextState: State = { schemaVersion: 1, entries: [...stateById.values()] };
   await writeFile(resolve(repoDir, "state.json"), `${JSON.stringify(nextState, null, 2)}\n`, "utf8");
 
-  const pushed = await commitAndPush(repoDir, repoToken, `Generate ${generated} tailored application package(s)`);
+  const pushed = await commitAndPush(repoDir, deployKey, `Generate ${generated} tailored application package(s)`);
   console.log(`Generated ${generated} package(s), ${failed} failed. ${pushed ? "Pushed to" : "No changes to push to"} ${applicationsRepoSlug}.`);
 
   const summaryPath = process.env.GITHUB_STEP_SUMMARY;
