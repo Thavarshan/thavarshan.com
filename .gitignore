@@ -15,3 +15,4 @@ cv/generated/*.log
 cv/generated/*.out
 .lighthouseci/
 marketing/generated/
+.jobs-diagnostics/
