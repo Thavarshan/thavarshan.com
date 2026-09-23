@@ -234,6 +234,11 @@ export async function generateApplications() {
     ];
     await writeFile(summaryPath, `${lines.join("\n")}\n`, { flag: "a" });
   }
+
+  if (candidates.length > 0 && failed === candidates.length) {
+    console.error(`All ${failed} candidate(s) failed this run; marking the workflow as failed so this doesn't silently stay green.`);
+    process.exitCode = 1;
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
