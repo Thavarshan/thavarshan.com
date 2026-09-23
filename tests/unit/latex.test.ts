@@ -10,6 +10,21 @@ describe("LaTeX CV generation", () => {
     expect(escapeLatex("R&D_100% #1")).toBe("R\\&D\\_100\\% \\#1");
   });
 
+  it("inserts \\texttrademark{}/\\textregistered{} as real commands, not escaped literal text", () => {
+    // Regression: inserting these before the special-character escaping pass caused their own
+    // backslash/braces to be re-escaped into literal "\texttrademark{}" text in the rendered PDF.
+    expect(escapeLatex("MacroActive™")).toBe("MacroActive\\texttrademark{}");
+    expect(escapeLatex("NetWatch Global®")).toBe("NetWatch Global\\textregistered{}");
+  });
+
+  it("normalizes curly quotes/apostrophes and arrows the Latin Modern font can't render", () => {
+    expect(escapeLatex("It’s a “test” → done")).toBe("It's a \"test\" -> done");
+  });
+
+  it("strips emoji the CV font has no glyph for", () => {
+    expect(escapeLatex("\u{1F50D} Enhance Laravel queries")).toBe(" Enhance Laravel queries");
+  });
+
   it("renders a phone-free, ATS-oriented document from source data", () => {
     const output = renderResumeLatex(
       parseProfessionalProfile(profileData),

@@ -16,10 +16,23 @@ const latexCharacters: Record<string, string> = {
 };
 
 export function escapeLatex(value: string) {
-  return value
+  const normalized = value
     .replace(/\u2013/g, "--")
     .replace(/\u2014/g, "---")
-    .replace(/[\\{}$&#_%~^]/g, (character) => latexCharacters[character]);
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/\u2192/g, "->")
+    // Strip emoji-range symbols (real content pulled from LinkedIn descriptions sometimes has
+    // these) \u2014 the CV's Latin Modern font can't render them, and they have no place on a formal
+    // CV anyway, so dropping them is more correct than letting LaTeX silently omit the glyph.
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "");
+
+  const escaped = normalized.replace(/[\\{}$&#_%~^]/g, (character) => latexCharacters[character]);
+
+  // \texttrademark{}/\textregistered{} are real LaTeX commands, inserted only AFTER the special-
+  // character escaping pass above \u2014 inserting them before would have their own backslash/braces
+  // re-escaped into literal text (confirmed: this was a real bug, not hypothetical).
+  return escaped.replace(/\u2122/g, "\\texttrademark{}").replace(/\u00ae/g, "\\textregistered{}");
 }
 
 function escapeUrl(value: string) {
@@ -142,7 +155,10 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     )
     .join("\n\n");
 
+  // Primary/secondary schooling is kept in the profile data for completeness but omitted from
+  // the CV itself — standard practice once a candidate has post-secondary qualifications listed.
   const education = profile.education
+    .filter((item) => !/high school|secondary school/i.test(item.qualification))
     .map(
       (item) =>
         `\\resumeHeading{${escapeLatex(item.qualification)}}{${escapeLatex(item.institution)}}{${escapeLatex(
@@ -189,6 +205,7 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 \usepackage{enumitem}
 \usepackage[hidelinks,unicode]{hyperref}
 \usepackage{xcolor}

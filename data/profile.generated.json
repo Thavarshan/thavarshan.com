@@ -5,14 +5,14 @@
     "givenName": "Jerome",
     "familyName": "Thayananthajothy",
     "headline": "Technical Lead | AI-Driven Systems Architect | AWS & Full-Stack Expert | Open Source Contributor",
-    "location": "Colombo, Sri Lanka",
+    "location": "Colombo, Western Province, Sri Lanka",
     "email": "tjthavarshan@gmail.com",
     "website": "https://thavarshan.com",
     "linkedin": "https://www.linkedin.com/in/thavarshan",
     "github": "https://github.com/Thavarshan",
     "avatar": "/images/avatar.jpg"
   },
-  "summary": "I'm a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.\nOver the past decade, I've led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.\nI'm particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
+  "summary": "I\u2019m a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.  Over the past decade, I\u2019ve led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.  I\u2019m particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
   "experience": [
     {
       "id": "sino-lanka-group-technical-lead-2026-05",
@@ -21,12 +21,8 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2026-05",
       "endDate": null,
-      "summary": "Leading AI-driven systems architecture and full-stack engineering across scalable business platforms.",
-      "highlights": [
-        "Driving architecture direction across full-stack systems, AI capabilities, and cloud delivery.",
-        "Focusing on observability, developer ecosystems, and reliable engineering practices.",
-        "Bringing senior technical leadership across AI-enhanced infrastructure and product delivery."
-      ]
+      "summary": "",
+      "highlights": []
     },
     {
       "id": "kaya-technical-lead-2025-10",
@@ -35,12 +31,8 @@
       "location": "Colombo",
       "startDate": "2025-10",
       "endDate": "2026-05",
-      "summary": "Led enterprise full-stack systems and AI workflow engineering for the KAYA Platform and client-facing systems.",
-      "highlights": [
-        "Designed dynamic AI workflow engines with LangGraph and cloud-native delivery practices.",
-        "Led distributed application work across multiple Kubernetes clusters.",
-        "Shaped Node.js, TypeScript, Laravel, PostgreSQL, and platform engineering standards."
-      ]
+      "summary": "",
+      "highlights": []
     },
     {
       "id": "brompton-bicycle-technical-lead-2024-12",
@@ -49,40 +41,28 @@
       "location": "Greenford, England, United Kingdom",
       "startDate": "2024-12",
       "endDate": "2025-09",
-      "summary": "Led architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by £130K/month (~£1.56M/yr) and eliminating revenue-based fees.",
-      "highlights": [
-        "Built an AI-powered full-text search engine, augmenting MySQL's native capabilities with semantic and vector-based search for product discovery and analytics.",
-        "Integrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation.",
-        "Reduced checkout latency from 4.2s to 1.5s (60%+ improvement), boosting conversion rates by 12%.",
-        "Shifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards."
-      ]
+      "summary": "\u2014\tLed architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by \u00a3130K/month (~\u00a31.56M/yr) and eliminating revenue-based fees. \u2014\tBuilt an AI-powered full-text search engine, augmenting MySQL\u2019s native capabilities with semantic and vector-based search for product discovery and analytics. \u2014\tIntegrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation. \u2014\tReduced checkout latency from 4.2s \u2192 1.5s (60%+ improvement), boosting conversion rates by 12%. \u2014\tShifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards. \u2014\tMentored engineering leads and conducted biweekly architecture reviews, codifying organization-wide engineering best practices.",
+      "highlights": []
     },
     {
       "id": "netwatch-global-senior-software-engineer-2023-07",
       "role": "Senior Software Engineer",
-      "company": "NetWatch Global",
+      "company": "NetWatch Global\u00ae",
       "location": "Birmingham, England, United Kingdom",
       "startDate": "2023-07",
       "endDate": "2024-12",
-      "summary": "Rebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability.",
-      "highlights": [
-        "Established and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process.",
-        "Worked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions.",
-        "Designed, developed, and deployed three major projects, each meeting critical business objectives and user needs."
-      ]
+      "summary": "\u2014\tRebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability. \u2014\tEstablished and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process. \u2014\tWorked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions. \u2014\tDesigned, developed, and deployed three major projects, each meeting critical business objectives and user needs.",
+      "highlights": []
     },
     {
       "id": "macroactive-senior-software-engineer-2021-06",
       "role": "Senior Software Engineer",
-      "company": "MacroActive",
+      "company": "MacroActive\u2122",
       "location": "Auckland, Auckland, New Zealand",
       "startDate": "2021-06",
       "endDate": "2022-11",
-      "summary": "Worked extensively with PHP, TypeScript, VueJS, ReactJS, AWS DynamoDB and MongoDB.",
-      "highlights": [
-        "Designed, developed and deployed three major projects and was working on a fourth project before resignation.",
-        "Responsibilities included but were not limited to training new recruits, performing code reviews, and planning weekly sprints."
-      ]
+      "summary": "\u2014\tWorked extensively with PHP, TypeScript, VueJS, ReactJS AWS Dynamo DB and MongoDB. \u2014\tDesigned, developed and deployed three major projects and was working on fourth project before resignation. \u2014\tResponsibilities included but was not limited to training new recruits, performing code reviews and planning weekly sprints.",
+      "highlights": []
     },
     {
       "id": "elegant-media-australia-senior-software-engineer-2020-01",
@@ -91,7 +71,7 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2020-01",
       "endDate": "2020-07",
-      "summary": "Senior Software Engineer delivering client and platform features at Elegant Media Australia.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -101,7 +81,7 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2019-04",
       "endDate": "2020-01",
-      "summary": "Software Engineer delivering client and platform features at Elegant Media Australia.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -111,7 +91,7 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2018-01",
       "endDate": "2019-03",
-      "summary": "Software Engineer building application features and client integrations at Seven's Idea.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -121,7 +101,7 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2017-01",
       "endDate": "2018-01",
-      "summary": "Software Engineer delivering business systems and web applications at Alta Vision Solar.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -131,7 +111,7 @@
       "location": "Trincomalee, Eastern Province, Sri Lanka",
       "startDate": "2016-10",
       "endDate": "2016-12",
-      "summary": "Telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -141,7 +121,7 @@
       "location": "Trincomalee, Eastern Province, Sri Lanka",
       "startDate": "2015-10",
       "endDate": "2016-01",
-      "summary": "Telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "summary": "",
       "highlights": []
     },
     {
@@ -151,16 +131,15 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2015-06",
       "endDate": "2017-01",
-      "summary": "Associate Software Engineer building business systems and web applications at Alta Vision Solar.",
+      "summary": "",
       "highlights": []
     }
   ],
   "education": [
     {
-      "id": "university-of-sunderland-bachelor-of-science-bs-computer-science",
-      "qualification": "Bachelor of Science - BS, Computer Science",
+      "id": "university-of-sunderland-bachelor-of-science-bs",
+      "qualification": "Bachelor of Science - BS",
       "institution": "University of Sunderland",
-      "fieldOfStudy": "Computer Science",
       "startDate": "2022-09",
       "endDate": "2023-07"
     },
@@ -168,74 +147,115 @@
       "id": "icbt-campus-higher-national-diploma",
       "qualification": "Higher National Diploma",
       "institution": "ICBT Campus",
-      "fieldOfStudy": "Computing and Software Engineering",
       "startDate": "2020-08",
       "endDate": "2022-03"
+    },
+    {
+      "id": "t-r-k-m-sri-koneswara-hindu-college-high-school",
+      "qualification": "High School",
+      "institution": "T/R.K.M.Sri Koneswara Hindu College",
+      "startDate": "2001-01",
+      "endDate": "2014-01"
     }
   ],
   "certifications": [
     {
-      "id": "aws-solutions-architect-associate",
-      "name": "AWS Certified Solutions Architect – Associate",
-      "authority": "Amazon Web Services"
+      "id": "aws-certified-solutions-architect",
+      "name": "AWS Certified Solutions Architect",
+      "authority": "Amazon Web Services (AWS)",
+      "issuedDate": "2025-10",
+      "expiresDate": "2028-10",
+      "credentialUrl": "https://www.credly.com/earner/earned/share/80bfeffb-044a-4462-89a5-c6278a1653ca"
     },
     {
-      "id": "aws-cloud-practitioner",
-      "name": "AWS Certified Cloud Practitioner",
-      "authority": "Amazon Web Services"
+      "id": "amazon-web-services-cloud-practitioner",
+      "name": "Amazon Web Services Cloud Practitioner",
+      "authority": "Amazon Web Services (AWS)",
+      "issuedDate": "2025-09",
+      "expiresDate": "2028-09"
+    },
+    {
+      "id": "associate-member",
+      "name": "Associate Member",
+      "authority": "Institution of Engineers Sri Lanka",
+      "issuedDate": "2019-03"
     }
   ],
   "skills": [
     {
-      "name": "Technical leadership",
-      "category": "leadership"
+      "name": "SOC",
+      "category": "full-stack"
     },
     {
-      "name": "Architecture reviews",
-      "category": "leadership"
+      "name": "IAM",
+      "category": "full-stack"
     },
     {
-      "name": "Engineering standards",
-      "category": "leadership"
-    },
-    {
-      "name": "Mentoring",
-      "category": "leadership"
-    },
-    {
-      "name": "Product thinking",
-      "category": "leadership"
-    },
-    {
-      "name": "Generative AI",
+      "name": "Artificial Intelligence (AI)",
       "category": "ai-architecture"
     },
     {
-      "name": "LangGraph",
+      "name": "Search Engines",
+      "category": "full-stack"
+    },
+    {
+      "name": "Microsoft Azure",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "full-stack"
+    },
+    {
+      "name": "GenAI",
       "category": "ai-architecture"
     },
     {
-      "name": "Semantic search",
-      "category": "ai-architecture"
+      "name": "AWS",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "MuleSoft Anypoint Platform",
+      "category": "full-stack"
+    },
+    {
+      "name": "Technical Staff Management",
+      "category": "leadership"
+    },
+    {
+      "name": "Amazon Web Services (AWS)",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "Cloud Computing",
+      "category": "cloud-delivery"
+    },
+    {
+      "name": "Scrum",
+      "category": "full-stack"
+    },
+    {
+      "name": "Agile Methodologies",
+      "category": "full-stack"
     },
     {
       "name": "Microservices",
       "category": "ai-architecture"
     },
     {
-      "name": "Event-driven systems",
-      "category": "ai-architecture"
-    },
-    {
-      "name": "React",
+      "name": "MongoDB",
       "category": "full-stack"
     },
     {
-      "name": "Vue",
+      "name": "Software Documentation",
       "category": "full-stack"
     },
     {
-      "name": "TypeScript",
+      "name": "Web Applications",
+      "category": "full-stack"
+    },
+    {
+      "name": "Managing Technical Personnel",
       "category": "full-stack"
     },
     {
@@ -243,32 +263,224 @@
       "category": "full-stack"
     },
     {
+      "name": "Inertia.js",
+      "category": "full-stack"
+    },
+    {
+      "name": "React.js",
+      "category": "full-stack"
+    },
+    {
+      "name": ".NET Framework",
+      "category": "full-stack"
+    },
+    {
+      "name": "C#",
+      "category": "full-stack"
+    },
+    {
+      "name": "Jira",
+      "category": "full-stack"
+    },
+    {
+      "name": "GraphQL",
+      "category": "full-stack"
+    },
+    {
+      "name": "Eloquent",
+      "category": "full-stack"
+    },
+    {
+      "name": "RestAPI",
+      "category": "full-stack"
+    },
+    {
+      "name": "Databases",
+      "category": "full-stack"
+    },
+    {
+      "name": "SQL",
+      "category": "full-stack"
+    },
+    {
+      "name": "Query",
+      "category": "full-stack"
+    },
+    {
+      "name": "Cybersecurity",
+      "category": "full-stack"
+    },
+    {
+      "name": "TypeScript",
+      "category": "full-stack"
+    },
+    {
+      "name": "VueJS",
+      "category": "full-stack"
+    },
+    {
+      "name": "GitHub",
+      "category": "full-stack"
+    },
+    {
+      "name": "JavaScript Libraries",
+      "category": "full-stack"
+    },
+    {
+      "name": "AJAX",
+      "category": "full-stack"
+    },
+    {
+      "name": "JSON",
+      "category": "full-stack"
+    },
+    {
+      "name": "JavaScript Frameworks",
+      "category": "full-stack"
+    },
+    {
+      "name": "Mocha (JavaScript Framework)",
+      "category": "full-stack"
+    },
+    {
+      "name": "Jest",
+      "category": "full-stack"
+    },
+    {
+      "name": "JavaScriptMVC",
+      "category": "full-stack"
+    },
+    {
+      "name": "Vanilla JavaScript",
+      "category": "full-stack"
+    },
+    {
+      "name": "Server Side JavaScript",
+      "category": "full-stack"
+    },
+    {
+      "name": "MySQL",
+      "category": "full-stack"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)",
+      "category": "full-stack"
+    },
+    {
+      "name": "PHP",
+      "category": "full-stack"
+    },
+    {
+      "name": "JavaScript",
+      "category": "full-stack"
+    },
+    {
+      "name": "Python",
+      "category": "full-stack"
+    },
+    {
+      "name": "Algorithms",
+      "category": "full-stack"
+    },
+    {
+      "name": "Computer Networking",
+      "category": "full-stack"
+    },
+    {
+      "name": "Adobe Photoshop",
+      "category": "full-stack"
+    },
+    {
+      "name": "Cascading Style Sheets (CSS)",
+      "category": "full-stack"
+    },
+    {
+      "name": "WordPress",
+      "category": "full-stack"
+    },
+    {
+      "name": "jQuery",
+      "category": "full-stack"
+    },
+    {
+      "name": "HTML",
+      "category": "full-stack"
+    },
+    {
+      "name": "Bootstrap",
+      "category": "full-stack"
+    },
+    {
+      "name": "HTML5",
+      "category": "full-stack"
+    },
+    {
       "name": "Laravel",
       "category": "full-stack"
     },
     {
-      "name": "PostgreSQL",
+      "name": "Django",
       "category": "full-stack"
     },
     {
-      "name": "AWS",
-      "category": "cloud-delivery"
+      "name": "Vue.js",
+      "category": "full-stack"
     },
     {
-      "name": "Docker",
-      "category": "cloud-delivery"
+      "name": "PhpStorm",
+      "category": "full-stack"
     },
     {
-      "name": "Kubernetes",
-      "category": "cloud-delivery"
+      "name": "PHP Applications",
+      "category": "full-stack"
     },
     {
-      "name": "CI/CD",
-      "category": "cloud-delivery"
+      "name": "PHPUnit",
+      "category": "full-stack"
     },
     {
-      "name": "Observability",
-      "category": "cloud-delivery"
+      "name": "PHP Frameworks",
+      "category": "full-stack"
+    },
+    {
+      "name": "Emberfuse",
+      "category": "full-stack"
+    },
+    {
+      "name": "Java",
+      "category": "full-stack"
+    },
+    {
+      "name": "C++",
+      "category": "full-stack"
+    },
+    {
+      "name": "C",
+      "category": "full-stack"
+    },
+    {
+      "name": "Go",
+      "category": "full-stack"
+    },
+    {
+      "name": "JavaSE",
+      "category": "full-stack"
+    },
+    {
+      "name": "Vue",
+      "category": "full-stack"
+    },
+    {
+      "name": "Vuex",
+      "category": "full-stack"
+    },
+    {
+      "name": "Nuxt.js",
+      "category": "full-stack"
+    },
+    {
+      "name": "Symfony",
+      "category": "full-stack"
     }
   ],
   "languages": [
@@ -277,15 +489,62 @@
       "proficiency": "Native or bilingual proficiency"
     },
     {
-      "name": "Tamil",
-      "proficiency": "Native or bilingual proficiency"
-    },
-    {
       "name": "Sinhala",
       "proficiency": "Limited working proficiency"
+    },
+    {
+      "name": "Tamil",
+      "proficiency": "Native or bilingual proficiency"
     }
   ],
   "professionalProjects": [
+    {
+      "id": "euclidius",
+      "name": "Euclidius",
+      "role": "Creator and builder",
+      "description": "A hate speech detection neural network which analyzes sentence sentiment to determine if the content is hateful, offensive, or acceptable.",
+      "highlights": [],
+      "tags": [],
+      "startDate": "2022-12",
+      "endDate": "2023-02"
+    },
+    {
+      "id": "laravel-filterable",
+      "name": "Laravel Filterable",
+      "role": "Creator and builder",
+      "description": "\ud83d\udd0d Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.",
+      "highlights": [],
+      "tags": [],
+      "startDate": "2024-04"
+    },
+    {
+      "id": "hands-of-mercy-charity-platform",
+      "name": "Hands of Mercy \u2013 Charity Platform",
+      "role": "Creator and builder",
+      "description": "Laravel + Vue system enabling sponsorships and donation management.",
+      "highlights": [],
+      "tags": [],
+      "startDate": "2025-04"
+    },
+    {
+      "id": "altus-4-ai-enhanced-mysql-search-engine",
+      "name": "Altus 4 \u2013 AI-Enhanced MySQL Search Engine",
+      "role": "Creator and builder",
+      "description": "Search-as-a-Service platform augmenting MySQL full-text with semantic search, query optimization, and analytics.",
+      "highlights": [],
+      "tags": [],
+      "startDate": "2025-09",
+      "endDate": "2025-10"
+    },
+    {
+      "id": "cerberus-iam-identity-and-access-management-platform",
+      "name": "Cerberus IAM \u2013 Identity & Access Management Platform",
+      "role": "Creator and builder",
+      "description": "PERN-based IAM solution with dynamic organization directories, SSO, and admin SDK.",
+      "highlights": [],
+      "tags": [],
+      "startDate": "2025-10"
+    },
     {
       "id": "honeymelon",
       "name": "Honeymelon",
@@ -307,8 +566,8 @@
   "sources": {
     "linkedin": {
       "kind": "linkedin-archive",
-      "importedAt": "2026-09-23T10:12:29.546Z",
-      "fingerprint": "f3c5a0cde906fb70db1d7135120c6abf9eeda9635855ad4191020d5c949e2c46"
+      "importedAt": "2026-09-23T10:39:16.554Z",
+      "fingerprint": "78eb75666614e4737385950772e3948aa3fc2da927e4395b87d3c7bef4d0738e"
     },
     "github": {
       "kind": "github-api",
@@ -316,5 +575,5 @@
       "syncedAt": "2026-07-30T00:00:00.000Z"
     }
   },
-  "modifiedAt": "2026-09-23T10:12:29.546Z"
+  "modifiedAt": "2026-09-23T10:39:16.554Z"
 }
