@@ -23,4 +23,14 @@ describe("scanForUnlistedTerms", () => {
     const text = "Building scalable systems has been my focus. Every project taught me something new.";
     expect(scanForUnlistedTerms(text, allowlist)).toEqual([]);
   });
+
+  it("does not flag a real allowlisted entity when a capitalized filler word is glued onto the front", () => {
+    const text = "At Sino Lanka Group, I led the platform modernization effort.";
+    expect(scanForUnlistedTerms(text, allowlist)).toEqual([]);
+  });
+
+  it("still flags an unlisted entity even when it follows a capitalized filler word", () => {
+    const text = "At Nimbus Robotics, I led the platform modernization effort.";
+    expect(scanForUnlistedTerms(text, allowlist)).toContain("At Nimbus Robotics");
+  });
 });
