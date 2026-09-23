@@ -1,0 +1,37 @@
+name: Refresh Application Packages
+
+on:
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: applications-refresh
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      APPLICATIONS_REPO_TOKEN: ${{ secrets.APPLICATIONS_REPO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate tailored application packages
+        if: env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_TOKEN != ''
+        run: npm run applications:generate
+      - name: Secrets not configured
+        if: env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_TOKEN == ''
+        run: echo "OPENAI_API_KEY and/or APPLICATIONS_REPO_TOKEN are not set; skipping."
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test -- application- hallucination cover-letter latex-tailoring

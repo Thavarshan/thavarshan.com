@@ -1,5 +1,6 @@
+import type { SanitizedCvTailoringPlan } from "@/lib/application-tailoring";
 import type { GitHubSnapshot } from "@/lib/github-model";
-import type { ProfessionalProfile } from "@/lib/profile-schema";
+import type { ExperienceRecord, ProfessionalProfile } from "@/lib/profile-schema";
 
 const latexCharacters: Record<string, string> = {
   "\\": "\\textbackslash{}",
@@ -42,7 +43,7 @@ function formatPeriod(start?: string, end?: string | null) {
   return `${formatMonth(start)} -- ${formatMonth(end)}`;
 }
 
-function href(url: string, label: string) {
+export function href(url: string, label: string) {
   return `\\href{${escapeUrl(url)}}{${escapeLatex(label)}}`;
 }
 
@@ -54,7 +55,12 @@ function itemize(items: string[]) {
   return `\\begin{itemize}\n${items.map((item) => `  \\item ${escapeLatex(item)}`).join("\n")}\n\\end{itemize}`;
 }
 
-export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSnapshot) {
+/**
+ * `tailoring`, when provided, only ever reorders or selects among facts already present in
+ * `profile` (see lib/application-tailoring.ts's validator) — it never introduces new prose. When
+ * omitted, output is identical to the untailored, statically-verified public CV.
+ */
+export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSnapshot, tailoring?: SanitizedCvTailoringPlan) {
   const skillGroups = new Map<string, string[]>();
   for (const skill of profile.skills) {
     skillGroups.set(skill.category, [...(skillGroups.get(skill.category) ?? []), skill.name]);
@@ -66,9 +72,18 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     "cloud-delivery": "Cloud \\& Delivery"
   };
 
-  const experience = profile.experience
+  const skillCategoryOrder = tailoring?.emphasizedSkillCategories ?? [...skillGroups.keys()];
+
+  const orderedExperience: ExperienceRecord[] = tailoring
+    ? tailoring.experienceOrder
+        .map((id) => profile.experience.find((role) => role.id === id))
+        .filter((role): role is ExperienceRecord => role !== undefined)
+    : profile.experience;
+
+  const experience = orderedExperience
     .map((role, index) => {
-      const highlights = index < 5 ? role.highlights.slice(0, index < 3 ? 4 : 2) : [];
+      const selectedHighlights = tailoring?.highlightSelections[role.id];
+      const highlights = selectedHighlights ?? (index < 5 ? role.highlights.slice(0, index < 3 ? 4 : 2) : []);
       const body = highlights.length > 0 ? itemize(highlights) : `\\smallskip\n${escapeLatex(role.summary)}`;
 
       return `\\resumeHeading{${escapeLatex(role.role)}}{${escapeLatex(role.company)}}{${escapeLatex(
@@ -121,10 +136,11 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     )
     .join(" \\enspace|\\enspace ");
 
-  const skills = [...skillGroups.entries()]
+  const skills = skillCategoryOrder
+    .filter((category) => skillGroups.has(category))
     .map(
-      ([category, items]) =>
-        `\\textbf{${skillLabels[category] ?? escapeLatex(category)}}: ${items.map(escapeLatex).join(", ")}`
+      (category) =>
+        `\\textbf{${skillLabels[category] ?? escapeLatex(category)}}: ${skillGroups.get(category)!.map(escapeLatex).join(", ")}`
     )
     .join("\\\\\n");
 

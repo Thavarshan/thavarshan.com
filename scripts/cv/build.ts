@@ -1,17 +1,22 @@
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import { profile } from "../../data/profile";
 import { renderCvSource } from "./render";
 
 const texLiveImage =
   "ghcr.io/xu-cheng/texlive-small:latest@sha256:f6a08603f17dcc949352829fee6109c7e319429718b5e630a0fa32ee9006f98a";
 
-export async function buildCv() {
-  await renderCvSource();
+/**
+ * Compiles a `.tex` file into a PDF via the same pinned Dockerized `latexmk` used for the public
+ * CV. Both `texPath` and `outDir` must be inside the current workspace (the whole workspace is
+ * mounted into the container at `/work`), and `sourceDateEpoch` should be a stable, reproducible
+ * timestamp — callers pass the source content's own modification time, not "now", so rebuilding
+ * from unchanged input produces a byte-identical PDF.
+ */
+export async function compileLatexToPdf(texPath: string, outDir: string, sourceDateEpoch: number): Promise<string> {
   const workspace = resolve(".");
-  const sourceDateEpoch = Math.floor(new Date(profile.modifiedAt).getTime() / 1000).toString();
-  await mkdir(resolve("cv/output"), { recursive: true });
+  await mkdir(resolve(outDir), { recursive: true });
 
   const result = spawnSync(
     "docker",
@@ -33,17 +38,23 @@ export async function buildCv() {
       "-lualatex",
       "-interaction=nonstopmode",
       "-halt-on-error",
-      "-outdir=cv/output",
-      "cv/generated/Jerome-Resume.tex"
+      `-outdir=${outDir}`,
+      texPath
     ],
     { stdio: "inherit" }
   );
 
   if (result.status !== 0) {
-    throw new Error("LaTeX CV compilation failed");
+    throw new Error(`LaTeX compilation failed for ${texPath}`);
   }
 
-  return resolve("cv/output/Jerome-Resume.pdf");
+  return resolve(outDir, `${basename(texPath, ".tex")}.pdf`);
+}
+
+export async function buildCv() {
+  await renderCvSource();
+  const sourceDateEpoch = Math.floor(new Date(profile.modifiedAt).getTime() / 1000);
+  return compileLatexToPdf("cv/generated/Jerome-Resume.tex", "cv/output", sourceDateEpoch);
 }
 
 async function main() {
