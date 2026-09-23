@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 25
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      APPLICATIONS_REPO_TOKEN: ${{ secrets.APPLICATIONS_REPO_TOKEN }}
+      APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,11 +27,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Generate tailored application packages
-        if: env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_TOKEN != ''
+        if: env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_DEPLOY_KEY != ''
         run: npm run applications:generate
       - name: Secrets not configured
-        if: env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_TOKEN == ''
-        run: echo "OPENAI_API_KEY and/or APPLICATIONS_REPO_TOKEN are not set; skipping."
+        if: env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_DEPLOY_KEY == ''
+        run: echo "OPENAI_API_KEY and/or APPLICATIONS_REPO_DEPLOY_KEY are not set; skipping."
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test -- application- hallucination cover-letter latex-tailoring

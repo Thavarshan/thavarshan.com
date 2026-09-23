@@ -1,13 +1,16 @@
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { chmod, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 
-// Not a secret — only the token (kept out of any persisted git config, see below) is.
+// Not a secret — only the deploy key (write access, never persisted to disk beyond a single
+// short-lived temp file per invocation) is.
 export const applicationsRepoSlug = process.env.APPLICATIONS_REPO_SLUG || "Thavarshan/job-applications";
 export const privateRepoDir = resolve(".applications-private");
 
-function run(command: string, args: string[], cwd?: string) {
-  const result = spawnSync(command, args, { cwd, stdio: "inherit" });
+function run(command: string, args: string[], options: { cwd?: string; env?: NodeJS.ProcessEnv } = {}) {
+  const result = spawnSync(command, args, { cwd: options.cwd, env: options.env, stdio: "inherit" });
   if (result.status !== 0) {
     throw new Error(`${command} ${args[0]} failed with status ${result.status}`);
   }
@@ -21,36 +24,46 @@ function runCapture(command: string, args: string[], cwd?: string) {
   return result.stdout.trim();
 }
 
-function bareUrl() {
-  return `https://github.com/${applicationsRepoSlug}.git`;
-}
-
-function authedUrl(token: string) {
-  return `https://x-access-token:${token}@github.com/${applicationsRepoSlug}.git`;
+function sshUrl() {
+  return `git@github.com:${applicationsRepoSlug}.git`;
 }
 
 /**
- * Clones (or, if already present, fetches+hard-resets) the private artifact repo. The token is
- * only ever embedded in the remote URL for the single clone/fetch invocation itself — GitHub
- * Actions automatically masks the literal secret value anywhere it appears in job logs, which
- * relies on the value appearing verbatim (not transformed), so the plain embedded-URL form is
- * used rather than an encoded auth header. Immediately after, the remote is reset to a
- * credential-free URL so the token isn't left sitting in `.git/config` on disk for the rest of
- * the job.
+ * Writes the deploy key to a short-lived temp file (0600) and returns a GIT_SSH_COMMAND-bearing
+ * env for a single git invocation, plus a cleanup callback. A deploy key — unlike a PAT — can
+ * only perform git operations on the one repo it was added to, and never touches the GitHub API,
+ * which is the whole point of using one here.
  */
-export async function clonePrivateRepo(token: string): Promise<string> {
-  if (existsSync(resolve(privateRepoDir, ".git"))) {
-    run("git", ["-C", privateRepoDir, "remote", "set-url", "origin", authedUrl(token)]);
-    run("git", ["-C", privateRepoDir, "fetch", "origin"]);
-    run("git", ["-C", privateRepoDir, "reset", "--hard", "origin/HEAD"]);
-  } else {
-    run("git", ["clone", authedUrl(token), privateRepoDir]);
+async function withDeployKeyEnv<T>(deployKey: string, run: (env: NodeJS.ProcessEnv) => Promise<T>): Promise<T> {
+  const dir = await mkdtemp(join(tmpdir(), "applications-deploy-key-"));
+  const keyPath = join(dir, "id_ed25519");
+  const knownHostsPath = join(dir, "known_hosts");
+  try {
+    await writeFile(keyPath, deployKey.endsWith("\n") ? deployKey : `${deployKey}\n`);
+    await chmod(keyPath, 0o600);
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      GIT_SSH_COMMAND: `ssh -i ${keyPath} -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=${knownHostsPath}`
+    };
+    return await run(env);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
   }
-  run("git", ["-C", privateRepoDir, "remote", "set-url", "origin", bareUrl()]);
+}
+
+export async function clonePrivateRepo(deployKey: string): Promise<string> {
+  await withDeployKeyEnv(deployKey, async (env) => {
+    if (existsSync(resolve(privateRepoDir, ".git"))) {
+      run("git", ["-C", privateRepoDir, "fetch", "origin"], { env });
+      run("git", ["-C", privateRepoDir, "reset", "--hard", "origin/HEAD"]);
+    } else {
+      run("git", ["clone", sshUrl(), privateRepoDir], { env });
+    }
+  });
   return privateRepoDir;
 }
 
-export async function commitAndPush(dir: string, token: string, message: string): Promise<boolean> {
+export async function commitAndPush(dir: string, deployKey: string, message: string): Promise<boolean> {
   run("git", ["-C", dir, "config", "user.name", "jobs-application-bot"]);
   run("git", ["-C", dir, "config", "user.email", "applications-bot@users.noreply.github.com"]);
   run("git", ["-C", dir, "add", "-A"]);
@@ -59,11 +72,8 @@ export async function commitAndPush(dir: string, token: string, message: string)
   if (!status) return false;
 
   run("git", ["-C", dir, "commit", "-m", message]);
-  run("git", ["-C", dir, "remote", "set-url", "origin", authedUrl(token)]);
-  try {
-    run("git", ["-C", dir, "push", "origin", "HEAD"]);
-  } finally {
-    run("git", ["-C", dir, "remote", "set-url", "origin", bareUrl()]);
-  }
+  await withDeployKeyEnv(deployKey, async (env) => {
+    run("git", ["-C", dir, "push", "origin", "HEAD"], { env });
+  });
   return true;
 }

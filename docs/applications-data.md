@@ -10,7 +10,7 @@ This is Phase 2 of the job-discovery platform described in the wider spec (see `
 
 ## Where the output lives (and why)
 
-This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover letters and CVs reveal job-search targeting — which companies, what was said to them — that shouldn't be permanently public alongside the portfolio site. So generated packages are **never committed here**. They're pushed to a separate **private** repository (`APPLICATIONS_REPO_SLUG`, default `Thavarshan/job-applications`) by `scripts/applications/private-repo.ts`, which this workflow has push access to via a scoped `APPLICATIONS_REPO_TOKEN` secret.
+This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover letters and CVs reveal job-search targeting — which companies, what was said to them — that shouldn't be permanently public alongside the portfolio site. So generated packages are **never committed here**. They're pushed to a separate **private** repository (`APPLICATIONS_REPO_SLUG`, default `Thavarshan/job-applications`) by `scripts/applications/private-repo.ts`, over SSH using a **deploy key** scoped to only that one repo (`APPLICATIONS_REPO_DEPLOY_KEY`). A deploy key was used instead of a personal access token specifically because it's narrower: it can only perform git operations against the repo it was added to and can never call the GitHub API at all, versus a PAT's broader (if still repo-scoped) reach.
 
 `data/jobs.generated.json` itself (company names, scores, eligibility) is already public and treated as acceptable pre-existing exposure — a portfolio site showing active job-search activity isn't new information. What's protected here is specifically the AI-drafted application *content*.
 
@@ -23,12 +23,12 @@ This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover l
 
 A candidate opportunity qualifies when `eligibility === "eligible"`, `status !== "closed"`, and `score >= APPLICATIONS_MIN_SCORE` (default 60). `unknown` eligibility is never sufficient — this mirrors `docs/jobs-data.md`'s existing rule that `unknown` is never permission to act. Already-generated packages are skipped unless the underlying job data materially changed (tracked via a content hash in the private repo's `state.json`), and each run is capped at `APPLICATIONS_MAX_PER_RUN` (default 5) new/regenerated packages regardless of how many candidates qualify.
 
-## Required secrets (set these yourself — don't paste API keys into chat)
+## Required secrets
 
 - `OPENAI_API_KEY` — used only to call the OpenAI API for tailoring/cover-letter drafting.
-- `APPLICATIONS_REPO_TOKEN` — a fine-grained GitHub PAT scoped to **only** the private artifact repo, with Contents read/write. Set via `gh secret set APPLICATIONS_REPO_TOKEN --repo Thavarshan/thavarshan.com` or the repo's Settings → Secrets UI.
+- `APPLICATIONS_REPO_DEPLOY_KEY` — an ed25519 SSH private key. The matching public key is registered as a **write-access deploy key** on `Thavarshan/job-applications` only (`gh repo deploy-key list --repo Thavarshan/job-applications`) — it grants no access to any other repo and no GitHub API access at all. Regenerate by creating a new keypair, adding the public half via `gh repo deploy-key add`, and replacing this secret.
 
-If either secret is missing, `npm run applications:generate` logs a message and exits cleanly (no-op) — the workflow is safe to merge before secrets exist.
+If either secret is missing, `npm run applications:generate` logs a message and exits cleanly (no-op) — the workflow is safe to merge before secrets exist. Prefer setting secret values via `gh secret set` or the GitHub UI directly rather than pasting them into chat with an assistant — the conversation transcript is a persistent record.
 
 ## Per-package contents (in the private repo, under `<opportunityId>/`)
 
