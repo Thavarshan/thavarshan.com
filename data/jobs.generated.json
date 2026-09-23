@@ -1,12 +1,358 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-22T00:00:00.000Z",
+  "generatedAt": "2026-09-23T02:49:46.682Z",
   "candidate": {
     "location": "Sri Lanka",
-    "preferredStack": ["Laravel", "PHP", "React", "Vue", "Inertia", "AWS"],
+    "preferredStack": [
+      "Laravel",
+      "PHP",
+      "React",
+      "Vue",
+      "Inertia",
+      "AWS"
+    ],
     "experienceYears": 11,
-    "workModes": ["remote", "relocation-with-sponsorship"]
+    "workModes": [
+      "remote",
+      "relocation-with-sponsorship"
+    ]
   },
-  "sources": [],
-  "opportunities": []
+  "sources": [
+    {
+      "name": "LaraJobs RSS",
+      "url": "https://larajobs.com/feed",
+      "collectedAt": "2026-09-23T02:49:46.682Z",
+      "recordsFound": 10
+    },
+    {
+      "name": "Laravel News",
+      "url": "https://laravel-news.com/",
+      "collectedAt": "2026-09-23T02:49:46.682Z",
+      "recordsFound": 6
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel",
+      "company": "Remote)",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 58,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "2771a2d6210fb51ceec1",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3938",
+      "title": "Full-Stack Developer (Laravel + Vue/Inertia)",
+      "company": "UK Only",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel",
+        "vue",
+        "inertia"
+      ],
+      "publishedAt": "2026-09-22T09:37:48.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 52,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Frontend stack matches React/Vue/Inertia"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "27615050f0b05ce90783",
+      "source": "laravel-news",
+      "sourceUrl": "https://laravel-news.com/",
+      "canonicalUrl": "https://larajobs.com/job/3924",
+      "title": "Laravel Developer — Backend-Focused",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "All open rolesREMOTEFULL-TIMEStackTALL (Tailwind, Alpine, Laravel, Livewire)Laravel Developer — Backend-FocusedWe're hiring our next engineering unicorn. Not the mythical “knows every framework ever created” kind — a Laravel developer who genuinely understands the ecosystem, knows what happens beyond the controller, and isn't afraid to get their hands dirty when things get complicated. You'll build and expand our gaming, network, marketing and CRM platforms: interconnected systems with real users, real transactions, high-frequency queues and real-time events. In other words: this isn't a CRUD factory. And the stronger the unicorn, the better the package.Annual salaryUp to€120k+ Highly competitive bonus packageSalary by levelMedior€60k–90kSenior€90k–120k🦄Unicorn€120k+, no ceiling€60k€90k€120k+Where you land depends on your level, your experience and the impact you bring. Unicorns don’t have a ceiling.Apply nowLaravel sits at the heart of what we build — the interesting part is everything happening around it: Redis, high-volume queues, workers, event-driven workflows, WebSockets and multiple interconnected applications running on Laravel Cloud, DigitalOcean and AWS.The role is backend-first, but we work heavily with the TALL stack — Tailwind, Alpine, Laravel and Livewire — so range across the stack is a real advantage. You won't be isolated inside a controller and a Blade template: you'll follow the full journey from request to database, queue, Redis, worker, WebSocket, external service and production monitoring. We automate the repetitive — GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry — and AI is already part of how we work here, not a strategy deck gathering dust. We want engineers who use it to move faster and dig deeper, not to replace their thinking.What you'll ownBuild and maintain Laravel features across several interconnected applications — CRM, gaming, network and marketingDesign and maintain APIs used by our own applications and external systemsWork with complex business logic spanning models, services, jobs, events and integrationsBuild real-time functionality on high-frequency queues, Redis, events and WebSocketsInvestigate production issues wherever they hide — the code, Redis, a worker, or five million jobs deciding today is their dayUnderstand the existing architecture before changing it, and think about how your changes behave when traffic increasesWork in two-week sprints through automated checks, AI-assisted review, colleague review and QAWhat you bringStrong professional experience with Laravel and modern PHPExcellent understanding of Eloquent, relational databases and SQLExperience designing and maintaining APIs and complex backend systemsStrong understanding of queues, jobs, events, caching and RedisExperience with asynchronous, event-driven application architectureAbility to investigate unfamiliar code and reason about existing behaviour before changing itGood understanding of application performance and scalabilityClear communication, strong ownership and comfort in an iterative review and QA processTALL stack experience (Livewire, Alpine.js, Tailwind CSS) is a major advantageRemunerationNo fixed bracketsGreat engineers get paid like great engineers.We don't believe in forcing every developer into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, your experience and your technical impact.Bring deep Laravel knowledge, strong architectural thinking, production experience and the ability to solve the problems others avoid — we're prepared to recognise exactly that. This is a seat we trust with important systems, and compensation reflects that level of trust and responsibility.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysIntro conversationA first conversation to get to know each other — your background, the role, and whether there's a real fit on both sides.02Within 1 weekTechnical testA practical exercise built on real Laravel problems — how you think, how you structure your code. No algorithm gymnastics, and paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with. Walk through your test, talk stack and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush.Application · Laravel Developer — Backend-FocusedName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub — your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV — drag & drop or clickPDF or Word · max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
+      "tags": [
+        "laravel",
+        "tailwind",
+        "livewire",
+        "redis",
+        "aws"
+      ],
+      "publishedAt": null,
+      "firstSeenAt": "2026-09-23T02:50:00.295Z",
+      "lastSeenAt": "2026-09-23T02:50:00.295Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 48,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Cloud experience is relevant"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "2a7f2e33f750c79b80aa",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3932",
+      "title": "Intermediate Full-Stack Laravel Developer",
+      "company": "SaaS for K–12 Schools",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "publishedAt": "2026-09-07T19:38:52.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 40,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "7e09612f0ad00ae51f2b",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3936",
+      "title": "Laravel DevOps Unicorn 🦄",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "publishedAt": "2026-09-16T06:35:27.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 40,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "d8fbe4a0245efeb57f05",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3934",
+      "title": "Lead Developer",
+      "company": "Rebuild, Modernize, & Scale (Social Good SaaS, Remote)",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [],
+      "publishedAt": "2026-09-14T22:10:10.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 28,
+      "reasons": [
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "9538bf997aad37bfcfc6",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3933",
+      "title": "Product Lead (Strategy + Full Stack)",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [],
+      "publishedAt": "2026-09-12T11:14:53.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 28,
+      "reasons": [
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "6a2828ae871bf76fea66",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3935",
+      "title": "Senior Software Engineer, Integrations",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [],
+      "publishedAt": "2026-09-15T23:43:26.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 28,
+      "reasons": [
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "71f61c9e8f2f2aa9583d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3930",
+      "title": "Full-Stack Engineer",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [],
+      "publishedAt": "2026-09-05T08:49:39.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 10,
+      "reasons": [],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "050d416764488b05b2a2",
+      "source": "laravel-news",
+      "sourceUrl": "https://laravel-news.com/",
+      "canonicalUrl": "https://larajobs.com/job/3918",
+      "title": "Help us make lease management a piece of cake",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "html body { background: rgb(255, 255, 255); }PlatformSolutionsCompareResourcesPricingCompanyLoginBook DemoCAREERSHelp us make lease management a piece of cakeWe’re looking for people who want to make a meaningful impact by simplifying how businesses manage critical work. If you like working with curious, collaborative teammates and care about building things that actually help, Leasecake could be a great fit.Current openingsOur Kitchen's Currently Full!How to applyTo apply for a current opening or to be considered for a future position, please send the following to tastycareers@leasecake.com. 1Tell us your favorite type of cake2Tell us why Leasecake sounds like the right place for you3Recommend a great podcast and explain in 1 sentence why you like it4Attach a resumeReady to begin?Ask Us About PricingGet a 24-Point Lease AuditBook a demoSchedule NowPLATFORMLease ManagementDeal ManagementPortfolio AnalysisLease AccountingDue DiligenceSOLUTIONSBy company sizeSmallMid-Market Enterprise By teamLease ManagementLease AccountingC-SuiteCOMPAREFinqueryVisual LeaseProperty WorksMRI Pro LeaseTangoLucernexOccupierSpreadsheetsPRICINGCOMPANYAbout UsCareersContactHelp CenterPrivacy NoticeTerms of ServiceCookie PolicySecurity OverviewCookie SettingsCopyright © 2026 Leasecake Inc. All Rights Reserved.(()=>{function u(){function n(t,e,i){let r=document.createElement(\"a\");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener(\"click\",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,\"\",\"_blank\");let r=this.getAttribute(\"rel\")??\"\",c=this.getAttribute(\"target\")??\"\";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener(\"auxclick\",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");e&&n(e,\"\",\"_blank\")}function s(t){if(this.dataset.hydrated){this.removeEventListener(\"keydown\",s);return}if(t.key!==\"Enter\")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");if(!e)return;let i=this.getAttribute(\"rel\")??\"\",r=this.getAttribute(\"target\")??\"\";n(e,i,r)}document.querySelectorAll(\"[data-nested-link]\").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener(\"click\",o),t.addEventListener(\"auxclick\",a),t.addEventListener(\"keydown\",s))})}return u})()() !function(){var w=\"framer_variant\";function u(a,r){let e=r.indexOf(\"#\"),t=e===-1?r:r.substring(0,e),o=e===-1?\"\":r.substring(e),n=t.indexOf(\"?\"),h=n===-1?t:t.substring(0,n),d=n===-1?\"\":t.substring(n),s=new URLSearchParams(d),m=new URLSearchParams(a);for(let[i,l]of m)s.has(i)||i!==w&&s.append(i,l);let c=s.toString();return c===\"\"?t+o:h+\"?\"+c+o}var g='div#main a[href^=\"#\"],div#main a[href^=\"/\"],div#main a[href^=\".\"]',f=\"div#main a[data-framer-preserve-params]\",S=document.currentScript?.hasAttribute(\"data-preserve-internal-params\");if(window.location.search&&!navigator.webdriver&&!/bot|-google|google-|yandex|ia_archiver|crawl|spider/iu.test(navigator.userAgent)){let a=document.querySelectorAll(S?`${g},${f}`:f);for(let r of a){let e=u(window.location.search,r.href);r.setAttribute(\"href\",e)}} }() typeof document (function(a,c,e,f,d,b){a.hj=a.hj||function(){(a.hj.q=a.hj.q||[]).push(arguments)};a._hjSettings={hjid:6622969,hjsv:6};d=c.getElementsByTagName(\"head\")[0];b=c.createElement(\"script\");b.async=1;b.src=e+a._hjSettings.hjid+f+a._hjSettings.hjsv;d.appendChild(b)})(window,document,\"https://static.hotjar.com/c/hotjar-\",\".js?sv\\x3d\"); (function(a,e,f,g,b,h,d,c){a[b]||(a.GlobalLeadinfoNamespace=a.GlobalLeadinfoNamespace||[],a.GlobalLeadinfoNamespace.push(b),a[b]=function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].t=a[b].t||h,a[b].q=a[b].q||[],c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d))})(window,document,\"script\",\"https://cdn.leadinfo.net/ping.js\",\"leadinfo\",\"LI-90DBFDF5B1744\");window.uetq=window.uetq||[];window.uetq.push(\"set\",{pid:{em:\"contoso@example.com\",ph:\"+14250000000\"}});",
+      "tags": [],
+      "publishedAt": null,
+      "firstSeenAt": "2026-09-23T02:49:58.470Z",
+      "lastSeenAt": "2026-09-23T02:49:58.470Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 10,
+      "reasons": [],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "02f7a7425a2ee926ba9c",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3929",
+      "title": "Software Engineer",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [],
+      "publishedAt": "2026-09-04T12:37:22.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 10,
+      "reasons": [],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "401a731baf1c3d038dd0",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3937",
+      "title": "Full Stack Software Engineer (PHP/Laravel)- US Only",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "php",
+        "laravel"
+      ],
+      "publishedAt": "2026-09-21T20:01:47.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 0,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ]
+    }
+  ]
 }
