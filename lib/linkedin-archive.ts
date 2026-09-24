@@ -129,6 +129,23 @@ export function splitLinkedInDescription(description?: string) {
     return { summary: "", highlights: [] as string[] };
   }
 
+  // LinkedIn's own CSV export sometimes doesn't preserve real newlines between bullet points at
+  // all -- each bullet is instead run together on one line, prefixed with an em-dash + tab
+  // (confirmed against a real export: "...fees. —\tBuilt an AI-powered..."). That defeats both
+  // the newline split below AND the sentence-boundary fallback (which requires the character
+  // right after ". " to be a capital letter/digit -- here it's the em-dash bullet marker), so
+  // this dash+tab marker is checked first, before either of those.
+  const bulletMarkerItems = normalized
+    .split(/[—–]\t/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  if (bulletMarkerItems.length > 1) {
+    return {
+      summary: bulletMarkerItems[0],
+      highlights: bulletMarkerItems.slice(1, 5)
+    };
+  }
+
   const lineItems = normalized
     .split(/\n+/)
     .map((line) => line.replace(/^\s*(?:[-*•▪◦]|\d+[.)])\s*/, "").trim())

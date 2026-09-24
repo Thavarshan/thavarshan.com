@@ -109,4 +109,18 @@ describe("LinkedIn archive import", () => {
       highlights: ["Improved delivery."]
     });
   });
+
+  it("splits LinkedIn's own em-dash+tab bullet format even without real newlines between items", () => {
+    // Confirmed against a real LinkedIn export: bullets are prefixed with an em-dash + tab and
+    // run together on one line with no newline between them at all, which previously defeated
+    // both the newline split and the sentence-boundary fallback (the character right after ". "
+    // is the em-dash bullet marker, not a capital letter/digit) -- the whole description ended
+    // up crammed into `summary` as one paragraph with `highlights: []`.
+    const description =
+      "—\tLed architecture modernization, cutting costs significantly. —\tBuilt an AI-powered search engine. —\tReduced checkout latency by 60%.";
+    expect(splitLinkedInDescription(description)).toEqual({
+      summary: "Led architecture modernization, cutting costs significantly.",
+      highlights: ["Built an AI-powered search engine.", "Reduced checkout latency by 60%."]
+    });
+  });
 });

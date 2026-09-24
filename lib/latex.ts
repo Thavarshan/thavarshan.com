@@ -107,7 +107,10 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     .map((role, index) => {
       const selectedHighlights = tailoring?.highlightSelections[role.id];
       const highlights = selectedHighlights ?? (index < 5 ? role.highlights.slice(0, index < 3 ? 4 : 2) : []);
-      const body = highlights.length > 0 ? itemize(highlights) : `\\smallskip\n${escapeLatex(role.summary)}`;
+      // A role with neither highlights nor a summary (LinkedIn's Description field left blank
+      // for that position) must render as a clean heading-only entry, not a heading followed by
+      // an empty \smallskip gap sitting awkwardly next to entries that do have real content.
+      const body = highlights.length > 0 ? itemize(highlights) : role.summary ? `\\smallskip\n${escapeLatex(role.summary)}` : "";
 
       return `\\resumeHeading{${escapeLatex(role.role)}}{${escapeLatex(role.company)}}{${escapeLatex(
         formatPeriod(role.startDate, role.endDate)
