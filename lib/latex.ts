@@ -92,7 +92,7 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
   // how many positions the profile accumulates. This is always based on chronological age, not
   // tailoring's relevance-based reorder below — an old internship shouldn't earn a full page-one
   // heading just because a job description happens to mention a matching keyword.
-  const EARLY_CAREER_ENTRY_LIMIT = 9;
+  const EARLY_CAREER_ENTRY_LIMIT = 4;
   const chronologicalExperience = [...profile.experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
   const featuredPool = chronologicalExperience.slice(0, EARLY_CAREER_ENTRY_LIMIT);
   const condensedExperience = chronologicalExperience.slice(EARLY_CAREER_ENTRY_LIMIT);
@@ -204,7 +204,7 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     .join("\\\\\n");
 
   return String.raw`\documentclass[10pt,a4paper]{article}
-\usepackage[margin=1.35cm]{geometry}
+\usepackage[margin=1.1cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
@@ -215,11 +215,11 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
 \usepackage{microtype}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
+\setlength{\parskip}{1pt}
 \setlist[itemize]{leftmargin=1.25em,itemsep=0pt,topsep=2pt,parsep=0pt}
 \definecolor{accent}{HTML}{7A4B12}
 \newcommand{\cvsection}[1]{
-  \vspace{6pt}{\large\bfseries\color{accent}#1}\par
+  \vspace{4pt}{\large\bfseries\color{accent}#1}\par
   \vspace{1pt}\rule{\linewidth}{0.4pt}\vspace{2pt}
 }
 \newcommand{\resumeHeading}[4]{
