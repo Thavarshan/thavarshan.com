@@ -12,7 +12,7 @@
     "github": "https://github.com/Thavarshan",
     "avatar": "/images/avatar.jpg"
   },
-  "summary": "I\u2019m a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.  Over the past decade, I\u2019ve led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.  I\u2019m particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
+  "summary": "I’m a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.  Over the past decade, I’ve led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.  I’m particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
   "experience": [
     {
       "id": "sino-lanka-group-technical-lead-2026-05",
@@ -41,28 +41,40 @@
       "location": "Greenford, England, United Kingdom",
       "startDate": "2024-12",
       "endDate": "2025-09",
-      "summary": "\u2014\tLed architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by \u00a3130K/month (~\u00a31.56M/yr) and eliminating revenue-based fees. \u2014\tBuilt an AI-powered full-text search engine, augmenting MySQL\u2019s native capabilities with semantic and vector-based search for product discovery and analytics. \u2014\tIntegrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation. \u2014\tReduced checkout latency from 4.2s \u2192 1.5s (60%+ improvement), boosting conversion rates by 12%. \u2014\tShifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards. \u2014\tMentored engineering leads and conducted biweekly architecture reviews, codifying organization-wide engineering best practices.",
-      "highlights": []
+      "summary": "Led architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by £130K/month (~£1.56M/yr) and eliminating revenue-based fees.",
+      "highlights": [
+        "Built an AI-powered full-text search engine, augmenting MySQL’s native capabilities with semantic and vector-based search for product discovery and analytics.",
+        "Integrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation.",
+        "Reduced checkout latency from 4.2s → 1.5s (60%+ improvement), boosting conversion rates by 12%.",
+        "Shifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards."
+      ]
     },
     {
       "id": "netwatch-global-senior-software-engineer-2023-07",
       "role": "Senior Software Engineer",
-      "company": "NetWatch Global\u00ae",
+      "company": "NetWatch Global®",
       "location": "Birmingham, England, United Kingdom",
       "startDate": "2023-07",
       "endDate": "2024-12",
-      "summary": "\u2014\tRebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability. \u2014\tEstablished and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process. \u2014\tWorked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions. \u2014\tDesigned, developed, and deployed three major projects, each meeting critical business objectives and user needs.",
-      "highlights": []
+      "summary": "Rebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability.",
+      "highlights": [
+        "Established and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process.",
+        "Worked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions.",
+        "Designed, developed, and deployed three major projects, each meeting critical business objectives and user needs."
+      ]
     },
     {
       "id": "macroactive-senior-software-engineer-2021-06",
       "role": "Senior Software Engineer",
-      "company": "MacroActive\u2122",
+      "company": "MacroActive™",
       "location": "Auckland, Auckland, New Zealand",
       "startDate": "2021-06",
       "endDate": "2022-11",
-      "summary": "\u2014\tWorked extensively with PHP, TypeScript, VueJS, ReactJS AWS Dynamo DB and MongoDB. \u2014\tDesigned, developed and deployed three major projects and was working on fourth project before resignation. \u2014\tResponsibilities included but was not limited to training new recruits, performing code reviews and planning weekly sprints.",
-      "highlights": []
+      "summary": "Worked extensively with PHP, TypeScript, VueJS, ReactJS AWS Dynamo DB and MongoDB.",
+      "highlights": [
+        "Designed, developed and deployed three major projects and was working on fourth project before resignation.",
+        "Responsibilities included but was not limited to training new recruits, performing code reviews and planning weekly sprints."
+      ]
     },
     {
       "id": "elegant-media-australia-senior-software-engineer-2020-01",
@@ -512,14 +524,14 @@
       "id": "laravel-filterable",
       "name": "Laravel Filterable",
       "role": "Creator and builder",
-      "description": "\ud83d\udd0d Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.",
+      "description": "🔍 Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.",
       "highlights": [],
       "tags": [],
       "startDate": "2024-04"
     },
     {
       "id": "hands-of-mercy-charity-platform",
-      "name": "Hands of Mercy \u2013 Charity Platform",
+      "name": "Hands of Mercy – Charity Platform",
       "role": "Creator and builder",
       "description": "Laravel + Vue system enabling sponsorships and donation management.",
       "highlights": [],
@@ -528,7 +540,7 @@
     },
     {
       "id": "altus-4-ai-enhanced-mysql-search-engine",
-      "name": "Altus 4 \u2013 AI-Enhanced MySQL Search Engine",
+      "name": "Altus 4 – AI-Enhanced MySQL Search Engine",
       "role": "Creator and builder",
       "description": "Search-as-a-Service platform augmenting MySQL full-text with semantic search, query optimization, and analytics.",
       "highlights": [],
@@ -538,7 +550,7 @@
     },
     {
       "id": "cerberus-iam-identity-and-access-management-platform",
-      "name": "Cerberus IAM \u2013 Identity & Access Management Platform",
+      "name": "Cerberus IAM – Identity & Access Management Platform",
       "role": "Creator and builder",
       "description": "PERN-based IAM solution with dynamic organization directories, SSO, and admin SDK.",
       "highlights": [],
