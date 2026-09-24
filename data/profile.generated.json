@@ -21,8 +21,11 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2026-05",
       "endDate": null,
-      "summary": "",
-      "highlights": []
+      "summary": "Leading architecture and engineering strategy for scalable business systems at Sino Lanka Group.",
+      "highlights": [
+        "Guides architecture direction across full-stack systems and cloud delivery.",
+        "Focuses on reliable engineering practices and observability."
+      ]
     },
     {
       "id": "kaya-technical-lead-2025-10",
@@ -31,8 +34,12 @@
       "location": "Colombo",
       "startDate": "2025-10",
       "endDate": "2026-05",
-      "summary": "",
-      "highlights": []
+      "summary": "Led full-stack systems and AI workflow engineering for the KAYA platform and client-facing applications.",
+      "highlights": [
+        "Designed AI workflow engines with LangGraph.",
+        "Led distributed application work across Kubernetes clusters.",
+        "Worked across Node.js, TypeScript, Laravel, and PostgreSQL."
+      ]
     },
     {
       "id": "brompton-bicycle-technical-lead-2024-12",
@@ -83,8 +90,10 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2020-01",
       "endDate": "2020-07",
-      "summary": "",
-      "highlights": []
+      "summary": "Delivered client and platform features as a Senior Software Engineer at Elegant Media Australia.",
+      "highlights": [
+        "Progressed from Software Engineer to Senior Software Engineer in January 2020."
+      ]
     },
     {
       "id": "elegant-media-australia-software-engineer-2019-04",
@@ -93,8 +102,10 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2019-04",
       "endDate": "2020-01",
-      "summary": "",
-      "highlights": []
+      "summary": "Developed client and platform features as a Software Engineer at Elegant Media Australia.",
+      "highlights": [
+        "Contributed to client-facing software before progressing to Senior Software Engineer."
+      ]
     },
     {
       "id": "seven-s-idea-pvt-ltd-software-engineer-2018-01",
@@ -103,8 +114,10 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2018-01",
       "endDate": "2019-03",
-      "summary": "",
-      "highlights": []
+      "summary": "Built application features and client integrations as a Software Engineer at Seven's Idea.",
+      "highlights": [
+        "Worked on both product features and client integration work."
+      ]
     },
     {
       "id": "alta-vision-solar-software-engineer-2017-01",
@@ -113,8 +126,10 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2017-01",
       "endDate": "2018-01",
-      "summary": "",
-      "highlights": []
+      "summary": "Delivered business systems and web applications as a Software Engineer at Alta Vision Solar.",
+      "highlights": [
+        "Progressed from Associate Software Engineer to Software Engineer in January 2017."
+      ]
     },
     {
       "id": "sri-lanka-telecom-telecommunications-engineering-intern-2016-10",
@@ -123,8 +138,10 @@
       "location": "Trincomalee, Eastern Province, Sri Lanka",
       "startDate": "2016-10",
       "endDate": "2016-12",
-      "summary": "",
-      "highlights": []
+      "summary": "Completed a telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "highlights": [
+        "Returned to Sri Lanka Telecom for a second telecommunications engineering internship."
+      ]
     },
     {
       "id": "sri-lanka-telecom-telecommunications-engineering-intern-2015-10",
@@ -133,8 +150,10 @@
       "location": "Trincomalee, Eastern Province, Sri Lanka",
       "startDate": "2015-10",
       "endDate": "2016-01",
-      "summary": "",
-      "highlights": []
+      "summary": "Completed a telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
+      "highlights": [
+        "Gained early-career experience in telecommunications engineering."
+      ]
     },
     {
       "id": "alta-vision-solar-associate-software-engineer-2015-06",
@@ -143,8 +162,10 @@
       "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2015-06",
       "endDate": "2017-01",
-      "summary": "",
-      "highlights": []
+      "summary": "Built business systems and web applications as an Associate Software Engineer at Alta Vision Solar.",
+      "highlights": [
+        "Progressed to Software Engineer at Alta Vision Solar in January 2017."
+      ]
     }
   ],
   "education": [
@@ -515,7 +536,10 @@
       "name": "Euclidius",
       "role": "Creator and builder",
       "description": "A hate speech detection neural network which analyzes sentence sentiment to determine if the content is hateful, offensive, or acceptable.",
-      "highlights": [],
+      "highlights": [
+        "Analyzes sentence sentiment for content moderation.",
+        "Classifies text as hateful, offensive, or acceptable."
+      ],
       "tags": [],
       "startDate": "2022-12",
       "endDate": "2023-02"
@@ -525,7 +549,10 @@
       "name": "Laravel Filterable",
       "role": "Creator and builder",
       "description": "🔍 Enhance Laravel queries with adaptable, customisable filters and intelligent caching to improve both performance and functionality.",
-      "highlights": [],
+      "highlights": [
+        "Provides reusable filters for Laravel queries.",
+        "Uses intelligent caching to improve query performance."
+      ],
       "tags": [],
       "startDate": "2024-04"
     },
@@ -534,7 +561,10 @@
       "name": "Hands of Mercy – Charity Platform",
       "role": "Creator and builder",
       "description": "Laravel + Vue system enabling sponsorships and donation management.",
-      "highlights": [],
+      "highlights": [
+        "Supports sponsorship workflows.",
+        "Handles donation management in a Laravel and Vue application."
+      ],
       "tags": [],
       "startDate": "2025-04"
     },
@@ -543,7 +573,10 @@
       "name": "Altus 4 – AI-Enhanced MySQL Search Engine",
       "role": "Creator and builder",
       "description": "Search-as-a-Service platform augmenting MySQL full-text with semantic search, query optimization, and analytics.",
-      "highlights": [],
+      "highlights": [
+        "Combines MySQL full-text search with semantic search.",
+        "Includes query optimization and search analytics."
+      ],
       "tags": [],
       "startDate": "2025-09",
       "endDate": "2025-10"
@@ -553,7 +586,10 @@
       "name": "Cerberus IAM – Identity & Access Management Platform",
       "role": "Creator and builder",
       "description": "PERN-based IAM solution with dynamic organization directories, SSO, and admin SDK.",
-      "highlights": [],
+      "highlights": [
+        "Supports dynamic organization directories and single sign-on.",
+        "Provides an admin SDK for identity and access management integrations."
+      ],
       "tags": [],
       "startDate": "2025-10"
     },
