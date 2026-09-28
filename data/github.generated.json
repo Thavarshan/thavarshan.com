@@ -5,9 +5,9 @@
   "location": "Colombo, Sri Lanka",
   "bio": "I code...? 🤷‍♂️",
   "profileUrl": "https://github.com/Thavarshan",
-  "followers": 71,
+  "followers": 72,
   "publicRepositories": 48,
-  "syncedAt": "2026-09-22T07:46:31.570Z",
+  "syncedAt": "2026-09-28T03:40:50.782Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -52,10 +52,10 @@
         "laravel"
       ],
       "primaryLanguage": "PHP",
-      "stars": 195,
+      "stars": 193,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/filterable",
-      "updatedAt": "2026-08-20T10:43:24Z",
+      "updatedAt": "2026-09-23T15:26:52Z",
       "readmeExcerpt": [
         "Filterable is a Laravel package for turning HTTP request parameters into rich, composable Eloquent query filters. The base Filter class exposes a stateful pipeline that you can extend, toggle, and compose with traits to add validation, caching, logging, rate limiting, memory management, and more. Everything is opt-in, so you enable only the behaviour you need while keeping type-safe, testable filters.",
         "Laravel 11.x, 12.x, or 13.x components ( illuminate/cache , illuminate/contracts , illuminate/database , illuminate/http , illuminate/support )",
@@ -82,10 +82,10 @@
         "version-manager"
       ],
       "primaryLanguage": "Shell",
-      "stars": 168,
+      "stars": 169,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-09-14T03:01:32Z",
+      "updatedAt": "2026-09-22T17:06:01Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
