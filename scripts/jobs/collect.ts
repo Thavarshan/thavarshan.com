@@ -166,6 +166,14 @@ export async function collectJobs() {
       };
     });
 
+    const previousOpenCount = (existing?.opportunities ?? []).filter((item) => item.status !== "closed").length;
+    const nextOpenCount = opportunities.filter((item) => item.status !== "closed").length;
+    if (previousOpenCount >= 20 && nextOpenCount < Math.ceil(previousOpenCount * 0.25)) {
+      throw new Error(
+        `Refusing to publish suspicious job snapshot: open opportunities collapsed from ${previousOpenCount} to ${nextOpenCount}`
+      );
+    }
+
     const snapshot = opportunitySnapshotSchema.parse({
       schemaVersion: 2,
       generatedAt: now,
