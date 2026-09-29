@@ -1,10 +1,10 @@
 # Laravel job opportunity dataset
 
-`data/jobs.generated.json` is the reviewable handoff between this portfolio repository and the planned private Laravel application dashboard.
+`data/jobs.generated.json` is the versioned public job-intelligence snapshot used by this repository's automation and by any private review/application tooling.
 
-## Scope: this is Phase 1 only
+## Scope
 
-This repository implements **Phase 1 (repository-based data collection)** of a larger, separately-defined job-discovery platform: automated collection, normalization, deduplication, and explainable scoring, published as public, version-controlled JSON. It deliberately does **not** implement candidate-profile management beyond the hardcoded `candidate` block below, tailored CV/cover-letter generation, application packages, submission automation, the full application-tracking lifecycle (applied/interviewing/offer/etc.), or a dashboard — those are later phases of that platform and belong in a separate, private application, not this public repository.
+This repository owns public job discovery, normalization, deduplication, deterministic eligibility/scoring, and the orchestration that prepares private application-assistance packages. Private application state and generated application documents remain outside this public repository. There is no requirement for a separate Laravel application: any future private dashboard must justify itself against the existing Next.js + GitHub Actions architecture.
 
 ## Collection
 
@@ -27,7 +27,7 @@ Records are canonicalized and deduplicated by job URL within a source. Across so
 
 The collector does not sign in, bypass access controls, complete application forms, or submit applications.
 
-After collection, type checking, and the job test suite succeed, the scheduled workflow commits `data/jobs.generated.json` directly to `main` (even when one or more sources failed this run — see Fault isolation below) and uploads any `.jobs-diagnostics/` output (per-failure error detail and, when a Playwright page was involved, a screenshot) as a workflow artifact. The job and profile refresh workflows share a concurrency group so they cannot push generated changes simultaneously.
+After collection, type checking, linting, the job test suite, and a production build succeed, the scheduled workflow commits `data/jobs.generated.json` directly to `main`. If a source fails, the collector writes a diagnostic snapshot locally but exits non-zero, so the workflow does not commit that run. `.jobs-diagnostics/` output is uploaded as a workflow artifact. The job and profile refresh workflows share a concurrency group so they cannot push generated changes simultaneously.
 
 ## Fault isolation
 
@@ -36,8 +36,8 @@ A failure in one source never corrupts or discards data from the others, and nev
 - Each of the 4 sources is collected independently; a thrown error is caught, logged, and recorded to `.jobs-diagnostics/` (gitignored — CI-run scratch, never committed).
 - A failed source's previously-collected opportunities are carried forward completely untouched (no status change) — they are neither refreshed nor lost.
 - The snapshot is still written using whatever succeeded this run, and `sources[]` records each source's `status` (`ok`/`failed`), `error`, and per-run counts (`added`/`updated`/`closed`/`skipped`/`rejected`).
-- If any source failed, the workflow step exits non-zero (after writing) so CI surfaces it clearly as a failed run — but the commit of updated data from the sources that *did* succeed still happens.
-- A structural sanity check (an HTTP-ok response that parses to zero raw items) throws rather than silently proceeding — a normally ~10-item feed returning nothing is a format break, not a legitimate empty result. A legitimate empty-after-relevance-filter result (e.g. WeWorkRemotely's current batch happening to have no Laravel/PHP roles today) is not an error.
+- If any source failed, the collector exits non-zero after producing local diagnostics. GitHub Actions therefore stops before the commit step and preserves the last-known-good repository snapshot.
+- A structural sanity check (an HTTP-ok response that parses to zero raw items) throws rather than silently proceeding — a normally ~10-item feed returning nothing is a format break, not a legitimate empty result. A legitimate empty-after-relevance-filter result (e.g. WeWorkRemotely's current batch happening to have no Laravel/PHP roles today) is not an error. A second snapshot-level guard refuses publication when an established dataset (20+ open roles) suddenly collapses below 25% of its previous open-role count.
 
 ## Job lifecycle
 
