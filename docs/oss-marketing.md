@@ -5,7 +5,7 @@ Turns **verified** repository and package-registry changes into **reviewable** p
 ```bash
 npm run marketing:oss -- --dry-run           # explain the decisions and print any drafts, write nothing
 npm run marketing:oss                        # write drafts to marketing/oss/ and update the ledger
-npm run marketing:oss -- --dry-run --backfill  # preview what the current best milestone/release would look like
+npm run marketing:oss -- --dry-run --backfill  # preview drafts for the current best milestone/stable release, even though they were baselined
 ```
 
 ## How it decides
@@ -28,6 +28,7 @@ If several milestones are crossed at once, only the highest is announced.
 - The first run records a **baseline** (everything already true) and announces nothing, so turning this on cannot flood you with stale drafts.
 - At most **3 bundles per run**, **one per project per run**, and a **14-day cooldown** per project. Events held back by these limits are not dropped; they are re-evaluated next run.
 - Snapshots older than 14 days stop drafting entirely (claims could be out of date).
+- `--backfill` is the manual override for things that predate tracking: it makes the highest baselined milestone per metric, and the current stable x.y.0 release, eligible again (never patch releases or pre-releases, and never anything already drafted). Use it with `--dry-run` to preview, then without to keep the drafts; the normal schedule never backfills.
 
 ## What you get
 

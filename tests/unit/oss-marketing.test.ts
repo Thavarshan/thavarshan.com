@@ -81,6 +81,52 @@ describe("first run: baseline, never a flood of announcements", () => {
   });
 });
 
+describe("--backfill after the baseline exists (manual preview)", () => {
+  const ledger = () => run(snapshots({ stars: 451, downloads: 10938, version: "3.8.0" }), null).nextLedger;
+
+  it("does nothing without --backfill", () => {
+    expect(run(snapshots({ stars: 451, downloads: 10938, version: "3.8.0" }), ledger()).decisions).toEqual([]);
+  });
+
+  it("drafts the current stable x.y.0 release first, holding the project's other events (one bundle per project per run)", () => {
+    const result = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.0" }), ledger(), { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    const generated = result.decisions.filter((decision) => decision.outcome === "generate").map((decision) => decision.eventId);
+    expect(generated).toEqual(["release:alpha:3.8.0"]);
+    const held = result.decisions.filter((decision) => decision.outcome === "defer").map((decision) => decision.eventId);
+    expect(held).toEqual(expect.arrayContaining(["downloads-milestone:alpha:10000", "stars-milestone:alpha:250"]));
+  });
+
+  it("drafts only the highest baselined milestone per metric", () => {
+    const base = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.1" }), null).nextLedger;
+    const result = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.1" }), base, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    const ids = result.decisions.map((decision) => decision.eventId);
+    expect(result.decisions.find((decision) => decision.eventId === "downloads-milestone:alpha:10000")?.outcome).toBe("generate");
+    for (const lower of ["downloads-milestone:alpha:5000", "downloads-milestone:alpha:1000", "stars-milestone:alpha:100", "stars-milestone:alpha:50"]) expect(ids, lower).not.toContain(lower);
+  });
+
+  it("marks backfilled events as generated so they are never drafted twice", () => {
+    const base = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.1" }), null).nextLedger;
+    const first = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.1" }), base, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    expect(first.nextLedger.entries["downloads-milestone:alpha:10000"].outcome).toBe("generated");
+    const second = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.1" }), first.nextLedger, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    expect(second.decisions.filter((decision) => decision.outcome === "generate").map((decision) => decision.eventId)).not.toContain("downloads-milestone:alpha:10000");
+
+    const releaseBase = ledger();
+    const release = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.0" }), releaseBase, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    expect(release.nextLedger.entries["release:alpha:3.8.0"]?.outcome).toBe("generated");
+    const again = run(snapshots({ stars: 451, downloads: 10938, version: "3.8.0" }), release.nextLedger, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+    expect(again.decisions.filter((decision) => decision.outcome === "generate").map((decision) => decision.eventId)).not.toContain("release:alpha:3.8.0");
+  });
+
+  it("skips patch releases and pre-releases even when backfilling", () => {
+    for (const version of ["3.8.1", "4.0.0-beta.1"]) {
+      const base = run(snapshots({ version }), null).nextLedger;
+      const result = run(snapshots({ version }), base, { backfill: true, maxPerRun: 10, cooldownDays: 0 });
+      expect(result.decisions.some((decision) => decision.eventId.startsWith("release:") && decision.outcome === "generate"), version).toBe(false);
+    }
+  });
+});
+
 describe("milestones", () => {
   const baseline = () => run(snapshots({ stars: 451 }), null).nextLedger;
 

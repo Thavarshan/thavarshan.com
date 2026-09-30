@@ -190,13 +190,19 @@ export function detectEvents(snapshots: Snapshots, previous: Ledger | null, opti
 
   for (const metric of metricValues) {
     const thresholds = metricConfig[metric.type].thresholds.filter((threshold) => metric.value >= threshold);
-    const fresh = thresholds.filter((threshold) => !ledger.entries[eventIdFor(metric.type, metric.repository, threshold)]);
+    // --backfill: thresholds that were only recorded as a baseline (never announced) are eligible again.
+    const fresh = thresholds.filter((threshold) => {
+      const entry = ledger.entries[eventIdFor(metric.type, metric.repository, threshold)];
+      return !entry || (options.backfill === true && entry.outcome === "baseline");
+    });
     if (fresh.length === 0) continue;
     const highest = Math.max(...fresh);
 
     for (const threshold of fresh) {
       const id = eventIdFor(metric.type, metric.repository, threshold);
       const isHighest = threshold === highest;
+      const alreadyBaselined = ledger.entries[id]?.outcome === "baseline";
+      if (alreadyBaselined && !isHighest) continue;
       if (baselineRun && !(options.backfill && isHighest)) {
         record(id, metric.type, metric.repository, "baseline");
         decisions.push({ eventId: id, type: metric.type, repository: metric.repository, outcome: "baseline", reason: `Already true when tracking began (${metric.value.toLocaleString("en-US")} ${metricConfig[metric.type].noun}); recorded, not announced.` });
@@ -232,7 +238,14 @@ export function detectEvents(snapshots: Snapshots, previous: Ledger | null, opti
       decisions.push({ eventId: eventIdFor("release", item.repository, version), type: "release", repository: item.repository, outcome: "baseline", reason: `Latest version ${version} recorded as the starting point; not announced.` });
       continue;
     }
-    if (last === version) continue;
+    if (last === version) {
+      const parsedCurrent = parseSemver(version);
+      const entry = ledger.entries[eventIdFor("release", item.repository, version)];
+      if (options.backfill && parsedCurrent && !parsedCurrent.prerelease && parsedCurrent.patch === 0 && (!entry || entry.outcome === "baseline")) {
+        candidates.push(releaseEvent(item, project?.name ?? item.repository, version, snapshots.registry.syncedAt));
+      }
+      continue;
+    }
 
     const id = eventIdFor("release", item.repository, version);
     const now_ = parseSemver(version);
