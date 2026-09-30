@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-30T10:47:11.612Z",
+  "generatedAt": "2026-09-30T11:06:53.709Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,12 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-09-30T10:47:11.612Z",
+      "collectedAt": "2026-09-30T11:06:53.709Z",
       "status": "ok",
       "recordsFound": 10,
       "added": 0,
-      "updated": 10,
+      "updated": 1,
       "closed": 0,
+      "durationMs": 25015,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -36,12 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-09-30T10:47:11.612Z",
+      "collectedAt": "2026-09-30T11:06:53.709Z",
       "status": "ok",
-      "recordsFound": 1,
+      "recordsFound": 2,
       "added": 0,
       "updated": 1,
       "closed": 1,
+      "durationMs": 23732,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -50,12 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-09-30T10:47:11.612Z",
+      "collectedAt": "2026-09-30T11:06:53.709Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
+      "durationMs": 424,
       "held": 0,
       "skipped": 16,
       "rejected": 0,
@@ -64,12 +67,13 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-09-30T10:47:11.612Z",
+      "collectedAt": "2026-09-30T11:06:53.709Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
-      "updated": 3,
+      "updated": 0,
       "closed": 0,
+      "durationMs": 517,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -121,7 +125,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-16T06:35:27.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -277,7 +281,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-05T08:49:39.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -380,7 +384,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-12T11:14:53.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -445,7 +449,7 @@
       "sourceUrl": "https://laravel-news.com/",
       "canonicalUrl": "https://larajobs.com/job/3928",
       "title": "Senior Full Stack Engineer",
-      "company": null,
+      "company": "GradGuard",
       "location": null,
       "workArrangement": "unknown",
       "employmentType": null,
@@ -456,9 +460,9 @@
       "salaryCurrency": null,
       "salaryPeriod": null,
       "descriptionText": "GradGuardSenior Full Stack EngineerSenior Full Stack EngineerAbout the roleGradGuard’s Technology team works hard, moves fast, and has each other’s backs. As we step into an exciting new phase of growth, we’re looking for an experienced Senior Full Stack Engineer that’s ready to take ownership, push boundaries, and build something meaningful. You'll spend most of your time in PHP/Laravel services built on event-sourced, event-driven patterns, working within financial workflows where data consistency and security aren't optional, including integrations with payment processing platforms like Stripe. You'll also build and consume both REST and GraphQL APIs, and bring it all to life on the frontend with Vue 3, Nuxt, and TypeScript. The ideal candidate for this role is a proactive, inventive professional who thrives in a collaborative environment and is committed to building high quality, efficient, scalable, and impactful software solutions. This role requires a strong analytical mindset, excellent teamwork, desire to collaborate, and the ability to effectively communicate complex insights to stakeholders at all levels. This is position is remote and open to candidates in most U.S. states, with the exception of: California, Colorado, Hawaii, Illinois, Maine, Maryland, Massachusetts, New Jersey, New York, Vermont, Washington, and Washington, D.C.What you'll doArchitect, implement, and support PHP/Laravel backend services, prioritizing data consistency, security and performance within event-sourced financial frameworks. Collaborate effectively with cross-functional teams (including product and design) to develop sites from scratch or enhance existing websites and software to meet business requirements.Develop, implement, and support features with quality and performance utilizing PHP, MySQL, JavaScript, HTML, and CSS. Write automated unit, functional, and end-to-end tests to support both feature development and bug fixes. Provide code recommendations and design optimizations to improve the usability, scalability, and performance of the applications, and drive adoption.Assist in sharing, servicing, and mentoring our existing web engineering team. Deeply understand technical details of owned features and their interactions with other systems.QualificationsAt least 5+ years of software engineering industry experience.Advanced experience with PHP MVC frameworks, preferably Laravel.Experience with event-driven architecture, including asynchronous, queue-driven processing (e.g., Laravel Jobs/Queues or equivalent). Experience with event-sourcing architecture and libraries.Experience working with modern front-end technologies, like Vue3, Nuxt, TypeScript and Tailwind.Experience with unit, integration and end-to-end testing.Experience collaborating and working with cross-functional teams (including product and design).Strong knowledge of object-oriented programming design patterns.Advanced experience with relational or non-relational databases, such as MySQL, and MongoDB.Experience in building and consuming both REST and GraphQL APIs. Experience integrating with payment processing APIs, such as Stripe.Nice to Have QualificationsExperience with JavaScript build tools, such as Vite.Ability to create, support, and enhance front-end component libraries.Enjoy making the team better via mentorship and experience.About GradGuardAs the leader in college tuition and renters insurance, GradGuard serves more than 1.7 million students across 1,900+ institutions. Our national technology platform embeds innovative insurance protections into the enrollment processes of over 700 institutional partners, empowering schools to increase college completion rates and reduce the financial impact of preventable losses.GradGuard supports College Life Protected, a social purpose entity that promotes research, professional development, and best practices that strengthen campus communities, families, society and the economic competitiveness of our nation. GradGuard was recognized as one of the Top 50 Financial Technology Companies of 2025 by The Financial Technology Report, a RISE Internship Award winner, and a Phoenix Business Journal Best Places to Work finalist, GradGuard remains committed to innovation, excellence, and supporting students and families.Hear from our students, families, and partners: https://www.youtube.com/@GradGuardApply nowTechnologyRemote (United States)Share on:Apply nowTerms of servicePrivacyCookiesPowered by Rippling{\"props\":{\"pageProps\":{\"_nextI18Next\":{\"initialI18nStore\":{\"en-US\":{\"atsFe\":{\"atsFe\":{\"common\":{\"appName\":\"Recruiting\",\"fullAppName\":\"Rippling Recruiting\",\"loading\":\"Loading\",\"loading1\":\"Loading...\",\"search\":\"Search\",\"custom\":\"Custom\",\"cancel\":\"Cancel\",\"required\":\"Required\",\"optional\":\"Optional\",\"doNotAsk\":\"Don't ask\",\"submit\":\"Submit\",\"confirm\":\"Confirm\",\"save\":\"Save\",\"update\":\"Update\",\"add\":\"Add\",\"activate\":\"Activate\",\"create\":\"Create\",\"edit\":\"Edit\",\"duplicate\":\"Make a copy\",\"delete\":\"Delete\",\"remove\":\"Remove\",\"view\":\"View\",\"preview\":\"Preview\",\"continue\":\"Continue\",\"goBack\":\"Go Back\",\"exit\":\"Exit\",\"viewMore\":\"View more\",\"cannotView\":\"Cannot view\",\"viewLive\":\"View Live\",\"notProvided\":\"Not provided\",\"learnMore\":\"Learn more\",\"previewEmail\":\"Preview email\",\"none\":\"None\",\"type\":\"Type\",\"yes\":\"Yes\",\"no\":\"No\",\"copy\":\"Copy\",\"in\":\"in\",\"error_plural\":\"Error(s)\",\"updatedSuccessfully\":\"Updated successfully.\",\"createdSuccessfully\":\"Created successfully.\",\"addedSuccessfully\":\"Added successfully.\",\"renamedSuccessfully\":\"Renamed successfully.\",\"onlyShowActionRequired\":\"Only show action required\",\"onlyShowMyRequisitions\":\"Only show my requisitions\",\"unCheckOnlyShowActionRequired\":\"Uncheck \\\"Only show my requisitions\\\" to see more.\",\"allCaughtUp\":\"All caught up!\",\"addFilters\":\"Add filters\",\"jobRequisitions\":\"Job requisitions\",\"jobRequisition\":\"Job requisition\",\"recruiter\":\"Recruiter\",\"secondaryRecruiters\":\"Secondary recruiters\",\"coordinator\":\"Coordinator\",\"sourcer\":\"Sourcer\",\"applicationReviewers\":\"Application reviewers\",\"hiringManager\":\"Hiring manager\",\"candidate\":\"Candidate\",\"candidates\":\"Candidates\",\"codePair\":\"Codepair\",\"linkedIn\":\"LinkedIn\",\"website\":\"Website\",\"recruiting\":\"Recruiting\",\"applicant\":\"Applicant\",\"application\":\"Application\",\"applications\":\"Applications\",\"status\":\"Status\",\"progress\":\"Progress\",\"activity\":\"Activity\",\"saveChanges\":\"Save changes\",\"interview\":\"Interview\",\"resumeFileLabel\":\"Résumé\",\"stage\":\"Stage\",\"move\":\"Move\",\"emailCandidate\":\"Email candidate\",\"firstName\":\"First name\",\"middleName\":\"Middle name\",\"lastName\":\"Last name\",\"phoneNumber\":\"Phone number\",\"linkedInLink\":\"LinkedIn Link\",\"websiteLink\":\"Website link\",\"back\":\"Back\",\"subject\":\"Subject\",\"body\":\"Body\",\"attachments\":\"Attachments\",\"email\":\"Email\",\"phone\":\"Phone\",\"showLess\":\"Show less\",\"name\":\"Name\",\"level\":\"Level\",\"levels\":\"Levels\",\"manager\":\"Manager\",\"message\":\"Message\",\"timezone\":\"Timezone\",\"currentCompany\":\"Current company\",\"location\":\"Location\",\"locationPlural\":\"Locations\",\"source\":\"Source\",\"pipelineId\":\"Pipeline ID\",\"requisitionId\":\"Requisition ID\",\"jobReqName\":\"Job requisition name\",\"milestone\":\"Milestone\",\"other\":\"Other\",\"rejection\":\"Rejection\",\"emailSubject\":\"Email subject\",\"emailBody\":\"Email body\",\"yesRemove\":\"Yes, remove\",\"discardContinue\":\"Discard and continue\",\"department\":\"Department\",\"departments\":\"Departments\",\"jobPost\":\"Job post\",\"jobPostPlural\":\"Job posts\",\"createdOn\":\"Created on\",\"extendedOn\":\"Extended on\",\"acceptedOn\":\"Accepted on\",\"notSpecified\":\"Not specified\",\"removedSuccessfully\":\"Removed successfully.\",\"createNew\":\"Create new\",\"duplicate1\":\"Duplicate\",\"lastModified\":\"Last modified\",\"interviewer\":\"Interviewer\",\"default\":\"Default\",\"uncheckMyReqToSeeMore\":\"Uncheck \\\"Only show my requisitions\\\" to see more.\",\"applicationStatus\":\"Application status\",\"selectApplicationStatus\":\"Select application status\",\"appliedOn\":\"Applied on\",\"hiredAt\":\"Hired at\",\"rejectedAt\":\"Rejected at\",\"rejectionReason\":\"Rejection reason\",\"selectRejectionReason\":\"Select rejection reason\",\"selectSource\":\"Select source\",\"referredBy\":\"Referred by\",\"selectReferrer\":\"Select referrer\",\"jobSite\":\"Job site\",\"selectJobSite\":\"Select job site\",\"highPriority\":\"High priority\",\"priority\":\"Priority\",\"selectPriority\":\"Select priority\",\"currentStage\":\"Current stage\",\"lastStage\":\"Last stage\",\"selectCurrentStage\":\"Select current stage\",\"selectJobRequisition\":\"Select job requisition\",\"pronouns\":\"Pronouns\",\"preferredName\":\"Preferred name\",\"noResults\":\"No results\",\"addJobReq\":\"Add job requisition\",\"addRecruiter\":\"Add recruiter\",\"reqId\":\"Req ID\",\"unlink\":\"Unlink\",\"ends\":\"Ends\",\"expired\":\"Expired\",\"offline\":\"Offline\",\"published\":\"Published\",\"done\":\"Done\",\"saveAndFinish\":\"Save and finish\",\"finish\":\"Finish\",\"schedule\":\"Schedule\",\"reschedule\":\"Reschedule\",\"feedback\":\"Feedback\",\"updateAvailability\":\"Update availability\",\"requestAvailability\":\"Request availability\",\"interviewName\":\"Interview name\",\"interviewDuration\":\"Interview duration\",\"cancelInterviewsQ\":\"Cancel interviews?\",\"cancelInterviews\":\"Cancel interviews\",\"cancelInterviewSingular\":\"Cancel interview\",\"open\":\"Open\",\"draft\":\"Draft\",\"addOne\":\"Add one\",\"bulkUpload\":\"Bulk upload\",\"viewJob\":\"View job\",\"activeApplications\":\"Active applications\",\"pastApplications\":\"Past applications\",\"active\":\"Active\",\"rejected\":\"Rejected\",\"hired\":\"Hired\",\"archived\":\"Archived\",\"expand\":\"Expand\",\"collapse\":\"Collapse\",\"expandAll\":\"Expand all\",\"collapseAll\":\"Collapse all\",\"jobReqs\":\"Job reqs\",\"closed\":\"Closed\",\"reqName\":\"Requisition name\",\"applicationDate\":\"Application date\",\"targetReqCloseDate\":\"Target requisition close date\",\"targetEmpStartDate\":\"Target employee start date\",\"addApplicationReviewers\":\"Additional application reviewers\",\"team\":\"Team\",\"teams\":\"Teams\",\"empType\":\"Employment type\",\"empTypes\":\"Employment types\",\"jobFamily\":\"Job family\",\"totalEquity\":\"Total equity\",\"openHeadcount\":\"Open headcount\",\"owner\":\"Owner\",\"headcountPosition\":\"Headcount position\",\"earliestStartDate\":\"Earliest start date\",\"jobFamilies\":\"Job families\",\"rating\":\"Rating\",\"completed\":\"Completed\",\"inProgress\":\"In progress\",\"canHaveReports\":\"Can have reports\",\"position\":\"Position\",\"recruitingDetails\":\"Recruiting details\",\"hiringTeam\":\"Hiring team\",\"hiringTeam1\":\"HIRING TEAM\",\"unscheduled\":\"unscheduled\",\"sendEmail\":\"Send email\",\"selectJobPost\":\"Select job post\",\"candidateMoveSuccess\":\"{{candidateName}} is moved to {{stageName}}\",\"candidateRejectSuccess\":\"{{candidateName}} is rejected.\",\"candidateRejectEmailScheduleSuccess\":\"Rejection email has been scheduled to send at {{scheduleTime}}.\",\"candidateRejectEmailSuccess\":\"Rejection email sent.\",\"emailSentSuccessMsg\":\"Email sent successfully.\",\"confidentialJob\":{\"title\":\"This is a confidential job\",\"tip\":{\"title\":\"Confidential job\",\"description\":{\"line1\":\"If checked, this job requisition and its applications can only be seen by:\",\"line2\":\"The members of the hiring team\",\"line3\":\"Users specifically whitelisted\",\"line4\":\"Company super admins\",\"line5\":\"Rippling Recruiting app admins\"}}},\"testingJob\":{\"title\":\"This is a testing or demo job\",\"tip\":{\"title\":\"Testing or demo job\",\"description\":\"If checked, flags the job requisition and applications to it as for testing purposes, so they can be filtered out of reports and other contexts.\"}},\"confirmOpenJob\":{\"title\":\"Assign a recruiter and hiring manager to open this job requisition.\",\"okLabel\":\"Confirm and open\",\"successMsg\":\"\\\"{{jobReqName}}\\\" is now open.\"},\"scheduleInterviewPlural\":\"Schedule interview(s)\",\"date\":\"Date\",\"time\":\"Time\",\"duration\":\"Duration\",\"feedbackForm\":\"Feedback form\",\"addInterview\":\"Add interview\",\"interviewPlural\":\"Interview(s)\",\"logOut\":\"Log out\",\"copyLink\":\"Copy link\",\"copied\":\"Copied\",\"address\":\"Address\",\"showMore\":\"Show more\",\"reset\":\"Reset\",\"cancelled\":\"Cancelled\",\"editInterview\":\"Edit interview\",\"removeInterview\":\"Remove interview\",\"duplicateInterview\":\"Duplicate interview\",\"useCustomFormMessage\":\"Use custom feedback forms to define custom questions and attribute ratings interviewers should respond to. If you don’t select one, ",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
+      "sourceId": "3928",
+      "descriptionHash": "205da1acc47d3a65cd4d",
+      "applicationUrl": "https://ats.rippling.com/en-US/gradguard/jobs/4a8a87bf-448e-4d05-8428-531c5008b003",
       "countries": [],
       "regions": [],
       "timezones": [],
@@ -474,13 +478,13 @@
         "mysql",
         "tailwind"
       ],
-      "contentFingerprint": "ab08cac3d9e89eecded6",
+      "contentFingerprint": "1d0e70c532e1680cfed6",
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:12:23.156Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
+      "status": "active",
+      "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 82,
@@ -570,7 +574,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-15T23:43:26.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -669,7 +673,105 @@
       ],
       "publishedAt": "2026-09-14T22:10:10.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 78,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel - Remote)",
+      "company": "Hospitable",
+      "location": "Remote",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$134,450.00 - $167,258.30 USD",
+      "salaryMin": 134450,
+      "salaryMax": 167258.3,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional $380,895.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
+      "sourceId": "3931",
+      "descriptionHash": "866a4ed18cd3ecd12014",
+      "applicationUrl": "https://apply.workable.com/hospitable/j/A0F082F91A/",
+      "countries": [
+        "AU",
+        "US"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "backend",
+        "laravel",
+        "mysql",
+        "php",
+        "senior",
+        "kubernetes"
+      ],
+      "contentFingerprint": "db0c5b6ef597384b132a",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -762,7 +864,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-07T19:38:52.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -824,89 +926,6 @@
       ]
     },
     {
-      "id": "9359539798fba035b34d",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3931",
-      "title": "Senior Product Engineer (Laravel - Remote)",
-      "company": "Hospitable",
-      "location": "Remote",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "senior",
-      "salary": "$134,450.00 - $167,258.30 USD",
-      "salaryMin": 134450,
-      "salaryMax": 167258.3,
-      "salaryCurrency": "USD",
-      "salaryPeriod": null,
-      "descriptionText": "Share this job SVGs not supported by this browser.Apply for this job",
-      "sourceId": "3931",
-      "descriptionHash": "1263501002e9fd285ade",
-      "applicationUrl": "https://apply.workable.com/hospitable/j/A0F082F91A/",
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "backend",
-        "laravel",
-        "mysql",
-        "php",
-        "senior"
-      ],
-      "contentFingerprint": "db0c5b6ef597384b132a",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-07T08:03:05.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 70,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 45,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
       "id": "27615050f0b05ce90783",
       "source": "laravel-news",
       "sourceUrl": "https://laravel-news.com/",
@@ -923,9 +942,9 @@
       "salaryCurrency": null,
       "salaryPeriod": null,
       "descriptionText": "All open rolesREMOTEFULL-TIMEStackTALL (Tailwind, Alpine, Laravel, Livewire)Laravel Developer — Backend-FocusedWe're hiring our next engineering unicorn. Not the mythical “knows every framework ever created” kind — a Laravel developer who genuinely understands the ecosystem, knows what happens beyond the controller, and isn't afraid to get their hands dirty when things get complicated. You'll build and expand our gaming, network, marketing and CRM platforms: interconnected systems with real users, real transactions, high-frequency queues and real-time events. In other words: this isn't a CRUD factory. And the stronger the unicorn, the better the package.Annual salaryUp to€120k+ Highly competitive bonus packageSalary by levelMedior€60k–90kSenior€90k–120k🦄Unicorn€120k+, no ceiling€60k€90k€120k+Where you land depends on your level, your experience and the impact you bring. Unicorns don’t have a ceiling.Apply nowLaravel sits at the heart of what we build — the interesting part is everything happening around it: Redis, high-volume queues, workers, event-driven workflows, WebSockets and multiple interconnected applications running on Laravel Cloud, DigitalOcean and AWS.The role is backend-first, but we work heavily with the TALL stack — Tailwind, Alpine, Laravel and Livewire — so range across the stack is a real advantage. You won't be isolated inside a controller and a Blade template: you'll follow the full journey from request to database, queue, Redis, worker, WebSocket, external service and production monitoring. We automate the repetitive — GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry — and AI is already part of how we work here, not a strategy deck gathering dust. We want engineers who use it to move faster and dig deeper, not to replace their thinking.What you'll ownBuild and maintain Laravel features across several interconnected applications — CRM, gaming, network and marketingDesign and maintain APIs used by our own applications and external systemsWork with complex business logic spanning models, services, jobs, events and integrationsBuild real-time functionality on high-frequency queues, Redis, events and WebSocketsInvestigate production issues wherever they hide — the code, Redis, a worker, or five million jobs deciding today is their dayUnderstand the existing architecture before changing it, and think about how your changes behave when traffic increasesWork in two-week sprints through automated checks, AI-assisted review, colleague review and QAWhat you bringStrong professional experience with Laravel and modern PHPExcellent understanding of Eloquent, relational databases and SQLExperience designing and maintaining APIs and complex backend systemsStrong understanding of queues, jobs, events, caching and RedisExperience with asynchronous, event-driven application architectureAbility to investigate unfamiliar code and reason about existing behaviour before changing itGood understanding of application performance and scalabilityClear communication, strong ownership and comfort in an iterative review and QA processTALL stack experience (Livewire, Alpine.js, Tailwind CSS) is a major advantageRemunerationNo fixed bracketsGreat engineers get paid like great engineers.We don't believe in forcing every developer into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, your experience and your technical impact.Bring deep Laravel knowledge, strong architectural thinking, production experience and the ability to solve the problems others avoid — we're prepared to recognise exactly that. This is a seat we trust with important systems, and compensation reflects that level of trust and responsibility.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysIntro conversationA first conversation to get to know each other — your background, the role, and whether there's a real fit on both sides.02Within 1 weekTechnical testA practical exercise built on real Laravel problems — how you think, how you structure your code. No algorithm gymnastics, and paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with. Walk through your test, talk stack and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush.Application · Laravel Developer — Backend-FocusedName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub — your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV — drag & drop or clickPDF or Word · max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
+      "sourceId": "3924",
+      "descriptionHash": "4c937b7409f907ff1d8e",
+      "applicationUrl": "https://craegroup.com/careers/laravel-backend-developer?utm_source=larajobs&utm_medium=internal&utm_campaign=be_hiring&trk=MdWlgx1uHyaNC0hNn1vQYvNO&cid=fe078955-2f0f-404c-9dab-b7e73ef22c49",
       "countries": [],
       "regions": [],
       "timezones": [],
@@ -942,9 +961,9 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T10:34:04.728Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
+      "status": "active",
+      "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 48,
@@ -1070,7 +1089,7 @@
       ],
       "publishedAt": "2026-09-04T20:38:22.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1181,7 +1200,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-08T13:49:13.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1286,7 +1305,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-04T15:56:51.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1438,8 +1457,8 @@
       "publishedAt": null,
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
       "lastSeenAt": "2026-09-30T10:47:11.612Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-09-30T11:06:53.709Z",
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 28,
@@ -1510,7 +1529,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1599,7 +1618,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1796,7 +1815,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-04T12:37:22.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:47:11.612Z",
+      "lastSeenAt": "2026-09-30T11:06:53.709Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
