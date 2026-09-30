@@ -14,7 +14,7 @@ export function plausibleEventClass(goal?: PlausibleGoal) {
   return goal ? `plausible-event-name=${goal.replaceAll(" ", "+")}` : "";
 }
 
-export function withUtm(url: string, source: "linkedin" | "github" | "devto", medium: "social" | "referral" | "newsletter", campaign: string) {
+export function withUtm(url: string, source: "linkedin" | "github" | "devto" | "reddit", medium: "social" | "referral" | "newsletter" | "community", campaign: string) {
   const parsed = new URL(url);
   parsed.searchParams.set("utm_source", source);
   parsed.searchParams.set("utm_medium", medium);
