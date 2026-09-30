@@ -25,7 +25,9 @@
     "cv:verify": "tsx scripts/cv/verify.ts",
     "jobs:collect": "tsx scripts/jobs/collect.ts",
     "applications:generate": "tsx scripts/applications/generate.ts",
-    "applications:review": "tsx scripts/applications/review.ts"
+    "applications:review": "tsx scripts/applications/review.ts",
+    "worker:dev": "wrangler dev --config workers/job-review/wrangler.toml",
+    "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
@@ -55,7 +57,8 @@
     "tsx": "^4.23.1",
     "typescript": "^5.9.0",
     "typescript-eslint": "^8.65.0",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "wrangler": "^4.144.0"
   },
   "overrides": {
     "brace-expansion": "^5.0.9",

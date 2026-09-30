@@ -1,0 +1,2 @@
+# Copy to .dev.vars for local `npm run worker:dev`. Bypass only works on localhost.
+DEV_AUTH_BYPASS=1

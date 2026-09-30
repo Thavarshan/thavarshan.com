@@ -20,3 +20,7 @@ marketing/generated/
 .jobs-diagnostics/
 .applications-build/
 .applications-private/
+
+# Cloudflare Worker local secrets/state
+.dev.vars
+.wrangler/

@@ -17,6 +17,7 @@ The Growth Engine turns verified public/professional evidence into four coordina
 - **GitHub Actions first:** collection, scheduled refreshes, CV generation, repository mutation, marketing bundles, and weekly reports.
 - **Static generation first:** public pages, SEO assets, feeds, and developer utilities that do not require request-time state.
 - **Cloudflare/edge runtime is opt-in:** add it only when a concrete request-time or edge-scheduled requirement cannot reasonably be served by static generation or Actions.
+  The first such use is the private job review Worker (`docs/job-review-worker.md`): private, writable state cannot live in the public static build.
 - **Netlify remains the deployment target** until a migration has a measurable benefit. Do not introduce a second hosting platform only for architectural symmetry.
 - **Docker is the reproducibility boundary** for tooling that requires system dependencies such as LaTeX.
 
