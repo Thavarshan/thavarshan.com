@@ -24,3 +24,4 @@ marketing/generated/
 # Cloudflare Worker local secrets/state
 .dev.vars
 .wrangler/
+.wrangler-e2e/

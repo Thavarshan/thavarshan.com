@@ -36,7 +36,9 @@ function baseHeaders(contentType = "text/html; charset=utf-8"): Record<string, s
     "Cache-Control": "private, no-store",
     "X-Robots-Tag": "noindex, nofollow",
     "X-Content-Type-Options": "nosniff",
-    "Referrer-Policy": "no-referrer",
+    // "no-referrer" would make browsers send `Origin: null` on same-origin form POSTs, breaking the CSRF check.
+    // "same-origin" still leaks nothing to other sites (external links also carry rel=noreferrer).
+    "Referrer-Policy": "same-origin",
     "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
   };
 }
@@ -69,6 +71,22 @@ async function loadReviews(env: Env): Promise<ReviewMap> {
     return raw ? (JSON.parse(raw) as ReviewMap) : {};
   } catch {
     return {};
+  }
+}
+
+/**
+ * The browser-set Origin must match this request's own host. Comparing against the Host header as
+ * well as the URL keeps this correct behind proxies/dev servers that rewrite the request URL.
+ */
+export function isSameOrigin(request: Request, url: URL): boolean {
+  const origin = request.headers.get("Origin");
+  if (!origin || origin === "null") return false;
+  if (origin === url.origin) return true;
+  try {
+    const host = request.headers.get("Host");
+    return host !== null && new URL(origin).host === host;
+  } catch {
+    return false;
   }
 }
 
@@ -117,7 +135,7 @@ export async function handleRequest(request: Request, env: Env, options: { fetch
 
   if (request.method === "POST" && url.pathname === "/review") {
     // Access cookies are SameSite=Lax, but require a same-origin Origin header as defence in depth.
-    if (request.headers.get("Origin") !== url.origin) return text(403, "Cross-origin request rejected");
+    if (!isSameOrigin(request, url)) return text(403, "Cross-origin request rejected");
 
     const form = await request.formData();
     const id = String(form.get("id") ?? "");

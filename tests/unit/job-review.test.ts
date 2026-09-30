@@ -11,7 +11,7 @@ function job(overrides: Partial<Opportunity> & { id: string }): Opportunity {
     seniority: "senior", salary: null, salaryMin: null, salaryMax: null, salaryCurrency: null, descriptionText: "",
     tags: ["laravel"], contentFingerprint: overrides.id, duplicateOfIds: [], publishedAt: "2026-09-28T00:00:00.000Z",
     firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", status: "active", closedAt: null,
-    eligibility: "eligible", sponsorship: "unknown", score: 70, reasons: [], concerns: [], scoreBreakdown: [], ...overrides
+    eligibility: "eligible", sponsorship: "unknown", score: 70, reasons: [], concerns: [], scoreBreakdown: [], confidence: 50, confidenceBreakdown: [], ...overrides
   };
 }
 
@@ -27,6 +27,17 @@ describe("sortOpportunities", () => {
       job({ id: "e", eligibility: "ineligible", score: 100 })
     ];
     expect(sortOpportunities(items).map((i) => i.id)).toEqual(["d", "c", "b", "a", "e"]);
+  });
+});
+
+describe("sort: confidence tie-break", () => {
+  it("breaks equal fit scores by confidence, with unscored snapshots last", () => {
+    const items = [
+      job({ id: "a", score: 70, confidence: null }),
+      job({ id: "b", score: 70, confidence: 40 }),
+      job({ id: "c", score: 70, confidence: 90 })
+    ];
+    expect(sortOpportunities(items).map((i) => i.id)).toEqual(["c", "b", "a"]);
   });
 });
 

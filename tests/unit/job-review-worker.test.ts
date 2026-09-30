@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it } from "vitest";
 import { clearAccessCertCache, verifyAccessJwt } from "@/workers/job-review/access";
-import { handleRequest, type Env, type KVLike } from "@/workers/job-review/index";
+import { handleRequest, isSameOrigin, type Env, type KVLike } from "@/workers/job-review/index";
 import type { OpportunitySnapshot } from "@/lib/job-opportunities";
 
 const TEAM = "team.cloudflareaccess.com";
@@ -66,10 +66,27 @@ const snapshot: OpportunitySnapshot = {
     tags: ["laravel"], contentFingerprint: "f", duplicateOfIds: [], publishedAt: "2026-09-28T00:00:00.000Z",
     firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", status: "active", closedAt: null,
     eligibility: "eligible", sponsorship: "unknown", score: 80, reasons: ["Laravel is explicitly required"], concerns: [],
-    scoreBreakdown: [{ factor: "Baseline", points: 10 }]
+    scoreBreakdown: [{ factor: "Baseline", points: 10 }], confidence: 55, confidenceBreakdown: [{ factor: "Location is stated", points: 20 }]
   }]
 };
 const dataFetcher = (async () => new Response(JSON.stringify(snapshot))) as typeof fetch;
+
+describe("isSameOrigin", () => {
+  const url = new URL("http://localhost:8799/review");
+  const req = (headers: Record<string, string>) => new Request(url, { method: "POST", headers });
+
+  it("accepts a matching Origin, including when only the Host header matches", () => {
+    expect(isSameOrigin(req({ Origin: "http://localhost:8799" }), url)).toBe(true);
+    expect(isSameOrigin(req({ Origin: "http://127.0.0.1:8799", Host: "127.0.0.1:8799" }), url)).toBe(true);
+  });
+
+  it("rejects missing, null, foreign and malformed origins", () => {
+    expect(isSameOrigin(req({}), url)).toBe(false);
+    expect(isSameOrigin(req({ Origin: "null" }), url)).toBe(false);
+    expect(isSameOrigin(req({ Origin: "https://evil.example", Host: "localhost:8799" }), url)).toBe(false);
+    expect(isSameOrigin(req({ Origin: "not a url", Host: "x" }), url)).toBe(false);
+  });
+});
 
 describe("job-review worker", () => {
   const devEnv = (kv: KVLike): Env => ({ JOBS_KV: kv, JOBS_DATA_URL: "https://data.example/jobs.json", DEV_AUTH_BYPASS: "1" });

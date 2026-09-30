@@ -8,7 +8,7 @@ A server-rendered review page for the opportunities in `data/jobs.generated.json
 - `lib/job-review.ts` — pure filter/sort/validation logic, unit-tested and free of Worker APIs.
 - **Data:** fetched live from the public `main` copy of `jobs.generated.json` and validated with `opportunitySnapshotSchema`. A failure renders an error state (HTTP 502); data older than 48h shows a stale banner. No redeploy is needed when the daily refresh commits.
 - **Review state:** one JSON blob (`reviews`) in Workers KV, keyed by opportunity id: `{status: new|reviewed|shortlisted|dismissed, note, updatedAt}`. Nothing is written to git, the Next.js build, or logs.
-- **UI:** no client JavaScript. Filters are a GET form, review actions are POST forms, so it is keyboard accessible and works on any device. Default sort: eligible first, then fit score, then freshness. Filters: eligibility, min score, source, technology, remote scope, sponsorship, compensation, age, review state, closed. Each job shows its `scoreBreakdown`, reasons and concerns, and marks unknown fields explicitly. (The dataset has no confidence signal yet, so it is not part of the sort.)
+- **UI:** no client JavaScript. Filters are a GET form, review actions are POST forms, so it is keyboard accessible and works on any device. Default sort: eligible first, then fit score, then confidence, then freshness. Filters: eligibility, min score, source, technology, remote scope, sponsorship, compensation, age, review state, closed. Each job shows its `scoreBreakdown`, reasons and concerns, and marks unknown fields explicitly. Confidence (0–100, with its own breakdown) measures how well-evidenced the extracted signals are and is shown next to fit; snapshots written before it existed show it as unknown until the next collection.
 
 ## Security model
 
@@ -33,6 +33,11 @@ A server-rendered review page for the opportunities in `data/jobs.generated.json
 - Also secrets (not sensitive, but masked in logs): `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`, `ALLOWED_EMAIL` via `gh secret set`. `--keep-vars` also preserves values set in the dashboard.
 - The wrangler OAuth login used locally is short-lived and cannot be used in CI.
 
+## Testing
+
+- Unit: `tests/unit/job-review*.test.ts` (filter/sort logic, JWT verification against a generated RSA key, handlers with a fake KV, CSRF).
+- End-to-end: `tests/e2e/job-review.spec.ts` runs a real browser against the real Worker (`wrangler dev` with the localhost auth bypass, a fixture snapshot on :4174, and a disposable `.wrangler-e2e` KV). Playwright starts all servers; run with `npx playwright test --project=job-review`.
+
 ## Local development
 
 `cp workers/job-review/.dev.vars.example workers/job-review/.dev.vars && npm run worker:dev` → http://localhost:8787. Local KV is simulated in `.wrangler/` (git-ignored).
@@ -45,4 +50,3 @@ Workers Free (100k requests/day) and KV Free (1k writes/day) are far above singl
 
 - Review state is per-Worker KV, not exported; there is no history beyond `updatedAt`.
 - The single-blob state assumes one reviewer.
-- `confidence` (from the scoring model) is not yet in the dataset.

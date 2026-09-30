@@ -85,12 +85,14 @@ function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, n
 <div class="badges">
 <span class="badge ${eligibilityClass}">${escapeHtml(item.eligibility)}</span>
 <span class="badge"><strong>${item.score}</strong> fit</span>
+${item.confidence === null ? unknownBadge("Confidence") : `<span class="badge${item.confidence < 50 ? " unknown" : ""}"><strong>${item.confidence}</strong> confidence</span>`}
 ${item.sponsorship === "unknown" ? unknownBadge("Sponsorship") : `<span class="badge">sponsorship ${escapeHtml(item.sponsorship)}</span>`}
 ${item.workArrangement === "unknown" ? unknownBadge("Remote scope") : `<span class="badge">${escapeHtml(item.workArrangement)}</span>`}
 ${salary}
 ${status !== "new" ? `<span class="badge good">${escapeHtml(status)}</span>` : ""}
 </div>
 <details><summary>Why this score</summary>${breakdown}
+${item.confidenceBreakdown.length ? `<p class="meta">Confidence: ${item.confidenceBreakdown.map((row) => `${escapeHtml(row.factor)} (${row.points > 0 ? "+" : ""}${row.points})`).join("; ")}</p>` : ""}
 ${item.reasons.length ? `<p class="meta">Positive: ${item.reasons.map(escapeHtml).join("; ")}</p>` : ""}
 ${item.concerns.length ? `<p class="meta">Concerns: ${item.concerns.map(escapeHtml).join("; ")}</p>` : ""}
 <p class="meta">Tags: ${item.tags.length ? item.tags.map(escapeHtml).join(", ") : "none extracted"}</p></details>

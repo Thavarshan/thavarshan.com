@@ -45,7 +45,10 @@ export const opportunitySchema = z.object({
   score: z.number().int().min(0).max(100),
   reasons: z.array(z.string()),
   concerns: z.array(z.string()),
-  scoreBreakdown: z.array(z.object({ factor: z.string(), points: z.number().int() })).default([])
+  scoreBreakdown: z.array(z.object({ factor: z.string(), points: z.number().int() })).default([]),
+  /** 0–100 confidence in the extracted signals (not the fit itself); null for snapshots written before it existed. */
+  confidence: z.number().int().min(0).max(100).nullable().default(null),
+  confidenceBreakdown: z.array(z.object({ factor: z.string(), points: z.number().int() })).default([])
 });
 
 export const opportunitySnapshotSchema = z.object({
@@ -129,6 +132,32 @@ function categorizeWorkArrangement(input: {
   return "unknown";
 }
 
+export const SUBSTANTIVE_DESCRIPTION_LENGTH = 200;
+
+/**
+ * Confidence measures how well-evidenced the extracted signals are, independent of fit: an explicit
+ * eligibility statement, a stated location, a real posting body (not a synthetic feed summary),
+ * a detectable seniority and tech tags each add evidence; contradictory geography subtracts.
+ */
+function assessConfidence(input: {
+  eligibility: Opportunity["eligibility"];
+  location: string | null;
+  descriptionText: string;
+  seniority: Opportunity["seniority"];
+  tags: string[];
+  conflicting: boolean;
+}) {
+  const breakdown: Opportunity["confidenceBreakdown"] = [];
+  if (input.eligibility !== "unknown") breakdown.push({ factor: "Eligibility is explicit in the posting", points: 35 });
+  if (input.location) breakdown.push({ factor: "Location is stated", points: 20 });
+  if (input.descriptionText.length >= SUBSTANTIVE_DESCRIPTION_LENGTH) breakdown.push({ factor: "Posting has a substantive description", points: 20 });
+  if (input.seniority !== "unknown") breakdown.push({ factor: "Seniority is stated", points: 15 });
+  if (input.tags.length > 0) breakdown.push({ factor: "Technology tags are present", points: 10 });
+  if (input.conflicting) breakdown.push({ factor: "Conflicting geography signals", points: -25 });
+  const total = breakdown.reduce((sum, entry) => sum + entry.points, 0);
+  return { confidence: Math.max(0, Math.min(100, total)), confidenceBreakdown: breakdown };
+}
+
 export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptionText" | "location" | "tags">) {
   const text = [input.title, input.location, input.descriptionText, ...input.tags].filter(Boolean).join("\n");
   const reasons: string[] = [];
@@ -186,11 +215,18 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
   const seniority = deriveSeniority(text);
   const workArrangement = categorizeWorkArrangement({ eligibility, sriLankaMentioned, worldwideMatched, sponsorship, concerns });
 
+  const conflicting = worldwideMatched && concerns.some((concern) => concern.startsWith("Restricted"));
+  const { confidence, confidenceBreakdown } = assessConfidence({
+    eligibility, location: input.location, descriptionText: input.descriptionText, seniority, tags: input.tags, conflicting
+  });
+
   return {
     eligibility,
     sponsorship,
     score,
     scoreBreakdown,
+    confidence,
+    confidenceBreakdown,
     reasons: [...new Set(reasons)],
     concerns: [...new Set(concerns)],
     seniority,
