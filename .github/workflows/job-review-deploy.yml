@@ -53,11 +53,11 @@ jobs:
       - name: Deploy Worker
         if: steps.creds.outputs.enabled == 'true'
         env:
-          ACCESS_TEAM_DOMAIN: ${{ vars.ACCESS_TEAM_DOMAIN }}
-          ACCESS_AUD: ${{ vars.ACCESS_AUD }}
-          ALLOWED_EMAIL: ${{ vars.ALLOWED_EMAIL }}
+          ACCESS_TEAM_DOMAIN: ${{ secrets.ACCESS_TEAM_DOMAIN }}
+          ACCESS_AUD: ${{ secrets.ACCESS_AUD }}
+          ALLOWED_EMAIL: ${{ secrets.ALLOWED_EMAIL }}
         run: |
-          # Access settings are non-secret repository variables; --keep-vars preserves any set in the dashboard.
+          # Access settings are stored as repository secrets (masked in logs); --keep-vars preserves any set in the dashboard.
           args=(--config workers/job-review/wrangler.toml --keep-vars)
           [ -n "$ACCESS_TEAM_DOMAIN" ] && args+=(--var "ACCESS_TEAM_DOMAIN:$ACCESS_TEAM_DOMAIN")
           [ -n "$ACCESS_AUD" ] && args+=(--var "ACCESS_AUD:$ACCESS_AUD")

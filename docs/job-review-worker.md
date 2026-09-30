@@ -30,7 +30,7 @@ A server-rendered review page for the opportunities in `data/jobs.generated.json
 `.github/workflows/job-review-deploy.yml` deploys on pushes to `main` that touch the Worker or the shared scoring/review code (and via manual `workflow_dispatch`). It typechecks and runs the Worker tests first, and is a clean no-op until the secrets exist.
 
 - Secrets: `CLOUDFLARE_API_TOKEN` (create at *My Profile → API Tokens → Custom token*, permissions **Account → Workers Scripts: Edit** and **Account → Workers KV Storage: Edit**, scoped to this account only) and `CLOUDFLARE_ACCOUNT_ID`. Set them with `gh secret set`, never by pasting into chat.
-- Variables (non-secret): `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`, `ALLOWED_EMAIL` via `gh variable set`. `--keep-vars` also preserves values set in the dashboard.
+- Also secrets (not sensitive, but masked in logs): `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`, `ALLOWED_EMAIL` via `gh secret set`. `--keep-vars` also preserves values set in the dashboard.
 - The wrangler OAuth login used locally is short-lived and cannot be used in CI.
 
 ## Local development
