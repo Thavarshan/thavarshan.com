@@ -1,4 +1,4 @@
-import type { APIRequestContext } from "@playwright/test";
+import type { PoliteRequest } from "../http";
 import type { Opportunity, SourceCollectionSuccess } from "../../../lib/job-opportunities";
 import { withRetry } from "../concurrency";
 import { buildOpportunity, isLaravelPhpRelevant } from "../opportunity-builder";
@@ -57,7 +57,7 @@ export function parseWeWorkRemotelyFeed(xml: string, now = new Date().toISOStrin
   return { opportunities, skipped, rejected };
 }
 
-export async function collectWeWorkRemotely(request: APIRequestContext, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
+export async function collectWeWorkRemotely(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
   const response = await withRetry(
     () => request.get(weWorkRemotelyUrl, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } }),
     { retries: 2, baseDelayMs: 500 }

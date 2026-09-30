@@ -26,7 +26,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run jobs:collect
+      - name: Collect
+        id: collect
+        # Bounded well inside the job timeout; each source also has its own deadline in the collector.
+        timeout-minutes: 12
+        run: npm run jobs:collect
+      - run: npm run jobs:validate
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test -- job-
@@ -46,6 +51,8 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, and this workflow has no push
+      # trigger, so a generated commit can never re-trigger the collector.
       - name: Commit generated jobs directly to main
         if: steps.changes.outputs.changed == 'true'
         run: |
@@ -58,3 +65,11 @@ jobs:
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No Laravel job opportunity changes detected."
+      # A degraded run still publishes the sources that succeeded (failed sources' data is carried
+      # forward untouched); failing here, after the commit, makes the problem visible without
+      # discarding a day of fresh data from the healthy sources.
+      - name: Fail the run if any source failed
+        if: steps.collect.outputs.degraded == 'true'
+        run: |
+          echo "::error::One or more job sources failed; healthy sources were still published. See the job summary and the jobs-collector-diagnostics artifact."
+          exit 1

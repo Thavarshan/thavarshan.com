@@ -5,15 +5,18 @@ import { mapWithConcurrency, SkipEnrichmentError, withRetry } from "./concurrenc
 const unusableRedirectHosts = new Set(["accounts.google.com", "docs.google.com"]);
 
 /**
- * Anti-bot challenges and interstitials are not job postings. Scraping one must never yield a
+ * Anti-bot challenges, region blocks and interstitials are not job postings. Scraping one must never yield a
  * title or description (they otherwise surface as e.g. a "job" called "Additional Verification Required").
  */
 const botWallPattern =
-  /_cf_chl_opt|cf-chl|Ray ID|Just a moment\.\.\.|Additional Verification Required|Enable JavaScript and cookies to continue|Attention Required|Access denied|Verify you are (?:a )?human|Checking your browser/i;
+  /_cf_chl_opt|cf-chl|Ray ID|Just a moment\.\.\.|Additional Verification Required|Enable JavaScript and cookies to continue|Attention Required|Access denied|Verify you are (?:a )?human|Checking your browser|(?:careers?|jobs?|this (?:site|page|content)|service) (?:is|are) not available in your|not available in your (?:region|country|location)|Region restriction|blocked in your (?:region|country)/i;
 
 export function isUnusableScrape(scraped: { title: string | null; description: string }): boolean {
   return botWallPattern.test(scraped.title ?? "") || botWallPattern.test(scraped.description.slice(0, 2000));
 }
+
+/** Resolves a board link to its final URL, throwing SkipEnrichmentError when robots.txt or the chain forbids it. */
+export type ResolveUrl = (url: string) => Promise<string>;
 
 export interface ScrapedPage {
   title: string | null;
@@ -27,11 +30,16 @@ export interface ScrapedPage {
  * external destinations (company career pages, ATSes, and occasionally an auth-wall) — every
  * other source hosts its own description directly and never needs this.
  */
-export async function scrapeRedirectTarget(page: Page, url: string): Promise<ScrapedPage | null> {
+export async function scrapeRedirectTarget(page: Page, url: string, resolveUrl: ResolveUrl = async (value) => value): Promise<ScrapedPage | null> {
   try {
     return await withRetry(
       async () => {
-        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
+        // Resolve the redirect chain first so robots.txt is honoured for every host before it is requested.
+        const target = await resolveUrl(url);
+        await page.goto(target, { waitUntil: "domcontentloaded", timeout: 45_000 });
+        // Single-page ATS sites render after DOMContentLoaded; give them a bounded moment to settle
+        // so we capture the posting rather than a loading shell ("Apply for this job").
+        await page.waitForLoadState("networkidle", { timeout: 6_000 }).catch(() => undefined);
         if (unusableRedirectHosts.has(new URL(page.url()).hostname)) {
           throw new SkipEnrichmentError(`${url} redirects to an unusable auth-wall host`);
         }
@@ -66,13 +74,13 @@ export async function enrichAndFinalize<D>(
   drafts: D[],
   getUrl: (draft: D) => string,
   finalize: (draft: D, now: string, scrapedDescription: string | null, applicationUrl: string | null) => Opportunity,
-  opts: { concurrency: number },
+  opts: { concurrency: number; resolveUrl?: ResolveUrl },
   now = new Date().toISOString()
 ): Promise<Opportunity[]> {
   const results = await mapWithConcurrency(drafts, opts.concurrency, async (draft) => {
     const page = await context.newPage();
     try {
-      const scraped = await scrapeRedirectTarget(page, getUrl(draft));
+      const scraped = await scrapeRedirectTarget(page, getUrl(draft), opts.resolveUrl);
       return finalize(draft, now, scraped?.description ?? null, scraped?.finalUrl ?? null);
     } finally {
       await page.close();

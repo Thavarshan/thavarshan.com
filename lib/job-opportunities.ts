@@ -91,6 +91,8 @@ export const opportunitySnapshotSchema = z.object({
     added: z.number().int().nonnegative(),
     updated: z.number().int().nonnegative(),
     closed: z.number().int().nonnegative(),
+    /** Wall-clock time spent collecting this source; null in snapshots written before it was recorded. */
+    durationMs: z.number().int().nonnegative().nullable().default(null),
     /** Listings kept active because the source returned nothing unexpectedly (see mergeOpportunities). */
     held: z.number().int().nonnegative().default(0),
     skipped: z.number().int().nonnegative(),
@@ -113,6 +115,25 @@ export function canonicalizeJobUrl(input: string) {
   url.hash = "";
   url.search = "";
   return url.toString().replace(/\/$/, "");
+}
+
+const wordPattern = /[a-z0-9]+/g;
+
+/**
+ * Whether a re-scraped description differs enough to count as a real change. Scraped pages carry
+ * viewer-specific noise (IP-geolocation blobs, deadlines converted to the viewer's time zone,
+ * stripped emoji, cookie banners), so byte equality would flag every run as "updated".
+ * Word-set Jaccard similarity below the threshold means the content genuinely changed.
+ */
+export function descriptionsMateriallyDiffer(previous: string, next: string, threshold = 0.85): boolean {
+  if (previous === next) return false;
+  const a = new Set(previous.toLowerCase().match(wordPattern) ?? []);
+  const b = new Set(next.toLowerCase().match(wordPattern) ?? []);
+  if (a.size === 0 && b.size === 0) return false;
+  let shared = 0;
+  for (const word of a) if (b.has(word)) shared++;
+  const union = a.size + b.size - shared;
+  return shared / union < threshold;
 }
 
 export function computeDescriptionHash(text: string) {
@@ -369,7 +390,7 @@ export function mergeOpportunities(
       }
 
       const changed =
-        (previous.descriptionHash ?? previous.descriptionText) !== (item.descriptionHash ?? item.descriptionText) ||
+        descriptionsMateriallyDiffer(previous.descriptionText, item.descriptionText) ||
         previous.score !== item.score ||
         previous.title !== item.title ||
         previous.company !== item.company ||

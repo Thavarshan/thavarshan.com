@@ -38,13 +38,21 @@ export function normalizeLaravelNewsLinks(links: LaravelNewsRawLink[]): LaravelN
   return [...drafts.values()];
 }
 
+export const laravelNewsJobSelector = 'a[href*="larajobs.com/job/"]';
+
+/**
+ * Runs in the browser via `evaluateAll`, so it must stay self-contained (no imports or closures).
+ * Exported so tests can run the identical function against captured real markup.
+ */
+export function extractLaravelNewsAnchors(anchors: Element[]): LaravelNewsRawLink[] {
+  return anchors.map((anchor) => {
+    const spans = [...anchor.querySelectorAll("span")].map((span) => span.textContent?.trim() ?? "").filter(Boolean);
+    return { href: (anchor as HTMLAnchorElement).href, title: spans[0] ?? null, company: spans[1] ?? null };
+  });
+}
+
 export async function collectLaravelNewsLinks(page: Page): Promise<LaravelNewsDraft[]> {
   await page.goto(laravelNewsUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  const raw = await page.locator('a[href*="larajobs.com/job/"]').evaluateAll((anchors) =>
-    anchors.map((anchor) => {
-      const spans = [...anchor.querySelectorAll("span")].map((span) => span.textContent?.trim() ?? "").filter(Boolean);
-      return { href: (anchor as HTMLAnchorElement).href, title: spans[0] ?? null, company: spans[1] ?? null };
-    })
-  );
+  const raw = await page.locator(laravelNewsJobSelector).evaluateAll(extractLaravelNewsAnchors);
   return normalizeLaravelNewsLinks(raw);
 }
