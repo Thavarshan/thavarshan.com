@@ -5,9 +5,9 @@
   "location": "Colombo, Sri Lanka",
   "bio": "I code...? 🤷‍♂️",
   "profileUrl": "https://github.com/Thavarshan",
-  "followers": 72,
-  "publicRepositories": 48,
-  "syncedAt": "2026-09-28T03:40:50.782Z",
+  "followers": 71,
+  "publicRepositories": 49,
+  "syncedAt": "2026-09-30T19:08:26.178Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -27,11 +27,11 @@
         "php"
       ],
       "primaryLanguage": "PHP",
-      "stars": 451,
+      "stars": 449,
       "forks": 27,
       "homepage": "https://fetch-php.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/fetch-php",
-      "updatedAt": "2026-09-07T07:11:24Z",
+      "updatedAt": "2026-09-29T19:45:55Z",
       "readmeExcerpt": [
         "Fetch PHP is a modern HTTP client library for PHP that brings JavaScript's fetch API experience to PHP. Built on top of Guzzle, Fetch PHP allows you to write HTTP code with a clean, intuitive JavaScript-like syntax while still maintaining PHP's familiar patterns.",
         "With support for both synchronous and asynchronous requests, a fluent chainable API, and powerful retry mechanics, Fetch PHP streamlines HTTP operations in your PHP applications.",
@@ -85,7 +85,7 @@
       "stars": 169,
       "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-09-22T17:06:01Z",
+      "updatedAt": "2026-09-29T17:34:36Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
