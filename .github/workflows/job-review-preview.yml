@@ -1,26 +1,31 @@
-name: Deploy Job Review Worker
+name: Preview Job Review Worker
+
+# Uploads a NON-PRODUCTION version of the Worker for a pull request and prints its preview URL.
+# `wrangler versions upload` never changes what production serves and costs nothing on the Free plan.
+# The preview shares the production KV binding, so it runs READ_ONLY (writes are refused in code) and
+# is protected by the same Cloudflare Access application (which covers preview URLs).
 
 on:
-  push:
-    branches: [main]
+  pull_request:
     paths:
       - "workers/job-review/**"
       - "lib/job-review.ts"
       - "lib/job-opportunities.ts"
       - "lib/job-eligibility-signals.ts"
       - "package-lock.json"
-      - ".github/workflows/job-review-deploy.yml"
-  workflow_dispatch:
+      - ".github/workflows/job-review-preview.yml"
 
 permissions:
   contents: read
 
 concurrency:
-  group: job-review-deploy
-  cancel-in-progress: false
+  group: job-review-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  preview:
+    # Secrets are never exposed to forks, and we never run untrusted fork code with the deploy token.
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -31,7 +36,7 @@ jobs:
         id: creds
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "Cloudflare secrets are not configured; skipping deploy."
+            echo "Cloudflare secrets are not configured; skipping preview."
             echo "enabled=false" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
@@ -45,21 +50,22 @@ jobs:
           cache: npm
       - run: npm ci
         if: steps.creds.outputs.enabled == 'true'
-      - name: Verify before deploying
+      - name: Verify before uploading
         if: steps.creds.outputs.enabled == 'true'
         run: |
           npm run typecheck
-          npx vitest run tests/unit/job-review tests/unit/job-scoring
-      - name: Deploy Worker
+          npx vitest run tests/unit/job-review tests/unit/worker-cost-guard
+      - name: Upload preview version
         if: steps.creds.outputs.enabled == 'true'
         env:
           ACCESS_TEAM_DOMAIN: ${{ secrets.ACCESS_TEAM_DOMAIN }}
           ACCESS_AUD: ${{ secrets.ACCESS_AUD }}
           ALLOWED_EMAIL: ${{ secrets.ALLOWED_EMAIL }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          # Access settings are stored as repository secrets (masked in logs); --keep-vars preserves any set in the dashboard.
-          args=(--config workers/job-review/wrangler.toml --keep-vars --var "WORKER_VERSION:${GITHUB_SHA::7}")
+          args=(--config workers/job-review/wrangler.toml --preview-alias "pr-${PR_NUMBER}" --var READ_ONLY:1 --var "WORKER_VERSION:${GITHUB_SHA::7}-pr${PR_NUMBER}")
           [ -n "$ACCESS_TEAM_DOMAIN" ] && args+=(--var "ACCESS_TEAM_DOMAIN:$ACCESS_TEAM_DOMAIN")
           [ -n "$ACCESS_AUD" ] && args+=(--var "ACCESS_AUD:$ACCESS_AUD")
           [ -n "$ALLOWED_EMAIL" ] && args+=(--var "ALLOWED_EMAIL:$ALLOWED_EMAIL")
-          npx wrangler deploy "${args[@]}"
+          npx wrangler versions upload "${args[@]}" | tee upload.log
+          { echo "### Job review preview (read-only)"; grep -Eo 'https://[^ ]+workers\.dev[^ ]*' upload.log | sort -u | sed 's/^/- /'; } >> "$GITHUB_STEP_SUMMARY"

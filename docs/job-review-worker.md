@@ -38,6 +38,28 @@ A server-rendered review page for the opportunities in `data/jobs.generated.json
 - Unit: `tests/unit/job-review*.test.ts` (filter/sort logic, JWT verification against a generated RSA key, handlers with a fake KV, CSRF).
 - End-to-end: `tests/e2e/job-review.spec.ts` runs a real browser against the real Worker (`wrangler dev` with the localhost auth bypass, a fixture snapshot on :4174, and a disposable `.wrangler-e2e` KV). Playwright starts all servers; run with `npx playwright test --project=job-review`.
 
+## Platform behaviour
+
+See `docs/adr/0001-cloudflare-worker-for-private-job-review.md` for the decision record, route table, limits and free-tier assumptions. In short:
+
+- `GET /healthz` returns `{status, version, environment, kv, time}` (behind Access, like every route).
+- Every response carries `X-Request-Id`; logs are one JSON line per request with no notes, emails, tokens or query strings.
+- No CORS: cross-origin callers are refused. Only `application/x-www-form-urlencoded` bodies up to 8 KiB are accepted for saves.
+- If KV is unavailable the page still renders with a notice; saves refuse instead of overwriting.
+- **Previews:** pull requests touching the Worker get a read-only preview version (`pr-<number>-job-review.<subdomain>.workers.dev`), protected by the same Access application. It cannot modify production review data.
+- **Deploy:** production is deployed by GitHub Actions from `main`; the short git SHA is reported by `/healthz`.
+
+## Local development in a container
+
+The repository's containerised workflow is Docker-based; the Worker can be run the same way (host port 8787):
+
+```bash
+docker run --rm -it -v "$PWD":/app -w /app -p 8787:8787 node:22 \
+  sh -c "npm ci && cp workers/job-review/.dev.vars.example workers/job-review/.dev.vars && npm run worker:dev -- --ip 0.0.0.0"
+```
+
+The localhost auth bypass in `.dev.vars` only applies to requests whose hostname is `localhost`/`127.0.0.1`, so open http://localhost:8787. *This exact command has not been executed in the author's environment (no Docker installed there); the equivalent host command `npm run worker:dev` is what the end-to-end tests exercise.*
+
 ## Local development
 
 `cp workers/job-review/.dev.vars.example workers/job-review/.dev.vars && npm run worker:dev` → http://localhost:8787. Local KV is simulated in `.wrangler/` (git-ignored).

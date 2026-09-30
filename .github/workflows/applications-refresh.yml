@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
+      # The OpenAI API is pay-per-use. It only runs when ENABLE_PAID_AI=true (a repository variable) is
+      # set on purpose; having the key configured is not enough. See docs/cost-policy.md.
+      ENABLE_PAID_AI: ${{ vars.ENABLE_PAID_AI }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
     steps:
@@ -27,11 +30,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Generate tailored application packages
-        if: env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_DEPLOY_KEY != ''
+        if: env.ENABLE_PAID_AI == 'true' && env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_DEPLOY_KEY != ''
         run: npm run applications:generate
       - name: Secrets not configured
-        if: env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_DEPLOY_KEY == ''
-        run: echo "OPENAI_API_KEY and/or APPLICATIONS_REPO_DEPLOY_KEY are not set; skipping."
+        if: env.ENABLE_PAID_AI != 'true' || env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_DEPLOY_KEY == ''
+        run: echo "Paid AI generation is off (ENABLE_PAID_AI != true) or its secrets are not set; skipping, no cost incurred."
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test -- application- hallucination cover-letter latex-tailoring

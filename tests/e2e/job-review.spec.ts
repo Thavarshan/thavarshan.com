@@ -133,3 +133,13 @@ test("responses are private and not indexable; unknown routes and cross-origin p
   const forged = await page.request.post("/review", { form: { id: "00000000000000000001", status: "reviewed" }, headers: { Origin: "https://evil.example" }, maxRedirects: 0 });
   expect(forged.status()).toBe(403);
 });
+
+test("platform: health endpoint, request ids and no CORS", async ({ page }) => {
+  const health = await page.request.get("/healthz");
+  expect(health.status()).toBe(200);
+  expect(await health.json()).toMatchObject({ status: "ok", version: "dev", environment: "production", kv: "ok" });
+  expect(health.headers()["x-request-id"]).toBeTruthy();
+  const preflight = await page.request.fetch("/review", { method: "OPTIONS", headers: { Origin: "https://evil.example", "Access-Control-Request-Method": "POST" } });
+  expect(preflight.status()).toBe(405);
+  expect(Object.keys(preflight.headers()).filter((name) => name.startsWith("access-control-"))).toEqual([]);
+});

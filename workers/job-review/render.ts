@@ -111,7 +111,7 @@ function renderFilters(snapshotItems: Opportunity[], filters: ReviewFilters) {
 </form>`;
 }
 
-function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, now: Date) {
+function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, now: Date, readOnly: boolean) {
   const status = reviewStatusOf(reviews, item.id);
   const entry = reviews[item.id];
   const href = safeExternalUrl(item.canonicalUrl);
@@ -150,7 +150,7 @@ ${renderDetails(item)}
 <input type="hidden" name="id" value="${item.id}"><input type="hidden" name="return" value="${escapeHtml(returnQuery)}">
 <label>Status<select name="status">${reviewStatuses.map((s) => option(s, s, status)).join("")}</select></label>
 <label>Private note<input type="text" name="note" maxlength="500" value="${escapeHtml(entry?.note ?? "")}"></label>
-<button type="submit">Save</button>
+<button type="submit"${readOnly ? " disabled" : ""}>Save</button>
 </form></li>`;
 }
 
@@ -164,6 +164,10 @@ export interface PageModel {
   returnQuery: string;
   now: Date;
   error?: string;
+  /** Non-fatal messages shown above the list (preview mode, degraded review storage). */
+  notices?: string[];
+  /** Preview versions cannot modify shared state, so the save controls are disabled. */
+  readOnly?: boolean;
 }
 
 export function renderPage(model: PageModel) {
@@ -176,12 +180,12 @@ export function renderPage(model: PageModel) {
   const body = model.error
     ? ""
     : model.items.length
-      ? `<ul class="jobs">${model.items.map((item) => renderJob(item, model.reviews, model.returnQuery, model.now)).join("")}</ul>`
+      ? `<ul class="jobs">${model.items.map((item) => renderJob(item, model.reviews, model.returnQuery, model.now, model.readOnly ?? false)).join("")}</ul>`
       : `<p class="empty">No opportunities match these filters.</p>`;
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Job review</title><style>${styles}</style></head><body><main>
 <h1>Job review</h1>
 <p class="meta">${model.error ? "" : `${model.items.length} of ${model.allItems.length} opportunities · data generated ${escapeHtml(model.generatedAt ?? "unknown")}`}</p>
-${banner}${model.error ? "" : renderFilters(model.allItems, model.filters)}${body}
+${(model.notices ?? []).map((notice) => `<div class="banner" role="status">${escapeHtml(notice)}</div>`).join("")}${banner}${model.error ? "" : renderFilters(model.allItems, model.filters)}${body}
 </main></body></html>`;
 }
