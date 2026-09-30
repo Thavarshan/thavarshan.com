@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    plausible?: (eventName: string, options?: { props?: Record<string, string> }) => void;
-  }
-}
+import { track } from "@/lib/telemetry/client";
 
 type InsightEngagementProps = {
   slug: string;
@@ -17,7 +12,7 @@ export function InsightEngagement({ slug }: InsightEngagementProps) {
     let tracked = false;
 
     function onScroll() {
-      if (tracked || typeof window.plausible !== "function") {
+      if (tracked) {
         return;
       }
 
@@ -29,7 +24,7 @@ export function InsightEngagement({ slug }: InsightEngagementProps) {
       const progress = window.scrollY / documentHeight;
       if (progress >= 0.75) {
         tracked = true;
-        window.plausible("Insight 75% Read", { props: { slug } });
+        track("insight_read", { slug: slug.toLowerCase() }, { once: true });
         window.removeEventListener("scroll", onScroll);
       }
     }

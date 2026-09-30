@@ -1,9 +1,9 @@
 "use client";
 
 import { AlertOctagon, AlertTriangle, Info, Lock } from "lucide-react";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/tools/copy-button";
-import { plausibleEventClass } from "@/lib/analytics";
+import { track } from "@/lib/telemetry/client";
 import { checkEnv, exampleEnv, exampleEnvBroken, exampleEnvHealthy, formatReport, type Severity } from "@/lib/tools/env-check";
 
 const areaClass =
@@ -26,6 +26,11 @@ export function EnvTool() {
 
   const outcome = useMemo(() => (deferredEnv.trim() || deferredExample.trim() ? checkEnv(deferredEnv, deferredExample) : null), [deferredEnv, deferredExample]);
   const report = outcome?.ok ? formatReport(outcome.result) : "";
+  // Only the fact that a result was produced is recorded; nothing about the pasted content.
+  const completed = outcome?.ok === true;
+  useEffect(() => {
+    if (completed) track("tool_completed", { tool: "laravel-env-checker" }, { once: true });
+  }, [completed]);
 
   return (
     <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-7" data-testid="env-tool">
@@ -47,8 +52,8 @@ export function EnvTool() {
       <p id="env-help" className="mt-2 text-sm text-[var(--muted)]">Paste both to compare them, or just one to check its syntax. Up to 256,000 characters per file.</p>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <button type="button" className={`${buttonClass} ${plausibleEventClass("Tool Example Load")}`} onClick={() => { setEnv(exampleEnvBroken); setExample(exampleEnv); }}>Load a broken sample</button>
-        <button type="button" className={`${buttonClass} ${plausibleEventClass("Tool Example Load")}`} onClick={() => { setEnv(exampleEnvHealthy); setExample(exampleEnv); }}>Load a healthy sample</button>
+        <button type="button" className={`${buttonClass}`} onClick={() => { setEnv(exampleEnvBroken); setExample(exampleEnv); }}>Load a broken sample</button>
+        <button type="button" className={`${buttonClass}`} onClick={() => { setEnv(exampleEnvHealthy); setExample(exampleEnv); }}>Load a healthy sample</button>
         <button type="button" className={buttonClass} onClick={() => { setEnv(""); setExample(""); }}>Clear both</button>
       </div>
 
@@ -77,10 +82,10 @@ export function EnvTool() {
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">Missing keys to add to .env</h3>
                 <pre className="mt-2 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]" tabIndex={0} aria-label="Missing keys" data-testid="env-missing"><code>{outcome.result.missingBlock}</code></pre>
-                <div className="mt-3"><CopyButton text={outcome.result.missingBlock} label="Copy missing keys" /></div>
+                <div className="mt-3"><CopyButton text={outcome.result.missingBlock} label="Copy missing keys" tool="laravel-env-checker" /></div>
               </div>
             ) : null}
-            <div className="flex flex-wrap items-center gap-3"><CopyButton text={report} label="Copy full report" /></div>
+            <div className="flex flex-wrap items-center gap-3"><CopyButton text={report} label="Copy full report" tool="laravel-env-checker" /></div>
           </div>
         ) : null}
       </div>

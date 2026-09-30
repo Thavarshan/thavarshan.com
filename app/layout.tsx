@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { TelemetryProvider } from "@/components/telemetry-provider";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -102,6 +103,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             strategy="afterInteractive"
           />
         ) : null}
+        <TelemetryProvider />
         {children}
       </body>
     </html>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CopyButton } from "@/components/tools/copy-button";
-import { plausibleEventClass } from "@/lib/analytics";
+import { track } from "@/lib/telemetry/client";
 import { cronPresets, explainCron, isValidTimezone, laravelSnippets, nextRuns, parseCron, toLaravelChain } from "@/lib/tools/cron";
 
 const commonTimezones = ["UTC", "Asia/Colombo", "Asia/Kolkata", "Asia/Singapore", "Asia/Tokyo", "Australia/Sydney", "Europe/London", "Europe/Berlin", "America/New_York", "America/Chicago", "America/Los_Angeles"];
@@ -52,6 +52,12 @@ export function CronTool() {
     };
   }, [parsed, safeCommand, timezone, now]);
 
+  // A valid result shown after the visitor changed the input counts as a completed use (once per page view).
+  const completed = Boolean(output) && expression !== "30 9 * * 1-5";
+  useEffect(() => {
+    if (completed) track("tool_completed", { tool: "laravel-scheduler-cron" }, { once: true });
+  }, [completed]);
+
   const zones = commonTimezones.includes(timezone) ? commonTimezones : [timezone, ...commonTimezones];
   const formatter = (zone: string) => new Intl.DateTimeFormat("en-GB", { timeZone: zone, weekday: "short", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 
@@ -95,7 +101,7 @@ export function CronTool() {
               key={preset.expression}
               type="button"
               onClick={() => setExpression(preset.expression)}
-              className={`min-h-11 rounded-lg border border-[var(--line)] bg-[var(--surface-strong)] px-3 py-2 text-sm text-[var(--ink)] transition hover:border-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${plausibleEventClass("Tool Example Load")}`}
+              className={`min-h-11 rounded-lg border border-[var(--line)] bg-[var(--surface-strong)] px-3 py-2 text-sm text-[var(--ink)] transition hover:border-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]`}
             >
               {preset.label}
             </button>
@@ -129,7 +135,7 @@ export function CronTool() {
                 <button type="button" aria-pressed={version === "legacy"} onClick={() => setVersion("legacy")} className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${version === "legacy" ? "border-[var(--ink)] bg-[var(--ink)] text-white" : "border-[var(--line)] bg-[var(--surface-strong)]"}`}>Laravel 10 and earlier</button>
               </div>
               <pre className="mt-3 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]" tabIndex={0} aria-label="Laravel schedule code" data-testid="cron-code"><code>{output.snippets[version]}</code></pre>
-              <div className="mt-3 flex flex-wrap items-center gap-3"><CopyButton text={output.snippets[version]} label="Copy code" /></div>
+              <div className="mt-3 flex flex-wrap items-center gap-3"><CopyButton text={output.snippets[version]} label="Copy code" tool="laravel-scheduler-cron" /></div>
             </div>
 
             <div>

@@ -11,7 +11,7 @@ import { paidAiEnabled } from "@/lib/paid-ai";
  * that don't exist yet. To allow something new, prove it is free on the Workers Free plan and
  * document it in docs/adr/0001-cloudflare-worker-for-private-job-review.md.
  */
-const config = readFileSync(resolve(process.cwd(), "workers/job-review/wrangler.toml"), "utf8");
+const configPaths = ["workers/job-review/wrangler.toml", "workers/site-metrics/wrangler.toml"];
 
 function parse(toml: string) {
   const topLevelKeys: string[] = [];
@@ -32,9 +32,10 @@ function parse(toml: string) {
   return { topLevelKeys, sections };
 }
 
-const { topLevelKeys, sections } = parse(config);
+describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (configPath) => {
+  const config = readFileSync(resolve(process.cwd(), configPath), "utf8");
+  const { topLevelKeys, sections } = parse(config);
 
-describe("Worker config is free-plan safe (allowlist)", () => {
   it("uses only reviewed top-level settings", () => {
     const allowed = ["name", "main", "compatibility_date", "compatibility_flags"];
     expect(topLevelKeys.filter((key) => !allowed.includes(key))).toEqual([]);
@@ -57,8 +58,9 @@ describe("Worker config is free-plan safe (allowlist)", () => {
     }
   });
 
-  it("enables only the reviewed compatibility flag", () => {
-    expect(config).toMatch(/compatibility_flags\s*=\s*\["nodejs_compat"\]/);
+  it("enables no compatibility flags beyond the reviewed one", () => {
+    const flags = config.match(/compatibility_flags\s*=\s*\[([^\]]*)\]/)?.[1] ?? "";
+    expect(flags.replace(/["\s]/g, "").split(",").filter(Boolean).filter((flag) => flag !== "nodejs_compat")).toEqual([]);
   });
 
   it("keeps the Worker on the default workers.dev hostname (no zone, routes or custom-domain products)", () => {
@@ -68,12 +70,13 @@ describe("Worker config is free-plan safe (allowlist)", () => {
 });
 
 describe("deploy automation cannot switch anything to a paid path", () => {
-  const workflows = ["job-review-deploy.yml", "job-review-preview.yml"].map((name) => readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8")).join("\n");
+  const workflows = ["job-review-deploy.yml", "job-review-preview.yml", "site-metrics-deploy.yml"].map((name) => readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8")).join("\n");
 
   it("only runs wrangler deploy / versions upload against the reviewed config", () => {
     const wranglerCalls = workflows.match(/wrangler\s+[a-z-]+(?:\s+[a-z-]+)?/g) ?? [];
     for (const call of wranglerCalls) expect(call).toMatch(/wrangler (deploy|versions upload)/);
     expect(workflows).toContain("--config workers/job-review/wrangler.toml");
+    expect(workflows).toContain("--config workers/site-metrics/wrangler.toml");
   });
 
   it("never runs untrusted fork code with the deploy token, and previews are read-only", () => {

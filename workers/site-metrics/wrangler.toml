@@ -1,0 +1,12 @@
+name = "site-metrics"
+main = "index.ts"
+compatibility_date = "2026-09-01"
+
+# First-party, cookie-free event collector for thavarshan.com (docs/measurement.md).
+# Stores ONLY daily aggregate counters keyed by event/path/attribution: no IP, user agent or identifier.
+[vars]
+ALLOWED_ORIGINS = "https://thavarshan.com"
+
+[[kv_namespaces]]
+binding = "METRICS_KV"
+id = "aacfdb2a42884929a1e6c86c0783d028"

@@ -18,6 +18,7 @@
     "profile:publish": "tsx scripts/profile/publish.ts",
     "insights:bundle": "tsx scripts/marketing/distribution.ts",
     "marketing:oss": "tsx scripts/marketing/oss-bundles.ts",
+    "growth:metrics": "tsx scripts/growth/metrics-snapshot.ts",
     "registry:sync": "tsx scripts/marketing/registry.ts",
     "seo:indexnow": "tsx scripts/marketing/indexnow.ts",
     "cv:render": "tsx scripts/cv/render.ts",

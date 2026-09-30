@@ -58,7 +58,7 @@ export function ProjectCard({ project, variant = "repository", detailsHref }: Pr
           {variant === "product" ? "Visit Product" : "Repository"}
         </ButtonLink>
         {project.homepage ? (
-          <ButtonLink href={project.homepage} variant="ghost" icon={<ArrowUpRight size={16} />} eventName={variant === "product" ? undefined : "Repository Visit"}>
+          <ButtonLink href={project.homepage} variant="ghost" icon={<ArrowUpRight size={16} />} event={"repository" in project && variant !== "product" ? { name: "demo_click", props: { project: project.repository.toLowerCase() } } : undefined}>
             Docs
           </ButtonLink>
         ) : null}

@@ -15,7 +15,9 @@ export default defineConfig({
       command: "npm run build && npm start -- --hostname 127.0.0.1 --port 4173",
       url: "http://127.0.0.1:4173",
       reuseExistingServer: false,
-      timeout: 120_000
+      timeout: 120_000,
+      // Telemetry is inert off the production host unless enabled; e2e points it at a URL the tests intercept.
+      env: { NEXT_PUBLIC_METRICS_LOCAL: "1", NEXT_PUBLIC_METRICS_URL: "http://127.0.0.1:4175/collect" }
     },
     {
       // Serves the fixture snapshot that the job-review Worker fetches instead of the live GitHub copy.

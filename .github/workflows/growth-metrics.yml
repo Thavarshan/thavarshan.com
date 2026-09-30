@@ -1,0 +1,77 @@
+name: Growth Metrics Snapshot
+
+# Reads the first-party collector's daily aggregate counters from Cloudflare KV and commits a weekly
+# aggregate snapshot to data/growth/. Aggregates only: there is no visitor-level data anywhere.
+# Free: GitHub Actions (public repo) + the Cloudflare Free plan. No-op until the Cloudflare secrets exist.
+
+on:
+  schedule:
+    - cron: "30 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "Optional period start (YYYY-MM-DD); defaults to the last completed ISO week"
+        required: false
+      end:
+        description: "Optional period end (YYYY-MM-DD); use together with start"
+        required: false
+      dry_run:
+        description: "Print the snapshot but write and commit nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: automated-generated-content
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify the generator
+        run: |
+          npm run typecheck
+          npx vitest run tests/unit/telemetry
+      - name: Build the snapshot
+        env:
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          args=()
+          [ -n "$START" ] && args+=(--start "$START")
+          [ -n "$END" ] && args+=(--end "$END")
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          npm run growth:metrics -- "${args[@]}"
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if git status --porcelain -- data/growth | grep -q .; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, so this cannot loop.
+      - name: Commit snapshot to main
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/growth
+          git commit -m "Add weekly growth metrics snapshot"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Nothing to commit
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No snapshot written (dry run, or Cloudflare secrets not configured)."
