@@ -27,7 +27,32 @@ Records are canonicalized and deduplicated by job URL within a source. Across so
 
 The collector does not sign in, bypass access controls, complete application forms, or submit applications.
 
-After collection, type checking, linting, the job test suite, and a production build succeed, the scheduled workflow commits `data/jobs.generated.json` directly to `main`. If a source fails, the collector writes a diagnostic snapshot locally but exits non-zero, so the workflow does not commit that run. `.jobs-diagnostics/` output is uploaded as a workflow artifact. The job and profile refresh workflows share a concurrency group so they cannot push generated changes simultaneously.
+After collection, snapshot validation (`npm run jobs:validate`), type checking, linting, the job test suite and a production build succeed, the scheduled workflow commits `data/jobs.generated.json` directly to `main`. It supports `workflow_dispatch`. The job and profile refresh workflows share a concurrency group so they cannot push generated changes simultaneously, and because pushes made with `GITHUB_TOKEN` do not trigger workflows (and this workflow has no `push` trigger) a generated commit can never re-trigger the collector.
+
+**No-op commits.** A run rewrites the snapshot only when something material changed: a listing added/updated/closed/pruned/held, a source's health changed, or the collector version changed. Per-run bookkeeping (`generatedAt`, timings, `lastSeenAt` refreshes) does not count, so an unchanged day produces no commit. A heartbeat rewrite happens at least every 48 hours so `lastSeenAt` (which the empty-result grace period depends on) never goes stale.
+
+**Observability.** Each run's job summary shows an overall health headline (healthy / degraded / all failed), a per-source table with status, **duration**, records, added/updated/closed/held/skipped/rejected, and whether the snapshot was rewritten and why. Durations are also stored per source in the snapshot (`sources[].durationMs`). Failures write `.jobs-diagnostics/` (error detail plus a screenshot for browser sources) and `health.json`, uploaded as an artifact; error text is reduced to a single clean line and no secrets are involved.
+
+**Regression fixtures.** `tests/fixtures/jobs/sources/` holds real captured samples of each source's format (LaraJobs feed, WeWorkRemotely feed, Remotive API, Laravel News markup). Tests assert they parse, and that a changed format fails loudly (zero items / wrong shape) rather than yielding an empty snapshot. To refresh one after a deliberate format change, re-capture it (keep 2–3 records, at least one irrelevant to Laravel/PHP) and update the assertions.
+
+## Source policy and politeness
+
+Sources are chosen in the order API > RSS > structured HTML, and the collector **enforces** the constraints below in code (`scripts/jobs/policy.ts`, `robots.ts`, `http.ts`); it does not rely on convention.
+
+| Source | Method | robots.txt (checked 2026-09-30) | Constraints honoured |
+| --- | --- | --- | --- |
+| LaraJobs | RSS | `Disallow:` (allow all) | One feed request per run. Each listing's redirect chain is walked hop-by-hop with a robots.txt check on every host *before* it is requested. |
+| Laravel News | structured HTML (home page listing) | disallows `/api/`, `/account/` | One page load per run; title/company taken from the listing, scrape used only for description text. |
+| Remotive | public JSON API | **disallows `/api/*`** — see the exemption below | Attribution (link back + source name, kept via `source` and `canonicalUrl`); no re-submission to third-party job sites; no sign-up collection; ≤ ~4 requests/day (we make 1). |
+| WeWorkRemotely | RSS | allows the category feed | One feed request per run. |
+
+**robots.txt enforcement.** Before any request the collector fetches and caches `robots.txt` for the host (RFC 9309 semantics: agent groups, `Allow`/`Disallow`, `*` and `$`, longest match wins). A missing robots.txt (4xx) means allowed; a robots.txt that cannot be verified (5xx / network error) means **not allowed**. Disallowed URLs are never requested: a disallowed feed fails its source; a disallowed employer page just skips description enrichment (the listing is still recorded from board data).
+
+**Documented exemption (needs owner sign-off).** Remotive's `robots.txt` disallows `/api/*`, yet `https://remotive.com/api/remote-jobs` is Remotive's documented public API, and its own response states that access "is granted so that developers can share our jobs further" under the conditions above. `sourcePolicies.remotive.robotsExemptions` allows exactly that endpoint (nothing else on the host), with the justification in code. Delete that one entry to make the collector obey robots.txt strictly; Remotive would then fail as a source and its data would simply stop refreshing.
+
+**Politeness and bounds.** Every request carries the explicit `User-Agent` `JeromeJobCollector/1.0 (+https://thavarshan.com)`; requests to the same host are spaced ≥ 1 s apart; each request has a 30 s timeout with bounded retries; enrichment concurrency is 4; each source has a 6-minute wall-clock deadline and the collect step 12 minutes (job limit 20). No authentication, CAPTCHA solving or crawling beyond the links a source itself publishes.
+
+**Scrape quality guards.** Scraped pages that are bot walls, challenge pages or region blocks ("Careers are not available in your region") are discarded rather than stored, and a description only counts as *changed* when its word content differs materially (Jaccard similarity < 0.85), because real pages carry viewer-specific noise (IP-geolocation blobs, time-zone-converted deadlines). Single-page ATS sites get a bounded wait for network idle so a loading shell is not captured as the posting.
 
 ## Fault isolation
 
@@ -36,7 +61,8 @@ A failure in one source never corrupts or discards data from the others, and nev
 - Each of the 4 sources is collected independently; a thrown error is caught, logged, and recorded to `.jobs-diagnostics/` (gitignored — CI-run scratch, never committed).
 - A failed source's previously-collected opportunities are carried forward completely untouched (no status change) — they are neither refreshed nor lost.
 - The snapshot is still written using whatever succeeded this run, and `sources[]` records each source's `status` (`ok`/`failed`), `error`, and per-run counts (`added`/`updated`/`closed`/`skipped`/`rejected`).
-- If any source failed, the collector exits non-zero after producing local diagnostics. GitHub Actions therefore stops before the commit step and preserves the last-known-good repository snapshot.
+- **Partial failure still publishes what succeeded.** If some sources fail, the healthy sources' fresh data is written and committed (failed sources' listings are carried forward untouched), and the workflow's final step then fails the run so the problem is visible (red run + job summary + `jobs-collector-diagnostics` artifact). If **every** source fails, or the snapshot-collapse guard trips, nothing is written and the collector exits non-zero, leaving the last-known-good file in place.
+- **Empty-result guard** (see "Source health: empty-result guard") holds recently-seen listings when a source unexpectedly returns nothing.
 - A structural sanity check (an HTTP-ok response that parses to zero raw items) throws rather than silently proceeding — a normally ~10-item feed returning nothing is a format break, not a legitimate empty result. A legitimate empty-after-relevance-filter result (e.g. WeWorkRemotely's current batch happening to have no Laravel/PHP roles today) is not an error. A second snapshot-level guard refuses publication when an established dataset (20+ open roles) suddenly collapses below 25% of its previous open-role count.
 
 ## Job lifecycle

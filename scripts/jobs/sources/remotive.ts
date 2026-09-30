@@ -1,4 +1,4 @@
-import type { APIRequestContext } from "@playwright/test";
+import type { PoliteRequest } from "../http";
 import type { Opportunity, SourceCollectionSuccess } from "../../../lib/job-opportunities";
 import { buildOpportunity, isLaravelPhpRelevant, normalizeJobType } from "../opportunity-builder";
 import { withRetry } from "../concurrency";
@@ -72,7 +72,7 @@ export function parseRemotiveJobs(json: unknown, now = new Date().toISOString())
   return { opportunities, skipped, rejected };
 }
 
-export async function collectRemotiveJobs(request: APIRequestContext, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
+export async function collectRemotiveJobs(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
   const response = await withRetry(() => request.get(remotiveUrl), { retries: 2, baseDelayMs: 500 });
   if (!response.ok()) throw new Error(`Remotive API returned ${response.status()}`);
   const { opportunities, skipped, rejected } = parseRemotiveJobs(await response.json(), now);

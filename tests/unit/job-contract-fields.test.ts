@@ -4,6 +4,7 @@ import {
   COLLECTOR_VERSION,
   EMPTY_SOURCE_GRACE_HOURS,
   computeDescriptionHash,
+  descriptionsMateriallyDiffer,
   deriveSourceId,
   mergeOpportunities,
   opportunitySnapshotSchema
@@ -140,5 +141,26 @@ describe("backward compatibility (additive, no schemaVersion bump)", () => {
       candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] }, sources: [], opportunities: []
     });
     expect(parsed.collectorVersion).toBe(COLLECTOR_VERSION);
+  });
+});
+
+describe("descriptionsMateriallyDiffer (scrape-noise tolerance)", () => {
+  // A realistic posting is hundreds of distinct words; a handful of noise tokens must not register.
+  const posting = Array.from({ length: 300 }, (_, index) => `responsibility${index} platform engineering laravel queues deployments`).join(" ");
+
+  it("ignores viewer-specific noise: geolocation blobs, time-zone conversions, stripped emoji", () => {
+    expect(descriptionsMateriallyDiffer(`${posting} setIPLocation({"Lat":41.14,"Lon":-73.26})`, `${posting} setIPLocation({"Lat":37.37,"Lon":-122.18})`)).toBe(false);
+    expect(descriptionsMateriallyDiffer(`${posting} Deadline 7:00 AM UTC`, `${posting} Deadline 12:30 PM GMT+5:30`)).toBe(false);
+    expect(descriptionsMateriallyDiffer(`🚀 ${posting}`, posting)).toBe(false);
+  });
+
+  it("detects genuinely different content, including a loading shell vs the real posting", () => {
+    expect(descriptionsMateriallyDiffer(posting, "Apply for this job SVGs not supported by this browser.")).toBe(true);
+    expect(descriptionsMateriallyDiffer(posting, "Completely different role in finance for accountants and auditors in Chicago.")).toBe(true);
+  });
+
+  it("treats identical and empty text as unchanged", () => {
+    expect(descriptionsMateriallyDiffer(posting, posting)).toBe(false);
+    expect(descriptionsMateriallyDiffer("", "")).toBe(false);
   });
 });

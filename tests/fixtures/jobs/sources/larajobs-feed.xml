@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:job="https://larajobs.com"
+>
+
+    <channel>
+        <title>LaraJobs</title>
+        <atom:link href="https://larajobs.com" rel="self" type="application/rss+xml" />
+        <link>https://larajobs.com</link>
+        <description>Your Laravel Jobs source.</description>
+        <lastBuildDate>Fri, 25 Sep 2026 20:52:41 +0000</lastBuildDate>
+        <language>en-US</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>https://larajobs.com</generator>
+                    <item>
+                <title>Senior Full Stack Software Engineer (PHP/Laravel) - US Only</title>
+                <link>https://larajobs.com/job/3939</link>
+                <pubDate>Fri, 25 Sep 2026 20:52:41 +0000</pubDate>
+                <dc:creator><![CDATA[Evolution Collect, LLC]]></dc:creator>
+                <category><![CDATA[Job]]></category>
+                <job:location><![CDATA[Remote/USA]]></job:location>
+                <job:job_type><![CDATA[FULL_TIME]]></job:job_type>
+                <job:salary><![CDATA[$160,000.00 - $180,000.00]]></job:salary>
+                <job:company><![CDATA[Evolution Collect, LLC]]></job:company>
+                <job:company_logo>https://larajobs.com/logos/rPAHwqTEag24QU8PTDdyv3Sc1OqMBCOwoL365Jsy.png</job:company_logo>
+                <job:tags><![CDATA[AWS,Laravel,MySQL,PHP,VueJS]]></job:tags>
+                <guid isPermaLink="false">https://larajobs.com/job/3939</guid>
+                <description><![CDATA[
+
+                    ]]></description>
+                <content:encoded><![CDATA[
+
+                    ]]></content:encoded>
+            </item>
+<item>
+                <title>Full Stack Software Engineer (PHP/Laravel)- US Only</title>
+                <link>https://larajobs.com/job/3937</link>
+                <pubDate>Mon, 21 Sep 2026 20:01:47 +0000</pubDate>
+                <dc:creator><![CDATA[Evolution Collect, LLC]]></dc:creator>
+                <category><![CDATA[Job]]></category>
+                <job:location><![CDATA[Remote/USA]]></job:location>
+                <job:job_type><![CDATA[FULL_TIME]]></job:job_type>
+                <job:salary><![CDATA[$115,000.00 - $135,000.00]]></job:salary>
+                <job:company><![CDATA[Evolution Collect, LLC]]></job:company>
+                <job:company_logo>https://larajobs.com/logos/dVbwL0gc4RF5TQtAmnahnEM8eTSqoZllTKpJGN3m.png</job:company_logo>
+                <job:tags><![CDATA[AWS,Laravel,MySQL,PHP,VueJS]]></job:tags>
+                <guid isPermaLink="false">https://larajobs.com/job/3937</guid>
+                <description><![CDATA[
+
+                    ]]></description>
+                <content:encoded><![CDATA[
+
+                    ]]></content:encoded>
+            </item>
+<item>
+                <title>Laravel DevOps Unicorn 🦄</title>
+                <link>https://larajobs.com/job/3936</link>
+                <pubDate>Wed, 16 Sep 2026 06:35:27 +0000</pubDate>
+                <dc:creator><![CDATA[CRAE Group]]></dc:creator>
+                <category><![CDATA[Job]]></category>
+                <job:location><![CDATA[Remote / Cyprus]]></job:location>
+                <job:job_type><![CDATA[FULL_TIME]]></job:job_type>
+                <job:salary><![CDATA[Up to €100k]]></job:salary>
+                <job:company><![CDATA[CRAE Group]]></job:company>
+                <job:company_logo>https://larajobs.com/logos/DtSm9vRFvbkbDGEpPccAXhXo36JMEd2OsyISGu1G.png</job:company_logo>
+                <job:tags><![CDATA[Cloud,DevOps,Laravel]]></job:tags>
+                <guid isPermaLink="false">https://larajobs.com/job/3936</guid>
+                <description><![CDATA[
+
+                    ]]></description>
+                <content:encoded><![CDATA[
+
+                    ]]></content:encoded>
+            </item>
+            </channel>
+</rss>

@@ -1,4 +1,4 @@
-import type { APIRequestContext } from "@playwright/test";
+import type { PoliteRequest } from "../http";
 import type { Opportunity, SourceCollectionSuccess } from "../../../lib/job-opportunities";
 import { buildOpportunity, normalizeJobType, splitTitle } from "../opportunity-builder";
 import { safeDate, xmlItems, xmlValue } from "../xml";
@@ -62,7 +62,7 @@ export function parseLaraJobsFeed(xml: string, now = new Date().toISOString()): 
   return parseLaraJobsFeedItems(xml).map((draft) => finalizeLaraJobsDraft(draft, now));
 }
 
-export async function collectLaraJobsDrafts(request: APIRequestContext): Promise<LaraJobsDraft[]> {
+export async function collectLaraJobsDrafts(request: PoliteRequest): Promise<LaraJobsDraft[]> {
   const response = await request.get(laraJobsFeedUrl, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } });
   if (!response.ok()) throw new Error(`LaraJobs feed returned ${response.status()}`);
   const drafts = parseLaraJobsFeedItems(await response.text());
@@ -70,7 +70,7 @@ export async function collectLaraJobsDrafts(request: APIRequestContext): Promise
   return drafts;
 }
 
-export async function collectLaraJobs(request: APIRequestContext, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
+export async function collectLaraJobs(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
   const drafts = await collectLaraJobsDrafts(request);
   return {
     source: "larajobs",

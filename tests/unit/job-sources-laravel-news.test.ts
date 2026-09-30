@@ -34,6 +34,11 @@ describe("isUnusableScrape", () => {
     expect(isUnusableScrape({ title: "Acme", description: "(function(){window._cf_chl_opt = {cFPWv: 'g'}})" })).toBe(true);
   });
 
+  it("rejects region-block interstitials that would otherwise replace a real description", () => {
+    expect(isUnusableScrape({ title: "Careers", description: "Compliance · Region restriction Careers are not available in your region." })).toBe(true);
+    expect(isUnusableScrape({ title: "Jobs", description: "This content is not available in your country." })).toBe(true);
+  });
+
   it("accepts ordinary job pages, including cookie-notice text", () => {
     expect(isUnusableScrape({ title: "Senior Laravel Developer", description: "Join our team. We build with Laravel and Vue." })).toBe(false);
     expect(isUnusableScrape({ title: "Web Application Developer", description: "Our websites may use cookies to personalize your experience. Responsibilities include..." })).toBe(false);
