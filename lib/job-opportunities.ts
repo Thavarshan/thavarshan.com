@@ -9,6 +9,14 @@ import {
   worldwideEligibilityPattern
 } from "./job-eligibility-signals";
 
+/**
+ * Bump when collection or derivation logic changes in a way that can alter stored values
+ * (scoring, extraction, filters), so a value in the snapshot can be traced to the code that made it.
+ */
+export const COLLECTOR_VERSION = "1.1.0";
+
+const salaryPeriodSchema = z.enum(["hour", "day", "week", "month", "year"]);
+
 export const opportunitySchema = z.object({
   id: z.string().min(1),
   source: z.enum(["larajobs", "laravel-news", "remotive", "weworkremotely"]),
@@ -31,7 +39,20 @@ export const opportunitySchema = z.object({
   salaryMin: z.number().nonnegative().nullable(),
   salaryMax: z.number().nonnegative().nullable(),
   salaryCurrency: z.string().nullable(),
+  /** Only set when the posting states one; a bare "$100k" is never assumed annual. */
+  salaryPeriod: salaryPeriodSchema.nullable().default(null),
   descriptionText: z.string(),
+  /** The source's own identifier (job number / slug / API id), when derivable. */
+  sourceId: z.string().nullable().default(null),
+  /** Stable hash of the normalized description, for change detection independent of company + title. */
+  descriptionHash: z.string().nullable().default(null),
+  /** Where to apply if it differs from the board listing (the employer page a board redirects to). */
+  applicationUrl: z.string().url().nullable().default(null),
+  /** Places the posting names (ISO 3166-1 alpha-2 / broad regions / time zones). Named, not necessarily eligible. */
+  countries: z.array(z.string()).default([]),
+  regions: z.array(z.string()).default([]),
+  timezones: z.array(z.string()).default([]),
+  relocation: z.enum(["offered", "unavailable", "unknown"]).default("unknown"),
   tags: z.array(z.string()),
   contentFingerprint: z.string(),
   duplicateOfIds: z.array(z.string()),
@@ -54,6 +75,7 @@ export const opportunitySchema = z.object({
 export const opportunitySnapshotSchema = z.object({
   schemaVersion: z.literal(2),
   generatedAt: z.string().datetime(),
+  collectorVersion: z.string().nullable().default(null),
   candidate: z.object({
     location: z.literal("Sri Lanka"),
     preferredStack: z.array(z.string()),
@@ -69,6 +91,8 @@ export const opportunitySnapshotSchema = z.object({
     added: z.number().int().nonnegative(),
     updated: z.number().int().nonnegative(),
     closed: z.number().int().nonnegative(),
+    /** Listings kept active because the source returned nothing unexpectedly (see mergeOpportunities). */
+    held: z.number().int().nonnegative().default(0),
     skipped: z.number().int().nonnegative(),
     rejected: z.number().int().nonnegative(),
     error: z.string().nullable()
@@ -78,7 +102,7 @@ export const opportunitySnapshotSchema = z.object({
 
 export type Opportunity = z.infer<typeof opportunitySchema>;
 export type OpportunitySnapshot = z.infer<typeof opportunitySnapshotSchema>;
-export type SourceStats = { added: number; updated: number; unchanged: number; closed: number; pruned: number };
+export type SourceStats = { added: number; updated: number; unchanged: number; closed: number; pruned: number; held: number };
 
 export type SourceCollectionSuccess = { source: Opportunity["source"]; opportunities: Opportunity[]; skipped: number; rejected: number };
 export type SourceCollectionFailure = { source: Opportunity["source"]; failed: true; error: string };
@@ -89,6 +113,24 @@ export function canonicalizeJobUrl(input: string) {
   url.hash = "";
   url.search = "";
   return url.toString().replace(/\/$/, "");
+}
+
+export function computeDescriptionHash(text: string) {
+  return createHash("sha256").update(text.toLowerCase().replace(/\s+/g, " ").trim()).digest("hex").slice(0, 20);
+}
+
+/** The source's own identifier, taken from the canonical URL (LaraJobs job number, WeWorkRemotely slug, Remotive job id). */
+export function deriveSourceId(source: Opportunity["source"], canonicalUrl: string): string | null {
+  try {
+    const segments = new URL(canonicalUrl).pathname.split("/").filter(Boolean);
+    const last = segments.at(-1) ?? null;
+    if (!last) return null;
+    if (source === "larajobs" || source === "laravel-news") return /^\d+$/.test(last) ? last : null;
+    if (source === "remotive") return last.match(/(\d+)$/)?.[1] ?? last;
+    return last;
+  } catch {
+    return null;
+  }
 }
 
 export function opportunityId(url: string) {
@@ -283,6 +325,9 @@ function applyDuplicateFingerprints(opportunities: Opportunity[]) {
   }
 }
 
+export const EMPTY_SOURCE_GUARD_MIN_ACTIVE = 3;
+export const EMPTY_SOURCE_GRACE_HOURS = 72;
+
 export function mergeOpportunities(
   existing: Opportunity[],
   results: SourceCollectionOutcome[],
@@ -302,7 +347,7 @@ export function mergeOpportunities(
 
   for (const result of results) {
     attemptedSources.add(result.source);
-    const stat: SourceStats = { added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0 };
+    const stat: SourceStats = { added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0, held: 0 };
     stats[result.source] = stat;
     const existingForSource = bySource.get(result.source) ?? [];
     const existingById = new Map(existingForSource.map((item) => [item.id, item]));
@@ -313,6 +358,7 @@ export function mergeOpportunities(
     }
 
     const incomingIds = new Set(result.opportunities.map((item) => item.id));
+    const guardEmptyResult = result.opportunities.length === 0 && existingForSource.filter((item) => item.status !== "closed").length >= EMPTY_SOURCE_GUARD_MIN_ACTIVE;
 
     for (const item of result.opportunities) {
       const previous = existingById.get(item.id);
@@ -323,7 +369,7 @@ export function mergeOpportunities(
       }
 
       const changed =
-        previous.descriptionText !== item.descriptionText ||
+        (previous.descriptionHash ?? previous.descriptionText) !== (item.descriptionHash ?? item.descriptionText) ||
         previous.score !== item.score ||
         previous.title !== item.title ||
         previous.company !== item.company ||
@@ -345,6 +391,16 @@ export function mergeOpportunities(
           continue;
         }
         merged.set(item.id, { ...item });
+        continue;
+      }
+
+      // A source that "succeeds" with nothing after previously listing many roles is more likely a
+      // broken filter/parser than a real mass-expiry: hold recently-seen listings for a grace
+      // period instead of closing them on a single empty run. A genuinely empty source still
+      // closes everything once the grace window lapses.
+      if (guardEmptyResult && (new Date(now).getTime() - new Date(item.lastSeenAt).getTime()) / 3_600_000 <= EMPTY_SOURCE_GRACE_HOURS) {
+        merged.set(item.id, { ...item });
+        stat.held++;
         continue;
       }
 

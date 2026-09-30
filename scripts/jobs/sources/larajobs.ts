@@ -41,13 +41,14 @@ export function parseLaraJobsFeedItems(xml: string): LaraJobsDraft[] {
   });
 }
 
-export function finalizeLaraJobsDraft(draft: LaraJobsDraft, now: string, scrapedDescription?: string | null): Opportunity {
+export function finalizeLaraJobsDraft(draft: LaraJobsDraft, now: string, scrapedDescription?: string | null, applicationUrl?: string | null): Opportunity {
   return buildOpportunity({
     title: draft.title,
     company: draft.company,
     url: draft.canonicalUrl,
     sourceUrl: laraJobsFeedUrl,
     description: scrapedDescription || draft.feedDescription,
+    applicationUrl,
     publishedAt: draft.publishedAt,
     source: "larajobs",
     location: draft.location,

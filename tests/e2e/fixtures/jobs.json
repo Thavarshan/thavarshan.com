@@ -24,10 +24,10 @@
       "workArrangement": "remote-worldwide",
       "employmentType": "Full-Time",
       "seniority": "senior",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
+      "salary": "\u20ac80,000 - \u20ac95,000 per year",
+      "salaryMin": 80000,
+      "salaryMax": 95000,
+      "salaryCurrency": "EUR",
       "descriptionText": "We build Laravel products for schools. Fully remote team. <script>alert(1)</script>",
       "tags": [
         "laravel"
@@ -62,7 +62,21 @@
           "factor": "Eligibility is explicit in the posting",
           "points": 35
         }
-      ]
+      ],
+      "countries": [
+        "DE"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "timezones": [
+        "CET"
+      ],
+      "relocation": "offered",
+      "salaryPeriod": "year",
+      "sourceId": "1",
+      "applicationUrl": "https://careers.example.org/apply/1",
+      "descriptionHash": "abc"
     },
     {
       "id": "00000000000000000002",

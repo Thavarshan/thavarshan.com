@@ -67,18 +67,23 @@ function renderDetails(item: Opportunity) {
     ["Work arrangement", item.workArrangement === "unknown" ? "not classified" : item.workArrangement],
     ["Employment type", item.employmentType ?? "not listed"],
     ["Seniority", item.seniority === "unknown" ? "not stated" : item.seniority],
-    ["Salary", item.salary ? `${item.salary}${range ? ` (${range})` : ""}` : "not listed"],
+    ["Salary", item.salary ? `${item.salary}${range ? ` (${range})` : ""}${item.salaryPeriod ? ` per ${item.salaryPeriod}` : range ? " (period not stated)" : ""}` : "not listed"],
     ["Sponsorship", item.sponsorship === "unknown" ? "not mentioned" : item.sponsorship],
+    ["Relocation", item.relocation === "unknown" ? "not mentioned" : item.relocation],
+    ["Countries named", item.countries.length ? item.countries.join(", ") : "none named"],
+    ["Regions named", item.regions.length ? item.regions.join(", ") : "none named"],
+    ["Time zones", item.timezones.length ? item.timezones.join(", ") : "no constraint stated"],
     ["Published", formatDate(item.publishedAt)],
     ["First seen", formatDate(item.firstSeenAt)],
     ["Last seen", formatDate(item.lastSeenAt)],
-    ["Source", item.source],
+    ["Source", item.sourceId ? `${item.source} #${item.sourceId}` : item.source],
     ["Duplicate listings", item.duplicateOfIds.length ? String(item.duplicateOfIds.length) : "none found"]
   ];
+  const applyHref = item.applicationUrl ? safeExternalUrl(item.applicationUrl) : null;
   const description = item.descriptionText.trim();
   const truncated = description.length > DESCRIPTION_PREVIEW_LENGTH;
   return `<details><summary>All details and posting text</summary>
-<dl class="facts">${rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join("")}</dl>
+<dl class="facts">${rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join("")}${applyHref ? `<dt>Apply at</dt><dd><a href="${escapeHtml(applyHref)}" rel="noopener noreferrer nofollow" target="_blank">${escapeHtml(new URL(applyHref).hostname)}</a></dd>` : ""}</dl>
 ${description ? `<pre class="posting">${escapeHtml(description.slice(0, DESCRIPTION_PREVIEW_LENGTH))}${truncated ? "\n… (truncated; open the source for the full posting)" : ""}</pre>` : `<p class="meta">No posting text was captured for this listing.</p>`}
 </details>`;
 }

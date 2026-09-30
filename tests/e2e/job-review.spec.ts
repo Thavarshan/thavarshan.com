@@ -37,6 +37,14 @@ test("shows every captured detail and the escaped posting text on demand", async
   await expect(alpha).toContainText("Full-Time");
   await expect(alpha).toContainText("Published");
   await expect(alpha).toContainText("2026-09-28");
+  await expect(alpha).toContainText("per year");
+  await expect(alpha).toContainText("Relocation");
+  await expect(alpha).toContainText("offered");
+  await expect(alpha).toContainText("Countries named");
+  await expect(alpha).toContainText("DE");
+  await expect(alpha).toContainText("CET");
+  await expect(alpha).toContainText("larajobs #1");
+  await expect(alpha.getByRole("link", { name: "careers.example.org" })).toHaveAttribute("href", "https://careers.example.org/apply/1");
   await expect(alpha).toContainText("We build Laravel products for schools.");
   // scraped text is untrusted: rendered as text, never as markup
   await expect(alpha.locator("pre.posting")).toContainText("<script>alert(1)</script>");
@@ -46,6 +54,8 @@ test("shows every captured detail and the escaped posting text on demand", async
   await expect(delta).toContainText("No posting text was captured");
   await expect(delta).toContainText("Location");
   await expect(delta).toContainText("not listed");
+  await expect(delta).toContainText("no constraint stated");
+  await expect(delta).toContainText("none named");
 });
 
 test("filters narrow the list and are keyboard operable", async ({ page }) => {

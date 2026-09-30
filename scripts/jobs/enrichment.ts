@@ -18,6 +18,8 @@ export function isUnusableScrape(scraped: { title: string | null; description: s
 export interface ScrapedPage {
   title: string | null;
   description: string;
+  /** Where the board's link actually landed (the employer/ATS page), after redirects. */
+  finalUrl: string;
 }
 
 /**
@@ -42,7 +44,7 @@ export async function scrapeRedirectTarget(page: Page, url: string): Promise<Scr
           (await page.locator("body").textContent({ timeout: 10_000 }).catch(() => null)) ??
           "";
 
-        const scraped = { title: title || null, description };
+        const scraped = { title: title || null, description, finalUrl: page.url() };
         if (isUnusableScrape(scraped)) throw new SkipEnrichmentError(`${url} returned a bot-wall or challenge page`);
         return scraped;
       },
@@ -63,7 +65,7 @@ export async function enrichAndFinalize<D>(
   context: BrowserContext,
   drafts: D[],
   getUrl: (draft: D) => string,
-  finalize: (draft: D, now: string, scrapedDescription: string | null) => Opportunity,
+  finalize: (draft: D, now: string, scrapedDescription: string | null, applicationUrl: string | null) => Opportunity,
   opts: { concurrency: number },
   now = new Date().toISOString()
 ): Promise<Opportunity[]> {
@@ -71,11 +73,11 @@ export async function enrichAndFinalize<D>(
     const page = await context.newPage();
     try {
       const scraped = await scrapeRedirectTarget(page, getUrl(draft));
-      return finalize(draft, now, scraped?.description ?? null);
+      return finalize(draft, now, scraped?.description ?? null, scraped?.finalUrl ?? null);
     } finally {
       await page.close();
     }
   });
 
-  return results.map((result, index) => (result.status === "fulfilled" ? result.value : finalize(drafts[index], now, null)));
+  return results.map((result, index) => (result.status === "fulfilled" ? result.value : finalize(drafts[index], now, null, null)));
 }

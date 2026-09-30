@@ -79,27 +79,32 @@ The contract lives in `opportunitySnapshotSchema` (`lib/job-opportunities.ts`); 
 
 ### Data contract coverage
 
-| Contract field (from #40) | Status |
+Every field below is populated from real source data or deterministic extraction, and is an explicit `null` / empty / `unknown` when a posting does not say. All were added as defaulted, additive fields (no `schemaVersion` bump), so older snapshots load unchanged.
+
+| Contract field | Where it lives |
 | --- | --- |
 | stable ID | `id` — sha256 of the canonicalized URL |
-| source / source ID | `source`; a separate source ID is derivable from `canonicalUrl` and not stored |
+| source / source ID | `source` + `sourceId` (LaraJobs job number, WeWorkRemotely slug, Remotive job id) |
 | canonical URL | `canonicalUrl` (tracking params stripped) |
 | title, company | `title`, `company` |
-| description excerpt/hash | `descriptionText` (capped at 12,000 chars); no description hash (`contentFingerprint` hashes company + title for cross-source dedupe) |
+| description excerpt / hash | `descriptionText` (capped at 12,000 chars) + `descriptionHash` (whitespace/case-insensitive; drives "updated" detection) |
 | technologies | `tags` |
 | seniority, employment type | `seniority`, `employmentType` |
-| compensation min/max/currency | `salary` (raw) + `salaryMin`/`salaryMax`/`salaryCurrency`; **period not modelled** |
+| compensation min/max/currency/period | `salary` (raw) + `salaryMin`/`salaryMax`/`salaryCurrency` + `salaryPeriod` (only when explicitly stated; a bare `$100k` is never assumed annual) |
 | raw location | `location` |
-| normalized countries/regions, timezone constraints | **not modelled** (eligibility is derived from text signals) |
+| normalized countries / regions | `countries` (ISO 3166-1 alpha-2) and `regions` (`worldwide`, `emea`, `apac`, `europe`, `north-america`, `latam`, `asia`) — geography the posting **names**, taken from the title/location and eligibility phrases (not incidental prose). Named is not eligible; eligibility is decided separately |
+| timezone constraints | `timezones` (`UTC+1`, `GMT-5`, `EST`, `CET`, …) as written in the posting |
 | remote scope | `workArrangement` |
-| visa sponsorship / relocation support | `sponsorship`; relocation only via `workArrangement: relocation-sponsorship` |
-| application URL | `canonicalUrl` is the listing; LaraJobs redirects to the employer, which is not stored separately |
+| visa sponsorship / relocation support | `sponsorship` and, independently, `relocation` (`offered` / `unavailable` / `unknown`) |
+| application URL | `applicationUrl` — the employer/ATS page a board redirects to (LaraJobs and Laravel News); http(s) only, board and auth-wall hosts rejected; otherwise `null` and `canonicalUrl` is the listing |
 | first/last seen, posted | `firstSeenAt`, `lastSeenAt`, `publishedAt` |
-| expiry | `status`/`closedAt` (set when a listing disappears); no source-provided expiry |
-| source evidence | `reasons`, `concerns`, `scoreBreakdown`, `confidenceBreakdown` (scoring evidence, not per-field extraction provenance) |
-| collector version / schema version | `schemaVersion` only; no collector version |
+| expiry | `status`/`closedAt` (set when a listing disappears). **No source provides an expiry timestamp** — checked against the LaraJobs feed, the WeWorkRemotely RSS and the Remotive API (2026-09-30) — so no field is modelled for it |
+| source evidence | `reasons`, `concerns`, `scoreBreakdown`, `confidenceBreakdown` (scoring evidence, not per-field provenance) |
+| collector version / schema version | snapshot-level `collectorVersion` (bump `COLLECTOR_VERSION` in `lib/job-opportunities.ts` whenever collection/derivation logic can change stored values) and `schemaVersion` |
 
-"Not modelled" items are tracked as a follow-up rather than added speculatively; unknown values are explicit (`unknown`/`null`), never defaulted to a guess.
+### Source health: empty-result guard
+
+A source can "succeed" but return nothing when its filter or parser breaks. If a source that had at least 3 active listings returns zero, listings **seen within the last 72 hours are held open** instead of closed (`held` in the source stats, a warning in the log, and a "Held" column in the run summary). A source that is genuinely empty still clears once the grace window lapses. This complements the global guard that refuses a snapshot whose open count collapses by more than 75%.
 
 ## Laravel consumer contract
 

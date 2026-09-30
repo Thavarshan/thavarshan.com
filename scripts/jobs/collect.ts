@@ -2,6 +2,7 @@ import { appendFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import {
+  COLLECTOR_VERSION,
   mergeOpportunities,
   opportunitySnapshotSchema,
   type Opportunity,
@@ -64,7 +65,7 @@ async function appendStepSummary(sources: OpportunitySnapshot["sources"], opport
   if (!summaryPath) return;
 
   const sourceRows = sources.map((source) =>
-    `| ${source.name} | ${source.status} | ${source.recordsFound} | ${source.added} | ${source.updated} | ${source.closed} | ${source.skipped} | ${source.rejected} |`
+    `| ${source.name} | ${source.status} | ${source.recordsFound} | ${source.added} | ${source.updated} | ${source.closed} | ${source.held} | ${source.skipped} | ${source.rejected} |`
   );
   const top = opportunities
     .filter((item) => item.status !== "closed")
@@ -74,8 +75,8 @@ async function appendStepSummary(sources: OpportunitySnapshot["sources"], opport
   const lines = [
     "## Laravel jobs refresh",
     "",
-    "| Source | Status | Records | Added | Updated | Closed | Skipped | Rejected |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    "| Source | Status | Records | Added | Updated | Closed | Held | Skipped | Rejected |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...sourceRows,
     "",
     "### Top 5 by score",
@@ -104,7 +105,7 @@ export async function collectJobs() {
         context,
         drafts,
         (draft) => draft.canonicalUrl,
-        (draft, finalizeNow, scrapedDescription) => finalizeLaraJobsDraft(draft, finalizeNow, scrapedDescription),
+        (draft, finalizeNow, scrapedDescription, applicationUrl) => finalizeLaraJobsDraft(draft, finalizeNow, scrapedDescription, applicationUrl),
         { concurrency: ENRICHMENT_CONCURRENCY },
         now
       );
@@ -126,7 +127,7 @@ export async function collectJobs() {
         context,
         drafts,
         (draft) => draft.canonicalUrl,
-        (draft, finalizeNow, scrapedDescription) =>
+        (draft, finalizeNow, scrapedDescription, applicationUrl) =>
           buildOpportunity(
             {
               title: draft.title,
@@ -134,6 +135,7 @@ export async function collectJobs() {
               url: draft.canonicalUrl,
               sourceUrl: laravelNewsUrl,
               description: scrapedDescription ?? undefined,
+              applicationUrl,
               source: "laravel-news"
             },
             finalizeNow
@@ -171,7 +173,7 @@ export async function collectJobs() {
 
     const sources = results.map((result) => {
       const meta = sourceMeta[result.source];
-      const stat = stats[result.source] ?? { added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0 };
+      const stat = stats[result.source] ?? { added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0, held: 0 };
       const failed = "failed" in result;
       return {
         name: meta.name,
@@ -182,11 +184,16 @@ export async function collectJobs() {
         added: stat.added,
         updated: stat.updated,
         closed: stat.closed,
+        held: stat.held,
         skipped: failed ? 0 : result.skipped,
         rejected: failed ? 0 : result.rejected,
         error: failed ? result.error : null
       };
     });
+
+    for (const [source, stat] of Object.entries(stats)) {
+      if (stat.held > 0) console.warn(`${source}: returned no listings but ${stat.held} recently-seen listing(s) were held open instead of closed (possible broken filter/parser).`);
+    }
 
     const previousOpenCount = (existing?.opportunities ?? []).filter((item) => item.status !== "closed").length;
     const nextOpenCount = opportunities.filter((item) => item.status !== "closed").length;
@@ -199,6 +206,7 @@ export async function collectJobs() {
     const snapshot = opportunitySnapshotSchema.parse({
       schemaVersion: 2,
       generatedAt: now,
+      collectorVersion: COLLECTOR_VERSION,
       candidate: {
         location: "Sri Lanka",
         preferredStack: ["Laravel", "PHP", "React", "Vue", "Inertia", "AWS"],

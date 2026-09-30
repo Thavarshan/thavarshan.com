@@ -1,18 +1,16 @@
 import { describe, expect, it } from "vitest";
 import type { Opportunity } from "@/lib/job-opportunities";
+import { makeOpportunity } from "../helpers/opportunity";
 import { filterOpportunities, isStale, parseFilters, safeExternalUrl, sanitizeNote, sortOpportunities, type ReviewMap } from "@/lib/job-review";
 
 const now = new Date("2026-09-30T00:00:00.000Z");
 
 function job(overrides: Partial<Opportunity> & { id: string }): Opportunity {
-  return {
-    source: "larajobs", sourceUrl: "https://example.com/feed", canonicalUrl: `https://example.com/${overrides.id}`,
-    title: "Laravel Dev", company: "Acme", location: "Remote", workArrangement: "remote-worldwide", employmentType: null,
-    seniority: "senior", salary: null, salaryMin: null, salaryMax: null, salaryCurrency: null, descriptionText: "",
-    tags: ["laravel"], contentFingerprint: overrides.id, duplicateOfIds: [], publishedAt: "2026-09-28T00:00:00.000Z",
-    firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", status: "active", closedAt: null,
-    eligibility: "eligible", sponsorship: "unknown", score: 70, reasons: [], concerns: [], scoreBreakdown: [], confidence: 50, confidenceBreakdown: [], ...overrides
-  };
+  return makeOpportunity({
+    title: "Laravel Dev", company: "Acme", location: "Remote", workArrangement: "remote-worldwide", seniority: "senior",
+    tags: ["laravel"], publishedAt: "2026-09-28T00:00:00.000Z", firstSeenAt: "2026-09-28T00:00:00.000Z",
+    lastSeenAt: "2026-09-29T00:00:00.000Z", eligibility: "eligible", score: 70, confidence: 50, ...overrides
+  });
 }
 
 const params = (query: string) => parseFilters(new URLSearchParams(query));

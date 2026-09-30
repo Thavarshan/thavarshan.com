@@ -32,48 +32,67 @@ function detectCurrency(raw: string): string | null {
   return null;
 }
 
+export type SalaryPeriod = "hour" | "day" | "week" | "month" | "year";
+
 export interface ParsedSalary {
   salaryMin: number | null;
   salaryMax: number | null;
   salaryCurrency: string | null;
+  salaryPeriod: SalaryPeriod | null;
+}
+
+// Only an explicit period is recorded; a bare "$100k" is never assumed to be annual.
+const periodPatterns: Array<[RegExp, SalaryPeriod]> = [
+  [/(?:\/|\bper\s+|\ban?\s+)(?:hour|hr|h)\b|\bhourly\b|\/h\b/i, "hour"],
+  [/(?:\/|\bper\s+|\ban?\s+)(?:day|d)\b|\bdaily\b|\bday rate\b/i, "day"],
+  [/(?:\/|\bper\s+|\ban?\s+)(?:week|wk|w)\b|\bweekly\b/i, "week"],
+  [/(?:\/|\bper\s+|\ban?\s+)(?:month|mo|m)\b|\bmonthly\b/i, "month"],
+  [/(?:\/|\bper\s+|\ban?\s+)(?:year|yr|y)\b|\bannual(?:ly)?\b|\bp\.?a\.?\b|\bper annum\b|\byearly\b/i, "year"]
+];
+
+export function detectSalaryPeriod(raw: string | null | undefined): SalaryPeriod | null {
+  const value = raw ?? "";
+  for (const [pattern, period] of periodPatterns) if (pattern.test(value)) return period;
+  return null;
 }
 
 export function parseSalary(raw: string | null | undefined): ParsedSalary {
   const value = (raw ?? "").trim();
   if (!value || nonNumericPattern.test(value)) {
-    return { salaryMin: null, salaryMax: null, salaryCurrency: null };
+    return { salaryMin: null, salaryMax: null, salaryCurrency: null, salaryPeriod: null };
   }
 
   const salaryCurrency = detectCurrency(value);
+  const salaryPeriod = detectSalaryPeriod(value);
 
   const rangeMatch = value.match(rangePattern);
   if (rangeMatch) {
     const min = parseAmount(rangeMatch[1]);
     const max = parseAmount(rangeMatch[2]);
     if (min !== null && max !== null) {
-      return { salaryMin: Math.min(min, max), salaryMax: Math.max(min, max), salaryCurrency };
+      return { salaryMin: Math.min(min, max), salaryMax: Math.max(min, max), salaryCurrency, salaryPeriod };
     }
   }
 
   const singleMatch = value.match(singleNumberPattern);
   if (!singleMatch) {
-    return { salaryMin: null, salaryMax: null, salaryCurrency: null };
+    return { salaryMin: null, salaryMax: null, salaryCurrency: null, salaryPeriod: null };
   }
 
   const amount = parseAmount(singleMatch[0]);
   if (amount === null) {
-    return { salaryMin: null, salaryMax: null, salaryCurrency: null };
+    return { salaryMin: null, salaryMax: null, salaryCurrency: null, salaryPeriod: null };
   }
 
   const prefix = value.slice(0, singleMatch.index ?? 0);
   const suffix = value.slice((singleMatch.index ?? 0) + singleMatch[0].length);
 
   if (upToPattern.test(prefix)) {
-    return { salaryMin: null, salaryMax: amount, salaryCurrency };
+    return { salaryMin: null, salaryMax: amount, salaryCurrency, salaryPeriod };
   }
   if (fromPattern.test(prefix) || /^\s*\+/.test(suffix)) {
-    return { salaryMin: amount, salaryMax: null, salaryCurrency };
+    return { salaryMin: amount, salaryMax: null, salaryCurrency, salaryPeriod };
   }
 
-  return { salaryMin: amount, salaryMax: amount, salaryCurrency };
+  return { salaryMin: amount, salaryMax: amount, salaryCurrency, salaryPeriod };
 }
