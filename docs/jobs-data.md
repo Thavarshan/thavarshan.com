@@ -49,6 +49,8 @@ Ranking is deterministic. It rewards Laravel, an appropriate seniority level, Re
 
 Every score is explainable: `scoreBreakdown` lists each `{ factor, points }` applied (baseline, positive signals, the −40 penalty for unresolved eligibility concerns, and the hard-exclusion cap). Points are summed then clamped to 0–100 and `reasons` are the positive factors. Snapshots written before this field existed parse with an empty breakdown until the next collection run.
 
+`confidence` (0–100, `confidenceBreakdown`) is separate from fit: it scores how well-evidenced the extracted signals are (explicit eligibility +35, stated location +20, substantive description +20, stated seniority +15, tags +10, conflicting geography −25). It never changes `score`. It is `null` for snapshots written before it existed.
+
 Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 20 (`INELIGIBLE_SCORE_CAP`) so technical-fit points can never outweigh a residency/work-authorization exclusion, and its `workArrangement` is `remote-regional-restricted` even if the posting also says "worldwide". Sponsorship is only `unavailable` (no bonus) on explicit wording such as "no sponsorship", "do not sponsor" or "unable to sponsor"; generic relocation wording never implies sponsorship. Regression fixtures live in `tests/unit/job-scoring.test.ts`.
 
 `eligibility` is deliberately separate from match score:

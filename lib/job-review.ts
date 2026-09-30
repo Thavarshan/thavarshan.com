@@ -99,12 +99,13 @@ export function filterOpportunities(items: Opportunity[], filters: ReviewFilters
   });
 }
 
-/** Eligible first, then fit score, then freshness. (The dataset carries no confidence signal yet.) */
+/** Eligible first, then fit score, then confidence (unscored snapshots last), then freshness. */
 export function sortOpportunities(items: Opportunity[]) {
   return [...items].sort(
     (a, b) =>
       eligibilityOrder[a.eligibility] - eligibilityOrder[b.eligibility] ||
       b.score - a.score ||
+      (b.confidence ?? -1) - (a.confidence ?? -1) ||
       new Date(b.publishedAt ?? b.firstSeenAt).getTime() - new Date(a.publishedAt ?? a.firstSeenAt).getTime() ||
       a.title.localeCompare(b.title)
   );

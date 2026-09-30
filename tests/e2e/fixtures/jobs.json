@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "candidate": {
+    "location": "Sri Lanka",
+    "preferredStack": [
+      "Laravel"
+    ],
+    "experienceYears": 11,
+    "workModes": [
+      "remote"
+    ]
+  },
+  "sources": [],
+  "opportunities": [
+    {
+      "id": "00000000000000000001",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://example.com/jobs/1",
+      "title": "Alpha Laravel Engineer",
+      "company": "Acme",
+      "location": "Remote",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "contentFingerprint": "f1",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "firstSeenAt": "2026-09-28T00:00:00.000Z",
+      "lastSeenAt": "2026-09-29T00:00:00.000Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 90,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        }
+      ],
+      "confidence": 90,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        }
+      ]
+    },
+    {
+      "id": "00000000000000000002",
+      "source": "remotive",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://example.com/jobs/2",
+      "title": "Bravo Vue Engineer",
+      "company": "Acme",
+      "location": "Remote",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": "$100k",
+      "salaryMin": 100000,
+      "salaryMax": 100000,
+      "salaryCurrency": "USD",
+      "descriptionText": "",
+      "tags": [
+        "vue"
+      ],
+      "contentFingerprint": "f2",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "firstSeenAt": "2026-09-28T00:00:00.000Z",
+      "lastSeenAt": "2026-09-29T00:00:00.000Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "confirmed",
+      "score": 60,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        }
+      ],
+      "confidence": 90,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        }
+      ]
+    },
+    {
+      "id": "00000000000000000003",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://example.com/jobs/3",
+      "title": "Charlie US Only Engineer",
+      "company": "Acme",
+      "location": "Remote",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "contentFingerprint": "f3",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "firstSeenAt": "2026-09-28T00:00:00.000Z",
+      "lastSeenAt": "2026-09-29T00:00:00.000Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 20,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        }
+      ],
+      "confidence": 90,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        }
+      ]
+    },
+    {
+      "id": "00000000000000000004",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://example.com/jobs/4",
+      "title": "Delta Unknown Engineer",
+      "company": "Acme",
+      "location": null,
+      "workArrangement": "unknown",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "contentFingerprint": "f4",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "firstSeenAt": "2026-09-28T00:00:00.000Z",
+      "lastSeenAt": "2026-09-29T00:00:00.000Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 95,
+      "reasons": [
+        "Laravel is explicitly required"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [],
+      "confidence": null,
+      "confidenceBreakdown": []
+    }
+  ]
+}

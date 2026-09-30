@@ -103,3 +103,32 @@ describe("score explainability", () => {
     expect(assess({ descriptionText: "Remote worldwide." })).toEqual(assess({ descriptionText: "Remote worldwide." }));
   });
 });
+
+describe("confidence", () => {
+  const longText = "Remote worldwide. ".padEnd(250, "We build Laravel products. ");
+
+  it("is high when eligibility, location, body, seniority and tags are all explicit", () => {
+    const result = assess({ descriptionText: longText });
+    expect(result.confidence).toBe(100);
+    expect(result.confidenceBreakdown.map((e) => e.points).reduce((a, b) => a + b, 0)).toBe(100);
+  });
+
+  it("is low for a sparse posting with no explicit eligibility, location or tags", () => {
+    const result = assessOpportunity({ title: "Developer", descriptionText: "Company: Acme.", location: null, tags: [] });
+    expect(result.confidence).toBe(0);
+    expect(result.eligibility).toBe("unknown");
+  });
+
+  it("penalises conflicting geography signals independently of fit", () => {
+    const result = assess({ descriptionText: `${longText} Work from anywhere! Must be located in Germany.` });
+    expect(result.confidenceBreakdown).toContainEqual({ factor: "Conflicting geography signals", points: -25 });
+    expect(result.confidence).toBeLessThan(100);
+  });
+
+  it("does not change the fit score", () => {
+    const sparse = assess({ descriptionText: "Remote worldwide." });
+    const rich = assess({ descriptionText: longText });
+    expect(rich.score).toBe(sparse.score);
+    expect(rich.confidence).toBeGreaterThan(sparse.confidence);
+  });
+});
