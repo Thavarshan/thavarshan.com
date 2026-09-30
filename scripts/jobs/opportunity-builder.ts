@@ -71,7 +71,8 @@ export function buildOpportunity(input: BuildOpportunityInput, now: string): Opp
   const descriptionText = stripHtml(input.description ?? "") || buildSyntheticSummary({ company: input.company, location, employmentType, salary });
   const regexTags = (`${input.title} ${descriptionText}`.match(knownTagPattern) ?? []).map((tag) => tag.toLowerCase());
   const tags = [...new Set([...(input.feedTags ?? []).map((tag) => tag.toLowerCase()), ...regexTags])];
-  const assessment = assessOpportunity({ title: input.title, descriptionText, location, tags });
+  // LaraJobs is a Laravel-only board, so its listings are curated for relevance; generalist boards are not.
+  const assessment = assessOpportunity({ title: input.title, descriptionText, location, tags }, { laravelCurated: input.source === "larajobs" });
   const { salaryMin, salaryMax, salaryCurrency } = parseSalary(salary);
 
   return {

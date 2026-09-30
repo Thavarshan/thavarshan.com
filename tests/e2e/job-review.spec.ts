@@ -20,9 +20,32 @@ test("default view: eligible first, ineligible hidden, unknown fields marked, st
   // eligible first (by score), then unknown; ineligible hidden by default
   await expect(titles(page)).toHaveText(["Alpha Laravel Engineer", "Bravo Vue Engineer", "Delta Unknown Engineer"]);
   const delta = page.locator("li.job", { hasText: "Delta Unknown Engineer" });
-  await expect(delta).toContainText("Confidence: unknown");
-  await expect(delta).toContainText("Sponsorship: unknown");
-  await expect(delta).toContainText("Salary: unknown");
+  await expect(delta).toContainText("Confidence: not scored yet");
+  await expect(delta).toContainText("Sponsorship: not mentioned");
+  await expect(delta).toContainText("Salary: not listed");
+  await expect(delta).toContainText("eligibility unclear");
+  await expect(delta).toContainText("Concerns: Sri Lanka hiring eligibility is not explicit");
+  // Missing data is described, never shown as a bare "unknown".
+  await expect(page.locator("li.job .badge")).not.toContainText(["unknown"]);
+});
+
+test("shows every captured detail and the escaped posting text on demand", async ({ page }) => {
+  await page.goto("/");
+  const alpha = page.locator("li.job", { hasText: "Alpha Laravel Engineer" });
+  await alpha.getByText("All details and posting text").click();
+  await expect(alpha).toContainText("Employment type");
+  await expect(alpha).toContainText("Full-Time");
+  await expect(alpha).toContainText("Published");
+  await expect(alpha).toContainText("2026-09-28");
+  await expect(alpha).toContainText("We build Laravel products for schools.");
+  // scraped text is untrusted: rendered as text, never as markup
+  await expect(alpha.locator("pre.posting")).toContainText("<script>alert(1)</script>");
+  expect(await alpha.locator("pre.posting script").count()).toBe(0);
+  const delta = page.locator("li.job", { hasText: "Delta Unknown Engineer" });
+  await delta.getByText("All details and posting text").click();
+  await expect(delta).toContainText("No posting text was captured");
+  await expect(delta).toContainText("Location");
+  await expect(delta).toContainText("not listed");
 });
 
 test("filters narrow the list and are keyboard operable", async ({ page }) => {

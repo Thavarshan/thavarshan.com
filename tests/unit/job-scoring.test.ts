@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assessOpportunity, INELIGIBLE_SCORE_CAP } from "@/lib/job-opportunities";
+import { assessOpportunity, INELIGIBLE_SCORE_CAP, RELEVANCE_SCORE_CAP, isLaravelPhpRole } from "@/lib/job-opportunities";
 
 type Input = Parameters<typeof assessOpportunity>[0];
 
@@ -130,5 +130,47 @@ describe("confidence", () => {
     const rich = assess({ descriptionText: longText });
     expect(rich.score).toBe(sparse.score);
     expect(rich.confidence).toBeGreaterThan(sparse.confidence);
+  });
+});
+
+describe("Laravel/PHP relevance gate", () => {
+  const boilerplate = "Work from anywhere. We match developers across stacks: React & Golang, PHP & Vue, Vue & Node.js, React & .NET. Remote worldwide, AWS.";
+
+  it("caps a non-Laravel role whose posting only lists stacks as boilerplate", () => {
+    const result = assessOpportunity({ title: "Senior .NET Full-stack Developer", descriptionText: boilerplate, location: "Anywhere in the World", tags: ["react", "php", "vue", "laravel"] });
+    expect(result.score).toBeLessThanOrEqual(RELEVANCE_SCORE_CAP);
+    expect(result.concerns).toContain("Laravel/PHP is not central to this role");
+    expect(result.scoreBreakdown.at(-1)?.factor).toMatch(/Relevance cap/);
+    expect(result.eligibility).toBe("eligible");
+  });
+
+  it("discounts 'X & PHP' pairings from a marketplace stack list", () => {
+    const lemon = "React & Golang, PHP & Vue, Angular & PHP, Symfony & React, React & PHP, Vue & Node.js, Laravel & Vue";
+    expect(isLaravelPhpRole({ title: "Senior .NET Developer", descriptionText: lemon })).toBe(false);
+    expect(isLaravelPhpRole({ title: "Engineer", descriptionText: "We use PHP daily. Our Laravel app is large. Livewire powers the UI." })).toBe(true);
+  });
+
+  it("does not cap when the stack is in the title", () => {
+    const result = assessOpportunity({ title: "Senior PHP Engineer", descriptionText: boilerplate, location: "Remote", tags: [] });
+    expect(result.score).toBeGreaterThan(RELEVANCE_SCORE_CAP);
+    expect(result.concerns).not.toContain("Laravel/PHP is not central to this role");
+  });
+
+  it("does not cap when the body repeatedly centres on the stack", () => {
+    const body = "Tech stack: PHP 8.2 and Laravel 12 power the platform. Livewire for the UI. Remote worldwide. Senior AWS.";
+    const result = assessOpportunity({ title: "Product Lead", descriptionText: body, location: "Remote", tags: ["laravel"] });
+    expect(result.concerns).not.toContain("Laravel/PHP is not central to this role");
+  });
+
+  it("trusts a Laravel-only source board even with a sparse description", () => {
+    const input = { title: "Software Engineer", descriptionText: "Company: Acme.", location: "Remote", tags: ["laravel"] };
+    expect(isLaravelPhpRole(input, { laravelCurated: true })).toBe(true);
+    expect(isLaravelPhpRole(input)).toBe(false);
+  });
+
+  it("never lifts an already-capped role: relevance and ineligible caps compose to the lower one", () => {
+    const result = assessOpportunity({ title: "Senior .NET Developer", descriptionText: `${boilerplate} US-only.`, location: "Remote", tags: [] });
+    expect(result.eligibility).toBe("ineligible");
+    expect(result.score).toBeLessThanOrEqual(INELIGIBLE_SCORE_CAP);
   });
 });

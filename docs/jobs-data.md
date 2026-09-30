@@ -51,6 +51,8 @@ Every score is explainable: `scoreBreakdown` lists each `{ factor, points }` app
 
 `confidence` (0–100, `confidenceBreakdown`) is separate from fit: it scores how well-evidenced the extracted signals are (explicit eligibility +35, stated location +20, substantive description +20, stated seniority +15, tags +10, conflicting geography −25). It never changes `score`. It is `null` for snapshots written before it existed.
 
+Relevance gate: a role must be demonstrably Laravel/PHP work to rank above `RELEVANCE_SCORE_CAP` (35). Evidence is the stack (Laravel/PHP/Livewire/Lumen/Symfony) in the title, 3+ mentions in the body after discounting marketplace-style "X & PHP" pairings, or a Laravel-only source board (LaraJobs). This stops agency postings that list every stack they staff (e.g. Lemon.io) from ranking on seniority/remote/cloud points alone. The cap is recorded in `scoreBreakdown` and the concern "Laravel/PHP is not central to this role".
+
 Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 20 (`INELIGIBLE_SCORE_CAP`) so technical-fit points can never outweigh a residency/work-authorization exclusion, and its `workArrangement` is `remote-regional-restricted` even if the posting also says "worldwide". Sponsorship is only `unavailable` (no bonus) on explicit wording such as "no sponsorship", "do not sponsor" or "unable to sponsor"; generic relocation wording never implies sponsorship. Regression fixtures live in `tests/unit/job-scoring.test.ts`.
 
 `eligibility` is deliberately separate from match score:
