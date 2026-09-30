@@ -5,7 +5,10 @@ export type PlausibleGoal =
   | "GitHub Visit"
   | "Repository Visit"
   | "Newsletter Visit"
-  | "Insight 75% Read";
+  | "Insight 75% Read"
+  // Developer tools. Goals are click counts only: no tool input, output or file content is ever an event property.
+  | "Tool Example Load"
+  | "Tool Copy Output";
 
 export function plausibleEventClass(goal?: PlausibleGoal) {
   return goal ? `plausible-event-name=${goal.replaceAll(" ", "+")}` : "";

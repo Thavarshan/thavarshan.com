@@ -2,12 +2,19 @@ import { describe, expect, it } from "vitest";
 import robots from "../../app/robots";
 import sitemap from "../../app/sitemap";
 import { site } from "../../data/site";
+import { tools } from "../../lib/tools/registry";
 
 describe("SEO routes", () => {
   it("publishes one canonical sitemap from robots metadata", () => {
     const metadata = robots();
     expect(metadata.sitemap).toBe(`${site.url}/sitemap.xml`);
     expect(metadata.host).toBe(site.url);
+  });
+
+  it("lists the tools index and every tool page exactly once", () => {
+    const urls = sitemap().map((entry) => entry.url);
+    expect(urls).toContain(`${site.url}/tools`);
+    for (const tool of tools) expect(urls.filter((url) => url === `${site.url}/tools/${tool.slug}`)).toHaveLength(1);
   });
 
   it("keeps sitemap URLs on the canonical production origin and unique", () => {

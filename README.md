@@ -41,6 +41,7 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 | `/projects` | Automatically ranked featured open-source projects |
 | `/projects/[repository]` | Source-driven project detail pages |
 | `/insights` | Curated technical writing for AI, architecture, platforms, and developer tools |
+| `/tools`, `/tools/[slug]` | Private, browser-only Laravel/PHP utilities (scheduler cron helper, `.env` checker); see `docs/developer-tools.md` |
 | `/insights/[slug]` | Static canonical Insight articles with Article JSON-LD |
 | `/feed.xml` | RSS feed for published Insights |
 | `/privacy` | Cookie-free analytics and external-link privacy notes |
