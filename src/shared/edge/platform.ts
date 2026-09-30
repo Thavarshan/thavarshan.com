@@ -87,11 +87,47 @@ export async function fetchJsonBounded(url: string, fetcher: typeof fetch, optio
   if (!response.ok) throw new Error(`Job data request failed (${response.status})`);
 
   const declared = Number(response.headers.get("content-length"));
-  if (Number.isFinite(declared) && declared > maxBytes) throw new Error("Job data response is too large");
-  const text = await response.text();
-  if (text.length > maxBytes) throw new Error("Job data response is too large");
-  return JSON.parse(text);
+  if (Number.isFinite(declared) && declared > maxBytes) {
+    await response.body?.cancel().catch(() => undefined);
+    throw new Error("Job data response is too large");
+  }
+
+  const text = await readBoundedText(response, maxBytes);
+  if (!text.trim()) throw new Error("Job data response was empty");
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error("Job data response was not valid JSON", { cause: error });
+  }
 }
+
+/** Reads the body chunk by chunk, counting real bytes, and cancels the stream the moment the limit is exceeded. */
+async function readBoundedText(response: Response, maxBytes: number): Promise<string> {
+  if (!response.body) return "";
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let received = 0;
+  let text = "";
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      received += value.byteLength;
+      if (received > maxBytes) {
+        await reader.cancel().catch(() => undefined);
+        throw new PayloadLimitError();
+      }
+      text += decoder.decode(value, { stream: true });
+    }
+    return text + decoder.decode();
+  } catch (error) {
+    if (error instanceof PayloadLimitError) throw new Error("Job data response is too large", { cause: error });
+    await reader.cancel().catch(() => undefined);
+    throw new Error("Job data response was unreadable", { cause: error });
+  }
+}
+
+class PayloadLimitError extends Error {}
 
 export interface RateLimitDecision {
   allowed: boolean;
