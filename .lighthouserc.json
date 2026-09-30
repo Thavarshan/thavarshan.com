@@ -5,7 +5,10 @@
       "url": [
         "http://127.0.0.1:3000/",
         "http://127.0.0.1:3000/cv",
-        "http://127.0.0.1:3000/projects"
+        "http://127.0.0.1:3000/projects",
+        "http://127.0.0.1:3000/tools",
+        "http://127.0.0.1:3000/tools/laravel-scheduler-cron",
+        "http://127.0.0.1:3000/tools/laravel-env-checker"
       ],
       "settings": {
         "chromeFlags": "--no-sandbox --headless"

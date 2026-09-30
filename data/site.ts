@@ -20,6 +20,7 @@ export const navigation = [
   { label: "Work", href: "/#projects" },
   { label: "Lead", href: "/#leadership" },
   { label: "Insights", href: "/insights" },
+  { label: "Tools", href: "/tools" },
   { label: "Career", href: "/#experience" },
   { label: "Expertise", href: "/#expertise" },
   { label: "Contact", href: "/#contact" }

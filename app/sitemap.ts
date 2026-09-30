@@ -4,6 +4,7 @@ import { profile } from "@/data/profile";
 import { site } from "@/data/site";
 import { githubSnapshotSchema } from "@/lib/github-model";
 import { getAllInsights } from "@/lib/insights";
+import { toolUrl, tools } from "@/lib/tools/registry";
 
 export const dynamic = "force-static";
 
@@ -36,6 +37,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9
     },
+    {
+      url: `${site.url}/tools`,
+      lastModified: tools.map((tool) => tool.dateModified).sort().at(-1) ?? profile.modifiedAt,
+      changeFrequency: "monthly",
+      priority: 0.8
+    },
+    ...tools.map((tool) => ({
+      url: toolUrl(tool.slug),
+      lastModified: tool.dateModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8
+    })),
     {
       url: `${site.url}/privacy`,
       lastModified: profile.modifiedAt,
