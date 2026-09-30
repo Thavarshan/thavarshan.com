@@ -1,6 +1,6 @@
 import { strToU8, zipSync } from "fflate";
 import { describe, expect, it } from "vitest";
-import profileData from "@/data/profile.generated.json";
+import profileData from "@generated/profile.generated.json";
 import { importLinkedInArchive, normalizeLinkedInDate, splitLinkedInDescription } from "@/lib/linkedin-archive";
 import { parseProfessionalProfile } from "@/lib/profile-schema";
 

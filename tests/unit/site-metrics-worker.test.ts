@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it } from "vitest";
-import { handleRequest, type Env, type KVLike } from "@/workers/site-metrics/index";
-import { MAX_BODY_BYTES, RETENTION_SECONDS, limiter } from "@/workers/site-metrics/config";
+import { handleRequest, type Env, type KVLike } from "@workers/site-metrics/index";
+import { MAX_BODY_BYTES, RETENTION_SECONDS, limiter } from "@workers/site-metrics/config";
 import { RateLimiter } from "@/lib/edge/platform";
 
 const ORIGIN = "https://thavarshan.com";
@@ -143,7 +143,7 @@ describe("privacy", () => {
 
 describe("Workers runtime compatibility", () => {
   it("the entry module exports only handlers (plain-value exports make workerd refuse to start)", async () => {
-    const entry = await import("@/workers/site-metrics/index");
+    const entry = await import("@workers/site-metrics/index");
     for (const [name, value] of Object.entries(entry)) {
       expect(["function", "object"], `${name} must be a handler, not a plain value`).toContain(typeof value);
       expect(typeof value, name).not.toBe("number");

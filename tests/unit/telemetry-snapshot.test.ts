@@ -2,7 +2,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { aggregateKey, type WireEvent } from "@/lib/telemetry/events";
 import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow } from "@/lib/telemetry/snapshot";
-import { MAX_KEYS, main, parseArgs, periodFor, readRowsFromKv } from "@/scripts/growth/metrics-snapshot";
+import { MAX_KEYS, main, parseArgs, periodFor, readRowsFromKv } from "@scripts/growth/metrics-snapshot";
 
 const period = { start: "2026-09-21", end: "2026-09-27", isoWeek: "2026-W39" };
 const row = (overrides: Partial<AggregateRow> = {}): AggregateRow => ({ day: "2026-09-22", event: "repo_click", path: "/projects/fetch-php", source: null, medium: null, campaign: null, referrer: "direct", props: { project: "fetch-php" }, count: 1, ...overrides });

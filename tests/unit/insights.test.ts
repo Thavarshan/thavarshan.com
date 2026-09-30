@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import githubData from "@/data/github.generated.json";
+import githubData from "@generated/github.generated.json";
 import { parseInsightSource } from "@/lib/insight-model";
 import { assertUniqueInsightSlugs, getAllInsights, validateInsightProjectReferences } from "@/lib/insights";
 import { githubSnapshotSchema } from "@/lib/github-model";

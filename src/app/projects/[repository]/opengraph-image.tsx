@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
-import githubData from "@/data/github.generated.json";
+import githubData from "@generated/github.generated.json";
 import { getFeaturedGitHubProject } from "@/lib/projects";
 import { githubSnapshotSchema } from "@/lib/github-model";
 

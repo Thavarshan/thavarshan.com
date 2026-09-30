@@ -9,10 +9,10 @@ on:
   pull_request:
     paths:
       - "workers/job-review/**"
-      - "lib/job-review.ts"
-      - "lib/edge/**"
-      - "lib/job-opportunities.ts"
-      - "lib/job-eligibility-signals.ts"
+      - "src/lib/job-review.ts"
+      - "src/lib/edge/**"
+      - "src/lib/job-opportunities.ts"
+      - "src/lib/job-eligibility-signals.ts"
       - "package-lock.json"
       - ".github/workflows/job-review-preview.yml"
 

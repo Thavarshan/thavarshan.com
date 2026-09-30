@@ -1,4 +1,4 @@
-import registryData from "@/data/package-registry.generated.json";
+import registryData from "@generated/package-registry.generated.json";
 import { z } from "zod";
 
 export const packageRegistryStatsSchema = z.object({

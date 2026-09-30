@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { assessOpportunity } from "@/lib/job-opportunities";
-import { parseLaraJobsFeed } from "@/scripts/jobs/sources/larajobs";
+import { parseLaraJobsFeed } from "@scripts/jobs/sources/larajobs";
 
 const now = "2026-09-22T00:00:00.000Z";
 

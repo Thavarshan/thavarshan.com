@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import githubData from "@/data/github.generated.json";
-import profileData from "@/data/profile.generated.json";
+import githubData from "@generated/github.generated.json";
+import profileData from "@generated/profile.generated.json";
 import { githubSnapshotSchema } from "@/lib/github-model";
 import { escapeLatex, renderResumeLatex } from "@/lib/latex";
 import { parseProfessionalProfile } from "@/lib/profile-schema";

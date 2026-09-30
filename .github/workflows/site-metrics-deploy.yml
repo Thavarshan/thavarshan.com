@@ -8,8 +8,8 @@ on:
     branches: [main]
     paths:
       - "workers/site-metrics/**"
-      - "lib/telemetry/events.ts"
-      - "lib/edge/**"
+      - "src/lib/telemetry/events.ts"
+      - "src/lib/edge/**"
       - "package-lock.json"
       - ".github/workflows/site-metrics-deploy.yml"
   workflow_dispatch:

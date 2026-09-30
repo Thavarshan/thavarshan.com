@@ -110,7 +110,7 @@ describe("paid AI is opt-in (OpenAI is pay-per-use)", () => {
   });
 
   it("the generator refuses to run (no OpenAI call, no clone) unless enabled, even with every secret present", async () => {
-    const { generateApplications } = await import("@/scripts/applications/generate");
+    const { generateApplications } = await import("@scripts/applications/generate");
     const previous = { ...process.env };
     process.env.OPENAI_API_KEY = "sk-test-not-real";
     process.env.APPLICATIONS_REPO_DEPLOY_KEY = "not-a-real-key";

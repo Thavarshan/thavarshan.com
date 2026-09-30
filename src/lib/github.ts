@@ -1,4 +1,4 @@
-import fallbackData from "@/data/github.generated.json";
+import fallbackData from "@generated/github.generated.json";
 import { profilePolicy } from "@/data/profile-policy";
 import {
   cleanGitHubDescription,

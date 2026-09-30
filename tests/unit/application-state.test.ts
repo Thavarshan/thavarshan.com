@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applicationStateSchema } from "@/scripts/applications/state";
+import { applicationStateSchema } from "@scripts/applications/state";
 
 describe("applicationStateSchema", () => {
   it("defaults status to pending and respondedAt to null for an old-shape entry", () => {

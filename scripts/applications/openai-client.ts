@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { withRetry } from "../../lib/node/async";
+import { withRetry } from "../../src/lib/node/async";
 
 export interface RawTailoringResult {
   emphasizedSkillCategories: string[];

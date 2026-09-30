@@ -1,8 +1,8 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { site } from "../../data/site";
-import { getAllInsights, getAbsoluteInsightUrl } from "../../lib/insights";
-import { withUtm } from "../../lib/analytics";
+import { site } from "../../src/data/site";
+import { getAllInsights, getAbsoluteInsightUrl } from "../../src/lib/insights";
+import { withUtm } from "../../src/lib/analytics";
 
 function createLinkedInPost(insight: ReturnType<typeof getAllInsights>[number]) {
   const url = withUtm(getAbsoluteInsightUrl(insight.slug, site.url), "linkedin", "social", insight.slug);

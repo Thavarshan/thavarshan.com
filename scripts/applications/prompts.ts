@@ -1,5 +1,5 @@
-import type { Opportunity } from "../../lib/job-opportunities";
-import type { ProfessionalProfile } from "../../lib/profile-schema";
+import type { Opportunity } from "../../src/lib/job-opportunities";
+import type { ProfessionalProfile } from "../../src/lib/profile-schema";
 
 export function buildSystemPrompt(): string {
   return [

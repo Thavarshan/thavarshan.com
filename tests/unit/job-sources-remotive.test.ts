@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseRemotiveJobs } from "@/scripts/jobs/sources/remotive";
+import { parseRemotiveJobs } from "@scripts/jobs/sources/remotive";
 
 const now = "2026-09-23T00:00:00.000Z";
 

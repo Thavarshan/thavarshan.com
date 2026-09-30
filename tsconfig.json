@@ -24,7 +24,16 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
+      ],
+      "@generated/*": [
+        "./data/*"
+      ],
+      "@scripts/*": [
+        "./scripts/*"
+      ],
+      "@workers/*": [
+        "./workers/*"
       ]
     }
   },
