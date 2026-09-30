@@ -178,6 +178,86 @@ describe("bounded, validated input", () => {
     await expect(fetchJsonBounded("https://x", unlabeled, { maxBytes: 1000 })).rejects.toThrow(/too large/);
     expect(await fetchJsonBounded("https://x", (async () => new Response('{"ok":true}')) as typeof fetch)).toEqual({ ok: true });
   });
+
+  describe("streams the upstream body and stops at the byte limit", () => {
+    const encoder = new TextEncoder();
+    function streamOf(chunks: Uint8Array[], headers: HeadersInit = {}) {
+      let index = 0;
+      const state = { cancelled: false, pulled: 0 };
+      const body = new ReadableStream<Uint8Array>(
+        {
+          pull(controller) {
+            if (index >= chunks.length) return controller.close();
+            state.pulled += 1;
+            controller.enqueue(chunks[index++]);
+          },
+          cancel() {
+            state.cancelled = true;
+          }
+        },
+        { highWaterMark: 0 }
+      );
+      return { state, fetcher: (async () => new Response(body, { headers })) as typeof fetch };
+    }
+
+    it("cancels the reader and never reads the rest once the limit is exceeded, with no Content-Length", async () => {
+      const chunks = Array.from({ length: 50 }, () => encoder.encode("x".repeat(100)));
+      const { state, fetcher } = streamOf(chunks);
+      await expect(fetchJsonBounded("https://x", fetcher, { maxBytes: 250 })).rejects.toThrow(/too large/);
+      expect(state.cancelled).toBe(true);
+      expect(state.pulled).toBeLessThan(10);
+    });
+
+    it("rejects an understated Content-Length by actual bytes", async () => {
+      const { state, fetcher } = streamOf([encoder.encode("x".repeat(400))], { "content-length": "10" });
+      await expect(fetchJsonBounded("https://x", fetcher, { maxBytes: 100 })).rejects.toThrow(/too large/);
+      expect(state.cancelled).toBe(true);
+    });
+
+    it("rejects an honest oversized Content-Length without reading the body", async () => {
+      const { state, fetcher } = streamOf([encoder.encode("[]")], { "content-length": "5000" });
+      await expect(fetchJsonBounded("https://x", fetcher, { maxBytes: 100 })).rejects.toThrow(/too large/);
+      expect(state.pulled).toBe(0);
+      expect(state.cancelled).toBe(true);
+    });
+
+    it("counts bytes, not characters, for non-ASCII content", async () => {
+      // 60 characters but 180 bytes.
+      const text = JSON.stringify("€".repeat(58));
+      expect(text.length).toBeLessThanOrEqual(100);
+      expect(encoder.encode(text).length).toBeGreaterThan(100);
+      await expect(fetchJsonBounded("https://x", streamOf([encoder.encode(text)]).fetcher, { maxBytes: 100 })).rejects.toThrow(/too large/);
+    });
+
+    it("reassembles multi-byte characters split across chunks", async () => {
+      const bytes = encoder.encode(JSON.stringify({ city: "Colombo – Ceylon €" }));
+      const { fetcher } = streamOf([bytes.slice(0, 15), bytes.slice(15, 26), bytes.slice(26)]);
+      expect(await fetchJsonBounded("https://x", fetcher, { maxBytes: 1000 })).toEqual({ city: "Colombo – Ceylon €" });
+    });
+
+    it("accepts a body exactly at the limit", async () => {
+      const text = '{"a":"bbbb"}';
+      expect(await fetchJsonBounded("https://x", streamOf([encoder.encode(text)]).fetcher, { maxBytes: encoder.encode(text).length })).toEqual({ a: "bbbb" });
+    });
+
+    it("fails cleanly on an empty or missing body without echoing upstream content", async () => {
+      await expect(fetchJsonBounded("https://x", (async () => new Response(null)) as typeof fetch)).rejects.toThrow(/empty|unreadable/i);
+      await expect(fetchJsonBounded("https://x", (async () => new Response("")) as typeof fetch)).rejects.toThrow(/empty|unreadable/i);
+      await expect(fetchJsonBounded("https://x", (async () => new Response("<html>secret-token</html>")) as typeof fetch)).rejects.not.toThrow(/secret-token/);
+    });
+
+    it("reports a failing stream as unreadable and cancels", async () => {
+      const body = new ReadableStream<Uint8Array>({
+        pull(controller) {
+          controller.error(new Error("socket reset with secret-token"));
+        }
+      });
+      const error = await fetchJsonBounded("https://x", (async () => new Response(body)) as typeof fetch).catch((e: Error) => e);
+      expect(error).toBeInstanceOf(Error);
+      expect((error as Error).message).toMatch(/unreadable/i);
+      expect((error as Error).message).not.toMatch(/secret-token/);
+    });
+  });
 });
 
 describe("rate limiting", () => {
