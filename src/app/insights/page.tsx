@@ -8,7 +8,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { sameAsProfiles } from "@/features/profile/external-profiles";
 import { profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
-import { getAllInsights } from "@/features/insights/insights";
+import { getAllInsights } from "@/features/insights/insights.node";
 import { Download, Mail, Network } from "lucide-react";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Insight } from "@/features/insights/insight-model";
-import { getInsightUrl } from "@/features/insights/insights";
+import { getInsightUrl } from "@/features/insights/insights.node";
 
 type InsightCardProps = {
   insight: Insight;

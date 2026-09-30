@@ -42,8 +42,10 @@ const eslintConfig = [
     }
   },
 
-  // Feature domain code (.ts) never depends on routes, UI, pipelines or Workers.
-  { files: ["src/features/**/*.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
+  // Feature domain code (.ts) never depends on routes, UI, pipelines or Workers, and stays free of Node
+  // built-ins. Code that genuinely needs Node (filesystem, processes) must say so in its name: *.node.ts.
+  { files: ["src/features/**/*.ts"], ignores: ["src/features/**/*.node.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers, nodeBuiltins) },
+  { files: ["src/features/**/*.node.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
   // Feature components and shared UI render in the browser: no routes, pipelines, Workers or Node built-ins.
   { files: ["src/features/**/*.tsx", "src/components/**/*.{ts,tsx}"], rules: boundaryRules(fromApp, fromAutomation, fromWorkers, nodeBuiltins) },
   // Routes compose features and components; they do not reach into pipelines or Workers.
@@ -63,14 +65,15 @@ const eslintConfig = [
       fromAutomation,
       fromWorkers,
       reactAndNext,
+      nodeBuiltins,
       ...["job-review", "site-metrics"]
         .filter((other) => other !== name)
         .map((other) => pattern([`../${other}`, `../${other}/**`, `../../${other}`, `../../workers/${other}/**`, `@workers/${other}/**`], `The ${name} Worker must not import the ${other} Worker; share code through src/shared.`))
     )
   })),
-  // Runtime-neutral code: usable in the browser, in Node and on the edge.
+  // Runtime-neutral code: usable in the browser, in Node and on the edge (the jobs feature runs inside a Worker).
   {
-    files: ["src/features/telemetry/events.ts", "src/features/telemetry/snapshot.ts", "src/features/telemetry/goals.ts", "src/features/tools/*.ts"],
+    files: ["src/features/telemetry/events.ts", "src/features/telemetry/snapshot.ts", "src/features/telemetry/goals.ts", "src/features/tools/*.ts", "src/features/jobs/**/*.ts", "src/features/github/**/*.ts", "src/features/profile/**/*.ts"],
     rules: boundaryRules(fromUi, fromAutomation, fromWorkers, reactAndNext, nodeBuiltins)
   },
   // Shared edge utilities are runtime-neutral AND sit below features.

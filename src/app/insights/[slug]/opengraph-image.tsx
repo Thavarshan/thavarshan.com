@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { site } from "@/features/profile/site";
-import { getAllInsights, getInsightBySlug } from "@/features/insights/insights";
+import { getAllInsights, getInsightBySlug } from "@/features/insights/insights.node";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

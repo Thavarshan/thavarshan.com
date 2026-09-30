@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import githubData from "@generated/github.generated.json";
 import { parseInsightSource } from "@/features/insights/insight-model";
-import { assertUniqueInsightSlugs, getAllInsights, validateInsightProjectReferences } from "@/features/insights/insights";
+import { assertUniqueInsightSlugs, getAllInsights, validateInsightProjectReferences } from "@/features/insights/insights.node";
 import { githubSnapshotSchema } from "@/features/github/github-model";
 
 describe("insights", () => {

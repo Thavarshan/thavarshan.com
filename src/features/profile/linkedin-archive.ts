@@ -1,7 +1,6 @@
-import { createHash } from "node:crypto";
-import { basename } from "node:path";
 import { parse } from "csv-parse/sync";
 import { strFromU8, unzipSync } from "fflate";
+import { sha256Hex } from "@/shared/edge/sha256";
 import type {
   CertificationRecord,
   EducationRecord,
@@ -11,6 +10,9 @@ import type {
   ProfessionalProject,
   SkillRecord
 } from "@/features/profile/profile-schema";
+
+/** Last segment of a zip entry name. Matches POSIX `path.basename` (zip entries always use `/`). */
+const basename = (path: string) => path.replace(/\/+$/, "").split("/").at(-1) ?? "";
 import { parseProfessionalProfile } from "@/features/profile/profile-schema";
 
 const MAX_ARCHIVE_BYTES = 50 * 1024 * 1024;
@@ -425,7 +427,7 @@ export function importLinkedInArchive(
   next.sources.linkedin = {
     kind: "linkedin-archive",
     importedAt: now.toISOString(),
-    fingerprint: createHash("sha256").update(archive).digest("hex")
+    fingerprint: sha256Hex(archive)
   };
   next.modifiedAt = now.toISOString();
 

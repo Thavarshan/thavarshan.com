@@ -3,7 +3,7 @@ import githubData from "@generated/github.generated.json";
 import { profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
 import { githubSnapshotSchema } from "@/features/github/github-model";
-import { getAllInsights } from "@/features/insights/insights";
+import { getAllInsights } from "@/features/insights/insights.node";
 import { toolUrl, tools } from "@/features/tools/registry";
 
 export const dynamic = "force-static";

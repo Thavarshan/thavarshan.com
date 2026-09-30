@@ -37,7 +37,7 @@ describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (co
   const { topLevelKeys, sections } = parse(config);
 
   it("uses only reviewed top-level settings", () => {
-    const allowed = ["name", "main", "compatibility_date", "compatibility_flags"];
+    const allowed = ["name", "main", "compatibility_date"];
     expect(topLevelKeys.filter((key) => !allowed.includes(key))).toEqual([]);
   });
 
@@ -58,9 +58,8 @@ describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (co
     }
   });
 
-  it("enables no compatibility flags beyond the reviewed one", () => {
-    const flags = config.match(/compatibility_flags\s*=\s*\[([^\]]*)\]/)?.[1] ?? "";
-    expect(flags.replace(/["\s]/g, "").split(",").filter(Boolean).filter((flag) => flag !== "nodejs_compat")).toEqual([]);
+  it("enables no compatibility flags (Workers must not depend on Node compatibility)", () => {
+    expect(config).not.toMatch(/compatibility_flags/);
   });
 
   it("keeps the Worker on the default workers.dev hostname (no zone, routes or custom-domain products)", () => {
