@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { MAX_INPUT_CHARS, MAX_LINES, checkEnv, exampleEnv, exampleEnvBroken, exampleEnvHealthy, formatReport, looksLikeRealSecret, parseEnv, type CheckResult } from "@/lib/tools/env-check";
+import { MAX_INPUT_CHARS, MAX_LINES, checkEnv, exampleEnv, exampleEnvBroken, exampleEnvHealthy, formatReport, looksLikeRealSecret, parseEnv, type CheckResult } from "@/features/tools/env-check";
 
 function check(env: string, example: string): CheckResult {
   const outcome = checkEnv(env, example);

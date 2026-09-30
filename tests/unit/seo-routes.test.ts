@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import robots from "../../src/app/robots";
 import sitemap from "../../src/app/sitemap";
-import { site } from "../../src/data/site";
-import { tools } from "../../src/lib/tools/registry";
+import { site } from "../../src/shared/config/site";
+import { tools } from "../../src/features/tools/registry";
 
 describe("SEO routes", () => {
   it("publishes one canonical sitemap from robots metadata", () => {

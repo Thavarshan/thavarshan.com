@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { EVENTS, aggregateKey, attributionFromSearch, classifyReferrer, eventNames, parseAggregateKey, sanitizeUtm, stageOf, validateWireEvent } from "@/lib/telemetry/events";
-import { goalToEvent, locationFromPath, projectFromHref } from "@/lib/telemetry/goals";
+import { EVENTS, aggregateKey, attributionFromSearch, classifyReferrer, eventNames, parseAggregateKey, sanitizeUtm, stageOf, validateWireEvent } from "@/features/telemetry/events";
+import { goalToEvent, locationFromPath, projectFromHref } from "@/features/telemetry/goals";
 
 const base = { path: "/projects/fetch-php", source: null, medium: null, campaign: null, referrer: "direct", props: {} };
 const valid = (event: string, props: Record<string, string> = {}, extra: Record<string, unknown> = {}) => validateWireEvent({ ...base, event, props, ...extra });

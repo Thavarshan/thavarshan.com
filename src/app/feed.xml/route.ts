@@ -1,5 +1,5 @@
-import { site } from "@/data/site";
-import { getAllInsights } from "@/lib/insights";
+import { site } from "@/shared/config/site";
+import { getAllInsights } from "@/features/insights/insights";
 
 export const dynamic = "force-static";
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { site } from "@/data/site";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { site } from "@/shared/config/site";
 
 export const metadata: Metadata = {
   title: "Privacy",

@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import githubData from "@generated/github.generated.json";
-import { getFeaturedGitHubProject } from "@/lib/projects";
-import { githubSnapshotSchema } from "@/lib/github-model";
+import { getFeaturedGitHubProject } from "@/features/projects/projects";
+import { githubSnapshotSchema } from "@/features/projects/github-model";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

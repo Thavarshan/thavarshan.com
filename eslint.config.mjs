@@ -7,17 +7,20 @@ import tseslint from "typescript-eslint";
  * Import-boundary rules (see docs/architecture.md). They encode the dependency directions the
  * repository relies on, so a wrong-way import fails lint instead of surviving review:
  *
- *   routes (src/app) -> components -> domain (src/lib)    never the reverse
- *   automation (scripts/) and Workers (workers/) are runtime adapters: they use src/lib, never src/app or each other
+ *   src/app (routes) -> src/components, src/features -> src/shared        never the reverse
+ *   scripts/ (automation) and workers/ (edge) are runtime adapters: they use src/features and src/shared,
+ *   never src/app or src/components, never each other
  *   runtime-neutral code (edge utilities, event contracts, tools) must not touch Node, React or Next
  */
 const pattern = (group, message) => ({ group, message });
 
-const fromUi = pattern(["@/app/*", "@/app/**", "@/components/*", "@/components/**", "**/app/**", "**/components/**"], "Domain, automation and Worker code must not import routes or UI components.");
-const fromAutomation = pattern(["@scripts/*", "@scripts/**", "**/scripts/**"], "Only automation may import automation; move shared code to lib/.");
-const fromWorkers = pattern(["@workers/*", "@workers/**", "**/workers/**"], "Workers are deployable entrypoints; share code through lib/, not across Workers.");
+const fromApp = pattern(["@/app", "@/app/*", "@/app/**", "**/app/**"], "Nothing imports routes; routes import features and components.");
+const fromUi = pattern(["@/app", "@/app/**", "@/components", "@/components/**", "**/app/**", "**/components/**"], "Domain, automation and Worker code must not import routes or UI components.");
+const fromAutomation = pattern(["@scripts/*", "@scripts/**", "**/scripts/**"], "Only automation may import automation; move shared code to src/shared or a feature.");
+const fromWorkers = pattern(["@workers/*", "@workers/**", "**/workers/**"], "Workers are deployable entrypoints; share code through src/shared, not across Workers.");
+const fromFeatures = pattern(["@/features", "@/features/*", "@/features/**", "**/features/**"], "Shared modules are below features in the dependency order; they must not import a feature.");
 const reactAndNext = pattern(["react", "react-dom", "react/*", "next", "next/*"], "This code must stay runtime-neutral (no React or Next.js).");
-const nodeBuiltins = pattern(["node:*"], "This code must stay runtime-neutral (no Node built-ins); put Node code in lib/node or automation.");
+const nodeBuiltins = pattern(["node:*"], "This code must stay runtime-neutral (no Node built-ins); put Node code in src/shared/node or automation.");
 
 const boundaryRules = (...patterns) => ({ "no-restricted-imports": ["error", { patterns }] });
 
@@ -39,12 +42,16 @@ const eslintConfig = [
     }
   },
 
-  // Domain code never depends on routes, UI, pipelines or Workers.
-  { files: ["src/lib/**/*.{ts,tsx}"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
-  // UI never depends on pipelines or Workers.
-  { files: ["src/components/**/*.{ts,tsx}"], rules: boundaryRules(fromAutomation, fromWorkers) },
-  // Routes compose domain code and UI; they do not reach into pipelines or Workers.
+  // Feature domain code (.ts) never depends on routes, UI, pipelines or Workers.
+  { files: ["src/features/**/*.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
+  // Feature components and shared UI render in the browser: no routes, pipelines, Workers or Node built-ins.
+  { files: ["src/features/**/*.tsx", "src/components/**/*.{ts,tsx}"], rules: boundaryRules(fromApp, fromAutomation, fromWorkers, nodeBuiltins) },
+  // Routes compose features and components; they do not reach into pipelines or Workers.
   { files: ["src/app/**/*.{ts,tsx}"], rules: boundaryRules(fromAutomation, fromWorkers) },
+  // Shared building blocks sit below features, routes and UI.
+  { files: ["src/shared/node/**/*.ts"], rules: boundaryRules(fromUi, fromFeatures, fromAutomation, fromWorkers) },
+  // Site-wide configuration is derived from the profile feature, so it may import features, but nothing above it.
+  { files: ["src/shared/config/**/*.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
   // Pipelines are independent of the UI and of Workers.
   { files: ["scripts/**/*.ts"], rules: boundaryRules(fromUi, fromWorkers) },
   // Workers are edge adapters: no UI, no Node pipelines, no other Worker, no React/Next. Each Worker also
@@ -58,16 +65,18 @@ const eslintConfig = [
       reactAndNext,
       ...["job-review", "site-metrics"]
         .filter((other) => other !== name)
-        .map((other) => pattern([`../${other}`, `../${other}/**`, `../../${other}`, `../../workers/${other}/**`, `@workers/${other}/**`], `The ${name} Worker must not import the ${other} Worker; share code through lib/.`))
+        .map((other) => pattern([`../${other}`, `../${other}/**`, `../../${other}`, `../../workers/${other}/**`, `@workers/${other}/**`], `The ${name} Worker must not import the ${other} Worker; share code through src/shared.`))
     )
   })),
   // Runtime-neutral code: usable in the browser, in Node and on the edge.
   {
-    files: ["src/lib/edge/**/*.ts", "src/lib/telemetry/events.ts", "src/lib/telemetry/snapshot.ts", "src/lib/telemetry/goals.ts", "src/lib/tools/**/*.ts"],
+    files: ["src/features/telemetry/events.ts", "src/features/telemetry/snapshot.ts", "src/features/telemetry/goals.ts", "src/features/tools/*.ts"],
     rules: boundaryRules(fromUi, fromAutomation, fromWorkers, reactAndNext, nodeBuiltins)
   },
+  // Shared edge utilities are runtime-neutral AND sit below features.
+  { files: ["src/shared/edge/**/*.ts"], rules: boundaryRules(fromUi, fromFeatures, fromAutomation, fromWorkers, reactAndNext, nodeBuiltins) },
   // Browser-side telemetry must not pull in Node.
-  { files: ["src/lib/telemetry/client.ts", "src/components/**/*.tsx"], rules: boundaryRules(fromAutomation, fromWorkers, nodeBuiltins) }
+  { files: ["src/features/telemetry/client.ts"], rules: boundaryRules(fromAutomation, fromWorkers, nodeBuiltins) }
 ];
 
 export default eslintConfig;

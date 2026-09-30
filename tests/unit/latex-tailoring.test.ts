@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { renderResumeLatex } from "@/lib/latex";
-import type { GitHubSnapshot } from "@/lib/github-model";
-import type { ProfessionalProfile } from "@/lib/profile-schema";
+import { renderResumeLatex } from "@/features/cv/latex";
+import type { GitHubSnapshot } from "@/features/projects/github-model";
+import type { ProfessionalProfile } from "@/features/profile/profile-schema";
 
 const github: GitHubSnapshot = {
   username: "Thavarshan",

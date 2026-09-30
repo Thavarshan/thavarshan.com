@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fallbackGitHubSnapshot, fetchGitHubSnapshot, getStaticGitHubSnapshot } from "@/lib/github";
+import { fallbackGitHubSnapshot, fetchGitHubSnapshot, getStaticGitHubSnapshot } from "@/features/projects/github";
 
 afterEach(() => {
   vi.unstubAllGlobals();

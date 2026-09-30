@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { InsightEngagement } from "@/components/insight-engagement";
-import { configureTelemetry, resetTelemetryForTests } from "@/lib/telemetry/client";
+import { InsightEngagement } from "@/features/insights/insight-engagement";
+import { configureTelemetry, resetTelemetryForTests } from "@/features/telemetry/client";
 
 const readBlob = (blob: Blob) => new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = reject; reader.readAsText(blob); });
 

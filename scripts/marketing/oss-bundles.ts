@@ -1,7 +1,7 @@
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { site } from "../../src/data/site";
-import { githubSnapshotSchema } from "../../src/lib/github-model";
+import { site } from "../../src/shared/config/site";
+import { githubSnapshotSchema } from "../../src/features/projects/github-model";
 import {
   DEFAULT_COOLDOWN_DAYS,
   DEFAULT_MAX_PER_RUN,
@@ -16,9 +16,9 @@ import {
   type DetectResult,
   type Ledger,
   type Snapshots
-} from "../../src/lib/oss-marketing";
-import { packageRegistrySnapshotSchema } from "../../src/lib/package-registry";
-import { writeJsonAtomic } from "../../src/lib/node/fs";
+} from "../../src/features/marketing/oss-marketing";
+import { packageRegistrySnapshotSchema } from "../../src/features/projects/package-registry";
+import { writeJsonAtomic } from "../../src/shared/node/fs";
 
 const ledgerPath = resolve("marketing/oss-ledger.json");
 const outputRoot = resolve("marketing/oss");

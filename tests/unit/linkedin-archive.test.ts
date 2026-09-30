@@ -1,8 +1,8 @@
 import { strToU8, zipSync } from "fflate";
 import { describe, expect, it } from "vitest";
 import profileData from "@generated/profile.generated.json";
-import { importLinkedInArchive, normalizeLinkedInDate, splitLinkedInDescription } from "@/lib/linkedin-archive";
-import { parseProfessionalProfile } from "@/lib/profile-schema";
+import { importLinkedInArchive, normalizeLinkedInDate, splitLinkedInDescription } from "@/features/profile/linkedin-archive";
+import { parseProfessionalProfile } from "@/features/profile/profile-schema";
 
 const previous = parseProfessionalProfile(profileData);
 

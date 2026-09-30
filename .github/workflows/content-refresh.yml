@@ -8,7 +8,7 @@ on:
       - "data/github.generated.json"
       - "data/package-registry.generated.json"
       - "public/docs/Jerome-Resume.pdf"
-      - "src/lib/latex.ts"
+      - "src/features/cv/latex.ts"
       - "cv/**"
       - "scripts/cv/**"
       - "scripts/profile/github.ts"

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import type { Opportunity } from "@/lib/job-opportunities";
+import type { Opportunity } from "@/features/jobs/opportunities";
 import { makeOpportunity } from "../helpers/opportunity";
-import { filterOpportunities, isStale, parseFilters, safeExternalUrl, sanitizeNote, sortOpportunities, type ReviewMap } from "@/lib/job-review";
+import { filterOpportunities, isStale, parseFilters, safeExternalUrl, sanitizeNote, sortOpportunities, type ReviewMap } from "@/features/jobs/review";
 
 const now = new Date("2026-09-30T00:00:00.000Z");
 

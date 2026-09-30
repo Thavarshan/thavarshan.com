@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { withUtm } from "@/lib/analytics";
+import { withUtm } from "@/features/telemetry/analytics";
 
 describe("analytics helpers", () => {
   it("adds standard campaign parameters", () => {

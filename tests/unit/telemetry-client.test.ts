@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { captureLandingAttribution, configureTelemetry, getSessionAttribution, privacySignalOn, resetTelemetryForTests, track } from "@/lib/telemetry/client";
-import { validateWireEvent } from "@/lib/telemetry/events";
+import { captureLandingAttribution, configureTelemetry, getSessionAttribution, privacySignalOn, resetTelemetryForTests, track } from "@/features/telemetry/client";
+import { validateWireEvent } from "@/features/telemetry/events";
 
 const ENDPOINT = "https://collector.example/collect";
 const readBlob = (blob: Blob) => new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = reject; reader.readAsText(blob); });

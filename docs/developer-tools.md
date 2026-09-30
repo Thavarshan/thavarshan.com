@@ -19,14 +19,14 @@ Considered and deferred: a PHP `date()` format tester and a Composer version-con
 
 ## Guarantees
 
-**Privacy (the `.env` checker in particular).** All logic lives in `src/lib/tools/*` (pure functions) and runs in the browser. Nothing is uploaded, logged, or stored (no cookies, `localStorage`, `sessionStorage`, or URL state). Findings and the copyable report contain key names and line numbers only, never values; the "missing keys" block copies an example default only when it is clearly not sensitive. This is enforced by tests:
+**Privacy (the `.env` checker in particular).** All logic lives in `src/features/tools/*` (pure functions) and runs in the browser. Nothing is uploaded, logged, or stored (no cookies, `localStorage`, `sessionStorage`, or URL state). Findings and the copyable report contain key names and line numbers only, never values; the "missing keys" block copies an example default only when it is clearly not sensitive. This is enforced by tests:
 
 - unit: sentinel secrets fed into every field never appear in findings, the report, or the missing-keys block (`tests/unit/tool-env-check.test.ts`);
 - end-to-end: a real browser session records **every network request** while a sentinel secret is typed and asserts it appears in none of them (URL or body), nor in results, storage, cookies or the page URL (`tests/e2e/tools.spec.ts`).
 
 Analytics only counts button clicks via Plausible tagged-event classes: `Tool Example Load` and `Tool Copy Output`. No input, output or file content is ever an event property. The site-wide analytics remain cookie-free (see `/privacy`).
 
-**Correctness.** Suggestions are only shown when provably equivalent; otherwise the tool says so and falls back (`->cron()`). Known behavioural limits are listed on each page and in `src/lib/tools/*` (unsupported cron tokens are reported, not mis-evaluated; when both day fields are set the classic OR behaviour is shown with a warning because Laravel's cron library does not document that case).
+**Correctness.** Suggestions are only shown when provably equivalent; otherwise the tool says so and falls back (`->cron()`). Known behavioural limits are listed on each page and in `src/features/tools/*` (unsupported cron tokens are reported, not mis-evaluated; when both day fields are set the classic OR behaviour is shown with a warning because Laravel's cron library does not document that case).
 
 **Robustness.** Inputs are size-limited (256,000 characters / 5,000 lines) with clear errors; hostile input never throws (tested); all output is rendered as escaped text by React.
 
@@ -38,9 +38,9 @@ Each page has a unique title and description, a canonical URL, OpenGraph/Twitter
 
 ## Adding a tool
 
-1. Put the logic in `src/lib/tools/<name>.ts` as pure functions with unit tests, including malformed input and (if it handles secrets) a value-never-leaks test.
-2. Add the component in `src/components/tools/` (client component; no persistence; labelled controls; `aria-live` results).
-3. Add an entry to `src/lib/tools/registry.ts` (unique content is required, not optional) and map its slug in `src/app/tools/[slug]/page.tsx`.
+1. Put the logic in `src/features/tools/<name>.ts` as pure functions with unit tests, including malformed input and (if it handles secrets) a value-never-leaks test.
+2. Add the component in `src/features/tools/components/` (client component; no persistence; labelled controls; `aria-live` results).
+3. Add an entry to `src/features/tools/registry.ts` (unique content is required, not optional) and map its slug in `src/app/tools/[slug]/page.tsx`.
 4. Add e2e coverage to `tests/e2e/tools.spec.ts` and the URL to `.lighthouserc.json`.
 5. Sitemap, index, social image and structured data are generated from the registry.
 

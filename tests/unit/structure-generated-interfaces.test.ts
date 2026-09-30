@@ -13,7 +13,7 @@ const interfaces: Array<{ path: string; why: string; consumers: string[] }> = [
   { path: "data/jobs.generated.json", why: "daily jobs snapshot; fetched by the job-review Worker", consumers: [".github/workflows/jobs-refresh.yml", "scripts/jobs/collect.ts", "scripts/applications/generate.ts", "workers/job-review/wrangler.toml"] },
   { path: "data/profile.generated.json", why: "validated professional profile (website + CV)", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/render.ts", "scripts/profile/publish.ts"] },
   { path: "data/github.generated.json", why: "repository snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/profile/github.ts", "src/app/sitemap.ts"] },
-  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/marketing/registry.ts", "src/lib/package-registry.ts"] },
+  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/marketing/registry.ts", "src/features/projects/package-registry.ts"] },
   { path: "data/growth", why: "weekly growth metrics snapshots", consumers: [".github/workflows/growth-metrics.yml", "scripts/growth/metrics-snapshot.ts"] },
   { path: "marketing/oss-ledger.json", why: "OSS bundle dedupe ledger", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },
   { path: "marketing/oss", why: "OSS promotion drafts", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
-import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { site } from "@/data/site";
-import { toolUrl, tools } from "@/lib/tools/registry";
+import { JsonLd } from "@/components/ui/json-ld";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { site } from "@/shared/config/site";
+import { toolUrl, tools } from "@/features/tools/registry";
 
 export const metadata: Metadata = {
   title: "Free Laravel & PHP Developer Tools",

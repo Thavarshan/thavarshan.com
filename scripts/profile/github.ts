@@ -1,9 +1,9 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { fetchGitHubSnapshot } from "../../src/lib/github";
-import { findProfileConflicts } from "../../src/lib/profile-conflicts";
-import { parseProfessionalProfile } from "../../src/lib/profile-schema";
-import { writeJsonAtomic } from "../../src/lib/node/fs";
+import { fetchGitHubSnapshot } from "../../src/features/projects/github";
+import { findProfileConflicts } from "../../src/features/profile/profile-conflicts";
+import { parseProfessionalProfile } from "../../src/features/profile/profile-schema";
+import { writeJsonAtomic } from "../../src/shared/node/fs";
 
 export async function syncGitHubProfile() {
   const snapshot = await fetchGitHubSnapshot({ token: process.env.GITHUB_TOKEN });

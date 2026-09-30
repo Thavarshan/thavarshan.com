@@ -1,6 +1,6 @@
-import { assessOpportunity, canonicalizeJobUrl, computeContentFingerprint, computeDescriptionHash, deriveSourceId, opportunityId, type Opportunity } from "../../src/lib/job-opportunities";
-import { detectRelocation, extractLocationSignals } from "../../src/lib/job-location";
-import { parseSalary } from "../../src/lib/job-salary";
+import { assessOpportunity, canonicalizeJobUrl, computeContentFingerprint, computeDescriptionHash, deriveSourceId, opportunityId, type Opportunity } from "../../src/features/jobs/opportunities";
+import { detectRelocation, extractLocationSignals } from "../../src/features/jobs/location";
+import { parseSalary } from "../../src/features/jobs/salary";
 import { stripHtml } from "./xml";
 
 export function splitTitle(value: string) {

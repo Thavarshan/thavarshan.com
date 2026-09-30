@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { renderCoverLetterLatex } from "@/lib/cover-letter-latex";
-import type { ProfessionalProfile } from "@/lib/profile-schema";
+import { renderCoverLetterLatex } from "@/features/applications/cover-letter-latex";
+import type { ProfessionalProfile } from "@/features/profile/profile-schema";
 
 const profile = {
   identity: {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COLLECTOR_VERSION, type OpportunitySnapshot, type SourceStats } from "@/lib/job-opportunities";
+import { COLLECTOR_VERSION, type OpportunitySnapshot, type SourceStats } from "@/features/jobs/opportunities";
 import { HEARTBEAT_HOURS, assessRunHealth, isMaterialChange, renderRunSummary, summarizeError } from "@scripts/jobs/health";
 
 const now = "2026-09-30T12:00:00.000Z";

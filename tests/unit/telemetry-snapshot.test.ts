@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { aggregateKey, type WireEvent } from "@/lib/telemetry/events";
-import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow } from "@/lib/telemetry/snapshot";
+import { aggregateKey, type WireEvent } from "@/features/telemetry/events";
+import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow } from "@/features/telemetry/snapshot";
 import { MAX_KEYS, main, parseArgs, periodFor, readRowsFromKv } from "@scripts/growth/metrics-snapshot";
 
 const period = { start: "2026-09-21", end: "2026-09-27", isoWeek: "2026-W39" };

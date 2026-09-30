@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { validateCvTailoringPlan } from "@/lib/application-tailoring";
-import type { ExperienceRecord } from "@/lib/profile-schema";
+import { validateCvTailoringPlan } from "@/features/applications/tailoring";
+import type { ExperienceRecord } from "@/features/profile/profile-schema";
 
 function role(overrides: Partial<ExperienceRecord> & Pick<ExperienceRecord, "id">): ExperienceRecord {
   return {

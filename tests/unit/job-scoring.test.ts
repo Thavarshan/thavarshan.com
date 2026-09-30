@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assessOpportunity, INELIGIBLE_SCORE_CAP, RELEVANCE_SCORE_CAP, isLaravelPhpRole } from "@/lib/job-opportunities";
+import { assessOpportunity, INELIGIBLE_SCORE_CAP, RELEVANCE_SCORE_CAP, isLaravelPhpRole } from "@/features/jobs/opportunities";
 
 type Input = Parameters<typeof assessOpportunity>[0];
 

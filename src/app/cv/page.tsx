@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { Download, Mail, Network, Star } from "lucide-react";
-import { ButtonLink } from "@/components/button-link";
-import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { education } from "@/data/education";
-import { experience } from "@/data/experience";
-import { expertiseGroups } from "@/data/expertise";
-import { sameAsProfiles } from "@/data/external-profiles";
-import { formatProfilePeriod, profile } from "@/data/profile";
-import { site } from "@/data/site";
-import { getFeaturedGitHubProjects } from "@/lib/projects";
+import { ButtonLink } from "@/components/ui/button-link";
+import { JsonLd } from "@/components/ui/json-ld";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { education } from "@/features/profile/education";
+import { experience } from "@/features/profile/experience";
+import { expertiseGroups } from "@/features/profile/expertise";
+import { sameAsProfiles } from "@/features/profile/external-profiles";
+import { formatProfilePeriod, profile } from "@/features/profile/profile";
+import { site } from "@/shared/config/site";
+import { getFeaturedGitHubProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {
   title: "Professional CV",

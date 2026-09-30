@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from "vitest";
-import type { GitHubProject } from "@/lib/github-model";
+import type { GitHubProject } from "@/features/projects/github-model";
 import {
   DEFAULT_COOLDOWN_DAYS,
   STAR_MILESTONES,
@@ -14,7 +14,7 @@ import {
   parseSemver,
   type Ledger,
   type Snapshots
-} from "@/lib/oss-marketing";
+} from "@/features/marketing/oss-marketing";
 import { parseArgs, renderSummary } from "@scripts/marketing/oss-bundles";
 
 const NOW = new Date("2026-10-01T00:00:00.000Z");

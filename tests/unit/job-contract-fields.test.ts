@@ -8,8 +8,8 @@ import {
   deriveSourceId,
   mergeOpportunities,
   opportunitySnapshotSchema
-} from "@/lib/job-opportunities";
-import { loadSnapshot } from "@/lib/job-snapshot";
+} from "@/features/jobs/opportunities";
+import { loadSnapshot } from "@/features/jobs/snapshot";
 import { buildOpportunity, sanitizeApplicationUrl } from "@scripts/jobs/opportunity-builder";
 import { makeOpportunity } from "../helpers/opportunity";
 

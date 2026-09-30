@@ -3,7 +3,7 @@ import { mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { CURRENT_SCHEMA_VERSION, SnapshotError, loadSnapshot } from "@/lib/job-snapshot";
+import { CURRENT_SCHEMA_VERSION, SnapshotError, loadSnapshot } from "@/features/jobs/snapshot";
 import { readExisting } from "@scripts/jobs/collect";
 
 const read = async (path: string) => JSON.parse(await readFile(new URL(`../../${path}`, import.meta.url), "utf8"));

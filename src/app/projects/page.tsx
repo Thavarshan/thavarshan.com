@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Download, Mail, Network } from "lucide-react";
-import { ButtonLink } from "@/components/button-link";
-import { JsonLd } from "@/components/json-ld";
-import { ProjectCard } from "@/components/project-card";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { site } from "@/data/site";
-import { getFeaturedProjects } from "@/lib/projects";
+import { ButtonLink } from "@/components/ui/button-link";
+import { JsonLd } from "@/components/ui/json-ld";
+import { ProjectCard } from "@/features/projects/project-card";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { site } from "@/shared/config/site";
+import { getFeaturedProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {
   title: "Open-Source Projects",

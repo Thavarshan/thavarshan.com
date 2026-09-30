@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scanForUnlistedTerms } from "@/lib/hallucination-check";
+import { scanForUnlistedTerms } from "@/features/applications/hallucination-check";
 
 const allowlist = ["Jerome Thayananthajothy", "Sino Lanka Group", "Senior Software Engineer", "Acme Remote", "Laravel Developer"];
 

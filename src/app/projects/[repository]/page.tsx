@@ -3,17 +3,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Download, GitFork, Mail, Network, Star } from "lucide-react";
 import githubData from "@generated/github.generated.json";
-import { ButtonLink } from "@/components/button-link";
-import { InsightCard } from "@/components/insight-card";
-import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { getProjectCaseStudy } from "@/data/project-case-studies";
-import { site } from "@/data/site";
-import { githubSnapshotSchema } from "@/lib/github-model";
-import { getRelatedInsightsForProject } from "@/lib/insights";
-import { formatPackageProvider, getPackageStatsByRepository } from "@/lib/package-registry";
-import { getFeaturedGitHubProject } from "@/lib/projects";
+import { ButtonLink } from "@/components/ui/button-link";
+import { InsightCard } from "@/features/insights/insight-card";
+import { JsonLd } from "@/components/ui/json-ld";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { getProjectCaseStudy } from "@/features/projects/project-case-studies";
+import { site } from "@/shared/config/site";
+import { githubSnapshotSchema } from "@/features/projects/github-model";
+import { getRelatedInsightsForProject } from "@/features/insights/insights";
+import { formatPackageProvider, getPackageStatsByRepository } from "@/features/projects/package-registry";
+import { getFeaturedGitHubProject } from "@/features/projects/projects";
 
 type ProjectPageProps = {
   params: Promise<{ repository: string }>;

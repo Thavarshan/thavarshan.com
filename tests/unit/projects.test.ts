@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { projectDefinitions, type GitHubRepositoryStats } from "@/data/projects";
-import { formatStarTotal, getResumeHref, mergeProjectDefinitions } from "@/lib/project-model";
+import { projectDefinitions, type GitHubRepositoryStats } from "@/features/projects/featured-projects";
+import { formatStarTotal, getResumeHref, mergeProjectDefinitions } from "@/features/projects/project-model";
 
 describe("project data", () => {
   it("sorts repositories by live stars when stats are present", () => {
