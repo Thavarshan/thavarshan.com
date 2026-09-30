@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { captureLandingAttribution, configureTelemetry } from "@/features/telemetry/client";
 
 // Configure at module load as well, so the first click of a page view is never lost to effect ordering.

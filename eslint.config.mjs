@@ -50,8 +50,8 @@ const eslintConfig = [
   { files: ["src/app/**/*.{ts,tsx}"], rules: boundaryRules(fromAutomation, fromWorkers) },
   // Shared building blocks sit below features, routes and UI.
   { files: ["src/shared/node/**/*.ts"], rules: boundaryRules(fromUi, fromFeatures, fromAutomation, fromWorkers) },
-  // Site-wide configuration is derived from the profile feature, so it may import features, but nothing above it.
-  { files: ["src/shared/config/**/*.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
+  // Foundational configuration: depends on nothing above it.
+  { files: ["src/shared/config/**/*.ts"], rules: boundaryRules(fromUi, fromFeatures, fromAutomation, fromWorkers) },
   // Pipelines are independent of the UI and of Workers.
   { files: ["automation/**/*.ts"], rules: boundaryRules(fromUi, fromWorkers) },
   // Workers are edge adapters: no UI, no Node pipelines, no other Worker, no React/Next. Each Worker also

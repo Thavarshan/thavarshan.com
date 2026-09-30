@@ -1,4 +1,4 @@
-import { profilePolicy } from "@/features/profile/profile-policy";
+import { profilePolicy } from "@/shared/config/profile-policy";
 import { profile } from "@/features/profile/profile";
 
 export type ExpertiseGroup = {

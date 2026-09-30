@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { sameAsProfiles } from "@/features/profile/external-profiles";
 import { profile } from "@/features/profile/profile";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { getAllInsights } from "@/features/insights/insights";
 import { Download, Mail, Network } from "lucide-react";
 

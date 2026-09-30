@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateCvTailoringPlan } from "@/features/applications/tailoring";
+import { validateCvTailoringPlan } from "@/features/cv/tailoring";
 import type { ExperienceRecord } from "@/features/profile/profile-schema";
 
 function role(overrides: Partial<ExperienceRecord> & Pick<ExperienceRecord, "id">): ExperienceRecord {

@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from "vitest";
-import type { GitHubProject } from "@/features/projects/github-model";
+import type { GitHubProject } from "@/features/github/github-model";
 import {
   DEFAULT_COOLDOWN_DAYS,
   STAR_MILESTONES,

@@ -4,7 +4,7 @@ import { Download, GitBranch, Mail, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ButtonLink } from "@/components/ui/button-link";
-import { navigation, site } from "@/shared/config/site";
+import { navigation, site } from "@/features/profile/site";
 
 const DESKTOP_QUERY = "(min-width: 1024px)";
 

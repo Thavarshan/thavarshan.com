@@ -1,4 +1,4 @@
-import { site } from "../../src/shared/config/site";
+import { site } from "../../src/features/profile/site";
 import { getAllInsights } from "../../src/features/insights/insights";
 
 async function main() {

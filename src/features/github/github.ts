@@ -1,5 +1,5 @@
 import fallbackData from "@generated/github.generated.json";
-import { profilePolicy } from "@/features/profile/profile-policy";
+import { profilePolicy } from "@/shared/config/profile-policy";
 import {
   cleanGitHubDescription,
   extractReadmeExcerpt,
@@ -8,7 +8,7 @@ import {
   selectFeaturedRepositories,
   type GitHubProject,
   type GitHubSnapshot
-} from "@/features/projects/github-model";
+} from "@/features/github/github-model";
 
 type GitHubUserResponse = {
   login: string;

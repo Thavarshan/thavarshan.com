@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { ProjectCard } from "@/features/projects/project-card";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { getFeaturedProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {

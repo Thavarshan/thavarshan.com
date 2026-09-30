@@ -1,5 +1,5 @@
 import type { FeaturedProject, GitHubRepositoryStats, ProjectDefinition } from "@/features/projects/featured-projects";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 
 export function mergeProjectDefinitions(
   definitions: ProjectDefinition[],

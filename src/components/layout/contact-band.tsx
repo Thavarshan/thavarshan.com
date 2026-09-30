@@ -1,6 +1,6 @@
 import { ArrowUpRight, Mail, Network } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 
 export function ContactBand() {
   return (

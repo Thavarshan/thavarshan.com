@@ -5,7 +5,7 @@ import {
   formatRepositoryName,
   selectFeaturedRepositories,
   type RepositoryCandidate
-} from "@/features/projects/github-model";
+} from "@/features/github/github-model";
 
 function project(repository: string, stars: number, overrides: Partial<RepositoryCandidate> = {}): RepositoryCandidate {
   return {

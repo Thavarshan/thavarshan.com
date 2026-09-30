@@ -1,7 +1,7 @@
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { site } from "../../src/shared/config/site";
-import { githubSnapshotSchema } from "../../src/features/projects/github-model";
+import { site } from "../../src/features/profile/site";
+import { githubSnapshotSchema } from "../../src/features/github/github-model";
 import {
   DEFAULT_COOLDOWN_DAYS,
   DEFAULT_MAX_PER_RUN,

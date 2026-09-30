@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { validateCvTailoringPlan } from "../../src/features/applications/tailoring";
+import { validateCvTailoringPlan } from "../../src/features/cv/tailoring";
 import { renderCoverLetterLatex } from "../../src/features/applications/cover-letter-latex";
-import { githubSnapshotSchema, type GitHubSnapshot } from "../../src/features/projects/github-model";
+import { githubSnapshotSchema, type GitHubSnapshot } from "../../src/features/github/github-model";
 import { scanForUnlistedTerms } from "../../src/features/applications/hallucination-check";
 import { opportunitySnapshotSchema, type Opportunity } from "../../src/features/jobs/opportunities";
 import { renderResumeLatex } from "../../src/features/cv/latex";

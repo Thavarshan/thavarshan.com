@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { withUtm } from "../telemetry/analytics";
-import type { GitHubProject } from "../projects/github-model";
+import type { GitHubProject } from "../github/github-model";
 import type { PackageRegistryStats } from "../projects/package-registry";
 
 /**

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { getTool, tools } from "@/features/tools/registry";
 
 export const size = { width: 1200, height: 630 };
