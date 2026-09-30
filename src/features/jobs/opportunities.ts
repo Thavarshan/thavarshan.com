@@ -82,23 +82,25 @@ export const opportunitySnapshotSchema = z.object({
     experienceYears: z.literal(11),
     workModes: z.array(z.enum(["remote", "relocation-with-sponsorship"]))
   }),
-  sources: z.array(z.object({
-    name: z.string(),
-    url: z.string().url(),
-    collectedAt: z.string().datetime(),
-    status: z.enum(["ok", "failed"]),
-    recordsFound: z.number().int().nonnegative(),
-    added: z.number().int().nonnegative(),
-    updated: z.number().int().nonnegative(),
-    closed: z.number().int().nonnegative(),
-    /** Wall-clock time spent collecting this source; null in snapshots written before it was recorded. */
-    durationMs: z.number().int().nonnegative().nullable().default(null),
-    /** Listings kept active because the source returned nothing unexpectedly (see mergeOpportunities). */
-    held: z.number().int().nonnegative().default(0),
-    skipped: z.number().int().nonnegative(),
-    rejected: z.number().int().nonnegative(),
-    error: z.string().nullable()
-  })),
+  sources: z.array(
+    z.object({
+      name: z.string(),
+      url: z.string().url(),
+      collectedAt: z.string().datetime(),
+      status: z.enum(["ok", "failed"]),
+      recordsFound: z.number().int().nonnegative(),
+      added: z.number().int().nonnegative(),
+      updated: z.number().int().nonnegative(),
+      closed: z.number().int().nonnegative(),
+      /** Wall-clock time spent collecting this source; null in snapshots written before it was recorded. */
+      durationMs: z.number().int().nonnegative().nullable().default(null),
+      /** Listings kept active because the source returned nothing unexpectedly (see mergeOpportunities). */
+      held: z.number().int().nonnegative().default(0),
+      skipped: z.number().int().nonnegative(),
+      rejected: z.number().int().nonnegative(),
+      error: z.string().nullable()
+    })
+  ),
   opportunities: z.array(opportunitySchema)
 });
 
@@ -242,20 +244,17 @@ function assessConfidence(input: {
   return { confidence: Math.max(0, Math.min(100, total)), confidenceBreakdown: breakdown };
 }
 
-export function assessOpportunity(
-  input: Pick<Opportunity, "title" | "descriptionText" | "location" | "tags">,
-  options: { laravelCurated?: boolean } = {}
-) {
+export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptionText" | "location" | "tags">, options: { laravelCurated?: boolean } = {}) {
   const text = [input.title, input.location, input.descriptionText, ...input.tags].filter(Boolean).join("\n");
   const reasons: string[] = [];
   const concerns: string[] = [];
   const scoreBreakdown: Opportunity["scoreBreakdown"] = [{ factor: "Baseline", points: 10 }];
 
   const sponsorship = sponsorshipUnavailablePattern.test(text)
-    ? "unavailable" as const
+    ? ("unavailable" as const)
     : /\b(?:visa )?sponsor(?:ship|ed)?\b/i.test(text)
-      ? "confirmed" as const
-      : "unknown" as const;
+      ? ("confirmed" as const)
+      : ("unknown" as const);
 
   for (const [pattern, points, reason] of positiveSignals) {
     // "no sponsorship" mentions the keyword but must not earn the sponsorship bonus.
@@ -283,12 +282,12 @@ export function assessOpportunity(
   if (!/\blaravel\b/i.test(text)) concerns.push("Laravel is not explicitly mentioned");
 
   const eligibility = sriLankaMentioned
-    ? "eligible" as const
+    ? ("eligible" as const)
     : concerns.some((concern) => concern.startsWith("Restricted")) && sponsorship !== "confirmed"
-      ? "ineligible" as const
+      ? ("ineligible" as const)
       : worldwideMatched || sponsorship === "confirmed"
-        ? "eligible" as const
-        : "unknown" as const;
+        ? ("eligible" as const)
+        : ("unknown" as const);
 
   if (eligibility === "unknown") concerns.push("Sri Lanka hiring eligibility is not explicit");
 
@@ -311,7 +310,12 @@ export function assessOpportunity(
 
   const conflicting = worldwideMatched && concerns.some((concern) => concern.startsWith("Restricted"));
   const { confidence, confidenceBreakdown } = assessConfidence({
-    eligibility, location: input.location, descriptionText: input.descriptionText, seniority, tags: input.tags, conflicting
+    eligibility,
+    location: input.location,
+    descriptionText: input.descriptionText,
+    seniority,
+    tags: input.tags,
+    conflicting
   });
 
   return {
@@ -379,7 +383,8 @@ export function mergeOpportunities(
     }
 
     const incomingIds = new Set(result.opportunities.map((item) => item.id));
-    const guardEmptyResult = result.opportunities.length === 0 && existingForSource.filter((item) => item.status !== "closed").length >= EMPTY_SOURCE_GUARD_MIN_ACTIVE;
+    const guardEmptyResult =
+      result.opportunities.length === 0 && existingForSource.filter((item) => item.status !== "closed").length >= EMPTY_SOURCE_GUARD_MIN_ACTIVE;
 
     for (const item of result.opportunities) {
       const previous = existingById.get(item.id);

@@ -15,7 +15,14 @@ describe("HostThrottle", () => {
   it("spaces requests to the same host and leaves other hosts alone", async () => {
     let clock = 0;
     const sleeps: number[] = [];
-    const throttle = new HostThrottle(1000, () => clock, async (ms) => { sleeps.push(ms); clock += ms; });
+    const throttle = new HostThrottle(
+      1000,
+      () => clock,
+      async (ms) => {
+        sleeps.push(ms);
+        clock += ms;
+      }
+    );
     await throttle.wait("a.example");
     await throttle.wait("a.example");
     await throttle.wait("a.example");
@@ -26,7 +33,13 @@ describe("HostThrottle", () => {
   it("queues concurrent callers instead of releasing them together", async () => {
     const clock = 0;
     const sleeps: number[] = [];
-    const throttle = new HostThrottle(500, () => clock, async (ms) => { sleeps.push(ms); });
+    const throttle = new HostThrottle(
+      500,
+      () => clock,
+      async (ms) => {
+        sleeps.push(ms);
+      }
+    );
     await Promise.all([throttle.wait("a"), throttle.wait("a"), throttle.wait("a")]);
     expect(sleeps).toEqual([500, 1000]);
   });
@@ -39,7 +52,10 @@ describe("createPoliteRequest", () => {
     const get = vi.fn(async () => response(200));
     const request = createPoliteRequest({ request: { get } as never, guard: allowAll, throttle: throttle(), source: "larajobs" });
     await request.get("https://larajobs.com/feed", { headers: { Accept: "application/rss+xml" } });
-    expect(get).toHaveBeenCalledWith("https://larajobs.com/feed", expect.objectContaining({ headers: { "User-Agent": USER_AGENT, Accept: "application/rss+xml" }, timeout: expect.any(Number) }));
+    expect(get).toHaveBeenCalledWith(
+      "https://larajobs.com/feed",
+      expect.objectContaining({ headers: { "User-Agent": USER_AGENT, Accept: "application/rss+xml" }, timeout: expect.any(Number) })
+    );
   });
 
   it("refuses, without making the request, when robots.txt disallows", async () => {
@@ -72,7 +88,9 @@ describe("resolveRedirectTarget", () => {
 
   it("checks robots.txt BEFORE requesting each hop and never touches a disallowed host", async () => {
     const request = chain({ "https://larajobs.com/job/1": response(302, { location: "https://blocked.example/jobs/1" }) });
-    await expect(resolveRedirectTarget("https://larajobs.com/job/1", { request, guard: deny("https://blocked.example"), throttle })).rejects.toThrow(SkipEnrichmentError);
+    await expect(resolveRedirectTarget("https://larajobs.com/job/1", { request, guard: deny("https://blocked.example"), throttle })).rejects.toThrow(
+      SkipEnrichmentError
+    );
     const heads = (request as { head: ReturnType<typeof vi.fn> }).head.mock.calls.map((call) => call[0]);
     expect(heads).toEqual(["https://larajobs.com/job/1"]);
   });
@@ -80,7 +98,11 @@ describe("resolveRedirectTarget", () => {
   it("gives up on redirect loops and on network errors, as a skip rather than a failure", async () => {
     const loop = chain({ "https://a.example/": response(302, { location: "https://a.example/" }) });
     await expect(resolveRedirectTarget("https://a.example/", { request: loop, guard: allowAll, throttle })).rejects.toThrow(/too many redirects/);
-    const broken = { head: vi.fn(async () => { throw new Error("ECONNREFUSED"); }) } as never;
+    const broken = {
+      head: vi.fn(async () => {
+        throw new Error("ECONNREFUSED");
+      })
+    } as never;
     await expect(resolveRedirectTarget("https://a.example/", { request: broken, guard: allowAll, throttle })).rejects.toThrow(SkipEnrichmentError);
   });
 });
@@ -88,7 +110,11 @@ describe("resolveRedirectTarget", () => {
 describe("withDeadline", () => {
   it("passes through results and errors, and cancels its timer", async () => {
     expect(await withDeadline("x", 1000, async () => 42)).toBe(42);
-    await expect(withDeadline("x", 1000, async () => { throw new Error("boom"); })).rejects.toThrow("boom");
+    await expect(
+      withDeadline("x", 1000, async () => {
+        throw new Error("boom");
+      })
+    ).rejects.toThrow("boom");
   });
 
   it("rejects a hung task at the deadline", async () => {

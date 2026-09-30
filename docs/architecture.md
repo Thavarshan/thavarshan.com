@@ -77,6 +77,12 @@ shared/edge, shared/node  (independent)        features/jobs  (independent; used
 
 `tests/integration/structure/import-graph.test.ts` enforces this. Lint blocks forbidden *directions*; this test guards the *allowed graph*: it fails on any dependency between units that is not declared in the test (so a new dependency is a visible, reviewed change), on any cycle, on unowned directories, and on a Worker pulling anything beyond its allowance into its deployed bundle. Restructuring found and removed the real cycles (profile↔projects, applications↔cv, config↔profile, and a chain through the UI) by moving `github-model`/`github` into their own feature, `profile-policy` into `shared/config`, CV `tailoring` into `cv`, `hero`/`timeline` into `home`, and `site.ts` into `profile`, the feature it is derived from.
 
+## Formatting
+
+All TypeScript in `src`, `automation`, `workers`, `tests` and the root config files is formatted with Prettier (`npm run format` to fix, `npm run format:check` in CI). Settings live in `.prettierrc.json` and mirror `.editorconfig` (160 columns, 2 spaces). Generated and non-code content (`data`, `marketing`, `cv`, `public`, `docs`, `content`, fixtures, lockfile) is ignored via `.prettierignore`.
+
+Three JSX spots are marked `{/* prettier-ignore */}` because their whitespace is significant: reflowing them makes React emit different text-node markers and so changes the served HTML. Keep the marker if you edit them. The initial reformat was verified as whitespace-only by compiling every file before and after with esbuild (minified) and requiring identical output for all 187 files, plus an identical rendered site.
+
 ## Public URLs do not change
 
 `npm run structure:routes` (run after `npm run build`, and in CI) compares the static export against `tests/fixtures/structure/routes.json`: page patterns, generated files (sitemap, feed, robots, social images) and static assets. Content growth (another Insight or project) does not trip it; a removed, renamed or added route kind does. If a change is intentional: `npm run structure:routes -- --write` and review the diff.
@@ -95,6 +101,7 @@ shared/edge, shared/node  (independent)        features/jobs  (independent; used
 | `tests/integration/structure/structure-generated-interfaces.test.ts` | generated files and the consumers that depend on them |
 | `npm run structure:routes` (CI) | public URLs, feeds, sitemap, social images and assets |
 | `eslint.config.mjs` | forbidden import directions and runtime-neutrality |
+| `npm run format:check` (CI) | consistent formatting of all TypeScript (Prettier, 160 columns to match `.editorconfig`, no trailing commas) |
 | `tests/integration/workers/worker-cost-guard.test.ts` | Worker configuration can only use free-plan features |
 
 ## Migration status

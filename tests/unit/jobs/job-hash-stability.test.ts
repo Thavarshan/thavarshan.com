@@ -21,7 +21,9 @@ describe("stored job hashes are reproduced exactly", () => {
   });
 
   it("content fingerprint == hash of company + title, for every stored record", () => {
-    const mismatched = snapshot.opportunities.filter((item) => item.contentFingerprint && computeContentFingerprint(item.company, item.title) !== item.contentFingerprint).map((item) => item.title);
+    const mismatched = snapshot.opportunities
+      .filter((item) => item.contentFingerprint && computeContentFingerprint(item.company, item.title) !== item.contentFingerprint)
+      .map((item) => item.title);
     expect(mismatched).toEqual([]);
   });
 

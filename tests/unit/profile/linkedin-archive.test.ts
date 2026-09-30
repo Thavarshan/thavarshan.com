@@ -22,10 +22,7 @@ describe("LinkedIn archive import", () => {
           "Company Name,Title,Description,Started On,Finished On,Location",
           'Example Group,Technical Lead,"Led platform architecture.\nImproved delivery reliability.",May 2026,,"Colombo, Sri Lanka"'
         ].join("\n"),
-        "Education.csv": [
-          "School Name,Degree Name,Field Of Study,Start Date,End Date",
-          "Example University,BSc,Computer Science,Sep 2020,Jun 2023"
-        ].join("\n"),
+        "Education.csv": ["School Name,Degree Name,Field Of Study,Start Date,End Date", "Example University,BSc,Computer Science,Sep 2020,Jun 2023"].join("\n"),
         "Skills.csv": "Name\nAWS\nTechnical Leadership\nReact",
         "Certifications.csv": "Name,Authority\nAWS Certified Example,Amazon Web Services",
         "Projects.csv": "Title,Description,Url\nExample Product,Commercial product delivery.,https://example.com",

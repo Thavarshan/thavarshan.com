@@ -1,4 +1,12 @@
-import { assessOpportunity, canonicalizeJobUrl, computeContentFingerprint, computeDescriptionHash, deriveSourceId, opportunityId, type Opportunity } from "../../src/features/jobs/opportunities";
+import {
+  assessOpportunity,
+  canonicalizeJobUrl,
+  computeContentFingerprint,
+  computeDescriptionHash,
+  deriveSourceId,
+  opportunityId,
+  type Opportunity
+} from "../../src/features/jobs/opportunities";
 import { detectRelocation, extractLocationSignals } from "../../src/features/jobs/location";
 import { parseSalary } from "../../src/features/jobs/salary";
 import { stripHtml } from "./xml";
@@ -28,10 +36,13 @@ export function buildSyntheticSummary(input: { company?: string | null; location
     input.location ? `Location: ${input.location}.` : null,
     input.employmentType ? `Type: ${input.employmentType}.` : null,
     input.salary ? `Salary: ${input.salary}.` : null
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
-export const knownTagPattern = /\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind|TypeScript|Next\.js|Nuxt(?:\.js)?|GraphQL|Terraform|Stripe|PHPUnit|Pest|Alpine\.js|Filament|Statamic|Nova|Elasticsearch|RabbitMQ|Kafka)\b/gi;
+export const knownTagPattern =
+  /\b(?:Laravel|PHP|React|Vue(?:\.js)?|Inertia|Livewire|AWS|MySQL|Postgres|Redis|Docker|Kubernetes|Tailwind|TypeScript|Next\.js|Nuxt(?:\.js)?|GraphQL|Terraform|Stripe|PHPUnit|Pest|Alpine\.js|Filament|Statamic|Nova|Elasticsearch|RabbitMQ|Kafka)\b/gi;
 
 const laravelPhpPattern = /\b(laravel|php)\b/i;
 

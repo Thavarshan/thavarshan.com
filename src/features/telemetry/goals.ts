@@ -34,11 +34,16 @@ export function projectFromHref(href: string, pathname: string): string | null {
 
 export function goalToEvent(goal: Goal, href: string, pathname: string): TrackedEvent | null {
   switch (goal) {
-    case "Contact": return { name: "contact_cta", props: { location: locationFromPath(pathname) } };
-    case "Resume Download": return { name: "cv_download", props: { location: locationFromPath(pathname) } };
-    case "LinkedIn Visit": return { name: "profile_click", props: { network: "linkedin" } };
-    case "GitHub Visit": return { name: "profile_click", props: { network: "github" } };
-    case "Newsletter Visit": return { name: "newsletter_click" };
+    case "Contact":
+      return { name: "contact_cta", props: { location: locationFromPath(pathname) } };
+    case "Resume Download":
+      return { name: "cv_download", props: { location: locationFromPath(pathname) } };
+    case "LinkedIn Visit":
+      return { name: "profile_click", props: { network: "linkedin" } };
+    case "GitHub Visit":
+      return { name: "profile_click", props: { network: "github" } };
+    case "Newsletter Visit":
+      return { name: "newsletter_click" };
     case "Repository Visit": {
       const project = projectFromHref(href, pathname);
       return project ? { name: "repo_click", props: { project } } : null;

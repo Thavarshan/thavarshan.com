@@ -9,7 +9,12 @@ const ansiPattern = /\u001b\[[0-9;]*m/g;
 /** One clean line for summaries and the committed snapshot: no ANSI colours, no request call logs, bounded length. */
 export function summarizeError(error: unknown, maxLength = 240): string {
   const raw = error instanceof Error ? error.message : String(error);
-  const firstLine = raw.replace(ansiPattern, "").split(/\r?\n/).map((line) => line.trim()).find(Boolean) ?? "unknown error";
+  const firstLine =
+    raw
+      .replace(ansiPattern, "")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .find(Boolean) ?? "unknown error";
   return firstLine.length > maxLength ? `${firstLine.slice(0, maxLength - 1)}…` : firstLine;
 }
 
@@ -37,7 +42,8 @@ export function isMaterialChange(input: {
 }): { material: boolean; reason: string } {
   const { previous, stats, nextSources, now } = input;
   if (!previous) return { material: true, reason: "no previous snapshot" };
-  if (previous.collectorVersion !== COLLECTOR_VERSION) return { material: true, reason: `collector version ${previous.collectorVersion ?? "none"} -> ${COLLECTOR_VERSION}` };
+  if (previous.collectorVersion !== COLLECTOR_VERSION)
+    return { material: true, reason: `collector version ${previous.collectorVersion ?? "none"} -> ${COLLECTOR_VERSION}` };
 
   for (const [source, stat] of Object.entries(stats)) {
     if (stat.added + stat.updated + stat.closed + stat.pruned + stat.held > 0) return { material: true, reason: `${source} changed` };

@@ -2,7 +2,13 @@ import type { ProfessionalProfile } from "@/features/profile/profile-schema";
 import type { GitHubSnapshot } from "@/features/github/github-model";
 
 function comparable(value?: string | null) {
-  return value?.toLowerCase().replace(/^@/, "").replace(/[^a-z0-9]+/g, " ").trim() ?? "";
+  return (
+    value
+      ?.toLowerCase()
+      .replace(/^@/, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim() ?? ""
+  );
 }
 
 export function findProfileConflicts(profile: ProfessionalProfile, github: GitHubSnapshot) {

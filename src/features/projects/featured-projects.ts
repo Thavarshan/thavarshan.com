@@ -87,10 +87,7 @@ export const projectDefinitions: ProjectDefinition[] = [
     repository: "comet",
     role: "Creator and maintainer",
     summary: "A TypeScript project for building developer-facing workflows with clear structure and modern tooling.",
-    highlights: [
-      "Demonstrates TypeScript architecture and package-focused engineering.",
-      "Balances open-source usability with maintainable internals."
-    ],
+    highlights: ["Demonstrates TypeScript architecture and package-focused engineering.", "Balances open-source usability with maintainable internals."],
     tags: ["TypeScript", "Developer tooling", "Packages"],
     displayOrder: 4
   },
@@ -99,10 +96,7 @@ export const projectDefinitions: ProjectDefinition[] = [
     repository: "matrix",
     role: "Creator and maintainer",
     summary: "A PHP concurrency and async-oriented library exploring cleaner primitives for complex application flows.",
-    highlights: [
-      "Designed for expressive async patterns in a PHP ecosystem context.",
-      "Rounds out the portfolio with lower-level library design."
-    ],
+    highlights: ["Designed for expressive async patterns in a PHP ecosystem context.", "Rounds out the portfolio with lower-level library design."],
     tags: ["PHP", "Async", "Library design", "Concurrency"],
     displayOrder: 5
   }

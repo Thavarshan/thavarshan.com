@@ -25,19 +25,38 @@ interface EventDefinition {
   props: Record<string, { required: boolean; valid: (value: string) => boolean }>;
 }
 
-const enumOf = (...values: string[]) => (value: string) => values.includes(value);
+const enumOf =
+  (...values: string[]) =>
+  (value: string) =>
+    values.includes(value);
 const isSlug = (value: string) => slug.test(value);
 
 export const EVENTS = {
   repo_click: { stage: "intent", description: "Clicked through to a project's repository or package", props: { project: { required: true, valid: isSlug } } },
   demo_click: { stage: "intent", description: "Clicked a project's live demo or documentation site", props: { project: { required: true, valid: isSlug } } },
   cv_download: { stage: "intent", description: "Opened or downloaded the CV", props: { location: { required: false, valid: location.test.bind(location) } } },
-  contact_cta: { stage: "intent", description: "Clicked an email/contact call to action", props: { location: { required: false, valid: location.test.bind(location) } } },
+  contact_cta: {
+    stage: "intent",
+    description: "Clicked an email/contact call to action",
+    props: { location: { required: false, valid: location.test.bind(location) } }
+  },
   hire_cta: { stage: "intent", description: "Clicked a hiring call to action", props: { location: { required: false, valid: location.test.bind(location) } } },
-  consulting_cta: { stage: "intent", description: "Clicked a consulting call to action", props: { location: { required: false, valid: location.test.bind(location) } } },
-  tool_completed: { stage: "intent", description: "Got a result from a developer tool (once per page view)", props: { tool: { required: true, valid: isSlug } } },
+  consulting_cta: {
+    stage: "intent",
+    description: "Clicked a consulting call to action",
+    props: { location: { required: false, valid: location.test.bind(location) } }
+  },
+  tool_completed: {
+    stage: "intent",
+    description: "Got a result from a developer tool (once per page view)",
+    props: { tool: { required: true, valid: isSlug } }
+  },
   tool_output_copied: { stage: "intent", description: "Copied a developer tool's output", props: { tool: { required: true, valid: isSlug } } },
-  profile_click: { stage: "engagement", description: "Visited an external profile", props: { network: { required: true, valid: enumOf("linkedin", "github") } } },
+  profile_click: {
+    stage: "engagement",
+    description: "Visited an external profile",
+    props: { network: { required: true, valid: enumOf("linkedin", "github") } }
+  },
   insight_read: { stage: "engagement", description: "Scrolled through 75% of an Insight article", props: { slug: { required: true, valid: isSlug } } },
   newsletter_click: { stage: "engagement", description: "Clicked a newsletter link", props: {} }
 } as const satisfies Record<string, EventDefinition>;
@@ -115,7 +134,8 @@ export function validateWireEvent(input: unknown): ValidationResult {
   const definition = EVENTS[name as EventName] as EventDefinition;
 
   const path = record.path;
-  if (typeof path !== "string" || path.length > 120 || !pathPattern.test(path) || path.split("/").some((segment) => /^\.+$/.test(segment))) return { ok: false, reason: "invalid path" };
+  if (typeof path !== "string" || path.length > 120 || !pathPattern.test(path) || path.split("/").some((segment) => /^\.+$/.test(segment)))
+    return { ok: false, reason: "invalid path" };
 
   const attribution: Record<"source" | "medium" | "campaign", string | null> = { source: null, medium: null, campaign: null };
   for (const key of ["source", "medium", "campaign"] as const) {
@@ -148,7 +168,10 @@ export function stageOf(name: EventName): Stage {
 
 /** Stable aggregate key for one day of one distinct event shape. Contains nothing per-visitor. */
 export function aggregateKey(day: string, event: WireEvent): string {
-  const props = Object.entries(event.props).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => `${k}=${v}`).join("&");
+  const props = Object.entries(event.props)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([k, v]) => `${k}=${v}`)
+    .join("&");
   return ["m", day, event.event, event.path, event.source ?? "-", event.medium ?? "-", event.campaign ?? "-", event.referrer, props || "-"].join("|");
 }
 
@@ -158,8 +181,20 @@ export function parseAggregateKey(key: string): (Omit<WireEvent, "props"> & { da
   const [, day, event, path, source, medium, campaign, referrer, props] = parts;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Object.hasOwn(EVENTS, event)) return null;
   const parsedProps: Record<string, string> = {};
-  if (props !== "-") for (const pair of props.split("&")) { const [k, v] = pair.split("="); if (k && v) parsedProps[k] = v; }
-  const candidate = { event, path, source: source === "-" ? null : source, medium: medium === "-" ? null : medium, campaign: campaign === "-" ? null : campaign, referrer, props: parsedProps };
+  if (props !== "-")
+    for (const pair of props.split("&")) {
+      const [k, v] = pair.split("=");
+      if (k && v) parsedProps[k] = v;
+    }
+  const candidate = {
+    event,
+    path,
+    source: source === "-" ? null : source,
+    medium: medium === "-" ? null : medium,
+    campaign: campaign === "-" ? null : campaign,
+    referrer,
+    props: parsedProps
+  };
   const checked = validateWireEvent(candidate);
   if (!checked.ok) return null;
   return { ...checked.event, day };

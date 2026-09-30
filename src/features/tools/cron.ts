@@ -75,7 +75,7 @@ function parseField(raw: string, field: CronField): { ok: true; value: ParsedFie
   const fail = (message: string) => ({ ok: false as const, error: `${label[0].toUpperCase()}${label.slice(1)} field "${raw}": ${message}` });
 
   if (raw === "") return fail("is empty");
-  if (raw === "?" ) {
+  if (raw === "?") {
     if (field !== "dayOfMonth" && field !== "dayOfWeek") return fail('"?" is only valid in the day-of-month and day-of-week fields');
     return { ok: true, value: { raw, values: rangeValues(min, field === "dayOfWeek" ? 6 : max, 1), star: true, lastDay: false } };
   }
@@ -89,7 +89,8 @@ function parseField(raw: string, field: CronField): { ok: true; value: ParsedFie
       lastDay = true;
       continue;
     }
-    if (/^\d*L$/i.test(part) && field === "dayOfWeek") return fail(`"${part}" (last weekday of the month) is valid in Laravel but is not evaluated by this tool`);
+    if (/^\d*L$/i.test(part) && field === "dayOfWeek")
+      return fail(`"${part}" (last weekday of the month) is valid in Laravel but is not evaluated by this tool`);
     if (/#/.test(part)) return fail(`"${part}" (nth weekday of the month) is valid in Laravel but is not evaluated by this tool`);
     if (/W$/i.test(part) && field === "dayOfMonth") return fail(`"${part}" (nearest weekday) is valid in Laravel but is not evaluated by this tool`);
 
@@ -150,9 +151,14 @@ export function parseCron(input: string): ParseResult {
 
   const parts = expression.split(" ");
   if (parts.length === 6) {
-    return { ok: false, error: "This looks like a 6-field (seconds) expression. Laravel's scheduler uses 5 fields (minute hour day month weekday); for sub-minute tasks use ->everySecond(), ->everyFiveSeconds(), … instead." };
+    return {
+      ok: false,
+      error:
+        "This looks like a 6-field (seconds) expression. Laravel's scheduler uses 5 fields (minute hour day month weekday); for sub-minute tasks use ->everySecond(), ->everyFiveSeconds(), … instead."
+    };
   }
-  if (parts.length !== 5) return { ok: false, error: `Expected 5 space-separated fields (minute hour day-of-month month day-of-week) but found ${parts.length}.` };
+  if (parts.length !== 5)
+    return { ok: false, error: `Expected 5 space-separated fields (minute hour day-of-month month day-of-week) but found ${parts.length}.` };
 
   const fields = {} as Record<CronField, ParsedField>;
   for (const [index, field] of fieldOrder.entries()) {
@@ -165,12 +171,26 @@ export function parseCron(input: string): ParseResult {
   const dom = fields.dayOfMonth;
   const dow = fields.dayOfWeek;
   if (!dom.star && !dow.star) {
-    warnings.push("Both day-of-month and day-of-week are set. Classic cron runs the job when EITHER matches, but implementations differ and Laravel's cron library does not document this case. This tool shows the classic behaviour — confirm with `php artisan schedule:list`, or use a single day field plus ->when() / ->days().");
+    warnings.push(
+      "Both day-of-month and day-of-week are set. Classic cron runs the job when EITHER matches, but implementations differ and Laravel's cron library does not document this case. This tool shows the classic behaviour — confirm with `php artisan schedule:list`, or use a single day field plus ->when() / ->days()."
+    );
   }
-  if (dom.values.some((day) => day > 28) && fields.month.values.some((month) => month === 2) && fields.month.values.length === 1 && !dom.lastDay && !dom.values.some((day) => day <= 29)) {
+  if (
+    dom.values.some((day) => day > 28) &&
+    fields.month.values.some((month) => month === 2) &&
+    fields.month.values.length === 1 &&
+    !dom.lastDay &&
+    !dom.values.some((day) => day <= 29)
+  ) {
     warnings.push("February never has more than 29 days, so this schedule only runs on leap years or never.");
   }
-  if (dom.values.some((day) => day === 31) && !fields.month.star && fields.month.values.every((month) => [2, 4, 6, 9, 11].includes(month)) && dom.values.length === 1 && !dom.lastDay) {
+  if (
+    dom.values.some((day) => day === 31) &&
+    !fields.month.star &&
+    fields.month.values.every((month) => [2, 4, 6, 9, 11].includes(month)) &&
+    dom.values.length === 1 &&
+    !dom.lastDay
+  ) {
     warnings.push("Day 31 does not exist in the selected month(s), so this schedule will never run.");
   }
 
@@ -225,7 +245,8 @@ export function explainCron(cron: ParsedCron): string {
   if (isFull(minute, "minute") && isFull(hour, "hour")) time = "Every minute";
   else if (minute.values.length === 1 && hour.values.length === 1) time = `At ${pad(hour.values[0])}:${pad(minute.values[0])}`;
   else if (isFull(hour, "hour") && minuteStep && minuteStep > 1) time = `Every ${minuteStep} minutes`;
-  else if (isFull(hour, "hour") && minute.values.length === 1) time = minute.values[0] === 0 ? "At the start of every hour" : `At minute ${minute.values[0]} of every hour`;
+  else if (isFull(hour, "hour") && minute.values.length === 1)
+    time = minute.values[0] === 0 ? "At the start of every hour" : `At minute ${minute.values[0]} of every hour`;
   else if (minute.values.length === 1 && hourStep && hourStep > 1) time = `At minute ${minute.values[0]}, every ${hourStep} hours`;
   else if (minute.values.length === 1) time = `At minute ${minute.values[0]} past ${list(hour.values.map((h) => `${pad(h)}:00`))}`;
   else if (isFull(hour, "hour")) time = `At minutes ${list(describeRuns(minute.values))} of every hour`;
@@ -283,8 +304,20 @@ export interface LaravelSuggestion {
   fluent: boolean;
 }
 
-const minuteHelpers: Array<[number, string]> = [[2, "everyTwoMinutes"], [3, "everyThreeMinutes"], [4, "everyFourMinutes"], [5, "everyFiveMinutes"], [10, "everyTenMinutes"], [15, "everyFifteenMinutes"]];
-const hourHelpers: Array<[number, string]> = [[2, "everyTwoHours"], [3, "everyThreeHours"], [4, "everyFourHours"], [6, "everySixHours"]];
+const minuteHelpers: Array<[number, string]> = [
+  [2, "everyTwoMinutes"],
+  [3, "everyThreeMinutes"],
+  [4, "everyFourMinutes"],
+  [5, "everyFiveMinutes"],
+  [10, "everyTenMinutes"],
+  [15, "everyFifteenMinutes"]
+];
+const hourHelpers: Array<[number, string]> = [
+  [2, "everyTwoHours"],
+  [3, "everyThreeHours"],
+  [4, "everyFourHours"],
+  [6, "everySixHours"]
+];
 
 /** Picks the most readable Laravel schedule call that is exactly equivalent to the parsed expression. */
 export function toLaravelChain(cron: ParsedCron): LaravelSuggestion {
@@ -338,8 +371,10 @@ export function toLaravelChain(cron: ParsedCron): LaravelSuggestion {
     const time = clock(h, m);
     if (fullMonth && d !== null) return { chain: d === 1 && h === 0 && m === 0 ? "->monthly()" : `->monthlyOn(${d}, '${time}')`, fluent: true };
     if (fullMonth && dom.values.length === 2) return { chain: `->twiceMonthly(${dom.values[0]}, ${dom.values[1]}, '${time}')`, fluent: true };
-    if (d !== null && same(month.values, [1, 4, 7, 10])) return { chain: d === 1 && h === 0 && m === 0 ? "->quarterly()" : `->quarterlyOn(${d}, '${time}')`, fluent: true };
-    if (d !== null && mo !== null) return { chain: mo === 1 && d === 1 && h === 0 && m === 0 ? "->yearly()" : `->yearlyOn(${mo}, ${d}, '${time}')`, fluent: true };
+    if (d !== null && same(month.values, [1, 4, 7, 10]))
+      return { chain: d === 1 && h === 0 && m === 0 ? "->quarterly()" : `->quarterlyOn(${d}, '${time}')`, fluent: true };
+    if (d !== null && mo !== null)
+      return { chain: mo === 1 && d === 1 && h === 0 && m === 0 ? "->yearly()" : `->yearlyOn(${mo}, ${d}, '${time}')`, fluent: true };
   }
 
   return cronCall;
@@ -385,15 +420,52 @@ export function nextNaive(cron: ParsedCron, from: Naive, maxYears = 9): Naive | 
   const limit = from.year + maxYears;
 
   while (year <= limit) {
-    if (mi > 59) { mi = 0; hr += 1; }
-    if (hr > 23) { hr = 0; day += 1; mi = 0; }
-    if (day > daysIn(year, mo)) { day = 1; mo += 1; hr = 0; mi = 0; }
-    if (mo > 12) { mo = 1; year += 1; day = 1; hr = 0; mi = 0; continue; }
+    if (mi > 59) {
+      mi = 0;
+      hr += 1;
+    }
+    if (hr > 23) {
+      hr = 0;
+      day += 1;
+      mi = 0;
+    }
+    if (day > daysIn(year, mo)) {
+      day = 1;
+      mo += 1;
+      hr = 0;
+      mi = 0;
+    }
+    if (mo > 12) {
+      mo = 1;
+      year += 1;
+      day = 1;
+      hr = 0;
+      mi = 0;
+      continue;
+    }
 
-    if (!month.values.includes(mo)) { mo += 1; day = 1; hr = 0; mi = 0; continue; }
-    if (!dayMatches(cron, year, mo, day)) { day += 1; hr = 0; mi = 0; continue; }
-    if (!hour.values.includes(hr)) { hr += 1; mi = 0; continue; }
-    if (!minute.values.includes(mi)) { mi += 1; continue; }
+    if (!month.values.includes(mo)) {
+      mo += 1;
+      day = 1;
+      hr = 0;
+      mi = 0;
+      continue;
+    }
+    if (!dayMatches(cron, year, mo, day)) {
+      day += 1;
+      hr = 0;
+      mi = 0;
+      continue;
+    }
+    if (!hour.values.includes(hr)) {
+      hr += 1;
+      mi = 0;
+      continue;
+    }
+    if (!minute.values.includes(mi)) {
+      mi += 1;
+      continue;
+    }
     return { year, month: mo, day, hour: hr, minute: mi };
   }
   return null;
@@ -402,7 +474,14 @@ export function nextNaive(cron: ParsedCron, from: Naive, maxYears = 9): Naive | 
 /** Offset (minutes east of UTC) of `timezone` at the instant `utcMs`. */
 function offsetMinutes(timezone: string, utcMs: number): number {
   const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: timezone, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric"
+    timeZone: timezone,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
   }).formatToParts(new Date(utcMs));
   const get = (type: string) => Number(parts.find((part) => part.type === type)?.value);
   const asUtc = Date.UTC(get("year"), get("month") - 1, get("day"), get("hour"), get("minute"), get("second"));
@@ -426,7 +505,13 @@ export function zonedToInstant(naive: Naive, timezone: string): number | null {
 
 function instantToNaive(instant: number, timezone: string): Naive {
   const shifted = new Date(instant + (timezone === "UTC" ? 0 : offsetMinutes(timezone, instant) * 60_000));
-  return { year: shifted.getUTCFullYear(), month: shifted.getUTCMonth() + 1, day: shifted.getUTCDate(), hour: shifted.getUTCHours(), minute: shifted.getUTCMinutes() };
+  return {
+    year: shifted.getUTCFullYear(),
+    month: shifted.getUTCMonth() + 1,
+    day: shifted.getUTCDate(),
+    hour: shifted.getUTCHours(),
+    minute: shifted.getUTCMinutes()
+  };
 }
 
 export function isValidTimezone(timezone: string): boolean {

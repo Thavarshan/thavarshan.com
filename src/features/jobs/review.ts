@@ -64,9 +64,8 @@ export function parseFilters(params: URLSearchParams): ReviewFilters {
     sponsorship: (params.get("spons") ?? "").slice(0, 20),
     salary,
     maxAgeDays: age ? clampInt(age, 1, 365, 30) : null,
-    review: review === "all" || review === "open" || (reviewStatuses as readonly string[]).includes(review ?? "")
-      ? (review as ReviewFilters["review"])
-      : "open",
+    review:
+      review === "all" || review === "open" || (reviewStatuses as readonly string[]).includes(review ?? "") ? (review as ReviewFilters["review"]) : "open",
     includeClosed: params.get("closed") === "1"
   };
 }

@@ -29,11 +29,7 @@ export async function withRetry<T>(task: () => Promise<T>, opts: RetryOptions): 
 
 export type SettledResult<R> = { status: "fulfilled"; value: R } | { status: "rejected"; reason: unknown };
 
-export async function mapWithConcurrency<T, R>(
-  items: T[],
-  limit: number,
-  worker: (item: T, index: number) => Promise<R>
-): Promise<SettledResult<R>[]> {
+export async function mapWithConcurrency<T, R>(items: T[], limit: number, worker: (item: T, index: number) => Promise<R>): Promise<SettledResult<R>[]> {
   const results: SettledResult<R>[] = new Array(items.length);
   let cursor = 0;
 

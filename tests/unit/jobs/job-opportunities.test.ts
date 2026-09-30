@@ -6,12 +6,15 @@ const now = "2026-09-22T00:00:00.000Z";
 
 describe("job opportunity collection", () => {
   it("parses LaraJobs RSS records into the handoff schema", () => {
-    const records = parseLaraJobsFeed(`<?xml version="1.0"?><rss><channel><item>
+    const records = parseLaraJobsFeed(
+      `<?xml version="1.0"?><rss><channel><item>
       <title><![CDATA[Senior Laravel Developer at Acme]]></title>
       <link>https://larajobs.com/job/123?utm_source=rss</link>
       <pubDate>Mon, 21 Sep 2026 10:00:00 GMT</pubDate>
       <description><![CDATA[Remote worldwide. Laravel, Vue.js and AWS.]]></description>
-    </item></channel></rss>`, now);
+    </item></channel></rss>`,
+      now
+    );
 
     expect(records).toHaveLength(1);
     expect(records[0]).toMatchObject({
@@ -31,7 +34,8 @@ describe("job opportunity collection", () => {
   });
 
   it("prefers the feed's structured job fields over guessing from the title", () => {
-    const records = parseLaraJobsFeed(`<?xml version="1.0"?><rss><channel>
+    const records = parseLaraJobsFeed(
+      `<?xml version="1.0"?><rss><channel>
       <item>
         <title><![CDATA[Full-Stack Developer (Laravel + Vue/Inertia) - UK Only]]></title>
         <link>https://larajobs.com/job/3938</link>
@@ -54,7 +58,9 @@ describe("job opportunity collection", () => {
         <job:company><![CDATA[Invo Solutions]]></job:company>
         <job:tags><![CDATA[Laravel,PHP,Postgres,React]]></job:tags>
       </item>
-    </channel></rss>`, now);
+    </channel></rss>`,
+      now
+    );
 
     expect(records).toHaveLength(2);
 

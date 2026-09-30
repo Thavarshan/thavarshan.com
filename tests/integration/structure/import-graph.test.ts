@@ -29,7 +29,17 @@ const ALLOWED: Record<string, string[]> = {
   "features/home": ["components/ui", "features/profile"],
   "components/ui": ["features/telemetry"],
   "components/layout": ["components/ui", "features/profile"],
-  app: ["components/layout", "components/ui", "features/github", "features/home", "features/insights", "features/profile", "features/projects", "features/telemetry", "features/tools"]
+  app: [
+    "components/layout",
+    "components/ui",
+    "features/github",
+    "features/home",
+    "features/insights",
+    "features/profile",
+    "features/projects",
+    "features/telemetry",
+    "features/tools"
+  ]
 };
 
 /** What each deployable Worker may pull into its bundle. */
@@ -101,7 +111,10 @@ describe("src module graph", () => {
     const visit = (node: string) => {
       if (done.has(node)) return;
       const at = visiting.indexOf(node);
-      if (at !== -1) { cycles.push([...visiting.slice(at), node]); return; }
+      if (at !== -1) {
+        cycles.push([...visiting.slice(at), node]);
+        return;
+      }
       visiting.push(node);
       for (const next of edges.get(node) ?? []) visit(next);
       visiting.pop();
@@ -126,13 +139,19 @@ describe("src module graph", () => {
 
   it("shared modules never depend on features, components or routes", () => {
     for (const unit of ["shared/config", "shared/edge", "shared/node"]) {
-      expect([...(edges.get(unit) ?? [])].filter((target) => !target.startsWith("shared/")), unit).toEqual([]);
+      expect(
+        [...(edges.get(unit) ?? [])].filter((target) => !target.startsWith("shared/")),
+        unit
+      ).toEqual([]);
     }
   });
 
   it("the lowest layers stay Node-free and UI-free: github and profile depend on no component or route", () => {
     for (const unit of ["features/github", "features/profile", "features/cv", "features/jobs"]) {
-      expect([...(edges.get(unit) ?? [])].filter((target) => target.startsWith("components/") || target === "app"), unit).toEqual([]);
+      expect(
+        [...(edges.get(unit) ?? [])].filter((target) => target.startsWith("components/") || target === "app"),
+        unit
+      ).toEqual([]);
     }
   });
 });
@@ -150,7 +169,10 @@ describe("Worker bundles", () => {
           if (unit) used.add(unit);
         }
       }
-      expect([...used].filter((unit) => !allowed.includes(unit)), `${worker} imports outside its allowance`).toEqual([]);
+      expect(
+        [...used].filter((unit) => !allowed.includes(unit)),
+        `${worker} imports outside its allowance`
+      ).toEqual([]);
       expect(used.size, `${worker} should use src code`).toBeGreaterThan(0);
     });
   }

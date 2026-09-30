@@ -38,7 +38,15 @@ describe("loadSnapshot: legacy v1 fixture (real historical snapshot)", () => {
     expect(snapshot.opportunities).toHaveLength(v1.opportunities.length);
     snapshot.opportunities.forEach((item, index) => {
       const before = v1.opportunities[index];
-      expect(item).toMatchObject({ id: before.id, canonicalUrl: before.canonicalUrl, score: before.score, eligibility: before.eligibility, status: "active", closedAt: null, duplicateOfIds: [] });
+      expect(item).toMatchObject({
+        id: before.id,
+        canonicalUrl: before.canonicalUrl,
+        score: before.score,
+        eligibility: before.eligibility,
+        status: "active",
+        closedAt: null,
+        duplicateOfIds: []
+      });
       expect(item.contentFingerprint).toMatch(/^[a-f0-9]{20}$/);
       expect(["junior", "mid", "senior", "lead", "unknown"]).toContain(item.seniority);
       expect(item.workArrangement).toBeTruthy();
@@ -79,13 +87,48 @@ describe("loadSnapshot: malformed input is refused", () => {
     type Raw = { generatedAt: string; opportunities: Array<Record<string, unknown>> | string };
     const first = (d: Raw) => (d.opportunities as Array<Record<string, unknown>>)[0];
     const cases: Array<[(d: Raw) => void, RegExp]> = [
-      [(d) => { first(d).score = 101; }, /opportunities\.0\.score/],
-      [(d) => { first(d).eligibility = "maybe"; }, /opportunities\.0\.eligibility/],
-      [(d) => { first(d).canonicalUrl = "not a url"; }, /opportunities\.0\.canonicalUrl/],
-      [(d) => { first(d).source = "monster"; }, /opportunities\.0\.source/],
-      [(d) => { delete first(d).id; }, /opportunities\.0\.id/],
-      [(d) => { d.generatedAt = "yesterday"; }, /generatedAt/],
-      [(d) => { d.opportunities = "none"; }, /opportunities/]
+      [
+        (d) => {
+          first(d).score = 101;
+        },
+        /opportunities\.0\.score/
+      ],
+      [
+        (d) => {
+          first(d).eligibility = "maybe";
+        },
+        /opportunities\.0\.eligibility/
+      ],
+      [
+        (d) => {
+          first(d).canonicalUrl = "not a url";
+        },
+        /opportunities\.0\.canonicalUrl/
+      ],
+      [
+        (d) => {
+          first(d).source = "monster";
+        },
+        /opportunities\.0\.source/
+      ],
+      [
+        (d) => {
+          delete first(d).id;
+        },
+        /opportunities\.0\.id/
+      ],
+      [
+        (d) => {
+          d.generatedAt = "yesterday";
+        },
+        /generatedAt/
+      ],
+      [
+        (d) => {
+          d.opportunities = "none";
+        },
+        /opportunities/
+      ]
     ];
     for (const [mutate, expected] of cases) {
       const raw = await good();

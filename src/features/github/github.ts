@@ -72,15 +72,12 @@ async function requestJson<T>(url: string, options: GitHubFetchOptions): Promise
 
 async function requestReadme(repository: string, options: GitHubFetchOptions) {
   const fetcher = options.fetcher ?? fetch;
-  const response = await fetcher(
-    `https://api.github.com/repos/${profilePolicy.githubUsername}/${encodeURIComponent(repository)}/readme`,
-    {
-      headers: {
-        ...githubHeaders(options.token),
-        Accept: "application/vnd.github.raw+json"
-      }
+  const response = await fetcher(`https://api.github.com/repos/${profilePolicy.githubUsername}/${encodeURIComponent(repository)}/readme`, {
+    headers: {
+      ...githubHeaders(options.token),
+      Accept: "application/vnd.github.raw+json"
     }
-  );
+  });
 
   return response.ok ? response.text() : "";
 }
@@ -102,32 +99,26 @@ export async function fetchGitHubSnapshot(options: GitHubFetchOptions = {}): Pro
     }
   }
 
-  const candidates = repositories.map<GitHubProject & Pick<GitHubRepositoryResponse, "fork" | "archived" | "disabled">>(
-    (repository) => ({
-      repository: repository.name,
-      name: formatRepositoryName(repository.name),
-      description: repository.description?.trim()
-        ? cleanGitHubDescription(repository.description)
-        : `${formatRepositoryName(repository.name)} open-source project.`,
-      topics: repository.topics ?? [],
-      primaryLanguage: repository.language,
-      stars: repository.stargazers_count,
-      forks: repository.forks_count,
-      ...(repository.homepage?.trim() ? { homepage: repository.homepage } : {}),
-      repositoryUrl: repository.html_url,
-      updatedAt: repository.updated_at,
-      readmeExcerpt: [],
-      fork: repository.fork,
-      archived: repository.archived,
-      disabled: repository.disabled
-    })
-  );
+  const candidates = repositories.map<GitHubProject & Pick<GitHubRepositoryResponse, "fork" | "archived" | "disabled">>((repository) => ({
+    repository: repository.name,
+    name: formatRepositoryName(repository.name),
+    description: repository.description?.trim()
+      ? cleanGitHubDescription(repository.description)
+      : `${formatRepositoryName(repository.name)} open-source project.`,
+    topics: repository.topics ?? [],
+    primaryLanguage: repository.language,
+    stars: repository.stargazers_count,
+    forks: repository.forks_count,
+    ...(repository.homepage?.trim() ? { homepage: repository.homepage } : {}),
+    repositoryUrl: repository.html_url,
+    updatedAt: repository.updated_at,
+    readmeExcerpt: [],
+    fork: repository.fork,
+    archived: repository.archived,
+    disabled: repository.disabled
+  }));
 
-  const featured = selectFeaturedRepositories(
-    candidates,
-    profilePolicy.featuredRepositoryCount,
-    profilePolicy.excludedRepositories
-  );
+  const featured = selectFeaturedRepositories(candidates, profilePolicy.featuredRepositoryCount, profilePolicy.excludedRepositories);
   const projects = await Promise.all(
     featured.map(async (project) => ({
       ...project,

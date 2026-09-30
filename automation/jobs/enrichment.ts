@@ -46,11 +46,23 @@ export async function scrapeRedirectTarget(page: Page, url: string, resolveUrl: 
         }
 
         const title =
-          (await page.locator("h1").first().textContent({ timeout: 10_000 }).catch(() => null))?.trim() ||
-          (await page.title()).trim();
+          (
+            await page
+              .locator("h1")
+              .first()
+              .textContent({ timeout: 10_000 })
+              .catch(() => null)
+          )?.trim() || (await page.title()).trim();
         const description =
-          (await page.locator("main").first().textContent({ timeout: 10_000 }).catch(() => null)) ??
-          (await page.locator("body").textContent({ timeout: 10_000 }).catch(() => null)) ??
+          (await page
+            .locator("main")
+            .first()
+            .textContent({ timeout: 10_000 })
+            .catch(() => null)) ??
+          (await page
+            .locator("body")
+            .textContent({ timeout: 10_000 })
+            .catch(() => null)) ??
           "";
 
         const scraped = { title: title || null, description, finalUrl: page.url() };

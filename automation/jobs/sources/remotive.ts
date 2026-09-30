@@ -51,19 +51,24 @@ export function parseRemotiveJobs(json: unknown, now = new Date().toISOString())
         continue;
       }
 
-      opportunities.push(buildOpportunity({
-        title: job.title,
-        company: job.company_name ?? null,
-        url: job.url,
-        sourceUrl: remotiveUrl,
-        description: job.description ?? "",
-        publishedAt: safeDate(job.publication_date),
-        source: "remotive",
-        location: job.candidate_required_location ?? null,
-        employmentType: normalizeJobType(job.job_type ?? ""),
-        salary: job.salary || null,
-        feedTags: tags
-      }, now));
+      opportunities.push(
+        buildOpportunity(
+          {
+            title: job.title,
+            company: job.company_name ?? null,
+            url: job.url,
+            sourceUrl: remotiveUrl,
+            description: job.description ?? "",
+            publishedAt: safeDate(job.publication_date),
+            source: "remotive",
+            location: job.candidate_required_location ?? null,
+            employmentType: normalizeJobType(job.job_type ?? ""),
+            salary: job.salary || null,
+            feedTags: tags
+          },
+          now
+        )
+      );
     } catch {
       rejected++;
     }

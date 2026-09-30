@@ -43,7 +43,8 @@ describe("robots.txt parsing and matching", () => {
   });
 
   it("copes with the real Remotive/Laravel News/WeWorkRemotely robots.txt shapes", () => {
-    const remotive = "\n        User-agent: *\n        Sitemap:https://remotive.com/sitemap.xml\n\n        User-agent: *\n        Disallow: /api/*\n        Disallow: /jobs/*\n        Disallow: /*search=\n";
+    const remotive =
+      "\n        User-agent: *\n        Sitemap:https://remotive.com/sitemap.xml\n\n        User-agent: *\n        Disallow: /api/*\n        Disallow: /jobs/*\n        Disallow: /*search=\n";
     expect(allowed(remotive, "/api/remote-jobs?category=software-dev")).toBe(false);
     expect(allowed(remotive, "/remote-jobs/software-development")).toBe(true);
     const news = "User-agent: *\nDisallow: /api/\nDisallow: /account/\n";
@@ -55,7 +56,9 @@ describe("robots.txt parsing and matching", () => {
 });
 
 describe("createRobotsGuard", () => {
-  const respond = (status: number, body = "") => async () => ({ status, text: async () => body });
+  const respond =
+    (status: number, body = "") =>
+    async () => ({ status, text: async () => body });
 
   it("allows when robots.txt permits, blocks when it disallows", async () => {
     const guard = createRobotsGuard(respond(200, "User-agent: *\nDisallow: /private/\n"), "JeromeJobCollector");
@@ -70,7 +73,9 @@ describe("createRobotsGuard", () => {
 
   it("fails closed when robots.txt cannot be verified (5xx or network error)", async () => {
     expect(await createRobotsGuard(respond(503), "JeromeJobCollector").isAllowed("https://example.com/x")).toBe(false);
-    const broken = createRobotsGuard(async () => { throw new Error("ECONNRESET"); }, "JeromeJobCollector");
+    const broken = createRobotsGuard(async () => {
+      throw new Error("ECONNRESET");
+    }, "JeromeJobCollector");
     expect(await broken.isAllowed("https://example.com/x")).toBe(false);
   });
 
@@ -83,7 +88,10 @@ describe("createRobotsGuard", () => {
 
   it("fetches robots.txt once per origin even for concurrent checks", async () => {
     let calls = 0;
-    const guard = createRobotsGuard(async () => { calls++; return { status: 200, text: async () => "User-agent: *\nDisallow: /a\n" }; }, "JeromeJobCollector");
+    const guard = createRobotsGuard(async () => {
+      calls++;
+      return { status: 200, text: async () => "User-agent: *\nDisallow: /a\n" };
+    }, "JeromeJobCollector");
     await Promise.all([guard.isAllowed("https://example.com/1"), guard.isAllowed("https://example.com/2"), guard.isAllowed("https://example.com/a")]);
     await guard.isAllowed("https://example.com/3");
     expect(calls).toBe(1);

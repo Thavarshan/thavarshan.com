@@ -5,7 +5,19 @@ import { CopyButton } from "@/features/tools/components/copy-button";
 import { track } from "@/features/telemetry/client";
 import { cronPresets, explainCron, isValidTimezone, laravelSnippets, nextRuns, parseCron, toLaravelChain } from "@/features/tools/cron";
 
-const commonTimezones = ["UTC", "Asia/Colombo", "Asia/Kolkata", "Asia/Singapore", "Asia/Tokyo", "Australia/Sydney", "Europe/London", "Europe/Berlin", "America/New_York", "America/Chicago", "America/Los_Angeles"];
+const commonTimezones = [
+  "UTC",
+  "Asia/Colombo",
+  "Asia/Kolkata",
+  "Asia/Singapore",
+  "Asia/Tokyo",
+  "Australia/Sydney",
+  "Europe/London",
+  "Europe/Berlin",
+  "America/New_York",
+  "America/Chicago",
+  "America/Los_Angeles"
+];
 const commandPattern = /^[A-Za-z0-9:_.-]{1,80}$/;
 const fieldClass =
   "min-h-11 w-full rounded-lg border border-[var(--line)] bg-[var(--surface-strong)] px-3 py-2 text-base text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
@@ -15,7 +27,10 @@ const fieldClass =
 // "next runs" never goes stale if the tab is left open.
 let cachedNow: number | null = null;
 function subscribeToClock(onChange: () => void) {
-  const timer = setInterval(() => { cachedNow = Date.now(); onChange(); }, 60_000);
+  const timer = setInterval(() => {
+    cachedNow = Date.now();
+    onChange();
+  }, 60_000);
   return () => clearInterval(timer);
 }
 const getClockSnapshot = () => (cachedNow ??= Date.now());
@@ -59,13 +74,25 @@ export function CronTool() {
   }, [completed]);
 
   const zones = commonTimezones.includes(timezone) ? commonTimezones : [timezone, ...commonTimezones];
-  const formatter = (zone: string) => new Intl.DateTimeFormat("en-GB", { timeZone: zone, weekday: "short", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+  const formatter = (zone: string) =>
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: zone,
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    });
 
   return (
     <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-7" data-testid="cron-tool">
       <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[2fr_1fr_1fr]">
         <div>
-          <label htmlFor="cron-expression" className="mb-1 block text-sm font-semibold text-[var(--ink)]">Cron expression</label>
+          <label htmlFor="cron-expression" className="mb-1 block text-sm font-semibold text-[var(--ink)]">
+            Cron expression
+          </label>
           <input
             id="cron-expression"
             className={`${fieldClass} font-mono`}
@@ -78,17 +105,39 @@ export function CronTool() {
             aria-describedby="cron-help cron-error"
             aria-invalid={!parsed.ok}
           />
-          <p id="cron-help" className="mt-1 text-sm text-[var(--muted)]">Five fields: minute hour day-of-month month weekday, or a macro such as @daily.</p>
+          <p id="cron-help" className="mt-1 text-sm text-[var(--muted)]">
+            Five fields: minute hour day-of-month month weekday, or a macro such as @daily.
+          </p>
         </div>
         <div>
-          <label htmlFor="cron-command" className="mb-1 block text-sm font-semibold text-[var(--ink)]">Artisan command</label>
-          <input id="cron-command" className={`${fieldClass} font-mono`} value={command} onChange={(event) => setCommand(event.target.value)} spellCheck={false} autoComplete="off" maxLength={80} aria-invalid={!commandValid} aria-describedby="cron-command-help" />
-          <p id="cron-command-help" className="mt-1 text-sm text-[var(--muted)]">{commandValid ? "Used only in the code snippet." : "Use letters, digits and : _ . - only."}</p>
+          <label htmlFor="cron-command" className="mb-1 block text-sm font-semibold text-[var(--ink)]">
+            Artisan command
+          </label>
+          <input
+            id="cron-command"
+            className={`${fieldClass} font-mono`}
+            value={command}
+            onChange={(event) => setCommand(event.target.value)}
+            spellCheck={false}
+            autoComplete="off"
+            maxLength={80}
+            aria-invalid={!commandValid}
+            aria-describedby="cron-command-help"
+          />
+          <p id="cron-command-help" className="mt-1 text-sm text-[var(--muted)]">
+            {commandValid ? "Used only in the code snippet." : "Use letters, digits and : _ . - only."}
+          </p>
         </div>
         <div>
-          <label htmlFor="cron-timezone" className="mb-1 block text-sm font-semibold text-[var(--ink)]">Timezone</label>
+          <label htmlFor="cron-timezone" className="mb-1 block text-sm font-semibold text-[var(--ink)]">
+            Timezone
+          </label>
           <select id="cron-timezone" className={fieldClass} value={timezone} onChange={(event) => setTimezoneChoice(event.target.value)}>
-            {zones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
+            {zones.map((zone) => (
+              <option key={zone} value={zone}>
+                {zone}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -110,7 +159,11 @@ export function CronTool() {
       </fieldset>
 
       <div className="mt-6" aria-live="polite" data-testid="cron-results">
-        <p id="cron-error" role={parsed.ok ? undefined : "alert"} className={parsed.ok ? "sr-only" : "rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-900"}>
+        <p
+          id="cron-error"
+          role={parsed.ok ? undefined : "alert"}
+          className={parsed.ok ? "sr-only" : "rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-900"}
+        >
           {parsed.ok ? "Expression is valid." : `Error: ${parsed.error}`}
         </p>
 
@@ -118,35 +171,75 @@ export function CronTool() {
           <div className="grid grid-cols-[minmax(0,1fr)] gap-6">
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">Meaning</h3>
-              <p className="mt-1 text-xl text-[var(--ink)]" data-testid="cron-explanation">{output.explanation}</p>
+              <p className="mt-1 text-xl text-[var(--ink)]" data-testid="cron-explanation">
+                {output.explanation}
+              </p>
             </div>
 
             {parsed.cron.warnings.map((warning) => (
-              <p key={warning} className="rounded-lg border border-amber-400 bg-amber-50 p-3 text-sm text-amber-950">Warning: {warning}</p>
+              <p key={warning} className="rounded-lg border border-amber-400 bg-amber-50 p-3 text-sm text-amber-950">
+                Warning: {warning}
+              </p>
             ))}
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">Laravel</h3>
               <p className="mt-1 text-[var(--muted)]" data-testid="cron-match">
-                {output.suggestion.fluent ? "A built-in helper matches this schedule exactly:" : "No built-in helper matches this schedule exactly, so use cron():"}
+                {output.suggestion.fluent
+                  ? "A built-in helper matches this schedule exactly:"
+                  : "No built-in helper matches this schedule exactly, so use cron():"}
               </p>
               <div role="group" aria-label="Laravel version" className="mt-3 flex flex-wrap gap-2">
-                <button type="button" aria-pressed={version === "modern"} onClick={() => setVersion("modern")} className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${version === "modern" ? "border-[var(--ink)] bg-[var(--ink)] text-white" : "border-[var(--line)] bg-[var(--surface-strong)]"}`}>Laravel 11+</button>
-                <button type="button" aria-pressed={version === "legacy"} onClick={() => setVersion("legacy")} className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${version === "legacy" ? "border-[var(--ink)] bg-[var(--ink)] text-white" : "border-[var(--line)] bg-[var(--surface-strong)]"}`}>Laravel 10 and earlier</button>
+                <button
+                  type="button"
+                  aria-pressed={version === "modern"}
+                  onClick={() => setVersion("modern")}
+                  className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${version === "modern" ? "border-[var(--ink)] bg-[var(--ink)] text-white" : "border-[var(--line)] bg-[var(--surface-strong)]"}`}
+                >
+                  Laravel 11+
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={version === "legacy"}
+                  onClick={() => setVersion("legacy")}
+                  className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${version === "legacy" ? "border-[var(--ink)] bg-[var(--ink)] text-white" : "border-[var(--line)] bg-[var(--surface-strong)]"}`}
+                >
+                  Laravel 10 and earlier
+                </button>
               </div>
-              <pre className="mt-3 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]" tabIndex={0} aria-label="Laravel schedule code" data-testid="cron-code"><code>{output.snippets[version]}</code></pre>
-              <div className="mt-3 flex flex-wrap items-center gap-3"><CopyButton text={output.snippets[version]} label="Copy code" tool="laravel-scheduler-cron" /></div>
+              <pre
+                className="mt-3 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]"
+                tabIndex={0}
+                aria-label="Laravel schedule code"
+                data-testid="cron-code"
+              >
+                <code>{output.snippets[version]}</code>
+              </pre>
+              <div className="mt-3 flex flex-wrap items-center gap-3">
+                <CopyButton text={output.snippets[version]} label="Copy code" tool="laravel-scheduler-cron" />
+              </div>
             </div>
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">Next runs</h3>
               {output.runs.length === 0 ? (
-                <p className="mt-1 text-[var(--muted)]" data-testid="cron-runs">{now ? "This schedule has no run within the next nine years." : "Calculating…"}</p>
+                <p className="mt-1 text-[var(--muted)]" data-testid="cron-runs">
+                  {now ? "This schedule has no run within the next nine years." : "Calculating…"}
+                </p>
               ) : (
                 <div className="mt-2 overflow-x-auto">
                   <table className="w-full min-w-[28rem] border-collapse text-left text-sm" data-testid="cron-runs">
                     <caption className="sr-only">Upcoming run times in {timezone} and UTC</caption>
-                    <thead><tr className="border-b border-[var(--line)]"><th scope="col" className="py-2 pr-4 font-semibold">{timezone}</th><th scope="col" className="py-2 font-semibold">UTC</th></tr></thead>
+                    <thead>
+                      <tr className="border-b border-[var(--line)]">
+                        <th scope="col" className="py-2 pr-4 font-semibold">
+                          {timezone}
+                        </th>
+                        <th scope="col" className="py-2 font-semibold">
+                          UTC
+                        </th>
+                      </tr>
+                    </thead>
                     <tbody>
                       {output.runs.map((run) => (
                         <tr key={run.toISOString()} className="border-b border-[var(--line)]/60">

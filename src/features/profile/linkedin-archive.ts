@@ -19,15 +19,7 @@ const MAX_ARCHIVE_BYTES = 50 * 1024 * 1024;
 const MAX_SELECTED_FILE_BYTES = 5 * 1024 * 1024;
 const MAX_SELECTED_TOTAL_BYTES = 20 * 1024 * 1024;
 
-const knownFiles = new Set([
-  "profile.csv",
-  "positions.csv",
-  "education.csv",
-  "skills.csv",
-  "certifications.csv",
-  "projects.csv",
-  "languages.csv"
-]);
+const knownFiles = new Set(["profile.csv", "positions.csv", "education.csv", "skills.csv", "certifications.csv", "projects.csv", "languages.csv"]);
 
 type CsvRow = Record<string, string>;
 
@@ -38,7 +30,10 @@ export type LinkedInImportResult = {
 };
 
 function normalizeHeader(header: string) {
-  return header.toLowerCase().replace(/^\uFEFF/, "").replace(/[^a-z0-9]+/g, "");
+  return header
+    .toLowerCase()
+    .replace(/^\uFEFF/, "")
+    .replace(/[^a-z0-9]+/g, "");
 }
 
 function parseCsv(contents: Uint8Array, filename: string): CsvRow[] {
@@ -171,9 +166,7 @@ export function splitLinkedInDescription(description?: string) {
 // name (case-insensitive) rather than a broader heuristic, since a false-positive exclusion here
 // silently drops a real skill with no warning — an explicit, reviewable list is safer.
 const irrelevantSkillNames = new Set(
-  ["Fundraising", "Mathematics", "Sketching", "Guitar Playing", "Pencil Rendering", "Piano Playing", "Hosting Events"].map((name) =>
-    name.toLowerCase()
-  )
+  ["Fundraising", "Mathematics", "Sketching", "Guitar Playing", "Pencil Rendering", "Piano Playing", "Hosting Events"].map((name) => name.toLowerCase())
 );
 
 function categoryForSkill(name: string, previous: ProfessionalProfile): SkillRecord["category"] {
@@ -294,11 +287,7 @@ function importProjects(rows: CsvRow[]): ProfessionalProject[] {
   });
 }
 
-export function importLinkedInArchive(
-  archive: Uint8Array,
-  previous: ProfessionalProfile,
-  options: { now?: Date } = {}
-): LinkedInImportResult {
+export function importLinkedInArchive(archive: Uint8Array, previous: ProfessionalProfile, options: { now?: Date } = {}): LinkedInImportResult {
   if (archive.byteLength === 0 || archive.byteLength > MAX_ARCHIVE_BYTES) {
     throw new Error(`LinkedIn archive must be between 1 byte and ${MAX_ARCHIVE_BYTES} bytes`);
   }

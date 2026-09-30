@@ -16,7 +16,10 @@ const certCache = new Map<string, { keys: Jwk[]; fetchedAt: number }>();
 const CERT_TTL_MS = 10 * 60_000;
 
 function decodeBase64Url(value: string) {
-  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  const padded = value
+    .replace(/-/g, "+")
+    .replace(/_/g, "/")
+    .padEnd(Math.ceil(value.length / 4) * 4, "=");
   return Uint8Array.from(atob(padded), (char) => char.charCodeAt(0));
 }
 

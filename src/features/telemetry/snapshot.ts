@@ -32,7 +32,12 @@ export const snapshotSchema = z.object({
   schemaVersion: z.literal(SNAPSHOT_VERSION),
   generatedAt: z.string().datetime(),
   period: z.object({ start: z.string(), end: z.string(), isoWeek: z.string() }),
-  coverage: z.object({ rows: z.number().int().nonnegative(), events: z.number().int().nonnegative(), daysWithData: z.number().int().nonnegative(), daysInPeriod: z.number().int().positive() }),
+  coverage: z.object({
+    rows: z.number().int().nonnegative(),
+    events: z.number().int().nonnegative(),
+    daysWithData: z.number().int().nonnegative(),
+    daysInPeriod: z.number().int().positive()
+  }),
   totals: z.object({ byStage: counts, byEvent: counts }),
   acquisition: z.object({
     byReferrer: counts,
@@ -42,8 +47,14 @@ export const snapshotSchema = z.object({
     unattributedShare: z.number().min(0).max(1)
   }),
   intent: z.object({ byProject: z.record(z.string(), counts), byTool: z.record(z.string(), counts), byLocation: counts }),
-  content: z.object({ topPaths: z.array(z.object({ path: z.string(), events: z.number().int(), intentEvents: z.number().int() })), insightsRead: z.array(z.object({ slug: z.string(), reads: z.number().int() })) }),
-  comparison: z.object({ previousIsoWeek: z.string().nullable(), byEvent: z.record(z.string(), z.object({ previous: z.number().int(), current: z.number().int(), delta: z.number().int() })) }),
+  content: z.object({
+    topPaths: z.array(z.object({ path: z.string(), events: z.number().int(), intentEvents: z.number().int() })),
+    insightsRead: z.array(z.object({ slug: z.string(), reads: z.number().int() }))
+  }),
+  comparison: z.object({
+    previousIsoWeek: z.string().nullable(),
+    byEvent: z.record(z.string(), z.object({ previous: z.number().int(), current: z.number().int(), delta: z.number().int() }))
+  }),
   notes: z.array(z.string())
 });
 
@@ -144,7 +155,8 @@ export function buildSnapshot(rows: AggregateRow[], period: Period, generatedAt:
     `${Math.round(unattributedShare * 100)}% of counted actions have no campaign or referrer signal (direct visits, copied links, or stripped referrers). That share is unknown attribution and is reported as such, not assigned to a channel.`,
     `The collector accepts unauthenticated events from the site's origin, so counts are indicative rather than audited.`
   ];
-  if (daysWithData < daysInPeriod) notes.push(`Only ${daysWithData} of ${daysInPeriod} days in this period recorded any events; quiet days and collection gaps look the same.`);
+  if (daysWithData < daysInPeriod)
+    notes.push(`Only ${daysWithData} of ${daysInPeriod} days in this period recorded any events; quiet days and collection gaps look the same.`);
   if (total === 0) notes.push("No events were recorded in this period.");
 
   return {
@@ -172,7 +184,10 @@ export function buildSnapshot(rows: AggregateRow[], period: Period, generatedAt:
 
 export function renderSnapshotSummary(snapshot: MetricsSnapshot): string {
   const lines = [`## Growth metrics ${snapshot.period.isoWeek} (${snapshot.period.start} to ${snapshot.period.end})`, ""];
-  lines.push(`**${snapshot.totals.byStage.intent ?? 0} intent actions**, ${snapshot.totals.byStage.engagement ?? 0} engagement actions. Days with data: ${snapshot.coverage.daysWithData}/${snapshot.coverage.daysInPeriod}.`, "");
+  lines.push(
+    `**${snapshot.totals.byStage.intent ?? 0} intent actions**, ${snapshot.totals.byStage.engagement ?? 0} engagement actions. Days with data: ${snapshot.coverage.daysWithData}/${snapshot.coverage.daysInPeriod}.`,
+    ""
+  );
   lines.push("| Event | Stage | This week | Previous | Change |", "| --- | --- | ---: | ---: | ---: |");
   for (const name of eventNames) {
     const entry = snapshot.comparison.byEvent[name];
@@ -185,7 +200,8 @@ export function renderSnapshotSummary(snapshot: MetricsSnapshot): string {
   lines.push(`- **unattributed: ${snapshot.acquisition.unattributed} (${Math.round(snapshot.acquisition.unattributedShare * 100)}%)**`, "");
   if (snapshot.acquisition.byCampaign.length > 0) {
     lines.push("### Campaigns (UTM)", "", "| Source / medium / campaign | Actions | Intent |", "| --- | ---: | ---: |");
-    for (const campaign of snapshot.acquisition.byCampaign.slice(0, 10)) lines.push(`| ${campaign.source} / ${campaign.medium} / ${campaign.campaign} | ${campaign.events} | ${campaign.intentEvents} |`);
+    for (const campaign of snapshot.acquisition.byCampaign.slice(0, 10))
+      lines.push(`| ${campaign.source} / ${campaign.medium} / ${campaign.campaign} | ${campaign.events} | ${campaign.intentEvents} |`);
     lines.push("");
   }
   lines.push("### Read this carefully", "", ...snapshot.notes.map((note) => `- ${note}`), "");

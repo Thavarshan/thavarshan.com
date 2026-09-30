@@ -29,9 +29,7 @@ export function assertUniqueInsightSlugs(insights: Pick<Insight, "slug">[]) {
 export function validateInsightProjectReferences(insights: Pick<Insight, "slug" | "relatedProjects">[], repositories: string[]) {
   const available = new Set(repositories);
   const missing = insights.flatMap((insight) =>
-    insight.relatedProjects
-      .filter((repository) => !available.has(repository))
-      .map((repository) => `${insight.slug} references missing project ${repository}`)
+    insight.relatedProjects.filter((repository) => !available.has(repository)).map((repository) => `${insight.slug} references missing project ${repository}`)
   );
 
   if (missing.length) {
@@ -40,7 +38,9 @@ export function validateInsightProjectReferences(insights: Pick<Insight, "slug" 
 }
 
 export function getFeaturedInsights(limit = 3) {
-  return getAllInsights().filter((insight) => insight.featured).slice(0, limit);
+  return getAllInsights()
+    .filter((insight) => insight.featured)
+    .slice(0, limit);
 }
 
 export function getInsightBySlug(slug: string) {

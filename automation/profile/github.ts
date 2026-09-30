@@ -13,10 +13,7 @@ export async function syncGitHubProfile() {
   return {
     snapshot,
     output,
-    warnings: findProfileConflicts(
-      parseProfessionalProfile(JSON.parse(await readFile(resolve("data/profile.generated.json"), "utf8"))),
-      snapshot
-    )
+    warnings: findProfileConflicts(parseProfessionalProfile(JSON.parse(await readFile(resolve("data/profile.generated.json"), "utf8"))), snapshot)
   };
 }
 

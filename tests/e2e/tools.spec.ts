@@ -20,7 +20,10 @@ test("tools index lists both tools and links to them", async ({ page }) => {
   await page.goto("/tools");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("private tools");
   await expect(page.getByRole("link", { name: /open the tool/i })).toHaveCount(2);
-  await page.getByRole("link", { name: /open the tool/i }).first().click();
+  await page
+    .getByRole("link", { name: /open the tool/i })
+    .first()
+    .click();
   await expect(page).toHaveURL(/\/tools\/laravel-scheduler-cron$/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/tools/laravel-scheduler-cron");
 });
@@ -56,7 +59,7 @@ test.describe("Laravel scheduler cron helper", () => {
     await gotoTool(page, "laravel-scheduler-cron");
     const input = page.getByLabel("Cron expression");
     await input.fill("60 * * * *");
-    await expect(page.getByTestId("cron-results").getByRole("alert")).toContainText("Minute field \"60\": 60 is outside 0-59");
+    await expect(page.getByTestId("cron-results").getByRole("alert")).toContainText('Minute field "60": 60 is outside 0-59');
     await expect(input).toHaveAttribute("aria-invalid", "true");
     await expect(page.getByTestId("cron-code")).toHaveCount(0);
     await input.fill("* * * * * *");
@@ -144,14 +147,22 @@ test.describe("Laravel .env checker", () => {
 
     await gotoTool(page, "laravel-env-checker");
     const before = seen.length;
-    await paste(page, ".env", `APP_KEY=\nAPP_ENV=production\nAPP_DEBUG=true\nSTRIPE_SECRET=${SECRET}\nBROKEN=has spaces ${SECRET}\nDUP=1\nDUP=${SECRET}\n`, true);
+    await paste(
+      page,
+      ".env",
+      `APP_KEY=\nAPP_ENV=production\nAPP_DEBUG=true\nSTRIPE_SECRET=${SECRET}\nBROKEN=has spaces ${SECRET}\nDUP=1\nDUP=${SECRET}\n`,
+      true
+    );
     await paste(page, ".env.example", `STRIPE_SECRET=\nNEW_TOKEN=${SECRET}\n`);
     await expect(page.getByTestId("env-findings")).toContainText("BROKEN has spaces");
     await page.waitForTimeout(800);
 
     const results = await page.getByTestId("env-results").innerText();
     expect(results).not.toContain(SECRET);
-    await page.getByRole("button", { name: "Copy full report" }).click().catch(() => undefined);
+    await page
+      .getByRole("button", { name: "Copy full report" })
+      .click()
+      .catch(() => undefined);
 
     // Nothing typed may leave the page (analytics/beacons included), whether in a URL or a body.
     expect(seen.slice(before).filter((entry) => entry.includes(SECRET))).toEqual([]);

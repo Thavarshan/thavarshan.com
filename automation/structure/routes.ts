@@ -22,7 +22,11 @@ export interface Inventory {
   dynamicCounts: Record<string, number>;
 }
 
-const ignore = (path: string) => path.startsWith("_next/") || path.startsWith("__next") || /(^|\/)__next[^/]*$/.test(path) || path.endsWith(".txt") && path !== "robots.txt" && path !== "indexnow-key.txt";
+const ignore = (path: string) =>
+  path.startsWith("_next/") ||
+  path.startsWith("__next") ||
+  /(^|\/)__next[^/]*$/.test(path) ||
+  (path.endsWith(".txt") && path !== "robots.txt" && path !== "indexnow-key.txt");
 const assetPattern = /\.(png|jpe?g|ico|pdf|webmanifest|svg|webp)$/i;
 const generatedFiles = new Set(["sitemap.xml", "feed.xml", "robots.txt", "indexnow-key.txt", "_redirects", "opengraph-image"]);
 
@@ -69,7 +73,9 @@ export function buildInventory(files: string[]): Inventory {
 
 async function listFiles(root: string, directory = root): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
-  const nested = await Promise.all(entries.map((entry) => (entry.isDirectory() ? listFiles(root, join(directory, entry.name)) : [relative(root, join(directory, entry.name))])));
+  const nested = await Promise.all(
+    entries.map((entry) => (entry.isDirectory() ? listFiles(root, join(directory, entry.name)) : [relative(root, join(directory, entry.name))]))
+  );
   return nested.flat();
 }
 
@@ -103,7 +109,9 @@ async function main() {
   const expected = JSON.parse(await readFile(fixturePath, "utf8")) as Inventory;
   const problems = diffInventories(expected, actual);
   if (problems.length > 0) {
-    console.error(`The public URL inventory changed:\n${problems.map((problem) => `  - ${problem}`).join("\n")}\nIf this is intentional, run \`npm run structure:routes -- --write\` and review the diff.`);
+    console.error(
+      `The public URL inventory changed:\n${problems.map((problem) => `  - ${problem}`).join("\n")}\nIf this is intentional, run \`npm run structure:routes -- --write\` and review the diff.`
+    );
     process.exitCode = 1;
     return;
   }

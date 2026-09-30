@@ -15,10 +15,22 @@ import tseslint from "typescript-eslint";
 const pattern = (group, message) => ({ group, message });
 
 const fromApp = pattern(["@/app", "@/app/*", "@/app/**", "**/app/**"], "Nothing imports routes; routes import features and components.");
-const fromUi = pattern(["@/app", "@/app/**", "@/components", "@/components/**", "**/app/**", "**/components/**"], "Domain, automation and Worker code must not import routes or UI components.");
-const fromAutomation = pattern(["@automation/*", "@automation/**", "**/automation/**"], "Only automation may import automation; move shared code to src/shared or a feature.");
-const fromWorkers = pattern(["@workers/*", "@workers/**", "**/workers/**"], "Workers are deployable entrypoints; share code through src/shared, not across Workers.");
-const fromFeatures = pattern(["@/features", "@/features/*", "@/features/**", "**/features/**"], "Shared modules are below features in the dependency order; they must not import a feature.");
+const fromUi = pattern(
+  ["@/app", "@/app/**", "@/components", "@/components/**", "**/app/**", "**/components/**"],
+  "Domain, automation and Worker code must not import routes or UI components."
+);
+const fromAutomation = pattern(
+  ["@automation/*", "@automation/**", "**/automation/**"],
+  "Only automation may import automation; move shared code to src/shared or a feature."
+);
+const fromWorkers = pattern(
+  ["@workers/*", "@workers/**", "**/workers/**"],
+  "Workers are deployable entrypoints; share code through src/shared, not across Workers."
+);
+const fromFeatures = pattern(
+  ["@/features", "@/features/*", "@/features/**", "**/features/**"],
+  "Shared modules are below features in the dependency order; they must not import a feature."
+);
 const reactAndNext = pattern(["react", "react-dom", "react/*", "next", "next/*"], "This code must stay runtime-neutral (no React or Next.js).");
 const nodeBuiltins = pattern(["node:*"], "This code must stay runtime-neutral (no Node built-ins); put Node code in src/shared/node or automation.");
 
@@ -68,12 +80,25 @@ const eslintConfig = [
       nodeBuiltins,
       ...["job-review", "site-metrics"]
         .filter((other) => other !== name)
-        .map((other) => pattern([`../${other}`, `../${other}/**`, `../../${other}`, `../../workers/${other}/**`, `@workers/${other}/**`], `The ${name} Worker must not import the ${other} Worker; share code through src/shared.`))
+        .map((other) =>
+          pattern(
+            [`../${other}`, `../${other}/**`, `../../${other}`, `../../workers/${other}/**`, `@workers/${other}/**`],
+            `The ${name} Worker must not import the ${other} Worker; share code through src/shared.`
+          )
+        )
     )
   })),
   // Runtime-neutral code: usable in the browser, in Node and on the edge (the jobs feature runs inside a Worker).
   {
-    files: ["src/features/telemetry/events.ts", "src/features/telemetry/snapshot.ts", "src/features/telemetry/goals.ts", "src/features/tools/*.ts", "src/features/jobs/**/*.ts", "src/features/github/**/*.ts", "src/features/profile/**/*.ts"],
+    files: [
+      "src/features/telemetry/events.ts",
+      "src/features/telemetry/snapshot.ts",
+      "src/features/telemetry/goals.ts",
+      "src/features/tools/*.ts",
+      "src/features/jobs/**/*.ts",
+      "src/features/github/**/*.ts",
+      "src/features/profile/**/*.ts"
+    ],
     rules: boundaryRules(fromUi, fromAutomation, fromWorkers, reactAndNext, nodeBuiltins)
   },
   // Shared edge utilities are runtime-neutral AND sit below features.

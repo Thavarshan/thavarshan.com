@@ -82,10 +82,7 @@ function wordMatch(text: string, term: string, caseSensitive: boolean) {
 function countriesIn(text: string): string[] {
   const found: string[] = [];
   for (const country of countries) {
-    if (
-      country.names.some((name) => wordMatch(text, name, false)) ||
-      (country.abbreviations ?? []).some((abbr) => wordMatch(text, abbr, true))
-    ) {
+    if (country.names.some((name) => wordMatch(text, name, false)) || (country.abbreviations ?? []).some((abbr) => wordMatch(text, abbr, true))) {
       found.push(country.code);
     }
   }

@@ -9,7 +9,9 @@ import { describe, expect, it } from "vitest";
  * triggering, and a stale test path fails the job ("no test files found") only the next time it runs.
  */
 const workflowDirectory = ".github/workflows";
-const workflows = readdirSync(workflowDirectory).filter((name) => /\.ya?ml$/.test(name)).map((name) => ({ name, text: readFileSync(join(workflowDirectory, name), "utf8") }));
+const workflows = readdirSync(workflowDirectory)
+  .filter((name) => /\.ya?ml$/.test(name))
+  .map((name) => ({ name, text: readFileSync(join(workflowDirectory, name), "utf8") }));
 
 const looksLikePath = (value: string) => value.includes("/") && !/\s|^https?:|\$\{\{|\*\s/.test(value) && !/^[\d*/, -]+$/.test(value);
 
@@ -33,7 +35,10 @@ describe("workflow path references", () => {
   it.each(workflows)("$name: every test path given to vitest exists", ({ text }) => {
     const commands = [...text.matchAll(/vitest run ([^\n]+)/g)].map((match) => match[1]);
     const paths = commands.flatMap((command) => command.split(/\s+/).filter((token) => token.startsWith("tests/")));
-    const missing = paths.filter((path) => !existsSync(path) && readdirSafe(path.slice(0, path.lastIndexOf("/"))).every((entry) => !entry.startsWith(path.slice(path.lastIndexOf("/") + 1))));
+    const missing = paths.filter(
+      (path) =>
+        !existsSync(path) && readdirSafe(path.slice(0, path.lastIndexOf("/"))).every((entry) => !entry.startsWith(path.slice(path.lastIndexOf("/") + 1)))
+    );
     expect(missing, "vitest would exit with 'no test files found'").toEqual([]);
   });
 

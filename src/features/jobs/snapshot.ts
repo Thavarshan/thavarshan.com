@@ -1,10 +1,5 @@
 import { z } from "zod";
-import {
-  assessOpportunity,
-  computeContentFingerprint,
-  opportunitySnapshotSchema,
-  type OpportunitySnapshot
-} from "./opportunities";
+import { assessOpportunity, computeContentFingerprint, opportunitySnapshotSchema, type OpportunitySnapshot } from "./opportunities";
 import { parseSalary } from "./salary";
 
 /**
@@ -55,12 +50,14 @@ const legacyV1SnapshotSchema = z.object({
   schemaVersion: z.literal(1),
   generatedAt: z.string().datetime(),
   candidate: z.unknown(),
-  sources: z.array(z.object({
-    name: z.string(),
-    url: z.string().url(),
-    collectedAt: z.string().datetime(),
-    recordsFound: z.number().int().nonnegative()
-  })),
+  sources: z.array(
+    z.object({
+      name: z.string(),
+      url: z.string().url(),
+      collectedAt: z.string().datetime(),
+      recordsFound: z.number().int().nonnegative()
+    })
+  ),
   opportunities: z.array(legacyV1RecordSchema)
 });
 
@@ -71,7 +68,14 @@ function migrateV1(raw: unknown): unknown {
     ...legacy,
     schemaVersion: 2,
     sources: legacy.sources.map((source) => ({
-      ...source, status: "ok", added: 0, updated: 0, closed: 0, skipped: 0, rejected: 0, error: null
+      ...source,
+      status: "ok",
+      added: 0,
+      updated: 0,
+      closed: 0,
+      skipped: 0,
+      rejected: 0,
+      error: null
     })),
     opportunities: legacy.opportunities.map((record) => {
       const derived = assessOpportunity({ title: record.title, descriptionText: record.descriptionText, location: record.location, tags: record.tags });

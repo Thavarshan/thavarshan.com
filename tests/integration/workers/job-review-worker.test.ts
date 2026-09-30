@@ -10,12 +10,13 @@ const AUD = "aud-tag";
 const EMAIL = "me@example.com";
 const now = new Date("2026-09-30T00:00:00.000Z");
 
-const b64url = (input: string | ArrayBuffer) =>
-  Buffer.from(typeof input === "string" ? input : new Uint8Array(input)).toString("base64url");
+const b64url = (input: string | ArrayBuffer) => Buffer.from(typeof input === "string" ? input : new Uint8Array(input)).toString("base64url");
 
 async function makeIdentity() {
   const pair = await crypto.subtle.generateKey(
-    { name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" }, true, ["sign", "verify"]
+    { name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" },
+    true,
+    ["sign", "verify"]
   );
   const jwk = { ...(await crypto.subtle.exportKey("jwk", pair.publicKey)), kid: "k1" };
   const fetcher = (async () => new Response(JSON.stringify({ keys: [jwk] }))) as typeof fetch;
@@ -61,13 +62,26 @@ const snapshot: OpportunitySnapshot = {
   collectorVersion: null,
   candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] },
   sources: [],
-  opportunities: [makeOpportunity({
-    id: ID, sourceUrl: "https://larajobs.com/feed", canonicalUrl: "https://larajobs.com/job/1", title: "Senior <b>Laravel</b> Dev",
-    company: "Acme", seniority: "senior", tags: ["laravel"], publishedAt: "2026-09-28T00:00:00.000Z",
-    firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", eligibility: "eligible", score: 80,
-    reasons: ["Laravel is explicitly required"], scoreBreakdown: [{ factor: "Baseline", points: 10 }],
-    confidence: 55, confidenceBreakdown: [{ factor: "Location is stated", points: 20 }]
-  })]
+  opportunities: [
+    makeOpportunity({
+      id: ID,
+      sourceUrl: "https://larajobs.com/feed",
+      canonicalUrl: "https://larajobs.com/job/1",
+      title: "Senior <b>Laravel</b> Dev",
+      company: "Acme",
+      seniority: "senior",
+      tags: ["laravel"],
+      publishedAt: "2026-09-28T00:00:00.000Z",
+      firstSeenAt: "2026-09-28T00:00:00.000Z",
+      lastSeenAt: "2026-09-29T00:00:00.000Z",
+      eligibility: "eligible",
+      score: 80,
+      reasons: ["Laravel is explicitly required"],
+      scoreBreakdown: [{ factor: "Baseline", points: 10 }],
+      confidence: 55,
+      confidenceBreakdown: [{ factor: "Location is stated", points: 20 }]
+    })
+  ]
 };
 const dataFetcher = (async () => new Response(JSON.stringify(snapshot))) as typeof fetch;
 
@@ -126,7 +140,10 @@ describe("job-review worker", () => {
   it("persists review state to KV only, and validates input", async () => {
     const kv = fakeKv();
     const post = (fields: Record<string, string>, origin = "http://localhost") =>
-      handleRequest(new Request("http://localhost/review", { method: "POST", headers: { Origin: origin }, body: new URLSearchParams(fields) }), devEnv(kv), { fetcher: dataFetcher, now });
+      handleRequest(new Request("http://localhost/review", { method: "POST", headers: { Origin: origin }, body: new URLSearchParams(fields) }), devEnv(kv), {
+        fetcher: dataFetcher,
+        now
+      });
 
     const ok = await post({ id: ID, status: "shortlisted", note: "call Monday", return: "min=50&evil=<x>" });
     expect(ok.status).toBe(303);

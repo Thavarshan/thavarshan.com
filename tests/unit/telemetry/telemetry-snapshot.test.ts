@@ -1,12 +1,32 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { aggregateKey, type WireEvent } from "@/features/telemetry/events";
-import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow } from "@/features/telemetry/snapshot";
+import {
+  buildSnapshot,
+  daysBetween,
+  isoWeekLabel,
+  lastCompletedWeek,
+  renderSnapshotSummary,
+  snapshotSchema,
+  type AggregateRow
+} from "@/features/telemetry/snapshot";
 import { MAX_KEYS, main, parseArgs, periodFor, readRowsFromKv } from "@automation/growth/metrics-snapshot";
 
 const period = { start: "2026-09-21", end: "2026-09-27", isoWeek: "2026-W39" };
-const row = (overrides: Partial<AggregateRow> = {}): AggregateRow => ({ day: "2026-09-22", event: "repo_click", path: "/projects/fetch-php", source: null, medium: null, campaign: null, referrer: "direct", props: { project: "fetch-php" }, count: 1, ...overrides });
-const build = (rows: AggregateRow[], previous = null as ReturnType<typeof buildSnapshot> | null) => buildSnapshot(rows, period, "2026-09-28T04:30:00.000Z", previous);
+const row = (overrides: Partial<AggregateRow> = {}): AggregateRow => ({
+  day: "2026-09-22",
+  event: "repo_click",
+  path: "/projects/fetch-php",
+  source: null,
+  medium: null,
+  campaign: null,
+  referrer: "direct",
+  props: { project: "fetch-php" },
+  count: 1,
+  ...overrides
+});
+const build = (rows: AggregateRow[], previous = null as ReturnType<typeof buildSnapshot> | null) =>
+  buildSnapshot(rows, period, "2026-09-28T04:30:00.000Z", previous);
 
 describe("ISO weeks", () => {
   it("computes ISO week labels, including year boundaries", () => {
@@ -17,7 +37,8 @@ describe("ISO weeks", () => {
   });
 
   it("picks the last COMPLETED Monday-Sunday week, whatever day it runs", () => {
-    for (const day of ["2026-09-28", "2026-09-29", "2026-10-04"]) expect(lastCompletedWeek(new Date(`${day}T04:30:00Z`))).toEqual({ start: "2026-09-21", end: "2026-09-27", isoWeek: "2026-W39" });
+    for (const day of ["2026-09-28", "2026-09-29", "2026-10-04"])
+      expect(lastCompletedWeek(new Date(`${day}T04:30:00Z`))).toEqual({ start: "2026-09-21", end: "2026-09-27", isoWeek: "2026-W39" });
     expect(lastCompletedWeek(new Date("2026-10-05T00:00:01Z")).start).toBe("2026-09-28");
     expect(daysBetween("2026-09-21", "2026-09-27")).toHaveLength(7);
   });
@@ -28,7 +49,16 @@ describe("buildSnapshot", () => {
     row({ count: 4, source: "linkedin", medium: "social", campaign: "release-x", referrer: "social" }),
     row({ event: "demo_click", count: 2, referrer: "search" }),
     row({ event: "cv_download", path: "/", props: { location: "home" }, count: 3 }),
-    row({ event: "tool_completed", path: "/tools/laravel-env-checker", props: { tool: "laravel-env-checker" }, count: 5, source: "devto", medium: "referral", campaign: "tool-post", referrer: "community" }),
+    row({
+      event: "tool_completed",
+      path: "/tools/laravel-env-checker",
+      props: { tool: "laravel-env-checker" },
+      count: 5,
+      source: "devto",
+      medium: "referral",
+      campaign: "tool-post",
+      referrer: "community"
+    }),
     row({ event: "insight_read", path: "/insights/a", props: { slug: "a" }, count: 7, referrer: "direct" }),
     row({ event: "profile_click", path: "/", props: { network: "github" }, count: 1, referrer: "internal" }),
     row({ day: "2026-09-10", count: 99 }) // outside the period
@@ -36,7 +66,15 @@ describe("buildSnapshot", () => {
 
   it("totals actions by stage and event, ignoring days outside the period", () => {
     const snapshot = build(rows);
-    expect(snapshot.totals.byEvent).toMatchObject({ repo_click: 4, demo_click: 2, cv_download: 3, tool_completed: 5, insight_read: 7, profile_click: 1, contact_cta: 0 });
+    expect(snapshot.totals.byEvent).toMatchObject({
+      repo_click: 4,
+      demo_click: 2,
+      cv_download: 3,
+      tool_completed: 5,
+      insight_read: 7,
+      profile_click: 1,
+      contact_cta: 0
+    });
     expect(snapshot.totals.byStage).toEqual({ engagement: 8, intent: 14 });
     expect(snapshot.coverage).toMatchObject({ events: 22, rows: 6, daysWithData: 1, daysInPeriod: 7 });
   });
@@ -69,7 +107,12 @@ describe("buildSnapshot", () => {
   });
 
   it("compares with the previous week", () => {
-    const previous = buildSnapshot([row({ day: "2026-09-15", count: 1 })], { start: "2026-09-14", end: "2026-09-20", isoWeek: "2026-W38" }, "2026-09-21T00:00:00.000Z", null);
+    const previous = buildSnapshot(
+      [row({ day: "2026-09-15", count: 1 })],
+      { start: "2026-09-14", end: "2026-09-20", isoWeek: "2026-W38" },
+      "2026-09-21T00:00:00.000Z",
+      null
+    );
     const snapshot = build(rows, previous);
     expect(snapshot.comparison.previousIsoWeek).toBe("2026-W38");
     expect(snapshot.comparison.byEvent.repo_click).toEqual({ previous: 1, current: 4, delta: 3 });
@@ -125,19 +168,40 @@ describe("CLI helpers", () => {
 
 describe("readRowsFromKv", () => {
   afterEach(() => vi.unstubAllGlobals());
-  const event: WireEvent = { event: "repo_click", path: "/projects/fetch-php", source: "linkedin", medium: "social", campaign: "c1", referrer: "social", props: { project: "fetch-php" } };
+  const event: WireEvent = {
+    event: "repo_click",
+    path: "/projects/fetch-php",
+    source: "linkedin",
+    medium: "social",
+    campaign: "c1",
+    referrer: "social",
+    props: { project: "fetch-php" }
+  };
   const good = aggregateKey("2026-09-22", event);
   const credentials = { token: "TOKEN-SENTINEL", accountId: "a".repeat(32) };
 
   function stub(handler: (url: string) => Response) {
     const calls: string[] = [];
-    vi.stubGlobal("fetch", vi.fn(async (input: string) => { calls.push(input); return handler(input); }));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: string) => {
+        calls.push(input);
+        return handler(input);
+      })
+    );
     return calls;
   }
 
   it("lists each day with pagination, reads values, and ignores forged keys and absurd counts", async () => {
-    const pages: Record<string, string[]> = { "": [good, "m|2026-09-22|forged|/|-|-|-|direct|-"], next: ["m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv", "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home"] };
-    const values: Record<string, string> = { [good]: "4", "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv": "2000000", "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home": "not-a-number" };
+    const pages: Record<string, string[]> = {
+      "": [good, "m|2026-09-22|forged|/|-|-|-|direct|-"],
+      next: ["m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv", "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home"]
+    };
+    const values: Record<string, string> = {
+      [good]: "4",
+      "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv": "2000000",
+      "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home": "not-a-number"
+    };
     stub((url) => {
       if (url.includes("/keys?")) {
         const params = new URL(url).searchParams;
@@ -162,7 +226,9 @@ describe("readRowsFromKv", () => {
   it("surfaces API failures without leaking the token or ids", async () => {
     stub(() => new Response("nope", { status: 403 }));
     let message = "";
-    await readRowsFromKv(period, credentials).catch((caught: Error) => { message = caught.message; });
+    await readRowsFromKv(period, credentials).catch((caught: Error) => {
+      message = caught.message;
+    });
     expect(message).toMatch(/Cloudflare API 403/);
     expect(message).not.toContain("TOKEN-SENTINEL");
     expect(message).not.toContain(credentials.accountId);

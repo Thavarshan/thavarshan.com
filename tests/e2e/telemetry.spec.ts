@@ -3,7 +3,15 @@ import { expect, test, type BrowserContext, type Page } from "@playwright/test";
 const COLLECTOR = "http://127.0.0.1:4175/collect";
 const SECRET = "ZZ_TELEMETRY_SECRET_5d2f8a";
 
-interface Captured { event: string; path: string; source: string | null; medium: string | null; campaign: string | null; referrer: string; props: Record<string, string> }
+interface Captured {
+  event: string;
+  path: string;
+  source: string | null;
+  medium: string | null;
+  campaign: string | null;
+  referrer: string;
+  props: Record<string, string>;
+}
 
 /** Captures beacons sent to the collector and answers them like the real one would. */
 async function capture(context: BrowserContext) {
@@ -12,7 +20,11 @@ async function capture(context: BrowserContext) {
   await context.route(COLLECTOR, async (route) => {
     const body = route.request().postData() ?? "";
     raw.push(body);
-    try { events.push(JSON.parse(body)); } catch { /* recorded in raw */ }
+    try {
+      events.push(JSON.parse(body));
+    } catch {
+      /* recorded in raw */
+    }
     await route.fulfill({ status: 204 });
   });
   // Never actually leave the machine when a test clicks an external link.
@@ -23,8 +35,18 @@ async function capture(context: BrowserContext) {
 const settle = (page: Page) => page.waitForTimeout(300);
 
 /** Clicks the first VISIBLE contact link (on mobile the nav copy sits inside a collapsed menu). */
-const clickContact = (page: Page) => page.locator('a[href^="mailto:"]:visible').first().click({ timeout: 3000 }).catch(() => undefined);
-const clickCv = (page: Page) => page.locator('a[href="/docs/Jerome-Resume.pdf"]:visible').first().click({ timeout: 3000 }).catch(() => undefined);
+const clickContact = (page: Page) =>
+  page
+    .locator('a[href^="mailto:"]:visible')
+    .first()
+    .click({ timeout: 3000 })
+    .catch(() => undefined);
+const clickCv = (page: Page) =>
+  page
+    .locator('a[href="/docs/Jerome-Resume.pdf"]:visible')
+    .first()
+    .click({ timeout: 3000 })
+    .catch(() => undefined);
 
 test("a click on the CV link records one intent event with only coarse, non-identifying fields", async ({ page, context }) => {
   const { events } = await capture(context);
@@ -45,11 +67,20 @@ test("UTM attribution from the landing page is credited to a later click on anot
   await page.waitForLoadState("networkidle");
   await page.goto("/projects/fetch-php");
   await page.waitForLoadState("networkidle");
-  await page.getByRole("link", { name: "View repository" }).click().catch(() => undefined);
+  await page
+    .getByRole("link", { name: "View repository" })
+    .click()
+    .catch(() => undefined);
   await settle(page);
 
   const repo = events.find((entry) => entry.event === "repo_click");
-  expect(repo).toMatchObject({ path: "/projects/fetch-php", source: "linkedin", medium: "social", campaign: "release-fetch-php-3-9-0", props: { project: "fetch-php" } });
+  expect(repo).toMatchObject({
+    path: "/projects/fetch-php",
+    source: "linkedin",
+    medium: "social",
+    campaign: "release-fetch-php-3-9-0",
+    props: { project: "fetch-php" }
+  });
 });
 
 test("Do Not Track and Global Privacy Control: nothing is sent and nothing is stored", async ({ page, context }) => {
@@ -95,7 +126,10 @@ test("developer tools: completion and copy are counted, and pasted content never
   await settle(page);
 
   expect(events.filter((entry) => entry.event === "tool_completed")).toHaveLength(1);
-  expect(events.find((entry) => entry.event === "tool_completed")).toMatchObject({ path: "/tools/laravel-env-checker", props: { tool: "laravel-env-checker" } });
+  expect(events.find((entry) => entry.event === "tool_completed")).toMatchObject({
+    path: "/tools/laravel-env-checker",
+    props: { tool: "laravel-env-checker" }
+  });
   expect(events.some((entry) => entry.event === "tool_output_copied")).toBe(true);
   expect(raw.join("\n")).not.toContain(SECRET);
   expect(everyRequest.filter((entry) => entry.includes(SECRET))).toEqual([]);
@@ -112,7 +146,10 @@ test("reading most of an Insight is counted once, with only its slug", async ({ 
   await settle(page);
   const reads = events.filter((entry) => entry.event === "insight_read");
   expect(reads).toHaveLength(1);
-  expect(reads[0]).toMatchObject({ path: "/insights/modernizing-legacy-platforms-during-delivery", props: { slug: "modernizing-legacy-platforms-during-delivery" } });
+  expect(reads[0]).toMatchObject({
+    path: "/insights/modernizing-legacy-platforms-during-delivery",
+    props: { slug: "modernizing-legacy-platforms-during-delivery" }
+  });
 });
 
 test("every event sent across a browsing session is valid under the shared schema, with no cookies set", async ({ page, context }) => {
@@ -125,7 +162,16 @@ test("every event sent across a browsing session is valid under the shared schem
   await clickContact(page);
   await settle(page);
   expect(raw.length).toBeGreaterThan(0);
-  expect(raw.every((body) => { try { JSON.parse(body); return true; } catch { return false; } })).toBe(true);
+  expect(
+    raw.every((body) => {
+      try {
+        JSON.parse(body);
+        return true;
+      } catch {
+        return false;
+      }
+    })
+  ).toBe(true);
   expect(events.every((entry) => /^\/[a-z0-9/_.-]*$/i.test(entry.path) && !entry.path.includes("?"))).toBe(true);
   expect(await context.cookies()).toEqual([]);
 });

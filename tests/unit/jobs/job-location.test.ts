@@ -47,7 +47,13 @@ describe("extractLocationSignals: regions and time zones", () => {
 
 describe("detectRelocation", () => {
   it("detects offered relocation independently of sponsorship", () => {
-    for (const text of ["Includes a relocation package.", "We offer relocation assistance.", "Relocation is offered.", "relocation support available", "Help with relocation provided"]) {
+    for (const text of [
+      "Includes a relocation package.",
+      "We offer relocation assistance.",
+      "Relocation is offered.",
+      "relocation support available",
+      "Help with relocation provided"
+    ]) {
       expect(detectRelocation(text), text).toBe("offered");
     }
   });

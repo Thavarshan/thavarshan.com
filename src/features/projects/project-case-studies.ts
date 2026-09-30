@@ -11,7 +11,8 @@ export type ProjectCaseStudy = {
 export const projectCaseStudies: ProjectCaseStudy[] = [
   {
     repository: "fetch-php",
-    problem: "PHP developers often reach for powerful HTTP clients that can feel heavier than necessary for straightforward product work. Fetch PHP focuses on a familiar, low-friction request model.",
+    problem:
+      "PHP developers often reach for powerful HTTP clients that can feel heavier than necessary for straightforward product work. Fetch PHP focuses on a familiar, low-friction request model.",
     designDecisions: [
       "Keep the public API close to the mental model developers already know from fetch-style clients.",
       "Make common JSON and response flows easy while preserving access to lower-level HTTP behavior.",
@@ -79,10 +80,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
       "The implementation needs to balance experimentation with maintainable internals.",
       "Public project signals should stay aligned with what the repository actually does."
     ],
-    lessons: [
-      "Typed project structure helps small tools stay adaptable as they grow.",
-      "Product polish and engineering discipline reinforce each other."
-    ],
+    lessons: ["Typed project structure helps small tools stay adaptable as they grow.", "Product polish and engineering discipline reinforce each other."],
     status: "Public repository used as evidence of TypeScript tooling and product-minded engineering."
   },
   {
@@ -98,10 +96,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
       "Async APIs need to stay understandable under operational pressure.",
       "The primitive should remain small enough to compose with real applications."
     ],
-    lessons: [
-      "Event-driven design needs visible causality, not just decoupling.",
-      "Async library ergonomics are reliability work."
-    ],
+    lessons: ["Event-driven design needs visible causality, not just decoupling.", "Async library ergonomics are reliability work."],
     status: "Maintained as a public library and architecture learning surface."
   }
 ];

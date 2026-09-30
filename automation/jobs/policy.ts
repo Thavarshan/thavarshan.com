@@ -26,12 +26,14 @@ export interface SourcePolicy {
 export const sourcePolicies: Record<Opportunity["source"], SourcePolicy> = {
   larajobs: {
     method: "rss",
-    constraints: "Public RSS feed; robots.txt allows everything. Each listing's redirect chain is followed hop-by-hop with a robots.txt check on every host before it is requested.",
+    constraints:
+      "Public RSS feed; robots.txt allows everything. Each listing's redirect chain is followed hop-by-hop with a robots.txt check on every host before it is requested.",
     robotsExemptions: []
   },
   "laravel-news": {
     method: "structured-html",
-    constraints: "Public home page listing (a[data-home-job]); robots.txt disallows only /api/ and /account/. Titles and companies come from the listing, never from scraped third-party pages.",
+    constraints:
+      "Public home page listing (a[data-home-job]); robots.txt disallows only /api/ and /account/. Titles and companies come from the listing, never from scraped third-party pages.",
     robotsExemptions: []
   },
   remotive: {
@@ -41,7 +43,8 @@ export const sourcePolicies: Record<Opportunity["source"], SourcePolicy> = {
     robotsExemptions: [
       {
         urlPrefix: "https://remotive.com/api/remote-jobs",
-        justification: "robots.txt disallows /api/*, but this is Remotive's documented public API (remotive.com/api-documentation) and its response body explicitly grants developer access under the conditions above."
+        justification:
+          "robots.txt disallows /api/*, but this is Remotive's documented public API (remotive.com/api-documentation) and its response body explicitly grants developer access under the conditions above."
       }
     ]
   },

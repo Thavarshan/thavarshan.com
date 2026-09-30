@@ -20,34 +20,32 @@ export default async function ProjectOpenGraphImage({ params }: { params: Promis
   }
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          background: "#202427",
-          color: "#ffffff",
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          justifyContent: "space-between",
-          padding: "72px 78px",
-          width: "100%"
-        }}
-      >
-        <div style={{ color: "#f0c37b", display: "flex", fontSize: 24, fontWeight: 700, letterSpacing: 3 }}>
-          OPEN SOURCE · {project.primaryLanguage?.toUpperCase() ?? "SOFTWARE"}
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", maxWidth: 1020 }}>
-          <div style={{ display: "flex", fontFamily: "Georgia", fontSize: 86 }}>{project.name}</div>
-          <div style={{ color: "#d8d1c4", display: "flex", fontSize: 30, lineHeight: 1.35, marginTop: 26 }}>
-            {project.description}
-          </div>
-        </div>
-        <div style={{ display: "flex", fontSize: 25, justifyContent: "space-between", width: "100%" }}>
-          <span>Stars {project.stars.toLocaleString()} · Forks {project.forks.toLocaleString()}</span>
-          <span>thavarshan.com</span>
-        </div>
+    <div
+      style={{
+        background: "#202427",
+        color: "#ffffff",
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        justifyContent: "space-between",
+        padding: "72px 78px",
+        width: "100%"
+      }}
+    >
+      <div style={{ color: "#f0c37b", display: "flex", fontSize: 24, fontWeight: 700, letterSpacing: 3 }}>
+        OPEN SOURCE · {project.primaryLanguage?.toUpperCase() ?? "SOFTWARE"}
       </div>
-    ),
+      <div style={{ display: "flex", flexDirection: "column", maxWidth: 1020 }}>
+        <div style={{ display: "flex", fontFamily: "Georgia", fontSize: 86 }}>{project.name}</div>
+        <div style={{ color: "#d8d1c4", display: "flex", fontSize: 30, lineHeight: 1.35, marginTop: 26 }}>{project.description}</div>
+      </div>
+      <div style={{ display: "flex", fontSize: 25, justifyContent: "space-between", width: "100%" }}>
+        <span>
+          Stars {project.stars.toLocaleString()} · Forks {project.forks.toLocaleString()}
+        </span>
+        <span>thavarshan.com</span>
+      </div>
+    </div>,
     size
   );
 }

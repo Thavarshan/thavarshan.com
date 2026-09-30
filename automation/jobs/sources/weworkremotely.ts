@@ -39,16 +39,21 @@ export function parseWeWorkRemotelyFeed(xml: string, now = new Date().toISOStrin
         continue;
       }
 
-      opportunities.push(buildOpportunity({
-        title,
-        company,
-        url: link,
-        sourceUrl: weWorkRemotelyUrl,
-        description,
-        publishedAt: safeDate(xmlValue(item, "pubDate")),
-        source: "weworkremotely",
-        location: xmlValue(item, "region") || null
-      }, now));
+      opportunities.push(
+        buildOpportunity(
+          {
+            title,
+            company,
+            url: link,
+            sourceUrl: weWorkRemotelyUrl,
+            description,
+            publishedAt: safeDate(xmlValue(item, "pubDate")),
+            source: "weworkremotely",
+            location: xmlValue(item, "region") || null
+          },
+          now
+        )
+      );
     } catch {
       rejected++;
     }
@@ -58,10 +63,10 @@ export function parseWeWorkRemotelyFeed(xml: string, now = new Date().toISOStrin
 }
 
 export async function collectWeWorkRemotely(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
-  const response = await withRetry(
-    () => request.get(weWorkRemotelyUrl, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } }),
-    { retries: 2, baseDelayMs: 500 }
-  );
+  const response = await withRetry(() => request.get(weWorkRemotelyUrl, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } }), {
+    retries: 2,
+    baseDelayMs: 500
+  });
   if (!response.ok()) throw new Error(`WeWorkRemotely feed returned ${response.status()}`);
   const { opportunities, skipped, rejected } = parseWeWorkRemotelyFeed(await response.text(), now);
   return { source: "weworkremotely", opportunities, skipped, rejected };

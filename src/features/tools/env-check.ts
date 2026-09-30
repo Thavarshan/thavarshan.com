@@ -45,10 +45,22 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
   const add = (finding: Omit<Finding, "source">) => findings.push({ ...finding, source });
 
   if (text.charCodeAt(0) === 0xfeff) {
-    add({ severity: "error", code: "bom", line: 1, message: "The file starts with a UTF-8 byte-order mark (BOM). It becomes part of the first key name, so that variable will not be found. Re-save the file as UTF-8 without BOM." });
+    add({
+      severity: "error",
+      code: "bom",
+      line: 1,
+      message:
+        "The file starts with a UTF-8 byte-order mark (BOM). It becomes part of the first key name, so that variable will not be found. Re-save the file as UTF-8 without BOM."
+    });
     text = text.slice(1);
   }
-  if (text.includes("\r\n")) add({ severity: "info", code: "crlf", message: "The file uses Windows (CRLF) line endings. Laravel handles this, but shell tooling and some Docker setups can include the carriage return in values." });
+  if (text.includes("\r\n"))
+    add({
+      severity: "info",
+      code: "crlf",
+      message:
+        "The file uses Windows (CRLF) line endings. Laravel handles this, but shell tooling and some Docker setups can include the carriage return in values."
+    });
 
   const lines = text.split(/\r?\n/);
   for (let index = 0; index < lines.length; index++) {
@@ -65,7 +77,12 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
 
     const key = withoutExport.slice(0, equals).trim();
     if (!keyPattern.test(key)) {
-      add({ severity: "error", code: "bad-key", line: lineNumber, message: `Line ${lineNumber}: "${key.length > 40 ? `${key.slice(0, 40)}…` : key}" is not a valid variable name (use letters, digits and underscores, not starting with a digit).` });
+      add({
+        severity: "error",
+        code: "bad-key",
+        line: lineNumber,
+        message: `Line ${lineNumber}: "${key.length > 40 ? `${key.slice(0, 40)}…` : key}" is not a valid variable name (use letters, digits and underscores, not starting with a digit).`
+      });
       continue;
     }
 
@@ -84,15 +101,29 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
         let end = -1;
         for (let position = 0; position < body.length; position++) {
           const char = body[position];
-          if (escaped) { escaped = false; continue; }
-          if (char === "\\" && (mark === '"' || body[position + 1] === "'")) { escaped = true; continue; }
-          if (char === mark) { end = position; break; }
+          if (escaped) {
+            escaped = false;
+            continue;
+          }
+          if (char === "\\" && (mark === '"' || body[position + 1] === "'")) {
+            escaped = true;
+            continue;
+          }
+          if (char === mark) {
+            end = position;
+            break;
+          }
         }
         if (end !== -1) {
           value += body.slice(0, end);
           const after = body.slice(end + 1).trim();
           if (after !== "" && !after.startsWith("#")) {
-            add({ severity: "error", code: "trailing-after-quote", line: startLine, message: `Line ${startLine}: unexpected text after the closing quote of ${key}.` });
+            add({
+              severity: "error",
+              code: "trailing-after-quote",
+              line: startLine,
+              message: `Line ${startLine}: unexpected text after the closing quote of ${key}.`
+            });
           }
           closed = true;
           break;
@@ -104,7 +135,13 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
         body = lines[index];
       }
       if (!closed) {
-        add({ severity: "error", code: "unterminated-quote", line: startLine, key, message: `Line ${startLine}: the quoted value for ${key} is never closed (missing ${mark}). Everything after it would be swallowed into this value.` });
+        add({
+          severity: "error",
+          code: "unterminated-quote",
+          line: startLine,
+          key,
+          message: `Line ${startLine}: the quoted value for ${key} is never closed (missing ${mark}). Everything after it would be swallowed into this value.`
+        });
         continue;
       }
     } else {
@@ -112,10 +149,22 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
       if (commentAt !== -1) rest = rest.slice(0, commentAt);
       value = rest.trim();
       if (/\s/.test(value)) {
-        add({ severity: "error", code: "unquoted-whitespace", line: lineNumber, key, message: `Line ${lineNumber}: ${key} has spaces in an unquoted value. Laravel's dotenv parser rejects this ("unexpected whitespace") and the whole app fails to boot — wrap the value in double quotes.` });
+        add({
+          severity: "error",
+          code: "unquoted-whitespace",
+          line: lineNumber,
+          key,
+          message: `Line ${lineNumber}: ${key} has spaces in an unquoted value. Laravel's dotenv parser rejects this ("unexpected whitespace") and the whole app fails to boot — wrap the value in double quotes.`
+        });
       }
       if (value.includes("#")) {
-        add({ severity: "info", code: "hash-in-value", line: lineNumber, key, message: `Line ${lineNumber}: the value of ${key} contains "#". It is kept because no whitespace precedes it, but quote the value to make the intent unambiguous.` });
+        add({
+          severity: "info",
+          code: "hash-in-value",
+          line: lineNumber,
+          key,
+          message: `Line ${lineNumber}: the value of ${key} contains "#". It is kept because no whitespace precedes it, but quote the value to make the intent unambiguous.`
+        });
       }
     }
 
@@ -126,14 +175,23 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
 }
 
 const secretKeyPattern = /(KEY|SECRET|PASSWORD|PASSWD|TOKEN|PRIVATE|CREDENTIAL|DSN)/i;
-const knownSecretShapes = [/^sk-[A-Za-z0-9_-]{16,}/, /^AKIA[0-9A-Z]{16}/, /^ghp_[A-Za-z0-9]{20,}/, /^xox[baprs]-/, /^AIza[0-9A-Za-z_-]{20,}/, /^-----BEGIN/, /^base64:[A-Za-z0-9+/=]{40,}$/];
+const knownSecretShapes = [
+  /^sk-[A-Za-z0-9_-]{16,}/,
+  /^AKIA[0-9A-Z]{16}/,
+  /^ghp_[A-Za-z0-9]{20,}/,
+  /^xox[baprs]-/,
+  /^AIza[0-9A-Za-z_-]{20,}/,
+  /^-----BEGIN/,
+  /^base64:[A-Za-z0-9+/=]{40,}$/
+];
 
 /** Heuristic only: true when a value in a sensitive-looking key resembles a real credential. */
 export function looksLikeRealSecret(key: string, value: string): boolean {
   if (value === "") return false;
   if (knownSecretShapes.some((shape) => shape.test(value))) return true;
   if (!secretKeyPattern.test(key)) return false;
-  const placeholder = /^(null|none|secret|password|changeme|change_me|your[-_ ]?.*|example|xxx+|\*+|<.*>|\$\{.*\}|token|key|123456?|homestead|root|laravel|sail)$/i;
+  const placeholder =
+    /^(null|none|secret|password|changeme|change_me|your[-_ ]?.*|example|xxx+|\*+|<.*>|\$\{.*\}|token|key|123456?|homestead|root|laravel|sail)$/i;
   if (placeholder.test(value)) return false;
   return value.length >= 24 && /[A-Za-z]/.test(value) && /\d/.test(value);
 }
@@ -156,7 +214,11 @@ function duplicates(entries: EnvEntry[], source: Source): Finding[] {
   return [...byKey.entries()]
     .filter(([, lines]) => lines.length > 1)
     .map(([key, lines]) => ({
-      severity: "warning" as const, code: "duplicate", source, key, line: lines[0],
+      severity: "warning" as const,
+      code: "duplicate",
+      source,
+      key,
+      line: lines[0],
       message: `${key} is defined ${lines.length} times (lines ${lines.join(", ")}). Remove the extras; which one wins depends on the loader.`
     }));
 }
@@ -169,7 +231,11 @@ function interpolationFindings(entries: EnvEntry[], source: Source): Finding[] {
       for (const match of entry.value.matchAll(/\$\{([A-Za-z_][A-Za-z0-9_.]*)\}/g)) {
         if (!defined.has(match[1])) {
           findings.push({
-            severity: "info", code: "undefined-reference", source, key: entry.key, line: entry.line,
+            severity: "info",
+            code: "undefined-reference",
+            source,
+            key: entry.key,
+            line: entry.line,
             message: `${entry.key} references \${${match[1]}}, which is not defined earlier in this file. That is fine if the system environment provides it; otherwise it expands to an empty string.`
           });
         }
@@ -187,10 +253,33 @@ function get(entries: EnvEntry[], key: string) {
 function semanticFindings(entries: EnvEntry[]): Finding[] {
   const findings: Finding[] = [];
   const appKey = get(entries, "APP_KEY");
-  if (!appKey) findings.push({ severity: "error", code: "app-key-missing", source: "env", key: "APP_KEY", message: "APP_KEY is not set. Laravel cannot encrypt sessions or cookies without it — run `php artisan key:generate`." });
-  else if (appKey.empty) findings.push({ severity: "error", code: "app-key-empty", source: "env", key: "APP_KEY", line: appKey.line, message: "APP_KEY is empty. Run `php artisan key:generate`." });
+  if (!appKey)
+    findings.push({
+      severity: "error",
+      code: "app-key-missing",
+      source: "env",
+      key: "APP_KEY",
+      message: "APP_KEY is not set. Laravel cannot encrypt sessions or cookies without it — run `php artisan key:generate`."
+    });
+  else if (appKey.empty)
+    findings.push({
+      severity: "error",
+      code: "app-key-empty",
+      source: "env",
+      key: "APP_KEY",
+      line: appKey.line,
+      message: "APP_KEY is empty. Run `php artisan key:generate`."
+    });
   else if (!/^base64:[A-Za-z0-9+/]{43}=$/.test(appKey.value) && !(appKey.value.length === 32 && !appKey.value.startsWith("base64:"))) {
-    findings.push({ severity: "warning", code: "app-key-format", source: "env", key: "APP_KEY", line: appKey.line, message: "APP_KEY does not look like a Laravel key (expected base64: followed by 44 characters for AES-256-CBC, or a raw 32-character key). Regenerate it with `php artisan key:generate` unless you set it deliberately." });
+    findings.push({
+      severity: "warning",
+      code: "app-key-format",
+      source: "env",
+      key: "APP_KEY",
+      line: appKey.line,
+      message:
+        "APP_KEY does not look like a Laravel key (expected base64: followed by 44 characters for AES-256-CBC, or a raw 32-character key). Regenerate it with `php artisan key:generate` unless you set it deliberately."
+    });
   }
 
   const env = get(entries, "APP_ENV");
@@ -198,15 +287,32 @@ function semanticFindings(entries: EnvEntry[]): Finding[] {
   const isProduction = env && /^(production|prod)$/i.test(env.value);
   const debugOn = debug && /^(true|1|on|yes)$/i.test(debug.value);
   if (isProduction && debugOn) {
-    findings.push({ severity: "error", code: "debug-in-production", source: "env", key: "APP_DEBUG", line: debug?.line, message: "APP_DEBUG is on while APP_ENV is production. Error pages will expose stack traces, configuration and environment details. Set APP_DEBUG=false." });
+    findings.push({
+      severity: "error",
+      code: "debug-in-production",
+      source: "env",
+      key: "APP_DEBUG",
+      line: debug?.line,
+      message: "APP_DEBUG is on while APP_ENV is production. Error pages will expose stack traces, configuration and environment details. Set APP_DEBUG=false."
+    });
   }
-  if (!env) findings.push({ severity: "warning", code: "app-env-missing", source: "env", key: "APP_ENV", message: "APP_ENV is not set; Laravel falls back to 'production', which may not be what you expect locally." });
+  if (!env)
+    findings.push({
+      severity: "warning",
+      code: "app-env-missing",
+      source: "env",
+      key: "APP_ENV",
+      message: "APP_ENV is not set; Laravel falls back to 'production', which may not be what you expect locally."
+    });
   return findings;
 }
 
 export function checkEnv(envText: string, exampleText: string): CheckOutcome {
   if (envText.length > MAX_INPUT_CHARS || exampleText.length > MAX_INPUT_CHARS) {
-    return { ok: false, error: `Input is too large (limit ${MAX_INPUT_CHARS.toLocaleString("en-US")} characters per file). Real .env files are far smaller — check you pasted the right file.` };
+    return {
+      ok: false,
+      error: `Input is too large (limit ${MAX_INPUT_CHARS.toLocaleString("en-US")} characters per file). Real .env files are far smaller — check you pasted the right file.`
+    };
   }
   if (envText.split("\n").length > MAX_LINES || exampleText.split("\n").length > MAX_LINES) {
     return { ok: false, error: `Input has too many lines (limit ${MAX_LINES.toLocaleString("en-US")}).` };
@@ -231,19 +337,41 @@ export function checkEnv(envText: string, exampleText: string): CheckOutcome {
       }
     }
     for (const key of envKeys) {
-      if (!exampleKeys.has(key)) findings.push({ severity: "info", code: "extra", source: "env", key, line: get(env.entries, key)?.line, message: `${key} is in .env but not documented in .env.example. Add it (with a safe placeholder) so teammates and CI know it exists.` });
+      if (!exampleKeys.has(key))
+        findings.push({
+          severity: "info",
+          code: "extra",
+          source: "env",
+          key,
+          line: get(env.entries, key)?.line,
+          message: `${key} is in .env but not documented in .env.example. Add it (with a safe placeholder) so teammates and CI know it exists.`
+        });
     }
     for (const entry of env.entries) {
       const documented = get(example.entries, entry.key);
       if (documented && !documented.empty && entry.empty) {
-        findings.push({ severity: "warning", code: "empty-override", source: "env", key: entry.key, line: entry.line, message: `${entry.key} is empty in .env although .env.example provides a default.` });
+        findings.push({
+          severity: "warning",
+          code: "empty-override",
+          source: "env",
+          key: entry.key,
+          line: entry.line,
+          message: `${entry.key} is empty in .env although .env.example provides a default.`
+        });
       }
     }
   }
 
   for (const entry of example.entries) {
     if (looksLikeRealSecret(entry.key, entry.value)) {
-      findings.push({ severity: "warning", code: "secret-in-example", source: "example", key: entry.key, line: entry.line, message: `${entry.key} in .env.example looks like a real credential. This file is normally committed to git — replace it with a placeholder and rotate the secret if it was ever real.` });
+      findings.push({
+        severity: "warning",
+        code: "secret-in-example",
+        source: "example",
+        key: entry.key,
+        line: entry.line,
+        message: `${entry.key} in .env.example looks like a real credential. This file is normally committed to git — replace it with a placeholder and rotate the secret if it was ever real.`
+      });
     }
   }
 
@@ -256,19 +384,35 @@ export function checkEnv(envText: string, exampleText: string): CheckOutcome {
   for (const finding of findings) counts[finding.severity]++;
 
   const missingBlock = missing
-    .map((entry) => (entry.empty || looksLikeRealSecret(entry.key, entry.value) || secretKeyPattern.test(entry.key) ? `${entry.key}=` : `${entry.key}=${entry.quote === "double" ? `"${entry.value}"` : entry.quote === "single" ? `'${entry.value}'` : entry.value}`))
+    .map((entry) =>
+      entry.empty || looksLikeRealSecret(entry.key, entry.value) || secretKeyPattern.test(entry.key)
+        ? `${entry.key}=`
+        : `${entry.key}=${entry.quote === "double" ? `"${entry.value}"` : entry.quote === "single" ? `'${entry.value}'` : entry.value}`
+    )
     .join("\n");
 
   return {
     ok: true,
-    result: { findings, counts, stats: { envKeys: envKeys.size, exampleKeys: exampleKeys.size, missing: missing.length, extra: hasEnv && hasExample ? [...envKeys].filter((key) => !exampleKeys.has(key)).length : 0 }, missingBlock }
+    result: {
+      findings,
+      counts,
+      stats: {
+        envKeys: envKeys.size,
+        exampleKeys: exampleKeys.size,
+        missing: missing.length,
+        extra: hasEnv && hasExample ? [...envKeys].filter((key) => !exampleKeys.has(key)).length : 0
+      },
+      missingBlock
+    }
   };
 }
 
 export function formatReport(result: CheckResult): string {
   const lines = [`# .env check — ${result.counts.error} error(s), ${result.counts.warning} warning(s), ${result.counts.info} note(s)`, ""];
   for (const finding of result.findings) {
-    const where = [finding.source === "example" ? ".env.example" : finding.source === "env" ? ".env" : "", finding.line ? `line ${finding.line}` : ""].filter(Boolean).join(", ");
+    const where = [finding.source === "example" ? ".env.example" : finding.source === "env" ? ".env" : "", finding.line ? `line ${finding.line}` : ""]
+      .filter(Boolean)
+      .join(", ");
     lines.push(`[${finding.severity.toUpperCase()}] ${finding.message}${where ? ` (${where})` : ""}`);
   }
   if (result.missingBlock) lines.push("", "# Missing keys to add to .env:", result.missingBlock);
