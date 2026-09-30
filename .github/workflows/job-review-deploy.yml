@@ -50,7 +50,7 @@ jobs:
         if: steps.creds.outputs.enabled == 'true'
         run: |
           npm run typecheck
-          npx vitest run tests/unit/job-review tests/unit/job-scoring
+          npx vitest run tests/integration/workers tests/unit/jobs
       - name: Deploy Worker
         if: steps.creds.outputs.enabled == 'true'
         env:
