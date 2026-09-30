@@ -333,6 +333,59 @@ describe("graceful degradation and data safety", () => {
     expect(html).toContain("Laravel Dev");
     expect(html).toContain("Saved reviews are temporarily unavailable");
   });
+
+  describe("malformed persisted review state", () => {
+    const malformed = [
+      "null",
+      "[]",
+      '"text"',
+      "42",
+      "{not json",
+      JSON.stringify({ [ID]: null }),
+      JSON.stringify({ [ID]: { status: "archived", note: "", updatedAt: "x" } })
+    ];
+
+    it.each(malformed)("shows the degraded notice on GET and keeps the blob: %s", async (blob) => {
+      const store = kv();
+      store.store.set("reviews", blob);
+      const response = await run(get("/"), env(store));
+      const html = await response.text();
+      expect(response.status).toBe(200);
+      expect(html).toContain("Laravel Dev");
+      expect(html).toContain("Saved reviews are temporarily unavailable");
+      expect(store.store.get("reviews")).toBe(blob);
+    });
+
+    it.each(malformed)("refuses to write on POST and preserves the stored blob: %s", async (blob) => {
+      let writes = 0;
+      const store = kv({
+        put: async () => {
+          writes++;
+        }
+      });
+      store.store.set("reviews", blob);
+      const response = await run(post({ id: ID, status: "reviewed" }), env(store));
+      expect(response.status).toBe(503);
+      expect(writes).toBe(0);
+      expect(store.store.get("reviews")).toBe(blob);
+    });
+
+    it("reports health as degraded", async () => {
+      const store = kv();
+      store.store.set("reviews", "null");
+      const response = await run(get("/healthz"), env(store));
+      expect(await response.json()).toMatchObject({ status: "degraded", kv: "unavailable" });
+    });
+
+    it("still reads and writes valid saved state", async () => {
+      const store = kv();
+      store.store.set("reviews", JSON.stringify({ [ID]: { status: "shortlisted", note: "keep", updatedAt: "2026-09-29T12:00:00.000Z" } }));
+      expect(await (await run(get("/"), env(store))).text()).not.toContain("Saved reviews are temporarily unavailable");
+      const saved = await run(post({ id: ID, status: "reviewed", note: "updated" }), env(store));
+      expect(saved.status).toBeLessThan(400);
+      expect(JSON.parse(store.store.get("reviews")!)[ID]).toMatchObject({ status: "reviewed", note: "updated" });
+    });
+  });
 });
 
 describe("read-only preview mode", () => {
