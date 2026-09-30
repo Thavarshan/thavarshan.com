@@ -115,7 +115,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
             <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />} eventName="Repository Visit">View repository</ButtonLink>
-              {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />} eventName="Repository Visit">Documentation</ButtonLink> : null}
+              {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />} event={{ name: "demo_click", props: { project: project.repository.toLowerCase() } }}>Documentation</ButtonLink> : null}
             </div>
           </div>
         </header>

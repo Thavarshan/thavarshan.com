@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { plausibleEventClass, type PlausibleGoal } from "@/lib/analytics";
+import { goalToEvent, type Goal, type TrackedEvent } from "@/lib/telemetry/goals";
+import { track } from "@/lib/telemetry/client";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "onDarkPrimary" | "onDarkGhost";
 
@@ -10,7 +14,10 @@ type ButtonLinkProps = {
   icon?: ReactNode;
   variant?: ButtonVariant;
   className?: string;
-  eventName?: PlausibleGoal;
+  /** The site's call-to-action vocabulary; mapped to the typed taxonomy in lib/telemetry/goals.ts. */
+  eventName?: Goal;
+  /** An explicit typed event, for anything the vocabulary above cannot express (for example demo_click). */
+  event?: TrackedEvent;
 };
 
 const variants: Record<ButtonVariant, string> = {
@@ -21,19 +28,23 @@ const variants: Record<ButtonVariant, string> = {
   onDarkGhost: "border-transparent bg-transparent text-white/72 hover:text-white active:text-white focus-visible:text-white"
 };
 
-export function ButtonLink({ href, children, icon, variant = "secondary", className = "", eventName }: ButtonLinkProps) {
+export function ButtonLink({ href, children, icon, variant = "secondary", className = "", eventName, event }: ButtonLinkProps) {
+  const pathname = usePathname() ?? "/";
+  const onClick = () => {
+    const tracked = event ?? (eventName ? goalToEvent(eventName, href, pathname) : null);
+    if (tracked) track(tracked.name, tracked.props);
+  };
   const classes = [
     "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]",
     variants[variant],
-    plausibleEventClass(eventName),
     className
   ].join(" ");
   const isExternal = href.startsWith("http");
 
   if (isExternal) {
     return (
-      <a className={classes} href={href} target="_blank" rel="noreferrer">
+      <a className={classes} href={href} target="_blank" rel="noreferrer" onClick={onClick}>
         {icon}
         <span>{children}</span>
       </a>
@@ -42,7 +53,7 @@ export function ButtonLink({ href, children, icon, variant = "secondary", classN
 
   if (href.startsWith("mailto:")) {
     return (
-      <a className={classes} href={href}>
+      <a className={classes} href={href} onClick={onClick}>
         {icon}
         <span>{children}</span>
       </a>
@@ -50,7 +61,7 @@ export function ButtonLink({ href, children, icon, variant = "secondary", classN
   }
 
   return (
-    <Link className={classes} href={href}>
+    <Link className={classes} href={href} onClick={onClick}>
       {icon}
       <span>{children}</span>
     </Link>

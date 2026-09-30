@@ -13,7 +13,9 @@ export const site = {
   github: profile.identity.github,
   linkedin: profile.identity.linkedin,
   resume: "/docs/Jerome-Resume.pdf",
-  avatar: profile.identity.avatar
+  avatar: profile.identity.avatar,
+  /** First-party, cookie-free event collector (see docs/measurement.md). Empty disables first-party telemetry. */
+  metricsUrl: "https://site-metrics.tjthavarshan.workers.dev/collect"
 } as const;
 
 export const navigation = [
