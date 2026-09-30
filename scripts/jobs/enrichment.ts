@@ -4,6 +4,17 @@ import { mapWithConcurrency, SkipEnrichmentError, withRetry } from "./concurrenc
 
 const unusableRedirectHosts = new Set(["accounts.google.com", "docs.google.com"]);
 
+/**
+ * Anti-bot challenges and interstitials are not job postings. Scraping one must never yield a
+ * title or description (they otherwise surface as e.g. a "job" called "Additional Verification Required").
+ */
+const botWallPattern =
+  /_cf_chl_opt|cf-chl|Ray ID|Just a moment\.\.\.|Additional Verification Required|Enable JavaScript and cookies to continue|Attention Required|Access denied|Verify you are (?:a )?human|Checking your browser/i;
+
+export function isUnusableScrape(scraped: { title: string | null; description: string }): boolean {
+  return botWallPattern.test(scraped.title ?? "") || botWallPattern.test(scraped.description.slice(0, 2000));
+}
+
 export interface ScrapedPage {
   title: string | null;
   description: string;
@@ -31,7 +42,9 @@ export async function scrapeRedirectTarget(page: Page, url: string): Promise<Scr
           (await page.locator("body").textContent({ timeout: 10_000 }).catch(() => null)) ??
           "";
 
-        return { title: title || null, description };
+        const scraped = { title: title || null, description };
+        if (isUnusableScrape(scraped)) throw new SkipEnrichmentError(`${url} returned a bot-wall or challenge page`);
+        return scraped;
       },
       { retries: 1, baseDelayMs: 750, isRetryable: (error) => !(error instanceof SkipEnrichmentError) }
     );
@@ -65,40 +78,4 @@ export async function enrichAndFinalize<D>(
   });
 
   return results.map((result, index) => (result.status === "fulfilled" ? result.value : finalize(drafts[index], now, null)));
-}
-
-/**
- * Same primitive as {@link enrichAndFinalize}, but for bare links with no source metadata at
- * all (both title and description come from the scrape itself) — a scrape failure/skip/empty
- * title here means the link is dropped, not just missing a description.
- */
-export async function enrichUnknownLinks(
-  context: BrowserContext,
-  urls: string[],
-  buildFromScrape: (url: string, title: string, description: string, now: string) => Opportunity,
-  opts: { concurrency: number },
-  now = new Date().toISOString()
-): Promise<{ opportunities: Opportunity[]; rejected: number }> {
-  const results = await mapWithConcurrency(urls, opts.concurrency, async (url) => {
-    const page = await context.newPage();
-    try {
-      const scraped = await scrapeRedirectTarget(page, url);
-      if (!scraped?.title) return null;
-      return buildFromScrape(url, scraped.title, scraped.description, now);
-    } finally {
-      await page.close();
-    }
-  });
-
-  const opportunities: Opportunity[] = [];
-  let rejected = 0;
-  for (const result of results) {
-    if (result.status === "fulfilled") {
-      if (result.value) opportunities.push(result.value);
-    } else {
-      rejected++;
-    }
-  }
-
-  return { opportunities, rejected };
 }

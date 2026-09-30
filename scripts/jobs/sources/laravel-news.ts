@@ -1,10 +1,50 @@
 import type { Page } from "@playwright/test";
+import { canonicalizeJobUrl } from "../../../lib/job-opportunities";
 
 export const laravelNewsUrl = "https://laravel-news.com/";
 
-export async function collectLaravelNewsLinks(page: Page): Promise<string[]> {
+export interface LaravelNewsRawLink {
+  href: string;
+  title: string | null;
+  company: string | null;
+}
+
+export interface LaravelNewsDraft {
+  canonicalUrl: string;
+  title: string;
+  company: string | null;
+}
+
+/**
+ * Laravel News lists each job as an anchor with the title and company in separate spans. That
+ * listing is the authoritative title/company: the page the link ultimately redirects to is an
+ * arbitrary third-party site whose <h1> may be a cookie banner, bot wall or marketing headline.
+ */
+export function normalizeLaravelNewsLinks(links: LaravelNewsRawLink[]): LaravelNewsDraft[] {
+  const drafts = new Map<string, LaravelNewsDraft>();
+  for (const link of links) {
+    const title = link.title?.replace(/\s+/g, " ").trim();
+    if (!title) continue;
+    let canonicalUrl: string;
+    try {
+      canonicalUrl = canonicalizeJobUrl(link.href);
+    } catch {
+      continue;
+    }
+    if (!drafts.has(canonicalUrl)) {
+      drafts.set(canonicalUrl, { canonicalUrl, title, company: link.company?.replace(/\s+/g, " ").trim() || null });
+    }
+  }
+  return [...drafts.values()];
+}
+
+export async function collectLaravelNewsLinks(page: Page): Promise<LaravelNewsDraft[]> {
   await page.goto(laravelNewsUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  return page.locator('a[href*="larajobs.com/job/"]').evaluateAll((anchors) =>
-    [...new Set(anchors.map((anchor) => (anchor as HTMLAnchorElement).href).filter(Boolean))]
+  const raw = await page.locator('a[href*="larajobs.com/job/"]').evaluateAll((anchors) =>
+    anchors.map((anchor) => {
+      const spans = [...anchor.querySelectorAll("span")].map((span) => span.textContent?.trim() ?? "").filter(Boolean);
+      return { href: (anchor as HTMLAnchorElement).href, title: spans[0] ?? null, company: spans[1] ?? null };
+    })
   );
+  return normalizeLaravelNewsLinks(raw);
 }
