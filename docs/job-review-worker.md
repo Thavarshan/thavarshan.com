@@ -68,6 +68,12 @@ The localhost auth bypass in `.dev.vars` only applies to requests whose hostname
 
 Workers Free (100k requests/day) and KV Free (1k writes/day) are far above single-user needs; Access is free for up to 50 users. If GitHub raw is unreachable or the data fails validation the page shows an error; review state is unaffected. Rollback: `npx wrangler rollback`, or delete the Worker; the static site is untouched.
 
+## Recovering malformed review state
+
+Saved reviews live in one KV key, `reviews`. The Worker validates it on every read (object of `{ status, note, updatedAt }` entries, status one of `new|reviewed|shortlisted|dismissed`, note at most 500 characters). If anything is malformed, the page stays up with the "Saved reviews are temporarily unavailable" notice, `/healthz` reports `degraded`, and saves are refused with a 503. The stored value is never overwritten or reset automatically.
+
+To recover: export the value (`npx wrangler kv key get reviews --binding JOBS_KV --remote > reviews.bak.json`), fix the JSON by hand (or delete the bad entries), then write it back (`npx wrangler kv key put reviews --binding JOBS_KV --remote --path reviews.json`). Deleting the key (`wrangler kv key delete`) starts from an empty review list.
+
 ## Known limitations
 
 - Review state is per-Worker KV, not exported; there is no history beyond `updatedAt`.

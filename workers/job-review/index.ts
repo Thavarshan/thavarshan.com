@@ -4,6 +4,7 @@ import {
   filterOpportunities,
   isStale,
   parseFilters,
+  parseReviewMap,
   reviewStatuses,
   sanitizeNote,
   sortOpportunities,
@@ -83,7 +84,9 @@ type ReviewsResult = { ok: true; reviews: ReviewMap } | { ok: false };
 async function loadReviews(env: Env): Promise<ReviewsResult> {
   try {
     const raw = await env.JOBS_KV.get(REVIEWS_KEY);
-    return { ok: true, reviews: raw ? (JSON.parse(raw) as ReviewMap) : {} };
+    if (!raw) return { ok: true, reviews: {} };
+    const reviews = parseReviewMap(JSON.parse(raw));
+    return reviews ? { ok: true, reviews } : { ok: false };
   } catch {
     return { ok: false };
   }

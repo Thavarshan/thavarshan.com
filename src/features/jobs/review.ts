@@ -14,6 +14,24 @@ export type ReviewMap = Record<string, ReviewEntry>;
 export const NOTE_MAX_LENGTH = 500;
 export const OPPORTUNITY_ID_PATTERN = /^[a-f0-9]{20}$/;
 
+/**
+ * Validates persisted review state at the storage boundary. Returns null if ANY part is malformed, so a
+ * caller treats the whole blob as unavailable instead of half-trusting it or overwriting it.
+ */
+export function parseReviewMap(value: unknown): ReviewMap | null {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return null;
+  const reviews: ReviewMap = {};
+  for (const [id, raw] of Object.entries(value)) {
+    if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
+    const { status, note, updatedAt } = raw as Record<string, unknown>;
+    if (typeof status !== "string" || !(reviewStatuses as readonly string[]).includes(status)) return null;
+    if (typeof note !== "string" || note.length > NOTE_MAX_LENGTH) return null;
+    if (typeof updatedAt !== "string" || updatedAt === "") return null;
+    reviews[id] = { status: status as ReviewStatus, note, updatedAt };
+  }
+  return reviews;
+}
+
 const eligibilityOrder: Record<Opportunity["eligibility"], number> = { eligible: 0, unknown: 1, ineligible: 2 };
 
 export interface ReviewFilters {
