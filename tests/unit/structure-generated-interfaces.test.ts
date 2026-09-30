@@ -22,8 +22,9 @@ const interfaces: Array<{ path: string; why: string; consumers: string[] }> = [
   { path: "cv/generated", why: "rendered LaTeX", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/render.ts", "scripts/cv/build.ts"] }
 ];
 
-// Paths that are created on demand by a workflow's first run rather than committed.
-const createdOnFirstRun = new Set(["marketing/oss", "data/growth"]);
+// Paths that are not in a clean checkout: created by a workflow's first run, or gitignored build output
+// (marketing/generated is written by `npm run insights:bundle` and listed in .gitignore).
+const createdOnFirstRun = new Set(["marketing/oss", "data/growth", "marketing/generated"]);
 
 describe("generated paths are stable interfaces", () => {
   it.each(interfaces)("$path ($why) exists and is still referenced by every consumer", ({ path, consumers }) => {
