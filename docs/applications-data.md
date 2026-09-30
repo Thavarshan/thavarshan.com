@@ -10,7 +10,7 @@ This is Phase 2 of the job-discovery platform described in the wider spec (see `
 
 ## Where the output lives (and why)
 
-This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover letters and CVs reveal job-search targeting — which companies, what was said to them — that shouldn't be permanently public alongside the portfolio site. So generated packages are **never committed here**. They're pushed to a separate **private** repository (`APPLICATIONS_REPO_SLUG`, default `Thavarshan/job-applications`) by `scripts/applications/private-repo.ts`, over SSH using a **deploy key** scoped to only that one repo (`APPLICATIONS_REPO_DEPLOY_KEY`). A deploy key was used instead of a personal access token specifically because it's narrower: it can only perform git operations against the repo it was added to and can never call the GitHub API at all, versus a PAT's broader (if still repo-scoped) reach.
+This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover letters and CVs reveal job-search targeting — which companies, what was said to them — that shouldn't be permanently public alongside the portfolio site. So generated packages are **never committed here**. They're pushed to a separate **private** repository (`APPLICATIONS_REPO_SLUG`, default `Thavarshan/job-applications`) by `automation/applications/private-repo.ts`, over SSH using a **deploy key** scoped to only that one repo (`APPLICATIONS_REPO_DEPLOY_KEY`). A deploy key was used instead of a personal access token specifically because it's narrower: it can only perform git operations against the repo it was added to and can never call the GitHub API at all, versus a PAT's broader (if still repo-scoped) reach.
 
 `data/jobs.generated.json` itself (company names, scores, eligibility) is already public and treated as acceptable pre-existing exposure — a portfolio site showing active job-search activity isn't new information. What's protected here is specifically the AI-drafted application *content*.
 
@@ -25,7 +25,7 @@ A candidate opportunity qualifies when `eligibility === "eligible"`, `status !==
 
 ## ⚠️ This feature costs money and is OFF by default
 
-The OpenAI API is pay-per-use. To guarantee the project costs nothing, generation runs **only** when the repository variable `ENABLE_PAID_AI` is set to `true` (`gh variable set ENABLE_PAID_AI --body true`); merely having `OPENAI_API_KEY` configured does nothing. The gate is enforced twice, in `applications-refresh.yml` and in `scripts/applications/generate.ts` (`src/features/applications/paid-ai.ts`). To make spending impossible, also delete the key in the OpenAI dashboard or set its budget to $0. See `docs/cost-policy.md`.
+The OpenAI API is pay-per-use. To guarantee the project costs nothing, generation runs **only** when the repository variable `ENABLE_PAID_AI` is set to `true` (`gh variable set ENABLE_PAID_AI --body true`); merely having `OPENAI_API_KEY` configured does nothing. The gate is enforced twice, in `applications-refresh.yml` and in `automation/applications/generate.ts` (`src/features/applications/paid-ai.ts`). To make spending impossible, also delete the key in the OpenAI dashboard or set its budget to $0. See `docs/cost-policy.md`.
 
 ## Required secrets
 
@@ -36,13 +36,13 @@ If either secret is missing, `npm run applications:generate` logs a message and 
 
 ## Per-package contents (in the private repo, under `<opportunityId>/`)
 
-- `cv.pdf` — tailored CV variant (same rendering pipeline and page-limit/content verification as the public CV, see `scripts/cv/verify.ts`).
+- `cv.pdf` — tailored CV variant (same rendering pipeline and page-limit/content verification as the public CV, see `automation/cv/verify.ts`).
 - `cover-letter.pdf` — AI-drafted cover letter.
 - `summary.md` — job title/company, direct application link, score/eligibility/work arrangement/salary, why it was selected, any flagged terms to double-check, and generation metadata (timestamp, model, content hash).
 
 ## Reviewing and actually applying
 
-Generation stops at drafting — nothing gets sent automatically. `scripts/applications/review.ts` (`npm run applications:review -- /path/to/local/clone`) is a **local, interactive** tool for working through the pile:
+Generation stops at drafting — nothing gets sent automatically. `automation/applications/review.ts` (`npm run applications:review -- /path/to/local/clone`) is a **local, interactive** tool for working through the pile:
 
 1. Clone the private repo yourself once with your own GitHub credentials (`gh repo clone Thavarshan/job-applications`) — this tool intentionally does **not** use `APPLICATIONS_REPO_DEPLOY_KEY`; that credential exists for the unattended Actions workflow, and reusing it for an interactive session run by a human would be the wrong tool for the job. Plain `git`, authenticated as you, is enough.
 2. Run `npm run applications:review -- <path to that clone>`. Each package with `status: "pending"` in `state.json` is shown one at a time (title, company, score, eligibility, work arrangement, salary, the direct apply link, local paths to `cv.pdf`/`cover-letter.pdf`, and any flagged terms from `summary.md`) — the tool never opens a browser or attempts to submit anything itself.
@@ -55,6 +55,6 @@ This is the actual apply step, and it's why it stays a manual, per-job decision 
 
 ## Operational notes
 
-- Reuses the exact same Docker + `latexmk` compilation pipeline as the public CV (`scripts/cv/build.ts`'s `compileLatexToPdf`), just with a tailoring plan and different output paths — the untailored `npm run cv:build` path is unaffected.
+- Reuses the exact same Docker + `latexmk` compilation pipeline as the public CV (`automation/cv/build.ts`'s `compileLatexToPdf`), just with a tailoring plan and different output paths — the untailored `npm run cv:build` path is unaffected.
 - A source or OpenAI failure for one candidate is caught and logged; it doesn't abort the run or affect other candidates.
 - The private repo's `state.json` and this workflow's own log output only ever mention information already public via `data/jobs.generated.json` (company, title, score) — never cover letter content.

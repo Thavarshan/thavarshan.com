@@ -10,8 +10,8 @@ import {
   opportunitySnapshotSchema
 } from "@/features/jobs/opportunities";
 import { loadSnapshot } from "@/features/jobs/snapshot";
-import { buildOpportunity, sanitizeApplicationUrl } from "@scripts/jobs/opportunity-builder";
-import { makeOpportunity } from "../helpers/opportunity";
+import { buildOpportunity, sanitizeApplicationUrl } from "@automation/jobs/opportunity-builder";
+import { makeOpportunity } from "../../helpers/opportunity";
 
 const now = "2026-09-30T00:00:00.000Z";
 const base = { title: "Senior Laravel Developer", url: "https://larajobs.com/job/3931?utm=x", sourceUrl: "https://larajobs.com/feed", source: "larajobs" as const };
@@ -120,7 +120,7 @@ describe("per-source empty-result guard", () => {
 describe("backward compatibility (additive, no schemaVersion bump)", () => {
   it("loads the committed snapshot and an older one without the new fields, filling defaults", async () => {
     const { readFile } = await import("node:fs/promises");
-    const raw = JSON.parse(await readFile(new URL("../../data/jobs.generated.json", import.meta.url), "utf8"));
+    const raw = JSON.parse(await readFile(new URL("../../../data/jobs.generated.json", import.meta.url), "utf8"));
     const legacy = structuredClone(raw);
     delete legacy.collectorVersion;
     for (const source of legacy.sources) delete source.held;

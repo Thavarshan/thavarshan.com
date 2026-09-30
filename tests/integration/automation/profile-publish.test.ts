@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseChangedFiles } from "../../scripts/profile/publish";
+import { parseChangedFiles } from "../../../automation/profile/publish";
 
 describe("profile publishing status parsing", () => {
   it("preserves the first character of changed filenames", () => {

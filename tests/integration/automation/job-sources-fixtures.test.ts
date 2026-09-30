@@ -1,10 +1,10 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { parseLaraJobsFeedItems } from "@scripts/jobs/sources/larajobs";
-import { extractLaravelNewsAnchors, laravelNewsJobSelector, normalizeLaravelNewsLinks } from "@scripts/jobs/sources/laravel-news";
-import { parseRemotiveJobs } from "@scripts/jobs/sources/remotive";
-import { parseWeWorkRemotelyFeed } from "@scripts/jobs/sources/weworkremotely";
+import { parseLaraJobsFeedItems } from "@automation/jobs/sources/larajobs";
+import { extractLaravelNewsAnchors, laravelNewsJobSelector, normalizeLaravelNewsLinks } from "@automation/jobs/sources/laravel-news";
+import { parseRemotiveJobs } from "@automation/jobs/sources/remotive";
+import { parseWeWorkRemotelyFeed } from "@automation/jobs/sources/weworkremotely";
 
 /**
  * Real samples captured from each source (tests/fixtures/jobs/sources). They exist so a change in a

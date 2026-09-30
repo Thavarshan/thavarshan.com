@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { clearAccessCertCache, verifyAccessJwt } from "@workers/job-review/access";
 import { handleRequest, isSameOrigin, type Env, type KVLike } from "@workers/job-review/index";
 import type { OpportunitySnapshot } from "@/features/jobs/opportunities";
-import { makeOpportunity } from "../helpers/opportunity";
+import { makeOpportunity } from "../../helpers/opportunity";
 
 const TEAM = "team.cloudflareaccess.com";
 const AUD = "aud-tag";

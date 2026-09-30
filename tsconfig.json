@@ -29,8 +29,8 @@
       "@generated/*": [
         "./data/*"
       ],
-      "@scripts/*": [
-        "./scripts/*"
+      "@automation/*": [
+        "./automation/*"
       ],
       "@workers/*": [
         "./workers/*"

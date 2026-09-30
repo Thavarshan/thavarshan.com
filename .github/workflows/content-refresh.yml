@@ -10,9 +10,9 @@ on:
       - "public/docs/Jerome-Resume.pdf"
       - "src/features/cv/latex.ts"
       - "cv/**"
-      - "scripts/cv/**"
-      - "scripts/profile/github.ts"
-      - "scripts/marketing/registry.ts"
+      - "automation/cv/**"
+      - "automation/profile/github.ts"
+      - "automation/marketing/registry.ts"
   schedule:
     - cron: "17 3 * * 1"
   workflow_dispatch:

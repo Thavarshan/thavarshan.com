@@ -21,7 +21,7 @@ export default defineConfig({
     },
     {
       // Serves the fixture snapshot that the job-review Worker fetches instead of the live GitHub copy.
-      command: "npx tsx scripts/static-server.ts tests/e2e/fixtures --hostname 127.0.0.1 --port 4174",
+      command: "npx tsx automation/static-server.ts tests/e2e/fixtures --hostname 127.0.0.1 --port 4174",
       url: "http://127.0.0.1:4174/jobs.json",
       reuseExistingServer: false
     },
