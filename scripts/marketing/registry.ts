@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { packageRegistrySnapshot } from "../../lib/package-registry";
-import { writeJsonAtomic } from "../profile/io";
+import { writeJsonAtomic } from "../../lib/node/fs";
 
 type PackagistResponse = {
   package?: {

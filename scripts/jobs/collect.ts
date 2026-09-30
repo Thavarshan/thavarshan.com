@@ -11,7 +11,7 @@ import {
   type SourceCollectionSuccess
 } from "../../lib/job-opportunities";
 import { loadSnapshot } from "../../lib/job-snapshot";
-import { writeJsonAtomic } from "../profile/io";
+import { writeJsonAtomic } from "../../lib/node/fs";
 import { recordSourceFailure } from "./diagnostics";
 import { enrichAndFinalize } from "./enrichment";
 import { assessRunHealth, isMaterialChange, renderRunSummary, summarizeError } from "./health";

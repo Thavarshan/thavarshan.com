@@ -10,6 +10,7 @@ on:
     paths:
       - "workers/job-review/**"
       - "lib/job-review.ts"
+      - "lib/edge/**"
       - "lib/job-opportunities.ts"
       - "lib/job-eligibility-signals.ts"
       - "package-lock.json"

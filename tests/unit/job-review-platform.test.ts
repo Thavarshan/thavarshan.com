@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
 import { handleRequest, limiters, routes, type Env, type KVLike } from "@/workers/job-review/index";
-import { MAX_BODY_BYTES, PayloadTooLargeError, RateLimiter, UnsupportedMediaTypeError, fetchJsonBounded, formatLog, readFormBody, requestIdFor } from "@/workers/job-review/platform";
+import { MAX_BODY_BYTES, PayloadTooLargeError, RateLimiter, UnsupportedMediaTypeError, fetchJsonBounded, formatLog, readFormBody, requestIdFor } from "@/lib/edge/platform";
 import { makeOpportunity } from "../helpers/opportunity";
 import type { OpportunitySnapshot } from "@/lib/job-opportunities";
 

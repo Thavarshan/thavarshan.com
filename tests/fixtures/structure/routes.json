@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "/",
+    "/404",
+    "/_not-found",
+    "/cv",
+    "/insights",
+    "/insights/[slug]",
+    "/privacy",
+    "/projects",
+    "/projects/[slug]",
+    "/tools",
+    "/tools/[slug]"
+  ],
+  "files": [
+    "/_redirects",
+    "/feed.xml",
+    "/indexnow-key.txt",
+    "/insights/[slug]/opengraph-image",
+    "/opengraph-image",
+    "/projects/[slug]/opengraph-image",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/tools/[slug]/opengraph-image"
+  ],
+  "assets": [
+    "/android-chrome-192x192.png",
+    "/android-chrome-512x512.png",
+    "/apple-touch-icon.png",
+    "/docs/Jerome-Resume-fallback.pdf",
+    "/docs/Jerome-Resume.pdf",
+    "/favicon-16x16.png",
+    "/favicon-32x32.png",
+    "/favicon.ico",
+    "/images/Banner.jpg",
+    "/images/avatar.jpg",
+    "/images/joke.png",
+    "/images/profile-16x9.jpg",
+    "/images/profile-1x1.jpg",
+    "/images/profile-4x3.jpg",
+    "/site.webmanifest"
+  ],
+  "dynamicCounts": {
+    "insights": 1,
+    "insights:og": 1,
+    "projects": 1,
+    "projects:og": 1,
+    "tools": 1,
+    "tools:og": 1
+  }
+}

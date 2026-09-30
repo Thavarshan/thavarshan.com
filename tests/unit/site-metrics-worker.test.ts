@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { handleRequest, type Env, type KVLike } from "@/workers/site-metrics/index";
 import { MAX_BODY_BYTES, RETENTION_SECONDS, limiter } from "@/workers/site-metrics/config";
-import { RateLimiter } from "@/workers/job-review/platform";
+import { RateLimiter } from "@/lib/edge/platform";
 
 const ORIGIN = "https://thavarshan.com";
 const now = new Date("2026-10-03T12:34:56.000Z");

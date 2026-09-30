@@ -25,6 +25,8 @@ jobs:
       - run: npm run insights:bundle
       - run: npm run audit
       - run: npm run build
+      - name: Public URL inventory is unchanged
+        run: npm run structure:routes
 
   browser:
     runs-on: ubuntu-latest

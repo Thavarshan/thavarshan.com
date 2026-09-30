@@ -19,6 +19,7 @@
     "insights:bundle": "tsx scripts/marketing/distribution.ts",
     "marketing:oss": "tsx scripts/marketing/oss-bundles.ts",
     "growth:metrics": "tsx scripts/growth/metrics-snapshot.ts",
+    "structure:routes": "tsx scripts/structure/routes.ts",
     "registry:sync": "tsx scripts/marketing/registry.ts",
     "seo:indexnow": "tsx scripts/marketing/indexnow.ts",
     "cv:render": "tsx scripts/cv/render.ts",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@next/eslint-plugin-next": "^16.3.8",
     "@playwright/test": "^1.62.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",

@@ -20,7 +20,7 @@ import {
   readFormBody,
   requestIdFor,
   type LogEntry
-} from "./platform";
+} from "../../lib/edge/platform";
 import { renderPage } from "./render";
 
 export interface KVLike {

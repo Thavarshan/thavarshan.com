@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { fetchGitHubSnapshot } from "../../lib/github";
 import { findProfileConflicts } from "../../lib/profile-conflicts";
 import { parseProfessionalProfile } from "../../lib/profile-schema";
-import { writeJsonAtomic } from "./io";
+import { writeJsonAtomic } from "../../lib/node/fs";
 
 export async function syncGitHubProfile() {
   const snapshot = await fetchGitHubSnapshot({ token: process.env.GITHUB_TOKEN });

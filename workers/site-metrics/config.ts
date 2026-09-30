@@ -1,4 +1,4 @@
-import { RateLimiter } from "../job-review/platform";
+import { RateLimiter } from "../../lib/edge/platform";
 
 /**
  * Constants and shared state live here, NOT in index.ts: the Workers runtime only accepts handlers as
