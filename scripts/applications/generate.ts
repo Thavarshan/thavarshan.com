@@ -9,6 +9,7 @@ import { opportunitySnapshotSchema, type Opportunity } from "../../lib/job-oppor
 import { renderResumeLatex } from "../../lib/latex";
 import { parseProfessionalProfile, type ProfessionalProfile } from "../../lib/profile-schema";
 import { compileLatexToPdf } from "../cv/build";
+import { paidAiEnabled } from "../../lib/paid-ai";
 import { generateTailoringAndCoverLetter, type RawTailoringResult } from "./openai-client";
 import { buildSystemPrompt, buildUserPrompt } from "./prompts";
 import { applicationsRepoSlug, clonePrivateRepo, commitAndPush } from "./private-repo";
@@ -102,6 +103,11 @@ function buildSummaryMarkdown(params: {
 }
 
 export async function generateApplications() {
+  if (!paidAiEnabled(process.env)) {
+    console.log("Paid AI generation is disabled (ENABLE_PAID_AI is not \"true\"); skipping. See docs/cost-policy.md.");
+    return;
+  }
+
   const openaiApiKey = process.env.OPENAI_API_KEY;
   const deployKey = process.env.APPLICATIONS_REPO_DEPLOY_KEY;
 

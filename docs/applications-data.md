@@ -23,6 +23,10 @@ This repository (`thavarshan.com`) is **public**. Tailored, per-employer cover l
 
 A candidate opportunity qualifies when `eligibility === "eligible"`, `status !== "closed"`, and `score >= APPLICATIONS_MIN_SCORE` (default 60). `unknown` eligibility is never sufficient — this mirrors `docs/jobs-data.md`'s existing rule that `unknown` is never permission to act. Already-generated packages are skipped unless the underlying job data materially changed (tracked via a content hash in the private repo's `state.json`), and each run is capped at `APPLICATIONS_MAX_PER_RUN` (default 5) new/regenerated packages regardless of how many candidates qualify.
 
+## ⚠️ This feature costs money and is OFF by default
+
+The OpenAI API is pay-per-use. To guarantee the project costs nothing, generation runs **only** when the repository variable `ENABLE_PAID_AI` is set to `true` (`gh variable set ENABLE_PAID_AI --body true`); merely having `OPENAI_API_KEY` configured does nothing. The gate is enforced twice, in `applications-refresh.yml` and in `scripts/applications/generate.ts` (`lib/paid-ai.ts`). To make spending impossible, also delete the key in the OpenAI dashboard or set its budget to $0. See `docs/cost-policy.md`.
+
 ## Required secrets
 
 - `OPENAI_API_KEY` — used only to call the OpenAI API for tailoring/cover-letter drafting.
