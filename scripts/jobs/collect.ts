@@ -2,7 +2,6 @@ import { appendFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import {
-  canonicalizeJobUrl,
   mergeOpportunities,
   opportunitySnapshotSchema,
   type Opportunity,
@@ -11,7 +10,7 @@ import {
 } from "../../lib/job-opportunities";
 import { writeJsonAtomic } from "../profile/io";
 import { recordSourceFailure } from "./diagnostics";
-import { enrichAndFinalize, enrichUnknownLinks } from "./enrichment";
+import { enrichAndFinalize } from "./enrichment";
 import { buildOpportunity } from "./opportunity-builder";
 import { collectLaraJobsDrafts, finalizeLaraJobsDraft, laraJobsFeedUrl } from "./sources/larajobs";
 import { collectLaravelNewsLinks, laravelNewsUrl } from "./sources/laravel-news";
@@ -107,19 +106,30 @@ export async function collectJobs() {
     }
 
     try {
-      const links = await collectLaravelNewsLinks(discoveryPage);
-      const candidates = [...new Set(links.map((link) => canonicalizeJobUrl(link)))]
-        .filter((url) => !laraJobsCanonicalUrls.has(url))
+      const drafts = (await collectLaravelNewsLinks(discoveryPage))
+        .filter((draft) => !laraJobsCanonicalUrls.has(draft.canonicalUrl))
         .slice(0, 20);
-      const { opportunities, rejected } = await enrichUnknownLinks(
+      // Title/company come from Laravel News's own listing; the scrape only supplies description text.
+      const opportunities = await enrichAndFinalize(
         context,
-        candidates,
-        (url, title, description, finalizeNow) =>
-          buildOpportunity({ title, url, sourceUrl: laravelNewsUrl, description, source: "laravel-news" }, finalizeNow),
+        drafts,
+        (draft) => draft.canonicalUrl,
+        (draft, finalizeNow, scrapedDescription) =>
+          buildOpportunity(
+            {
+              title: draft.title,
+              company: draft.company,
+              url: draft.canonicalUrl,
+              sourceUrl: laravelNewsUrl,
+              description: scrapedDescription ?? undefined,
+              source: "laravel-news"
+            },
+            finalizeNow
+          ),
         { concurrency: ENRICHMENT_CONCURRENCY },
         now
       );
-      results.push({ source: "laravel-news", opportunities, skipped: 0, rejected });
+      results.push({ source: "laravel-news", opportunities, skipped: 0, rejected: 0 });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`Laravel News collection failed: ${message}`);
