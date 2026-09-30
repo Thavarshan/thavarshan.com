@@ -1,39 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { mergeOpportunities, type Opportunity, type SourceCollectionOutcome } from "@/lib/job-opportunities";
-
-function makeOpportunity(overrides: Partial<Opportunity> & Pick<Opportunity, "id" | "source" | "canonicalUrl">): Opportunity {
-  return {
-    sourceUrl: "https://example.com/feed",
-    title: "Some Role",
-    company: "Some Company",
-    location: null,
-    workArrangement: "unknown",
-    employmentType: null,
-    seniority: "unknown",
-    salary: null,
-    salaryMin: null,
-    salaryMax: null,
-    salaryCurrency: null,
-    descriptionText: "",
-    tags: [],
-    contentFingerprint: overrides.id,
-    duplicateOfIds: [],
-    publishedAt: null,
-    firstSeenAt: "2026-09-01T00:00:00.000Z",
-    lastSeenAt: "2026-09-01T00:00:00.000Z",
-    status: "active",
-    closedAt: null,
-    eligibility: "unknown",
-    sponsorship: "unknown",
-    score: 50,
-    reasons: [],
-    concerns: [],
-    scoreBreakdown: [],
-    confidence: null,
-    confidenceBreakdown: [],
-    ...overrides
-  };
-}
+import { mergeOpportunities, type SourceCollectionOutcome } from "@/lib/job-opportunities";
+import { makeOpportunity } from "../helpers/opportunity";
 
 describe("mergeOpportunities", () => {
   const now = "2026-09-23T00:00:00.000Z";
@@ -93,7 +60,7 @@ describe("mergeOpportunities", () => {
     expect(opportunities).toHaveLength(1);
     expect(opportunities[0].status).toBe("active");
     expect(opportunities[0].lastSeenAt).toBe("2026-01-01T00:00:00.000Z");
-    expect(stats.remotive).toEqual({ added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0 });
+    expect(stats.remotive).toEqual({ added: 0, updated: 0, unchanged: 0, closed: 0, pruned: 0, held: 0 });
   });
 
   it("flags cross-source duplicates by content fingerprint without merging or dropping either record", () => {

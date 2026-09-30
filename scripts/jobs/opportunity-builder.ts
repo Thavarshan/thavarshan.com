@@ -1,4 +1,5 @@
-import { assessOpportunity, canonicalizeJobUrl, computeContentFingerprint, opportunityId, type Opportunity } from "../../lib/job-opportunities";
+import { assessOpportunity, canonicalizeJobUrl, computeContentFingerprint, computeDescriptionHash, deriveSourceId, opportunityId, type Opportunity } from "../../lib/job-opportunities";
+import { detectRelocation, extractLocationSignals } from "../../lib/job-location";
 import { parseSalary } from "../../lib/job-salary";
 import { stripHtml } from "./xml";
 
@@ -61,6 +62,24 @@ export interface BuildOpportunityInput {
   employmentType?: string | null;
   salary?: string | null;
   feedTags?: string[];
+  /** Employer page a board redirects to; only recorded when it is a different, usable http(s) host. */
+  applicationUrl?: string | null;
+}
+
+const boardHosts = new Set(["larajobs.com", "laravel-news.com", "remotive.com", "weworkremotely.com"]);
+
+export function sanitizeApplicationUrl(value: string | null | undefined): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+    const host = url.hostname.replace(/^www\./, "");
+    if (boardHosts.has(host) || host === "accounts.google.com" || host === "docs.google.com") return null;
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return null;
+  }
 }
 
 export function buildOpportunity(input: BuildOpportunityInput, now: string): Opportunity {
@@ -73,7 +92,8 @@ export function buildOpportunity(input: BuildOpportunityInput, now: string): Opp
   const tags = [...new Set([...(input.feedTags ?? []).map((tag) => tag.toLowerCase()), ...regexTags])];
   // LaraJobs is a Laravel-only board, so its listings are curated for relevance; generalist boards are not.
   const assessment = assessOpportunity({ title: input.title, descriptionText, location, tags }, { laravelCurated: input.source === "larajobs" });
-  const { salaryMin, salaryMax, salaryCurrency } = parseSalary(salary);
+  const { salaryMin, salaryMax, salaryCurrency, salaryPeriod } = parseSalary(salary);
+  const locationSignals = extractLocationSignals({ title: input.title, location, descriptionText });
 
   return {
     id: opportunityId(canonicalUrl),
@@ -88,7 +108,13 @@ export function buildOpportunity(input: BuildOpportunityInput, now: string): Opp
     salaryMin,
     salaryMax,
     salaryCurrency,
+    salaryPeriod,
     descriptionText,
+    sourceId: deriveSourceId(input.source, canonicalUrl),
+    descriptionHash: computeDescriptionHash(descriptionText),
+    applicationUrl: sanitizeApplicationUrl(input.applicationUrl),
+    ...locationSignals,
+    relocation: detectRelocation(`${input.title}\n${descriptionText}`),
     tags,
     contentFingerprint: computeContentFingerprint(input.company, input.title),
     duplicateOfIds: [],

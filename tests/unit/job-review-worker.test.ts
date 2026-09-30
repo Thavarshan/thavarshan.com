@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { clearAccessCertCache, verifyAccessJwt } from "@/workers/job-review/access";
 import { handleRequest, isSameOrigin, type Env, type KVLike } from "@/workers/job-review/index";
 import type { OpportunitySnapshot } from "@/lib/job-opportunities";
+import { makeOpportunity } from "../helpers/opportunity";
 
 const TEAM = "team.cloudflareaccess.com";
 const AUD = "aud-tag";
@@ -57,17 +58,16 @@ const ID = "0123456789abcdef0123";
 const snapshot: OpportunitySnapshot = {
   schemaVersion: 2,
   generatedAt: "2026-09-29T12:00:00.000Z",
+  collectorVersion: null,
   candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] },
   sources: [],
-  opportunities: [{
-    id: ID, source: "larajobs", sourceUrl: "https://larajobs.com/feed", canonicalUrl: "https://larajobs.com/job/1",
-    title: "Senior <b>Laravel</b> Dev", company: "Acme", location: null, workArrangement: "unknown", employmentType: null,
-    seniority: "senior", salary: null, salaryMin: null, salaryMax: null, salaryCurrency: null, descriptionText: "",
-    tags: ["laravel"], contentFingerprint: "f", duplicateOfIds: [], publishedAt: "2026-09-28T00:00:00.000Z",
-    firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", status: "active", closedAt: null,
-    eligibility: "eligible", sponsorship: "unknown", score: 80, reasons: ["Laravel is explicitly required"], concerns: [],
-    scoreBreakdown: [{ factor: "Baseline", points: 10 }], confidence: 55, confidenceBreakdown: [{ factor: "Location is stated", points: 20 }]
-  }]
+  opportunities: [makeOpportunity({
+    id: ID, sourceUrl: "https://larajobs.com/feed", canonicalUrl: "https://larajobs.com/job/1", title: "Senior <b>Laravel</b> Dev",
+    company: "Acme", seniority: "senior", tags: ["laravel"], publishedAt: "2026-09-28T00:00:00.000Z",
+    firstSeenAt: "2026-09-28T00:00:00.000Z", lastSeenAt: "2026-09-29T00:00:00.000Z", eligibility: "eligible", score: 80,
+    reasons: ["Laravel is explicitly required"], scoreBreakdown: [{ factor: "Baseline", points: 10 }],
+    confidence: 55, confidenceBreakdown: [{ factor: "Location is stated", points: 20 }]
+  })]
 };
 const dataFetcher = (async () => new Response(JSON.stringify(snapshot))) as typeof fetch;
 
