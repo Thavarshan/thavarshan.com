@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-23T02:49:46.682Z",
+  "candidate": {
+    "location": "Sri Lanka",
+    "preferredStack": [
+      "Laravel",
+      "PHP",
+      "React",
+      "Vue",
+      "Inertia",
+      "AWS"
+    ],
+    "experienceYears": 11,
+    "workModes": [
+      "remote",
+      "relocation-with-sponsorship"
+    ]
+  },
+  "sources": [
+    {
+      "name": "LaraJobs RSS",
+      "url": "https://larajobs.com/feed",
+      "collectedAt": "2026-09-23T02:49:46.682Z",
+      "recordsFound": 10
+    },
+    {
+      "name": "Laravel News",
+      "url": "https://laravel-news.com/",
+      "collectedAt": "2026-09-23T02:49:46.682Z",
+      "recordsFound": 6
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel",
+      "company": "Remote)",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel"
+      ],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 58,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "2771a2d6210fb51ceec1",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3938",
+      "title": "Full-Stack Developer (Laravel + Vue/Inertia)",
+      "company": "UK Only",
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "",
+      "tags": [
+        "laravel",
+        "vue",
+        "inertia"
+      ],
+      "publishedAt": "2026-09-22T09:37:48.000Z",
+      "firstSeenAt": "2026-09-23T02:49:47.204Z",
+      "lastSeenAt": "2026-09-23T02:49:47.204Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 52,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Frontend stack matches React/Vue/Inertia"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    },
+    {
+      "id": "27615050f0b05ce90783",
+      "source": "laravel-news",
+      "sourceUrl": "https://laravel-news.com/",
+      "canonicalUrl": "https://larajobs.com/job/3924",
+      "title": "Laravel Developer \u2014 Backend-Focused",
+      "company": null,
+      "location": null,
+      "employmentType": null,
+      "salary": null,
+      "descriptionText": "All open rolesREMOTEFULL-TIMEStackTALL (Tailwind, Alpine, Laravel, Livewire)Laravel Developer \u2014 Backend-FocusedWe're hiring our next engineering unicorn. Not the mythical \u201cknows every framework ever created\u201d kind \u2014 a Laravel developer who genuinely understands the ecosystem, knows what happens beyond the controller, and isn't afraid to get their hands dirty when things get complicated. You'll build and expand our gaming, network, marketing and CRM platforms: interconnected systems with real users, real transactions, high-frequency queues and real-time events. In other words: this isn't a CRUD factory. And the stronger the unicorn, the better the package.Annual salaryUp to\u20ac120k+ Highly competitive bonus packageSalary by levelMedior\u20ac60k\u201390kSenior\u20ac90k\u2013120k\ud83e\udd84Unicorn\u20ac120k+, no ceiling\u20ac60k\u20ac90k\u20ac120k+Where you land depends on your level, your experience and the impact you bring. Unicorns don\u2019t have a ceiling.Apply nowLaravel sits at the heart of what we build \u2014 the interesting part is everything happening around it: Redis, high-volume queues, workers, event-driven workflows, WebSockets and multiple interconnected applications running on Laravel Cloud, DigitalOcean and AWS.The role is backend-first, but we work heavily with the TALL stack \u2014 Tailwind, Alpine, Laravel and Livewire \u2014 so range across the stack is a real advantage. You won't be isolated inside a controller and a Blade template: you'll follow the full journey from request to database, queue, Redis, worker, WebSocket, external service and production monitoring. We automate the repetitive \u2014 GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry \u2014 and AI is already part of how we work here, not a strategy deck gathering dust. We want engineers who use it to move faster and dig deeper, not to replace their thinking.What you'll ownBuild and maintain Laravel features across several interconnected applications \u2014 CRM, gaming, network and marketingDesign and maintain APIs used by our own applications and external systemsWork with complex business logic spanning models, services, jobs, events and integrationsBuild real-time functionality on high-frequency queues, Redis, events and WebSocketsInvestigate production issues wherever they hide \u2014 the code, Redis, a worker, or five million jobs deciding today is their dayUnderstand the existing architecture before changing it, and think about how your changes behave when traffic increasesWork in two-week sprints through automated checks, AI-assisted review, colleague review and QAWhat you bringStrong professional experience with Laravel and modern PHPExcellent understanding of Eloquent, relational databases and SQLExperience designing and maintaining APIs and complex backend systemsStrong understanding of queues, jobs, events, caching and RedisExperience with asynchronous, event-driven application architectureAbility to investigate unfamiliar code and reason about existing behaviour before changing itGood understanding of application performance and scalabilityClear communication, strong ownership and comfort in an iterative review and QA processTALL stack experience (Livewire, Alpine.js, Tailwind CSS) is a major advantageRemunerationNo fixed bracketsGreat engineers get paid like great engineers.We don't believe in forcing every developer into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, your experience and your technical impact.Bring deep Laravel knowledge, strong architectural thinking, production experience and the ability to solve the problems others avoid \u2014 we're prepared to recognise exactly that. This is a seat we trust with important systems, and compensation reflects that level of trust and responsibility.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysIntro conversationA first conversation to get to know each other \u2014 your background, the role, and whether there's a real fit on both sides.02Within 1 weekTechnical testA practical exercise built on real Laravel problems \u2014 how you think, how you structure your code. No algorithm gymnastics, and paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with. Walk through your test, talk stack and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush.Application \u00b7 Laravel Developer \u2014 Backend-FocusedName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub \u2014 your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV \u2014 drag & drop or clickPDF or Word \u00b7 max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
+      "tags": [
+        "laravel",
+        "tailwind",
+        "livewire",
+        "redis",
+        "aws"
+      ],
+      "publishedAt": null,
+      "firstSeenAt": "2026-09-23T02:50:00.295Z",
+      "lastSeenAt": "2026-09-23T02:50:00.295Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 48,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Cloud experience is relevant"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ]
+    }
+  ]
+}

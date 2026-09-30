@@ -8,6 +8,7 @@ import {
   type OpportunitySnapshot,
   type SourceCollectionOutcome
 } from "../../lib/job-opportunities";
+import { loadSnapshot } from "../../lib/job-snapshot";
 import { writeJsonAtomic } from "../profile/io";
 import { recordSourceFailure } from "./diagnostics";
 import { enrichAndFinalize } from "./enrichment";
@@ -30,21 +31,32 @@ const sourceMeta: Record<Opportunity["source"], { name: string; url: string }> =
   weworkremotely: { name: "WeWorkRemotely", url: weWorkRemotelyUrl }
 };
 
-async function readExisting(): Promise<OpportunitySnapshot | null> {
+/**
+ * The committed snapshot is the last-known-good state. An unreadable one must fail the run rather
+ * than silently start fresh (which would discard history and bypass the collapse guard below).
+ * Set JOBS_RESET_SNAPSHOT=1 to deliberately start over.
+ */
+export async function readExisting(path = outputPath, allowReset = process.env.JOBS_RESET_SNAPSHOT === "1"): Promise<OpportunitySnapshot | null> {
   let raw: string;
   try {
-    raw = await readFile(outputPath, "utf8");
+    raw = await readFile(path, "utf8");
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
     throw error;
   }
 
-  const parsed = opportunitySnapshotSchema.safeParse(JSON.parse(raw));
-  if (!parsed.success) {
-    console.warn(`Existing ${outputPath} does not match the current schema; starting fresh (${parsed.error.issues.length} issue(s)).`);
-    return null;
+  try {
+    const { snapshot, migratedFrom } = loadSnapshot(JSON.parse(raw));
+    if (migratedFrom !== null) console.log(`Migrated existing snapshot from schemaVersion ${migratedFrom} to ${snapshot.schemaVersion}.`);
+    return snapshot;
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    if (allowReset) {
+      console.warn(`Existing ${path} is unusable (${reason}); starting fresh because JOBS_RESET_SNAPSHOT=1.`);
+      return null;
+    }
+    throw new Error(`Refusing to overwrite unusable ${path}: ${reason}. Fix or restore it, or set JOBS_RESET_SNAPSHOT=1 to start over.`, { cause: error });
   }
-  return parsed.data;
 }
 
 async function appendStepSummary(sources: OpportunitySnapshot["sources"], opportunities: Opportunity[]) {

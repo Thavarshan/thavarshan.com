@@ -67,6 +67,40 @@ Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 2
 
 `unknown` must never be interpreted by the Laravel app as permission to apply automatically. Sponsorship and work authorization require job-specific evidence.
 
+## Schema versioning and migration
+
+The contract lives in `opportunitySnapshotSchema` (`lib/job-opportunities.ts`); loading, migration and validation of untrusted snapshot JSON go through `loadSnapshot` (`lib/job-snapshot.ts`).
+
+- **Additive changes** (a new optional/defaulted field) do **not** bump `schemaVersion`; they ship with a zod default so older snapshots keep loading (this is how `scoreBreakdown`, `confidence` and `confidenceBreakdown` were added).
+- **Breaking changes** (removing/renaming a field, narrowing an enum, making a field required) bump `schemaVersion`, add a `migrate` step in `lib/job-snapshot.ts`, and add a fixture of the previous version under `tests/fixtures/jobs/`. `snapshot-v1.json` is a real v1 snapshot from git history; the v1 → v2 migration derives the newly required fields (`workArrangement`, `seniority`, salary parts, `contentFingerprint`, `status`) from stored text and preserves stored `id`, `score` and `eligibility`.
+- **Refusal, never reset:** a snapshot that is corrupt, fails validation after migration, or has a *newer* `schemaVersion` than the code raises `SnapshotError`. The collector then **fails the run** and leaves the committed file untouched (the last-known-good state) instead of starting fresh, which would discard history and bypass the collapse guard. Deliberately starting over requires `JOBS_RESET_SNAPSHOT=1`.
+- **CI:** `npm run jobs:validate` fails unless the committed snapshot is valid at the current version with unique ids, so a bad generated commit is caught on the next PR/push.
+- **Recovery:** the committed `data/jobs.generated.json` in git is the recovery point (`git checkout <sha> -- data/jobs.generated.json`); writes are atomic (temp file + rename), and a run that fails leaves the previous file in place.
+
+### Data contract coverage
+
+| Contract field (from #40) | Status |
+| --- | --- |
+| stable ID | `id` — sha256 of the canonicalized URL |
+| source / source ID | `source`; a separate source ID is derivable from `canonicalUrl` and not stored |
+| canonical URL | `canonicalUrl` (tracking params stripped) |
+| title, company | `title`, `company` |
+| description excerpt/hash | `descriptionText` (capped at 12,000 chars); no description hash (`contentFingerprint` hashes company + title for cross-source dedupe) |
+| technologies | `tags` |
+| seniority, employment type | `seniority`, `employmentType` |
+| compensation min/max/currency | `salary` (raw) + `salaryMin`/`salaryMax`/`salaryCurrency`; **period not modelled** |
+| raw location | `location` |
+| normalized countries/regions, timezone constraints | **not modelled** (eligibility is derived from text signals) |
+| remote scope | `workArrangement` |
+| visa sponsorship / relocation support | `sponsorship`; relocation only via `workArrangement: relocation-sponsorship` |
+| application URL | `canonicalUrl` is the listing; LaraJobs redirects to the employer, which is not stored separately |
+| first/last seen, posted | `firstSeenAt`, `lastSeenAt`, `publishedAt` |
+| expiry | `status`/`closedAt` (set when a listing disappears); no source-provided expiry |
+| source evidence | `reasons`, `concerns`, `scoreBreakdown`, `confidenceBreakdown` (scoring evidence, not per-field extraction provenance) |
+| collector version / schema version | `schemaVersion` only; no collector version |
+
+"Not modelled" items are tracked as a follow-up rather than added speculatively; unknown values are explicit (`unknown`/`null`), never defaulted to a guess.
+
 ## Laravel consumer contract
 
 The Laravel app should import the snapshot by immutable Git commit SHA, validate `schemaVersion` (currently `2` — bumped from `1` for the widened `source` enum and the new fields described above; there is no live consumer yet, so this was a clean cut rather than a staged migration), and upsert by `opportunities[].id`. It should retain its own application state instead of writing it back into this public file.
