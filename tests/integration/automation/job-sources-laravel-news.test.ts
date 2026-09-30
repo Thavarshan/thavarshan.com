@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { isUnusableScrape } from "@scripts/jobs/enrichment";
-import { normalizeLaravelNewsLinks } from "@scripts/jobs/sources/laravel-news";
+import { isUnusableScrape } from "@automation/jobs/enrichment";
+import { normalizeLaravelNewsLinks } from "@automation/jobs/sources/laravel-news";
 
 describe("normalizeLaravelNewsLinks", () => {
   it("uses the listing's own title and company and canonicalizes the URL", () => {

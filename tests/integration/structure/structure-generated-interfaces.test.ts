@@ -10,16 +10,16 @@ import { describe, expect, it } from "vitest";
  * When a consumer file itself moves, update its path in the same PR.
  */
 const interfaces: Array<{ path: string; why: string; consumers: string[] }> = [
-  { path: "data/jobs.generated.json", why: "daily jobs snapshot; fetched by the job-review Worker", consumers: [".github/workflows/jobs-refresh.yml", "scripts/jobs/collect.ts", "scripts/applications/generate.ts", "workers/job-review/wrangler.toml"] },
-  { path: "data/profile.generated.json", why: "validated professional profile (website + CV)", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/render.ts", "scripts/profile/publish.ts"] },
-  { path: "data/github.generated.json", why: "repository snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/profile/github.ts", "src/app/sitemap.ts"] },
-  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/marketing/registry.ts", "src/features/projects/package-registry.ts"] },
-  { path: "data/growth", why: "weekly growth metrics snapshots", consumers: [".github/workflows/growth-metrics.yml", "scripts/growth/metrics-snapshot.ts"] },
-  { path: "marketing/oss-ledger.json", why: "OSS bundle dedupe ledger", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },
-  { path: "marketing/oss", why: "OSS promotion drafts", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },
-  { path: "marketing/generated", why: "Insight distribution bundles", consumers: ["scripts/marketing/distribution.ts"] },
-  { path: "public/docs/Jerome-Resume.pdf", why: "the stable public CV URL", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/publish.ts", "scripts/profile/publish.ts"] },
-  { path: "cv/generated", why: "rendered LaTeX", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/render.ts", "scripts/cv/build.ts"] }
+  { path: "data/jobs.generated.json", why: "daily jobs snapshot; fetched by the job-review Worker", consumers: [".github/workflows/jobs-refresh.yml", "automation/jobs/collect.ts", "automation/applications/generate.ts", "workers/job-review/wrangler.toml"] },
+  { path: "data/profile.generated.json", why: "validated professional profile (website + CV)", consumers: [".github/workflows/content-refresh.yml", "automation/cv/render.ts", "automation/profile/publish.ts"] },
+  { path: "data/github.generated.json", why: "repository snapshot", consumers: [".github/workflows/content-refresh.yml", "automation/profile/github.ts", "src/app/sitemap.ts"] },
+  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "automation/marketing/registry.ts", "src/features/projects/package-registry.ts"] },
+  { path: "data/growth", why: "weekly growth metrics snapshots", consumers: [".github/workflows/growth-metrics.yml", "automation/growth/metrics-snapshot.ts"] },
+  { path: "marketing/oss-ledger.json", why: "OSS bundle dedupe ledger", consumers: [".github/workflows/oss-bundles.yml", "automation/marketing/oss-bundles.ts"] },
+  { path: "marketing/oss", why: "OSS promotion drafts", consumers: [".github/workflows/oss-bundles.yml", "automation/marketing/oss-bundles.ts"] },
+  { path: "marketing/generated", why: "Insight distribution bundles", consumers: ["automation/marketing/distribution.ts"] },
+  { path: "public/docs/Jerome-Resume.pdf", why: "the stable public CV URL", consumers: [".github/workflows/content-refresh.yml", "automation/cv/publish.ts", "automation/profile/publish.ts"] },
+  { path: "cv/generated", why: "rendered LaTeX", consumers: [".github/workflows/content-refresh.yml", "automation/cv/render.ts", "automation/cv/build.ts"] }
 ];
 
 // Paths that are not in a clean checkout: created by a workflow's first run, or gitignored build output
@@ -44,7 +44,7 @@ describe("generated paths are stable interfaces", () => {
   });
 
   it("the site-metrics Worker's namespace binding and the snapshot job agree on its config location", () => {
-    expect(readFileSync("scripts/growth/metrics-snapshot.ts", "utf8")).toContain("workers/site-metrics/wrangler.toml");
+    expect(readFileSync("automation/growth/metrics-snapshot.ts", "utf8")).toContain("workers/site-metrics/wrangler.toml");
     expect(existsSync("workers/site-metrics/wrangler.toml")).toBe(true);
   });
 

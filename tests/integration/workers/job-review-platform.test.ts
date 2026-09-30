@@ -2,7 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { handleRequest, limiters, routes, type Env, type KVLike } from "@workers/job-review/index";
 import { MAX_BODY_BYTES, PayloadTooLargeError, RateLimiter, UnsupportedMediaTypeError, fetchJsonBounded, formatLog, readFormBody, requestIdFor } from "@/shared/edge/platform";
-import { makeOpportunity } from "../helpers/opportunity";
+import { makeOpportunity } from "../../helpers/opportunity";
 import type { OpportunitySnapshot } from "@/features/jobs/opportunities";
 
 const ID = "0123456789abcdef0123";

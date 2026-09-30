@@ -8,7 +8,7 @@ import tseslint from "typescript-eslint";
  * repository relies on, so a wrong-way import fails lint instead of surviving review:
  *
  *   src/app (routes) -> src/components, src/features -> src/shared        never the reverse
- *   scripts/ (automation) and workers/ (edge) are runtime adapters: they use src/features and src/shared,
+ *   automation/ (automation) and workers/ (edge) are runtime adapters: they use src/features and src/shared,
  *   never src/app or src/components, never each other
  *   runtime-neutral code (edge utilities, event contracts, tools) must not touch Node, React or Next
  */
@@ -16,7 +16,7 @@ const pattern = (group, message) => ({ group, message });
 
 const fromApp = pattern(["@/app", "@/app/*", "@/app/**", "**/app/**"], "Nothing imports routes; routes import features and components.");
 const fromUi = pattern(["@/app", "@/app/**", "@/components", "@/components/**", "**/app/**", "**/components/**"], "Domain, automation and Worker code must not import routes or UI components.");
-const fromAutomation = pattern(["@scripts/*", "@scripts/**", "**/scripts/**"], "Only automation may import automation; move shared code to src/shared or a feature.");
+const fromAutomation = pattern(["@automation/*", "@automation/**", "**/automation/**"], "Only automation may import automation; move shared code to src/shared or a feature.");
 const fromWorkers = pattern(["@workers/*", "@workers/**", "**/workers/**"], "Workers are deployable entrypoints; share code through src/shared, not across Workers.");
 const fromFeatures = pattern(["@/features", "@/features/*", "@/features/**", "**/features/**"], "Shared modules are below features in the dependency order; they must not import a feature.");
 const reactAndNext = pattern(["react", "react-dom", "react/*", "next", "next/*"], "This code must stay runtime-neutral (no React or Next.js).");
@@ -53,7 +53,7 @@ const eslintConfig = [
   // Site-wide configuration is derived from the profile feature, so it may import features, but nothing above it.
   { files: ["src/shared/config/**/*.ts"], rules: boundaryRules(fromUi, fromAutomation, fromWorkers) },
   // Pipelines are independent of the UI and of Workers.
-  { files: ["scripts/**/*.ts"], rules: boundaryRules(fromUi, fromWorkers) },
+  { files: ["automation/**/*.ts"], rules: boundaryRules(fromUi, fromWorkers) },
   // Workers are edge adapters: no UI, no Node pipelines, no other Worker, no React/Next. Each Worker also
   // names its siblings explicitly, because a relative import like "../job-review/x" carries no "workers/".
   ...["job-review", "site-metrics"].map((name) => ({

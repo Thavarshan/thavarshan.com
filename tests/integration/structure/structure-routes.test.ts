@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { buildInventory, diffInventories, type Inventory } from "@scripts/structure/routes";
+import { buildInventory, diffInventories, type Inventory } from "@automation/structure/routes";
 
 const baseFiles = [
   "index.html", "index.txt", "cv.html", "privacy.html", "insights.html", "tools.html", "404.html", "robots.txt", "sitemap.xml", "feed.xml", "opengraph-image",

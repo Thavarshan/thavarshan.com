@@ -68,7 +68,7 @@ npm run growth:metrics -- --dry-run --input rows.json      # offline, from expor
 | Taxonomy, validation, aggregate keys | `src/features/telemetry/events.ts` |
 | Browser layer | `src/features/telemetry/client.ts`, `src/features/telemetry/telemetry-provider.tsx`, `src/features/telemetry/goals.ts` |
 | Collector Worker (Free plan, KV only) | `workers/site-metrics/` — `POST /collect`, `GET /healthz` |
-| Snapshot builder and CLI | `src/features/telemetry/snapshot.ts`, `scripts/growth/metrics-snapshot.ts` |
+| Snapshot builder and CLI | `src/features/telemetry/snapshot.ts`, `automation/growth/metrics-snapshot.ts` |
 | Deploy (CI only) | `.github/workflows/site-metrics-deploy.yml` |
 
 The endpoint is `site.metricsUrl` in `src/shared/config/site.ts` (empty disables first-party telemetry); the site's CSP `connect-src` allows it. The optional Plausible sink activates only if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set, and receives the same typed events.
@@ -87,4 +87,4 @@ Recovery: delete the Worker or remove `site.metricsUrl` to stop collection insta
 
 ## Cost
 
-$0. Cloudflare Workers Free + KV Free (allowlisted by `tests/unit/worker-cost-guard.test.ts`), GitHub Actions free minutes on a public repository, no paid analytics. See `docs/cost-policy.md`.
+$0. Cloudflare Workers Free + KV Free (allowlisted by `tests/integration/workers/worker-cost-guard.test.ts`), GitHub Actions free minutes on a public repository, no paid analytics. See `docs/cost-policy.md`.

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mergeOpportunities, type SourceCollectionOutcome } from "@/features/jobs/opportunities";
-import { makeOpportunity } from "../helpers/opportunity";
+import { makeOpportunity } from "../../helpers/opportunity";
 
 describe("mergeOpportunities", () => {
   const now = "2026-09-23T00:00:00.000Z";

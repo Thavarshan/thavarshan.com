@@ -23,26 +23,28 @@ This document is the source of truth for **where code lives and what may import 
 | `src/shared/node/` | Atomic file writes, retry/concurrency, other shared CLI code | Node |
 | `src/shared/config/` | Site-wide authored configuration (`site.ts`) | build |
 | `data/*.generated.json`, `data/growth/` | **Generated snapshots (interfaces, see below)** | committed by workflows |
-| `scripts/` | Automation entrypoints and pipeline integrations (profile, jobs, applications, cv, marketing, growth, structure) | Node / GitHub Actions |
+| `automation/` | Automation entrypoints and pipeline integrations (profile, jobs, applications, cv, marketing, growth, structure) | Node / GitHub Actions |
 | `workers/job-review/`, `workers/site-metrics/` | Deployable Cloudflare Workers (entrypoint, auth/rendering, Wrangler config) | edge |
 | `content/insights/` | Authored articles | build |
 | `cv/` | LaTeX sources and generated TeX | Docker / CI |
 | `marketing/` | Generated promotion drafts and the OSS ledger | committed by workflows |
 | `public/` | Files served at stable URLs | static |
-| `tests/` | `unit/`, `components/`, `e2e/`, `fixtures/` | Vitest / Playwright |
+| `tests/unit/<feature>/` | Pure logic, one folder per feature | Vitest |
+| `tests/integration/{workers,automation,structure}/` | Worker handlers, pipeline boundaries, repository-structure guards | Vitest |
+| `tests/components/`, `tests/e2e/`, `tests/fixtures/`, `tests/helpers/` | Component tests, browser journeys, fixtures, shared test builders | Vitest / Playwright |
 | `docs/`, `docs/adr/` | Documentation and decision records | - |
 
-Still to come: pipeline entrypoints move from `scripts/` to `automation/`, and unit tests are reorganised to mirror features. `data/` (generated JSON only), `public/`, `content/` and build/Wrangler configuration stay where their tools require them.
+Still to come: pipeline entrypoints move from `automation/` to `automation/`, and unit tests are reorganised to mirror features. `data/` (generated JSON only), `public/`, `content/` and build/Wrangler configuration stay where their tools require them.
 
-**Import aliases** (`tsconfig.json`, mirrored in `vitest.config.ts`): `@/*` is application source (`src/*`); `@generated/*` is the committed generated JSON in `data/`; `@scripts/*` and `@workers/*` reach those trees from tests. Automation and Workers use relative imports.
+**Import aliases** (`tsconfig.json`, mirrored in `vitest.config.ts`): `@/*` is application source (`src/*`); `@generated/*` is the committed generated JSON in `data/`; `@automation/*` and `@workers/*` reach those trees from tests. Automation and Workers use relative imports.
 
 ## Dependency rules
 
 Enforced by lint (`no-restricted-imports` in `eslint.config.mjs`) where a path pattern can express them:
 
 1. **Routes compose features.** `src/app/` may import `src/components/` and `src/lib/`; nothing imports `src/app/` (except the framework).
-2. **Domain code is independent.** `src/lib/` never imports `src/app/`, `src/components/`, `scripts/` or `workers/`.
-3. **Automation and Workers are runtime adapters.** `scripts/` does not import UI or Workers; `workers/` does not import UI, `scripts/`, React or Next.js, and **one Worker never imports another**. Anything two of them need goes in `src/lib/`.
+2. **Domain code is independent.** `src/lib/` never imports `src/app/`, `src/components/`, `automation/` or `workers/`.
+3. **Automation and Workers are runtime adapters.** `automation/` does not import UI or Workers; `workers/` does not import UI, `automation/`, React or Next.js, and **one Worker never imports another**. Anything two of them need goes in `src/lib/`.
 4. **Runtime-neutral code stays neutral.** `src/shared/edge/`, the telemetry event contract, snapshot builder and goal mapping, and `src/features/tools/` must not import Node built-ins, React or Next.js. Browser-side telemetry and UI components must not import Node built-ins.
 5. **Side effects live at the edge.** Browser telemetry, GitHub fetching, KV access, scraping, PDF compilation and filesystem writes stay in the adapter for their runtime.
 
@@ -50,11 +52,11 @@ Convention (not yet mechanically enforceable): modules that use Node APIs are se
 
 ## Generated files are interfaces
 
-Workflows commit these, scripts write them, the site builds from them, and one Worker fetches `data/jobs.generated.json` by its exact raw GitHub URL. **Moving one is a coordinated migration, never a side effect of reorganising code.** `tests/unit/structure-generated-interfaces.test.ts` records each path and the files that must keep referring to it.
+Workflows commit these, scripts write them, the site builds from them, and one Worker fetches `data/jobs.generated.json` by its exact raw GitHub URL. **Moving one is a coordinated migration, never a side effect of reorganising code.** `tests/integration/structure/structure-generated-interfaces.test.ts` records each path and the files that must keep referring to it.
 
 | Path | Consumers |
 | --- | --- |
-| `data/jobs.generated.json` | jobs workflow, `scripts/jobs`, `scripts/applications`, the job-review Worker (raw URL) |
+| `data/jobs.generated.json` | jobs workflow, `automation/jobs`, `automation/applications`, the job-review Worker (raw URL) |
 | `data/profile.generated.json`, `data/github.generated.json`, `data/package-registry.generated.json` | content workflow, site, CV, marketing |
 | `data/growth/` | growth-metrics workflow and script |
 | `marketing/oss-ledger.json`, `marketing/oss/`, `marketing/generated/` | marketing workflows and scripts |
@@ -77,8 +79,8 @@ Workflows commit these, scripts write them, the site builds from them, and one W
 | --- | --- | --- |
 | 1 | Baseline and guardrails: route inventory, generated-interface test, import-boundary lint, Next.js lint rules, shared helpers extracted, duplicate PDF removed, this document | done (#87) |
 | 2 | Relocate `app/`, `components/`, `lib/`, authored `data/*.ts` under `src/` (alias change), generated JSON stays | done (#88) |
-| 3 | Group code by feature under `src/features/*` and `src/shared/*`; split `components/` into `ui`/`layout` | in progress |
-| 4 | `scripts/` to `automation/`, shared Node/edge modules under `src/shared` | planned |
+| 3 | Group code by feature under `src/features/*` and `src/shared/*`; split `components/` into `ui`/`layout` | done (#89) |
+| 4 | `automation/` to `automation/`, shared Node/edge modules under `src/shared` | planned |
 | 5 | Tests mirror features; tighten boundary lint; formatting check | planned |
 
 **Acceptance for every step:** public URLs and generated-data contracts unchanged; static export and both Workers deploy; CV generation reproducible; lint, typecheck, unit, browser and relevant Worker tests pass.

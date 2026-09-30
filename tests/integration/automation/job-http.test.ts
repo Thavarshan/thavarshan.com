@@ -1,10 +1,10 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from "vitest";
 import type { APIResponse } from "@playwright/test";
-import { SkipEnrichmentError } from "@scripts/jobs/concurrency";
-import { HostThrottle, RobotsDisallowedError, createPoliteRequest, resolveRedirectTarget, withDeadline } from "@scripts/jobs/http";
-import { MIN_HOST_INTERVAL_MS, USER_AGENT, isRobotsExempt, sourcePolicies } from "@scripts/jobs/policy";
-import type { RobotsGuard } from "@scripts/jobs/robots";
+import { SkipEnrichmentError } from "@automation/jobs/concurrency";
+import { HostThrottle, RobotsDisallowedError, createPoliteRequest, resolveRedirectTarget, withDeadline } from "@automation/jobs/http";
+import { MIN_HOST_INTERVAL_MS, USER_AGENT, isRobotsExempt, sourcePolicies } from "@automation/jobs/policy";
+import type { RobotsGuard } from "@automation/jobs/robots";
 
 const allowAll: RobotsGuard = { isAllowed: async () => true };
 const denyAll: RobotsGuard = { isAllowed: async () => false };

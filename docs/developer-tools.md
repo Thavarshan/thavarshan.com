@@ -21,7 +21,7 @@ Considered and deferred: a PHP `date()` format tester and a Composer version-con
 
 **Privacy (the `.env` checker in particular).** All logic lives in `src/features/tools/*` (pure functions) and runs in the browser. Nothing is uploaded, logged, or stored (no cookies, `localStorage`, `sessionStorage`, or URL state). Findings and the copyable report contain key names and line numbers only, never values; the "missing keys" block copies an example default only when it is clearly not sensitive. This is enforced by tests:
 
-- unit: sentinel secrets fed into every field never appear in findings, the report, or the missing-keys block (`tests/unit/tool-env-check.test.ts`);
+- unit: sentinel secrets fed into every field never appear in findings, the report, or the missing-keys block (`tests/unit/tools/tool-env-check.test.ts`);
 - end-to-end: a real browser session records **every network request** while a sentinel secret is typed and asserts it appears in none of them (URL or body), nor in results, storage, cookies or the page URL (`tests/e2e/tools.spec.ts`).
 
 Analytics only counts button clicks via Plausible tagged-event classes: `Tool Example Load` and `Tool Copy Output`. No input, output or file content is ever an event property. The site-wide analytics remain cookie-free (see `/privacy`).

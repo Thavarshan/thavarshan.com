@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createRobotsGuard, isPathAllowed, parseRobots } from "@scripts/jobs/robots";
+import { createRobotsGuard, isPathAllowed, parseRobots } from "@automation/jobs/robots";
 
 const allowed = (text: string, path: string, agent = "JeromeJobCollector") => isPathAllowed(parseRobots(text, agent), path);
 

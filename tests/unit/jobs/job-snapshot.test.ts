@@ -4,9 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { CURRENT_SCHEMA_VERSION, SnapshotError, loadSnapshot } from "@/features/jobs/snapshot";
-import { readExisting } from "@scripts/jobs/collect";
+import { readExisting } from "@automation/jobs/collect";
 
-const read = async (path: string) => JSON.parse(await readFile(new URL(`../../${path}`, import.meta.url), "utf8"));
+const read = async (path: string) => JSON.parse(await readFile(new URL(`../../../${path}`, import.meta.url), "utf8"));
 const clone = <T>(value: T): T => structuredClone(value);
 
 describe("loadSnapshot: current data", () => {

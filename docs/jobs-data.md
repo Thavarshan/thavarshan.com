@@ -37,7 +37,7 @@ After collection, snapshot validation (`npm run jobs:validate`), type checking, 
 
 ## Source policy and politeness
 
-Sources are chosen in the order API > RSS > structured HTML, and the collector **enforces** the constraints below in code (`scripts/jobs/policy.ts`, `robots.ts`, `http.ts`); it does not rely on convention.
+Sources are chosen in the order API > RSS > structured HTML, and the collector **enforces** the constraints below in code (`automation/jobs/policy.ts`, `robots.ts`, `http.ts`); it does not rely on convention.
 
 | Source | Method | robots.txt (checked 2026-09-30) | Constraints honoured |
 | --- | --- | --- | --- |
@@ -79,7 +79,7 @@ Every score is explainable: `scoreBreakdown` lists each `{ factor, points }` app
 
 Relevance gate: a role must be demonstrably Laravel/PHP work to rank above `RELEVANCE_SCORE_CAP` (35). Evidence is the stack (Laravel/PHP/Livewire/Lumen/Symfony) in the title, 3+ mentions in the body after discounting marketplace-style "X & PHP" pairings, or a Laravel-only source board (LaraJobs). This stops agency postings that list every stack they staff (e.g. Lemon.io) from ranking on seniority/remote/cloud points alone. The cap is recorded in `scoreBreakdown` and the concern "Laravel/PHP is not central to this role".
 
-Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 20 (`INELIGIBLE_SCORE_CAP`) so technical-fit points can never outweigh a residency/work-authorization exclusion, and its `workArrangement` is `remote-regional-restricted` even if the posting also says "worldwide". Sponsorship is only `unavailable` (no bonus) on explicit wording such as "no sponsorship", "do not sponsor" or "unable to sponsor"; generic relocation wording never implies sponsorship. Regression fixtures live in `tests/unit/job-scoring.test.ts`.
+Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 20 (`INELIGIBLE_SCORE_CAP`) so technical-fit points can never outweigh a residency/work-authorization exclusion, and its `workArrangement` is `remote-regional-restricted` even if the posting also says "worldwide". Sponsorship is only `unavailable` (no bonus) on explicit wording such as "no sponsorship", "do not sponsor" or "unable to sponsor"; generic relocation wording never implies sponsorship. Regression fixtures live in `tests/unit/jobs/job-scoring.test.ts`.
 
 `eligibility` is deliberately separate from match score:
 

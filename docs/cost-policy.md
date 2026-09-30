@@ -6,7 +6,7 @@ The owner cannot afford any infrastructure charge. Every service here is chosen 
 
 | Service | Used for | Why it cannot bill | Guard |
 | --- | --- | --- | --- |
-| **Cloudflare Workers + KV (Free plan)** | Private job-review page | Free plan limits are hard: over-limit requests fail. A charge requires subscribing to Workers Paid or enabling a paid product. | `tests/unit/worker-cost-guard.test.ts` allowlists the Worker config; CI fails on any paid-capable setting. See ADR 0001. |
+| **Cloudflare Workers + KV (Free plan)** | Private job-review page | Free plan limits are hard: over-limit requests fail. A charge requires subscribing to Workers Paid or enabling a paid product. | `tests/integration/workers/worker-cost-guard.test.ts` allowlists the Worker config; CI fails on any paid-capable setting. See ADR 0001. |
 | **Cloudflare Workers + KV (Free plan), site-metrics** | First-party, cookie-free event collector (`docs/measurement.md`) | Same Free-plan limits as above; over-limit events are dropped, never billed. | The same CI allowlist covers `workers/site-metrics/wrangler.toml`. |
 | **Cloudflare Access (Zero Trust Free)** | Login in front of the Worker | Free up to 50 users; this project has 1. | Documented; owner check below. |
 | **Plausible Cloud (optional, PAID)** | Optional second analytics sink | **Paid.** Not required: measurement works without it. | Only active if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set; leave it unset unless you choose to pay. |
