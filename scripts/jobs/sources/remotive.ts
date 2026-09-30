@@ -1,7 +1,7 @@
 import type { PoliteRequest } from "../http";
 import type { Opportunity, SourceCollectionSuccess } from "../../../lib/job-opportunities";
 import { buildOpportunity, isLaravelPhpRelevant, normalizeJobType } from "../opportunity-builder";
-import { withRetry } from "../concurrency";
+import { withRetry } from "../../../lib/node/async";
 
 export const remotiveUrl = "https://remotive.com/api/remote-jobs?category=software-dev";
 

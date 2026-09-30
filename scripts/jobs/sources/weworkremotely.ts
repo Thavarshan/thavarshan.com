@@ -1,6 +1,6 @@
 import type { PoliteRequest } from "../http";
 import type { Opportunity, SourceCollectionSuccess } from "../../../lib/job-opportunities";
-import { withRetry } from "../concurrency";
+import { withRetry } from "../../../lib/node/async";
 import { buildOpportunity, isLaravelPhpRelevant } from "../opportunity-builder";
 import { safeDate, stripHtml, xmlItems, xmlValue } from "../xml";
 

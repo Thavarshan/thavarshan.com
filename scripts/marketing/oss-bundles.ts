@@ -18,7 +18,7 @@ import {
   type Snapshots
 } from "../../lib/oss-marketing";
 import { packageRegistrySnapshotSchema } from "../../lib/package-registry";
-import { writeJsonAtomic } from "../profile/io";
+import { writeJsonAtomic } from "../../lib/node/fs";
 
 const ledgerPath = resolve("marketing/oss-ledger.json");
 const outputRoot = resolve("marketing/oss");

@@ -1,6 +1,7 @@
 "use client";
 
 import { Download, GitBranch, Mail, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ButtonLink } from "@/components/button-link";
 import { navigation, site } from "@/data/site";
@@ -54,9 +55,9 @@ export function SiteNav() {
     <>
       <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--surface)]/92 backdrop-blur">
         <nav aria-label="Primary navigation" className="site-nav-inner mx-auto flex min-h-[72px] w-full max-w-6xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 lg:px-8">
-          <a href="/" className="shrink-0 whitespace-nowrap text-sm font-bold text-[var(--ink)]">
+          <Link href="/" className="shrink-0 whitespace-nowrap text-sm font-bold text-[var(--ink)]">
             Jerome T.
-          </a>
+          </Link>
           <div className="hidden min-w-0 items-center gap-1 lg:flex">
             {navigation.map((item) => (
               <a key={item.href} href={item.href} className="whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--ink)] xl:px-3">

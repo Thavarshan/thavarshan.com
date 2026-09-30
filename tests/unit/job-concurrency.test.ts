@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { mapWithConcurrency, SkipEnrichmentError, withRetry } from "@/scripts/jobs/concurrency";
+import { mapWithConcurrency, withRetry } from "@/lib/node/async";
+import { SkipEnrichmentError } from "@/scripts/jobs/concurrency";
 
 describe("mapWithConcurrency", () => {
   it("never exceeds the concurrency ceiling", async () => {
