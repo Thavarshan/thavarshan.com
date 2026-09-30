@@ -1,5 +1,5 @@
-import type { SanitizedCvTailoringPlan } from "@/features/applications/tailoring";
-import type { GitHubSnapshot } from "@/features/projects/github-model";
+import type { SanitizedCvTailoringPlan } from "@/features/cv/tailoring";
+import type { GitHubSnapshot } from "@/features/github/github-model";
 import type { ExperienceRecord, ProfessionalProfile } from "@/features/profile/profile-schema";
 
 const latexCharacters: Record<string, string> = {

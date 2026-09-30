@@ -9,7 +9,7 @@ import { experience } from "@/features/profile/experience";
 import { expertiseGroups } from "@/features/profile/expertise";
 import { sameAsProfiles } from "@/features/profile/external-profiles";
 import { formatProfilePeriod, profile } from "@/features/profile/profile";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { getFeaturedGitHubProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {

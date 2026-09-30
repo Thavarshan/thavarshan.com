@@ -1,5 +1,5 @@
 import type { ProfessionalProfile } from "@/features/profile/profile-schema";
-import type { GitHubSnapshot } from "@/features/projects/github-model";
+import type { GitHubSnapshot } from "@/features/github/github-model";
 
 function comparable(value?: string | null) {
   return value?.toLowerCase().replace(/^@/, "").replace(/[^a-z0-9]+/g, " ").trim() ?? "";

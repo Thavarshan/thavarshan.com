@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { fetchGitHubSnapshot } from "../../src/features/projects/github";
+import { fetchGitHubSnapshot } from "../../src/features/github/github";
 import { findProfileConflicts } from "../../src/features/profile/profile-conflicts";
 import { parseProfessionalProfile } from "../../src/features/profile/profile-schema";
 import { writeJsonAtomic } from "../../src/shared/node/fs";

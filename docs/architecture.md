@@ -10,18 +10,20 @@ This document is the source of truth for **where code lives and what may import 
 | --- | --- | --- |
 | `src/app/` | Next.js routes, metadata, route-level composition | build (static export) + browser |
 | `src/components/ui/`, `src/components/layout/` | Small reusable presentation components; navigation, footer and site shell | browser |
-| `src/features/profile/` | Profile schema, policy, conflicts, LinkedIn import; authored profile data; hero and timeline | build + Node |
-| `src/features/projects/` | GitHub and package-registry models, featured projects, case studies, project card | build |
+| `src/features/profile/` | Profile schema, conflicts, LinkedIn import; authored profile data; `site.ts` (site identity derived from the profile) | build + Node |
+| `src/features/github/` | GitHub snapshot contract and reader (a low-level data contract used by several features) | build + Node |
+| `src/features/home/` | Home-page sections (hero, timeline) composed from profile data | build |
+| `src/features/projects/` | Package-registry model, featured projects, case studies, project card | build |
 | `src/features/insights/` | Insight model, content loader, article components | build |
-| `src/features/cv/` | LaTeX rendering | build + Node |
+| `src/features/cv/` | LaTeX rendering and CV tailoring-plan validation | build + Node |
 | `src/features/jobs/` | Snapshot contract and migration, scoring, eligibility, review rules | any (pure) |
-| `src/features/applications/` | Tailoring, cover-letter rendering, hallucination check, paid-AI switch | Node |
+| `src/features/applications/` | Cover-letter rendering, hallucination check, paid-AI switch | Node |
 | `src/features/marketing/` | OSS distribution bundle rules | Node |
 | `src/features/tools/` | Cron and `.env` tools, registry; `components/` holds the client UI | browser (pure logic) |
 | `src/features/telemetry/` | Event contract, browser client, snapshot builder, UTM helper, provider | browser + edge + Node |
 | `src/shared/edge/` | Utilities shared by Cloudflare Workers | edge |
 | `src/shared/node/` | Atomic file writes, retry/concurrency, other shared CLI code | Node |
-| `src/shared/config/` | Site-wide authored configuration (`site.ts`) | build |
+| `src/shared/config/` | Foundational authored configuration (`profile-policy.ts`): depends on nothing | build |
 | `data/*.generated.json`, `data/growth/` | **Generated snapshots (interfaces, see below)** | committed by workflows |
 | `automation/` | Automation entrypoints and pipeline integrations (profile, jobs, applications, cv, marketing, growth, structure) | Node / GitHub Actions |
 | `workers/job-review/`, `workers/site-metrics/` | Deployable Cloudflare Workers (entrypoint, auth/rendering, Wrangler config) | edge |
@@ -63,6 +65,18 @@ Workflows commit these, scripts write them, the site builds from them, and one W
 | `public/docs/Jerome-Resume.pdf` (and `-fallback.pdf`) | the stable public CV URL; CV publishing |
 | `cv/generated/` | CV render/build/publish |
 
+## Dependency layering (guarded, and acyclic)
+
+```text
+shared/config ─▶ features/github ─▶ features/profile ─┬▶ features/cv ─▶ features/applications
+                                                       ├▶ features/projects ─▶ features/marketing
+                                                       ├▶ features/telemetry ─▶ components/ui ─▶ components/layout, features/home
+                                                       └▶ features/tools, features/insights ─────────▶ src/app (routes)
+shared/edge, shared/node  (independent)        features/jobs  (independent; used by the job-review Worker and automation)
+```
+
+`tests/integration/structure/import-graph.test.ts` enforces this. Lint blocks forbidden *directions*; this test guards the *allowed graph*: it fails on any dependency between units that is not declared in the test (so a new dependency is a visible, reviewed change), on any cycle, on unowned directories, and on a Worker pulling anything beyond its allowance into its deployed bundle. Restructuring found and removed the real cycles (profile↔projects, applications↔cv, config↔profile, and a chain through the UI) by moving `github-model`/`github` into their own feature, `profile-policy` into `shared/config`, CV `tailoring` into `cv`, `hero`/`timeline` into `home`, and `site.ts` into `profile`, the feature it is derived from.
+
 ## Public URLs do not change
 
 `npm run structure:routes` (run after `npm run build`, and in CI) compares the static export against `tests/fixtures/structure/routes.json`: page patterns, generated files (sitemap, feed, robots, social images) and static assets. Content growth (another Insight or project) does not trip it; a removed, renamed or added route kind does. If a change is intentional: `npm run structure:routes -- --write` and review the diff.
@@ -70,6 +84,7 @@ Workflows commit these, scripts write them, the site builds from them, and one W
 ## Decisions recorded here
 
 - **Duplicate PDF removed.** `assets/docs/Jerome-Resume.pdf` was byte-identical to `public/docs/Jerome-Resume-fallback.pdf` and referenced by nothing. The `public/` copy is kept because it is served at a public URL that external links may use.
+- **Known exceptions, deliberately left for later:** `features/jobs/opportunities.ts` and `features/profile/linkedin-archive.ts` import `node:*` (the first is used by the job-review Worker under `nodejs_compat`; replacing `node:crypto` hashing with Web Crypto would make it async and change every caller), and `features/insights/insights.ts` reads the filesystem. Making these genuinely runtime-neutral is a behaviour change, not a move.
 - **Formatting check deferred.** A formatter needs a one-time reformat of the whole repository; that would bury the structural diffs, so it gets its own PR after the moves.
 - **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`src/shared/edge/platform.ts`), atomic file writes (`src/shared/node/fs.ts`) and retry/concurrency (`src/shared/node/async.ts`).
 
@@ -81,6 +96,6 @@ Workflows commit these, scripts write them, the site builds from them, and one W
 | 2 | Relocate `app/`, `components/`, `lib/`, authored `data/*.ts` under `src/` (alias change), generated JSON stays | done (#88) |
 | 3 | Group code by feature under `src/features/*` and `src/shared/*`; split `components/` into `ui`/`layout` | done (#89) |
 | 4 | `automation/` to `automation/`, shared Node/edge modules under `src/shared` | planned |
-| 5 | Tests mirror features; tighten boundary lint; formatting check | planned |
+| 5 | Break the dependency cycles the new layout exposed; guard the module graph | in progress |
 
 **Acceptance for every step:** public URLs and generated-data contracts unchanged; static export and both Workers deploy; CV generation reproducible; lint, typecheck, unit, browser and relevant Worker tests pass.

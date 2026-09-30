@@ -3,7 +3,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { TelemetryProvider } from "@/features/telemetry/telemetry-provider";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

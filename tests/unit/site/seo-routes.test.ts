@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import robots from "../../../src/app/robots";
 import sitemap from "../../../src/app/sitemap";
-import { site } from "../../../src/shared/config/site";
+import { site } from "../../../src/features/profile/site";
 import { tools } from "../../../src/features/tools/registry";
 
 describe("SEO routes", () => {

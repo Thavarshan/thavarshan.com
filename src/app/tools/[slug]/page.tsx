@@ -9,7 +9,7 @@ import { CronTool } from "@/features/tools/components/cron-tool";
 import { EnvTool } from "@/features/tools/components/env-tool";
 import { sameAsProfiles } from "@/features/profile/external-profiles";
 import { profile } from "@/features/profile/profile";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { getTool, toolUrl, tools } from "@/features/tools/registry";
 
 type ToolPageProps = { params: Promise<{ slug: string }> };

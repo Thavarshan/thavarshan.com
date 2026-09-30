@@ -1,4 +1,4 @@
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 
 export interface ToolFaq {
   question: string;

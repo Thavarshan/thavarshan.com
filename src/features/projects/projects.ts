@@ -1,7 +1,7 @@
 import "server-only";
 import type { FeaturedProject } from "@/features/projects/featured-projects";
-import { getStaticGitHubSnapshot } from "@/features/projects/github";
-import type { GitHubProject } from "@/features/projects/github-model";
+import { getStaticGitHubSnapshot } from "@/features/github/github";
+import type { GitHubProject } from "@/features/github/github-model";
 
 function toFeaturedProject(project: GitHubProject, displayOrder: number): FeaturedProject {
   return {

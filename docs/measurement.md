@@ -71,7 +71,7 @@ npm run growth:metrics -- --dry-run --input rows.json      # offline, from expor
 | Snapshot builder and CLI | `src/features/telemetry/snapshot.ts`, `automation/growth/metrics-snapshot.ts` |
 | Deploy (CI only) | `.github/workflows/site-metrics-deploy.yml` |
 
-The endpoint is `site.metricsUrl` in `src/shared/config/site.ts` (empty disables first-party telemetry); the site's CSP `connect-src` allows it. The optional Plausible sink activates only if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set, and receives the same typed events.
+The endpoint is `site.metricsUrl` in `src/features/profile/site.ts` (empty disables first-party telemetry); the site's CSP `connect-src` allows it. The optional Plausible sink activates only if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set, and receives the same typed events.
 
 ## Failure modes
 

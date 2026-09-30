@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { site } from "../../src/shared/config/site";
+import { site } from "../../src/features/profile/site";
 import { getAllInsights, getAbsoluteInsightUrl } from "../../src/features/insights/insights";
 import { withUtm } from "../../src/features/telemetry/analytics";
 

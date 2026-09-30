@@ -4,7 +4,7 @@ import { ArrowRight, Lock } from "lucide-react";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 import { toolUrl, tools } from "@/features/tools/registry";
 
 export const metadata: Metadata = {

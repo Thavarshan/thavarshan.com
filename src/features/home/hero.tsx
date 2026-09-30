@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ArrowDown, Download, Mail, Network } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
 import { getCurrentExperience, profile } from "@/features/profile/profile";
-import { site } from "@/shared/config/site";
+import { site } from "@/features/profile/site";
 
 export function Hero() {
   const currentExperience = getCurrentExperience();

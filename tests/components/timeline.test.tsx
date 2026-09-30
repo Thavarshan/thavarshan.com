@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { Timeline } from "@/features/profile/timeline";
+import { Timeline } from "@/features/home/timeline";
 import { experience } from "@/features/profile/experience";
 
 describe("Timeline", () => {
