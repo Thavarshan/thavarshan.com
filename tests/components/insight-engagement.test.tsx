@@ -4,7 +4,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { InsightEngagement } from "@/features/insights/insight-engagement";
 import { configureTelemetry, resetTelemetryForTests } from "@/features/telemetry/client";
 
-const readBlob = (blob: Blob) => new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = reject; reader.readAsText(blob); });
+const readBlob = (blob: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = reject;
+    reader.readAsText(blob);
+  });
 
 describe("InsightEngagement", () => {
   const beacon = vi.fn(() => true);

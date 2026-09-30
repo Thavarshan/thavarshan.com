@@ -1,6 +1,16 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { cronPresets, explainCron, isValidTimezone, laravelSnippets, nextNaive, nextRuns, parseCron, toLaravelChain, type ParsedCron } from "@/features/tools/cron";
+import {
+  cronPresets,
+  explainCron,
+  isValidTimezone,
+  laravelSnippets,
+  nextNaive,
+  nextRuns,
+  parseCron,
+  toLaravelChain,
+  type ParsedCron
+} from "@/features/tools/cron";
 
 function parsed(expression: string): ParsedCron {
   const result = parseCron(expression);
@@ -112,31 +122,75 @@ describe("explainCron", () => {
  * resulting schedule matters, so equivalence is checked on the parsed value sets.)
  */
 function referenceCron(chain: string): string {
-  const time = (t: string) => { const [h, m] = t.split(":").map(Number); return { h, m }; };
+  const time = (t: string) => {
+    const [h, m] = t.split(":").map(Number);
+    return { h, m };
+  };
   let match: RegExpMatchArray | null;
   if (chain === "->everyMinute()") return "* * * * *";
-  const minuteSteps: Record<string, string> = { everyTwoMinutes: "*/2", everyThreeMinutes: "*/3", everyFourMinutes: "*/4", everyFiveMinutes: "*/5", everyTenMinutes: "*/10", everyFifteenMinutes: "*/15", everyThirtyMinutes: "0,30" };
+  const minuteSteps: Record<string, string> = {
+    everyTwoMinutes: "*/2",
+    everyThreeMinutes: "*/3",
+    everyFourMinutes: "*/4",
+    everyFiveMinutes: "*/5",
+    everyTenMinutes: "*/10",
+    everyFifteenMinutes: "*/15",
+    everyThirtyMinutes: "0,30"
+  };
   if ((match = chain.match(/^->(every\w+Minutes)\(\)$/))) return `${minuteSteps[match[1]]} * * * *`;
   if (chain === "->hourly()") return "0 * * * *";
   if ((match = chain.match(/^->hourlyAt\((\d+)\)$/))) return `${match[1]} * * * *`;
-  const hourSteps: Record<string, string> = { everyTwoHours: "*/2", everyThreeHours: "*/3", everyFourHours: "*/4", everySixHours: "*/6", everyOddHour: "1-23/2" };
+  const hourSteps: Record<string, string> = {
+    everyTwoHours: "*/2",
+    everyThreeHours: "*/3",
+    everyFourHours: "*/4",
+    everySixHours: "*/6",
+    everyOddHour: "1-23/2"
+  };
   if ((match = chain.match(/^->(every\w+Hours?|everyOddHour)\(\)$/))) return `0 ${hourSteps[match[1]]} * * *`;
   if (chain === "->daily()") return "0 0 * * *";
-  if ((match = chain.match(/^->dailyAt\('(\d+:\d+)'\)$/))) { const { h, m } = time(match[1]); return `${m} ${h} * * *`; }
+  if ((match = chain.match(/^->dailyAt\('(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[1]);
+    return `${m} ${h} * * *`;
+  }
   if ((match = chain.match(/^->twiceDaily\((\d+), (\d+)\)$/))) return `0 ${match[1]},${match[2]} * * *`;
   if ((match = chain.match(/^->twiceDailyAt\((\d+), (\d+), (\d+)\)$/))) return `${match[3]} ${match[1]},${match[2]} * * *`;
   if (chain === "->weekly()") return "0 0 * * 0";
-  if ((match = chain.match(/^->weeklyOn\((\d), '(\d+:\d+)'\)$/))) { const { h, m } = time(match[2]); return `${m} ${h} * * ${match[1]}`; }
-  if ((match = chain.match(/^->weekdays\(\)->at\('(\d+:\d+)'\)$/))) { const { h, m } = time(match[1]); return `${m} ${h} * * 1-5`; }
-  if ((match = chain.match(/^->weekends\(\)->at\('(\d+:\d+)'\)$/))) { const { h, m } = time(match[1]); return `${m} ${h} * * 6,0`; }
-  if ((match = chain.match(/^->days\(\[([\d, ]+)\]\)->at\('(\d+:\d+)'\)$/))) { const { h, m } = time(match[2]); return `${m} ${h} * * ${match[1].replace(/ /g, "")}`; }
+  if ((match = chain.match(/^->weeklyOn\((\d), '(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[2]);
+    return `${m} ${h} * * ${match[1]}`;
+  }
+  if ((match = chain.match(/^->weekdays\(\)->at\('(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[1]);
+    return `${m} ${h} * * 1-5`;
+  }
+  if ((match = chain.match(/^->weekends\(\)->at\('(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[1]);
+    return `${m} ${h} * * 6,0`;
+  }
+  if ((match = chain.match(/^->days\(\[([\d, ]+)\]\)->at\('(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[2]);
+    return `${m} ${h} * * ${match[1].replace(/ /g, "")}`;
+  }
   if (chain === "->monthly()") return "0 0 1 * *";
-  if ((match = chain.match(/^->monthlyOn\((\d+), '(\d+:\d+)'\)$/))) { const { h, m } = time(match[2]); return `${m} ${h} ${match[1]} * *`; }
-  if ((match = chain.match(/^->twiceMonthly\((\d+), (\d+), '(\d+:\d+)'\)$/))) { const { h, m } = time(match[3]); return `${m} ${h} ${match[1]},${match[2]} * *`; }
+  if ((match = chain.match(/^->monthlyOn\((\d+), '(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[2]);
+    return `${m} ${h} ${match[1]} * *`;
+  }
+  if ((match = chain.match(/^->twiceMonthly\((\d+), (\d+), '(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[3]);
+    return `${m} ${h} ${match[1]},${match[2]} * *`;
+  }
   if (chain === "->quarterly()") return "0 0 1 1-12/3 *";
-  if ((match = chain.match(/^->quarterlyOn\((\d+), '(\d+:\d+)'\)$/))) { const { h, m } = time(match[2]); return `${m} ${h} ${match[1]} 1-12/3 *`; }
+  if ((match = chain.match(/^->quarterlyOn\((\d+), '(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[2]);
+    return `${m} ${h} ${match[1]} 1-12/3 *`;
+  }
   if (chain === "->yearly()") return "0 0 1 1 *";
-  if ((match = chain.match(/^->yearlyOn\((\d+), (\d+), '(\d+:\d+)'\)$/))) { const { h, m } = time(match[3]); return `${m} ${h} ${match[2]} ${match[1]} *`; }
+  if ((match = chain.match(/^->yearlyOn\((\d+), (\d+), '(\d+:\d+)'\)$/))) {
+    const { h, m } = time(match[3]);
+    return `${m} ${h} ${match[2]} ${match[1]} *`;
+  }
   if ((match = chain.match(/^->cron\('(.+)'\)$/))) return match[1];
   throw new Error(`No reference for ${chain}`);
 }
@@ -191,17 +245,22 @@ describe("toLaravelChain: every suggestion reproduces the schedule exactly", () 
 
   it("is schedule-equivalent for the presets and 2,000 pseudo-random expressions", () => {
     let seed = 42;
-    const random = (n: number) => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed % n; };
-    const pick = <T,>(items: T[]) => items[random(items.length)];
+    const random = (n: number) => {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed % n;
+    };
+    const pick = <T>(items: T[]) => items[random(items.length)];
     const expressions = cronPresets.map((preset) => preset.expression);
     for (let i = 0; i < 2000; i++) {
-      expressions.push([
-        pick(["*", "0", "30", "*/5", "0,30", "17", "*/15", "5"]),
-        pick(["*", "0", "9", "*/2", "*/6", "1,13", "1-23/2", "8-17"]),
-        pick(["*", "*", "*", "1", "15", "1,16", "L"]),
-        pick(["*", "*", "*", "1", "12", "1,4,7,10", "*/3"]),
-        pick(["*", "*", "*", "0", "1", "1-5", "6,0", "7", "1,3,5"])
-      ].join(" "));
+      expressions.push(
+        [
+          pick(["*", "0", "30", "*/5", "0,30", "17", "*/15", "5"]),
+          pick(["*", "0", "9", "*/2", "*/6", "1,13", "1-23/2", "8-17"]),
+          pick(["*", "*", "*", "1", "15", "1,16", "L"]),
+          pick(["*", "*", "*", "1", "12", "1,4,7,10", "*/3"]),
+          pick(["*", "*", "*", "0", "1", "1-5", "6,0", "7", "1,3,5"])
+        ].join(" ")
+      );
     }
     let fluent = 0;
     for (const expression of expressions) {
@@ -240,9 +299,18 @@ describe("nextRuns", () => {
   });
 
   it("handles weekdays, month ends, leap days and last-day", () => {
-    expect(iso(nextRuns(parsed("0 8 * * 1-5"), new Date("2026-10-02T09:00:00Z"), 3))).toEqual(["2026-10-05T08:00:00.000Z", "2026-10-06T08:00:00.000Z", "2026-10-07T08:00:00.000Z"]);
+    expect(iso(nextRuns(parsed("0 8 * * 1-5"), new Date("2026-10-02T09:00:00Z"), 3))).toEqual([
+      "2026-10-05T08:00:00.000Z",
+      "2026-10-06T08:00:00.000Z",
+      "2026-10-07T08:00:00.000Z"
+    ]);
     expect(iso(nextRuns(parsed("0 0 29 2 *"), from, 2))).toEqual(["2028-02-29T00:00:00.000Z", "2032-02-29T00:00:00.000Z"]);
-    expect(iso(nextRuns(parsed("0 23 L * *"), from, 4))).toEqual(["2026-09-30T23:00:00.000Z", "2026-10-31T23:00:00.000Z", "2026-11-30T23:00:00.000Z", "2026-12-31T23:00:00.000Z"]);
+    expect(iso(nextRuns(parsed("0 23 L * *"), from, 4))).toEqual([
+      "2026-09-30T23:00:00.000Z",
+      "2026-10-31T23:00:00.000Z",
+      "2026-11-30T23:00:00.000Z",
+      "2026-12-31T23:00:00.000Z"
+    ]);
     expect(iso(nextRuns(parsed("0 0 31 * *"), from, 3))).toEqual(["2026-10-31T00:00:00.000Z", "2026-12-31T00:00:00.000Z", "2027-01-31T00:00:00.000Z"]);
     expect(nextRuns(parsed("0 0 31 4 *"), from, 3)).toEqual([]);
   });

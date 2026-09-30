@@ -32,10 +32,7 @@ test("project details render source-driven metadata and structured data", async 
   expect(fetchPhp).toBeDefined();
   await expect(page.getByText(new RegExp(`${fetchPhp!.stars.toLocaleString()} stars`, "i"))).toBeVisible();
   expect(await page.locator('script[type="application/ld+json"]').textContent()).toContain("SoftwareSourceCode");
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://thavarshan.com/projects/fetch-php"
-  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/projects/fetch-php");
 });
 
 test("exported project links resolve and are discoverable", async ({ page, request }) => {
@@ -43,9 +40,7 @@ test("exported project links resolve and are discoverable", async ({ page, reque
 
   const projectLinks = await page
     .getByRole("link", { name: /project details/i })
-    .evaluateAll((links) =>
-      Array.from(new Set(links.map((link) => link.getAttribute("href")).filter((href): href is string => Boolean(href))))
-    );
+    .evaluateAll((links) => Array.from(new Set(links.map((link) => link.getAttribute("href")).filter((href): href is string => Boolean(href)))));
   expect(projectLinks.length).toBeGreaterThan(0);
 
   const sitemap = await request.get("/sitemap.xml");
@@ -79,10 +74,7 @@ test("insights routes, RSS, and article structured data are crawlable", async ({
   await page.goto("/insights/observable-reliable-production-ai-workflows");
   await expect(page.getByRole("heading", { name: "Building observable and reliable production AI workflows" })).toBeVisible();
   expect(await page.locator('script[type="application/ld+json"]').textContent()).toContain("Article");
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://thavarshan.com/insights/observable-reliable-production-ai-workflows"
-  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/insights/observable-reliable-production-ai-workflows");
 
   const feed = await request.get("/feed.xml");
   expect(await feed.text()).toContain("Building observable and reliable production AI workflows");
@@ -174,9 +166,7 @@ test("mobile CTA links preserve touch-friendly target sizes", async ({ page }) =
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const heights = await page.locator(".mobile-stack-actions a").evaluateAll((links) =>
-    links.map((link) => Math.round(link.getBoundingClientRect().height))
-  );
+  const heights = await page.locator(".mobile-stack-actions a").evaluateAll((links) => links.map((link) => Math.round(link.getBoundingClientRect().height)));
 
   expect(heights.length).toBeGreaterThan(0);
   expect(Math.min(...heights)).toBeGreaterThanOrEqual(44);

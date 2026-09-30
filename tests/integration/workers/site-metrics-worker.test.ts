@@ -6,25 +6,43 @@ import { RateLimiter } from "@/shared/edge/platform";
 
 const ORIGIN = "https://thavarshan.com";
 const now = new Date("2026-10-03T12:34:56.000Z");
-const event = { event: "repo_click", path: "/projects/fetch-php", source: "linkedin", medium: "social", campaign: "release-x", referrer: "social", props: { project: "fetch-php" } };
+const event = {
+  event: "repo_click",
+  path: "/projects/fetch-php",
+  source: "linkedin",
+  medium: "social",
+  campaign: "release-x",
+  referrer: "social",
+  props: { project: "fetch-php" }
+};
 
 function kv(overrides: Partial<KVLike> = {}) {
   const store = new Map<string, string>();
   const ttls: number[] = [];
   const api: KVLike & { store: Map<string, string>; ttls: number[] } = {
-    store, ttls,
+    store,
+    ttls,
     get: async (key) => store.get(key) ?? null,
-    put: async (key, value, options) => { store.set(key, value); if (options?.expirationTtl) ttls.push(options.expirationTtl); },
+    put: async (key, value, options) => {
+      store.set(key, value);
+      if (options?.expirationTtl) ttls.push(options.expirationTtl);
+    },
     ...overrides
   };
   return api;
 }
 const env = (store: KVLike, extra: Partial<Env> = {}): Env => ({ METRICS_KV: store, ...extra });
 const post = (body: unknown, headers: Record<string, string> = {}) =>
-  new Request("https://site-metrics.example/collect", { method: "POST", headers: { Origin: ORIGIN, "Content-Type": "text/plain", "cf-connecting-ip": `203.0.113.${Math.floor(Math.random() * 250)}`, ...headers }, body: typeof body === "string" ? body : JSON.stringify(body) });
+  new Request("https://site-metrics.example/collect", {
+    method: "POST",
+    headers: { Origin: ORIGIN, "Content-Type": "text/plain", "cf-connecting-ip": `203.0.113.${Math.floor(Math.random() * 250)}`, ...headers },
+    body: typeof body === "string" ? body : JSON.stringify(body)
+  });
 const run = (request: Request, environment: Env, logs: string[] = []) => handleRequest(request, environment, { now, log: (line) => logs.push(line) });
 
-beforeEach(() => { limiter.current = new RateLimiter(120, 60_000); });
+beforeEach(() => {
+  limiter.current = new RateLimiter(120, 60_000);
+});
 
 describe("collecting events", () => {
   it("increments one aggregate counter per distinct event shape per UTC day", async () => {
@@ -69,7 +87,14 @@ describe("rejecting bad input", () => {
 
   it("400s malformed JSON and anything the shared validator rejects", async () => {
     const store = kv();
-    for (const body of ["{not json", "[]", JSON.stringify({ ...event, event: "purchase" }), JSON.stringify({ ...event, props: { project: "a@b.com" } }), JSON.stringify({ ...event, path: "/cv?e=a@b.com" }), JSON.stringify({ ...event, visitorId: "abc" })]) {
+    for (const body of [
+      "{not json",
+      "[]",
+      JSON.stringify({ ...event, event: "purchase" }),
+      JSON.stringify({ ...event, props: { project: "a@b.com" } }),
+      JSON.stringify({ ...event, path: "/cv?e=a@b.com" }),
+      JSON.stringify({ ...event, visitorId: "abc" })
+    ]) {
       expect((await run(post(body), env(store))).status, body).toBe(400);
     }
     expect(store.store.size).toBe(0);
@@ -78,7 +103,17 @@ describe("rejecting bad input", () => {
   it("413s oversized bodies, declared or streamed", async () => {
     const store = kv();
     expect((await run(post({ ...event, padding: "x".repeat(MAX_BODY_BYTES + 1) }), env(store))).status).toBe(413);
-    const streamed = new Request("https://m.example/collect", { method: "POST", headers: { Origin: ORIGIN }, body: new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode("x".repeat(MAX_BODY_BYTES + 50))); c.close(); } }), duplex: "half" } as RequestInit);
+    const streamed = new Request("https://m.example/collect", {
+      method: "POST",
+      headers: { Origin: ORIGIN },
+      body: new ReadableStream({
+        start(c) {
+          c.enqueue(new TextEncoder().encode("x".repeat(MAX_BODY_BYTES + 50)));
+          c.close();
+        }
+      }),
+      duplex: "half"
+    } as RequestInit);
     expect((await run(streamed, env(store))).status).toBe(413);
     expect(store.store.size).toBe(0);
   });
@@ -93,16 +128,28 @@ describe("rejecting bad input", () => {
     limiter.current = new RateLimiter(2, 60_000);
     const store = kv();
     const ip = { "cf-connecting-ip": "198.51.100.7" };
-    expect([ (await run(post(event, ip), env(store))).status, (await run(post(event, ip), env(store))).status, (await run(post(event, ip), env(store))).status ]).toEqual([204, 204, 429]);
+    expect([
+      (await run(post(event, ip), env(store))).status,
+      (await run(post(event, ip), env(store))).status,
+      (await run(post(event, ip), env(store))).status
+    ]).toEqual([204, 204, 429]);
     expect((await run(post(event, { "cf-connecting-ip": "198.51.100.8" }), env(store))).status).toBe(204);
   });
 });
 
 describe("free-plan failure behaviour", () => {
   it("drops the event and answers 503 when KV is unavailable or over quota, without throwing", async () => {
-    const down = kv({ get: async () => { throw new Error("kv down"); } });
+    const down = kv({
+      get: async () => {
+        throw new Error("kv down");
+      }
+    });
     expect((await run(post(event), env(down))).status).toBe(503);
-    const overQuota = kv({ put: async () => { throw new Error("KV put() limit exceeded for the day"); } });
+    const overQuota = kv({
+      put: async () => {
+        throw new Error("KV put() limit exceeded for the day");
+      }
+    });
     expect((await run(post(event), env(overQuota))).status).toBe(503);
   });
 
@@ -129,7 +176,8 @@ describe("privacy", () => {
     await run(post(event, { "cf-connecting-ip": "203.0.113.55", "User-Agent": "UA-SENTINEL", Cookie: "sid=COOKIE-SENTINEL" }), env(kv()), logs);
     await run(post("BODY-SENTINEL-not-json", { "cf-connecting-ip": "203.0.113.56" }), env(kv()), logs);
     const combined = logs.join("\n");
-    for (const forbidden of ["203.0.113", "UA-SENTINEL", "COOKIE-SENTINEL", "BODY-SENTINEL", "linkedin", "release-x", "fetch-php"]) expect(combined, forbidden).not.toContain(forbidden);
+    for (const forbidden of ["203.0.113", "UA-SENTINEL", "COOKIE-SENTINEL", "BODY-SENTINEL", "linkedin", "release-x", "fetch-php"])
+      expect(combined, forbidden).not.toContain(forbidden);
     expect(JSON.parse(logs[0])).toMatchObject({ msg: "request", method: "POST", path: "/collect", status: 204 });
   });
 
@@ -156,7 +204,12 @@ describe("Workers runtime compatibility", () => {
 describe("health", () => {
   it("reports status and version without touching storage", async () => {
     let touched = false;
-    const spy = kv({ get: async () => { touched = true; return null; } });
+    const spy = kv({
+      get: async () => {
+        touched = true;
+        return null;
+      }
+    });
     const response = await run(new Request("https://m.example/healthz"), env(spy, { WORKER_VERSION: "abc1234" }));
     expect(await response.json()).toEqual({ status: "ok", version: "abc1234" });
     expect(touched).toBe(false);

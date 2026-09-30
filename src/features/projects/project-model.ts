@@ -1,10 +1,7 @@
 import type { FeaturedProject, GitHubRepositoryStats, ProjectDefinition } from "@/features/projects/featured-projects";
 import { site } from "@/features/profile/site";
 
-export function mergeProjectDefinitions(
-  definitions: ProjectDefinition[],
-  statsByRepository: Map<string, GitHubRepositoryStats>
-): FeaturedProject[] {
+export function mergeProjectDefinitions(definitions: ProjectDefinition[], statsByRepository: Map<string, GitHubRepositoryStats>): FeaturedProject[] {
   return definitions
     .map((definition) => ({
       ...definition,

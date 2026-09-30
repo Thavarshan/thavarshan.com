@@ -82,9 +82,7 @@ async function resolveRequestPath(root: string, requestUrl = "/") {
     return null;
   }
 
-  const candidates = decodedPath.endsWith("/")
-    ? [join(basePath, "index.html")]
-    : [basePath, `${basePath}.html`, join(basePath, "index.html")];
+  const candidates = decodedPath.endsWith("/") ? [join(basePath, "index.html")] : [basePath, `${basePath}.html`, join(basePath, "index.html")];
 
   for (const candidate of candidates) {
     const existing = await fileExists(candidate);

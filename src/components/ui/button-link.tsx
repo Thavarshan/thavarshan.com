@@ -24,7 +24,8 @@ const variants: Record<ButtonVariant, string> = {
   primary: "border-[var(--ink)] bg-[var(--ink)] text-white hover:bg-[var(--cool)] hover:border-[var(--cool)]",
   secondary: "border-[var(--line)] bg-[var(--surface-strong)] text-[var(--ink)] hover:border-[var(--accent)]",
   ghost: "border-transparent bg-transparent text-[var(--muted)] hover:text-[var(--ink)]",
-  onDarkPrimary: "border-white bg-white text-[var(--ink)] hover:border-[#f0c37b] hover:bg-[#f0c37b] active:border-[#f0c37b] active:bg-[#f0c37b] active:text-[var(--ink)] focus-visible:text-[var(--ink)]",
+  onDarkPrimary:
+    "border-white bg-white text-[var(--ink)] hover:border-[#f0c37b] hover:bg-[#f0c37b] active:border-[#f0c37b] active:bg-[#f0c37b] active:text-[var(--ink)] focus-visible:text-[var(--ink)]",
   onDarkGhost: "border-transparent bg-transparent text-white/72 hover:text-white active:text-white focus-visible:text-white"
 };
 

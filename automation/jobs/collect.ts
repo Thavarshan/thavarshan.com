@@ -75,7 +75,13 @@ async function appendStepSummary(markdown: string) {
 async function setWorkflowOutputs(outputs: Record<string, string>) {
   const outputPath = process.env.GITHUB_OUTPUT;
   if (!outputPath) return;
-  await appendFile(outputPath, Object.entries(outputs).map(([key, value]) => `${key}=${value}`).join("\n") + "\n", "utf8");
+  await appendFile(
+    outputPath,
+    Object.entries(outputs)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("\n") + "\n",
+    "utf8"
+  );
 }
 
 export async function collectJobs() {
@@ -93,9 +99,7 @@ export async function collectJobs() {
 
     const results: SourceCollectionOutcome[] = [];
     const durations: Partial<Record<Opportunity["source"], number>> = {};
-    let laraJobsCanonicalUrls = new Set(
-      (existing?.opportunities ?? []).filter((item) => item.source === "larajobs").map((item) => item.canonicalUrl)
-    );
+    let laraJobsCanonicalUrls = new Set((existing?.opportunities ?? []).filter((item) => item.source === "larajobs").map((item) => item.canonicalUrl));
 
     /** Runs one source under its own deadline, so a failure or hang is contained, timed and reported. */
     async function runSource(source: Opportunity["source"], label: string, task: () => Promise<SourceCollectionSuccess>, page?: Page) {
@@ -126,35 +130,38 @@ export async function collectJobs() {
       return { source: "larajobs", opportunities, skipped: 0, rejected: 0 };
     });
 
-    await runSource("laravel-news", "Laravel News", async () => {
-      if (!(await guard.isAllowed(laravelNewsUrl))) throw new RobotsDisallowedError(laravelNewsUrl);
-      await throttle.wait(new URL(laravelNewsUrl).host);
-      const drafts = (await collectLaravelNewsLinks(discoveryPage))
-        .filter((draft) => !laraJobsCanonicalUrls.has(draft.canonicalUrl))
-        .slice(0, 20);
-      // Title/company come from Laravel News's own listing; the scrape only supplies description text.
-      const opportunities = await enrichAndFinalize(
-        context,
-        drafts,
-        (draft) => draft.canonicalUrl,
-        (draft, finalizeNow, scrapedDescription, applicationUrl) =>
-          buildOpportunity(
-            {
-              title: draft.title,
-              company: draft.company,
-              url: draft.canonicalUrl,
-              sourceUrl: laravelNewsUrl,
-              description: scrapedDescription ?? undefined,
-              applicationUrl,
-              source: "laravel-news"
-            },
-            finalizeNow
-          ),
-        { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl },
-        now
-      );
-      return { source: "laravel-news", opportunities, skipped: 0, rejected: 0 };
-    }, discoveryPage);
+    await runSource(
+      "laravel-news",
+      "Laravel News",
+      async () => {
+        if (!(await guard.isAllowed(laravelNewsUrl))) throw new RobotsDisallowedError(laravelNewsUrl);
+        await throttle.wait(new URL(laravelNewsUrl).host);
+        const drafts = (await collectLaravelNewsLinks(discoveryPage)).filter((draft) => !laraJobsCanonicalUrls.has(draft.canonicalUrl)).slice(0, 20);
+        // Title/company come from Laravel News's own listing; the scrape only supplies description text.
+        const opportunities = await enrichAndFinalize(
+          context,
+          drafts,
+          (draft) => draft.canonicalUrl,
+          (draft, finalizeNow, scrapedDescription, applicationUrl) =>
+            buildOpportunity(
+              {
+                title: draft.title,
+                company: draft.company,
+                url: draft.canonicalUrl,
+                sourceUrl: laravelNewsUrl,
+                description: scrapedDescription ?? undefined,
+                applicationUrl,
+                source: "laravel-news"
+              },
+              finalizeNow
+            ),
+          { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl },
+          now
+        );
+        return { source: "laravel-news", opportunities, skipped: 0, rejected: 0 };
+      },
+      discoveryPage
+    );
 
     await runSource("remotive", "Remotive", () => collectRemotiveJobs(politeFor("remotive"), now));
     await runSource("weworkremotely", "WeWorkRemotely", () => collectWeWorkRemotely(politeFor("weworkremotely"), now));
@@ -188,7 +195,10 @@ export async function collectJobs() {
     });
 
     for (const [source, stat] of Object.entries(stats)) {
-      if (stat.held > 0) console.warn(`${source}: returned no listings but ${stat.held} recently-seen listing(s) were held open instead of closed (possible broken filter/parser).`);
+      if (stat.held > 0)
+        console.warn(
+          `${source}: returned no listings but ${stat.held} recently-seen listing(s) were held open instead of closed (possible broken filter/parser).`
+        );
     }
 
     // Every source failing means there is nothing new to record: leave the last-known-good snapshot alone.
@@ -200,9 +210,7 @@ export async function collectJobs() {
     const previousOpenCount = (existing?.opportunities ?? []).filter((item) => item.status !== "closed").length;
     const nextOpenCount = opportunities.filter((item) => item.status !== "closed").length;
     if (previousOpenCount >= 20 && nextOpenCount < Math.ceil(previousOpenCount * 0.25)) {
-      throw new Error(
-        `Refusing to publish suspicious job snapshot: open opportunities collapsed from ${previousOpenCount} to ${nextOpenCount}`
-      );
+      throw new Error(`Refusing to publish suspicious job snapshot: open opportunities collapsed from ${previousOpenCount} to ${nextOpenCount}`);
     }
 
     const change = isMaterialChange({ previous: existing, stats, nextSources: sources, now });
@@ -225,7 +233,9 @@ export async function collectJobs() {
       });
 
       await writeJsonAtomic(outputPath, snapshot);
-      await appendStepSummary(renderRunSummary({ sources: snapshot.sources, opportunities: snapshot.opportunities, health, written: true, reason: change.reason }));
+      await appendStepSummary(
+        renderRunSummary({ sources: snapshot.sources, opportunities: snapshot.opportunities, health, written: true, reason: change.reason })
+      );
       console.log(`Updated ${outputPath} with ${snapshot.opportunities.length} opportunities across ${sources.length} sources (${change.reason})`);
     }
 

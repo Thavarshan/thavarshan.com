@@ -53,11 +53,7 @@ export default async function Home() {
         "@id": personId,
         name: site.name,
         url: site.url,
-        image: [
-          `${site.url}/images/profile-1x1.jpg`,
-          `${site.url}/images/profile-4x3.jpg`,
-          `${site.url}/images/profile-16x9.jpg`
-        ],
+        image: [`${site.url}/images/profile-1x1.jpg`, `${site.url}/images/profile-4x3.jpg`, `${site.url}/images/profile-16x9.jpg`],
         jobTitle: profile.identity.headline,
         description: profile.summary,
         email: site.email,
@@ -151,11 +147,7 @@ export default async function Home() {
         <Timeline items={experience} />
       </Section>
 
-      <Section
-        id="expertise"
-        eyebrow="Expertise"
-        title="Depth where it matters: architecture, teams, products, and delivery."
-      >
+      <Section id="expertise" eyebrow="Expertise" title="Depth where it matters: architecture, teams, products, and delivery.">
         <div className="grid gap-4 md:grid-cols-2">
           {expertiseGroups.map((group, index) => (
             <Reveal key={group.title} delay={index * 0.04}>
@@ -164,10 +156,7 @@ export default async function Home() {
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{group.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-[var(--line)] bg-white px-3 py-1 text-xs font-medium text-[var(--cool)]"
-                    >
+                    <span key={item} className="rounded-full border border-[var(--line)] bg-white px-3 py-1 text-xs font-medium text-[var(--cool)]">
                       {item}
                     </span>
                   ))}
@@ -178,11 +167,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section
-        id="education"
-        eyebrow="Education"
-        title="Formal engineering education backing practical delivery."
-      >
+      <Section id="education" eyebrow="Education" title="Formal engineering education backing practical delivery.">
         <div className="grid gap-4 md:grid-cols-3">
           {education.map((item, index) => (
             <Reveal key={item.institution} delay={index * 0.04}>
@@ -197,11 +182,7 @@ export default async function Home() {
       </Section>
 
       {approvedTestimonials.length ? (
-        <Section
-          id="testimonials"
-          eyebrow="Testimonials"
-          title="Approved words from people who have worked with me."
-        >
+        <Section id="testimonials" eyebrow="Testimonials" title="Approved words from people who have worked with me.">
           <div className="grid gap-4 md:grid-cols-2">
             {approvedTestimonials.map((testimonial) => (
               <blockquote key={`${testimonial.name}-${testimonial.role}`} className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">

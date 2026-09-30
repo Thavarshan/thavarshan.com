@@ -1,9 +1,22 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { captureLandingAttribution, configureTelemetry, getSessionAttribution, privacySignalOn, resetTelemetryForTests, track } from "@/features/telemetry/client";
+import {
+  captureLandingAttribution,
+  configureTelemetry,
+  getSessionAttribution,
+  privacySignalOn,
+  resetTelemetryForTests,
+  track
+} from "@/features/telemetry/client";
 import { validateWireEvent } from "@/features/telemetry/events";
 
 const ENDPOINT = "https://collector.example/collect";
-const readBlob = (blob: Blob) => new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = reject; reader.readAsText(blob); });
+const readBlob = (blob: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = reject;
+    reader.readAsText(blob);
+  });
 
 function setNavigator(values: Record<string, unknown>) {
   for (const [key, value] of Object.entries(values)) Object.defineProperty(navigator, key, { configurable: true, value });
@@ -29,7 +42,15 @@ describe("track", () => {
     expect(blob.type).toBe("text/plain");
     const payload = JSON.parse(await readBlob(blob));
     expect(validateWireEvent(payload).ok).toBe(true);
-    expect(payload).toEqual({ event: "repo_click", path: "/projects/fetch-php", source: null, medium: null, campaign: null, referrer: "direct", props: { project: "fetch-php" } });
+    expect(payload).toEqual({
+      event: "repo_click",
+      path: "/projects/fetch-php",
+      source: null,
+      medium: null,
+      campaign: null,
+      referrer: "direct",
+      props: { project: "fetch-php" }
+    });
     expect(Object.keys(payload).sort()).toEqual(["campaign", "event", "medium", "path", "props", "referrer", "source"]);
   });
 
@@ -103,18 +124,34 @@ describe("track", () => {
   });
 
   it("RESILIENCE: analytics blocked, offline or throwing never breaks the page", () => {
-    setNavigator({ sendBeacon: vi.fn(() => { throw new Error("blocked by extension"); }) });
-    vi.stubGlobal("fetch", vi.fn(() => { throw new Error("blocked"); }));
+    setNavigator({
+      sendBeacon: vi.fn(() => {
+        throw new Error("blocked by extension");
+      })
+    });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => {
+        throw new Error("blocked");
+      })
+    );
     expect(() => track("cv_download", { location: "home" })).not.toThrow();
-    vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("offline"))));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => Promise.reject(new Error("offline")))
+    );
     setNavigator({ sendBeacon: undefined });
     expect(() => track("contact_cta", { location: "home" })).not.toThrow();
     vi.unstubAllGlobals();
   });
 
   it("RESILIENCE: blocked sessionStorage only loses cross-page attribution", () => {
-    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
-    vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => { throw new Error("denied"); });
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("quota");
+    });
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+      throw new Error("denied");
+    });
     expect(() => track("cv_download", { location: "home" })).not.toThrow();
     expect(beacon()).toHaveBeenCalledTimes(1);
   });

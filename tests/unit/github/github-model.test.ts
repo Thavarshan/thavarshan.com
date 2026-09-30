@@ -25,13 +25,7 @@ function project(repository: string, stars: number, overrides: Partial<Repositor
 describe("GitHub project model", () => {
   it("selects the highest-starred maintained owner repositories", () => {
     const result = selectFeaturedRepositories(
-      [
-        project("second", 20),
-        project("first", 50),
-        project("fork", 100, { fork: true }),
-        project("archived", 90, { archived: true }),
-        project("excluded", 80)
-      ],
+      [project("second", 20), project("first", 50), project("fork", 100, { fork: true }), project("archived", 90, { archived: true }), project("excluded", 80)],
       2,
       ["excluded"]
     );

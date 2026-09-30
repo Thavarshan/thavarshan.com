@@ -36,34 +36,96 @@ export function EnvTool() {
     <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-7" data-testid="env-tool">
       <p className="flex items-start gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface-strong)] p-3 text-sm text-[var(--ink)]">
         <Lock size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
-        <span><strong>Private by design.</strong> This runs entirely in your browser. Nothing you paste is uploaded, stored or logged, and results show key names and line numbers, never values.</span>
+        <span>
+          <strong>Private by design.</strong> This runs entirely in your browser. Nothing you paste is uploaded, stored or logged, and results show key names
+          and line numbers, never values.
+        </span>
       </p>
 
       <div className="mt-5 grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-2">
         <div>
-          <label htmlFor="env-actual" className="mb-1 block text-sm font-semibold text-[var(--ink)]">.env</label>
-          <textarea id="env-actual" className={areaClass} value={env} onChange={(event) => setEnv(event.target.value)} spellCheck={false} autoComplete="off" autoCapitalize="off" autoCorrect="off" placeholder="APP_NAME=Laravel&#10;APP_ENV=production" aria-describedby="env-help" />
+          <label htmlFor="env-actual" className="mb-1 block text-sm font-semibold text-[var(--ink)]">
+            .env
+          </label>
+          <textarea
+            id="env-actual"
+            className={areaClass}
+            value={env}
+            onChange={(event) => setEnv(event.target.value)}
+            spellCheck={false}
+            autoComplete="off"
+            autoCapitalize="off"
+            autoCorrect="off"
+            placeholder="APP_NAME=Laravel&#10;APP_ENV=production"
+            aria-describedby="env-help"
+          />
         </div>
         <div>
-          <label htmlFor="env-example" className="mb-1 block text-sm font-semibold text-[var(--ink)]">.env.example</label>
-          <textarea id="env-example" className={areaClass} value={example} onChange={(event) => setExample(event.target.value)} spellCheck={false} autoComplete="off" autoCapitalize="off" autoCorrect="off" placeholder="APP_NAME=Laravel&#10;APP_ENV=local" />
+          <label htmlFor="env-example" className="mb-1 block text-sm font-semibold text-[var(--ink)]">
+            .env.example
+          </label>
+          <textarea
+            id="env-example"
+            className={areaClass}
+            value={example}
+            onChange={(event) => setExample(event.target.value)}
+            spellCheck={false}
+            autoComplete="off"
+            autoCapitalize="off"
+            autoCorrect="off"
+            placeholder="APP_NAME=Laravel&#10;APP_ENV=local"
+          />
         </div>
       </div>
-      <p id="env-help" className="mt-2 text-sm text-[var(--muted)]">Paste both to compare them, or just one to check its syntax. Up to 256,000 characters per file.</p>
+      <p id="env-help" className="mt-2 text-sm text-[var(--muted)]">
+        Paste both to compare them, or just one to check its syntax. Up to 256,000 characters per file.
+      </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <button type="button" className={`${buttonClass}`} onClick={() => { setEnv(exampleEnvBroken); setExample(exampleEnv); }}>Load a broken sample</button>
-        <button type="button" className={`${buttonClass}`} onClick={() => { setEnv(exampleEnvHealthy); setExample(exampleEnv); }}>Load a healthy sample</button>
-        <button type="button" className={buttonClass} onClick={() => { setEnv(""); setExample(""); }}>Clear both</button>
+        <button
+          type="button"
+          className={`${buttonClass}`}
+          onClick={() => {
+            setEnv(exampleEnvBroken);
+            setExample(exampleEnv);
+          }}
+        >
+          Load a broken sample
+        </button>
+        <button
+          type="button"
+          className={`${buttonClass}`}
+          onClick={() => {
+            setEnv(exampleEnvHealthy);
+            setExample(exampleEnv);
+          }}
+        >
+          Load a healthy sample
+        </button>
+        <button
+          type="button"
+          className={buttonClass}
+          onClick={() => {
+            setEnv("");
+            setExample("");
+          }}
+        >
+          Clear both
+        </button>
       </div>
 
       <div className="mt-6" aria-live="polite" data-testid="env-results">
         {outcome === null ? <p className="text-[var(--muted)]">Results appear here as you paste.</p> : null}
-        {outcome && !outcome.ok ? <p role="alert" className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-900">Error: {outcome.error}</p> : null}
+        {outcome && !outcome.ok ? (
+          <p role="alert" className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-900">
+            Error: {outcome.error}
+          </p>
+        ) : null}
         {outcome?.ok ? (
           <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
             <p className="text-lg text-[var(--ink)]" data-testid="env-summary">
-              {outcome.result.counts.error} error{outcome.result.counts.error === 1 ? "" : "s"}, {outcome.result.counts.warning} warning{outcome.result.counts.warning === 1 ? "" : "s"}, {outcome.result.counts.info} note{outcome.result.counts.info === 1 ? "" : "s"}
+              {outcome.result.counts.error} error{outcome.result.counts.error === 1 ? "" : "s"}, {outcome.result.counts.warning} warning
+              {outcome.result.counts.warning === 1 ? "" : "s"}, {outcome.result.counts.info} note{outcome.result.counts.info === 1 ? "" : "s"}
               {outcome.result.counts.error + outcome.result.counts.warning === 0 ? " — no problems found." : "."}
             </p>
             <ul className="grid gap-2" data-testid="env-findings">
@@ -73,6 +135,8 @@ export function EnvTool() {
                 return (
                   <li key={`${finding.code}-${finding.key ?? ""}-${index}`} className={`flex items-start gap-2 rounded-lg border p-3 text-sm ${style.box}`}>
                     <Icon size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+                    {/* JSX whitespace is significant in the next element: reflowing it changes the rendered HTML. */}
+                    {/* prettier-ignore */}
                     <span><strong>{style.label}:</strong> {finding.message}{finding.source ? <span className="text-[var(--muted)]"> ({finding.source === "example" ? ".env.example" : ".env"}{finding.line ? `, line ${finding.line}` : ""})</span> : null}</span>
                   </li>
                 );
@@ -81,11 +145,22 @@ export function EnvTool() {
             {outcome.result.missingBlock ? (
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">Missing keys to add to .env</h3>
-                <pre className="mt-2 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]" tabIndex={0} aria-label="Missing keys" data-testid="env-missing"><code>{outcome.result.missingBlock}</code></pre>
-                <div className="mt-3"><CopyButton text={outcome.result.missingBlock} label="Copy missing keys" tool="laravel-env-checker" /></div>
+                <pre
+                  className="mt-2 overflow-x-auto rounded-lg bg-[#202427] p-4 text-sm leading-6 text-[#f7f4ee]"
+                  tabIndex={0}
+                  aria-label="Missing keys"
+                  data-testid="env-missing"
+                >
+                  <code>{outcome.result.missingBlock}</code>
+                </pre>
+                <div className="mt-3">
+                  <CopyButton text={outcome.result.missingBlock} label="Copy missing keys" tool="laravel-env-checker" />
+                </div>
               </div>
             ) : null}
-            <div className="flex flex-wrap items-center gap-3"><CopyButton text={report} label="Copy full report" tool="laravel-env-checker" /></div>
+            <div className="flex flex-wrap items-center gap-3">
+              <CopyButton text={report} label="Copy full report" tool="laravel-env-checker" />
+            </div>
           </div>
         ) : null}
       </div>

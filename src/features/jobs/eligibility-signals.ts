@@ -58,9 +58,7 @@ function escapeRegExp(value: string) {
 export function buildRestrictedRegionPattern(aliases: string[]): RegExp {
   const group = aliases.map(escapeRegExp).join("|");
   return new RegExp(
-    `\\b(?:${group})[ -]only\\b` +
-      `|\\bmust (?:be )?(?:based|located) in (?:the )?(?:${group})\\b` +
-      `|\\bright to work in (?:the )?(?:${group})\\b`,
+    `\\b(?:${group})[ -]only\\b` + `|\\bmust (?:be )?(?:based|located) in (?:the )?(?:${group})\\b` + `|\\bright to work in (?:the )?(?:${group})\\b`,
     "i"
   );
 }

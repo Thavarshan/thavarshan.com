@@ -81,11 +81,7 @@ export async function readFormBody(request: Request, maxBytes = MAX_BODY_BYTES):
 }
 
 /** Fetches JSON with a timeout and a size cap, so a slow or hostile upstream cannot stall or exhaust the Worker. */
-export async function fetchJsonBounded(
-  url: string,
-  fetcher: typeof fetch,
-  options: { timeoutMs?: number; maxBytes?: number } = {}
-): Promise<unknown> {
+export async function fetchJsonBounded(url: string, fetcher: typeof fetch, options: { timeoutMs?: number; maxBytes?: number } = {}): Promise<unknown> {
   const { timeoutMs = DATA_FETCH_TIMEOUT_MS, maxBytes = MAX_DATA_BYTES } = options;
   const response = await fetcher(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(timeoutMs) });
   if (!response.ok) throw new Error(`Job data request failed (${response.status})`);

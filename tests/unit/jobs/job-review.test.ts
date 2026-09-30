@@ -7,9 +7,19 @@ const now = new Date("2026-09-30T00:00:00.000Z");
 
 function job(overrides: Partial<Opportunity> & { id: string }): Opportunity {
   return makeOpportunity({
-    title: "Laravel Dev", company: "Acme", location: "Remote", workArrangement: "remote-worldwide", seniority: "senior",
-    tags: ["laravel"], publishedAt: "2026-09-28T00:00:00.000Z", firstSeenAt: "2026-09-28T00:00:00.000Z",
-    lastSeenAt: "2026-09-29T00:00:00.000Z", eligibility: "eligible", score: 70, confidence: 50, ...overrides
+    title: "Laravel Dev",
+    company: "Acme",
+    location: "Remote",
+    workArrangement: "remote-worldwide",
+    seniority: "senior",
+    tags: ["laravel"],
+    publishedAt: "2026-09-28T00:00:00.000Z",
+    firstSeenAt: "2026-09-28T00:00:00.000Z",
+    lastSeenAt: "2026-09-29T00:00:00.000Z",
+    eligibility: "eligible",
+    score: 70,
+    confidence: 50,
+    ...overrides
   });
 }
 
@@ -30,11 +40,7 @@ describe("sortOpportunities", () => {
 
 describe("sort: confidence tie-break", () => {
   it("breaks equal fit scores by confidence, with unscored snapshots last", () => {
-    const items = [
-      job({ id: "a", score: 70, confidence: null }),
-      job({ id: "b", score: 70, confidence: 40 }),
-      job({ id: "c", score: 70, confidence: 90 })
-    ];
+    const items = [job({ id: "a", score: 70, confidence: null }), job({ id: "b", score: 70, confidence: 40 }), job({ id: "c", score: 70, confidence: 90 })];
     expect(sortOpportunities(items).map((i) => i.id)).toEqual(["c", "b", "a"]);
   });
 });

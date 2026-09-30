@@ -14,18 +14,26 @@ import { buildOpportunity, sanitizeApplicationUrl } from "@automation/jobs/oppor
 import { makeOpportunity } from "../../helpers/opportunity";
 
 const now = "2026-09-30T00:00:00.000Z";
-const base = { title: "Senior Laravel Developer", url: "https://larajobs.com/job/3931?utm=x", sourceUrl: "https://larajobs.com/feed", source: "larajobs" as const };
+const base = {
+  title: "Senior Laravel Developer",
+  url: "https://larajobs.com/job/3931?utm=x",
+  sourceUrl: "https://larajobs.com/feed",
+  source: "larajobs" as const
+};
 
 describe("buildOpportunity populates the extended contract", () => {
   it("derives period, geography, relocation, source id and description hash from real fields", () => {
-    const job = buildOpportunity({
-      ...base,
-      company: "Acme",
-      location: "Remote / Germany",
-      salary: "€70,000 - €90,000 per year",
-      description: "Overlap with CET hours. We offer a relocation package. Candidates must be based in Germany.",
-      applicationUrl: "https://boards.greenhouse.io/acme/jobs/1#apply"
-    }, now);
+    const job = buildOpportunity(
+      {
+        ...base,
+        company: "Acme",
+        location: "Remote / Germany",
+        salary: "€70,000 - €90,000 per year",
+        description: "Overlap with CET hours. We offer a relocation package. Candidates must be based in Germany.",
+        applicationUrl: "https://boards.greenhouse.io/acme/jobs/1#apply"
+      },
+      now
+    );
     expect(job).toMatchObject({
       salaryPeriod: "year",
       salaryCurrency: "EUR",
@@ -51,8 +59,18 @@ describe("description hash", () => {
   });
 
   it("drives the merge 'updated' count when only the description changes", () => {
-    const previous = makeOpportunity({ id: "a", canonicalUrl: "https://larajobs.com/job/1", descriptionText: "old text", descriptionHash: computeDescriptionHash("old text") });
-    const changed = makeOpportunity({ id: "a", canonicalUrl: "https://larajobs.com/job/1", descriptionText: "new text", descriptionHash: computeDescriptionHash("new text") });
+    const previous = makeOpportunity({
+      id: "a",
+      canonicalUrl: "https://larajobs.com/job/1",
+      descriptionText: "old text",
+      descriptionHash: computeDescriptionHash("old text")
+    });
+    const changed = makeOpportunity({
+      id: "a",
+      canonicalUrl: "https://larajobs.com/job/1",
+      descriptionText: "new text",
+      descriptionHash: computeDescriptionHash("new text")
+    });
     const { stats } = mergeOpportunities([previous], [{ source: "larajobs", opportunities: [changed], skipped: 0, rejected: 0 }], now);
     expect(stats.larajobs.updated).toBe(1);
     const same = mergeOpportunities([previous], [{ source: "larajobs", opportunities: [{ ...previous }], skipped: 0, rejected: 0 }], now);
@@ -64,7 +82,9 @@ describe("deriveSourceId", () => {
   it("extracts each source's own identifier", () => {
     expect(deriveSourceId("larajobs", "https://larajobs.com/job/3931")).toBe("3931");
     expect(deriveSourceId("laravel-news", "https://larajobs.com/job/3925")).toBe("3925");
-    expect(deriveSourceId("weworkremotely", "https://weworkremotely.com/remote-jobs/acculynx-senior-software-engineer")).toBe("acculynx-senior-software-engineer");
+    expect(deriveSourceId("weworkremotely", "https://weworkremotely.com/remote-jobs/acculynx-senior-software-engineer")).toBe(
+      "acculynx-senior-software-engineer"
+    );
     expect(deriveSourceId("remotive", "https://remotive.com/remote-jobs/software-dev/laravel-dev-2091144")).toBe("2091144");
     expect(deriveSourceId("larajobs", "https://larajobs.com/")).toBeNull();
     expect(deriveSourceId("larajobs", "not a url")).toBeNull();
@@ -85,7 +105,12 @@ describe("sanitizeApplicationUrl", () => {
 
 describe("per-source empty-result guard", () => {
   const seen = (id: string, hoursAgo: number, source: "remotive" | "larajobs" = "remotive") =>
-    makeOpportunity({ id, source, canonicalUrl: `https://example.com/${id}`, lastSeenAt: new Date(new Date(now).getTime() - hoursAgo * 3_600_000).toISOString() });
+    makeOpportunity({
+      id,
+      source,
+      canonicalUrl: `https://example.com/${id}`,
+      lastSeenAt: new Date(new Date(now).getTime() - hoursAgo * 3_600_000).toISOString()
+    });
   const empty = (source: "remotive" | "larajobs" = "remotive") => [{ source, opportunities: [], skipped: 0, rejected: 0 }];
 
   it("holds recently-seen listings open when a source that had many suddenly returns nothing", () => {
@@ -100,7 +125,12 @@ describe("per-source empty-result guard", () => {
     const existing = [seen("a", stale), seen("b", stale), seen("c", stale), seen("d", 20)];
     const { opportunities, stats } = mergeOpportunities(existing, empty(), now);
     expect(stats.remotive).toMatchObject({ held: 1, closed: 3 });
-    expect(opportunities.filter((item) => item.status === "closed").map((item) => item.id).sort()).toEqual(["a", "b", "c"]);
+    expect(
+      opportunities
+        .filter((item) => item.status === "closed")
+        .map((item) => item.id)
+        .sort()
+    ).toEqual(["a", "b", "c"]);
   });
 
   it("does not hold when the source had only a few listings (a normal small source emptying)", () => {
@@ -131,14 +161,27 @@ describe("backward compatibility (additive, no schemaVersion bump)", () => {
     expect(migratedFrom).toBeNull();
     expect(snapshot.collectorVersion).toBeNull();
     expect(snapshot.sources[0].held).toBe(0);
-    expect(snapshot.opportunities[0]).toMatchObject({ salaryPeriod: null, sourceId: null, descriptionHash: null, applicationUrl: null, countries: [], regions: [], timezones: [], relocation: "unknown" });
+    expect(snapshot.opportunities[0]).toMatchObject({
+      salaryPeriod: null,
+      sourceId: null,
+      descriptionHash: null,
+      applicationUrl: null,
+      countries: [],
+      regions: [],
+      timezones: [],
+      relocation: "unknown"
+    });
   });
 
   it("records the collector version on new snapshots", () => {
     expect(COLLECTOR_VERSION).toMatch(/^\d+\.\d+\.\d+$/);
     const parsed = opportunitySnapshotSchema.parse({
-      schemaVersion: 2, generatedAt: now, collectorVersion: COLLECTOR_VERSION,
-      candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] }, sources: [], opportunities: []
+      schemaVersion: 2,
+      generatedAt: now,
+      collectorVersion: COLLECTOR_VERSION,
+      candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] },
+      sources: [],
+      opportunities: []
     });
     expect(parsed.collectorVersion).toBe(COLLECTOR_VERSION);
   });
@@ -149,7 +192,9 @@ describe("descriptionsMateriallyDiffer (scrape-noise tolerance)", () => {
   const posting = Array.from({ length: 300 }, (_, index) => `responsibility${index} platform engineering laravel queues deployments`).join(" ");
 
   it("ignores viewer-specific noise: geolocation blobs, time-zone conversions, stripped emoji", () => {
-    expect(descriptionsMateriallyDiffer(`${posting} setIPLocation({"Lat":41.14,"Lon":-73.26})`, `${posting} setIPLocation({"Lat":37.37,"Lon":-122.18})`)).toBe(false);
+    expect(descriptionsMateriallyDiffer(`${posting} setIPLocation({"Lat":41.14,"Lon":-73.26})`, `${posting} setIPLocation({"Lat":37.37,"Lon":-122.18})`)).toBe(
+      false
+    );
     expect(descriptionsMateriallyDiffer(`${posting} Deadline 7:00 AM UTC`, `${posting} Deadline 12:30 PM GMT+5:30`)).toBe(false);
     expect(descriptionsMateriallyDiffer(`🚀 ${posting}`, posting)).toBe(false);
   });

@@ -54,13 +54,20 @@ export function SiteNav() {
   return (
     <>
       <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--surface)]/92 backdrop-blur">
-        <nav aria-label="Primary navigation" className="site-nav-inner mx-auto flex min-h-[72px] w-full max-w-6xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 lg:px-8">
+        <nav
+          aria-label="Primary navigation"
+          className="site-nav-inner mx-auto flex min-h-[72px] w-full max-w-6xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 lg:px-8"
+        >
           <Link href="/" className="shrink-0 whitespace-nowrap text-sm font-bold text-[var(--ink)]">
             Jerome T.
           </Link>
           <div className="hidden min-w-0 items-center gap-1 lg:flex">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} className="whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--ink)] xl:px-3">
+              <a
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--ink)] xl:px-3"
+              >
                 {item.label}
               </a>
             ))}
@@ -69,11 +76,17 @@ export function SiteNav() {
             {/* Wrappers use `contents` so the buttons stay direct flex children when shown.
                 Putting `hidden` on ButtonLink itself loses to its own base `inline-flex`. */}
             <span className="hidden xl:contents">
-              <ButtonLink href={site.github} variant="ghost" className="px-3" icon={<GitBranch size={16} />} eventName="GitHub Visit">GitHub</ButtonLink>
+              <ButtonLink href={site.github} variant="ghost" className="px-3" icon={<GitBranch size={16} />} eventName="GitHub Visit">
+                GitHub
+              </ButtonLink>
             </span>
             <span className="hidden sm:contents">
-              <ButtonLink href={site.emailHref} variant="secondary" className="px-3" icon={<Mail size={16} />} eventName="Contact">Email</ButtonLink>
-              <ButtonLink href={site.resume} variant="primary" className="px-3" icon={<Download size={16} />} eventName="Resume Download">Resume</ButtonLink>
+              <ButtonLink href={site.emailHref} variant="secondary" className="px-3" icon={<Mail size={16} />} eventName="Contact">
+                Email
+              </ButtonLink>
+              <ButtonLink href={site.resume} variant="primary" className="px-3" icon={<Download size={16} />} eventName="Resume Download">
+                Resume
+              </ButtonLink>
             </span>
             <button
               ref={toggleRef}
@@ -109,9 +122,15 @@ export function SiteNav() {
               ))}
             </div>
             <div className="mt-3 grid gap-2 border-t border-[var(--line)] pt-3 sm:grid-cols-2 md:grid-cols-3">
-              <ButtonLink href={site.emailHref} variant="secondary" className="w-full sm:hidden" icon={<Mail size={16} />} eventName="Contact">Email</ButtonLink>
-              <ButtonLink href={site.resume} variant="primary" className="w-full sm:hidden" icon={<Download size={16} />} eventName="Resume Download">Resume</ButtonLink>
-              <ButtonLink href={site.github} variant="secondary" className="w-full" icon={<GitBranch size={16} />} eventName="GitHub Visit">GitHub</ButtonLink>
+              <ButtonLink href={site.emailHref} variant="secondary" className="w-full sm:hidden" icon={<Mail size={16} />} eventName="Contact">
+                Email
+              </ButtonLink>
+              <ButtonLink href={site.resume} variant="primary" className="w-full sm:hidden" icon={<Download size={16} />} eventName="Resume Download">
+                Resume
+              </ButtonLink>
+              <ButtonLink href={site.github} variant="secondary" className="w-full" icon={<GitBranch size={16} />} eventName="GitHub Visit">
+                GitHub
+              </ButtonLink>
             </div>
           </div>
         </div>

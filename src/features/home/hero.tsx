@@ -17,19 +17,21 @@ export function Hero() {
           <h1 className="break-words mt-5 font-display text-[clamp(2.25rem,10vw,3rem)] leading-[1.04] text-balance text-[var(--ink)] sm:text-5xl lg:text-6xl xl:text-7xl">
             {site.name}
           </h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-pretty text-[var(--muted)] sm:text-xl sm:leading-9">
-            {profile.identity.headline}
-          </p>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-pretty text-[var(--muted)] sm:text-xl sm:leading-9">{profile.identity.headline}</p>
           <p className="mt-4 max-w-2xl text-xs font-semibold uppercase tracking-[0.12em] text-[var(--cool)] sm:text-sm sm:tracking-[0.14em]">
             Open to selected global technical-leadership conversations.
           </p>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">
-            {profile.summary}
-          </p>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">{profile.summary}</p>
           <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
-            <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
-            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
+            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">
+              Start a conversation
+            </ButtonLink>
+            <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">
+              View resume
+            </ButtonLink>
+            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">
+              Connect on LinkedIn
+            </ButtonLink>
           </div>
         </div>
 

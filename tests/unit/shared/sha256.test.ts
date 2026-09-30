@@ -35,7 +35,10 @@ describe("sha256Hex matches Node's crypto exactly", () => {
 
   it("FUZZ: 1,000 random strings", () => {
     let seed = 2026;
-    const next = (n: number) => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed % n; };
+    const next = (n: number) => {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed % n;
+    };
     for (let i = 0; i < 1000; i++) {
       const text = Array.from({ length: next(300) }, () => String.fromCodePoint(32 + next(0x2500))).join("");
       expect(sha256Hex(text)).toBe(reference(text));

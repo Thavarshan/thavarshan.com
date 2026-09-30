@@ -1,4 +1,13 @@
-import { attributionFromSearch, classifyReferrer, eventNames, validateWireEvent, type Attribution, type EventName, type ReferrerClass, type WireEvent } from "./events";
+import {
+  attributionFromSearch,
+  classifyReferrer,
+  eventNames,
+  validateWireEvent,
+  type Attribution,
+  type EventName,
+  type ReferrerClass,
+  type WireEvent
+} from "./events";
 
 /**
  * Browser-side telemetry. Design rules:
@@ -48,8 +57,18 @@ function readSessionAttribution(): SessionAttribution | null {
     const raw = sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<SessionAttribution>;
-    const checked = validateWireEvent({ event: "newsletter_click", path: "/", source: parsed.source ?? null, medium: parsed.medium ?? null, campaign: parsed.campaign ?? null, referrer: parsed.referrer, props: {} });
-    return checked.ok ? { source: checked.event.source, medium: checked.event.medium, campaign: checked.event.campaign, referrer: checked.event.referrer } : null;
+    const checked = validateWireEvent({
+      event: "newsletter_click",
+      path: "/",
+      source: parsed.source ?? null,
+      medium: parsed.medium ?? null,
+      campaign: parsed.campaign ?? null,
+      referrer: parsed.referrer,
+      props: {}
+    });
+    return checked.ok
+      ? { source: checked.event.source, medium: checked.event.medium, campaign: checked.event.campaign, referrer: checked.event.referrer }
+      : null;
   } catch {
     return null;
   }
@@ -92,7 +111,9 @@ function send(url: string, body: string) {
     // fall through to fetch
   }
   try {
-    void fetch(url, { method: "POST", body, keepalive: true, mode: "no-cors", credentials: "omit", headers: { "Content-Type": "text/plain" } }).catch(() => undefined);
+    void fetch(url, { method: "POST", body, keepalive: true, mode: "no-cors", credentials: "omit", headers: { "Content-Type": "text/plain" } }).catch(
+      () => undefined
+    );
   } catch {
     // Blocked or offline: dropping the event is the correct behaviour.
   }

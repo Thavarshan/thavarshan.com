@@ -1,14 +1,26 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { EVENTS, aggregateKey, attributionFromSearch, classifyReferrer, eventNames, parseAggregateKey, sanitizeUtm, stageOf, validateWireEvent } from "@/features/telemetry/events";
+import {
+  EVENTS,
+  aggregateKey,
+  attributionFromSearch,
+  classifyReferrer,
+  eventNames,
+  parseAggregateKey,
+  sanitizeUtm,
+  stageOf,
+  validateWireEvent
+} from "@/features/telemetry/events";
 import { goalToEvent, locationFromPath, projectFromHref } from "@/features/telemetry/goals";
 
 const base = { path: "/projects/fetch-php", source: null, medium: null, campaign: null, referrer: "direct", props: {} };
-const valid = (event: string, props: Record<string, string> = {}, extra: Record<string, unknown> = {}) => validateWireEvent({ ...base, event, props, ...extra });
+const valid = (event: string, props: Record<string, string> = {}, extra: Record<string, unknown> = {}) =>
+  validateWireEvent({ ...base, event, props, ...extra });
 
 describe("taxonomy", () => {
   it("covers every high-intent action the issue names, split into engagement and intent", () => {
-    for (const name of ["repo_click", "demo_click", "cv_download", "contact_cta", "consulting_cta", "hire_cta", "tool_completed"] as const) expect(stageOf(name), name).toBe("intent");
+    for (const name of ["repo_click", "demo_click", "cv_download", "contact_cta", "consulting_cta", "hire_cta", "tool_completed"] as const)
+      expect(stageOf(name), name).toBe("intent");
     for (const name of ["profile_click", "insight_read", "newsletter_click"] as const) expect(stageOf(name), name).toBe("engagement");
     expect(eventNames.length).toBe(Object.keys(EVENTS).length);
   });
@@ -17,7 +29,9 @@ describe("taxonomy", () => {
 describe("validateWireEvent: strict allowlist at the trust boundary", () => {
   it("accepts well-formed events", () => {
     expect(valid("repo_click", { project: "fetch-php" }).ok).toBe(true);
-    expect(valid("cv_download", { location: "home" }, { source: "linkedin", medium: "social", campaign: "release-fetch-php-3-9-0", referrer: "social" }).ok).toBe(true);
+    expect(
+      valid("cv_download", { location: "home" }, { source: "linkedin", medium: "social", campaign: "release-fetch-php-3-9-0", referrer: "social" }).ok
+    ).toBe(true);
     expect(valid("profile_click", { network: "github" }).ok).toBe(true);
     expect(valid("newsletter_click").ok).toBe(true);
   });
@@ -51,13 +65,19 @@ describe("validateWireEvent: strict allowlist at the trust boundary", () => {
 
   it("FUZZ: no random free-text value is ever accepted in a property", () => {
     let seed = 99;
-    const rand = (n: number) => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed % n; };
+    const rand = (n: number) => {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed % n;
+    };
     const alphabet = "abcXYZ019 -_@.:/?=&#%\n\t<>'\"{}[]|\\😀";
     let accepted = 0;
     for (let i = 0; i < 3000; i++) {
       const text = Array.from({ length: 1 + rand(60) }, () => alphabet[rand(alphabet.length)]).join("");
       const result = valid("repo_click", { project: text });
-      if (result.ok) { accepted++; expect(text).toMatch(/^[a-z0-9][a-z0-9-]{0,79}$/); }
+      if (result.ok) {
+        accepted++;
+        expect(text).toMatch(/^[a-z0-9][a-z0-9-]{0,79}$/);
+      }
     }
     expect(accepted).toBeLessThan(3000);
   });
@@ -66,7 +86,9 @@ describe("validateWireEvent: strict allowlist at the trust boundary", () => {
 describe("real content slugs", () => {
   it("accepts every published Insight slug (they are longer than 40 characters)", async () => {
     const { readdirSync } = await import("node:fs");
-    const slugs = readdirSync("content/insights").filter((file) => file.endsWith(".mdx")).map((file) => file.replace(/\.mdx$/, ""));
+    const slugs = readdirSync("content/insights")
+      .filter((file) => file.endsWith(".mdx"))
+      .map((file) => file.replace(/\.mdx$/, ""));
     expect(slugs.length).toBeGreaterThan(0);
     expect(slugs.some((value) => value.length > 40)).toBe(true);
     for (const value of slugs) expect(valid("insight_read", { slug: value }).ok, value).toBe(true);
@@ -85,7 +107,11 @@ describe("attribution", () => {
   });
 
   it("reads UTM from a query string", () => {
-    expect(attributionFromSearch("?utm_source=LinkedIn&utm_medium=social&utm_campaign=x&other=1")).toEqual({ source: "linkedin", medium: "social", campaign: "x" });
+    expect(attributionFromSearch("?utm_source=LinkedIn&utm_medium=social&utm_campaign=x&other=1")).toEqual({
+      source: "linkedin",
+      medium: "social",
+      campaign: "x"
+    });
     expect(attributionFromSearch("?utm_source=a b&utm_campaign=ok")).toEqual({ source: null, medium: null, campaign: "ok" });
     expect(attributionFromSearch("")).toEqual({ source: null, medium: null, campaign: null });
   });
@@ -93,12 +119,21 @@ describe("attribution", () => {
   it("classifies referrers into coarse classes and never keeps a URL", () => {
     const own = "thavarshan.com";
     const cases: Array<[string, string]> = [
-      ["", "direct"], ["https://www.google.com/search?q=secret+query", "search"], ["https://duckduckgo.com/", "search"],
-      ["https://www.linkedin.com/feed/", "social"], ["https://lnkd.in/abc", "social"], ["https://t.co/xyz", "social"],
-      ["https://github.com/Thavarshan/fetch-php", "code"], ["https://packagist.org/packages/x", "code"],
-      ["https://www.reddit.com/r/laravel/", "community"], ["https://dev.to/x", "community"], ["https://laravel-news.com/", "community"],
-      ["https://thavarshan.com/insights", "internal"], ["https://www.thavarshan.com/", "internal"],
-      ["https://random-blog.example/post", "other"], ["not a url", "other"]
+      ["", "direct"],
+      ["https://www.google.com/search?q=secret+query", "search"],
+      ["https://duckduckgo.com/", "search"],
+      ["https://www.linkedin.com/feed/", "social"],
+      ["https://lnkd.in/abc", "social"],
+      ["https://t.co/xyz", "social"],
+      ["https://github.com/Thavarshan/fetch-php", "code"],
+      ["https://packagist.org/packages/x", "code"],
+      ["https://www.reddit.com/r/laravel/", "community"],
+      ["https://dev.to/x", "community"],
+      ["https://laravel-news.com/", "community"],
+      ["https://thavarshan.com/insights", "internal"],
+      ["https://www.thavarshan.com/", "internal"],
+      ["https://random-blog.example/post", "other"],
+      ["not a url", "other"]
     ];
     for (const [referrer, expected] of cases) expect(classifyReferrer(referrer, own), referrer).toBe(expected);
     expect(classifyReferrer("https://notlinkedin.com.evil.example/", own)).toBe("other");
@@ -115,7 +150,14 @@ describe("aggregate keys", () => {
   });
 
   it("rejects malformed or forged keys", () => {
-    for (const key of ["", "x|y", "m|2026-10-01|nope|/|-|-|-|direct|-", "m|bad-date|repo_click|/|-|-|-|direct|project=x", "m|2026-10-01|repo_click|/|-|-|-|direct|-"]) expect(parseAggregateKey(key), key).toBeNull();
+    for (const key of [
+      "",
+      "x|y",
+      "m|2026-10-01|nope|/|-|-|-|direct|-",
+      "m|bad-date|repo_click|/|-|-|-|direct|project=x",
+      "m|2026-10-01|repo_click|/|-|-|-|direct|-"
+    ])
+      expect(parseAggregateKey(key), key).toBeNull();
   });
 });
 
@@ -125,7 +167,10 @@ describe("call-to-action vocabulary -> taxonomy", () => {
     expect(goalToEvent("Resume Download", "/docs/Jerome-Resume.pdf", "/")).toEqual({ name: "cv_download", props: { location: "home" } });
     expect(goalToEvent("LinkedIn Visit", "https://linkedin.com/in/x", "/")).toEqual({ name: "profile_click", props: { network: "linkedin" } });
     expect(goalToEvent("GitHub Visit", "https://github.com/Thavarshan", "/")).toEqual({ name: "profile_click", props: { network: "github" } });
-    expect(goalToEvent("Repository Visit", "https://github.com/Thavarshan/Fetch-PHP", "/projects")).toEqual({ name: "repo_click", props: { project: "fetch-php" } });
+    expect(goalToEvent("Repository Visit", "https://github.com/Thavarshan/Fetch-PHP", "/projects")).toEqual({
+      name: "repo_click",
+      props: { project: "fetch-php" }
+    });
     expect(goalToEvent("Repository Visit", "https://example.com/x", "/projects/matrix")).toEqual({ name: "repo_click", props: { project: "matrix" } });
     expect(goalToEvent("Repository Visit", "https://example.com/x", "/")).toBeNull();
   });

@@ -1,0 +1,17 @@
+# Generated, vendored or hand-authored non-code content is not formatted.
+node_modules
+.next
+out
+.wrangler
+.wrangler-e2e
+playwright-report
+test-results
+.lighthouseci
+data
+marketing
+cv
+public
+docs
+content
+tests/fixtures
+package-lock.json

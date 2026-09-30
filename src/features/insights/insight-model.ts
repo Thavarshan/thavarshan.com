@@ -21,7 +21,10 @@ const dateSchema = z
 
 export const insightDefinitionSchema = z
   .object({
-    slug: z.string().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    slug: z
+      .string()
+      .min(1)
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     title: z.string().min(1),
     description: z.string().min(1),
     publishedAt: dateSchema,
@@ -45,10 +48,7 @@ export const insightDefinitionSchema = z
 
 export type InsightDefinition = z.infer<typeof insightDefinitionSchema>;
 
-export type MarkdownBlock =
-  | { type: "heading"; depth: 2 | 3; text: string }
-  | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
+export type MarkdownBlock = { type: "heading"; depth: 2 | 3; text: string } | { type: "paragraph"; text: string } | { type: "list"; items: string[] };
 
 export type Insight = InsightDefinition & {
   content: string;

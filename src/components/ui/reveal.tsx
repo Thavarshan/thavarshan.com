@@ -7,11 +7,7 @@ type RevealProps = {
 
 export function Reveal({ children, delay = 0 }: RevealProps) {
   return (
-    <div
-      className="reveal-on-load"
-      style={{ animationDelay: `${delay}s` }}
-      data-motion="reveal"
-    >
+    <div className="reveal-on-load" style={{ animationDelay: `${delay}s` }} data-motion="reveal">
       {children}
     </div>
   );

@@ -36,13 +36,7 @@ describe("project data", () => {
   it("falls back to curated order when GitHub stats are missing", () => {
     const projects = mergeProjectDefinitions(projectDefinitions, new Map());
 
-    expect(projects.map((project) => project.repository)).toEqual([
-      "fetch-php",
-      "filterable",
-      "phpvm",
-      "comet",
-      "matrix"
-    ]);
+    expect(projects.map((project) => project.repository)).toEqual(["fetch-php", "filterable", "phpvm", "comet", "matrix"]);
     expect(projects.every((project) => project.stats === undefined)).toBe(true);
   });
 

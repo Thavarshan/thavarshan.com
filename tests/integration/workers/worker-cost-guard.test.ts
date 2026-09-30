@@ -48,9 +48,33 @@ describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (co
 
   it("does not declare any paid-plan or usage-billed product, by name", () => {
     const forbidden = [
-      "r2_buckets", "d1_databases", "durable_objects", "queues", "vectorize", "hyperdrive", "ai", "browser",
-      "analytics_engine", "services", "dispatch_namespaces", "workflows", "containers", "images", "mtls_certificates",
-      "unsafe", "limits", "cpu_ms", "usage_model", "placement", "logpush", "observability", "tail_consumers", "routes", "route", "triggers", "smart"
+      "r2_buckets",
+      "d1_databases",
+      "durable_objects",
+      "queues",
+      "vectorize",
+      "hyperdrive",
+      "ai",
+      "browser",
+      "analytics_engine",
+      "services",
+      "dispatch_namespaces",
+      "workflows",
+      "containers",
+      "images",
+      "mtls_certificates",
+      "unsafe",
+      "limits",
+      "cpu_ms",
+      "usage_model",
+      "placement",
+      "logpush",
+      "observability",
+      "tail_consumers",
+      "routes",
+      "route",
+      "triggers",
+      "smart"
     ];
     const text = config.replace(/#.*$/gm, "");
     for (const name of forbidden) {
@@ -69,7 +93,9 @@ describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (co
 });
 
 describe("deploy automation cannot switch anything to a paid path", () => {
-  const workflows = ["job-review-deploy.yml", "job-review-preview.yml", "site-metrics-deploy.yml"].map((name) => readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8")).join("\n");
+  const workflows = ["job-review-deploy.yml", "job-review-preview.yml", "site-metrics-deploy.yml"]
+    .map((name) => readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8"))
+    .join("\n");
 
   it("only runs wrangler deploy / versions upload against the reviewed config", () => {
     const wranglerCalls = workflows.match(/wrangler\s+[a-z-]+(?:\s+[a-z-]+)?/g) ?? [];

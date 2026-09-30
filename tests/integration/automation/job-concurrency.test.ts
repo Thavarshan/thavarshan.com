@@ -41,11 +41,14 @@ describe("withRetry", () => {
   it("succeeds after transient failures within the retry budget", async () => {
     vi.useFakeTimers();
     let attempts = 0;
-    const promise = withRetry(async () => {
-      attempts++;
-      if (attempts < 3) throw new Error("transient");
-      return "ok";
-    }, { retries: 3, baseDelayMs: 10 });
+    const promise = withRetry(
+      async () => {
+        attempts++;
+        if (attempts < 3) throw new Error("transient");
+        return "ok";
+      },
+      { retries: 3, baseDelayMs: 10 }
+    );
 
     await vi.runAllTimersAsync();
     await expect(promise).resolves.toBe("ok");
@@ -56,10 +59,13 @@ describe("withRetry", () => {
   it("exhausts retries and rethrows the last error", async () => {
     vi.useFakeTimers();
     let attempts = 0;
-    const promise = withRetry(async () => {
-      attempts++;
-      throw new Error(`fail-${attempts}`);
-    }, { retries: 2, baseDelayMs: 10 });
+    const promise = withRetry(
+      async () => {
+        attempts++;
+        throw new Error(`fail-${attempts}`);
+      },
+      { retries: 2, baseDelayMs: 10 }
+    );
 
     const assertion = expect(promise).rejects.toThrow("fail-3");
     await vi.runAllTimersAsync();
@@ -70,10 +76,13 @@ describe("withRetry", () => {
 
   it("does not retry a non-retryable error", async () => {
     let attempts = 0;
-    const promise = withRetry(async () => {
-      attempts++;
-      throw new SkipEnrichmentError("skip me");
-    }, { retries: 5, baseDelayMs: 10, isRetryable: (error) => !(error instanceof SkipEnrichmentError) });
+    const promise = withRetry(
+      async () => {
+        attempts++;
+        throw new SkipEnrichmentError("skip me");
+      },
+      { retries: 5, baseDelayMs: 10, isRetryable: (error) => !(error instanceof SkipEnrichmentError) }
+    );
 
     await expect(promise).rejects.toThrow("skip me");
     expect(attempts).toBe(1);

@@ -3,7 +3,7 @@ root = true
 [{*.html,*.js,*.jsx,*.json,*.md,*.ts,*.tsx,*.vue,*.yml,*eslintrc}]
 indent_style = space
 indent_size = 2
-insert_final_newline = false
+insert_final_newline = true
 max_line_length = 160
 trim_trailing_whitespace = true
 

@@ -6,20 +6,24 @@ describe("mergeOpportunities", () => {
   const now = "2026-09-23T00:00:00.000Z";
 
   it("preserves firstSeenAt and marks a re-seen item active on upsert", () => {
-    const existing = [makeOpportunity({
-      id: "a",
-      source: "larajobs",
-      canonicalUrl: "https://larajobs.com/job/1",
-      firstSeenAt: "2026-01-01T00:00:00.000Z",
-      lastSeenAt: "2026-01-01T00:00:00.000Z",
-      status: "new"
-    })];
-    const results: SourceCollectionOutcome[] = [{
-      source: "larajobs",
-      opportunities: [makeOpportunity({ id: "a", source: "larajobs", canonicalUrl: "https://larajobs.com/job/1", score: 90 })],
-      skipped: 0,
-      rejected: 0
-    }];
+    const existing = [
+      makeOpportunity({
+        id: "a",
+        source: "larajobs",
+        canonicalUrl: "https://larajobs.com/job/1",
+        firstSeenAt: "2026-01-01T00:00:00.000Z",
+        lastSeenAt: "2026-01-01T00:00:00.000Z",
+        status: "new"
+      })
+    ];
+    const results: SourceCollectionOutcome[] = [
+      {
+        source: "larajobs",
+        opportunities: [makeOpportunity({ id: "a", source: "larajobs", canonicalUrl: "https://larajobs.com/job/1", score: 90 })],
+        skipped: 0,
+        rejected: 0
+      }
+    ];
 
     const { opportunities, stats } = mergeOpportunities(existing, results, now);
     expect(opportunities).toHaveLength(1);
@@ -47,13 +51,15 @@ describe("mergeOpportunities", () => {
   });
 
   it("leaves a failed source's existing opportunities untouched", () => {
-    const existing = [makeOpportunity({
-      id: "a",
-      source: "remotive",
-      canonicalUrl: "https://remotive.com/job/1",
-      status: "active",
-      lastSeenAt: "2026-01-01T00:00:00.000Z"
-    })];
+    const existing = [
+      makeOpportunity({
+        id: "a",
+        source: "remotive",
+        canonicalUrl: "https://remotive.com/job/1",
+        status: "active",
+        lastSeenAt: "2026-01-01T00:00:00.000Z"
+      })
+    ];
     const results: SourceCollectionOutcome[] = [{ source: "remotive", failed: true, error: "network error" }];
 
     const { opportunities, stats } = mergeOpportunities(existing, results, now);
@@ -87,15 +93,17 @@ describe("mergeOpportunities", () => {
   });
 
   it("never flags two same-source items as duplicates of each other", () => {
-    const results: SourceCollectionOutcome[] = [{
-      source: "larajobs",
-      opportunities: [
-        makeOpportunity({ id: "a", source: "larajobs", canonicalUrl: "https://larajobs.com/job/1", contentFingerprint: "shared-fp" }),
-        makeOpportunity({ id: "b", source: "larajobs", canonicalUrl: "https://larajobs.com/job/2", contentFingerprint: "shared-fp" })
-      ],
-      skipped: 0,
-      rejected: 0
-    }];
+    const results: SourceCollectionOutcome[] = [
+      {
+        source: "larajobs",
+        opportunities: [
+          makeOpportunity({ id: "a", source: "larajobs", canonicalUrl: "https://larajobs.com/job/1", contentFingerprint: "shared-fp" }),
+          makeOpportunity({ id: "b", source: "larajobs", canonicalUrl: "https://larajobs.com/job/2", contentFingerprint: "shared-fp" })
+        ],
+        skipped: 0,
+        rejected: 0
+      }
+    ];
 
     const { opportunities } = mergeOpportunities([], results, now);
     expect(opportunities.every((item) => item.duplicateOfIds.length === 0)).toBe(true);

@@ -1,11 +1,6 @@
 import { spawnSync } from "node:child_process";
 
-const generatedPaths = [
-  "data/profile.generated.json",
-  "data/github.generated.json",
-  "cv/generated/Jerome-Resume.tex",
-  "public/docs/Jerome-Resume.pdf"
-];
+const generatedPaths = ["data/profile.generated.json", "data/github.generated.json", "cv/generated/Jerome-Resume.tex", "public/docs/Jerome-Resume.pdf"];
 
 function run(command: string, args: string[], capture = false) {
   const result = spawnSync(command, args, {

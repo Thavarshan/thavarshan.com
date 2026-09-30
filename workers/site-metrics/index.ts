@@ -24,7 +24,10 @@ export interface Env {
 }
 
 function allowedOrigins(env: Env) {
-  return (env.ALLOWED_ORIGINS ?? "https://thavarshan.com").split(",").map((origin) => origin.trim()).filter(Boolean);
+  return (env.ALLOWED_ORIGINS ?? "https://thavarshan.com")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 }
 
 function baseHeaders(): Record<string, string> {
@@ -32,7 +35,7 @@ function baseHeaders(): Record<string, string> {
 }
 
 function corsHeaders(origin: string): Record<string, string> {
-  return { "Access-Control-Allow-Origin": origin, "Vary": "Origin" };
+  return { "Access-Control-Allow-Origin": origin, Vary: "Origin" };
 }
 
 async function readTextLimited(request: Request, maxBytes: number): Promise<string | null> {
@@ -46,12 +49,18 @@ async function readTextLimited(request: Request, maxBytes: number): Promise<stri
     const { done, value } = await reader.read();
     if (done) break;
     total += value.byteLength;
-    if (total > maxBytes) { await reader.cancel(); return null; }
+    if (total > maxBytes) {
+      await reader.cancel();
+      return null;
+    }
     chunks.push(value);
   }
   const joined = new Uint8Array(total);
   let offset = 0;
-  for (const chunk of chunks) { joined.set(chunk, offset); offset += chunk.byteLength; }
+  for (const chunk of chunks) {
+    joined.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
   return new TextDecoder().decode(joined);
 }
 
@@ -83,7 +92,12 @@ export async function handleRequest(request: Request, env: Env, options: Handler
 
   if (request.method === "OPTIONS") {
     if (!originAllowed) return respond(403);
-    return respond(204, null, { ...corsHeaders(origin), "Access-Control-Allow-Methods": "POST", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Max-Age": "86400" });
+    return respond(204, null, {
+      ...corsHeaders(origin),
+      "Access-Control-Allow-Methods": "POST",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Max-Age": "86400"
+    });
   }
   if (request.method !== "POST") return respond(405, "Method not allowed", { Allow: "POST, OPTIONS" });
   if (!originAllowed) return respond(403);

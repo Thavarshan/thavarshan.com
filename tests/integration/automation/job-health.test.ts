@@ -5,12 +5,28 @@ import { HEARTBEAT_HOURS, assessRunHealth, isMaterialChange, renderRunSummary, s
 const now = "2026-09-30T12:00:00.000Z";
 const quiet: SourceStats = { added: 0, updated: 0, unchanged: 5, closed: 0, pruned: 0, held: 0 };
 const source = (name: string, status: "ok" | "failed" = "ok", durationMs: number | null = 1200) => ({
-  name, url: "https://example.com", collectedAt: now, status, durationMs, recordsFound: 5, added: 0, updated: 0, closed: 0, held: 0, skipped: 0, rejected: 0, error: status === "failed" ? "boom" : null
+  name,
+  url: "https://example.com",
+  collectedAt: now,
+  status,
+  durationMs,
+  recordsFound: 5,
+  added: 0,
+  updated: 0,
+  closed: 0,
+  held: 0,
+  skipped: 0,
+  rejected: 0,
+  error: status === "failed" ? "boom" : null
 });
 const previous = (overrides: Partial<OpportunitySnapshot> = {}): OpportunitySnapshot => ({
-  schemaVersion: 2, generatedAt: "2026-09-30T02:00:00.000Z", collectorVersion: COLLECTOR_VERSION,
+  schemaVersion: 2,
+  generatedAt: "2026-09-30T02:00:00.000Z",
+  collectorVersion: COLLECTOR_VERSION,
   candidate: { location: "Sri Lanka", preferredStack: [], experienceYears: 11, workModes: ["remote"] },
-  sources: [source("A"), source("B")], opportunities: [], ...overrides
+  sources: [source("A"), source("B")],
+  opportunities: [],
+  ...overrides
 });
 
 describe("assessRunHealth", () => {
@@ -25,7 +41,11 @@ describe("assessRunHealth", () => {
 
 describe("isMaterialChange (no-op commit avoidance)", () => {
   const args = (overrides: Record<string, unknown> = {}) => ({
-    previous: previous(), stats: { larajobs: quiet }, nextSources: [source("A"), source("B")], now, ...overrides
+    previous: previous(),
+    stats: { larajobs: quiet },
+    nextSources: [source("A"), source("B")],
+    now,
+    ...overrides
   });
 
   it("treats an unchanged day as not material", () => {
@@ -58,7 +78,10 @@ describe("renderRunSummary", () => {
 
   it("reports per-source duration, health headline and failures", () => {
     const text = renderRunSummary({
-      sources, opportunities: [], written: true, reason: "larajobs changed",
+      sources,
+      opportunities: [],
+      written: true,
+      reason: "larajobs changed",
       health: { failedSources: [{ source: "remotive", error: "robots.txt does not permit fetching x" }], allFailed: false, degraded: true }
     });
     expect(text).toContain("Degraded — 1 of 3 sources failed");
@@ -75,14 +98,22 @@ describe("renderRunSummary", () => {
     const text = renderRunSummary({ sources: [source("A")], opportunities: [], health: healthy, written: false, reason: "no material changes" });
     expect(text).toContain("All sources healthy");
     expect(text).toContain("not rewritten (no material changes)");
-    const dead = renderRunSummary({ sources, opportunities: [], written: false, reason: "every source failed", health: { failedSources: [], allFailed: true, degraded: true } });
+    const dead = renderRunSummary({
+      sources,
+      opportunities: [],
+      written: false,
+      reason: "every source failed",
+      health: { failedSources: [], allFailed: true, degraded: true }
+    });
     expect(dead).toContain("All sources failed — snapshot left untouched");
   });
 });
 
 describe("summarizeError", () => {
   it("reduces Playwright's coloured multi-line errors to one clean line", () => {
-    const raw = new Error("apiRequestContext.get: getaddrinfo EAI_AGAIN remotive.com\nCall log:\n\u001b[2m  - → GET https://remotive.com/api\u001b[22m\n    - user-agent: x");
+    const raw = new Error(
+      "apiRequestContext.get: getaddrinfo EAI_AGAIN remotive.com\nCall log:\n\u001b[2m  - → GET https://remotive.com/api\u001b[22m\n    - user-agent: x"
+    );
     expect(summarizeError(raw)).toBe("apiRequestContext.get: getaddrinfo EAI_AGAIN remotive.com");
   });
 

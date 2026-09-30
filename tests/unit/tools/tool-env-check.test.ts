@@ -1,6 +1,17 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { MAX_INPUT_CHARS, MAX_LINES, checkEnv, exampleEnv, exampleEnvBroken, exampleEnvHealthy, formatReport, looksLikeRealSecret, parseEnv, type CheckResult } from "@/features/tools/env-check";
+import {
+  MAX_INPUT_CHARS,
+  MAX_LINES,
+  checkEnv,
+  exampleEnv,
+  exampleEnvBroken,
+  exampleEnvHealthy,
+  formatReport,
+  looksLikeRealSecret,
+  parseEnv,
+  type CheckResult
+} from "@/features/tools/env-check";
 
 function check(env: string, example: string): CheckResult {
   const outcome = checkEnv(env, example);
@@ -14,8 +25,12 @@ describe("parseEnv", () => {
     const { entries, findings } = parseEnv(`# comment\nA=1\nexport B=two\nC="three # not a comment"\nD='four'\nE=five # trailing comment\nF=\n`, "env");
     expect(findings).toEqual([]);
     expect(entries.map((entry) => [entry.key, entry.value, entry.quote, entry.empty])).toEqual([
-      ["A", "1", "none", false], ["B", "two", "none", false], ["C", "three # not a comment", "double", false],
-      ["D", "four", "single", false], ["E", "five", "none", false], ["F", "", "none", true]
+      ["A", "1", "none", false],
+      ["B", "two", "none", false],
+      ["C", "three # not a comment", "double", false],
+      ["D", "four", "single", false],
+      ["E", "five", "none", false],
+      ["F", "", "none", true]
     ]);
   });
 
@@ -35,7 +50,11 @@ describe("parseEnv", () => {
 
   it("flags malformed lines with line numbers", () => {
     const { findings } = parseEnv("GOOD=1\nJUSTAWORD\n1BAD=x\nA-B=y\n", "env");
-    expect(findings.map((finding) => [finding.code, finding.line])).toEqual([["no-equals", 2], ["bad-key", 3], ["bad-key", 4]]);
+    expect(findings.map((finding) => [finding.code, finding.line])).toEqual([
+      ["no-equals", 2],
+      ["bad-key", 3],
+      ["bad-key", 4]
+    ]);
   });
 
   it("flags an unterminated quote and text after a closing quote", () => {
@@ -66,7 +85,10 @@ describe("checkEnv", () => {
   });
 
   it("reports missing keys, undocumented keys and empty overrides", () => {
-    const result = check("APP_ENV=local\nEXTRA=1\nDB_HOST=\nAPP_KEY=" + "x".repeat(32) + "\n", "APP_ENV=local\nDB_HOST=127.0.0.1\nREDIS_HOST=127.0.0.1\nMAIL_HOST=smtp\n");
+    const result = check(
+      "APP_ENV=local\nEXTRA=1\nDB_HOST=\nAPP_KEY=" + "x".repeat(32) + "\n",
+      "APP_ENV=local\nDB_HOST=127.0.0.1\nREDIS_HOST=127.0.0.1\nMAIL_HOST=smtp\n"
+    );
     expect(codes(result)).toEqual(expect.arrayContaining(["missing:REDIS_HOST", "missing:MAIL_HOST", "extra:EXTRA", "empty-override:DB_HOST"]));
     expect(result.stats).toMatchObject({ missing: 2, extra: 2, envKeys: 4, exampleKeys: 4 });
     expect(result.missingBlock).toBe("REDIS_HOST=127.0.0.1\nMAIL_HOST=smtp");
@@ -89,7 +111,10 @@ describe("checkEnv", () => {
   });
 
   it("warns when .env.example looks like it holds real credentials, without echoing them", () => {
-    const result = check("", "STRIPE_SECRET=sk-live-abcdefghijklmnopqrstuvwxyz0123\nAWS_KEY=AKIAIOSFODNN7EXAMPLE\nDB_PASSWORD=secret\nAPP_NAME=Laravel\nSESSION_SECRET=f81d4fae7dec11d0a76500a0c91e6bf6a1b2c3\n");
+    const result = check(
+      "",
+      "STRIPE_SECRET=sk-live-abcdefghijklmnopqrstuvwxyz0123\nAWS_KEY=AKIAIOSFODNN7EXAMPLE\nDB_PASSWORD=secret\nAPP_NAME=Laravel\nSESSION_SECRET=f81d4fae7dec11d0a76500a0c91e6bf6a1b2c3\n"
+    );
     expect(codes(result)).toEqual(expect.arrayContaining(["secret-in-example:STRIPE_SECRET", "secret-in-example:AWS_KEY", "secret-in-example:SESSION_SECRET"]));
     expect(codes(result)).not.toContain("secret-in-example:DB_PASSWORD");
     expect(codes(result)).not.toContain("secret-in-example:APP_NAME");
@@ -118,12 +143,25 @@ describe("checkEnv", () => {
     // The bare example used as the .env is (correctly) not healthy: APP_KEY is empty.
     expect(codes(check(exampleEnv, exampleEnv))).toContain("app-key-empty:APP_KEY");
     const broken = check(exampleEnvBroken, exampleEnv);
-    expect(codes(broken)).toEqual(expect.arrayContaining(["unquoted-whitespace:APP_NAME", "debug-in-production:APP_DEBUG", "duplicate:DB_HOST", "unterminated-quote:MAIL_FROM_NAME", "app-key-empty:APP_KEY"]));
+    expect(codes(broken)).toEqual(
+      expect.arrayContaining([
+        "unquoted-whitespace:APP_NAME",
+        "debug-in-production:APP_DEBUG",
+        "duplicate:DB_HOST",
+        "unterminated-quote:MAIL_FROM_NAME",
+        "app-key-empty:APP_KEY"
+      ])
+    );
   });
 });
 
 describe("privacy: values never appear in output", () => {
-  const SENTINELS = ["ZZ_SENTINEL_PASSWORD_9f8e7d", "ZZ_SENTINEL_TOKEN_1a2b3c", "sk-live-ZZSENTINELSTRIPE0123456789abcdef", "ZZ_SENTINEL_EXAMPLE_SECRET_55aa77bb99cc11dd22ee"];
+  const SENTINELS = [
+    "ZZ_SENTINEL_PASSWORD_9f8e7d",
+    "ZZ_SENTINEL_TOKEN_1a2b3c",
+    "sk-live-ZZSENTINELSTRIPE0123456789abcdef",
+    "ZZ_SENTINEL_EXAMPLE_SECRET_55aa77bb99cc11dd22ee"
+  ];
 
   it("keeps every value out of findings, the report and the missing-keys block", () => {
     const env = `APP_KEY=\nAPP_ENV=production\nAPP_DEBUG=true\nDB_PASSWORD=${SENTINELS[0]}\nAPI_TOKEN=${SENTINELS[1]}\nSTRIPE_SECRET=${SENTINELS[2]}\nBROKEN=has spaces ${SENTINELS[0]}\nDUP=1\nDUP=${SENTINELS[1]}\nQ="${SENTINELS[0]}\n`;
@@ -136,7 +174,7 @@ describe("privacy: values never appear in output", () => {
   });
 
   it("only echoes non-sensitive example defaults into the missing-keys block", () => {
-    const result = check("A=1\n", "A=1\nAPP_URL=http://localhost\nDB_PORT=3306\nMAIL_FROM_NAME=\"Hello World\"\nCACHE_KEY_PREFIX=abc\n");
+    const result = check("A=1\n", 'A=1\nAPP_URL=http://localhost\nDB_PORT=3306\nMAIL_FROM_NAME="Hello World"\nCACHE_KEY_PREFIX=abc\n');
     expect(result.missingBlock.split("\n")).toEqual(["APP_URL=http://localhost", "DB_PORT=3306", 'MAIL_FROM_NAME="Hello World"', "CACHE_KEY_PREFIX="]);
   });
 });
@@ -151,13 +189,14 @@ describe("limits and robustness", () => {
   });
 
   it("handles hostile-looking input without throwing", () => {
-    for (const input of ["=", "===", "A=\"", "'''", "\u0000\u0001A=1", "A=" + "\\".repeat(5000), "${".repeat(2000), "export", "export =", "A=$(rm -rf /)\n"]) {
+    for (const input of ["=", "===", 'A="', "'''", "\u0000\u0001A=1", "A=" + "\\".repeat(5000), "${".repeat(2000), "export", "export =", "A=$(rm -rf /)\n"]) {
       expect(() => checkEnv(input, input)).not.toThrow();
     }
   });
 
   it("classifies obvious placeholders as not secret", () => {
-    for (const value of ["", "secret", "password", "changeme", "your-key-here", "null", "root", "<token>", "${OTHER}"]) expect(looksLikeRealSecret("API_TOKEN", value), value).toBe(false);
+    for (const value of ["", "secret", "password", "changeme", "your-key-here", "null", "root", "<token>", "${OTHER}"])
+      expect(looksLikeRealSecret("API_TOKEN", value), value).toBe(false);
     expect(looksLikeRealSecret("API_TOKEN", "a8f3k29dj4h5g6f7d8s9a0q1w2e3r4")).toBe(true);
     expect(looksLikeRealSecret("APP_NAME", "Laravel")).toBe(false);
   });

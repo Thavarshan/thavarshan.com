@@ -128,7 +128,11 @@ export interface HandlerOptions {
   log?: (line: string) => void;
 }
 
-async function route(request: Request, env: Env, ctx: { requestId: string; fetcher: typeof fetch; now: Date; log: (entry: Omit<LogEntry, "requestId">) => void }): Promise<Response> {
+async function route(
+  request: Request,
+  env: Env,
+  ctx: { requestId: string; fetcher: typeof fetch; now: Date; log: (entry: Omit<LogEntry, "requestId">) => void }
+): Promise<Response> {
   const url = new URL(request.url);
   const { fetcher, now, log } = ctx;
 
@@ -139,14 +143,27 @@ async function route(request: Request, env: Env, ctx: { requestId: string; fetch
 
   const client = request.headers.get("cf-connecting-ip") ?? "local";
   const limit = (request.method === "POST" ? limiters.write : limiters.read).check(`${request.method === "POST" ? "w" : "r"}:${client}`);
-  if (!limit.allowed) return new Response("Too many requests", { status: 429, headers: { ...baseHeaders("text/plain; charset=utf-8"), "Retry-After": String(limit.retryAfterSeconds) } });
+  if (!limit.allowed)
+    return new Response("Too many requests", {
+      status: 429,
+      headers: { ...baseHeaders("text/plain; charset=utf-8"), "Retry-After": String(limit.retryAfterSeconds) }
+    });
 
   const readOnly = env.READ_ONLY === "1";
 
   if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/healthz") {
     const kv = await loadReviews(env);
-    const body = { status: kv.ok ? "ok" : "degraded", version: env.WORKER_VERSION ?? "dev", environment: readOnly ? "preview" : "production", kv: kv.ok ? "ok" : "unavailable", time: now.toISOString() };
-    return new Response(request.method === "HEAD" ? null : JSON.stringify(body), { status: kv.ok ? 200 : 503, headers: baseHeaders("application/json; charset=utf-8") });
+    const body = {
+      status: kv.ok ? "ok" : "degraded",
+      version: env.WORKER_VERSION ?? "dev",
+      environment: readOnly ? "preview" : "production",
+      kv: kv.ok ? "ok" : "unavailable",
+      time: now.toISOString()
+    };
+    return new Response(request.method === "HEAD" ? null : JSON.stringify(body), {
+      status: kv.ok ? 200 : 503,
+      headers: baseHeaders("application/json; charset=utf-8")
+    });
   }
 
   if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/") {
@@ -163,15 +180,32 @@ async function route(request: Request, env: Env, ctx: { requestId: string; fetch
       const snapshot = opportunitySnapshotSchema.parse(await fetchJsonBounded(env.JOBS_DATA_URL, fetcher));
       const items = sortOpportunities(filterOpportunities(snapshot.opportunities, filters, reviews, now));
       const html = renderPage({
-        items, allItems: snapshot.opportunities, filters, reviews, generatedAt: snapshot.generatedAt,
-        stale: isStale(snapshot.generatedAt, now), returnQuery: url.searchParams.toString(), now, notices, readOnly
+        items,
+        allItems: snapshot.opportunities,
+        filters,
+        reviews,
+        generatedAt: snapshot.generatedAt,
+        stale: isStale(snapshot.generatedAt, now),
+        returnQuery: url.searchParams.toString(),
+        now,
+        notices,
+        readOnly
       });
       return new Response(request.method === "HEAD" ? null : html, { headers: baseHeaders() });
     } catch (error) {
       log({ level: "error", msg: "job data unavailable", error: error instanceof Error ? error.message : "unknown error" });
       return new Response(
         renderPage({
-          items: [], allItems: [], filters, reviews, generatedAt: null, stale: false, returnQuery: "", now, notices, readOnly,
+          items: [],
+          allItems: [],
+          filters,
+          reviews,
+          generatedAt: null,
+          stale: false,
+          returnQuery: "",
+          now,
+          notices,
+          readOnly,
           error: "Job data is unavailable or failed validation. Try again shortly."
         }),
         { status: 502, headers: baseHeaders() }
@@ -243,7 +277,15 @@ export async function handleRequest(request: Request, env: Env, options: Handler
   const headers = new Headers(response.headers);
   headers.set("X-Request-Id", requestId);
   const finished = new Response(response.body, { status: response.status, statusText: response.statusText, headers });
-  log({ level: finished.status >= 500 ? "error" : "info", msg: "request", method: request.method, path, status: finished.status, durationMs: Date.now() - started, version: env.WORKER_VERSION ?? "dev" });
+  log({
+    level: finished.status >= 500 ? "error" : "info",
+    msg: "request",
+    method: request.method,
+    path,
+    status: finished.status,
+    durationMs: Date.now() - started,
+    version: env.WORKER_VERSION ?? "dev"
+  });
   return finished;
 }
 

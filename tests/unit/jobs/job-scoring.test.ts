@@ -137,7 +137,12 @@ describe("Laravel/PHP relevance gate", () => {
   const boilerplate = "Work from anywhere. We match developers across stacks: React & Golang, PHP & Vue, Vue & Node.js, React & .NET. Remote worldwide, AWS.";
 
   it("caps a non-Laravel role whose posting only lists stacks as boilerplate", () => {
-    const result = assessOpportunity({ title: "Senior .NET Full-stack Developer", descriptionText: boilerplate, location: "Anywhere in the World", tags: ["react", "php", "vue", "laravel"] });
+    const result = assessOpportunity({
+      title: "Senior .NET Full-stack Developer",
+      descriptionText: boilerplate,
+      location: "Anywhere in the World",
+      tags: ["react", "php", "vue", "laravel"]
+    });
     expect(result.score).toBeLessThanOrEqual(RELEVANCE_SCORE_CAP);
     expect(result.concerns).toContain("Laravel/PHP is not central to this role");
     expect(result.scoreBreakdown.at(-1)?.factor).toMatch(/Relevance cap/);

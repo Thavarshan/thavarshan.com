@@ -36,21 +36,11 @@ export type RepositoryCandidate = GitHubProject & {
   disabled?: boolean;
 };
 
-export function selectFeaturedRepositories(
-  repositories: RepositoryCandidate[],
-  count: number,
-  excludedRepositories: readonly string[]
-) {
+export function selectFeaturedRepositories(repositories: RepositoryCandidate[], count: number, excludedRepositories: readonly string[]) {
   const excluded = new Set(excludedRepositories.map((repository) => repository.toLowerCase()));
 
   return repositories
-    .filter(
-      (repository) =>
-        !repository.fork &&
-        !repository.archived &&
-        !repository.disabled &&
-        !excluded.has(repository.repository.toLowerCase())
-    )
+    .filter((repository) => !repository.fork && !repository.archived && !repository.disabled && !excluded.has(repository.repository.toLowerCase()))
     .sort((a, b) => b.stars - a.stars || b.updatedAt.localeCompare(a.updatedAt))
     .slice(0, count);
 }
@@ -92,9 +82,7 @@ export function extractReadmeExcerpt(markdown: string, limit = 3) {
     .map((paragraph) => paragraph.replace(/\s+/g, " ").trim())
     .filter(
       (paragraph) =>
-        paragraph.length >= 45 &&
-        !paragraph.toLowerCase().startsWith("license") &&
-        !/^\[!(?:warning|caution|note|important|tip)\]/i.test(paragraph)
+        paragraph.length >= 45 && !paragraph.toLowerCase().startsWith("license") && !/^\[!(?:warning|caution|note|important|tip)\]/i.test(paragraph)
     )
     .slice(0, limit)
     .map((paragraph) => (paragraph.length > 420 ? `${paragraph.slice(0, 417).trimEnd()}…` : paragraph));

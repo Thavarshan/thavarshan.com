@@ -53,7 +53,8 @@ export default function ToolsPage() {
             Small, private tools for Laravel and PHP developers.
           </h1>
           <p className="mt-6 max-w-3xl text-xl leading-9 text-[var(--muted)]">
-            Utilities I wanted while shipping Laravel systems: deterministic, explained, and run entirely in your browser. No sign-in, no uploads, no tracking of what you type.
+            Utilities I wanted while shipping Laravel systems: deterministic, explained, and run entirely in your browser. No sign-in, no uploads, no tracking
+            of what you type.
           </p>
         </div>
       </header>
@@ -64,8 +65,13 @@ export default function ToolsPage() {
             <li key={tool.slug} className="flex flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6">
               <h2 className="font-display text-2xl text-[var(--ink)]">{tool.name}</h2>
               <p className="mt-3 leading-7 text-[var(--muted)]">{tool.description}</p>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)]"><strong className="text-[var(--ink)]">Best for:</strong> {tool.audience.replaceAll("`", "")}</p>
-              <Link href={`/tools/${tool.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 self-start font-semibold text-[var(--accent-dark)] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">
+              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                <strong className="text-[var(--ink)]">Best for:</strong> {tool.audience.replaceAll("`", "")}
+              </p>
+              <Link
+                href={`/tools/${tool.slug}`}
+                className="mt-5 inline-flex min-h-11 items-center gap-2 self-start font-semibold text-[var(--accent-dark)] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+              >
                 Open the tool <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </li>
@@ -73,11 +79,20 @@ export default function ToolsPage() {
         </ul>
 
         <section aria-labelledby="principles" className="mt-14 max-w-3xl">
-          <h2 id="principles" className="font-display text-3xl text-[var(--ink)]">How these tools are built</h2>
+          <h2 id="principles" className="font-display text-3xl text-[var(--ink)]">
+            How these tools are built
+          </h2>
           <ul className="mt-4 grid gap-3 text-lg leading-8 text-[var(--muted)]">
-            <li className="list-disc ml-6"><Lock size={16} className="mr-1 inline" aria-hidden="true" />Everything runs client-side. Inputs, including anything that looks like a secret, are never sent to a server.</li>
-            <li className="list-disc ml-6">Deterministic and tested: no AI guesses. Suggestions are only shown when they are provably equivalent, and limits are documented on each page.</li>
-            <li className="list-disc ml-6">Deliberately few. Each tool exists because it solves a recurring Laravel problem well, not to fill a keyword list.</li>
+            <li className="list-disc ml-6">
+              <Lock size={16} className="mr-1 inline" aria-hidden="true" />
+              Everything runs client-side. Inputs, including anything that looks like a secret, are never sent to a server.
+            </li>
+            <li className="list-disc ml-6">
+              Deterministic and tested: no AI guesses. Suggestions are only shown when they are provably equivalent, and limits are documented on each page.
+            </li>
+            <li className="list-disc ml-6">
+              Deliberately few. Each tool exists because it solves a recurring Laravel problem well, not to fill a keyword list.
+            </li>
           </ul>
         </section>
       </div>

@@ -60,13 +60,7 @@ function buildAllowlist(profile: ProfessionalProfile, github: GitHubSnapshot, jo
   ];
 }
 
-function buildSummaryMarkdown(params: {
-  job: Opportunity;
-  warnings: string[];
-  flaggedTerms: string[];
-  model: string;
-  generatedAt: string;
-}): string {
+function buildSummaryMarkdown(params: { job: Opportunity; warnings: string[]; flaggedTerms: string[]; model: string; generatedAt: string }): string {
   const { job, warnings, flaggedTerms, model, generatedAt } = params;
 
   const lines: string[] = [
@@ -104,7 +98,7 @@ function buildSummaryMarkdown(params: {
 
 export async function generateApplications() {
   if (!paidAiEnabled(process.env)) {
-    console.log("Paid AI generation is disabled (ENABLE_PAID_AI is not \"true\"); skipping. See docs/cost-policy.md.");
+    console.log('Paid AI generation is disabled (ENABLE_PAID_AI is not "true"); skipping. See docs/cost-policy.md.');
     return;
   }
 

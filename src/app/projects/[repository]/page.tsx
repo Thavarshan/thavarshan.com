@@ -74,10 +74,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               isBasedOn: {
                 "@type": "CreativeWork",
                 name: packageStats.packageName,
-                url:
-                  packageStats.provider === "packagist"
-                    ? `https://packagist.org/packages/${packageStats.packageName}`
-                    : undefined
+                url: packageStats.provider === "packagist" ? `https://packagist.org/packages/${packageStats.packageName}` : undefined
               }
             }
           : {})
@@ -103,43 +100,69 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <Link href="/projects" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] hover:text-[var(--ink)]">
               <ArrowLeft size={16} /> All projects
             </Link>
-            <p className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">
-              Open-source project
-            </p>
-            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">{project.name}</h1>
+            <p className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Open-source project</p>
+            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">
+              {project.name}
+            </h1>
             <p className="mt-6 max-w-3xl text-xl leading-9 text-[var(--muted)]">{project.description}</p>
             <div className="mt-7 flex flex-wrap items-center gap-5 text-sm font-semibold text-[var(--muted)]">
-              <span className="inline-flex items-center gap-1.5"><Star size={17} />{project.stars.toLocaleString()} stars</span>
-              <span className="inline-flex items-center gap-1.5"><GitFork size={17} />{project.forks.toLocaleString()} forks</span>
+              <span className="inline-flex items-center gap-1.5">
+                <Star size={17} />
+                {project.stars.toLocaleString()} stars
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <GitFork size={17} />
+                {project.forks.toLocaleString()} forks
+              </span>
               {project.primaryLanguage ? <span>{project.primaryLanguage}</span> : null}
             </div>
             <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />} eventName="Repository Visit">View repository</ButtonLink>
-              {project.homepage ? <ButtonLink href={project.homepage} icon={<ArrowUpRight size={16} />} event={{ name: "demo_click", props: { project: project.repository.toLowerCase() } }}>Documentation</ButtonLink> : null}
+              <ButtonLink href={project.repositoryUrl} variant="primary" icon={<ArrowUpRight size={16} />} eventName="Repository Visit">
+                View repository
+              </ButtonLink>
+              {project.homepage ? (
+                <ButtonLink
+                  href={project.homepage}
+                  icon={<ArrowUpRight size={16} />}
+                  event={{ name: "demo_click", props: { project: project.repository.toLowerCase() } }}
+                >
+                  Documentation
+                </ButtonLink>
+              ) : null}
             </div>
           </div>
         </header>
 
         <div className="mx-auto grid w-full max-w-5xl gap-12 px-5 py-16 md:grid-cols-[1fr_15rem] lg:px-8">
           <section aria-labelledby="about-project">
-            <h2 id="about-project" className="font-display text-3xl text-[var(--ink)]">About the project</h2>
+            <h2 id="about-project" className="font-display text-3xl text-[var(--ink)]">
+              About the project
+            </h2>
             <div className="mt-6 space-y-5">
               {(project.readmeExcerpt.length ? project.readmeExcerpt : [project.description]).map((paragraph) => (
-                <p key={paragraph} className="text-base leading-8 text-[var(--muted)]">{paragraph}</p>
+                <p key={paragraph} className="text-base leading-8 text-[var(--muted)]">
+                  {paragraph}
+                </p>
               ))}
             </div>
             {caseStudy ? (
               <div className="mt-12 space-y-10">
                 <section aria-labelledby="project-problem">
-                  <h2 id="project-problem" className="font-display text-3xl text-[var(--ink)]">Problem</h2>
+                  <h2 id="project-problem" className="font-display text-3xl text-[var(--ink)]">
+                    Problem
+                  </h2>
                   <p className="mt-5 text-base leading-8 text-[var(--muted)]">{caseStudy.problem}</p>
                 </section>
                 <section aria-labelledby="project-architecture">
-                  <h2 id="project-architecture" className="font-display text-3xl text-[var(--ink)]">Architecture</h2>
+                  <h2 id="project-architecture" className="font-display text-3xl text-[var(--ink)]">
+                    Architecture
+                  </h2>
                   <p className="mt-5 text-base leading-8 text-[var(--muted)]">{caseStudy.architecture}</p>
                 </section>
                 <section aria-labelledby="project-decisions">
-                  <h2 id="project-decisions" className="font-display text-3xl text-[var(--ink)]">Design decisions</h2>
+                  <h2 id="project-decisions" className="font-display text-3xl text-[var(--ink)]">
+                    Design decisions
+                  </h2>
                   <ul className="mt-5 space-y-3 text-base leading-8 text-[var(--ink)]">
                     {caseStudy.designDecisions.map((decision) => (
                       <li key={decision} className="flex gap-3">
@@ -150,18 +173,24 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </ul>
                 </section>
                 <section aria-labelledby="project-lessons">
-                  <h2 id="project-lessons" className="font-display text-3xl text-[var(--ink)]">Constraints and lessons</h2>
+                  <h2 id="project-lessons" className="font-display text-3xl text-[var(--ink)]">
+                    Constraints and lessons
+                  </h2>
                   <div className="mt-5 grid gap-5 md:grid-cols-2">
                     <div>
                       <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Constraints</h3>
                       <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
-                        {caseStudy.constraints.map((constraint) => <li key={constraint}>{constraint}</li>)}
+                        {caseStudy.constraints.map((constraint) => (
+                          <li key={constraint}>{constraint}</li>
+                        ))}
                       </ul>
                     </div>
                     <div>
                       <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Lessons</h3>
                       <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
-                        {caseStudy.lessons.map((lesson) => <li key={lesson}>{lesson}</li>)}
+                        {caseStudy.lessons.map((lesson) => (
+                          <li key={lesson}>{lesson}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -179,15 +208,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
               <div>
                 <dt className="font-semibold text-[var(--ink)]">Last updated</dt>
-                <dd className="mt-1 text-[var(--muted)]">
-                  {new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(project.updatedAt))}
-                </dd>
+                <dd className="mt-1 text-[var(--muted)]">{new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(project.updatedAt))}</dd>
               </div>
               {packageStats ? (
                 <>
                   <div>
                     <dt className="font-semibold text-[var(--ink)]">Registry</dt>
-                    <dd className="mt-1 text-[var(--muted)]">{formatPackageProvider(packageStats.provider)} · {packageStats.packageName}</dd>
+                    <dd className="mt-1 text-[var(--muted)]">
+                      {formatPackageProvider(packageStats.provider)} · {packageStats.packageName}
+                    </dd>
                   </div>
                   {packageStats.downloads !== undefined ? (
                     <div>
@@ -215,9 +244,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-dark)]">Next step</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Want to discuss platform architecture, AI systems, or developer tooling?</p>
               <div className="mt-5 grid gap-3">
-                <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
-                <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
-                <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
+                <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">
+                  Start a conversation
+                </ButtonLink>
+                <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">
+                  View resume
+                </ButtonLink>
+                <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">
+                  Connect on LinkedIn
+                </ButtonLink>
               </div>
             </div>
           </aside>
@@ -225,7 +260,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </article>
       {relatedInsights.length ? (
         <section aria-labelledby="project-related-insights" className="mx-auto w-full max-w-5xl px-5 pb-16 lg:px-8">
-          <h2 id="project-related-insights" className="font-display text-3xl text-[var(--ink)]">Related insights</h2>
+          <h2 id="project-related-insights" className="font-display text-3xl text-[var(--ink)]">
+            Related insights
+          </h2>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
             {relatedInsights.map((insight) => (
               <InsightCard key={insight.slug} insight={insight} />

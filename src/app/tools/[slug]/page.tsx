@@ -79,7 +79,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
       <SiteNav />
       <header className="border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="mx-auto w-full max-w-6xl px-5 pb-10 pt-32 lg:px-8">
-          <Link href="/tools" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--accent-dark)] underline-offset-4 hover:underline">
+          <Link
+            href="/tools"
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--accent-dark)] underline-offset-4 hover:underline"
+          >
             <ArrowLeft size={16} aria-hidden="true" /> All tools
           </Link>
           <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.25rem,9vw,3.5rem)] leading-tight text-balance text-[var(--ink)]">{tool.h1}</h1>
@@ -93,19 +96,33 @@ export default async function ToolPage({ params }: ToolPageProps) {
         <div className="mt-14 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[2fr_1fr]">
           <div className="grid grid-cols-[minmax(0,1fr)] gap-12">
             <section aria-labelledby="about">
-              <h2 id="about" className="font-display text-3xl text-[var(--ink)]">Why this exists</h2>
-              {tool.intro.map((paragraph) => <p key={paragraph} className="mt-4 text-lg leading-8 text-[var(--muted)]">{paragraph}</p>)}
+              <h2 id="about" className="font-display text-3xl text-[var(--ink)]">
+                Why this exists
+              </h2>
+              {tool.intro.map((paragraph) => (
+                <p key={paragraph} className="mt-4 text-lg leading-8 text-[var(--muted)]">
+                  {paragraph}
+                </p>
+              ))}
             </section>
 
             <section aria-labelledby="how">
-              <h2 id="how" className="font-display text-3xl text-[var(--ink)]">How it works</h2>
+              <h2 id="how" className="font-display text-3xl text-[var(--ink)]">
+                How it works
+              </h2>
               <ul className="mt-4 grid gap-3 text-lg leading-8 text-[var(--muted)]">
-                {tool.howItWorks.map((item) => <li key={item} className="list-disc ml-6">{item}</li>)}
+                {tool.howItWorks.map((item) => (
+                  <li key={item} className="list-disc ml-6">
+                    {item}
+                  </li>
+                ))}
               </ul>
             </section>
 
             <section aria-labelledby="examples">
-              <h2 id="examples" className="font-display text-3xl text-[var(--ink)]">Examples</h2>
+              <h2 id="examples" className="font-display text-3xl text-[var(--ink)]">
+                Examples
+              </h2>
               <dl className="mt-4 grid gap-4">
                 {tool.examples.map((example) => (
                   <div key={example.title} className="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-4">
@@ -117,24 +134,38 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </section>
 
             <section aria-labelledby="limits">
-              <h2 id="limits" className="font-display text-3xl text-[var(--ink)]">Limitations</h2>
+              <h2 id="limits" className="font-display text-3xl text-[var(--ink)]">
+                Limitations
+              </h2>
               <ul className="mt-4 grid gap-3 text-lg leading-8 text-[var(--muted)]">
-                {tool.limitations.map((item) => <li key={item} className="list-disc ml-6">{item}</li>)}
+                {tool.limitations.map((item) => (
+                  <li key={item} className="list-disc ml-6">
+                    {item}
+                  </li>
+                ))}
               </ul>
             </section>
 
             <section aria-labelledby="privacy">
-              <h2 id="privacy" className="font-display text-3xl text-[var(--ink)]">Privacy</h2>
+              <h2 id="privacy" className="font-display text-3xl text-[var(--ink)]">
+                Privacy
+              </h2>
               <p className="mt-4 text-lg leading-8 text-[var(--muted)]">{tool.privacy}</p>
+              {/* JSX whitespace is significant in the next element: reflowing it changes the rendered HTML. */}
+              {/* prettier-ignore */}
               <p className="mt-3 text-sm text-[var(--muted)]">Site-wide, this website uses cookie-free analytics that count page views and button clicks only. See the <Link className="underline underline-offset-4" href="/privacy">privacy notes</Link>.</p>
             </section>
 
             <section aria-labelledby="faq">
-              <h2 id="faq" className="font-display text-3xl text-[var(--ink)]">Frequently asked questions</h2>
+              <h2 id="faq" className="font-display text-3xl text-[var(--ink)]">
+                Frequently asked questions
+              </h2>
               <div className="mt-4 grid gap-3">
                 {tool.faq.map((item) => (
                   <details key={item.question} className="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-4">
-                    <summary className="cursor-pointer font-semibold text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">{item.question}</summary>
+                    <summary className="cursor-pointer font-semibold text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">
+                      {item.question}
+                    </summary>
                     <p className="mt-3 leading-7 text-[var(--muted)]">{item.answer}</p>
                   </details>
                 ))}
@@ -143,16 +174,28 @@ export default async function ToolPage({ params }: ToolPageProps) {
           </div>
 
           <aside aria-labelledby="related" className="lg:pt-2">
-            <h2 id="related" className="font-display text-2xl text-[var(--ink)]">Related engineering work</h2>
+            <h2 id="related" className="font-display text-2xl text-[var(--ink)]">
+              Related engineering work
+            </h2>
             <ul className="mt-4 grid gap-4">
               {tool.related.map((link) => (
                 <li key={link.href} className="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-4">
-                  <Link href={link.href} className="font-semibold text-[var(--ink)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--accent)]">{link.label}</Link>
+                  <Link
+                    href={link.href}
+                    className="font-semibold text-[var(--ink)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--accent)]"
+                  >
+                    {link.label}
+                  </Link>
                   <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{link.note}</p>
                 </li>
               ))}
               <li className="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-4">
-                <Link href="/tools" className="font-semibold text-[var(--ink)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--accent)]">More developer tools</Link>
+                <Link
+                  href="/tools"
+                  className="font-semibold text-[var(--ink)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--accent)]"
+                >
+                  More developer tools
+                </Link>
                 <p className="mt-1 text-sm leading-6 text-[var(--muted)]">Free, private, browser-only utilities for Laravel and PHP developers.</p>
               </li>
             </ul>

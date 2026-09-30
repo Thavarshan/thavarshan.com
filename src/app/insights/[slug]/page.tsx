@@ -112,12 +112,20 @@ export default async function InsightPage({ params }: InsightPageProps) {
               {" · "}
               {insight.readingTimeMinutes} min read
             </p>
-            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">{insight.title}</h1>
+            <h1 className="mt-4 break-anywhere font-display text-[clamp(2.5rem,11vw,4rem)] leading-tight text-balance text-[var(--ink)] md:text-7xl">
+              {insight.title}
+            </h1>
             <p className="mt-6 text-xl leading-9 text-[var(--muted)]">{insight.description}</p>
             <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">Start a conversation</ButtonLink>
-              <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">View resume</ButtonLink>
-              <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">Connect on LinkedIn</ButtonLink>
+              <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">
+                Start a conversation
+              </ButtonLink>
+              <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">
+                View resume
+              </ButtonLink>
+              <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">
+                Connect on LinkedIn
+              </ButtonLink>
             </div>
           </div>
         </header>
@@ -127,7 +135,9 @@ export default async function InsightPage({ params }: InsightPageProps) {
       </article>
       {relatedInsights.length ? (
         <section aria-labelledby="related-insights" className="mx-auto w-full max-w-6xl px-5 pb-16 lg:px-8">
-          <h2 id="related-insights" className="font-display text-3xl text-[var(--ink)]">Related insights</h2>
+          <h2 id="related-insights" className="font-display text-3xl text-[var(--ink)]">
+            Related insights
+          </h2>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
             {relatedInsights.map((item) => (
               <InsightCard key={item.slug} insight={item} />

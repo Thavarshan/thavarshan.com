@@ -1,12 +1,5 @@
 import type { Opportunity } from "../../src/features/jobs/opportunities";
-import {
-  opportunityAgeDays,
-  reviewStatuses,
-  reviewStatusOf,
-  safeExternalUrl,
-  type ReviewFilters,
-  type ReviewMap
-} from "../../src/features/jobs/review";
+import { opportunityAgeDays, reviewStatuses, reviewStatusOf, safeExternalUrl, type ReviewFilters, type ReviewMap } from "../../src/features/jobs/review";
 
 export function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!);
@@ -67,7 +60,12 @@ function renderDetails(item: Opportunity) {
     ["Work arrangement", item.workArrangement === "unknown" ? "not classified" : item.workArrangement],
     ["Employment type", item.employmentType ?? "not listed"],
     ["Seniority", item.seniority === "unknown" ? "not stated" : item.seniority],
-    ["Salary", item.salary ? `${item.salary}${range ? ` (${range})` : ""}${item.salaryPeriod ? ` per ${item.salaryPeriod}` : range ? " (period not stated)" : ""}` : "not listed"],
+    [
+      "Salary",
+      item.salary
+        ? `${item.salary}${range ? ` (${range})` : ""}${item.salaryPeriod ? ` per ${item.salaryPeriod}` : range ? " (period not stated)" : ""}`
+        : "not listed"
+    ],
     ["Sponsorship", item.sponsorship === "unknown" ? "not mentioned" : item.sponsorship],
     ["Relocation", item.relocation === "unknown" ? "not mentioned" : item.relocation],
     ["Countries named", item.countries.length ? item.countries.join(", ") : "none named"],
@@ -92,7 +90,10 @@ function renderFilters(snapshotItems: Opportunity[], filters: ReviewFilters) {
   const sources = [...new Set(snapshotItems.map((item) => item.source))].sort();
   const arrangements = [...new Set(snapshotItems.map((item) => item.workArrangement))].sort();
   const eligibilityBoxes = (["eligible", "unknown", "ineligible"] as const)
-    .map((value) => `<label style="flex-direction:row;align-items:center;gap:.4rem"><input type="checkbox" name="elig" value="${value}"${filters.eligibility.includes(value) ? " checked" : ""} style="min-height:auto"> ${value}</label>`)
+    .map(
+      (value) =>
+        `<label style="flex-direction:row;align-items:center;gap:.4rem"><input type="checkbox" name="elig" value="${value}"${filters.eligibility.includes(value) ? " checked" : ""} style="min-height:auto"> ${value}</label>`
+    )
     .join("");
 
   return `<form class="filters" method="get" action="/" aria-label="Filter opportunities">
@@ -116,9 +117,7 @@ function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, n
   const entry = reviews[item.id];
   const href = safeExternalUrl(item.canonicalUrl);
   const eligibilityClass = item.eligibility === "eligible" ? "good" : item.eligibility === "unknown" ? "unknown" : "bad";
-  const salary = item.salary
-    ? `<span class="badge">${escapeHtml(item.salary)}</span>`
-    : notStatedBadge("Salary", "not listed");
+  const salary = item.salary ? `<span class="badge">${escapeHtml(item.salary)}</span>` : notStatedBadge("Salary", "not listed");
   const breakdown = item.scoreBreakdown.length
     ? `<table class="breakdown"><caption class="sr-only" style="position:absolute;left:-9999px">Score breakdown</caption>${item.scoreBreakdown
         .map((row) => `<tr><td>${escapeHtml(row.factor)}</td><td>${row.points > 0 ? "+" : ""}${row.points}</td></tr>`)

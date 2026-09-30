@@ -46,7 +46,7 @@ export const tools: ToolDefinition[] = [
       "This helper parses a 5-field cron expression (or an @daily-style macro), explains it in plain English, and suggests the Laravel call that produces exactly the same schedule. When no built-in helper is an exact match it says so and falls back to ->cron() instead of guessing. It also lists the next run times so you can check the schedule before you deploy."
     ],
     howItWorks: [
-      "The expression is validated field by field with specific errors (for example \"Minute field 60: 60 is outside 0-59\") instead of a generic \"invalid cron\".",
+      'The expression is validated field by field with specific errors (for example "Minute field 60: 60 is outside 0-59") instead of a generic "invalid cron".',
       "It is then matched against Laravel's frequency helpers by comparing the exact set of minutes, hours, days, months and weekdays each helper produces — so a suggestion is only shown when it is genuinely equivalent, not merely similar.",
       "Next runs are computed by walking the calendar in your chosen timezone, including daylight-saving changes: a local time that does not exist is skipped and a repeated local time runs once.",
       "Snippets are provided for Laravel 11+ (routes/console.php with the Schedule facade) and for Laravel 10 and earlier (app/Console/Kernel.php)."
@@ -66,15 +66,43 @@ export const tools: ToolDefinition[] = [
     ],
     privacy: "Everything runs in your browser. The expression and command name are never sent anywhere.",
     faq: [
-      { question: "How do I run a Laravel task every 7 minutes?", answer: "There is no everySevenMinutes() helper, so use ->cron('*/7 * * * *'). Note that */7 restarts every hour: it runs at minutes 0, 7, 14 … 56, then again at minute 0 — the gap between :56 and :00 is four minutes, not seven." },
-      { question: "What is the difference between weeklyOn() and days()?", answer: "weeklyOn(1, '08:00') runs on one weekday at a time. days([1, 3, 5])->at('08:00') covers several weekdays; weekdays() and weekends() are shortcuts for common sets." },
-      { question: "Does the scheduler need a cron entry?", answer: "Yes. Laravel's scheduler still needs exactly one system cron entry that runs `php artisan schedule:run` every minute (or `schedule:work` in a long-running process); the expressions here decide which tasks run on each tick." },
-      { question: "Why is my schedule running at the wrong hour?", answer: "Schedules use the application's timezone unless you set ->timezone('Region/City') on the event. Pick your timezone in the tool and copy the snippet — it adds the ->timezone() call for you." }
+      {
+        question: "How do I run a Laravel task every 7 minutes?",
+        answer:
+          "There is no everySevenMinutes() helper, so use ->cron('*/7 * * * *'). Note that */7 restarts every hour: it runs at minutes 0, 7, 14 … 56, then again at minute 0 — the gap between :56 and :00 is four minutes, not seven."
+      },
+      {
+        question: "What is the difference between weeklyOn() and days()?",
+        answer:
+          "weeklyOn(1, '08:00') runs on one weekday at a time. days([1, 3, 5])->at('08:00') covers several weekdays; weekdays() and weekends() are shortcuts for common sets."
+      },
+      {
+        question: "Does the scheduler need a cron entry?",
+        answer:
+          "Yes. Laravel's scheduler still needs exactly one system cron entry that runs `php artisan schedule:run` every minute (or `schedule:work` in a long-running process); the expressions here decide which tasks run on each tick."
+      },
+      {
+        question: "Why is my schedule running at the wrong hour?",
+        answer:
+          "Schedules use the application's timezone unless you set ->timezone('Region/City') on the event. Pick your timezone in the tool and copy the snippet — it adds the ->timezone() call for you."
+      }
     ],
     related: [
-      { label: "Observable, reliable production workflows", href: "/insights/observable-reliable-production-ai-workflows", note: "Why scheduled work needs contracts, traces and fallbacks, not just a cron line." },
-      { label: "Matrix — async PHP", href: "/projects/matrix", note: "Open-source async primitives for PHP, where background scheduling and failure boundaries matter." },
-      { label: "Event-driven asynchronous PHP: lessons from Matrix", href: "/insights/event-driven-asynchronous-php-matrix-lessons", note: "Task design and failure boundaries for PHP that runs outside the request." }
+      {
+        label: "Observable, reliable production workflows",
+        href: "/insights/observable-reliable-production-ai-workflows",
+        note: "Why scheduled work needs contracts, traces and fallbacks, not just a cron line."
+      },
+      {
+        label: "Matrix — async PHP",
+        href: "/projects/matrix",
+        note: "Open-source async primitives for PHP, where background scheduling and failure boundaries matter."
+      },
+      {
+        label: "Event-driven asynchronous PHP: lessons from Matrix",
+        href: "/insights/event-driven-asynchronous-php-matrix-lessons",
+        note: "Task design and failure boundaries for PHP that runs outside the request."
+      }
     ],
     datePublished: "2026-09-30",
     dateModified: "2026-09-30"
@@ -86,7 +114,8 @@ export const tools: ToolDefinition[] = [
     h1: "Laravel .env checker",
     description:
       "Find missing keys, duplicates, spaces in unquoted values, an empty APP_KEY, APP_DEBUG in production and secrets in .env.example. Runs entirely in your browser; your values are never uploaded or shown.",
-    audience: "Laravel developers and reviewers who want to catch configuration mistakes before a deploy, without pasting secrets into a website that sends them to a server.",
+    audience:
+      "Laravel developers and reviewers who want to catch configuration mistakes before a deploy, without pasting secrets into a website that sends them to a server.",
     intro: [
       "Most Laravel outages caused by configuration are boring: a variable added to .env.example but never set in production, a value with a space that makes the dotenv parser throw, an APP_KEY left empty, or APP_DEBUG=true on a live server. They are easy to find by eye in a five-line file and easy to miss in a hundred-line one.",
       "Paste your .env and your .env.example and this checker compares them. It follows the same parsing rules as the dotenv library Laravel uses, so it flags what actually breaks a boot. Because .env files are full of secrets, it is built so that values are never displayed, logged or sent anywhere: findings only name keys and line numbers."
@@ -95,10 +124,10 @@ export const tools: ToolDefinition[] = [
       "Both files are parsed with phpdotenv-style rules: optional export, single and double quotes (including multi-line values), # comments, and the rule that an unquoted value containing spaces is an error.",
       "The two key sets are compared to find keys missing from .env, keys undocumented in .env.example, and defaults that were blanked out.",
       "Built-in checks cover APP_KEY presence and format, APP_DEBUG with APP_ENV=production, duplicate keys, ${VAR} references to variables not defined earlier, a UTF-8 byte-order mark that corrupts the first key, and values in .env.example that look like real credentials.",
-      "The \"missing keys\" block gives you `KEY=` lines ready to paste; it only copies an example default when it is clearly not sensitive."
+      'The "missing keys" block gives you `KEY=` lines ready to paste; it only copies an example default when it is clearly not sensitive.'
     ],
     examples: [
-      { title: "Spaces in an unquoted value", body: "APP_NAME=My Great App → error: wrap it in double quotes, APP_NAME=\"My Great App\"" },
+      { title: "Spaces in an unquoted value", body: 'APP_NAME=My Great App → error: wrap it in double quotes, APP_NAME="My Great App"' },
       { title: "Debug left on in production", body: "APP_ENV=production with APP_DEBUG=true → error: stack traces and environment details would be exposed." },
       { title: "A key added to .env.example only", body: "REDIS_HOST is documented but missing from .env → reported, with a ready-made REDIS_HOST= line." }
     ],
@@ -109,17 +138,46 @@ export const tools: ToolDefinition[] = [
       "Very large inputs are refused (256,000 characters or 5,000 lines per file) to keep the page responsive.",
       "Which duplicate definition wins depends on how the file is loaded, so the checker reports duplicates rather than choosing one."
     ],
-    privacy: "Your files never leave this page: there is no upload, no request containing your text, no analytics on what you paste, and nothing is stored in cookies or local storage. Findings show key names and line numbers, never values. Closing or reloading the tab discards everything.",
+    privacy:
+      "Your files never leave this page: there is no upload, no request containing your text, no analytics on what you paste, and nothing is stored in cookies or local storage. Findings show key names and line numbers, never values. Closing or reloading the tab discards everything.",
     faq: [
-      { question: "Is it safe to paste my production .env?", answer: "The page processes text locally and sends nothing, which you can confirm in your browser's network panel. Even so, treat production secrets carefully: prefer checking a copy with real secrets replaced, and rotate anything you have ever pasted somewhere you did not control." },
-      { question: "Why does APP_NAME=My App break Laravel?", answer: "The dotenv parser rejects an unquoted value containing whitespace with an \"unexpected whitespace\" error at boot. Quote the value: APP_NAME=\"My App\"." },
-      { question: "What does php artisan key:generate do?", answer: "It writes a random base64 APP_KEY into .env. Laravel uses it to encrypt cookies and sessions, so an empty or changing key logs everyone out and can break encrypted data." },
-      { question: "Should .env be committed to git?", answer: "No. Commit .env.example with safe placeholders and keep .env out of version control. This checker warns when .env.example appears to contain a real credential." }
+      {
+        question: "Is it safe to paste my production .env?",
+        answer:
+          "The page processes text locally and sends nothing, which you can confirm in your browser's network panel. Even so, treat production secrets carefully: prefer checking a copy with real secrets replaced, and rotate anything you have ever pasted somewhere you did not control."
+      },
+      {
+        question: "Why does APP_NAME=My App break Laravel?",
+        answer:
+          'The dotenv parser rejects an unquoted value containing whitespace with an "unexpected whitespace" error at boot. Quote the value: APP_NAME="My App".'
+      },
+      {
+        question: "What does php artisan key:generate do?",
+        answer:
+          "It writes a random base64 APP_KEY into .env. Laravel uses it to encrypt cookies and sessions, so an empty or changing key logs everyone out and can break encrypted data."
+      },
+      {
+        question: "Should .env be committed to git?",
+        answer:
+          "No. Commit .env.example with safe placeholders and keep .env out of version control. This checker warns when .env.example appears to contain a real credential."
+      }
     ],
     related: [
-      { label: "Modernizing legacy platforms while shipping", href: "/insights/modernizing-legacy-platforms-during-delivery", note: "Configuration drift is one of the first things to stabilise in a legacy platform." },
-      { label: "Fetch PHP", href: "/projects/fetch-php", note: "A widely used open-source PHP HTTP client, maintained with the same attention to safe defaults." },
-      { label: "Observable, reliable production workflows", href: "/insights/observable-reliable-production-ai-workflows", note: "Release discipline and guardrails, including configuration, for production systems." }
+      {
+        label: "Modernizing legacy platforms while shipping",
+        href: "/insights/modernizing-legacy-platforms-during-delivery",
+        note: "Configuration drift is one of the first things to stabilise in a legacy platform."
+      },
+      {
+        label: "Fetch PHP",
+        href: "/projects/fetch-php",
+        note: "A widely used open-source PHP HTTP client, maintained with the same attention to safe defaults."
+      },
+      {
+        label: "Observable, reliable production workflows",
+        href: "/insights/observable-reliable-production-ai-workflows",
+        note: "Release discipline and guardrails, including configuration, for production systems."
+      }
     ],
     datePublished: "2026-09-30",
     dateModified: "2026-09-30"

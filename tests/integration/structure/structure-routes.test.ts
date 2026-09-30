@@ -4,9 +4,29 @@ import { describe, expect, it } from "vitest";
 import { buildInventory, diffInventories, type Inventory } from "@automation/structure/routes";
 
 const baseFiles = [
-  "index.html", "index.txt", "cv.html", "privacy.html", "insights.html", "tools.html", "404.html", "robots.txt", "sitemap.xml", "feed.xml", "opengraph-image",
-  "insights/a.html", "insights/a/opengraph-image", "projects/x.html", "projects/x/opengraph-image", "tools/t.html", "tools/t/opengraph-image",
-  "docs/Jerome-Resume.pdf", "images/avatar.jpg", "_next/static/chunk.js", "__next._full.txt", "cv.txt", "insights/a.txt"
+  "index.html",
+  "index.txt",
+  "cv.html",
+  "privacy.html",
+  "insights.html",
+  "tools.html",
+  "404.html",
+  "robots.txt",
+  "sitemap.xml",
+  "feed.xml",
+  "opengraph-image",
+  "insights/a.html",
+  "insights/a/opengraph-image",
+  "projects/x.html",
+  "projects/x/opengraph-image",
+  "tools/t.html",
+  "tools/t/opengraph-image",
+  "docs/Jerome-Resume.pdf",
+  "images/avatar.jpg",
+  "_next/static/chunk.js",
+  "__next._full.txt",
+  "cv.txt",
+  "insights/a.txt"
 ];
 const expected = (): Inventory => buildInventory(baseFiles);
 
@@ -14,14 +34,25 @@ describe("public URL inventory", () => {
   it("normalises per-item pages to patterns and ignores build internals and RSC payloads", () => {
     const inventory = expected();
     expect(inventory.pages).toEqual(["/", "/404", "/cv", "/insights", "/insights/[slug]", "/privacy", "/projects/[slug]", "/tools", "/tools/[slug]"]);
-    expect(inventory.files).toEqual(expect.arrayContaining(["/robots.txt", "/sitemap.xml", "/feed.xml", "/opengraph-image", "/insights/[slug]/opengraph-image"]));
+    expect(inventory.files).toEqual(
+      expect.arrayContaining(["/robots.txt", "/sitemap.xml", "/feed.xml", "/opengraph-image", "/insights/[slug]/opengraph-image"])
+    );
     expect(inventory.assets).toEqual(["/docs/Jerome-Resume.pdf", "/images/avatar.jpg"]);
     expect(JSON.stringify(inventory)).not.toContain("_next");
     expect(JSON.stringify(inventory)).not.toContain("__next");
   });
 
   it("is unaffected by ordinary content growth (more insights, projects, tools)", () => {
-    const grown = buildInventory([...baseFiles, "insights/b.html", "insights/b/opengraph-image", "projects/y.html", "projects/y/opengraph-image", "projects/z.html", "tools/u.html", "tools/u/opengraph-image"]);
+    const grown = buildInventory([
+      ...baseFiles,
+      "insights/b.html",
+      "insights/b/opengraph-image",
+      "projects/y.html",
+      "projects/y/opengraph-image",
+      "projects/z.html",
+      "tools/u.html",
+      "tools/u/opengraph-image"
+    ]);
     expect(diffInventories(expected(), grown)).toEqual([]);
   });
 

@@ -27,35 +27,45 @@ export function parseLaraJobsFeedItems(xml: string): LaraJobsDraft[] {
     const { title, company } = feedCompany ? { title: rawTitle, company: feedCompany } : splitTitle(rawTitle);
     const feedTags = xmlValue(item, "job:tags");
 
-    return [{
-      title,
-      company,
-      canonicalUrl: link,
-      location: xmlValue(item, "job:location") || null,
-      employmentType: normalizeJobType(xmlValue(item, "job:job_type")),
-      salary: xmlValue(item, "job:salary") || null,
-      feedTags: feedTags ? feedTags.split(",").map((tag) => tag.trim()).filter(Boolean) : [],
-      feedDescription: xmlValue(item, "content:encoded") || xmlValue(item, "description"),
-      publishedAt: safeDate(xmlValue(item, "pubDate"))
-    }];
+    return [
+      {
+        title,
+        company,
+        canonicalUrl: link,
+        location: xmlValue(item, "job:location") || null,
+        employmentType: normalizeJobType(xmlValue(item, "job:job_type")),
+        salary: xmlValue(item, "job:salary") || null,
+        feedTags: feedTags
+          ? feedTags
+              .split(",")
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+          : [],
+        feedDescription: xmlValue(item, "content:encoded") || xmlValue(item, "description"),
+        publishedAt: safeDate(xmlValue(item, "pubDate"))
+      }
+    ];
   });
 }
 
 export function finalizeLaraJobsDraft(draft: LaraJobsDraft, now: string, scrapedDescription?: string | null, applicationUrl?: string | null): Opportunity {
-  return buildOpportunity({
-    title: draft.title,
-    company: draft.company,
-    url: draft.canonicalUrl,
-    sourceUrl: laraJobsFeedUrl,
-    description: scrapedDescription || draft.feedDescription,
-    applicationUrl,
-    publishedAt: draft.publishedAt,
-    source: "larajobs",
-    location: draft.location,
-    employmentType: draft.employmentType,
-    salary: draft.salary,
-    feedTags: draft.feedTags
-  }, now);
+  return buildOpportunity(
+    {
+      title: draft.title,
+      company: draft.company,
+      url: draft.canonicalUrl,
+      sourceUrl: laraJobsFeedUrl,
+      description: scrapedDescription || draft.feedDescription,
+      applicationUrl,
+      publishedAt: draft.publishedAt,
+      source: "larajobs",
+      location: draft.location,
+      employmentType: draft.employmentType,
+      salary: draft.salary,
+      feedTags: draft.feedTags
+    },
+    now
+  );
 }
 
 export function parseLaraJobsFeed(xml: string, now = new Date().toISOString()): Opportunity[] {

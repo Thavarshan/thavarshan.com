@@ -1,7 +1,17 @@
 import { appendFile, mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parseAggregateKey } from "../../src/features/telemetry/events";
-import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow, type MetricsSnapshot, type Period } from "../../src/features/telemetry/snapshot";
+import {
+  buildSnapshot,
+  daysBetween,
+  isoWeekLabel,
+  lastCompletedWeek,
+  renderSnapshotSummary,
+  snapshotSchema,
+  type AggregateRow,
+  type MetricsSnapshot,
+  type Period
+} from "../../src/features/telemetry/snapshot";
 import { mapWithConcurrency, withRetry } from "../../src/shared/node/async";
 import { writeJsonAtomic } from "../../src/shared/node/fs";
 
@@ -19,7 +29,10 @@ interface Args {
 }
 
 export function parseArgs(argv: string[]): Args {
-  const value = (flag: string) => { const index = argv.indexOf(flag); return index === -1 ? undefined : argv[index + 1]; };
+  const value = (flag: string) => {
+    const index = argv.indexOf(flag);
+    return index === -1 ? undefined : argv[index + 1];
+  };
   const date = (flag: string) => {
     const raw = value(flag);
     if (raw !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(raw)) throw new Error(`${flag} must be YYYY-MM-DD`);

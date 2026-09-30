@@ -39,7 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${site.url}/tools`,
-      lastModified: tools.map((tool) => tool.dateModified).sort().at(-1) ?? profile.modifiedAt,
+      lastModified:
+        tools
+          .map((tool) => tool.dateModified)
+          .sort()
+          .at(-1) ?? profile.modifiedAt,
       changeFrequency: "monthly",
       priority: 0.8
     },
