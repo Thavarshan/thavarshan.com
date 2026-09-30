@@ -24,6 +24,7 @@
     "cv:publish": "tsx scripts/cv/publish.ts",
     "cv:verify": "tsx scripts/cv/verify.ts",
     "jobs:collect": "tsx scripts/jobs/collect.ts",
+    "jobs:validate": "tsx scripts/jobs/validate.ts",
     "applications:generate": "tsx scripts/applications/generate.ts",
     "applications:review": "tsx scripts/applications/review.ts",
     "worker:dev": "wrangler dev --config workers/job-review/wrangler.toml",
