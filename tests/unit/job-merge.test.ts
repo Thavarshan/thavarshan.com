@@ -28,6 +28,7 @@ function makeOpportunity(overrides: Partial<Opportunity> & Pick<Opportunity, "id
     score: 50,
     reasons: [],
     concerns: [],
+    scoreBreakdown: [],
     ...overrides
   };
 }
