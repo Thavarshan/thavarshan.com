@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-30T10:23:27.120Z",
+  "generatedAt": "2026-09-30T10:34:04.728Z",
   "candidate": {
     "location": "Sri Lanka",
     "preferredStack": [
@@ -21,7 +21,7 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-09-30T10:23:27.120Z",
+      "collectedAt": "2026-09-30T10:34:04.728Z",
       "status": "ok",
       "recordsFound": 10,
       "added": 0,
@@ -34,11 +34,11 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-09-30T10:23:27.120Z",
+      "collectedAt": "2026-09-30T10:34:04.728Z",
       "status": "ok",
-      "recordsFound": 3,
+      "recordsFound": 2,
       "added": 0,
-      "updated": 3,
+      "updated": 0,
       "closed": 1,
       "skipped": 0,
       "rejected": 0,
@@ -47,7 +47,7 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-09-30T10:23:27.120Z",
+      "collectedAt": "2026-09-30T10:34:04.728Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
@@ -60,7 +60,7 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-09-30T10:23:27.120Z",
+      "collectedAt": "2026-09-30T10:34:04.728Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
@@ -106,7 +106,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-16T06:35:27.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -244,7 +244,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-05T08:49:39.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -337,7 +337,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-12T11:14:53.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -509,7 +509,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-15T23:43:26.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -595,92 +595,7 @@
       ],
       "publishedAt": "2026-09-14T22:10:10.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 78,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 65,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "9359539798fba035b34d",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3931",
-      "title": "Senior Product Engineer (Laravel - Remote)",
-      "company": "Hospitable",
-      "location": "Remote",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "lead",
-      "salary": "$134,450.00 - $167,258.30 USD",
-      "salaryMin": 134450,
-      "salaryMax": 167258.3,
-      "salaryCurrency": "USD",
-      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional $380,895.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
-      "tags": [
-        "backend",
-        "laravel",
-        "mysql",
-        "php",
-        "senior",
-        "kubernetes"
-      ],
-      "contentFingerprint": "db0c5b6ef597384b132a",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-07T08:03:05.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -765,7 +680,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-07T19:38:52.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -827,6 +742,81 @@
       ]
     },
     {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel - Remote)",
+      "company": "Hospitable",
+      "location": "Remote",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$134,450.00 - $167,258.30 USD",
+      "salaryMin": 134450,
+      "salaryMax": 167258.3,
+      "salaryCurrency": "USD",
+      "descriptionText": "Share this job SVGs not supported by this browser.Apply for this job",
+      "tags": [
+        "backend",
+        "laravel",
+        "mysql",
+        "php",
+        "senior"
+      ],
+      "contentFingerprint": "db0c5b6ef597384b132a",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 70,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 45,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "27615050f0b05ce90783",
       "source": "laravel-news",
       "sourceUrl": "https://laravel-news.com/",
@@ -855,8 +845,8 @@
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-09-30T10:23:27.120Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-09-30T10:34:04.728Z",
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 48,
@@ -960,7 +950,7 @@
       ],
       "publishedAt": "2026-09-04T20:38:22.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1059,7 +1049,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-08T13:49:13.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1153,7 +1143,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-04T15:56:51.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1288,7 +1278,7 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1351,7 +1341,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1430,7 +1420,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1524,7 +1514,7 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1611,7 +1601,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-04T12:37:22.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:23:27.120Z",
+      "lastSeenAt": "2026-09-30T10:34:04.728Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
