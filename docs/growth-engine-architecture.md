@@ -17,7 +17,10 @@ The Growth Engine turns verified public/professional evidence into four coordina
 - **GitHub Actions first:** collection, scheduled refreshes, CV generation, repository mutation, marketing bundles, and weekly reports.
 - **Static generation first:** public pages, SEO assets, feeds, and developer utilities that do not require request-time state.
 - **Cloudflare/edge runtime is opt-in:** add it only when a concrete request-time or edge-scheduled requirement cannot reasonably be served by static generation or Actions.
-  The first such use is the private job review Worker (`docs/job-review-worker.md`): private, writable state cannot live in the public static build.
+  Two Workers exist, both on the Cloudflare Workers Free plan and guarded by `tests/integration/workers/worker-cost-guard.test.ts` (no paid bindings or compatibility flags):
+  - `workers/job-review`: private, Access-gated review of job opportunities with review state in KV, because private writable state cannot live in the public static build (`docs/job-review-worker.md`, `docs/adr/0001-cloudflare-worker-for-private-job-review.md`).
+  - `workers/site-metrics`: a public first-party event collector that stores daily aggregate counters in KV (`docs/measurement.md`).
+  Both deploy from GitHub Actions; the static site still builds and deploys without either.
 - **Netlify remains the deployment target** until a migration has a measurable benefit. Do not introduce a second hosting platform only for architectural symmetry.
 - **Docker is the reproducibility boundary** for tooling that requires system dependencies such as LaTeX.
 
@@ -51,10 +54,22 @@ The committed repository snapshot is the last-known-good public state. Scheduled
 
 ## Growth Engine issue map
 
-- #39 owns this operating contract and cross-cutting hardening.
-- #40–#42 are existing capabilities and now track only remaining data/collector/scoring hardening.
-- #43 remains a private review/dashboard decision; it must reuse the current job contract.
-- #44 is deferred until a justified edge/runtime requirement exists.
-- #45–#48 are the highest-value acquisition, distribution, measurement, and conversion work.
-- #49 already has a private application-package implementation; remaining work is a deterministic $0 fallback and workflow/API reconciliation.
-- #50 remains the consolidated weekly operational report.
+Closed (shipped):
+
+- #39 operating contract and cross-cutting hardening (this document, `docs/cost-policy.md`).
+- #40–#42 normalized job contract, hardened collectors and scheduled refresh, deterministic scoring (`docs/jobs-data.md`).
+- #43 private review surface: the job-review Worker in `workers/job-review/` (`docs/job-review-worker.md`, ADR 0001). It reuses the job contract from `src/features/jobs/`.
+- #44 edge-runtime evaluation: concluded with the same Worker plus the site-metrics Worker; Workers stay opt-in (see Runtime decisions).
+- #45 developer tools as SEO pages (`docs/developer-tools.md`).
+- #46 OSS distribution bundles (`docs/oss-marketing.md`).
+- #47 zero-cost growth measurement (`docs/measurement.md`).
+
+Open:
+
+- #48 Hire and Consulting conversion paths.
+- #49 deterministic $0 fallback for application assistance; a private application-package implementation already exists (`docs/applications-data.md`).
+- #50 consolidated weekly operational report.
+- #52–#67 SEO and marketing hardening.
+- #80 and #81, the job-review Worker reliability follow-ups, are fixed and merged; #82 is this reconciliation.
+
+Re-check this list against `gh issue list` when closing an issue so it does not drift again.
