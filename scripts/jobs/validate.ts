@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { loadSnapshot, CURRENT_SCHEMA_VERSION } from "../../lib/job-snapshot";
+import { loadSnapshot, CURRENT_SCHEMA_VERSION } from "../../src/lib/job-snapshot";
 
 /** Fails (exit 1) unless the committed snapshot is valid at the current schema version, so a bad bot commit is caught in CI. */
 async function main() {

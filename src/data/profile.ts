@@ -1,4 +1,4 @@
-import profileData from "@/data/profile.generated.json";
+import profileData from "@generated/profile.generated.json";
 import { parseProfessionalProfile } from "@/lib/profile-schema";
 
 export const profile = parseProfessionalProfile(profileData);

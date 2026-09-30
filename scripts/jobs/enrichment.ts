@@ -1,6 +1,6 @@
 import type { BrowserContext, Page } from "@playwright/test";
-import type { Opportunity } from "../../lib/job-opportunities";
-import { mapWithConcurrency, withRetry } from "../../lib/node/async";
+import type { Opportunity } from "../../src/lib/job-opportunities";
+import { mapWithConcurrency, withRetry } from "../../src/lib/node/async";
 import { SkipEnrichmentError } from "./concurrency";
 
 const unusableRedirectHosts = new Set(["accounts.google.com", "docs.google.com"]);

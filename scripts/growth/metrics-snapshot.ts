@@ -1,9 +1,9 @@
 import { appendFile, mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { parseAggregateKey } from "../../lib/telemetry/events";
-import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow, type MetricsSnapshot, type Period } from "../../lib/telemetry/snapshot";
-import { mapWithConcurrency, withRetry } from "../../lib/node/async";
-import { writeJsonAtomic } from "../../lib/node/fs";
+import { parseAggregateKey } from "../../src/lib/telemetry/events";
+import { buildSnapshot, daysBetween, isoWeekLabel, lastCompletedWeek, renderSnapshotSummary, snapshotSchema, type AggregateRow, type MetricsSnapshot, type Period } from "../../src/lib/telemetry/snapshot";
+import { mapWithConcurrency, withRetry } from "../../src/lib/node/async";
+import { writeJsonAtomic } from "../../src/lib/node/fs";
 
 const outputDir = resolve("data/growth");
 const API = "https://api.cloudflare.com/client/v4";

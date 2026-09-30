@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { createInterface } from "node:readline";
-import { opportunitySnapshotSchema, type Opportunity } from "../../lib/job-opportunities";
+import { opportunitySnapshotSchema, type Opportunity } from "../../src/lib/job-opportunities";
 import { readState, writeState, type ApplicationStateEntry } from "./state";
 
 function run(command: string, args: string[], cwd?: string) {

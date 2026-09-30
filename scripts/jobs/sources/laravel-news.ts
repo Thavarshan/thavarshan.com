@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { canonicalizeJobUrl } from "../../../lib/job-opportunities";
+import { canonicalizeJobUrl } from "../../../src/lib/job-opportunities";
 
 export const laravelNewsUrl = "https://laravel-news.com/";
 

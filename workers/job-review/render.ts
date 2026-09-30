@@ -1,4 +1,4 @@
-import type { Opportunity } from "../../lib/job-opportunities";
+import type { Opportunity } from "../../src/lib/job-opportunities";
 import {
   opportunityAgeDays,
   reviewStatuses,
@@ -6,7 +6,7 @@ import {
   safeExternalUrl,
   type ReviewFilters,
   type ReviewMap
-} from "../../lib/job-review";
+} from "../../src/lib/job-review";
 
 export function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!);

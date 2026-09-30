@@ -9,9 +9,9 @@ import {
   type OpportunitySnapshot,
   type SourceCollectionOutcome,
   type SourceCollectionSuccess
-} from "../../lib/job-opportunities";
-import { loadSnapshot } from "../../lib/job-snapshot";
-import { writeJsonAtomic } from "../../lib/node/fs";
+} from "../../src/lib/job-opportunities";
+import { loadSnapshot } from "../../src/lib/job-snapshot";
+import { writeJsonAtomic } from "../../src/lib/node/fs";
 import { recordSourceFailure } from "./diagnostics";
 import { enrichAndFinalize } from "./enrichment";
 import { assessRunHealth, isMaterialChange, renderRunSummary, summarizeError } from "./health";

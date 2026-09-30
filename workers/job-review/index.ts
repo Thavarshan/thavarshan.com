@@ -1,4 +1,4 @@
-import { opportunitySnapshotSchema } from "../../lib/job-opportunities";
+import { opportunitySnapshotSchema } from "../../src/lib/job-opportunities";
 import {
   OPPORTUNITY_ID_PATTERN,
   filterOpportunities,
@@ -9,7 +9,7 @@ import {
   sortOpportunities,
   type ReviewMap,
   type ReviewStatus
-} from "../../lib/job-review";
+} from "../../src/lib/job-review";
 import { verifyAccessJwt } from "./access";
 import {
   PayloadTooLargeError,
@@ -20,7 +20,7 @@ import {
   readFormBody,
   requestIdFor,
   type LogEntry
-} from "../../lib/edge/platform";
+} from "../../src/lib/edge/platform";
 import { renderPage } from "./render";
 
 export interface KVLike {

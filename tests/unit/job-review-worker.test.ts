@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it } from "vitest";
-import { clearAccessCertCache, verifyAccessJwt } from "@/workers/job-review/access";
-import { handleRequest, isSameOrigin, type Env, type KVLike } from "@/workers/job-review/index";
+import { clearAccessCertCache, verifyAccessJwt } from "@workers/job-review/access";
+import { handleRequest, isSameOrigin, type Env, type KVLike } from "@workers/job-review/index";
 import type { OpportunitySnapshot } from "@/lib/job-opportunities";
 import { makeOpportunity } from "../helpers/opportunity";
 

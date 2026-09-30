@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Download, GitFork, Mail, Network, Star } from "lucide-react";
-import githubData from "@/data/github.generated.json";
+import githubData from "@generated/github.generated.json";
 import { ButtonLink } from "@/components/button-link";
 import { InsightCard } from "@/components/insight-card";
 import { JsonLd } from "@/components/json-ld";

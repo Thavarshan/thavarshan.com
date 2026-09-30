@@ -1,9 +1,9 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import currentProfileData from "../../data/profile.generated.json";
-import { importLinkedInArchive } from "../../lib/linkedin-archive";
-import { parseProfessionalProfile } from "../../lib/profile-schema";
-import { writeJsonAtomic } from "../../lib/node/fs";
+import { importLinkedInArchive } from "../../src/lib/linkedin-archive";
+import { parseProfessionalProfile } from "../../src/lib/profile-schema";
+import { writeJsonAtomic } from "../../src/lib/node/fs";
 
 export async function importProfileArchive(archivePath: string) {
   const resolvedArchive = resolve(archivePath);

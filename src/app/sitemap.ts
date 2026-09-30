@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import githubData from "@/data/github.generated.json";
+import githubData from "@generated/github.generated.json";
 import { profile } from "@/data/profile";
 import { site } from "@/data/site";
 import { githubSnapshotSchema } from "@/lib/github-model";

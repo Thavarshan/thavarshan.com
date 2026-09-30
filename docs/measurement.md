@@ -16,7 +16,7 @@ visitor action ─▶ browser track() ─▶ collector Worker ─▶ KV: one dai
 
 ## Event taxonomy
 
-Defined once in `lib/telemetry/events.ts` and shared by the browser, the collector and the snapshot job; a test fails if this table omits an event.
+Defined once in `src/lib/telemetry/events.ts` and shared by the browser, the collector and the snapshot job; a test fails if this table omits an event.
 
 | Event | Stage | Properties | Fired when |
 | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ Stored per (UTC day, event, page path, utm source/medium/campaign, referrer clas
 
 Never collected or stored: IP address, user agent, cookies, visitor/session identifiers, fingerprints, timestamps finer than a day, page views, the full referrer URL or query strings, anything typed into a tool. The client IP is used only as an in-memory rate-limit key and is never persisted or logged; logs carry the outcome and a request id only.
 
-Browser-side rules (`lib/telemetry/client.ts`):
+Browser-side rules (`src/lib/telemetry/client.ts`):
 - **Do Not Track and Global Privacy Control are honoured completely**: nothing is sent and nothing is written to storage.
 - No cookies, no `localStorage`. The only storage is a four-string landing-attribution record in `sessionStorage` (utm source/medium/campaign and referrer class) so a later click in the same tab is credited to how the visitor arrived; it dies with the tab.
 - UTM values are attacker-controlled (anyone can craft a link), so they are lowercased and allowlisted; invalid values are dropped.
@@ -65,13 +65,13 @@ npm run growth:metrics -- --dry-run --input rows.json      # offline, from expor
 
 | Piece | Where |
 | --- | --- |
-| Taxonomy, validation, aggregate keys | `lib/telemetry/events.ts` |
-| Browser layer | `lib/telemetry/client.ts`, `components/telemetry-provider.tsx`, `lib/telemetry/goals.ts` |
+| Taxonomy, validation, aggregate keys | `src/lib/telemetry/events.ts` |
+| Browser layer | `src/lib/telemetry/client.ts`, `src/components/telemetry-provider.tsx`, `src/lib/telemetry/goals.ts` |
 | Collector Worker (Free plan, KV only) | `workers/site-metrics/` — `POST /collect`, `GET /healthz` |
-| Snapshot builder and CLI | `lib/telemetry/snapshot.ts`, `scripts/growth/metrics-snapshot.ts` |
+| Snapshot builder and CLI | `src/lib/telemetry/snapshot.ts`, `scripts/growth/metrics-snapshot.ts` |
 | Deploy (CI only) | `.github/workflows/site-metrics-deploy.yml` |
 
-The endpoint is `site.metricsUrl` in `data/site.ts` (empty disables first-party telemetry); the site's CSP `connect-src` allows it. The optional Plausible sink activates only if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set, and receives the same typed events.
+The endpoint is `site.metricsUrl` in `src/data/site.ts` (empty disables first-party telemetry); the site's CSP `connect-src` allows it. The optional Plausible sink activates only if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set, and receives the same typed events.
 
 ## Failure modes
 

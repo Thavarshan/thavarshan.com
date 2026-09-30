@@ -95,10 +95,10 @@ Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 2
 
 ## Schema versioning and migration
 
-The contract lives in `opportunitySnapshotSchema` (`lib/job-opportunities.ts`); loading, migration and validation of untrusted snapshot JSON go through `loadSnapshot` (`lib/job-snapshot.ts`).
+The contract lives in `opportunitySnapshotSchema` (`src/lib/job-opportunities.ts`); loading, migration and validation of untrusted snapshot JSON go through `loadSnapshot` (`src/lib/job-snapshot.ts`).
 
 - **Additive changes** (a new optional/defaulted field) do **not** bump `schemaVersion`; they ship with a zod default so older snapshots keep loading (this is how `scoreBreakdown`, `confidence` and `confidenceBreakdown` were added).
-- **Breaking changes** (removing/renaming a field, narrowing an enum, making a field required) bump `schemaVersion`, add a `migrate` step in `lib/job-snapshot.ts`, and add a fixture of the previous version under `tests/fixtures/jobs/`. `snapshot-v1.json` is a real v1 snapshot from git history; the v1 → v2 migration derives the newly required fields (`workArrangement`, `seniority`, salary parts, `contentFingerprint`, `status`) from stored text and preserves stored `id`, `score` and `eligibility`.
+- **Breaking changes** (removing/renaming a field, narrowing an enum, making a field required) bump `schemaVersion`, add a `migrate` step in `src/lib/job-snapshot.ts`, and add a fixture of the previous version under `tests/fixtures/jobs/`. `snapshot-v1.json` is a real v1 snapshot from git history; the v1 → v2 migration derives the newly required fields (`workArrangement`, `seniority`, salary parts, `contentFingerprint`, `status`) from stored text and preserves stored `id`, `score` and `eligibility`.
 - **Refusal, never reset:** a snapshot that is corrupt, fails validation after migration, or has a *newer* `schemaVersion` than the code raises `SnapshotError`. The collector then **fails the run** and leaves the committed file untouched (the last-known-good state) instead of starting fresh, which would discard history and bypass the collapse guard. Deliberately starting over requires `JOBS_RESET_SNAPSHOT=1`.
 - **CI:** `npm run jobs:validate` fails unless the committed snapshot is valid at the current version with unique ids, so a bad generated commit is caught on the next PR/push.
 - **Recovery:** the committed `data/jobs.generated.json` in git is the recovery point (`git checkout <sha> -- data/jobs.generated.json`); writes are atomic (temp file + rename), and a run that fails leaves the previous file in place.
@@ -126,7 +126,7 @@ Every field below is populated from real source data or deterministic extraction
 | first/last seen, posted | `firstSeenAt`, `lastSeenAt`, `publishedAt` |
 | expiry | `status`/`closedAt` (set when a listing disappears). **No source provides an expiry timestamp** — checked against the LaraJobs feed, the WeWorkRemotely RSS and the Remotive API (2026-09-30) — so no field is modelled for it |
 | source evidence | `reasons`, `concerns`, `scoreBreakdown`, `confidenceBreakdown` (scoring evidence, not per-field provenance) |
-| collector version / schema version | snapshot-level `collectorVersion` (bump `COLLECTOR_VERSION` in `lib/job-opportunities.ts` whenever collection/derivation logic can change stored values) and `schemaVersion` |
+| collector version / schema version | snapshot-level `collectorVersion` (bump `COLLECTOR_VERSION` in `src/lib/job-opportunities.ts` whenever collection/derivation logic can change stored values) and `schemaVersion` |
 
 ### Source health: empty-result guard
 

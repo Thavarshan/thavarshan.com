@@ -4,16 +4,16 @@ One repository, one npm package, clear internal boundaries. The codebase is larg
 
 This document is the source of truth for **where code lives and what may import what**. The restructuring is delivered as a sequence of small pull requests that move code without changing behaviour; the status table at the bottom records progress.
 
-## What lives where (today)
+## What lives where
 
 | Path | Owns | Runs in |
 | --- | --- | --- |
-| `app/` | Next.js routes, metadata, route-level composition | build (static export) + browser |
-| `components/` | Reusable UI, including client components | browser |
-| `lib/` | Domain code: schemas, scoring, contracts, pure transformations | any (see runtime rules) |
-| `lib/edge/` | Utilities shared by Cloudflare Workers | edge |
-| `lib/node/` | Atomic file writes, retry/concurrency, other shared CLI code | Node |
-| `data/*.ts` | Authored site data | build |
+| `src/app/` | Next.js routes, metadata, route-level composition | build (static export) + browser |
+| `src/components/` | Reusable UI, including client components | browser |
+| `src/lib/` | Domain code: schemas, scoring, contracts, pure transformations | any (see runtime rules) |
+| `src/lib/edge/` | Utilities shared by Cloudflare Workers | edge |
+| `src/lib/node/` | Atomic file writes, retry/concurrency, other shared CLI code | Node |
+| `src/data/*.ts` | Authored site data | build |
 | `data/*.generated.json`, `data/growth/` | **Generated snapshots (interfaces, see below)** | committed by workflows |
 | `scripts/` | Automation entrypoints and pipeline integrations (profile, jobs, applications, cv, marketing, growth, structure) | Node / GitHub Actions |
 | `workers/job-review/`, `workers/site-metrics/` | Deployable Cloudflare Workers (entrypoint, auth/rendering, Wrangler config) | edge |
@@ -24,19 +24,21 @@ This document is the source of truth for **where code lives and what may import 
 | `tests/` | `unit/`, `components/`, `e2e/`, `fixtures/` | Vitest / Playwright |
 | `docs/`, `docs/adr/` | Documentation and decision records | - |
 
-Target layout (the migration's destination): application source under `src/` (`app`, `components/{layout,ui}`, `features/*`, `shared/{edge,node,config}`), pipeline entrypoints under `automation/`, Workers staying under `workers/`, tests mirroring features. `data/`, `public/`, `content/` and build/Wrangler configuration stay where their tools require them.
+Target layout (the migration's destination): inside `src/`, `components/{layout,ui}`, `features/*` and `shared/{edge,node,config}` replace the flat `lib/` and `data/`; pipeline entrypoints move under `automation/`; Workers stay under `workers/`; tests mirror features. `data/` (generated JSON only), `public/`, `content/` and build/Wrangler configuration stay where their tools require them.
+
+**Import aliases** (`tsconfig.json`, mirrored in `vitest.config.ts`): `@/*` is application source (`src/*`); `@generated/*` is the committed generated JSON in `data/`; `@scripts/*` and `@workers/*` reach those trees from tests. Automation and Workers use relative imports.
 
 ## Dependency rules
 
 Enforced by lint (`no-restricted-imports` in `eslint.config.mjs`) where a path pattern can express them:
 
-1. **Routes compose features.** `app/` may import `components/` and `lib/`; nothing imports `app/` (except the framework).
-2. **Domain code is independent.** `lib/` never imports `app/`, `components/`, `scripts/` or `workers/`.
-3. **Automation and Workers are runtime adapters.** `scripts/` does not import UI or Workers; `workers/` does not import UI, `scripts/`, React or Next.js, and **one Worker never imports another**. Anything two of them need goes in `lib/`.
-4. **Runtime-neutral code stays neutral.** `lib/edge/`, the telemetry event contract, snapshot builder and goal mapping, and `lib/tools/` must not import Node built-ins, React or Next.js. Browser-side telemetry and UI components must not import Node built-ins.
+1. **Routes compose features.** `src/app/` may import `src/components/` and `src/lib/`; nothing imports `src/app/` (except the framework).
+2. **Domain code is independent.** `src/lib/` never imports `src/app/`, `src/components/`, `scripts/` or `workers/`.
+3. **Automation and Workers are runtime adapters.** `scripts/` does not import UI or Workers; `workers/` does not import UI, `scripts/`, React or Next.js, and **one Worker never imports another**. Anything two of them need goes in `src/lib/`.
+4. **Runtime-neutral code stays neutral.** `src/lib/edge/`, the telemetry event contract, snapshot builder and goal mapping, and `src/lib/tools/` must not import Node built-ins, React or Next.js. Browser-side telemetry and UI components must not import Node built-ins.
 5. **Side effects live at the edge.** Browser telemetry, GitHub fetching, KV access, scraping, PDF compilation and filesystem writes stay in the adapter for their runtime.
 
-Convention (not yet mechanically enforceable): modules that use Node APIs are server-only; `lib/insights.ts`, `lib/linkedin-archive.ts` and `lib/job-opportunities.ts` still import `node:*` and are the known exceptions to rule 4's spirit (the last one is used by the job-review Worker under `nodejs_compat`). Splitting them is part of the feature-grouping step.
+Convention (not yet mechanically enforceable): modules that use Node APIs are server-only; `src/lib/insights.ts`, `src/lib/linkedin-archive.ts` and `src/lib/job-opportunities.ts` still import `node:*` and are the known exceptions to rule 4's spirit (the last one is used by the job-review Worker under `nodejs_compat`). Splitting them is part of the feature-grouping step.
 
 ## Generated files are interfaces
 
@@ -59,14 +61,14 @@ Workflows commit these, scripts write them, the site builds from them, and one W
 
 - **Duplicate PDF removed.** `assets/docs/Jerome-Resume.pdf` was byte-identical to `public/docs/Jerome-Resume-fallback.pdf` and referenced by nothing. The `public/` copy is kept because it is served at a public URL that external links may use.
 - **Formatting check deferred.** A formatter needs a one-time reformat of the whole repository; that would bury the structural diffs, so it gets its own PR after the moves.
-- **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`lib/edge/platform.ts`), atomic file writes (`lib/node/fs.ts`) and retry/concurrency (`lib/node/async.ts`).
+- **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`src/lib/edge/platform.ts`), atomic file writes (`src/lib/node/fs.ts`) and retry/concurrency (`src/lib/node/async.ts`).
 
 ## Migration status
 
 | Step | Scope | Status |
 | --- | --- | --- |
-| 1 | Baseline and guardrails: route inventory, generated-interface test, import-boundary lint, Next.js lint rules, shared helpers extracted, duplicate PDF removed, this document | in progress |
-| 2 | Relocate `app/`, `components/`, `lib/`, authored `data/*.ts` under `src/` (alias change), generated JSON stays | planned |
+| 1 | Baseline and guardrails: route inventory, generated-interface test, import-boundary lint, Next.js lint rules, shared helpers extracted, duplicate PDF removed, this document | done (#87) |
+| 2 | Relocate `app/`, `components/`, `lib/`, authored `data/*.ts` under `src/` (alias change), generated JSON stays | in progress |
 | 3 | Group `src/lib` by feature (profile, projects, insights, cv, jobs, applications, marketing, telemetry, tools) | planned |
 | 4 | `scripts/` to `automation/`, shared Node/edge modules under `src/shared` | planned |
 | 5 | Tests mirror features; tighten boundary lint; formatting check | planned |

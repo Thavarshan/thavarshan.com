@@ -9,8 +9,12 @@ export default defineConfig({
     exclude: ["tests/e2e/**", "node_modules/**"]
   },
   resolve: {
-    alias: {
-      "@": new URL(".", import.meta.url).pathname
-    }
+    // Mirrors tsconfig "paths". "@/" is application source (src/); the others are trees that live outside it.
+    alias: [
+      { find: /^@generated\//, replacement: new URL("./data/", import.meta.url).pathname },
+      { find: /^@scripts\//, replacement: new URL("./scripts/", import.meta.url).pathname },
+      { find: /^@workers\//, replacement: new URL("./workers/", import.meta.url).pathname },
+      { find: /^@\//, replacement: new URL("./src/", import.meta.url).pathname }
+    ]
   }
 });

@@ -1,7 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { basename, resolve } from "node:path";
-import { profile } from "../../data/profile";
+import { profile } from "../../src/data/profile";
 import { renderCvSource } from "./render";
 
 const texLiveImage =

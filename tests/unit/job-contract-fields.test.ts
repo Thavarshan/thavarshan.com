@@ -10,7 +10,7 @@ import {
   opportunitySnapshotSchema
 } from "@/lib/job-opportunities";
 import { loadSnapshot } from "@/lib/job-snapshot";
-import { buildOpportunity, sanitizeApplicationUrl } from "@/scripts/jobs/opportunity-builder";
+import { buildOpportunity, sanitizeApplicationUrl } from "@scripts/jobs/opportunity-builder";
 import { makeOpportunity } from "../helpers/opportunity";
 
 const now = "2026-09-30T00:00:00.000Z";

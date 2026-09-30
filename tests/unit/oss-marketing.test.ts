@@ -15,7 +15,7 @@ import {
   type Ledger,
   type Snapshots
 } from "@/lib/oss-marketing";
-import { parseArgs, renderSummary } from "@/scripts/marketing/oss-bundles";
+import { parseArgs, renderSummary } from "@scripts/marketing/oss-bundles";
 
 const NOW = new Date("2026-10-01T00:00:00.000Z");
 const SYNCED = "2026-09-29T00:00:00.000Z";
@@ -349,7 +349,7 @@ describe("CLI helpers", () => {
   });
 
   it("runs end to end against the real snapshots as a dry run without writing", async () => {
-    const { main } = await import("@/scripts/marketing/oss-bundles");
+    const { main } = await import("@scripts/marketing/oss-bundles");
     const log = vi.spyOn(console, "log").mockImplementation(() => {});
     await expect(main(["--dry-run", "--backfill", "--max", "1"])).resolves.toBeUndefined();
     expect(log.mock.calls.join("\n")).toContain("OSS distribution bundles");

@@ -12,8 +12,8 @@ import { describe, expect, it } from "vitest";
 const interfaces: Array<{ path: string; why: string; consumers: string[] }> = [
   { path: "data/jobs.generated.json", why: "daily jobs snapshot; fetched by the job-review Worker", consumers: [".github/workflows/jobs-refresh.yml", "scripts/jobs/collect.ts", "scripts/applications/generate.ts", "workers/job-review/wrangler.toml"] },
   { path: "data/profile.generated.json", why: "validated professional profile (website + CV)", consumers: [".github/workflows/content-refresh.yml", "scripts/cv/render.ts", "scripts/profile/publish.ts"] },
-  { path: "data/github.generated.json", why: "repository snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/profile/github.ts", "app/sitemap.ts"] },
-  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/marketing/registry.ts", "lib/package-registry.ts"] },
+  { path: "data/github.generated.json", why: "repository snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/profile/github.ts", "src/app/sitemap.ts"] },
+  { path: "data/package-registry.generated.json", why: "package registry snapshot", consumers: [".github/workflows/content-refresh.yml", "scripts/marketing/registry.ts", "src/lib/package-registry.ts"] },
   { path: "data/growth", why: "weekly growth metrics snapshots", consumers: [".github/workflows/growth-metrics.yml", "scripts/growth/metrics-snapshot.ts"] },
   { path: "marketing/oss-ledger.json", why: "OSS bundle dedupe ledger", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },
   { path: "marketing/oss", why: "OSS promotion drafts", consumers: [".github/workflows/oss-bundles.yml", "scripts/marketing/oss-bundles.ts"] },
@@ -29,9 +29,12 @@ const createdOnFirstRun = new Set(["marketing/oss", "data/growth", "marketing/ge
 describe("generated paths are stable interfaces", () => {
   it.each(interfaces)("$path ($why) exists and is still referenced by every consumer", ({ path, consumers }) => {
     if (!createdOnFirstRun.has(path)) expect(existsSync(path), `${path} must exist`).toBe(true);
+    // Code imports the generated JSON through the "@generated/" alias (which maps to data/); other files use the literal path.
+    const spellings = [path, path.replace(/^data\//, "@generated/")];
     for (const consumer of consumers) {
       expect(existsSync(consumer), `consumer ${consumer} must exist (did it move?)`).toBe(true);
-      expect(readFileSync(consumer, "utf8"), `${consumer} must reference ${path}`).toContain(path);
+      const source = readFileSync(consumer, "utf8");
+      expect(spellings.some((spelling) => source.includes(spelling)), `${consumer} must reference ${path}`).toBe(true);
     }
   });
 

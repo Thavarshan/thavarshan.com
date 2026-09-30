@@ -1,4 +1,4 @@
-import { COLLECTOR_VERSION, type OpportunitySnapshot, type SourceCollectionOutcome, type SourceStats } from "../../lib/job-opportunities";
+import { COLLECTOR_VERSION, type OpportunitySnapshot, type SourceCollectionOutcome, type SourceStats } from "../../src/lib/job-opportunities";
 
 /** Even with nothing new, rewrite the snapshot at least this often so `lastSeenAt` (used by the empty-source grace guard) stays fresh. */
 export const HEARTBEAT_HOURS = 48;
