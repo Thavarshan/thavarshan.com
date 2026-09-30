@@ -12,7 +12,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { sameAsProfiles } from "@/features/profile/external-profiles";
 import { profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
-import { getAllInsights, getInsightBySlug, getInsightUrl } from "@/features/insights/insights";
+import { getAllInsights, getInsightBySlug, getInsightUrl } from "@/features/insights/insights.node";
 
 type InsightPageProps = {
   params: Promise<{ slug: string }>;

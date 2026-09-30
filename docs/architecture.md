@@ -50,7 +50,7 @@ Enforced by lint (`no-restricted-imports` in `eslint.config.mjs`) where a path p
 4. **Runtime-neutral code stays neutral.** `src/shared/edge/`, the telemetry event contract, snapshot builder and goal mapping, and `src/features/tools/` must not import Node built-ins, React or Next.js. Browser-side telemetry and UI components must not import Node built-ins.
 5. **Side effects live at the edge.** Browser telemetry, GitHub fetching, KV access, scraping, PDF compilation and filesystem writes stay in the adapter for their runtime.
 
-Convention (not yet mechanically enforceable): modules that use Node APIs are server-only; `src/features/insights/insights.ts`, `src/features/profile/linkedin-archive.ts` and `src/features/jobs/opportunities.ts` still import `node:*` and are the known exceptions to rule 4's spirit (the last one is used by the job-review Worker under `nodejs_compat`). Splitting them is part of the feature-grouping step.
+**Node-only code is named as such.** A module that genuinely needs Node (filesystem, processes) ends in `.node.ts` (for example `src/features/insights/insights.node.ts`, the content loader); `node:*` imports are rejected by lint everywhere in `src` except `*.node.ts` and `src/shared/node/`, and never allowed in Workers. Everything else in `src/features` is runtime-neutral, including the jobs, GitHub and profile features: hashing uses the pure `src/shared/edge/sha256.ts` (byte-for-byte identical to Node's `createHash("sha256")`, checked against every stored job id and fingerprint), so the job-review Worker needs no Node compatibility flag and the cost guard now forbids compatibility flags entirely.
 
 ## Generated files are interfaces
 
@@ -84,8 +84,6 @@ shared/edge, shared/node  (independent)        features/jobs  (independent; used
 ## Decisions recorded here
 
 - **Duplicate PDF removed.** `assets/docs/Jerome-Resume.pdf` was byte-identical to `public/docs/Jerome-Resume-fallback.pdf` and referenced by nothing. The `public/` copy is kept because it is served at a public URL that external links may use.
-- **Known exceptions, deliberately left for later:** `features/jobs/opportunities.ts` and `features/profile/linkedin-archive.ts` import `node:*` (the first is used by the job-review Worker under `nodejs_compat`; replacing `node:crypto` hashing with Web Crypto would make it async and change every caller), and `features/insights/insights.ts` reads the filesystem. Making these genuinely runtime-neutral is a behaviour change, not a move.
-- **Formatting check deferred.** A formatter needs a one-time reformat of the whole repository; that would bury the structural diffs, so it gets its own PR after the moves.
 - **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`src/shared/edge/platform.ts`), atomic file writes (`src/shared/node/fs.ts`) and retry/concurrency (`src/shared/node/async.ts`).
 
 ## Guards that keep the structure honest

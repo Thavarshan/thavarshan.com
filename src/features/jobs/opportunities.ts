@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Hex } from "@/shared/edge/sha256";
 import { z } from "zod";
 import {
   deriveSeniority,
@@ -137,7 +137,7 @@ export function descriptionsMateriallyDiffer(previous: string, next: string, thr
 }
 
 export function computeDescriptionHash(text: string) {
-  return createHash("sha256").update(text.toLowerCase().replace(/\s+/g, " ").trim()).digest("hex").slice(0, 20);
+  return sha256Hex(text.toLowerCase().replace(/\s+/g, " ").trim()).slice(0, 20);
 }
 
 /** The source's own identifier, taken from the canonical URL (LaraJobs job number, WeWorkRemotely slug, Remotive job id). */
@@ -155,7 +155,7 @@ export function deriveSourceId(source: Opportunity["source"], canonicalUrl: stri
 }
 
 export function opportunityId(url: string) {
-  return createHash("sha256").update(canonicalizeJobUrl(url)).digest("hex").slice(0, 20);
+  return sha256Hex(canonicalizeJobUrl(url)).slice(0, 20);
 }
 
 function normalizeForFingerprint(value: string) {
@@ -170,7 +170,7 @@ function normalizeForFingerprint(value: string) {
 export function computeContentFingerprint(company: string | null | undefined, title: string) {
   const normalizedCompany = company ? normalizeForFingerprint(company) : "";
   const normalizedTitle = normalizeForFingerprint(title);
-  return createHash("sha256").update(`${normalizedCompany}|${normalizedTitle}`).digest("hex").slice(0, 20);
+  return sha256Hex(`${normalizedCompany}|${normalizedTitle}`).slice(0, 20);
 }
 
 /** Ineligible roles are hard-excluded: technical-fit points must never lift them into the ranked range. */

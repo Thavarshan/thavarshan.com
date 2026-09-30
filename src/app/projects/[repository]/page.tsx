@@ -11,7 +11,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { getProjectCaseStudy } from "@/features/projects/project-case-studies";
 import { site } from "@/features/profile/site";
 import { githubSnapshotSchema } from "@/features/github/github-model";
-import { getRelatedInsightsForProject } from "@/features/insights/insights";
+import { getRelatedInsightsForProject } from "@/features/insights/insights.node";
 import { formatPackageProvider, getPackageStatsByRepository } from "@/features/projects/package-registry";
 import { getFeaturedGitHubProject } from "@/features/projects/projects";
 

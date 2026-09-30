@@ -18,7 +18,7 @@ import { profile } from "@/features/profile/profile";
 import { honeymelon } from "@/features/projects/featured-projects";
 import { site } from "@/features/profile/site";
 import { getApprovedTestimonials } from "@/features/profile/testimonials";
-import { getFeaturedInsights } from "@/features/insights/insights";
+import { getFeaturedInsights } from "@/features/insights/insights.node";
 import { formatStarTotal } from "@/features/projects/project-model";
 import { getFeaturedProjects } from "@/features/projects/projects";
 

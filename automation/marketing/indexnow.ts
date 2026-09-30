@@ -1,5 +1,5 @@
 import { site } from "../../src/features/profile/site";
-import { getAllInsights } from "../../src/features/insights/insights";
+import { getAllInsights } from "../../src/features/insights/insights.node";
 
 async function main() {
   const key = process.env.BING_INDEXNOW_KEY;

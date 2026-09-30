@@ -1,5 +1,5 @@
 import { site } from "@/features/profile/site";
-import { getAllInsights } from "@/features/insights/insights";
+import { getAllInsights } from "@/features/insights/insights.node";
 
 export const dynamic = "force-static";
 

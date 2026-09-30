@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { site } from "../../src/features/profile/site";
-import { getAllInsights, getAbsoluteInsightUrl } from "../../src/features/insights/insights";
+import { getAllInsights, getAbsoluteInsightUrl } from "../../src/features/insights/insights.node";
 import { withUtm } from "../../src/features/telemetry/analytics";
 
 function createLinkedInPost(insight: ReturnType<typeof getAllInsights>[number]) {
