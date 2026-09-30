@@ -1,0 +1,82 @@
+name: OSS Distribution Bundles
+
+# Turns verified repository/registry changes into REVIEWABLE promotion drafts under marketing/oss/.
+# It never posts anywhere and uses no paid services or secrets: it only reads the committed snapshots.
+# Entry points: after each Content Refresh (which syncs the snapshots), or manually with options.
+
+on:
+  workflow_run:
+    workflows: ["Content Refresh"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Explain what would be drafted and print the drafts, but write nothing"
+        type: boolean
+        default: true
+      backfill:
+        description: "Also draft the current best milestone/release even though it predates tracking (manual use)"
+        type: boolean
+        default: false
+      max_per_run:
+        description: "Maximum bundles to draft in this run"
+        type: number
+        default: 3
+
+permissions:
+  contents: write
+
+concurrency:
+  group: automated-generated-content
+  cancel-in-progress: false
+
+jobs:
+  bundles:
+    # Scheduled path: only after a successful Content Refresh. Manual path: always.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify the generator
+        run: |
+          npm run typecheck
+          npx vitest run tests/unit/oss-marketing
+      - name: Generate bundles
+        env:
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          BACKFILL: ${{ github.event_name == 'workflow_dispatch' && inputs.backfill }}
+          MAX_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.max_per_run || 3 }}
+        run: |
+          args=(--max "$MAX_PER_RUN")
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          [ "$BACKFILL" = "true" ] && args+=(--backfill)
+          npm run marketing:oss -- "${args[@]}"
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if git status --porcelain -- marketing/oss marketing/oss-ledger.json | grep -q .; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, so committing drafts cannot loop.
+      - name: Commit drafts to main
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add marketing/oss marketing/oss-ledger.json
+          git commit -m "Draft OSS distribution bundles for review"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Nothing to commit
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No new bundles or ledger changes; see the job summary for why."

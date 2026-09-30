@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "entries": {
+    "stars-milestone:fetch-php:25": {
+      "type": "stars-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:fetch-php:50": {
+      "type": "stars-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:fetch-php:100": {
+      "type": "stars-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:fetch-php:250": {
+      "type": "stars-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:filterable:25": {
+      "type": "stars-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:filterable:50": {
+      "type": "stars-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:filterable:100": {
+      "type": "stars-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:phpvm:25": {
+      "type": "stars-milestone",
+      "repository": "phpvm",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:phpvm:50": {
+      "type": "stars-milestone",
+      "repository": "phpvm",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:phpvm:100": {
+      "type": "stars-milestone",
+      "repository": "phpvm",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:comet:25": {
+      "type": "stars-milestone",
+      "repository": "comet",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:comet:50": {
+      "type": "stars-milestone",
+      "repository": "comet",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:comet:100": {
+      "type": "stars-milestone",
+      "repository": "comet",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:matrix:25": {
+      "type": "stars-milestone",
+      "repository": "matrix",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "stars-milestone:matrix:50": {
+      "type": "stars-milestone",
+      "repository": "matrix",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:fetch-php:1000": {
+      "type": "downloads-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:fetch-php:5000": {
+      "type": "downloads-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:fetch-php:10000": {
+      "type": "downloads-milestone",
+      "repository": "fetch-php",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:filterable:1000": {
+      "type": "downloads-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:filterable:5000": {
+      "type": "downloads-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:filterable:10000": {
+      "type": "downloads-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:filterable:25000": {
+      "type": "downloads-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:matrix:1000": {
+      "type": "downloads-milestone",
+      "repository": "matrix",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:matrix:5000": {
+      "type": "downloads-milestone",
+      "repository": "matrix",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    },
+    "downloads-milestone:matrix:10000": {
+      "type": "downloads-milestone",
+      "repository": "matrix",
+      "decidedAt": "2026-09-30T17:10:52.519Z",
+      "outcome": "baseline"
+    }
+  },
+  "lastSeenVersion": {
+    "jerome/fetch-php": "3.8.1",
+    "jerome/filterable": "2.1.2",
+    "jerome/matrix": "4.0.0-beta.1"
+  },
+  "lastGeneratedAt": {}
+}
