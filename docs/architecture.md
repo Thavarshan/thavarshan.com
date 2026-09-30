@@ -88,6 +88,17 @@ shared/edge, shared/node  (independent)        features/jobs  (independent; used
 - **Formatting check deferred.** A formatter needs a one-time reformat of the whole repository; that would bury the structural diffs, so it gets its own PR after the moves.
 - **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`src/shared/edge/platform.ts`), atomic file writes (`src/shared/node/fs.ts`) and retry/concurrency (`src/shared/node/async.ts`).
 
+## Guards that keep the structure honest
+
+| Guard | Protects |
+| --- | --- |
+| `tests/integration/structure/import-graph.test.ts` | module graph stays acyclic; new dependencies are declared on purpose; each Worker's bundle stays within its allowance |
+| `tests/integration/structure/workflow-paths.test.ts` | workflow trigger filters and `vitest run` paths still point at real files (a stale one silently stops a deploy or fails a job later) |
+| `tests/integration/structure/structure-generated-interfaces.test.ts` | generated files and the consumers that depend on them |
+| `npm run structure:routes` (CI) | public URLs, feeds, sitemap, social images and assets |
+| `eslint.config.mjs` | forbidden import directions and runtime-neutrality |
+| `tests/integration/workers/worker-cost-guard.test.ts` | Worker configuration can only use free-plan features |
+
 ## Migration status
 
 | Step | Scope | Status |
@@ -96,6 +107,8 @@ shared/edge, shared/node  (independent)        features/jobs  (independent; used
 | 2 | Relocate `app/`, `components/`, `lib/`, authored `data/*.ts` under `src/` (alias change), generated JSON stays | done (#88) |
 | 3 | Group code by feature under `src/features/*` and `src/shared/*`; split `components/` into `ui`/`layout` | done (#89) |
 | 4 | `automation/` to `automation/`, shared Node/edge modules under `src/shared` | planned |
-| 5 | Break the dependency cycles the new layout exposed; guard the module graph | in progress |
+| 5 | Break the dependency cycles the new layout exposed; guard the module graph and workflow path references | done (#91, #92) |
+
+**Result:** completed in six pull requests (#87 to #92), each verified by rebuilding and comparing the rendered site against the pre-change build (69 files identical), the URL inventory, a byte-identical CV re-render, Worker bundle sizes, and the full unit and browser suites. Verifying the workflows on GitHub's runners after the moves found one class of bug the local checks could not (stale test-path filters in four workflows), which is why the workflow-path guard exists.
 
 **Acceptance for every step:** public URLs and generated-data contracts unchanged; static export and both Workers deploy; CV generation reproducible; lint, typecheck, unit, browser and relevant Worker tests pass.
