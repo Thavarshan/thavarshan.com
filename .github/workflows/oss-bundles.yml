@@ -48,7 +48,7 @@ jobs:
       - name: Verify the generator
         run: |
           npm run typecheck
-          npx vitest run tests/unit/oss-marketing
+          npx vitest run tests/unit/marketing
       - name: Generate bundles
         env:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}

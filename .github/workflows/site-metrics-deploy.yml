@@ -51,7 +51,7 @@ jobs:
         if: steps.creds.outputs.enabled == 'true'
         run: |
           npm run typecheck
-          npx vitest run tests/unit/site-metrics tests/unit/telemetry tests/unit/worker-cost-guard
+          npx vitest run tests/integration/workers tests/unit/telemetry
       - name: Deploy Worker
         if: steps.creds.outputs.enabled == 'true'
         run: npx wrangler deploy --config workers/site-metrics/wrangler.toml --var "WORKER_VERSION:${GITHUB_SHA::7}"
