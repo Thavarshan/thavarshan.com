@@ -47,6 +47,10 @@ Each opportunity has a minimal lifecycle — `status`: `new` (discovered this ru
 
 Ranking is deterministic. It rewards Laravel, an appropriate seniority level, React/Vue/Inertia, cloud experience, explicit remote/APAC/Sri-Lanka language, and sponsorship mentions.
 
+Every score is explainable: `scoreBreakdown` lists each `{ factor, points }` applied (baseline, positive signals, the −40 penalty for unresolved eligibility concerns, and the hard-exclusion cap). Points are summed then clamped to 0–100 and `reasons` are the positive factors. Snapshots written before this field existed parse with an empty breakdown until the next collection run.
+
+Hard constraints outrank fit: an `ineligible` opportunity's score is capped at 20 (`INELIGIBLE_SCORE_CAP`) so technical-fit points can never outweigh a residency/work-authorization exclusion, and its `workArrangement` is `remote-regional-restricted` even if the posting also says "worldwide". Sponsorship is only `unavailable` (no bonus) on explicit wording such as "no sponsorship", "do not sponsor" or "unable to sponsor"; generic relocation wording never implies sponsorship. Regression fixtures live in `tests/unit/job-scoring.test.ts`.
+
 `eligibility` is deliberately separate from match score:
 
 - `eligible`: worldwide/APAC hiring, an explicit Sri Lanka mention, or confirmed sponsorship.

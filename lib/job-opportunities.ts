@@ -44,7 +44,8 @@ export const opportunitySchema = z.object({
   sponsorship: z.enum(["confirmed", "unavailable", "unknown"]),
   score: z.number().int().min(0).max(100),
   reasons: z.array(z.string()),
-  concerns: z.array(z.string())
+  concerns: z.array(z.string()),
+  scoreBreakdown: z.array(z.object({ factor: z.string(), points: z.number().int() })).default([])
 });
 
 export const opportunitySnapshotSchema = z.object({
@@ -106,13 +107,21 @@ export function computeContentFingerprint(company: string | null | undefined, ti
   return createHash("sha256").update(`${normalizedCompany}|${normalizedTitle}`).digest("hex").slice(0, 20);
 }
 
+/** Ineligible roles are hard-excluded: technical-fit points must never lift them into the ranked range. */
+export const INELIGIBLE_SCORE_CAP = 20;
+
+const sponsorshipUnavailablePattern =
+  /\b(?:no|without) (?:visa )?sponsorship\b|\bdo(?:es)? not (?:offer |provide )?(?:visa )?sponsor(?:ship)?\b|\b(?:cannot|can't|unable to|will not|won't) (?:offer |provide )?(?:visa )?sponsor(?:ship)?\b|\bsponsorship (?:is )?(?:not (?:available|offered|provided)|unavailable)\b/i;
+
 function categorizeWorkArrangement(input: {
+  eligibility: Opportunity["eligibility"];
   sriLankaMentioned: boolean;
   worldwideMatched: boolean;
   sponsorship: Opportunity["sponsorship"];
   concerns: string[];
 }): Opportunity["workArrangement"] {
   if (input.sriLankaMentioned) return "remote-sri-lanka-eligible";
+  if (input.eligibility === "ineligible") return "remote-regional-restricted";
   if (input.worldwideMatched) return "remote-worldwide";
   if (input.sponsorship === "confirmed") return "relocation-sponsorship";
   if (input.concerns.some((concern) => concern.includes("does not confirm remote-friendly hiring"))) return "onsite-no-sponsorship";
@@ -124,11 +133,19 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
   const text = [input.title, input.location, input.descriptionText, ...input.tags].filter(Boolean).join("\n");
   const reasons: string[] = [];
   const concerns: string[] = [];
-  let score = 10;
+  const scoreBreakdown: Opportunity["scoreBreakdown"] = [{ factor: "Baseline", points: 10 }];
+
+  const sponsorship = sponsorshipUnavailablePattern.test(text)
+    ? "unavailable" as const
+    : /\b(?:visa )?sponsor(?:ship|ed)?\b/i.test(text)
+      ? "confirmed" as const
+      : "unknown" as const;
 
   for (const [pattern, points, reason] of positiveSignals) {
+    // "no sponsorship" mentions the keyword but must not earn the sponsorship bonus.
+    if (sponsorship === "unavailable" && reason.startsWith("Sponsorship")) continue;
     if (pattern.test(text)) {
-      score += points;
+      scoreBreakdown.push({ factor: reason, points });
       reasons.push(reason);
     }
   }
@@ -144,13 +161,9 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
   const sriLankaMentioned = sriLankaMentionPattern.test(text);
   const worldwideMatched = worldwideEligibilityPattern.test(text);
 
-  const sponsorship = /\b(?:no|without) (?:visa )?sponsorship\b|\bdo not sponsor\b/i.test(text)
-    ? "unavailable" as const
-    : /\b(?:visa )?sponsor(?:ship|ed)?\b/i.test(text)
-      ? "confirmed" as const
-      : "unknown" as const;
-
-  if (concerns.length > 0 && sponsorship !== "confirmed" && !sriLankaMentioned) score -= 40;
+  if (concerns.length > 0 && sponsorship !== "confirmed" && !sriLankaMentioned) {
+    scoreBreakdown.push({ factor: "Eligibility concerns without sponsorship", points: -40 });
+  }
   if (!/\blaravel\b/i.test(text)) concerns.push("Laravel is not explicitly mentioned");
 
   const eligibility = sriLankaMentioned
@@ -163,13 +176,21 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
 
   if (eligibility === "unknown") concerns.push("Sri Lanka hiring eligibility is not explicit");
 
+  let score = scoreBreakdown.reduce((total, entry) => total + entry.points, 0);
+  score = Math.max(0, Math.min(100, score));
+  if (eligibility === "ineligible" && score > INELIGIBLE_SCORE_CAP) {
+    scoreBreakdown.push({ factor: "Hard exclusion cap (ineligible)", points: INELIGIBLE_SCORE_CAP - score });
+    score = INELIGIBLE_SCORE_CAP;
+  }
+
   const seniority = deriveSeniority(text);
-  const workArrangement = categorizeWorkArrangement({ sriLankaMentioned, worldwideMatched, sponsorship, concerns });
+  const workArrangement = categorizeWorkArrangement({ eligibility, sriLankaMentioned, worldwideMatched, sponsorship, concerns });
 
   return {
     eligibility,
     sponsorship,
-    score: Math.max(0, Math.min(100, score)),
+    score,
+    scoreBreakdown,
     reasons: [...new Set(reasons)],
     concerns: [...new Set(concerns)],
     seniority,
