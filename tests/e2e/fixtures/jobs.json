@@ -22,13 +22,13 @@
       "company": "Acme",
       "location": "Remote",
       "workArrangement": "remote-worldwide",
-      "employmentType": null,
+      "employmentType": "Full-Time",
       "seniority": "senior",
       "salary": null,
       "salaryMin": null,
       "salaryMax": null,
       "salaryCurrency": null,
-      "descriptionText": "",
+      "descriptionText": "We build Laravel products for schools. Fully remote team. <script>alert(1)</script>",
       "tags": [
         "laravel"
       ],

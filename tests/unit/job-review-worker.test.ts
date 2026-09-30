@@ -112,7 +112,7 @@ describe("job-review worker", () => {
     expect(html).toContain("Senior &lt;b&gt;Laravel&lt;/b&gt; Dev");
     expect(html).not.toContain("<b>Laravel</b>");
     expect(html).toContain("Why this score");
-    expect(html).toContain("Sponsorship: unknown");
+    expect(html).toContain("Sponsorship: not mentioned");
   });
 
   it("shows a stale banner and an error state instead of crashing", async () => {

@@ -134,6 +134,27 @@ function categorizeWorkArrangement(input: {
 
 export const SUBSTANTIVE_DESCRIPTION_LENGTH = 200;
 
+/** Roles that aren't demonstrably Laravel/PHP work can't out-rank real fits on seniority/remote/cloud points alone. */
+export const RELEVANCE_SCORE_CAP = 35;
+const stackPattern = /\b(laravel|php|livewire|lumen|symfony)\b/i;
+const stackMentionPattern = /\b(laravel|php|livewire|lumen|symfony)\b/gi;
+const MIN_DESCRIPTION_STACK_MENTIONS = 3;
+
+/**
+ * A bare mention isn't evidence: agency/marketplace postings (e.g. Lemon.io) list every stack they
+ * hire for ("PHP & Vue, React & .NET…"). Role-specific evidence is the stack in the title, repeated
+ * non-list mentions in the body, or a Laravel-only source board.
+ */
+export function isLaravelPhpRole(input: { title: string; descriptionText: string }, options: { laravelCurated?: boolean } = {}) {
+  if (options.laravelCurated) return true;
+  if (stackPattern.test(input.title)) return true;
+  // Discount "X & PHP" / "Laravel & Y" pairings: that is how marketplaces enumerate every stack they staff.
+  const withoutPairings = input.descriptionText
+    .replace(/\b[\w.#+/]+\s*&\s*(?:laravel|php|livewire|lumen|symfony)\b/gi, "")
+    .replace(/\b(?:laravel|php|livewire|lumen|symfony)\s*&\s*[\w.#+/]+/gi, "");
+  return (withoutPairings.match(stackMentionPattern) ?? []).length >= MIN_DESCRIPTION_STACK_MENTIONS;
+}
+
 /**
  * Confidence measures how well-evidenced the extracted signals are, independent of fit: an explicit
  * eligibility statement, a stated location, a real posting body (not a synthetic feed summary),
@@ -158,7 +179,10 @@ function assessConfidence(input: {
   return { confidence: Math.max(0, Math.min(100, total)), confidenceBreakdown: breakdown };
 }
 
-export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptionText" | "location" | "tags">) {
+export function assessOpportunity(
+  input: Pick<Opportunity, "title" | "descriptionText" | "location" | "tags">,
+  options: { laravelCurated?: boolean } = {}
+) {
   const text = [input.title, input.location, input.descriptionText, ...input.tags].filter(Boolean).join("\n");
   const reasons: string[] = [];
   const concerns: string[] = [];
@@ -207,6 +231,13 @@ export function assessOpportunity(input: Pick<Opportunity, "title" | "descriptio
 
   let score = scoreBreakdown.reduce((total, entry) => total + entry.points, 0);
   score = Math.max(0, Math.min(100, score));
+  if (!isLaravelPhpRole(input, options)) {
+    concerns.push("Laravel/PHP is not central to this role");
+    if (score > RELEVANCE_SCORE_CAP) {
+      scoreBreakdown.push({ factor: "Relevance cap (not a Laravel/PHP role)", points: RELEVANCE_SCORE_CAP - score });
+      score = RELEVANCE_SCORE_CAP;
+    }
+  }
   if (eligibility === "ineligible" && score > INELIGIBLE_SCORE_CAP) {
     scoreBreakdown.push({ factor: "Hard exclusion cap (ineligible)", points: INELIGIBLE_SCORE_CAP - score });
     score = INELIGIBLE_SCORE_CAP;

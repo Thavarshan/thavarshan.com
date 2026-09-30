@@ -31,6 +31,7 @@ li.job h2{font-size:1.1rem;margin:0}.meta{color:var(--muted);font-size:.9rem;mar
 .badge.good{border-color:var(--accent);color:var(--accent)}.badge.unknown{border-style:dashed;color:var(--warn);border-color:var(--warn)}.badge.bad{border-color:var(--bad);color:var(--bad)}
 table.breakdown{border-collapse:collapse;font-size:.85rem;margin:.5rem 0}table.breakdown td{padding:.15rem .75rem .15rem 0}
 form.review{display:flex;flex-wrap:wrap;gap:.5rem;align-items:end;margin-top:.75rem}form.review label{flex:1 1 12rem}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:.15rem 1rem;font-size:.9rem;margin:.5rem 0}.facts dt{color:var(--muted)}.facts dd{margin:0}pre.posting{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.9rem;max-height:24rem;overflow:auto;padding:.75rem;border:1px solid var(--line);border-radius:.35rem;background:var(--bg)}
 .empty{padding:2rem;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:.5rem}
 `;
 
@@ -38,8 +39,48 @@ function option(value: string, label: string, selected: string) {
   return `<option value="${escapeHtml(value)}"${value === selected ? " selected" : ""}>${escapeHtml(label)}</option>`;
 }
 
-function unknownBadge(text: string) {
-  return `<span class="badge unknown">${escapeHtml(text)}: unknown</span>`;
+/** A missing field is shown as what the posting did not say, never a bare "unknown". */
+function notStatedBadge(label: string, detail = "not stated in posting") {
+  return `<span class="badge unknown">${escapeHtml(label)}: ${escapeHtml(detail)}</span>`;
+}
+
+function formatDate(value: string | null) {
+  return value ? value.slice(0, 10) : "not provided";
+}
+
+function formatSalaryRange(item: Opportunity) {
+  if (item.salaryMin === null && item.salaryMax === null) return null;
+  const currency = item.salaryCurrency ?? "";
+  const fmt = (n: number) => n.toLocaleString("en-US");
+  return item.salaryMin !== null && item.salaryMax !== null && item.salaryMin !== item.salaryMax
+    ? `${currency} ${fmt(item.salaryMin)} – ${fmt(item.salaryMax)}`.trim()
+    : `${currency} ${fmt((item.salaryMax ?? item.salaryMin) as number)}`.trim();
+}
+
+const DESCRIPTION_PREVIEW_LENGTH = 4000;
+
+function renderDetails(item: Opportunity) {
+  const range = formatSalaryRange(item);
+  const rows: Array<[string, string]> = [
+    ["Company", item.company ?? "not listed"],
+    ["Location", item.location ?? "not listed"],
+    ["Work arrangement", item.workArrangement === "unknown" ? "not classified" : item.workArrangement],
+    ["Employment type", item.employmentType ?? "not listed"],
+    ["Seniority", item.seniority === "unknown" ? "not stated" : item.seniority],
+    ["Salary", item.salary ? `${item.salary}${range ? ` (${range})` : ""}` : "not listed"],
+    ["Sponsorship", item.sponsorship === "unknown" ? "not mentioned" : item.sponsorship],
+    ["Published", formatDate(item.publishedAt)],
+    ["First seen", formatDate(item.firstSeenAt)],
+    ["Last seen", formatDate(item.lastSeenAt)],
+    ["Source", item.source],
+    ["Duplicate listings", item.duplicateOfIds.length ? String(item.duplicateOfIds.length) : "none found"]
+  ];
+  const description = item.descriptionText.trim();
+  const truncated = description.length > DESCRIPTION_PREVIEW_LENGTH;
+  return `<details><summary>All details and posting text</summary>
+<dl class="facts">${rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join("")}</dl>
+${description ? `<pre class="posting">${escapeHtml(description.slice(0, DESCRIPTION_PREVIEW_LENGTH))}${truncated ? "\n… (truncated; open the source for the full posting)" : ""}</pre>` : `<p class="meta">No posting text was captured for this listing.</p>`}
+</details>`;
 }
 
 function renderFilters(snapshotItems: Opportunity[], filters: ReviewFilters) {
@@ -72,7 +113,7 @@ function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, n
   const eligibilityClass = item.eligibility === "eligible" ? "good" : item.eligibility === "unknown" ? "unknown" : "bad";
   const salary = item.salary
     ? `<span class="badge">${escapeHtml(item.salary)}</span>`
-    : unknownBadge("Salary");
+    : notStatedBadge("Salary", "not listed");
   const breakdown = item.scoreBreakdown.length
     ? `<table class="breakdown"><caption class="sr-only" style="position:absolute;left:-9999px">Score breakdown</caption>${item.scoreBreakdown
         .map((row) => `<tr><td>${escapeHtml(row.factor)}</td><td>${row.points > 0 ? "+" : ""}${row.points}</td></tr>`)
@@ -83,19 +124,23 @@ function renderJob(item: Opportunity, reviews: ReviewMap, returnQuery: string, n
 <h2>${href ? `<a href="${escapeHtml(href)}" rel="noopener noreferrer nofollow" target="_blank">${escapeHtml(item.title)}</a>` : escapeHtml(item.title)}</h2>
 <p class="meta">${escapeHtml(item.company ?? "Company unknown")} · ${escapeHtml(item.location ?? "Location unknown")} · ${escapeHtml(item.source)} · ${opportunityAgeDays(item, now)}d old${item.status === "closed" ? " · <strong>closed</strong>" : ""}</p>
 <div class="badges">
-<span class="badge ${eligibilityClass}">${escapeHtml(item.eligibility)}</span>
+<span class="badge ${eligibilityClass}">${item.eligibility === "unknown" ? "eligibility unclear" : escapeHtml(item.eligibility)}</span>
 <span class="badge"><strong>${item.score}</strong> fit</span>
-${item.confidence === null ? unknownBadge("Confidence") : `<span class="badge${item.confidence < 50 ? " unknown" : ""}"><strong>${item.confidence}</strong> confidence</span>`}
-${item.sponsorship === "unknown" ? unknownBadge("Sponsorship") : `<span class="badge">sponsorship ${escapeHtml(item.sponsorship)}</span>`}
-${item.workArrangement === "unknown" ? unknownBadge("Remote scope") : `<span class="badge">${escapeHtml(item.workArrangement)}</span>`}
+${item.confidence === null ? notStatedBadge("Confidence", "not scored yet (next refresh)") : `<span class="badge${item.confidence < 50 ? " unknown" : ""}"><strong>${item.confidence}</strong> confidence</span>`}
+${item.sponsorship === "unknown" ? notStatedBadge("Sponsorship", "not mentioned") : `<span class="badge">sponsorship ${escapeHtml(item.sponsorship)}</span>`}
+${item.workArrangement === "unknown" ? notStatedBadge("Scope", item.location ? `${item.location} (unclassified)` : "no location given") : `<span class="badge">${escapeHtml(item.workArrangement)}</span>`}
+${item.seniority !== "unknown" ? `<span class="badge">${escapeHtml(item.seniority)}</span>` : ""}
+${item.employmentType ? `<span class="badge">${escapeHtml(item.employmentType)}</span>` : ""}
 ${salary}
 ${status !== "new" ? `<span class="badge good">${escapeHtml(status)}</span>` : ""}
 </div>
+${item.concerns.length ? `<p class="meta concerns"><strong>Concerns:</strong> ${item.concerns.map(escapeHtml).join("; ")}</p>` : ""}
+${item.tags.length ? `<p class="meta"><strong>Stack:</strong> ${item.tags.map(escapeHtml).join(", ")}</p>` : ""}
 <details><summary>Why this score</summary>${breakdown}
 ${item.confidenceBreakdown.length ? `<p class="meta">Confidence: ${item.confidenceBreakdown.map((row) => `${escapeHtml(row.factor)} (${row.points > 0 ? "+" : ""}${row.points})`).join("; ")}</p>` : ""}
 ${item.reasons.length ? `<p class="meta">Positive: ${item.reasons.map(escapeHtml).join("; ")}</p>` : ""}
-${item.concerns.length ? `<p class="meta">Concerns: ${item.concerns.map(escapeHtml).join("; ")}</p>` : ""}
-<p class="meta">Tags: ${item.tags.length ? item.tags.map(escapeHtml).join(", ") : "none extracted"}</p></details>
+</details>
+${renderDetails(item)}
 <form class="review" method="post" action="/review">
 <input type="hidden" name="id" value="${item.id}"><input type="hidden" name="return" value="${escapeHtml(returnQuery)}">
 <label>Status<select name="status">${reviewStatuses.map((s) => option(s, s, status)).join("")}</select></label>
