@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-30T09:55:11.544Z",
+  "generatedAt": "2026-09-30T10:12:23.156Z",
   "candidate": {
     "location": "Sri Lanka",
     "preferredStack": [
@@ -21,11 +21,11 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-09-30T09:55:11.544Z",
+      "collectedAt": "2026-09-30T10:12:23.156Z",
       "status": "ok",
       "recordsFound": 10,
       "added": 0,
-      "updated": 2,
+      "updated": 1,
       "closed": 0,
       "skipped": 0,
       "rejected": 0,
@@ -34,11 +34,11 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-09-30T09:55:11.544Z",
+      "collectedAt": "2026-09-30T10:12:23.156Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
-      "updated": 2,
+      "updated": 0,
       "closed": 1,
       "skipped": 0,
       "rejected": 0,
@@ -47,7 +47,7 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-09-30T09:55:11.544Z",
+      "collectedAt": "2026-09-30T10:12:23.156Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
@@ -60,11 +60,11 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-09-30T09:55:11.544Z",
+      "collectedAt": "2026-09-30T10:12:23.156Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
-      "updated": 0,
+      "updated": 3,
       "closed": 0,
       "skipped": 22,
       "rejected": 0,
@@ -106,7 +106,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-16T06:35:27.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -150,98 +150,6 @@
       ],
       "confidence": 65,
       "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "d8a399c66d6738283d81",
-      "source": "weworkremotely",
-      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "canonicalUrl": "https://weworkremotely.com/remote-jobs/track-it-forward-lead-developer-rebuild-modernize-scale-social-good-saas-remote",
-      "title": "Lead Developer — Rebuild, Modernize, & Scale (Social Good SaaS, Remote)",
-      "company": "Track it Forward",
-      "location": "Anywhere in the World",
-      "workArrangement": "remote-worldwide",
-      "employmentType": null,
-      "seniority": "lead",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "descriptionText": "Headquarters: Oakland, CA URL: https://www.trackitforward.com We are looking for a lead developer to do a greenfield rebuild of our legacy SaaS app, modernize our mobile apps, and lead the tech effort to scale our app.&nbsp; You will help choose the language, build the technical foundation, work with our product manager to rebuild the app, and migrate all customers over. About Track it Forward Track it Forward is the leading volunteer time-tracking application for nonprofits and schools. For 15 years, we’ve helped thousands of organizations mobilize volunteers and track over 30 million hours. We are a profitable, bootstrapped team of 4 focused on great work-life balance, high-impact work, and a fun, puzzle-loving culture (daily crosswords, monthly virtual escape rooms, and annual retreats).&nbsp; We are not a VC-funded startup. We grew organically, stayed profitable, and prioritize high-quality work and personal fulfillment without growth-at-all-costs pressure. The team is led by the original founder and developer. The Modernization Strategy This is a structured, phased \"small bang\" migration—not a high-risk cutover or a strangler-fig migration. You will build a parallel greenfield system, extract legacy components step-by-step, and migrate customers over incrementally tenant-by-tenant while keeping operations running smoothly. Current Tech : Drupal 6 architecture hosted on Pantheon, paired with two Ionic/Capacitor mobile apps. Your Scope: Complete ownership of the technical architecture. You will partner with our product manager, establish engineering processes, and lead the rebuild from scratch. Modern AI practices :&nbsp; We want you to be on the cusp of AI workflows while also balancing human guardrails to produce quality code. Team Structure: You will be our sole developer in the short term, taking full technical helm as we scale. Target Stack & Responsibilities Core Tech Stack: Core backend/frontend rebuild focused on Python/Django, Laravel, or React. You will make the final architectural call with input from the CEO/founder. Database & Storage Extraction: Deconstruct our legacy Drupal 6 / MySQL schema into a clean, domain-driven PostgreSQL database, and offload 100GB+ of media files to AWS S3 or Cloudflare R2. Security & Isolation : Implement application-layer field-level encryption (AES-256 for PII, Bcrypt/Argon2id for passwords) and build zero-trust dev environments so contractors never handle production user data. CI/CD & Documentation: Establish automated testing pipelines, clean API contracts, and clear runbooks so the codebase remains maintainable long-term. Mobile App Maintenance: Maintain and update our two Ionic/Capacitor mobile apps using AI coding tools. Mobile is a small fraction of the overall role—you just need to leverage AI to keep them functional without being a native mobile expert. Candidate Qualifications Pre-AI Engineering Foundation: 5+ years of core software engineering and architectural experience established before generative AI existed. You hold strong first-principles opinions on database normalization and system patterns. Proven Migration Experience: You have successfully architected and led at least one legacy monolith migration. You know what inputs and scope decisions keep momentum going. Modernized AI Velocity: You actively use AI tools to multiply output, but retain strict architectural control, unit testing discipline, and manual code review standards. Location & Remote Flexibility US W-2 Tax Residency Required: You must be legally authorized to work in the US and maintain primary US tax residency (for payroll, contracts, and legal/tax compliance). Travel-Friendly: We are 100% remote. As long as your primary legal/tax home remains in the US, you are welcome to travel or digital nomad—provided you can consistently hit our core sync hours. Core Sync Hours: Mandatory availability from 9:00 AM – 12:00 PM PST for daily team syncs and real-time collaboration. Flexible hours outside this window. Compensation & Benefits Base Salary: $150,000 – $200,000 / year (commensurate with experience) Benefits: 401(k) w/ company match, Health Insurance, vacation, PTO, and holdiays Culture: High autonomy, direct project ownership, and zero venture-capital growth pressure How to Apply To filter out automated spam: include the most authentically human, non-AI reason why this specific role resonates with you.&nbsp; Specifically include a short Loom video of you in the “Why should we choose you over any one else?” question.&nbsp; This isn’t required but will sure stand out.&nbsp; Be authentic, no need to do crazy rehearsals, just be you. Apply at this google form here &nbsp; To apply: https://weworkremotely.com/remote-jobs/track-it-forward-lead-developer-rebuild-modernize-scale-social-good-saas-remote",
-      "tags": [
-        "laravel",
-        "react",
-        "mysql",
-        "aws"
-      ],
-      "contentFingerprint": "a347e2fd69e6b8a589a7",
-      "duplicateOfIds": [
-        "d8fbe4a0245efeb57f05"
-      ],
-      "publishedAt": "2026-09-04T20:38:22.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 90,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 100,
-      "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
         {
           "factor": "Location is stated",
           "points": 20
@@ -336,7 +244,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-05T08:49:39.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -429,95 +337,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-12T11:14:53.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 82,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 100,
-      "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "b5da7dd39531cc3926f7",
-      "source": "weworkremotely",
-      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
-      "title": "Senior .NET Full-stack Developer",
-      "company": "Lemon.io",
-      "location": "Anywhere in the World",
-      "workArrangement": "remote-worldwide",
-      "employmentType": null,
-      "seniority": "senior",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 50 countries. Currently, we have multiple requests, so please check the requirements. Requirements: 4+ years of commercial experience in software development 3+ years of commercial experience with .NET 3+ years of commercial experience with React Expertise in TypeScript is required 2+ years of experience with Microsoft Azure is a plus You should also have: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. P.S. We work with developers from 50+ countries in different regions: Europe, LATAM, Asia (Philippines, Indonesia), Oceania (Australia, New Zealand, Papua New Guinea), Canada, and the UK. However, we have some exceptions. At the moment, we don’t have a legal basis to accept applicants from the following countries: European: Iceland, Liechtenstein, Kosovo, Belarus, Russia, and Serbia. Latin America: Cuba and Nicaragua Most Asian countries and Africa. We expand and shorten the list of exemptions regularly. To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
-      "tags": [
-        "react",
-        "typescript",
-        "php",
-        "vue",
-        "next.js",
-        "nuxt",
-        "laravel"
-      ],
-      "contentFingerprint": "ea70a15d7034bd61f8c2",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-08T13:49:13.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -607,9 +427,9 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T02:54:41.036Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
+      "status": "active",
+      "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 82,
@@ -622,52 +442,6 @@
       "concerns": [
         "Sri Lanka hiring eligibility is not explicit"
       ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
-    },
-    {
-      "id": "f4fc60edbab3224611ce",
-      "source": "weworkremotely",
-      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-native-developer-1",
-      "title": "Senior React Native Developer",
-      "company": "Lemon.io",
-      "location": "Anywhere in the World",
-      "workArrangement": "remote-worldwide",
-      "employmentType": null,
-      "seniority": "senior",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 75 countries. Requirements for React Native & React Developer’s position: 4+ years of software development experience 2+ years of experience with React and 4+ years of experience with React Native OR 4+ years of experience with React and 2+ years of experience with React Native Requirements for React Native & Node Developer’s position: 4+ years of software development experience 2+ years of experience with Node and 4+ years of experience with React Native OR 4+ years of experience with Node and 2+ years of experience with React Native Requirements for React Native & Node & React Developer’s position: 4+ years of software development experience 3+ years of experience with Node 4+ years of experience with React Native and 2+ years of experience with React OR 2+ years of experience with React Native and 3+ years of experience with React Requirements for React Native & Ruby Developer’s position: 4+ years of software development experience 2+ years of experience with React and 4+ years of experience with Ruby OR 4+ years of experience with React and 2+ years of experience with Ruby Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-native-developer-1",
-      "tags": [
-        "react",
-        "php",
-        "vue",
-        "next.js",
-        "typescript",
-        "nuxt",
-        "laravel"
-      ],
-      "contentFingerprint": "cf5093801da2f97cd85f",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-04T15:56:51.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 82,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
       "scoreBreakdown": [
         {
           "factor": "Baseline",
@@ -690,16 +464,8 @@
           "points": 12
         }
       ],
-      "confidence": 100,
+      "confidence": 45,
       "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
         {
           "factor": "Posting has a substantive description",
           "points": 20
@@ -743,7 +509,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-15T23:43:26.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -829,92 +595,7 @@
       ],
       "publishedAt": "2026-09-14T22:10:10.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 78,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 65,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "9359539798fba035b34d",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3931",
-      "title": "Senior Product Engineer (Laravel - Remote)",
-      "company": "Hospitable",
-      "location": "Remote",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "lead",
-      "salary": "$134,450.00 - $167,258.30 USD",
-      "salaryMin": 134450,
-      "salaryMax": 167258.3,
-      "salaryCurrency": "USD",
-      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional $380,895.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
-      "tags": [
-        "backend",
-        "laravel",
-        "mysql",
-        "php",
-        "senior",
-        "kubernetes"
-      ],
-      "contentFingerprint": "db0c5b6ef597384b132a",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-07T08:03:05.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -999,7 +680,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-07T19:38:52.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1061,6 +742,81 @@
       ]
     },
     {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel - Remote)",
+      "company": "Hospitable",
+      "location": "Remote",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$134,450.00 - $167,258.30 USD",
+      "salaryMin": 134450,
+      "salaryMax": 167258.3,
+      "salaryCurrency": "USD",
+      "descriptionText": "Share this job SVGs not supported by this browser.Apply for this job",
+      "tags": [
+        "backend",
+        "laravel",
+        "mysql",
+        "php",
+        "senior"
+      ],
+      "contentFingerprint": "db0c5b6ef597384b132a",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 70,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 45,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "27615050f0b05ce90783",
       "source": "laravel-news",
       "sourceUrl": "https://laravel-news.com/",
@@ -1088,7 +844,7 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1167,6 +923,292 @@
       "confidenceBreakdown": []
     },
     {
+      "id": "d8a399c66d6738283d81",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/track-it-forward-lead-developer-rebuild-modernize-scale-social-good-saas-remote",
+      "title": "Lead Developer — Rebuild, Modernize, & Scale (Social Good SaaS, Remote)",
+      "company": "Track it Forward",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "lead",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "Headquarters: Oakland, CA URL: https://www.trackitforward.com We are looking for a lead developer to do a greenfield rebuild of our legacy SaaS app, modernize our mobile apps, and lead the tech effort to scale our app.&nbsp; You will help choose the language, build the technical foundation, work with our product manager to rebuild the app, and migrate all customers over. About Track it Forward Track it Forward is the leading volunteer time-tracking application for nonprofits and schools. For 15 years, we’ve helped thousands of organizations mobilize volunteers and track over 30 million hours. We are a profitable, bootstrapped team of 4 focused on great work-life balance, high-impact work, and a fun, puzzle-loving culture (daily crosswords, monthly virtual escape rooms, and annual retreats).&nbsp; We are not a VC-funded startup. We grew organically, stayed profitable, and prioritize high-quality work and personal fulfillment without growth-at-all-costs pressure. The team is led by the original founder and developer. The Modernization Strategy This is a structured, phased \"small bang\" migration—not a high-risk cutover or a strangler-fig migration. You will build a parallel greenfield system, extract legacy components step-by-step, and migrate customers over incrementally tenant-by-tenant while keeping operations running smoothly. Current Tech : Drupal 6 architecture hosted on Pantheon, paired with two Ionic/Capacitor mobile apps. Your Scope: Complete ownership of the technical architecture. You will partner with our product manager, establish engineering processes, and lead the rebuild from scratch. Modern AI practices :&nbsp; We want you to be on the cusp of AI workflows while also balancing human guardrails to produce quality code. Team Structure: You will be our sole developer in the short term, taking full technical helm as we scale. Target Stack & Responsibilities Core Tech Stack: Core backend/frontend rebuild focused on Python/Django, Laravel, or React. You will make the final architectural call with input from the CEO/founder. Database & Storage Extraction: Deconstruct our legacy Drupal 6 / MySQL schema into a clean, domain-driven PostgreSQL database, and offload 100GB+ of media files to AWS S3 or Cloudflare R2. Security & Isolation : Implement application-layer field-level encryption (AES-256 for PII, Bcrypt/Argon2id for passwords) and build zero-trust dev environments so contractors never handle production user data. CI/CD & Documentation: Establish automated testing pipelines, clean API contracts, and clear runbooks so the codebase remains maintainable long-term. Mobile App Maintenance: Maintain and update our two Ionic/Capacitor mobile apps using AI coding tools. Mobile is a small fraction of the overall role—you just need to leverage AI to keep them functional without being a native mobile expert. Candidate Qualifications Pre-AI Engineering Foundation: 5+ years of core software engineering and architectural experience established before generative AI existed. You hold strong first-principles opinions on database normalization and system patterns. Proven Migration Experience: You have successfully architected and led at least one legacy monolith migration. You know what inputs and scope decisions keep momentum going. Modernized AI Velocity: You actively use AI tools to multiply output, but retain strict architectural control, unit testing discipline, and manual code review standards. Location & Remote Flexibility US W-2 Tax Residency Required: You must be legally authorized to work in the US and maintain primary US tax residency (for payroll, contracts, and legal/tax compliance). Travel-Friendly: We are 100% remote. As long as your primary legal/tax home remains in the US, you are welcome to travel or digital nomad—provided you can consistently hit our core sync hours. Core Sync Hours: Mandatory availability from 9:00 AM – 12:00 PM PST for daily team syncs and real-time collaboration. Flexible hours outside this window. Compensation & Benefits Base Salary: $150,000 – $200,000 / year (commensurate with experience) Benefits: 401(k) w/ company match, Health Insurance, vacation, PTO, and holdiays Culture: High autonomy, direct project ownership, and zero venture-capital growth pressure How to Apply To filter out automated spam: include the most authentically human, non-AI reason why this specific role resonates with you.&nbsp; Specifically include a short Loom video of you in the “Why should we choose you over any one else?” question.&nbsp; This isn’t required but will sure stand out.&nbsp; Be authentic, no need to do crazy rehearsals, just be you. Apply at this google form here &nbsp; To apply: https://weworkremotely.com/remote-jobs/track-it-forward-lead-developer-rebuild-modernize-scale-social-good-saas-remote",
+      "tags": [
+        "laravel",
+        "react",
+        "mysql",
+        "aws"
+      ],
+      "contentFingerprint": "a347e2fd69e6b8a589a7",
+      "duplicateOfIds": [
+        "d8fbe4a0245efeb57f05"
+      ],
+      "publishedAt": "2026-09-04T20:38:22.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -55
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "b5da7dd39531cc3926f7",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
+      "title": "Senior .NET Full-stack Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 50 countries. Currently, we have multiple requests, so please check the requirements. Requirements: 4+ years of commercial experience in software development 3+ years of commercial experience with .NET 3+ years of commercial experience with React Expertise in TypeScript is required 2+ years of experience with Microsoft Azure is a plus You should also have: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. P.S. We work with developers from 50+ countries in different regions: Europe, LATAM, Asia (Philippines, Indonesia), Oceania (Australia, New Zealand, Papua New Guinea), Canada, and the UK. However, we have some exceptions. At the moment, we don’t have a legal basis to accept applicants from the following countries: European: Iceland, Liechtenstein, Kosovo, Belarus, Russia, and Serbia. Latin America: Cuba and Nicaragua Most Asian countries and Africa. We expand and shorten the list of exemptions regularly. To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
+      "tags": [
+        "react",
+        "typescript",
+        "php",
+        "vue",
+        "next.js",
+        "nuxt",
+        "laravel"
+      ],
+      "contentFingerprint": "ea70a15d7034bd61f8c2",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-08T13:49:13.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -47
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "f4fc60edbab3224611ce",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-native-developer-1",
+      "title": "Senior React Native Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 75 countries. Requirements for React Native & React Developer’s position: 4+ years of software development experience 2+ years of experience with React and 4+ years of experience with React Native OR 4+ years of experience with React and 2+ years of experience with React Native Requirements for React Native & Node Developer’s position: 4+ years of software development experience 2+ years of experience with Node and 4+ years of experience with React Native OR 4+ years of experience with Node and 2+ years of experience with React Native Requirements for React Native & Node & React Developer’s position: 4+ years of software development experience 3+ years of experience with Node 4+ years of experience with React Native and 2+ years of experience with React OR 2+ years of experience with React Native and 3+ years of experience with React Requirements for React Native & Ruby Developer’s position: 4+ years of software development experience 2+ years of experience with React and 4+ years of experience with Ruby OR 4+ years of experience with React and 2+ years of experience with Ruby Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-native-developer-1",
+      "tags": [
+        "react",
+        "php",
+        "vue",
+        "next.js",
+        "typescript",
+        "nuxt",
+        "laravel"
+      ],
+      "contentFingerprint": "cf5093801da2f97cd85f",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-04T15:56:51.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -47
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "2771a2d6210fb51ceec1",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -1236,7 +1278,7 @@
       "duplicateOfIds": [],
       "publishedAt": null,
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1247,7 +1289,8 @@
       ],
       "concerns": [
         "Laravel is not explicitly mentioned",
-        "Sri Lanka hiring eligibility is not explicit"
+        "Sri Lanka hiring eligibility is not explicit",
+        "Laravel/PHP is not central to this role"
       ],
       "scoreBreakdown": [
         {
@@ -1298,7 +1341,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1377,7 +1420,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1472,8 +1515,8 @@
       "publishedAt": null,
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-09-30T09:55:11.544Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-09-30T10:12:23.156Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -1558,7 +1601,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-04T12:37:22.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T09:55:11.544Z",
+      "lastSeenAt": "2026-09-30T10:12:23.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
