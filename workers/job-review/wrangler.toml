@@ -1,0 +1,16 @@
+name = "job-review"
+main = "index.ts"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+# Fetched live so the review surface always reflects the daily-refreshed public snapshot.
+[vars]
+JOBS_DATA_URL = "https://raw.githubusercontent.com/Thavarshan/thavarshan.com/main/data/jobs.generated.json"
+# Set after creating the Cloudflare Access application (see docs/job-review-worker.md):
+#   ACCESS_TEAM_DOMAIN = "<team>.cloudflareaccess.com"
+#   ACCESS_AUD = "<application AUD tag>"
+#   ALLOWED_EMAIL = "<your email>"
+
+# Review state (shortlist/dismiss/notes) lives only here; never in the repo or the static build.
+[[kv_namespaces]]
+binding = "JOBS_KV"
+id = "2af3f7fa62964db6bafcb510c8420a27"
