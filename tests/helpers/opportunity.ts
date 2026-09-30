@@ -1,4 +1,4 @@
-import { opportunitySchema, type Opportunity } from "@/lib/job-opportunities";
+import { opportunitySchema, type Opportunity } from "@/features/jobs/opportunities";
 
 /**
  * Builds a valid Opportunity by parsing through the real schema, so additive fields pick up their

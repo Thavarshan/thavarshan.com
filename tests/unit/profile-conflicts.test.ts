@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import githubData from "@generated/github.generated.json";
 import profileData from "@generated/profile.generated.json";
-import { githubSnapshotSchema } from "@/lib/github-model";
-import { findProfileConflicts } from "@/lib/profile-conflicts";
-import { parseProfessionalProfile } from "@/lib/profile-schema";
+import { githubSnapshotSchema } from "@/features/projects/github-model";
+import { findProfileConflicts } from "@/features/profile/profile-conflicts";
+import { parseProfessionalProfile } from "@/features/profile/profile-schema";
 
 describe("profile source precedence", () => {
   it("reports outdated GitHub employer data without changing LinkedIn career data", () => {

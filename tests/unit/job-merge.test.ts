@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mergeOpportunities, type SourceCollectionOutcome } from "@/lib/job-opportunities";
+import { mergeOpportunities, type SourceCollectionOutcome } from "@/features/jobs/opportunities";
 import { makeOpportunity } from "../helpers/opportunity";
 
 describe("mergeOpportunities", () => {

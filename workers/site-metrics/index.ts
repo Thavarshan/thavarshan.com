@@ -1,5 +1,5 @@
-import { aggregateKey, validateWireEvent } from "../../src/lib/telemetry/events";
-import { formatLog, requestIdFor, type LogEntry } from "../../src/lib/edge/platform";
+import { aggregateKey, validateWireEvent } from "../../src/features/telemetry/events";
+import { formatLog, requestIdFor, type LogEntry } from "../../src/shared/edge/platform";
 import { MAX_BODY_BYTES, RETENTION_SECONDS, limiter } from "./config";
 
 /**

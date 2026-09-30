@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { CronTool } from "@/components/tools/cron-tool";
-import { EnvTool } from "@/components/tools/env-tool";
-import { sameAsProfiles } from "@/data/external-profiles";
-import { profile } from "@/data/profile";
-import { site } from "@/data/site";
-import { getTool, toolUrl, tools } from "@/lib/tools/registry";
+import { JsonLd } from "@/components/ui/json-ld";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { CronTool } from "@/features/tools/components/cron-tool";
+import { EnvTool } from "@/features/tools/components/env-tool";
+import { sameAsProfiles } from "@/features/profile/external-profiles";
+import { profile } from "@/features/profile/profile";
+import { site } from "@/shared/config/site";
+import { getTool, toolUrl, tools } from "@/features/tools/registry";
 
 type ToolPageProps = { params: Promise<{ slug: string }> };
 

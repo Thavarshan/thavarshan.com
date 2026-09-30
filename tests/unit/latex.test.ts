@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import githubData from "@generated/github.generated.json";
 import profileData from "@generated/profile.generated.json";
-import { githubSnapshotSchema } from "@/lib/github-model";
-import { escapeLatex, renderResumeLatex } from "@/lib/latex";
-import { parseProfessionalProfile } from "@/lib/profile-schema";
+import { githubSnapshotSchema } from "@/features/projects/github-model";
+import { escapeLatex, renderResumeLatex } from "@/features/cv/latex";
+import { parseProfessionalProfile } from "@/features/profile/profile-schema";
 
 describe("LaTeX CV generation", () => {
   it("escapes untrusted profile text", () => {

@@ -98,7 +98,7 @@ When configured, the scheduled content refresh workflow can trigger a fresh Netl
 
 ## Profile Data
 
-The public model is defined and validated in `src/lib/profile-schema.ts`. The generated snapshots are:
+The public model is defined and validated in `src/features/profile/profile-schema.ts`. The generated snapshots are:
 
 ```text
 data/profile.generated.json   Sanitized LinkedIn-owned professional data
@@ -402,7 +402,7 @@ Netlify configuration is stored in `netlify.toml`. The production project should
 
 - Never commit a LinkedIn ZIP, extracted account data, token, phone number, or private runtime configuration.
 - Keep generated source facts in the normalized profile files; do not hard-code current employers in components.
-- Update display/privacy policy in `src/data/profile-policy.ts`.
+- Update display/privacy policy in `src/features/profile/profile-policy.ts`.
 - Keep GitHub and LinkedIn tokens server-side.
 - Review automated pull requests before merging professional profile changes.
 - Do not add speculative achievements or AI-generated career claims.

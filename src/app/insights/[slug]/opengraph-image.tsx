@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
-import { site } from "@/data/site";
-import { getAllInsights, getInsightBySlug } from "@/lib/insights";
+import { site } from "@/shared/config/site";
+import { getAllInsights, getInsightBySlug } from "@/features/insights/insights";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

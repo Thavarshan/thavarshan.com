@@ -1,4 +1,4 @@
-import type { Opportunity } from "../../src/lib/job-opportunities";
+import type { Opportunity } from "../../src/features/jobs/opportunities";
 
 export const USER_AGENT = "JeromeJobCollector/1.0 (+https://thavarshan.com)";
 /** Product token robots.txt groups are matched against. */

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { ProjectCard } from "@/components/project-card";
-import { projectDefinitions } from "@/data/projects";
+import { ProjectCard } from "@/features/projects/project-card";
+import { projectDefinitions } from "@/features/projects/featured-projects";
 
 describe("ProjectCard", () => {
   it("renders repository stats and accessible links when stats exist", () => {

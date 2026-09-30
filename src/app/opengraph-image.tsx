@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/data/profile";
+import { profile } from "@/features/profile/profile";
 
 export const alt = "Jerome Thayananthajothy — Technical Lead and AI Systems Architect";
 export const size = { width: 1200, height: 630 };

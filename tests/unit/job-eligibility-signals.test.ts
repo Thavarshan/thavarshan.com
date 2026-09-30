@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { deriveSeniority, exclusionSignals } from "@/lib/job-eligibility-signals";
+import { deriveSeniority, exclusionSignals } from "@/features/jobs/eligibility-signals";
 
 function matchingConcerns(text: string) {
   return exclusionSignals.filter(([pattern]) => pattern.test(text)).map(([, concern]) => concern);

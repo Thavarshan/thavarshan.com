@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseSalary } from "@/lib/job-salary";
+import { parseSalary } from "@/features/jobs/salary";
 
 describe("parseSalary", () => {
   it("parses a full range with a trailing currency code", () => {

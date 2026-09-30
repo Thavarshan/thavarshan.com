@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Download, Mail, Network } from "lucide-react";
-import { ButtonLink } from "@/components/button-link";
-import { InsightEngagement } from "@/components/insight-engagement";
-import { InsightCard } from "@/components/insight-card";
-import { JsonLd } from "@/components/json-ld";
-import { MarkdownContent } from "@/components/markdown-content";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { sameAsProfiles } from "@/data/external-profiles";
-import { profile } from "@/data/profile";
-import { site } from "@/data/site";
-import { getAllInsights, getInsightBySlug, getInsightUrl } from "@/lib/insights";
+import { ButtonLink } from "@/components/ui/button-link";
+import { InsightEngagement } from "@/features/insights/insight-engagement";
+import { InsightCard } from "@/features/insights/insight-card";
+import { JsonLd } from "@/components/ui/json-ld";
+import { MarkdownContent } from "@/features/insights/markdown-content";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteNav } from "@/components/layout/site-nav";
+import { sameAsProfiles } from "@/features/profile/external-profiles";
+import { profile } from "@/features/profile/profile";
+import { site } from "@/shared/config/site";
+import { getAllInsights, getInsightBySlug, getInsightUrl } from "@/features/insights/insights";
 
 type InsightPageProps = {
   params: Promise<{ slug: string }>;

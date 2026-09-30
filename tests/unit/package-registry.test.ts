@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatPackageProvider, getPackageStatsByRepository, packageRegistrySnapshot } from "@/lib/package-registry";
+import { formatPackageProvider, getPackageStatsByRepository, packageRegistrySnapshot } from "@/features/projects/package-registry";
 
 describe("package registry snapshot", () => {
   it("returns deterministic fallback package stats by repository", () => {

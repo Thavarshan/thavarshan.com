@@ -1,5 +1,5 @@
 import type { PoliteRequest } from "../http";
-import type { Opportunity, SourceCollectionSuccess } from "../../../src/lib/job-opportunities";
+import type { Opportunity, SourceCollectionSuccess } from "../../../src/features/jobs/opportunities";
 import { buildOpportunity, normalizeJobType, splitTitle } from "../opportunity-builder";
 import { safeDate, xmlItems, xmlValue } from "../xml";
 

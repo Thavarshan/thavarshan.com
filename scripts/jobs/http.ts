@@ -2,7 +2,7 @@ import type { APIRequestContext, APIResponse } from "@playwright/test";
 import { SkipEnrichmentError } from "./concurrency";
 import { REQUEST_TIMEOUT_MS, USER_AGENT, isRobotsExempt } from "./policy";
 import type { RobotsGuard } from "./robots";
-import type { Opportunity } from "../../src/lib/job-opportunities";
+import type { Opportunity } from "../../src/features/jobs/opportunities";
 
 export class RobotsDisallowedError extends Error {
   constructor(url: string) {

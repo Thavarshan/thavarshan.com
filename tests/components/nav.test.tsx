@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { SiteNav } from "@/components/site-nav";
+import { SiteNav } from "@/components/layout/site-nav";
 
 describe("SiteNav", () => {
   it("exposes primary navigation and resume actions", () => {

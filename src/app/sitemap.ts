@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import githubData from "@generated/github.generated.json";
-import { profile } from "@/data/profile";
-import { site } from "@/data/site";
-import { githubSnapshotSchema } from "@/lib/github-model";
-import { getAllInsights } from "@/lib/insights";
-import { toolUrl, tools } from "@/lib/tools/registry";
+import { profile } from "@/features/profile/profile";
+import { site } from "@/shared/config/site";
+import { githubSnapshotSchema } from "@/features/projects/github-model";
+import { getAllInsights } from "@/features/insights/insights";
+import { toolUrl, tools } from "@/features/tools/registry";
 
 export const dynamic = "force-static";
 

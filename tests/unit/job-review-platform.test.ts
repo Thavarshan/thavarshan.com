@@ -1,9 +1,9 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
 import { handleRequest, limiters, routes, type Env, type KVLike } from "@workers/job-review/index";
-import { MAX_BODY_BYTES, PayloadTooLargeError, RateLimiter, UnsupportedMediaTypeError, fetchJsonBounded, formatLog, readFormBody, requestIdFor } from "@/lib/edge/platform";
+import { MAX_BODY_BYTES, PayloadTooLargeError, RateLimiter, UnsupportedMediaTypeError, fetchJsonBounded, formatLog, readFormBody, requestIdFor } from "@/shared/edge/platform";
 import { makeOpportunity } from "../helpers/opportunity";
-import type { OpportunitySnapshot } from "@/lib/job-opportunities";
+import type { OpportunitySnapshot } from "@/features/jobs/opportunities";
 
 const ID = "0123456789abcdef0123";
 const now = new Date("2026-09-30T00:00:00.000Z");

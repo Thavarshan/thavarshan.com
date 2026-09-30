@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { TelemetryProvider } from "@/components/telemetry-provider";
-import { site } from "@/data/site";
+import { TelemetryProvider } from "@/features/telemetry/telemetry-provider";
+import { site } from "@/shared/config/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

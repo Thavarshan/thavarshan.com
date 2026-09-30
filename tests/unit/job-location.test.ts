@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { detectRelocation, extractLocationSignals } from "@/lib/job-location";
+import { detectRelocation, extractLocationSignals } from "@/features/jobs/location";
 
 const signals = (title: string, location: string | null, descriptionText = "") => extractLocationSignals({ title, location, descriptionText });
 
