@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-05T05:07:47.317Z",
+  "period": {
+    "start": "2026-09-28",
+    "end": "2026-10-04",
+    "isoWeek": "2026-W40"
+  },
+  "coverage": {
+    "rows": 1,
+    "events": 1,
+    "daysWithData": 1,
+    "daysInPeriod": 7
+  },
+  "totals": {
+    "byStage": {
+      "engagement": 0,
+      "intent": 1
+    },
+    "byEvent": {
+      "repo_click": 0,
+      "demo_click": 0,
+      "cv_download": 1,
+      "contact_cta": 0,
+      "hire_cta": 0,
+      "consulting_cta": 0,
+      "tool_completed": 0,
+      "tool_output_copied": 0,
+      "profile_click": 0,
+      "insight_read": 0,
+      "newsletter_click": 0
+    }
+  },
+  "acquisition": {
+    "byReferrer": {
+      "direct": 1
+    },
+    "byCampaign": [],
+    "attributed": 0,
+    "unattributed": 1,
+    "unattributedShare": 1
+  },
+  "intent": {
+    "byProject": {},
+    "byTool": {},
+    "byLocation": {
+      "home": 1
+    }
+  },
+  "content": {
+    "topPaths": [
+      {
+        "path": "/",
+        "events": 1,
+        "intentEvents": 1
+      }
+    ],
+    "insightsRead": []
+  },
+  "comparison": {
+    "previousIsoWeek": null,
+    "byEvent": {
+      "cv_download": {
+        "previous": 0,
+        "current": 1,
+        "delta": 1
+      }
+    }
+  },
+  "notes": [
+    "Counts are actions by visitors whose browsers allowed the beacon. Visitors using Do Not Track / Global Privacy Control, blockers, or no JavaScript are not counted, so treat every number as a lower bound.",
+    "Page views are deliberately not collected, so conversion RATES cannot be computed. These are counts of actions, not percentages of visitors.",
+    "100% of counted actions have no campaign or referrer signal (direct visits, copied links, or stripped referrers). That share is unknown attribution and is reported as such, not assigned to a channel.",
+    "The collector accepts unauthenticated events from the site's origin, so counts are indicative rather than audited.",
+    "Only 1 of 7 days in this period recorded any events; quiet days and collection gaps look the same."
+  ]
+}
