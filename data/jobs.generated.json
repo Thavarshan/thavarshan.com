@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-06T02:54:52.165Z",
+  "generatedAt": "2026-10-07T02:57:05.655Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-06T02:54:52.165Z",
+      "collectedAt": "2026-10-07T02:57:05.655Z",
       "status": "ok",
-      "recordsFound": 8,
-      "added": 0,
+      "recordsFound": 9,
+      "added": 1,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 26048,
+      "closed": 0,
+      "durationMs": 25973,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-06T02:54:52.165Z",
+      "collectedAt": "2026-10-07T02:57:05.655Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1276,
+      "durationMs": 904,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-06T02:54:52.165Z",
+      "collectedAt": "2026-10-07T02:57:05.655Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 454,
+      "durationMs": 603,
       "held": 0,
-      "skipped": 17,
+      "skipped": 18,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-06T02:54:52.165Z",
+      "collectedAt": "2026-10-07T02:57:05.655Z",
       "status": "ok",
       "recordsFound": 1,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 2784,
+      "durationMs": 445,
       "held": 0,
       "skipped": 24,
       "rejected": 0,
@@ -81,6 +81,115 @@
     }
   ],
   "opportunities": [
+    {
+      "id": "93de6b20f94682cce4ec",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3940",
+      "title": "Senior Software Engineer",
+      "company": "Resource Innovations",
+      "location": "Remote/USA",
+      "workArrangement": "relocation-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$120,000 - $144,000",
+      "salaryMin": 120000,
+      "salaryMax": 144000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Share this job SVGs not supported by this browser.DescriptionResource Innovations is seeking Senior Software Engineer to join our growing Software as a Service (SaaS) team. As a hands-on technical lead at Resource Innovations, you will be instrumental in the design, development and deployment of innovative cloud-based enterprise software used by leading Energy organizations. We are looking for candidates who want to work on things that make an impact on the world and are passionate about product craftsmanship.This is remote position requiring occasional in-person office meetings for candidates residing in one of the following metro areas Maison, WI, Chicago, IL, San Francisco CA, Phoenix AZ, Denver CO, or Salt Lake City. We require candidates to currently reside in the United States. We are not offering visa sponsorship or extensions for this position. Resource Innovations (RI) is a women-led energy transformation firm focused on impact. Building on our expertise in energy efficiency, we're constantly expanding our portfolio of clean energy solutions to guide utilities through increasingly complex, connected challenges. Load flexibility. Electrification. Carbon reduction. With every step, we're leading the charge to power change.Duties and ResponsibilitiesLead the architecture and design of a scalable, efficient and secure SaaS product using Laravel, Vue.js and Tailwind CSCollaborate closely with cross-functional teams, including designers, project managers, and program teams to deliver on a Software SaaS Product that align with business and customer needsEnsure product adheres industry best practices in terms of performance, security, and scalability, with an emphasis on sustainability and energy efficiencyParticipate in code reviews, providing constructive feedback to peers and helping to elevate the overall quality of the codebase.Mentor other software engineers and contribute to fostering a culture of continuous learning and innovation within the engineering team.Debug and troubleshoot complex issues across the full stack of technologies to ensure optimal performance and a seamless user experience.Stay current with emerging technologies and industry trends to recommend innovative solutions for future projects.Engage in the full software development lifecycle, from requirement analysis to deployment and maintenance of the SaaS product.Contribute to the strategic direction of software development within Resource Innovations, focusing on products that support energy efficiency and decarbonization efforts.Other duties as assigned.RequirementsExpertise in PHP (8.x): Advanced understanding of object-oriented PHP, language features and best practices10+ years of previous hands-on experience building software utilizing PHP frameworks, e.g. Laravel Building RESTful APIs - implementing various types of APIs that are stable and integrate with other servicesFamiliarity with Laravel's architecture, features and functionalityKnowledge of many of Laravel's ecosystem of tools6+ years of previous experience building software utilizing Vue or similar JS frameworksExperience with typescriptBuilding and designing single page applications using composition APIStrong experience with state management and handlingComponent and modularized based designUnderstanding of various build tools (e.g. vite, npm)Experience with leading the architecture, design and development of features for scalable SaaS platformExperience using problem solving skills without being afraid of diving in and working out a problemProficient with Git and Git-based workflowsExperience with AWS Cloud infrastructure management and Serverless environmentsAbility to work on deployment patterns found within Laravel's ecosystemWorking with and interpreting cloud-based monitoring and alerting systems (e.g. New Relic, Cloudwatch)Personal responsibility and self-motivation & flexibility to adapt and maintain productivity, features and stabilityKnowledge of working within an agile/scrum team-based environment to design, develop a Software SaaS productExperience writing with and working on testable and functional code including writing tests with Pest / PHPUnit Preferred skills, education and experienceBachelor’s degree in computer science or related disciplineProven track record of developing SaaS based commercial software productsExperience with Data Analytics, Reporting and Business Intelligence platformsFamiliarity with NodeJSBenefitsAbout Resource InnovationsResource Innovations (RI) is a women-led energy transformation firm focused on impact. Building on our expertise in energy efficiency, we’re constantly expanding our portfolio of clean energy solutions to guide utilities through increasingly complex, connected challenges. Load flexibility. Electrification. Carbon reduction. With every step, we’re leading the charge to power change.Resource Innovations is an Equal Opportunity Employer, committed to ensuring equal employment opportunities for all job applicants and employees without regard to race, color, religion, national origin, gender, age, disability, marital status, genetics, protected veteran status, sexual orientation, or any other protected status. In addition to federal law requirements, Resource Innovations complies with applicable state and local laws governing non-discrimination in employment in every location in which the company does work.Compensation & BenefitsResource Innovations offers competitive salaries based on a candidate's skills, experience and qualifications for the position. The compensation range for the base salary for this position is $100,000 - $144,000. In addition to base pay, employees may be eligible for a discretionary annual bonus. The stated salary represents the expected compensation for this position. Final compensation will be determined based on factors such as the candidate's experience, education and location. At Resource Innovations, we believe supporting our people is essential to delivering impact. We offer a comprehensive benefits package designed to promote health, financial security, and work-life balance. This includes three weeks of paid vacation annually, paid holidays, a 401(k) retirement plan with employer match, medical, dental and vision coverage, parental leave, an employee assistance program, commuter benefits, and additional supplemental offerings.Employment with Resource Innovations is contingent upon the successful completion of a comprehensive background check and reference check. If applicable to the position, a pre-employment drug screen may also be required.The above job description and job requirements are not intended to be all inclusive. Resource Innovations retains the right to make changes or adjustments to job descriptions and/or job requirements at any time without notice.Apply for this job",
+      "sourceId": "3940",
+      "descriptionHash": "a5cc31c21cca4e441c0e",
+      "applicationUrl": "https://apply.workable.com/resource-innovations/j/68FA4D2A36",
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "laravel",
+        "vue.js",
+        "tailwind",
+        "php",
+        "vue",
+        "aws",
+        "pest",
+        "phpunit"
+      ],
+      "contentFingerprint": "c4b9dbf7ad1789db0cca",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-06T19:24:09.000Z",
+      "firstSeenAt": "2026-10-07T02:57:05.655Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "confirmed",
+      "score": 100,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned",
+        "Sponsorship or relocation is mentioned"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Sponsorship or relocation is mentioned",
+          "points": 10
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
     {
       "id": "7e09612f0ad00ae51f2b",
       "source": "larajobs",
@@ -125,7 +234,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-16T06:35:27.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -384,7 +493,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-12T11:14:53.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -574,7 +683,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-15T23:43:26.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -673,7 +782,7 @@
       ],
       "publishedAt": "2026-09-14T22:10:10.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -771,7 +880,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-07T08:03:05.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -864,7 +973,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-07T19:38:52.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1200,7 +1309,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-08T13:49:13.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1529,7 +1638,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1618,7 +1727,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-06T02:54:52.165Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
