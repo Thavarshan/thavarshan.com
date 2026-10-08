@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: `Professional CV for ${site.name}, covering technical leadership, AI systems architecture, full-stack engineering, open source, and cloud delivery.`,
   alternates: { canonical: "/cv" },
   openGraph: {
+    images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
     title: `${site.name} — Professional CV`,
     description: "Technical leadership, AI systems architecture, full-stack engineering, and open-source work.",
     url: "/cv",

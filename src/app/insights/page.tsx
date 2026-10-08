@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
+    images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
     title: `${site.name} — Engineering Insights`,
     description: "Practical engineering notes on AI systems, platform modernization, and developer tooling.",
     url: "/insights",
