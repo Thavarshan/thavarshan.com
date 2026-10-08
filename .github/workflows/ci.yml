@@ -59,7 +59,7 @@ jobs:
         with:
           name: rendered-seo-audit
           path: test-results/seo/audit.json
-          retention-days: 7
+          retention-days: 1
 
   cv:
     runs-on: ubuntu-latest

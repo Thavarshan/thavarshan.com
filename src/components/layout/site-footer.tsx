@@ -7,7 +7,7 @@ export function SiteFooter() {
       {/* JSX whitespace is significant in the next element: reflowing it changes the rendered HTML. */}
       {/* prettier-ignore */}
       <p>
-        © {new Date().getFullYear()} {site.name}. Colombo, Sri Lanka. <Link className="underline decoration-[var(--line)] underline-offset-4 hover:text-[var(--ink)]" href="/tools">Tools</Link> · <Link className="underline decoration-[var(--line)] underline-offset-4 hover:text-[var(--ink)]" href="/privacy">Privacy</Link>
+        © {new Date().getFullYear()} {site.name}. Colombo, Sri Lanka. <Link className="underline decoration-[var(--line)] underline-offset-4 hover:text-[var(--ink)]" href="/cv">CV</Link> · <Link className="underline decoration-[var(--line)] underline-offset-4 hover:text-[var(--ink)]" href="/tools">Tools</Link> · <Link className="underline decoration-[var(--line)] underline-offset-4 hover:text-[var(--ink)]" href="/privacy">Privacy</Link>
       </p>
     </footer>
   );
