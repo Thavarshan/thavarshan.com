@@ -198,7 +198,7 @@ Compile with the pinned TeX Live container:
 npm run cv:build
 ```
 
-Verify that the PDF is at most two pages, has extractable ATS-readable text, contains required sections, and does not expose the private mobile number:
+Verify that the PDF is at most two pages, has extractable ATS-readable text, contains required sections, and includes the contact phone number (+94742729879):
 
 ```bash
 npm run cv:verify
@@ -210,7 +210,7 @@ Build, verify, and copy the stable public PDF into `public/docs/Jerome-Resume.pd
 npm run cv:publish
 ```
 
-The CV deliberately uses a one-column layout, standard text, semantic section headings, and normal hyperlinks. It contains no photograph, icon font, skill chart, phone number, or decorative table.
+The CV deliberately uses a one-column layout, standard text, semantic section headings, and normal hyperlinks. It includes a clickable contact phone number (+94742729879) and contains no photograph, icon font, skill chart, or decorative table.
 
 ## GitHub Data
 
@@ -400,7 +400,7 @@ Netlify configuration is stored in `netlify.toml`. The production project should
 
 ## Privacy and Maintenance
 
-- Never commit a LinkedIn ZIP, extracted account data, token, phone number, or private runtime configuration.
+- Never commit a LinkedIn ZIP, extracted account data, token, unapproved phone number, or private runtime configuration. The CV contact number is explicitly approved for publication.
 - Keep generated source facts in the normalized profile files; do not hard-code current employers in components.
 - Update display/privacy policy in `src/shared/config/profile-policy.ts`.
 - Keep GitHub and LinkedIn tokens server-side.

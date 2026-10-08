@@ -25,7 +25,7 @@ describe("LaTeX CV generation", () => {
     expect(escapeLatex("\u{1F50D} Enhance Laravel queries")).toBe(" Enhance Laravel queries");
   });
 
-  it("renders a phone-free, ATS-oriented document from source data", () => {
+  it("renders an ATS-oriented document with a clickable contact phone number", () => {
     const output = renderResumeLatex(
       parseProfessionalProfile(profileData),
       githubSnapshotSchema.parse(githubData)
@@ -34,7 +34,7 @@ describe("LaTeX CV generation", () => {
     expect(output).toContain("\\documentclass");
     expect(output).toContain("Jerome Thayananthajothy");
     expect(output).toContain("Selected Open-Source Work");
-    expect(output).not.toContain("+94 742729879");
+    expect(output).toContain("\\href{tel:+94742729879}{+94742729879}");
     expect(output).not.toContain("\\includegraphics");
   });
 });
