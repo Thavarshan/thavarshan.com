@@ -54,6 +54,7 @@ jobs:
       - run: npm run cv:publish
       - run: git diff --exit-code -- cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: professional-cv-preview
           path: public/docs/Jerome-Resume.pdf
