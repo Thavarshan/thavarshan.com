@@ -23,6 +23,7 @@ export interface Inventory {
 }
 
 const ignore = (path: string) =>
+  path === "_headers" || // Netlify configuration, not a served public URL.
   path.startsWith("_next/") ||
   path.startsWith("__next") ||
   /(^|\/)__next[^/]*$/.test(path) ||

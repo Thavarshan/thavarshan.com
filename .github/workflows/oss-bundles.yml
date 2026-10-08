@@ -25,6 +25,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: write
 
 concurrency:
   group: automated-generated-content
@@ -37,10 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: main
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
@@ -67,16 +69,12 @@ jobs:
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
-      # Pushes made with GITHUB_TOKEN do not trigger other workflows, so committing drafts cannot loop.
-      - name: Commit drafts to main
+      # Generated changes are proposed as a PR; the helper explicitly dispatches required CI.
+      - name: Propose generated oss updates for review
         if: steps.changes.outputs.changed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add marketing/oss marketing/oss-ledger.json
-          git commit -m "Draft OSS distribution bundles for review"
-          git pull --rebase origin main
-          git push origin HEAD:main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash automation/ci/publish-generated.sh oss "Draft OSS distribution bundles for review" marketing/oss marketing/oss-ledger.json
       - name: Nothing to commit
         if: steps.changes.outputs.changed == 'false'
         run: echo "No new bundles or ledger changes; see the job summary for why."

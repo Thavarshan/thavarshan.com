@@ -14,6 +14,7 @@
   ],
   "files": [
     "/_redirects",
+    "/build-info.json",
     "/feed.xml",
     "/indexnow-key.txt",
     "/insights/[slug]/opengraph-image",

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node --import tsx automation/ci/build-metadata.ts",
     "start": "tsx automation/static-server.ts out",
     "lint": "eslint .",
     "format": "prettier --write \"{src,automation,workers,tests}/**/*.{ts,tsx}\" \"*.{ts,mjs}\"",
@@ -34,7 +34,8 @@
     "applications:review": "tsx automation/applications/review.ts",
     "worker:dev": "wrangler dev --config workers/job-review/wrangler.toml",
     "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml",
-    "seo:audit": "playwright test --config playwright.seo.config.ts"
+    "seo:audit": "playwright test --config playwright.seo.config.ts",
+    "deployment:smoke": "node --import tsx automation/ci/deployment-smoke.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
