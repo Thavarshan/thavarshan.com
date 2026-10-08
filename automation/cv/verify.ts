@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { cvPhoneNumber } from "../../src/features/cv/latex";
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 
 export async function verifyCv(pdfPath = resolve("cv/output/Jerome-Resume.pdf")) {
@@ -23,8 +24,8 @@ export async function verifyCv(pdfPath = resolve("cv/output/Jerome-Resume.pdf"))
       throw new Error(`CV text extraction did not contain "${requiredText}"`);
     }
   }
-  if (extractedText.includes("+94 742729879")) {
-    throw new Error("The public CV contains the private mobile number");
+  if (!extractedText.replace(/\s/g, "").includes(cvPhoneNumber)) {
+    throw new Error("CV text extraction did not contain the contact phone number");
   }
 
   return { pages: document.numPages, characters: extractedText.length };

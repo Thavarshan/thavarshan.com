@@ -2,6 +2,8 @@ import type { SanitizedCvTailoringPlan } from "@/features/cv/tailoring";
 import type { GitHubSnapshot } from "@/features/github/github-model";
 import type { ExperienceRecord, ProfessionalProfile } from "@/features/profile/profile-schema";
 
+export const cvPhoneNumber = "+94742729879";
+
 const latexCharacters: Record<string, string> = {
   "\\": "\\textbackslash{}",
   "{": "\\{",
@@ -240,7 +242,8 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
   ${escapeLatex(profile.identity.location)}
   \enspace|\enspace ${href(`mailto:${profile.identity.email}`, profile.identity.email)}
   \enspace|\enspace ${href(profile.identity.website, "thavarshan.com")}\\
-  ${href(profile.identity.linkedin, "linkedin.com/in/thavarshan")}
+  ${href(`tel:${cvPhoneNumber}`, cvPhoneNumber)}
+  \enspace|\enspace ${href(profile.identity.linkedin, "linkedin.com/in/thavarshan")}
   \enspace|\enspace ${href(profile.identity.github, "github.com/Thavarshan")}
 \end{center}
 
