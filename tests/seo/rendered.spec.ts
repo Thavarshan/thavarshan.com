@@ -84,7 +84,7 @@ test("exported pages satisfy rendered SEO and HTTP invariants", async ({ page, r
           .flatMap((item) => item.links.map((link) => ({ link, source: item.url })))
           .flatMap(({ link, source }) => {
             try {
-              const parsed = new URL(link, canonicalOrigin);
+              const parsed = new URL(link, source);
               return parsed.origin === canonicalOrigin && parsed.pathname !== new URL(source).pathname ? [parsed.pathname] : [];
             } catch {
               return [];
