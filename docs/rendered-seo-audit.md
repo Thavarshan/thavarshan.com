@@ -1,0 +1,15 @@
+# Rendered SEO audit
+
+Issue #67 extends the existing metadata tests and Playwright tooling with an audit of raw HTTP responses from the actual Next.js static export. It does not import route metadata objects. All sitemap pages are checked, including homepage, lists, project/Insight/tool details, CV, privacy, and a missing URL.
+
+Run `npx playwright install chromium` once, then `npm run seo:audit`. The dedicated Playwright configuration builds the site and serves `out` through the existing static server on loopback port 4176. No Cloudflare Worker, credentials, paid crawler, or production requests are required. Reusing the local static server preserves the same HTTP behavior as existing browser and Lighthouse checks.
+
+The audit checks status/content type, exactly one title/description/canonical/H1, canonical origin, HTML and HTTP indexing directives, Open Graph/Twitter metadata, JSON-LD syntax and schema.org envelopes, duplicate titles/canonicals, robots sitemap declaration, sitemap coverage, internal discovery, broken internal links, and 404/noindex behavior. Sitemap pages must return 200 directly: a redirect is a failure, not silently followed. The privacy page intentionally has no JSON-LD entity and inherits site-level sharing metadata.
+
+Each failure includes its URL, rule, and detail. `test-results/seo/audit.json` is a schema-versioned machine-readable report containing public page snapshots, failures, run timestamp, target, and limits for a future health report (#50). CI uploads it even after a failing check. A runtime/request error becomes a report failure; an unavailable build or browser remains visible as a failing workflow step. Reports are kept for one day (the repository retention limit) and are not committed.
+
+The budget is at most 60 sitemap pages, 120 unique internal link targets, sequential requests with a ten-second timeout, no followed redirects, and a two-minute test timeout within a ten-minute CI job. An invalid, off-origin, duplicate, or over-budget sitemap is refused before page crawling. CI is the baseline; this does not add a schedule or depend on external site availability. If the site grows past the bound, review and increase the configured limit intentionally.
+
+Limitations: local responses do not exercise Netlify's edge headers, domain aliases, TLS, Deploy Preview rules, or domain redirects. There are currently no redirect declarations in `netlify.toml`; production/domain validation remains in #53/#62. Schema checks validate syntax and envelope, not eligibility for search-engine rich results. The robots check covers the current single general-crawler group and literal Disallow prefixes, not an arbitrary robots.txt policy. External links are not crawled. CI artifacts contain only public rendered metadata, never application packages or mailbox data.
+
+Recovery: fix the exact URL/rule shown in the artifact and rerun `npm run seo:audit`. A failed audit publishes no site data and mutates no generated source. Rollback consists of reverting the audit PR; no runtime or storage migrations are involved.

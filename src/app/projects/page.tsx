@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: `Selected open-source projects by ${site.name}, ranked by current GitHub adoption and covering PHP, TypeScript, developer tooling, HTTP, and concurrency.`,
   alternates: { canonical: "/projects" },
   openGraph: {
+    images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
     title: `${site.name} — Open-Source Projects`,
     description: "Developer tools and open-source libraries with measurable community adoption.",
     url: "/projects",

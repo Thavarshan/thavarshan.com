@@ -33,7 +33,8 @@
     "applications:generate": "tsx automation/applications/generate.ts",
     "applications:review": "tsx automation/applications/review.ts",
     "worker:dev": "wrangler dev --config workers/job-review/wrangler.toml",
-    "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml"
+    "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml",
+    "seo:audit": "playwright test --config playwright.seo.config.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

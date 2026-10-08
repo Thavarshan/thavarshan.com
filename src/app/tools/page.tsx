@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: "Small, private, browser-only tools for Laravel and PHP developers: a scheduler cron helper and a .env checker. No sign-in, no uploads.",
   alternates: { canonical: "/tools" },
   openGraph: {
+    images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
     title: `${site.name} — Free Laravel & PHP Developer Tools`,
     description: "Private, browser-only utilities for Laravel and PHP developers.",
     url: "/tools",
