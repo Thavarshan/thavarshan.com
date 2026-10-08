@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: deployment-smoke-${{ inputs.preview_url || github.event.workflow_run.head_branch || 'production' }}
@@ -26,7 +27,7 @@ concurrency:
 
 jobs:
   smoke:
-    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository && ((github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main') || (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0].number != null)))
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository && (((github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch') && github.event.workflow_run.head_branch == 'main') || (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0].number != null) || (github.event.workflow_run.event == 'workflow_dispatch' && startsWith(github.event.workflow_run.head_branch, 'automation/generated-'))))
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -47,8 +48,15 @@ jobs:
           TRIGGER_EVENT: ${{ github.event.workflow_run.event }}
           TRIGGER_PR: ${{ github.event.workflow_run.pull_requests[0].number }}
           TRIGGER_SHA: ${{ github.event.workflow_run.head_sha }}
+          TRIGGER_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           export EXPECTED_REVISION="$(git rev-parse HEAD)"
+          if [ "$TRIGGER_EVENT" = "workflow_dispatch" ] && [[ "$TRIGGER_BRANCH" == automation/generated-* ]]; then
+            TRIGGER_PR="$(gh pr list --head "$TRIGGER_BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
+            if [ -z "$TRIGGER_PR" ]; then echo "Generated branch has no open pull request"; exit 1; fi
+            TRIGGER_EVENT=pull_request
+          fi
           if [ "$TRIGGER_EVENT" = "pull_request" ]; then
             PREVIEW_URL="https://deploy-preview-${TRIGGER_PR}--thavarshan.netlify.app"
             PREVIEW_REVISION="$TRIGGER_SHA"

@@ -62,11 +62,10 @@ jobs:
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No Laravel job opportunity changes detected."
-      # A degraded run still publishes the sources that succeeded (failed sources' data is carried
-      # forward untouched); failing here, after the commit, makes the problem visible without
-      # discarding a day of fresh data from the healthy sources.
+      # Failed sources' data is carried forward. Report degradation after proposing the healthy
+      # updates for review; required PR CI still validates the resulting snapshot.
       - name: Fail the run if any source failed
         if: steps.collect.outputs.degraded == 'true'
         run: |
-          echo "::error::One or more job sources failed; healthy sources were still published. See the job summary and the jobs-collector-diagnostics artifact."
+          echo "::error::One or more job sources failed; generated updates are proposed through reviewable PRs. See the job summary and the jobs-collector-diagnostics artifact."
           exit 1
