@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-09T11:03:58.779Z",
+  "knownIds": [
+    "01ee35100bceebb6172e",
+    "02f7a7425a2ee926ba9c",
+    "27615050f0b05ce90783",
+    "2771a2d6210fb51ceec1",
+    "2a7f2e33f750c79b80aa",
+    "2fe7b4840fd6457c512b",
+    "401a731baf1c3d038dd0",
+    "6195598942a39de1aafa",
+    "6a2828ae871bf76fea66",
+    "71f61c9e8f2f2aa9583d",
+    "77ab33c3ec086f83dd9f",
+    "7e09612f0ad00ae51f2b",
+    "9359539798fba035b34d",
+    "93de6b20f94682cce4ec",
+    "9538bf997aad37bfcfc6",
+    "9b4cee7c15ebad8a1412",
+    "b5da7dd39531cc3926f7",
+    "d8a399c66d6738283d81",
+    "d8fbe4a0245efeb57f05",
+    "ecfbe860f6780b6680bc",
+    "f048cf4fcce6f291c8a2",
+    "f4fc60edbab3224611ce"
+  ],
+  "eligibleHighFitIds": [
+    "6a2828ae871bf76fea66",
+    "93de6b20f94682cce4ec",
+    "9538bf997aad37bfcfc6"
+  ]
+}
