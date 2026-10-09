@@ -40,15 +40,19 @@ async function main() {
         const html = await response.text();
         failures.push(...checkHeaders(`${origin}${path}`, response.status, response.headers, mode), ...checkHtml(`${origin}${path}`, html, mode));
       }
-      const lifecycle = lifecycleSchema.parse(JSON.parse(await readFile("data/url-lifecycle.json", "utf8")));
-      const redirects = parseContentRedirects(await readFile("public/_redirects", "utf8"));
-      for (const rule of redirects) {
-        const response = await request(rule.from);
-        failures.push(...checkRedirect(`${origin}${rule.from}`, response.status, response.headers.get("location"), new URL(rule.to, origin).href));
-      }
-      for (const retired of lifecycle.retired) {
-        const response = await request(retired.path);
-        failures.push(...checkHeaders(`${origin}${retired.path}`, response.status, response.headers, mode, "missing"));
+      // Preview checks execute trusted main, whose content policy may differ from the PR.
+      // The PR's rendered audit validates its own rules; use this policy only in production.
+      if (mode === "production") {
+        const lifecycle = lifecycleSchema.parse(JSON.parse(await readFile("data/url-lifecycle.json", "utf8")));
+        const redirects = parseContentRedirects(await readFile("public/_redirects", "utf8"));
+        for (const rule of redirects) {
+          const response = await request(rule.from);
+          failures.push(...checkRedirect(`${origin}${rule.from}`, response.status, response.headers.get("location"), new URL(rule.to, origin).href));
+        }
+        for (const retired of lifecycle.retired) {
+          const response = await request(retired.path);
+          failures.push(...checkHeaders(`${origin}${retired.path}`, response.status, response.headers, mode, "missing"));
+        }
       }
       const missing = await request("/__ci_missing_page__");
       failures.push(...checkHeaders(`${origin}/__ci_missing_page__`, missing.status, missing.headers, mode, "missing"));

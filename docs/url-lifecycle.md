@@ -45,7 +45,7 @@ All nine deployed legacy rules returned a direct 301 with the configured Locatio
 | `/blog/formlink` | `https://github.com/Thavarshan/formlink` |
 | `/blog/secrets-loader` | `https://github.com/Thavarshan/secrets-loader` |
 
-External target availability can change. Review external destination changes with a bounded request and redirects disabled. CI validates HTTPS URL syntax and configured graph topology; it does not depend on external GitHub uptime. Production smoke verifies each deployed source's response/Location and every explicit retirement. It does not fetch external destinations.
+External target availability can change. Review external destination changes with a bounded request and redirects disabled. CI validates HTTPS URL syntax and configured graph topology; it does not depend on external GitHub uptime. Production smoke verifies each deployed source's response/Location and every explicit retirement. It does not fetch external destinations. Preview smoke executes trusted main and intentionally skips content-policy checks that might differ from the PR; the PR rendered audit validates its own exported rules.
 
 ## Checks and recovery
 
