@@ -67,7 +67,11 @@ export function checkSitemap(urls: string[]): SeoFailure[] {
   for (const url of urls) {
     try {
       const parsed = new URL(url);
-      if (parsed.origin !== canonicalOrigin || parsed.pathname.startsWith("//") || parsed.search || parsed.hash) throw new Error("noncanonical");
+      if (parsed.origin !== canonicalOrigin || parsed.username || parsed.password || parsed.pathname.startsWith("//") || parsed.search || parsed.hash)
+        throw new Error("noncanonical");
+      if (["/api", "/profile-imports", "/docs", "/_next"].some((path) => parsed.pathname === path || parsed.pathname.startsWith(`${path}/`))) {
+        failures.push({ url, rule: "sitemap-private-path", detail: "Sitemap may contain only indexable public HTML pages" });
+      }
     } catch {
       failures.push({ url, rule: "sitemap-origin", detail: "Sitemap URL must use the production origin with no query or fragment" });
     }

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { TelemetryProvider } from "@/features/telemetry/telemetry-provider";
 import { site } from "@/features/profile/site";
+import { verificationMetadata } from "@/features/profile/verification";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -44,10 +45,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1
     }
   },
-  verification: {
-    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
-    ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": [process.env.BING_SITE_VERIFICATION] } } : {})
-  },
+  verification: verificationMetadata(process.env),
   openGraph: {
     title: site.title,
     description: site.description,

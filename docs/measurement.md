@@ -88,3 +88,7 @@ Recovery: delete the Worker or remove `site.metricsUrl` to stop collection insta
 ## Cost
 
 $0. Cloudflare Workers Free + KV Free (allowlisted by `tests/integration/workers/worker-cost-guard.test.ts`), GitHub Actions free minutes on a public repository, no paid analytics. See `docs/cost-policy.md`.
+
+## Search acquisition baseline
+
+Use [the webmaster baseline](webmaster-baseline.md) to obtain owner-authenticated Search Console/Bing impressions, clicks, CTR, page/query positions and indexing observations. Compare matched 28-day periods and distinguish branded searches from discovery queries. These measures complement the action counters; they do not add a visitor denominator or turn contact clicks into confirmed leads. Keep account exports private. The production webmaster audit reports technical eligibility and tag presence only, with ownership/indexing explicitly unknown.

@@ -73,3 +73,7 @@ Open:
 - #80 and #81, the job-review Worker reliability follow-ups, are fixed and merged; #82 is this reconciliation.
 
 Re-check this list against `gh issue list` when closing an issue so it does not drift again.
+
+## Search visibility operations
+
+Follow [the webmaster baseline](webmaster-baseline.md) for Search Console/Bing ownership, production build variables, sitemap submission, URL inspection and the 28-day measurement routine. The existing Deployment Smoke workflow runs `seo:webmaster` for production and retains a schema-versioned audit artifact. Technical eligibility, verification-tag presence, authenticated ownership and actual indexing are separate observations; never report rankings or indexed-page counts from a successful CI audit. Issue #50 can consume the public audit, while query/page opportunity prioritization remains #66.
