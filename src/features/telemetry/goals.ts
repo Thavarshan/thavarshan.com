@@ -1,7 +1,7 @@
 import type { EventName } from "./events";
 
 /** The site's original call-to-action vocabulary, mapped onto the typed taxonomy in one place. */
-export type Goal = "Contact" | "Resume Download" | "LinkedIn Visit" | "GitHub Visit" | "Repository Visit" | "Newsletter Visit";
+export type Goal = "Hire" | "Consulting" | "Contact" | "Resume Download" | "LinkedIn Visit" | "GitHub Visit" | "Repository Visit" | "Newsletter Visit";
 
 export interface TrackedEvent {
   name: EventName;
@@ -34,6 +34,10 @@ export function projectFromHref(href: string, pathname: string): string | null {
 
 export function goalToEvent(goal: Goal, href: string, pathname: string): TrackedEvent | null {
   switch (goal) {
+    case "Hire":
+      return { name: "hire_cta", props: { location: locationFromPath(pathname) } };
+    case "Consulting":
+      return { name: "consulting_cta", props: { location: locationFromPath(pathname) } };
     case "Contact":
       return { name: "contact_cta", props: { location: locationFromPath(pathname) } };
     case "Resume Download":

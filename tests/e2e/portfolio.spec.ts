@@ -183,7 +183,7 @@ test("anchor navigation accounts for the fixed header", async ({ page }) => {
 test("contact primary link remains readable while active", async ({ page }) => {
   await page.goto("/#contact");
 
-  const emailLink = page.getByRole("link", { name: /start a conversation/i }).last();
+  const emailLink = page.getByRole("link", { name: "Discuss a role", exact: true });
   await expect(emailLink).toBeVisible();
 
   const normalColors = await emailLink.evaluate((element) => {
@@ -222,4 +222,21 @@ test("resume is served from public docs", async ({ request }) => {
   expect(response.headers()["content-type"]).toContain("application/pdf");
   expect(response.url()).toBe("http://127.0.0.1:4173/docs/Jerome-Resume.pdf");
   expect(body.subarray(0, 5).toString()).toBe("%PDF-");
+});
+
+test("audience paths are keyboard accessible and remain readable on mobile", async ({ page, request }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto("/");
+  const entry = page.getByRole("link", { name: "Explore hiring", exact: true });
+  await entry.focus();
+  await entry.press("Enter");
+  await expect(page).toHaveURL(/#hiring$/);
+  const hiring = page.getByRole("region", { name: "Hiring an engineer?" });
+  await expect(hiring.getByRole("link", { name: "Discuss a role" })).toBeVisible();
+  const consulting = page.getByRole("region", { name: "Have a project to discuss?" });
+  await expect(consulting.getByRole("link", { name: "Discuss a project" })).toHaveAttribute("href", /^mailto:.*subject=Consulting/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
+  for (const href of await consulting.locator('a[href^="/"]').evaluateAll((links) => links.map((link) => link.getAttribute("href")!))) {
+    expect((await request.get(href)).status()).toBe(200);
+  }
 });

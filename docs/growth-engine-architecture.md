@@ -66,8 +66,8 @@ Closed (shipped):
 
 Open:
 
-- #48 Hire and Consulting conversion paths.
-- #49 deterministic $0 fallback for application assistance; a private application-package implementation already exists (`docs/applications-data.md`).
+- #48 hiring/consulting conversion paths: implemented in the current focused PR, including the overlapping #59 journeys.
+- #49 free deterministic application preparation shipped in PR #108 (`docs/applications-data.md`).
 - #50 consolidated weekly operational report.
 - #52–#67 SEO and marketing hardening.
 - #80 and #81, the job-review Worker reliability follow-ups, are fixed and merged; #82 is this reconciliation.
