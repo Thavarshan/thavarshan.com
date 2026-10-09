@@ -5,6 +5,11 @@ on:
     # After the Monday profile, jobs, application and metrics schedules; 11:15 Asia/Colombo.
     - cron: "45 5 * * 1"
   workflow_dispatch:
+    inputs:
+      notify:
+        description: "Publish the report to the email notification thread"
+        type: boolean
+        default: true
   push:
     branches: [main]
     paths:
@@ -74,3 +79,30 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: bash automation/ci/publish-generated.sh growth-health "Record Growth Engine comparison baseline" data/growth-health/baseline.json
+
+  notify:
+    needs: report
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'workflow_dispatch' || inputs.notify)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: growth-health-report
+          path: test-results/growth-health/
+      - name: Publish report for GitHub email delivery
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run growth:notify

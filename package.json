@@ -38,7 +38,8 @@
     "seo:audit": "playwright test --config playwright.seo.config.ts",
     "deployment:smoke": "node --import tsx automation/ci/deployment-smoke.ts",
     "seo:webmaster": "node --import tsx automation/seo/webmaster-audit.ts",
-    "growth:health": "node --import tsx automation/growth/health/collect.ts"
+    "growth:health": "node --import tsx automation/growth/health/collect.ts",
+    "growth:notify": "node --import tsx automation/growth/health/notify.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
