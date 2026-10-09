@@ -37,7 +37,7 @@ const settle = (page: Page) => page.waitForTimeout(300);
 /** Clicks the first VISIBLE contact link (on mobile the nav copy sits inside a collapsed menu). */
 const clickContact = (page: Page) =>
   page
-    .locator('a[href^="mailto:"]:visible')
+    .locator('a[href^="mailto:"]:not([href*="?"]):visible')
     .first()
     .click({ timeout: 3000 })
     .catch(() => undefined);
@@ -174,4 +174,19 @@ test("every event sent across a browsing session is valid under the shared schem
   ).toBe(true);
   expect(events.every((entry) => /^\/[a-z0-9/_.-]*$/i.test(entry.path) && !entry.path.includes("?"))).toBe(true);
   expect(await context.cookies()).toEqual([]);
+});
+
+test("hiring and consulting email actions record distinct intent once without sending the email brief", async ({ page, context }) => {
+  const { events, raw } = await capture(context);
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  for (const name of ["Discuss a role", "Discuss a project"]) {
+    await page.getByRole("link", { name, exact: true }).click();
+    await settle(page);
+  }
+  expect(events.filter((entry) => entry.event === "hire_cta")).toHaveLength(1);
+  expect(events.filter((entry) => entry.event === "consulting_cta")).toHaveLength(1);
+  expect(events.filter((entry) => entry.event === "contact_cta")).toHaveLength(0);
+  for (const entry of events) expect(entry.props).toEqual({ location: "home" });
+  expect(raw.join("\n")).not.toMatch(/Company and role|Problem or goal|mailto:|subject=/);
 });

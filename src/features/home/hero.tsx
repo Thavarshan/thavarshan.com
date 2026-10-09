@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, Download, Mail, Network } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
 import { getCurrentExperience, profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
@@ -12,7 +12,7 @@ export function Hero() {
       <div className="mx-auto grid min-h-[calc(100svh-72px)] w-full max-w-6xl content-center gap-8 px-5 pb-14 pt-28 sm:gap-10 md:min-h-[720px] md:grid-cols-[minmax(0,1fr)_220px] md:items-center md:pb-16 lg:px-8">
         <div className="max-w-4xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)] sm:text-sm sm:tracking-[0.18em]">
-            Technical leadership for AI workflows, scalable platforms, cloud architecture, and developer tooling
+            Laravel/PHP, backend and cloud engineering, with technical leadership for AI systems
           </p>
           <h1 className="break-words mt-5 font-display text-[clamp(2.25rem,10vw,3rem)] leading-[1.04] text-balance text-[var(--ink)] sm:text-5xl lg:text-6xl xl:text-7xl">
             {site.name}
@@ -23,15 +23,13 @@ export function Hero() {
           </p>
           <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">{profile.summary}</p>
           <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">
-              Start a conversation
+            <ButtonLink href="#hiring" variant="primary">
+              Explore hiring
             </ButtonLink>
             <ButtonLink href={site.resume} icon={<Download size={16} />} eventName="Resume Download">
               View resume
             </ButtonLink>
-            <ButtonLink href={site.linkedin} icon={<Network size={16} />} eventName="LinkedIn Visit">
-              Connect on LinkedIn
-            </ButtonLink>
+            <ButtonLink href="#consulting">Explore consulting</ButtonLink>
           </div>
         </div>
 
