@@ -67,9 +67,12 @@ jobs:
             export EXPECTED_REVISION="$PREVIEW_REVISION"
           fi
           npm run deployment:smoke
+          if [ "${DEPLOYMENT_MODE:-production}" = production ]; then npm run seo:webmaster; fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: ${{ !cancelled() }}
         with:
           name: deployment-smoke-report
-          path: test-results/deployment/audit.json
+          path: |
+            test-results/deployment/audit.json
+            test-results/webmaster/audit.json
           retention-days: 1

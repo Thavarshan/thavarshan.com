@@ -36,7 +36,8 @@
     "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml",
     "seo:lifecycle": "node --import tsx automation/seo/lifecycle-audit.ts",
     "seo:audit": "playwright test --config playwright.seo.config.ts",
-    "deployment:smoke": "node --import tsx automation/ci/deployment-smoke.ts"
+    "deployment:smoke": "node --import tsx automation/ci/deployment-smoke.ts",
+    "seo:webmaster": "node --import tsx automation/seo/webmaster-audit.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
@@ -56,6 +57,7 @@
     "@playwright/test": "^1.62.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",
+    "@types/jsdom": "^27.0.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
