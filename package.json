@@ -34,6 +34,7 @@
     "applications:review": "tsx automation/applications/review.ts",
     "worker:dev": "wrangler dev --config workers/job-review/wrangler.toml",
     "worker:deploy": "wrangler deploy --config workers/job-review/wrangler.toml",
+    "seo:lifecycle": "node --import tsx automation/seo/lifecycle-audit.ts",
     "seo:audit": "playwright test --config playwright.seo.config.ts",
     "deployment:smoke": "node --import tsx automation/ci/deployment-smoke.ts"
   },

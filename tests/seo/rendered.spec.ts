@@ -1,12 +1,29 @@
 import { expect, test } from "@playwright/test";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { canonicalOrigin, checkDuplicates, checkPage, checkSitemap, maxAuditPages, type SeoFailure, type SeoPage } from "../../automation/seo/rules";
+
+import { auditLifecycle } from "../../automation/seo/lifecycle-audit";
+import { checkLifecycleLinks, lifecycleSchema, parseContentRedirects } from "../../automation/seo/lifecycle";
 
 test("exported pages satisfy rendered SEO and HTTP invariants", async ({ page, request }, testInfo) => {
   const failures: SeoFailure[] = [];
   const pages: SeoPage[] = [];
   const addFailure = (url: string, rule: string, detail: string) => failures.push({ url, rule, detail });
   try {
+    const lifecycle = lifecycleSchema.parse(JSON.parse(await readFile("data/url-lifecycle.json", "utf8")));
+    const redirects = parseContentRedirects(await readFile("out/_redirects", "utf8"));
+    failures.push(...(await auditLifecycle()));
+    for (const rule of redirects) {
+      const response = await request.get(rule.from, { maxRedirects: 0, timeout: 10_000 });
+      const actual = response.headers()["location"];
+      if (response.status() !== rule.status || !actual || new URL(actual, canonicalOrigin).href !== new URL(rule.to, canonicalOrigin).href) {
+        addFailure(`${canonicalOrigin}${rule.from}`, "content-redirect-http", "Expected the configured permanent redirect to its final target");
+      }
+    }
+    for (const retired of lifecycle.retired) {
+      const response = await request.get(retired.path, { maxRedirects: 0, timeout: 10_000 });
+      if (response.status() !== retired.status) addFailure(`${canonicalOrigin}${retired.path}`, "retired-http", "Retired page must return its declared 404");
+    }
     const sitemap = await request.get("/sitemap.xml", { maxRedirects: 0, timeout: 10_000 });
     if (sitemap.status() !== 200) addFailure(`${canonicalOrigin}/sitemap.xml`, "http-status", `Received ${sitemap.status()}`);
     const urls = await page.evaluate(
@@ -70,7 +87,7 @@ test("exported pages satisfy rendered SEO and HTTP invariants", async ({ page, r
           addFailure(url, "request", error instanceof Error ? error.message : String(error));
         }
       }
-      failures.push(...checkDuplicates(pages));
+      failures.push(...checkDuplicates(pages), ...checkLifecycleLinks(pages, redirects, lifecycle.retired));
       for (const path of ["/", "/cv", "/projects", "/insights", "/tools", "/privacy"]) {
         if (!pages.some((item) => new URL(item.url).pathname === path))
           addFailure(`${canonicalOrigin}${path}`, "sitemap-coverage", "Required public page is absent from the sitemap");

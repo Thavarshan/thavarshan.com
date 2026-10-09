@@ -1,8 +1,10 @@
 import { createServer } from "node:http";
 import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, relative, resolve } from "node:path";
 import { createGzip } from "node:zlib";
+
+import { parseContentRedirects } from "./seo/lifecycle";
 
 const mimeTypes: Record<string, string> = {
   ".css": "text/css; charset=utf-8",
@@ -97,7 +99,27 @@ async function resolveRequestPath(root: string, requestUrl = "/") {
 const options = parseArguments(process.argv.slice(2));
 const root = resolve(options.directory);
 
+async function loadRedirects() {
+  try {
+    return parseContentRedirects(await readFile(join(root, "_redirects"), "utf8"));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw error;
+  }
+}
+const redirects = await loadRedirects();
+
 const server = createServer(async (request, response) => {
+  const requested = new URL(request.url || "/", "http://localhost");
+  const redirect = redirects.find((rule) => rule.from === requested.pathname);
+  if (redirect) {
+    const target = new URL(redirect.to, "http://localhost");
+    if (!target.search) target.search = requested.search;
+    const location = redirect.to.startsWith("/") ? `${target.pathname}${target.search}` : target.href;
+    response.writeHead(redirect.status, { Location: location });
+    response.end();
+    return;
+  }
   const path = await resolveRequestPath(root, request.url);
   if (!path) {
     response.writeHead(404);
@@ -131,5 +153,6 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(options.port, options.hostname, () => {
-  console.log(`Serving ${root} at http://${options.hostname}:${options.port}`);
+  const address = server.address();
+  console.log(`Serving ${root} at http://${options.hostname}:${typeof address === "object" && address ? address.port : options.port}`);
 });
