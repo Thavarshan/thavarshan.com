@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "pages": [
+    "/",
+    "/cv",
+    "/insights",
+    "/insights/event-driven-asynchronous-php-matrix-lessons",
+    "/insights/maintaining-a-450-star-developer-tool-api-design",
+    "/insights/modernizing-legacy-platforms-during-delivery",
+    "/insights/observable-reliable-production-ai-workflows",
+    "/privacy",
+    "/projects",
+    "/projects/comet",
+    "/projects/fetch-php",
+    "/projects/filterable",
+    "/projects/matrix",
+    "/projects/phpvm",
+    "/tools",
+    "/tools/laravel-env-checker",
+    "/tools/laravel-scheduler-cron"
+  ],
+  "retired": []
+}

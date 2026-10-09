@@ -72,7 +72,7 @@ export function buildInventory(files: string[]): Inventory {
   };
 }
 
-async function listFiles(root: string, directory = root): Promise<string[]> {
+export async function listFiles(root: string, directory = root): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const nested = await Promise.all(
     entries.map((entry) => (entry.isDirectory() ? listFiles(root, join(directory, entry.name)) : [relative(root, join(directory, entry.name))]))
