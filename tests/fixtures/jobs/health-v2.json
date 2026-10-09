@@ -1,0 +1,791 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T02:57:23.074Z",
+  "collectorVersion": "1.1.0",
+  "candidate": {
+    "location": "Sri Lanka",
+    "preferredStack": [
+      "Laravel",
+      "PHP",
+      "React",
+      "Vue",
+      "Inertia",
+      "AWS"
+    ],
+    "experienceYears": 11,
+    "workModes": [
+      "remote",
+      "relocation-with-sponsorship"
+    ]
+  },
+  "sources": [
+    {
+      "name": "LaraJobs RSS",
+      "url": "https://larajobs.com/feed",
+      "collectedAt": "2026-10-09T02:57:23.074Z",
+      "status": "ok",
+      "recordsFound": 7,
+      "added": 0,
+      "updated": 0,
+      "closed": 0,
+      "durationMs": 25676,
+      "held": 0,
+      "skipped": 0,
+      "rejected": 0,
+      "error": null
+    },
+    {
+      "name": "Laravel News",
+      "url": "https://laravel-news.com/",
+      "collectedAt": "2026-10-09T02:57:23.074Z",
+      "status": "ok",
+      "recordsFound": 0,
+      "added": 0,
+      "updated": 0,
+      "closed": 0,
+      "durationMs": 1446,
+      "held": 0,
+      "skipped": 0,
+      "rejected": 0,
+      "error": null
+    },
+    {
+      "name": "Remotive",
+      "url": "https://remotive.com/api/remote-jobs?category=software-dev",
+      "collectedAt": "2026-10-09T02:57:23.074Z",
+      "status": "ok",
+      "recordsFound": 0,
+      "added": 0,
+      "updated": 0,
+      "closed": 0,
+      "durationMs": 495,
+      "held": 0,
+      "skipped": 19,
+      "rejected": 0,
+      "error": null
+    },
+    {
+      "name": "WeWorkRemotely",
+      "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "collectedAt": "2026-10-09T02:57:23.074Z",
+      "status": "ok",
+      "recordsFound": 0,
+      "added": 0,
+      "updated": 0,
+      "closed": 1,
+      "durationMs": 630,
+      "held": 0,
+      "skipped": 25,
+      "rejected": 0,
+      "error": null
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "93de6b20f94682cce4ec",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3940",
+      "title": "Senior Software Engineer",
+      "company": "Resource Innovations",
+      "location": "Remote/USA",
+      "workArrangement": "relocation-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$120,000 - $144,000",
+      "salaryMin": 120000,
+      "salaryMax": 144000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Share this job SVGs not supported by this browser.DescriptionResource Innovations is seeking Senior Software Engineer to join our growing Software as a Service (SaaS) team. As a hands-on technical lead at Resource Innovations, you will be instrumental in the design, development and deployment of innovative cloud-based enterprise software used by leading Energy organizations. We are looking for candidates who want to work on things that make an impact on the world and are passionate about product craftsmanship.This is remote position requiring occasional in-person office meetings for candidates residing in one of the following metro areas Maison, WI, Chicago, IL, San Francisco CA, Phoenix AZ, Denver CO, or Salt Lake City. We require candidates to currently reside in the United States. We are not offering visa sponsorship or extensions for this position. Resource Innovations (RI) is a women-led energy transformation firm focused on impact. Building on our expertise in energy efficiency, we're constantly expanding our portfolio of clean energy solutions to guide utilities through increasingly complex, connected challenges. Load flexibility. Electrification. Carbon reduction. With every step, we're leading the charge to power change.Duties and ResponsibilitiesLead the architecture and design of a scalable, efficient and secure SaaS product using Laravel, Vue.js and Tailwind CSCollaborate closely with cross-functional teams, including designers, project managers, and program teams to deliver on a Software SaaS Product that align with business and customer needsEnsure product adheres industry best practices in terms of performance, security, and scalability, with an emphasis on sustainability and energy efficiencyParticipate in code reviews, providing constructive feedback to peers and helping to elevate the overall quality of the codebase.Mentor other software engineers and contribute to fostering a culture of continuous learning and innovation within the engineering team.Debug and troubleshoot complex issues across the full stack of technologies to ensure optimal performance and a seamless user experience.Stay current with emerging technologies and industry trends to recommend innovative solutions for future projects.Engage in the full software development lifecycle, from requirement analysis to deployment and maintenance of the SaaS product.Contribute to the strategic direction of software development within Resource Innovations, focusing on products that support energy efficiency and decarbonization efforts.Other duties as assigned.RequirementsExpertise in PHP (8.x): Advanced understanding of object-oriented PHP, language features and best practices10+ years of previous hands-on experience building software utilizing PHP frameworks, e.g. Laravel Building RESTful APIs - implementing various types of APIs that are stable and integrate with other servicesFamiliarity with Laravel's architecture, features and functionalityKnowledge of many of Laravel's ecosystem of tools6+ years of previous experience building software utilizing Vue or similar JS frameworksExperience with typescriptBuilding and designing single page applications using composition APIStrong experience with state management and handlingComponent and modularized based designUnderstanding of various build tools (e.g. vite, npm)Experience with leading the architecture, design and development of features for scalable SaaS platformExperience using problem solving skills without being afraid of diving in and working out a problemProficient with Git and Git-based workflowsExperience with AWS Cloud infrastructure management and Serverless environmentsAbility to work on deployment patterns found within Laravel's ecosystemWorking with and interpreting cloud-based monitoring and alerting systems (e.g. New Relic, Cloudwatch)Personal responsibility and self-motivation & flexibility to adapt and maintain productivity, features and stabilityKnowledge of working within an agile/scrum team-based environment to design, develop a Software SaaS productExperience writing with and working on testable and functional code including writing tests with Pest / PHPUnit Preferred skills, education and experienceBachelor\u2019s degree in computer science or related disciplineProven track record of developing SaaS based commercial software productsExperience with Data Analytics, Reporting and Business Intelligence platformsFamiliarity with NodeJSBenefitsAbout Resource InnovationsResource Innovations (RI) is a women-led energy transformation firm focused on impact. Building on our expertise in energy efficiency, we\u2019re constantly expanding our portfolio of clean energy solutions to guide utilities through increasingly complex, connected challenges. Load flexibility. Electrification. Carbon reduction. With every step, we\u2019re leading the charge to power change.Resource Innovations is an Equal Opportunity Employer, committed to ensuring equal employment opportunities for all job applicants and employees without regard to race, color, religion, national origin, gender, age, disability, marital status, genetics, protected veteran status, sexual orientation, or any other protected status. In addition to federal law requirements, Resource Innovations complies with applicable state and local laws governing non-discrimination in employment in every location in which the company does work.Compensation & BenefitsResource Innovations offers competitive salaries based on a candidate's skills, experience and qualifications for the position. The compensation range for the base salary for this position is $100,000 - $144,000. In addition to base pay, employees may be eligible for a discretionary annual bonus. The stated salary represents the expected compensation for this position. Final compensation will be determined based on factors such as the candidate's experience, education and location. At Resource Innovations, we believe supporting our people is essential to delivering impact. We offer a comprehensive benefits package designed to promote health, financial security, and work-life balance. This includes three weeks of paid vacation annually, paid holidays, a 401(k) retirement plan with employer match, medical, dental and vision coverage, parental leave, an employee assistance program, commuter benefits, and additional supplemental offerings.Employment with Resource Innovations is contingent upon the successful completion of a comprehensive background check and reference check. If applicable to the position, a pre-employment drug screen may also be required.The above job description and job requirements are not intended to be all inclusive. Resource Innovations retains the right to make changes or adjustments to job descriptions and/or job requirements at any time without notice.Apply for this job",
+      "sourceId": "3940",
+      "descriptionHash": "a5cc31c21cca4e441c0e",
+      "applicationUrl": "https://apply.workable.com/resource-innovations/j/68FA4D2A36",
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "laravel",
+        "vue.js",
+        "tailwind",
+        "php",
+        "vue",
+        "aws",
+        "pest",
+        "phpunit"
+      ],
+      "contentFingerprint": "c4b9dbf7ad1789db0cca",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-06T19:24:09.000Z",
+      "firstSeenAt": "2026-10-07T02:57:05.655Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "confirmed",
+      "score": 100,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned",
+        "Sponsorship or relocation is mentioned"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Sponsorship or relocation is mentioned",
+          "points": 10
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "7e09612f0ad00ae51f2b",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3936",
+      "title": "Laravel DevOps Unicorn \ud83e\udd84",
+      "company": "CRAE Group",
+      "location": "Remote / Cyprus",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "Up to \u20ac100k",
+      "salaryMin": null,
+      "salaryMax": 100000,
+      "salaryCurrency": "EUR",
+      "salaryPeriod": null,
+      "descriptionText": "All open rolesREMOTE / LIMASSOL, CYPRUSFULL-TIMEStackLaravel \u00b7 Cloudflare \u00b7 AWSDevOps EngineerWe're looking to onboard another unicorn \u2014 this time, one who feels equally comfortable inside Laravel, Linux, Cloudflare and AWS. Not someone whose answer to every problem is \u201cthe server looks fine\u201d: a DevOps engineer who deeply understands the applications running on the infrastructure, can follow a Laravel request all the way through queues, Redis, workers, databases and WebSockets, and isn't afraid to open the codebase when infrastructure and application behaviour start overlapping. Our infrastructure spans DigitalOcean, Laravel Forge, Laravel Cloud, AWS and Cloudflare Enterprise, supporting multiple interconnected applications, APIs, workers, real-time systems and a large domain network. In other words: this isn't keeping a few Ubuntu boxes alive.Annual salaryUp to\u20ac100k+ Highly competitive bonus packageSalary by levelSenior\u20ac75k\u2013100k\ud83e\udd84Unicorn\u20ac100k+, no ceiling\u20ac75k\u20ac100k+This seat is hired at senior level and above \u2014 where you land depends on your experience and the impact you bring. Unicorns don\u2019t have a ceiling.Apply nowLaravel sits at the centre of our ecosystem, so strong Laravel knowledge matters here \u2014 and you should be comfortable around our Nuxt and Vue applications even if you never build a frontend component. The environment: Laravel and modern PHP, Nuxt and Vue, Livewire, Alpine, Nova, MySQL, Redis, REST APIs, WebSockets and high-frequency queues, running on Laravel Cloud, a tailor-made AWS setup, DigitalOcean App Platform, Laravel Forge and Ubuntu \u2014 managed platforms where they are enough, considerably more control where they are not.Cloudflare is a major part of the picture rather than an afterthought: hundreds of domains run through Cloudflare Enterprise \u2014 DNS, WAF and security rules, redirects, SSL/TLS, origins, caching, geographic access rules \u2014 and hands-on Cloudflare experience is required. Managing hundreds of domains by hand gets boring very quickly, so a big part of this role is building the internal tooling that manages infrastructure at scale: if something needs doing 100 times, your first instinct should be \u201cwhy are we doing this manually?\u201d. The same applies to observability \u2014 a green deployment badge doesn't mean everything is fine, and because our applications run across different markets, what a user actually sees from a particular GEO matters as much as whether the origin returned 200. When something breaks, we want to know before someone tells us on Slack. We work with GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry and Laravel Nightwatch, with AI-powered engineering workflows wired straight into Slack \u2014 AI is already part of how we operate, as a tool for removing repetitive work while still understanding what is happening underneath.What you'll ownMaintain and evolve the infrastructure behind our Laravel and Nuxt applications across Laravel Cloud, AWS, DigitalOcean App Platform and Laravel ForgeRun Ubuntu-based environments and production services; keep Redis, queues, workers and real-time infrastructure healthy and fastUnderstand how Laravel applications behave in production rather than treating them as black boxes, and support the deployment and runtime needs of Nuxt and VueManage hundreds of domains through Cloudflare Enterprise, and build the tools that automate Cloudflare, domain, DNS, certificate and infrastructure managementImprove deployment and CI/CD workflows; automate server configuration, environment management and every repetitive operational process you canBuild and maintain uptime and infrastructure monitoring, including checks from multiple geographic locations and the systems that proxy requests through different GEOs for testingInvestigate production incidents across both layers \u2014 performance, networking, DNS, SSL, caching, connectivity \u2014 and work closely with developers when the line between application problem and infrastructure problem blursImprove security, reliability, scalability and observability across the platform, documenting the decisions that matterWhat you bringStrong professional experience in DevOps, SRE, platform engineering or infrastructure, operating production cloud infrastructureDeep understanding of Laravel and its production architecture, PHP deployment and runtime behaviour, and how a request moves through queues, workers, Redis, schedulers and WebSocketsStrong Linux and Ubuntu experienceStrong hands-on Cloudflare experience \u2014 ideally Cloudflare Enterprise \u2014 managing DNS, WAF rules, SSL/TLS, caching, redirects and networking at scaleExperience with AWS and DigitalOceanExperience with CI/CD and GitHub-based workflowsStrong understanding of HTTP, DNS, networking, proxies and TLSStrong monitoring and production-debugging skills, able to diagnose issues across both the application and infrastructure layersAbility to automate infrastructure and operational workflows through APIs and scripting rather than dashboardsStrong sense of ownership and reliability, with clear and early communicationNice to haveLaravel Cloud, Laravel Forge and DigitalOcean App PlatformNuxt and Vue.js deploymentsHigh-frequency queues, large Redis workloads, WebSockets and real-time systemsManaging large numbers of domains and building internal infrastructure-management toolsMulti-region or geographically distributed systems; testing services through proxies from different locationsInfrastructure-as-code and automated provisioningHigh-volume transactional, gaming, fintech, CRM or similarly complex platformsRemunerationSenior and unicorn onlyGreat engineers get paid like great engineers.We don't believe in forcing everyone into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, experience and technical impact \u2014 and this seat is hired at senior level and above.If you can understand Laravel deeply, design reliable infrastructure, tame Cloudflare at scale, automate away repetitive work and remain suspiciously calm when production gets interesting, we're prepared to recognise that accordingly.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysHR introductionA first conversation to understand your background and make sure there's a good overall fit \u2014 on both sides.02Within 1 weekTechnical testA practical exercise designed around the kind of problems you could actually encounter with us. Paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with, discuss the exercise, dive into our infrastructure and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush, no explaining DNS while balancing on one leg.Application \u00b7 DevOps EngineerName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub \u2014 your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV \u2014 drag & drop or clickPDF or Word \u00b7 max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
+      "sourceId": "3936",
+      "descriptionHash": "171f4facd4b4b23cab1d",
+      "applicationUrl": "https://craegroup.com/careers/devops-engineer-laravel-nuxt",
+      "countries": [
+        "CY"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "cloud",
+        "devops",
+        "laravel",
+        "aws",
+        "redis",
+        "nuxt",
+        "vue",
+        "php",
+        "livewire",
+        "nova",
+        "mysql",
+        "vue.js"
+      ],
+      "contentFingerprint": "e134cc8ee70db42d8468",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-16T06:35:27.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 90,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "9538bf997aad37bfcfc6",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3933",
+      "title": "Product Lead (Strategy + Full Stack)",
+      "company": "Optimizee Group",
+      "location": "Remote",
+      "workArrangement": "remote-worldwide",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$48,000\u201390,000",
+      "salaryMin": 48000,
+      "salaryMax": 90000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "PORTFOLIO TEAM JOBS NEWS ADVERTISE Dashboard > Product Lead (Strategy + Full Stack) html.gr__ventureoptimize_com #breadcrumbs { display: none; } Product Lead (Strategy + Full Stack) Do you want to join the company behind Northern Europe\u2019s largest crypto and stock market comparison platforms? Do you want to own the product roadmap end to end and build it yourself? Do you want to decide what we build next as we expand globally? We\u2019re looking for a hands-on Product Lead to join our small but driven 100% remote team. This is a rare hybrid role: roughly 60% product leadership (roadmap, prioritization, specs, analytics) and 40% full stack development. You\u2019ll work alongside our full-stack web developer, and as we expand the Product Team, your focus will shift increasingly toward product and team leadership, running 1-on-1s, recruiting, and building your own team to improve our products, with a clear path toward Head of Product. Who are Optimizee Group? Optimizee Group has been delivering results for 450+ partners worldwide through financial comparison platforms since 2017. Our portfolio includes CryptoRunner.com (the largest cryptocurrency comparison platform in Northern Europe), InvestoRunner.com (the largest stock market comparison platform in Sweden), and CreditRunner.com (a new credit card comparison platform launching soon). Our mission is to build the world\u2019s biggest and most trusted portfolio of financial comparison platforms, helping millions of people make better financial decisions. To date, we\u2019ve generated over 8 million views and delivered more than 1.8 million referrals to our partners. With approximately 44,000 monthly active users and 35,000+ subscribers, you\u2019ll have a strong existing audience and foundation to build on. In 2026, we relaunched our websites on fully custom-built platforms, replacing our previous WordPress setup (see full tech stack below). The new platforms are connected to our in-house admin system, with integrations to multiple AI models and third-party API providers, giving us greater flexibility, scalability, and control as we grow. AI is deeply integrated into the admin system and across development, content, and operations. Over the past year we\u2019ve shipped 970+ updates, and our product backlog holds 350+ tasks. Your job: review our platforms and product backlog, decide what to prioritize, and turn ideas into new features \u2014 with direct support from the founder, a former web developer who built our first platforms line by line. Why Join Optimizee Group: Be Part of a Market Leader \u2013 Help shape our established platforms, our group includes the largest stock and crypto comparison platforms in Northern Europe. Full Ownership, Real Impact \u2013 High autonomy, meaningful ownership, and the opportunity to influence company decisions. Join Early, Grow Faster \u2013 Join a small, fast-growing team where your role, responsibilities, and opportunities grow alongside the company. Join an Ambitious Team \u2013 Work alongside high-performing teammates who value ownership, continuous improvement, and long-term thinking. Benefits: \ud83d\ude80 Clear path to Head of Product as the team scales \ud83e\udd1d Work directly with the founder on strategy and growth \u23f0 High autonomy, flexible working hours, and strong ownership \ud83d\udcc8 Competitive compensation package + performance-based bonus \ud83c\udf0e Fully remote role \u2014 work from most countries worldwide \ud83e\uddf0 All the AI and tools you need to do your best work \ud83d\udcbb Home office setup \u2014 laptop and required equipment provided \u2708\ufe0f Annual business trips for team building, networking, and fun (past trips include Dubai, Singapore & Hong Kong) Responsibilities: Own the product roadmap across our platforms \u2014 prioritize, spec, and drive execution from idea to launch Build and ship features hands-on alongside our web developer, improving site architecture, performance, and conversion flows Lead and grow the product team \u2014 manage team members, run 1-on-1s and performance reviews, and take part in recruitment as we scale Build our engineering workflow \u2014 set up development routines, code review, testing and deployment processes so multiple developers can ship safely, with documentation so knowledge is never siloed Make data-first decisions \u2014 turn user data, market insights, and analytics into actions that move traffic, conversion, and revenue per visitor Requirements: 5+ years of full stack development experience \u2014 you can independently build, deploy, and maintain production web applications, and set up the workflows (Git, code review, CI/CD) for your team to do the same A track record you can show \u2014 live products, sites, or projects you\u2019ve built or led, and the ability to walk us through the decisions behind them Strong backend, database, and architecture skills \u2014 data accuracy is critical to us, as we track and report statistics to 450+ partners Proven product ownership with commercial instincts \u2014 you\u2019ve decided what to build, not just built what was decided, and you understand how those decisions translate into revenue Independent and async-first \u2014 you drive your own work in a small remote team and document decisions clearly in writing Genuine interest in cryptocurrencies, investing, and personal finance \u2014 and high standards for what a great comparison platform looks like Tech Stack: Backend: PHP 8.2+ / Laravel 12 \u2014 one codebase powering the public sites and our in-house admin CMS/API Frontend: Server-rendered Laravel Blade with Alpine.js, Livewire (admin), Tailwind CSS, and Vite \u2014 no React/Next.js Database: MySQL, with Redis for cache, queues, and realtime (Laravel Reverb) Infrastructure: Linux VPS with Nginx and PHP-FPM, automated deploys via GitHub Actions Integrations: AI models via multiple providers (e.g. Anthropic, OpenAI, Google) plus third-party API integrations powering our platforms and admin system Our Team Values: Full Ownership \u2013 If you see it, you own it. Take full ownership from start to finish. Data First \u2013 Data first, decision second. Always put data first before making decisions. Long Game \u2013 We are building for decades, not quarters. Always play the long game. AI Speed \u2013 The fastest teams win. Use AI to move like a team ten times our size. Location & Availability: This is a fully remote position; however, candidates should be able to maintain reasonable overlap with European business hours (CET/CEST) for meetings and team collaboration. We welcome applications from candidates worldwide, except residents of the United States. Compensation: USD 48,000\u201390,000 gross per year, consisting of a fixed base salary (USD 48,000\u201360,000, based on experience) and a revenue-tied performance bonus. You\u2019ll receive paid time off and public holidays in line with the standards of your country of employment. Additional benefits and reimbursements may apply depending on your location. We employ through a global HR partner, enabling compliant employment in 95+ countries. Apply: Send in your application here: https://forms.gle/4yqiWvhiCMnC6xdx7 Hiring process: 1-minute intro video \u2192 intro call with the founder \u2192 portfolio walkthrough \u2192 offer. Applications reviewed continuously, start date by agreement. You\u2019ll receive an automatic confirmation on submission. Due to high application volume as a remote company, we can only follow up with candidates who are a fit for the role. See all available jobs here: https://optimizeegroup.com/#jobs Keywords: Product Lead, Product Manager, Project Manager, Senior Product Manager, Head of Product, Product Owner, Technical Product Manager, Product Strategy, Product Roadmap, Product Development, Web Products, SaaS, Fintech, UX/UI, User Experience, Conversion Rate Optimization (CRO), A/B Testing, Product Analytics, Google Analytics, Agile, Scrum, Jira, Stakeholder Management, Cross-functional Leadership, Full Stack Web Developer, Full Stack Developer, Frontend Development, Backend Development, PHP, Laravel, JavaScript, Alpine.js, Tailwind CSS, MySQL, AI, AI Native, Remote Job, Flexible Hours Optimizee Group LLC. All rights reserved.Registered address: 1111B S Governors Ave, STE 34128Dover, Delaware, 19904, USA.Operated by our global team.Terms & Conditions | Privacy Policy /* */ wp.i18n.setLocaleData( { 'text direction\\u0004ltr': [ 'ltr' ] } ); /* */ /* */ var wpcf7 = { \"api\": { \"root\": \"https:\\/\\/optimizeegroup.com\\/wp-json\\/\", \"namespace\": \"contact-form-7\\/v1\" } }; /* */",
+      "sourceId": "3933",
+      "descriptionHash": "63f08b55d0a5662be5bb",
+      "applicationUrl": "https://optimizeegroup.com/product-lead/",
+      "countries": [],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "lead",
+        "management",
+        "php",
+        "laravel",
+        "alpine.js",
+        "livewire",
+        "tailwind",
+        "react",
+        "next.js",
+        "mysql",
+        "redis"
+      ],
+      "contentFingerprint": "24a1b80a38a8c731dcf2",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-12T11:14:53.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 82,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "6a2828ae871bf76fea66",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3935",
+      "title": "Senior Software Engineer, Integrations",
+      "company": "Givebutter",
+      "location": "Remote/USA",
+      "workArrangement": "relocation-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$170,000-185,000",
+      "salaryMin": 170000,
+      "salaryMax": 185000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "You need to enable JavaScript to run this app. GivebutterSenior Software Engineer, Integrations LocationRemote; Austin, TX; Denver, CO; Indianapolis, IN; Los Angeles, CA; Minneapolis, MN; Nashville, TN; New York, NY; Salt Lake City, UT; San Francisco, CA; Seattle, WAEmployment TypeFull timeLocation TypeRemoteDepartmentProduct, Design, and EngineeringEngineeringDeadline to ApplyOctober 16, 2026 at 7:00 AM UTCCompensation$170K \u2013 $185K \u2022 Offers EquityOverviewApplicationCompany DescriptionGivebutter is the most-loved nonprofit fundraising and CRM platform, empowering millions of changemakers to raise more, pay less, and give better. Nonprofits use Givebutter to replace multiple tools so they can launch fundraisers and events, use donation forms and donor management (CRM), send emails and text blasts\u2014all in one place. Use of the Givebutter platform is completely free with a 100% transparent tip-or-fee model.Givebutter has been certified as a Great Place to Work\u00ae every year since 2021, and is the #1 rated nonprofit software company on G2 across multiple categories.Our mission is to empower the changemaker in all of us. We believe giving should be fun, so you\u2019ll want to do it again, and we also believe that work should be fun, so that you\u2019ll have the greatest impact. We are excited to hear from talented people who want to work with other talented people in making the world a butter place\u2014and have fun along the way. Role DescriptionGivebutter is hiring a Senior Software Engineer, Integrations, to join our Growth pod. Nonprofits live inside dozens of tools they already love: CRMs, accounting, volunteer platforms, AI assistants. This role decides how well Givebutter meets them there. You'll shape our public API into something builders and their AI agents actually want to reach for, and hold the partner surfaces we care about most as they grow with us.Most of this work happens in the space between two systems: reading partner docs, spiking to see what breaks, sitting on calls with external engineers, closing the ambiguity that turns \"maybe we could\" into \"here's how.\"Why join the Givebutter Engineering team?Democracy of code. We value equal contributions from all engineers and foster an environment of open discussion on architecture and ideas.Autonomy in work. We keep meetings to a minimum. Engineers have the freedom to manage their own calendars and block out uninterrupted time for focused work.Automated CI/CD. Our build and deployment processes are fully automated and hands-off, allowing engineers to focus on problem-solving through code.Mission-driven, full stop. You'll be working with inspiring nonprofits, charities, and organizations that are making a positive impact around the world.Peer ownership of production surfaces. You'll take an integration or an API surface and hold it, cycle over cycle, as sales, success, and product shape it further.AI-native workflow. We use terminal-based agents (Claude Code and similar) daily. We review what they hand us. You'll have opinions about your setup, and we'll want to hear them.We want to hear from people who\u2026Read someone else's API docs carefully, and know why the choices in them matterCare as much about the person calling the API as the person writing itKnow that a good integration keeps a nonprofit inside the tools they already love, instead of dragging them into oursSpike, learn what breaks, and turn that into an engineering conversation without needing a project manager to translateGet on a call with a partner engineer and come out with less ambiguity than you startedTake your development setup seriously (terminal, editor, agent) and have probably built one or two custom skills to make them work harderResponsibilitiesOwn one or more of our partner integration surfaces end-to-end, and hold them coherent as sales, success, and product shape them furtherShape our public API as its audience grows to include AI agents building on behalf of nonprofits who don't code themselvesSpike, prototype, and de-risk new partnerships, including the ones we don't yet know how to build, and the ones that only ship because someone had an aha momentDesign and defend API contracts, webhook shapes, and data flows that other engineers (and other agents) will build against for yearsPartner with an existing integrations lead on the surfaces they hold today, and grow into shared ownership over timePartner with Product, Growth, Marketing, and occasionally an external partner engineer, as a natural translator between what each group needsRequirements4+ years shipping production backend services, ideally on a modern web frameworkStrong proficiency in PHP / Laravel, or the kind of adjacent framework fluency that ramps quickly (we won't rule you out for having lived in Rails, Django, or Spring)Deep familiarity with REST API design, HTTP semantics, and the patterns that make an API worth building againstSolid SQL, MySQL specifically or comfortable enough with another relational database to speak to the trade-offs you've madeExperience building against real-world third-party APIs, not just the pristine documented examplesComfortable designing async job workflows, queued work, and observable failure pathsStrong instincts around OAuth, webhooks, and the trust-boundary decisions that keep a public API safe and honestActive use of terminal-based AI development tools (Claude Code, Cursor, or similar) with a clear review discipline for what the agent producesExperience contributing to on-call rotation for production servicesComfortable navigating an existing monorepo (ours is real, and PHP / Laravel is most of the backend)Nice to haveContributions to a public API you helped design (bonus if it survived a v2)You've built your own AI tooling, custom skills, or agent workflows, not just used the defaultsFamiliarity with the emerging surface where AI agents consume APIs on behalf of end users, and opinions about what a legible API looks like to a non-human callerYou have opinions about the difference between a specification and an implementation (OAuth 1 vs 2, JSON:API vs REST, GraphQL and what came after: any of it, all of it)Nonprofit or mission-driven experienceMore about GivebutterBenefitsRemote Work: Work remotely from one of our 10 hubs (Austin, Denver, Indianapolis, Los Angeles, San Francisco, New York, Salt Lake City, Minneapolis, Seattle, and Nashville). Health Insurance: We offer Medical, Dental, and Vision insurance covered 100% for employees as well as HSA and FSA accounts.Dependent Care Coverage: We offer coverage for dependents, with 50% of Medical, Dental, and Vision premiums covered for all eligible dependents.Mental Health: Givebutter health insurance plans come with access to a TalkSpace membership.401k: We offer a 3% 401k match for all eligible employee's. Vacation and Holidays: Givebutter offers a Flexible PTO policy with uncapped vacation days and company-recognized holidays.Wellness Week: Givebutter closes for one week each summer to prioritize rest and recharge for the entire team.Parental Leave: We offer 12 weeks of paid leave for all parents and comprehensive leave planning management through Aidora.Family Care Support: Access a company-paid UrbanSitter membership plus care credits to book trusted, background-checked caregivers for childcare, senior care, pet care, and household support when you need it most.Home Office Stipend: Upgrade your home office with company-sponsored expenses, including high-quality laptops, monitors, and modern technology.Coworking Stipend: Enjoy a monthly stipend that gives you the freedom to work from coworking spaces or caf\u00e9s whenever you need connection, community, or a change of scenery.Charitable Giving: Employees are encouraged to donate up to $50/month to any verified nonprofit they wish to support on Givebutter.Professional Development: We offer learning and development reimbursement opportunities.Love What You Do: We are a mission-driven company serving the charitable sector. Feel good about the work you're doing and the company you work for.Interview ProcessBelow is a high-level outline of our standard interview processRecruiter Screen: A 30-minute conversation to learn more about your background, walk through the role, and ensure mutual alignment on expectations, values, and logistics.Hiring Manager Interview: A deeper dive into your relevant experience, skillset, and working style. This is your first opportunity to connect directly with the person who may be your future manager.Assessment (technical or non-technical): This stage will vary based on the role. It could involve a live coding session, case study, or take-home project. Some roles may include two parts to this stage to evaluate both practical skills and problem-solving approachesValues Interview: A conversation with team members focused on how you align with our core values and leadership principles. References: We connect with a few folks you\u2019ve worked closely with to get a better picture of your working style and impact.Offer: If all goes well, we\u2019ll move to the offer stage!Please note, we will have an AI note-taking tool join most of our interviews.Hi potential new butterslice! A recent study from LinkedIn showed that most women apply to jobs only when they meet 100% of the requirements, whereas men will hit the apply button if they hit 60%. Givebutter is committed to building a diverse and inclusive team. So to the women and nonbinary folks out there feeling unsure if you're a perfect fit, we strongly encourage you to apply!Compensation Range: $170K - $185KApply for this JobPowered by AshbyPrivacy PolicySecurityVulnerability Disclosure window.__appData = {\"ddRumApplicationId\":\"80e0bf43-e772-45ac-858b-1e6dc0f1f415\",\"ddRumClientToken\":\"pub1a87c7036063ee7d4b7914b397e6324e\",\"environment\":\"production\",\"maintenanceMode\":false,\"schedulingMaintenanceMode\":false,\"organization\":{\"organizationId\":\"f8e80409-df1a-4a75-ba2e-261f2b036664\",\"name\":\"Givebutter\",\"publicWebsite\":\"https://givebutter.com/\",\"customJobsPageUrl\":null,\"hostedJobsPageSlug\":\"givebutter\",\"activeFeatureFlags\":[\"AiInterviewer\",\"AiNotetakerCandidateConsentPolicies\",\"AiVideoInterview\",\"ApplicationForReferrals\",\"ApprovalNotesFromEmail\",\"BookingLinkRescheduleLimits\",\"CanonicalizeSchools\",\"CoreMultipleBrands\",\"CoreMultipleBrandsFeedFiltering\",\"CoreMultipleBrandsLinkedInJobWrappingStreamingFix\",\"DemoOrgBanners\",\"EducationHistoryFormField\",\"ExplicitAutomatedProcessingOptOutConfirmation\",\"JobBoardCookieConsentControls\",\"JobBoardEtagValidation\",\"JobPostingApplicationDeadlines\",\"JobPostingListV2\",\"JobPostingWorkplaceTypeOverrideSecondaryLocationsToo\",\"LinkedInIntegrationRequireCompanyId\",\"LinkedInTOSUpdate\",\"LocationExternalName\",\"MigrateGoogleRecaptchaAutomatedLegal\",\"RejectBase64EncodedResumesFrontEnd\",\"RejectBase64EncodedResumesThrowErrorFrontEnd\",\"RejectInvalidFileTypeOnUpload\",\"RejectUrlsInCandidateName\",\"SchedulingCandidateAvailabilityNote\",\"SchedulingDirectBookingLogDirectBookingEventsJson\",\"SchedulingGCalSendUpdatesForCancelEvents\",\"SchedulingRescheduleAndCancellationReasonsNonUser\",\"SchedulingUseLocaleInTimeFormatting\",\"ShowCountsOnJobBoardFilterOptions\",\"SocialSharingHtmlMetaSettings\",\"UseGlobalQueryScopesOnGlobalApplicationQuestions\",\"UseJobPostingFiltersOnGlobalApplicationQuestions\",\"UseJobPostingFiltersOnGlobalApplicationQuestionsUI\",\"UseJobPostingFiltersOnSurveys\",\"UseJobPostingFiltersOnSurveysUI\",\"ValidateFileTypeOnUpload\"],\"allowJobPostIndexing\":true,\"isDemoOrg\":false,\"theme\":{\"colors\":{\"version\":\"1\",\"colorPrimary600\":\"#FFBF00\",\"colorPrimary900\":\"#8C8C8C\"},\"showJobFilters\":true,\"showLocationAddress\":false,\"showTeams\":true,\"showAutofillApplicationsBox\":true,\"logoWordmarkImageUrl\":null,\"logoSquareImageUrl\":null,\"applicationSubmittedSuccessMessage\":\"Your application was successfully submitted. We'll contact you with any next steps.\",\"jobBoardTopDescriptionHtml\":null,\"jobBoardBottomDescriptionHtml\":\" Hi potential new butterslice! A recent study from LinkedIn showed that most women apply to jo",
+      "sourceId": "3935",
+      "descriptionHash": "e9278a91933a69671820",
+      "applicationUrl": "https://jobs.ashbyhq.com/givebutter/eea6dcd5-55c0-461d-9dee-79211668291b",
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "api",
+        "engineer",
+        "laravel",
+        "php",
+        "senior",
+        "mysql",
+        "graphql"
+      ],
+      "contentFingerprint": "5d8360fc927badca4df7",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-15T23:43:26.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "confirmed",
+      "score": 80,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned",
+        "Sponsorship or relocation is mentioned"
+      ],
+      "concerns": [],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Sponsorship or relocation is mentioned",
+          "points": 10
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "d8fbe4a0245efeb57f05",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3934",
+      "title": "Lead Developer \u2014 Rebuild, Modernize, & Scale (Social Good SaaS, Remote)",
+      "company": "Track it Forward",
+      "location": "Remote / USA / Canada",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "Competitive",
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Lead Laravel Developer \u2014 Rebuild, Modernize, & Scale (Social Good SaaS, Remote)Track it Forward is a company revolutionizing how volunteer organizations around the world engage their volunteers to build vibrant communities. We are at a great moment at our company where we are ready to rebuild our app from the ground up while fully harnessing the power of AI. We are looking for a lead developer to lead us in a greenfield rebuild of our legacy SaaS app into Laravel, modernize our mobile apps, and lead the tech effort to scale our app. You will get to architect the technical foundation in your own way, implement modern AI powered systems, and completely modernize an app with AI from the ground up.About Track it Forward Track it Forward is the leading volunteer time-tracking application for nonprofits and schools. For 15 years, we\u2019ve helped thousands of organizations mobilize volunteers and track over 30 million hours. We are a profitable, bootstrapped team of 4 focused on a great work-life balance, high-impact work, and a fun, puzzle-loving culture (daily crosswords, monthly virtual escape rooms, and annual retreats). We are not a VC-funded startup. We grew organically, stayed profitable, and prioritize high-quality work and personal fulfillment without growth-at-all-costs pressure. The team is led by the original founder and developer.The Modernization Strategy We have a solid footing in our market, know exactly what we need to build, and are excited to build off a brand new tech stack. Our hope is that you can build this greenfield system, migrate over legacy features, help build a business wiki, and then move over customers in a phased approach. Currently we are on a Drupal 6 website hosted on Pantheon, paired with two Ionic/Capacitor mobile apps.Some Tech DetailsCodebase: LaravelData Isolation: All sensitive customer data should never be available to the end userDatabase & Files: We have a 10GB legacy Drupal 6 / MySQL schema that needs to be transferred to a PostgreSQL database, and we need to offload 100GB+ of media files to AWS S3 or Cloudflare R2.Documentation & Test Drive Development: Establish automated testing pipelines and document everything in a wiki so the codebase remains maintainable long-term.Mobile App Maintenance: Maintain and update our two Ionic/Capacitor mobile apps using AI coding tools. Mobile is a small fraction of the overall role\u2014you just need to leverage AI to keep them functional without being a native mobile expert.Candidate QualificationsPre-AI Engineering Foundation: You must have 5+ years of core software engineering and architectural experience in Laravel established before generative AI existed. We want you to be actively critically thinking and using AI to help speed up the process.Proven Migration Experience: You have successfully architected and led at least one legacy monolith migration. This job should not feel intimidating for you and you should be able to tell us what to do to make you feel successful in accomplishing it.Modernized AI Velocity: You actively use AI tools and are on top of the ever evolving new processes, but do not sacrifice documentation or code quality for the sake of speed.Location & Remote FlexibilityLocation: We prefer the Americas only because of the timezone.Core Sync Hours: Mandatory availability from 9:00 AM \u2013 12:00 PM PST for daily team syncs and real-time collaboration. Flexible hours outside this window.Native English: We are looking only for a native English speaker.Travel-Friendly: We are 100% remote. You are welcome to travel or be a digital nomad\u2014provided you can consistently hit our core sync hours.Compensation & BenefitsBase Salary: Competitive w/ modern tech salariesTax Status: We are open to both contractors and US based W2 employees.Benefits: If W2 in the US, 401(k) w/ company match, Health Insurance, vacation, PTO, and holidaysComputer: Must provide your own for the first 30 days regardless of W2 statusCulture: High autonomy, direct project ownership, and zero venture-capital growth pressureHow to Apply Fill out the Google Form. To filter out automated spam: include the most authentically human, non-AI reason why this specific role resonates with you. Specifically include a short Loom video of you in the \u201cWhy should we choose you over any one else?\u201d question. This isn\u2019t required but will sure stand out. Be authentic, no need to do crazy rehearsals, just be you.",
+      "sourceId": "3934",
+      "descriptionHash": "ad57967fa7fe48a2e617",
+      "applicationUrl": "https://app.notion.com/p/Lead-Laravel-Developer-Rebuild-Modernize-Scale-Social-Good-SaaS-Remote-3dbd515a8442800d898fc5c8e3360788",
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "regions": [],
+      "timezones": [
+        "PST"
+      ],
+      "relocation": "unknown",
+      "tags": [
+        "laravel",
+        "mysql",
+        "aws"
+      ],
+      "contentFingerprint": "a347e2fd69e6b8a589a7",
+      "duplicateOfIds": [
+        "d8a399c66d6738283d81"
+      ],
+      "publishedAt": "2026-09-14T22:10:10.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 78,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "401a731baf1c3d038dd0",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3937",
+      "title": "Full Stack Software Engineer (PHP/Laravel)- US Only",
+      "company": "Evolution Collect, LLC",
+      "location": "Remote/USA",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": "Full-Time",
+      "seniority": "unknown",
+      "salary": "$115,000.00 - $135,000.00",
+      "salaryMin": 115000,
+      "salaryMax": 135000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Company: Evolution Collect, LLC. Location: Remote/USA. Type: Full-Time. Salary: $115,000.00 - $135,000.00.",
+      "sourceId": "3937",
+      "descriptionHash": "42624fd9f429939a9f4f",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "aws",
+        "laravel",
+        "mysql",
+        "php",
+        "vuejs"
+      ],
+      "contentFingerprint": "898b45d2815f5d3c920d",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-21T20:01:47.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 20,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "f048cf4fcce6f291c8a2",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3939",
+      "title": "Senior Full Stack Software Engineer (PHP/Laravel) - US Only",
+      "company": "Evolution Collect, LLC",
+      "location": "Remote/USA",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$160,000.00 - $180,000.00",
+      "salaryMin": 160000,
+      "salaryMax": 180000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Company: Evolution Collect, LLC. Location: Remote/USA. Type: Full-Time. Salary: $160,000.00 - $180,000.00.",
+      "sourceId": "3939",
+      "descriptionHash": "daa4ac6429e9f8b58785",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "aws",
+        "laravel",
+        "mysql",
+        "php",
+        "vuejs"
+      ],
+      "contentFingerprint": "54b86efdc403dc2eeafd",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-25T20:52:41.000Z",
+      "firstSeenAt": "2026-09-26T02:48:02.222Z",
+      "lastSeenAt": "2026-10-09T02:57:23.074Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 20,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        },
+        {
+          "factor": "Hard exclusion cap (ineligible)",
+          "points": -18
+        }
+      ],
+      "confidence": 80,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    }
+  ]
+}

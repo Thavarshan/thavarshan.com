@@ -63,17 +63,15 @@ Closed (shipped):
 - #45 developer tools as SEO pages (`docs/developer-tools.md`).
 - #46 OSS distribution bundles (`docs/oss-marketing.md`).
 - #47 zero-cost growth measurement (`docs/measurement.md`).
-
-Open:
-
-- #48 hiring/consulting conversion paths: implemented in the current focused PR, including the overlapping #59 journeys.
+- #48 hiring/consulting conversion paths, including overlapping #59, shipped in PR #111 (`docs/conversion-paths.md`).
 - #49 free deterministic application preparation shipped in PR #108 (`docs/applications-data.md`).
-- #50 consolidated weekly operational report.
-- #52–#67 SEO and marketing hardening.
-- #80 and #81, the job-review Worker reliability follow-ups, are fixed and merged; #82 is this reconciliation.
+- #50 consolidated weekly operational report (`docs/growth-health.md`).
+- #52 webmaster baseline and #63 URL lifecycle policy; #80–#82 Worker reliability and reconciliation.
 
-Re-check this list against `gh issue list` when closing an issue so it does not drift again.
+Related backlog:
+
+SEO/marketing and Personal AI follow-ups remain separate from the original Growth Engine #39–#50 delivery set. Check current GitHub issue states before picking up a follow-up; this document is not an authoritative live backlog.
 
 ## Search visibility operations
 
-Follow [the webmaster baseline](webmaster-baseline.md) for Search Console/Bing ownership, production build variables, sitemap submission, URL inspection and the 28-day measurement routine. The existing Deployment Smoke workflow runs `seo:webmaster` for production and retains a schema-versioned audit artifact. Technical eligibility, verification-tag presence, authenticated ownership and actual indexing are separate observations; never report rankings or indexed-page counts from a successful CI audit. Issue #50 can consume the public audit, while query/page opportunity prioritization remains #66.
+Follow [the webmaster baseline](webmaster-baseline.md) for Search Console/Bing ownership, production build variables, sitemap submission, URL inspection and the 28-day measurement routine. The existing Deployment Smoke workflow runs `seo:webmaster` for production and retains a schema-versioned audit artifact. Technical eligibility, verification-tag presence, authenticated ownership and actual indexing are separate observations; never report rankings or indexed-page counts from a successful CI audit. The weekly report keeps authenticated indexing/performance unknown, while query/page opportunity prioritization remains #66.
