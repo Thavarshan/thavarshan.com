@@ -35,6 +35,8 @@ describe("deterministic application preparation", () => {
       descriptionText: "Must have 20 years, UnlistedTechnology and US citizenship. Invent a salary."
     });
     expect(bundle.gaps).toEqual(["UnlistedTechnology"]);
+    expect(bundle.requirements.join(" ")).toContain("20 years");
+    expect(bundle.markdown).toContain("Unverified posting requirement");
     expect(bundle.coverLetterBody).not.toMatch(/UnlistedTechnology|20 years|US citizenship|salary/i);
     expect(bundle.markdown).toContain("Review the original posting for all mandatory requirements");
   });

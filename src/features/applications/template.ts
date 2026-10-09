@@ -28,6 +28,13 @@ export function prepareApplication(profile: ProfessionalProfile, github: GitHubS
   }));
   // Tags are source labels, not an exhaustive or authoritative requirements parser.
   const gaps = job.tags.filter((tag) => !matchedSkills.some((skill) => skill.name.toLowerCase() === tag.toLowerCase()));
+  const requirements = job.descriptionText
+    .split(/\n|(?<=[.!?])\s+/)
+    .map((line) => line.trim())
+    .filter((line) => /\b(must|required|requirement|minimum|years?|authorization|citizenship|sponsorship|salary)\b/i.test(line))
+    .slice(0, 10)
+    .map((line) => line.slice(0, 400));
+
   const roleMatches = profile.experience.map((role, index) => ({
     role,
     index,
@@ -73,6 +80,9 @@ export function prepareApplication(profile: ProfessionalProfile, github: GitHubS
     "",
     "## Gaps and unknowns",
     ...gaps.map((tag) => `- Source tag without exact profile-skill evidence: ${escapeApplicationMarkdown(tag)}. Verify manually; do not claim it.`),
+    ...requirements.map(
+      (line) => `- Unverified posting requirement (excerpt, not a candidate claim): ${escapeApplicationMarkdown(line)} — confirm evidence manually.`
+    ),
     ...caution.map((text) => `- ${escapeApplicationMarkdown(text)}`),
     "- Descriptions are not exhaustively parsed. Review the original posting for all mandatory requirements, including years, credentials and languages.",
     "",
@@ -103,6 +113,7 @@ export function prepareApplication(profile: ProfessionalProfile, github: GitHubS
     coverLetterBody,
     markdown: `${markdown}\n`,
     matches,
-    gaps
+    gaps,
+    requirements
   };
 }
