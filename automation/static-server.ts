@@ -99,7 +99,15 @@ async function resolveRequestPath(root: string, requestUrl = "/") {
 const options = parseArguments(process.argv.slice(2));
 const root = resolve(options.directory);
 
-const redirects = parseContentRedirects(await readFile(join(root, "_redirects"), "utf8"));
+async function loadRedirects() {
+  try {
+    return parseContentRedirects(await readFile(join(root, "_redirects"), "utf8"));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw error;
+  }
+}
+const redirects = await loadRedirects();
 
 const server = createServer(async (request, response) => {
   const requested = new URL(request.url || "/", "http://localhost");

@@ -8,6 +8,28 @@ import { join } from "node:path";
 let child: ChildProcess;
 let directory: string;
 let origin: string;
+async function startServer(root: string) {
+  const processChild = spawn(process.execPath, ["--import", "tsx", "automation/static-server.ts", root, "--port", "0"], { stdio: ["ignore", "pipe", "pipe"] });
+  const address = await new Promise<string>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("Static server startup timed out")), 10_000);
+    processChild.once("error", (error) => {
+      clearTimeout(timer);
+      reject(error);
+    });
+    processChild.once("exit", () => {
+      clearTimeout(timer);
+      reject(new Error("Static server exited before startup"));
+    });
+    processChild.stdout!.on("data", (chunk) => {
+      const match = String(chunk).match(/http:\/\/127\.0\.0\.1:\d+/);
+      if (match) {
+        clearTimeout(timer);
+        resolve(match[0]);
+      }
+    });
+  });
+  return { child: processChild, origin: address };
+}
 beforeAll(async () => {
   directory = await mkdtemp(join(tmpdir(), "url-lifecycle-"));
   await Promise.all([
@@ -17,25 +39,7 @@ beforeAll(async () => {
     writeFile(join(directory, "404.html"), '<meta name="robots" content="noindex"><h1>Not found</h1>'),
     writeFile(join(directory, "_redirects"), "/old /new 301!\n/external https://example.com/final 301!\n")
   ]);
-  child = spawn(process.execPath, ["--import", "tsx", "automation/static-server.ts", directory, "--port", "0"], { stdio: ["ignore", "pipe", "pipe"] });
-  origin = await new Promise<string>((resolve, reject) => {
-    const timer = setTimeout(() => reject(new Error("Static server startup timed out")), 10_000);
-    child.once("error", (error) => {
-      clearTimeout(timer);
-      reject(error);
-    });
-    child.once("exit", () => {
-      clearTimeout(timer);
-      reject(new Error("Static server exited before startup"));
-    });
-    child.stdout!.on("data", (chunk) => {
-      const match = String(chunk).match(/http:\/\/127\.0\.0\.1:\d+/);
-      if (match) {
-        clearTimeout(timer);
-        resolve(match[0]);
-      }
-    });
-  });
+  ({ child, origin } = await startServer(directory));
 });
 afterAll(async () => {
   child?.kill();
@@ -54,6 +58,20 @@ describe("static server content lifecycle", () => {
     const missing = await fetch(`${origin}/deleted`, { redirect: "manual" });
     expect(missing.status).toBe(404);
     expect(await missing.text()).toContain("noindex");
+  });
+  it("serves a bare fixture directory without requiring redirect configuration", async () => {
+    const bare = await mkdtemp(join(tmpdir(), "url-bare-fixture-"));
+    let server: Awaited<ReturnType<typeof startServer>> | undefined;
+    try {
+      await writeFile(join(bare, "index.html"), "Bare fixture");
+      server = await startServer(bare);
+      const response = await fetch(server.origin, { redirect: "manual" });
+      expect(response.status).toBe(200);
+      expect(await response.text()).toContain("Bare fixture");
+    } finally {
+      server?.child.kill();
+      await rm(bare, { recursive: true, force: true });
+    }
   });
   it("returns external destinations without fetching them", async () => {
     const response = await fetch(`${origin}/external`, { redirect: "manual" });
