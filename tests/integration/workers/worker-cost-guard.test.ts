@@ -118,12 +118,11 @@ describe("deploy automation cannot switch anything to a paid path", () => {
 });
 
 describe("paid AI is opt-in (OpenAI is pay-per-use)", () => {
-  it("gates the scheduled workflow on ENABLE_PAID_AI, not just on the key being present", () => {
+  it("defaults scheduled runs to free template mode and passes explicit AI opt-in configuration", () => {
     const workflow = readFileSync(resolve(process.cwd(), ".github/workflows/applications-refresh.yml"), "utf8");
     expect(workflow).toContain("ENABLE_PAID_AI: ${{ vars.ENABLE_PAID_AI }}");
-    const generate = workflow.split("\n").filter((line) => line.includes("if:") && line.includes("OPENAI_API_KEY != ''"));
-    expect(generate.length).toBeGreaterThan(0);
-    for (const line of generate) expect(line).toContain("env.ENABLE_PAID_AI == 'true'");
+    expect(workflow).toContain("APPLICATIONS_MODE: ${{ inputs.mode || 'template' }}");
+    expect(workflow).toContain("default: template");
   });
 
   it("only treats the exact string 'true' as enabled", () => {
@@ -134,14 +133,15 @@ describe("paid AI is opt-in (OpenAI is pay-per-use)", () => {
     expect(paidAiEnabled({ ENABLE_PAID_AI: "true" })).toBe(true);
   });
 
-  it("the generator refuses to run (no OpenAI call, no clone) unless enabled, even with every secret present", async () => {
+  it("explicit AI mode refuses to run without spending opt-in, even with every secret present", async () => {
     const { generateApplications } = await import("@automation/applications/generate");
     const previous = { ...process.env };
     process.env.OPENAI_API_KEY = "sk-test-not-real";
     process.env.APPLICATIONS_REPO_DEPLOY_KEY = "not-a-real-key";
     delete process.env.ENABLE_PAID_AI;
+    process.env.APPLICATIONS_MODE = "ai";
     try {
-      await expect(generateApplications()).resolves.toBeUndefined();
+      await expect(generateApplications()).rejects.toThrow("AI mode requires ENABLE_PAID_AI=true");
     } finally {
       process.env = previous;
     }

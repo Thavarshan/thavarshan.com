@@ -20,7 +20,7 @@ const ALLOWED: Record<string, string[]> = {
   "features/profile": ["features/github", "shared/config", "shared/edge"],
   "features/telemetry": ["features/profile"],
   "features/cv": ["features/github", "features/profile"],
-  "features/applications": ["features/cv", "features/profile"],
+  "features/applications": ["features/cv", "features/profile", "features/github", "features/jobs"],
   "features/projects": ["components/ui", "features/github", "features/profile"],
   "features/marketing": ["features/github", "features/projects", "features/telemetry"],
   "features/insights": ["features/telemetry"],

@@ -10,7 +10,7 @@ export const applicationsRepoSlug = process.env.APPLICATIONS_REPO_SLUG || "Thava
 export const privateRepoDir = resolve(".applications-private");
 
 function run(command: string, args: string[], options: { cwd?: string; env?: NodeJS.ProcessEnv } = {}) {
-  const result = spawnSync(command, args, { cwd: options.cwd, env: options.env, stdio: "inherit" });
+  const result = spawnSync(command, args, { cwd: options.cwd, env: options.env, stdio: "pipe" });
   if (result.status !== 0) {
     throw new Error(`${command} ${args[0]} failed with status ${result.status}`);
   }

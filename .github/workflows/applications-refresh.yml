@@ -4,6 +4,18 @@ on:
   schedule:
     - cron: "15 3 * * *"
   workflow_dispatch:
+    inputs:
+      job_id:
+        description: "Optional normalized job snapshot ID (20 hexadecimal characters)"
+        type: string
+        required: false
+      mode:
+        description: "Template is free; AI requires explicit spending opt-in"
+        type: choice
+        default: template
+        options:
+          - template
+          - ai
 
 permissions:
   contents: read
@@ -19,6 +31,8 @@ jobs:
     env:
       # The OpenAI API is pay-per-use. It only runs when ENABLE_PAID_AI=true (a repository variable) is
       # set on purpose; having the key configured is not enough. See docs/cost-policy.md.
+      APPLICATIONS_JOB_ID: ${{ inputs.job_id }}
+      APPLICATIONS_MODE: ${{ inputs.mode || 'template' }}
       ENABLE_PAID_AI: ${{ vars.ENABLE_PAID_AI }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
@@ -30,11 +44,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Generate tailored application packages
-        if: env.ENABLE_PAID_AI == 'true' && env.OPENAI_API_KEY != '' && env.APPLICATIONS_REPO_DEPLOY_KEY != ''
+        if: env.APPLICATIONS_REPO_DEPLOY_KEY != '' || github.event_name == 'workflow_dispatch'
         run: npm run applications:generate
       - name: Secrets not configured
-        if: env.ENABLE_PAID_AI != 'true' || env.OPENAI_API_KEY == '' || env.APPLICATIONS_REPO_DEPLOY_KEY == ''
-        run: echo "Paid AI generation is off (ENABLE_PAID_AI != true) or its secrets are not set; skipping, no cost incurred."
+        if: env.APPLICATIONS_REPO_DEPLOY_KEY == '' && github.event_name != 'workflow_dispatch'
+        run: echo "Private repository deploy key is not configured; skipping scheduled preparation."
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test -- application- hallucination cover-letter latex-tailoring

@@ -26,8 +26,7 @@ export async function readState(dir: string): Promise<ApplicationState> {
     return applicationStateSchema.parse(JSON.parse(await readFile(resolve(dir, "state.json"), "utf8")));
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return { ...emptyState };
-    console.warn(`Existing application state does not match the current schema; starting fresh: ${error instanceof Error ? error.message : error}`);
-    return { ...emptyState };
+    throw new Error("Invalid private application state; restore state.json before generating packages", { cause: error });
   }
 }
 
