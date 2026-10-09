@@ -17,7 +17,7 @@ This document is the source of truth for **where code lives and what may import 
 | `src/features/insights/` | Insight model, content loader, article components | build |
 | `src/features/cv/` | LaTeX rendering and CV tailoring-plan validation | build + Node |
 | `src/features/jobs/` | Snapshot contract and migration, scoring, eligibility, review rules | any (pure) |
-| `src/features/applications/` | Cover-letter rendering, hallucination check, paid-AI switch | Node |
+| `src/features/applications/` | Deterministic application preparation, cover-letter rendering, hallucination check, paid-AI switch | Node |
 | `src/features/marketing/` | OSS distribution bundle rules | Node |
 | `src/features/tools/` | Cron and `.env` tools, registry; `components/` holds the client UI | browser (pure logic) |
 | `src/features/telemetry/` | Event contract, browser client, snapshot builder, UTM helper, provider | browser + edge + Node |
@@ -75,7 +75,7 @@ shared/config ─▶ features/github ─▶ features/profile ─┬▶ features/
 shared/edge, shared/node  (independent)        features/jobs  (independent; used by the job-review Worker and automation)
 ```
 
-`tests/integration/structure/import-graph.test.ts` enforces this. Lint blocks forbidden *directions*; this test guards the *allowed graph*: it fails on any dependency between units that is not declared in the test (so a new dependency is a visible, reviewed change), on any cycle, on unowned directories, and on a Worker pulling anything beyond its allowance into its deployed bundle. Restructuring found and removed the real cycles (profile↔projects, applications↔cv, config↔profile, and a chain through the UI) by moving `github-model`/`github` into their own feature, `profile-policy` into `shared/config`, CV `tailoring` into `cv`, `hero`/`timeline` into `home`, and `site.ts` into `profile`, the feature it is derived from.
+`features/applications` also consumes the `features/jobs` and `features/github` data types for deterministic preparation; those dependencies remain acyclic. `tests/integration/structure/import-graph.test.ts` enforces this. Lint blocks forbidden *directions*; this test guards the *allowed graph*: it fails on any dependency between units that is not declared in the test (so a new dependency is a visible, reviewed change), on any cycle, on unowned directories, and on a Worker pulling anything beyond its allowance into its deployed bundle. Restructuring found and removed the real cycles (profile↔projects, applications↔cv, config↔profile, and a chain through the UI) by moving `github-model`/`github` into their own feature, `profile-policy` into `shared/config`, CV `tailoring` into `cv`, `hero`/`timeline` into `home`, and `site.ts` into `profile`, the feature it is derived from.
 
 ## Formatting
 

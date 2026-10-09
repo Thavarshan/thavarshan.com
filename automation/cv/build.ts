@@ -14,7 +14,7 @@ const texLiveImage =
  * timestamp — callers pass the source content's own modification time, not "now", so rebuilding
  * from unchanged input produces a byte-identical PDF.
  */
-export async function compileLatexToPdf(texPath: string, outDir: string, sourceDateEpoch: number): Promise<string> {
+export async function compileLatexToPdf(texPath: string, outDir: string, sourceDateEpoch: number, options: { quiet?: boolean } = {}): Promise<string> {
   const workspace = resolve(".");
   await mkdir(resolve(outDir), { recursive: true });
 
@@ -41,7 +41,7 @@ export async function compileLatexToPdf(texPath: string, outDir: string, sourceD
       `-outdir=${outDir}`,
       texPath
     ],
-    { stdio: "inherit" }
+    { stdio: options.quiet ? "pipe" : "inherit" }
   );
 
   if (result.status !== 0) {

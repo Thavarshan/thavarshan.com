@@ -100,6 +100,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run cv:publish
+      - name: Verify free application PDFs without private credentials
+        run: node --import tsx automation/applications/verify-template.ts
       - run: git diff --exit-code -- cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: ${{ !cancelled() }}

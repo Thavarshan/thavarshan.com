@@ -12,7 +12,7 @@ The owner cannot afford any infrastructure charge. Every service here is chosen 
 | **Plausible Cloud (optional, PAID)** | Optional second analytics sink | **Paid.** Not required: measurement works without it. | Only active if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set; leave it unset unless you choose to pay. |
 | **GitHub Actions** | Scheduled collection, CI, deploys | The repository is **public**, and Actions minutes are free for public repositories. | Keep the repository public. If it were ever made private, minutes become metered. |
 | **Netlify (static hosting)** | The public site | Netlify's free plan pauses a site when its free allowance is exhausted rather than billing. *(Stated from general knowledge of Netlify's free plan; confirm in your Netlify billing page.)* | Avoid unnecessary deploys: the collector no longer commits on unchanged days. |
-| **OpenAI API** | AI-drafted application packages (`applications:generate`) | **This one is pay-per-use and CAN bill.** | Opt-in only: it does nothing unless the repository variable `ENABLE_PAID_AI` is `true` (see `docs/applications-data.md`). Delete/limit the `OPENAI_API_KEY` in the OpenAI dashboard to make it impossible. |
+| **OpenAI API** | Optional AI mode for application packages (`APPLICATIONS_MODE=ai`) | **This one is pay-per-use and CAN bill.** | Opt-in only: API calls require explicit AI mode, an API key and repository variable `ENABLE_PAID_AI=true`; default template mode makes no API calls (see `docs/applications-data.md`). Delete/limit the `OPENAI_API_KEY` in the OpenAI dashboard to make it impossible. |
 
 ## What only the account owner can verify (no tool here can see billing)
 

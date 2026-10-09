@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 import { validateCvTailoringPlan } from "../../src/features/cv/tailoring";
 import { renderCoverLetterLatex } from "../../src/features/applications/cover-letter-latex";
@@ -9,6 +9,7 @@ import { opportunitySnapshotSchema, type Opportunity } from "../../src/features/
 import { renderResumeLatex } from "../../src/features/cv/latex";
 import { parseProfessionalProfile, type ProfessionalProfile } from "../../src/features/profile/profile-schema";
 import { compileLatexToPdf } from "../cv/build";
+import { prepareApplication, TEMPLATE_VERSION, escapeApplicationMarkdown as md } from "../../src/features/applications/template";
 import { paidAiEnabled } from "../../src/features/applications/paid-ai";
 import { generateTailoringAndCoverLetter, type RawTailoringResult } from "./openai-client";
 import { buildSystemPrompt, buildUserPrompt } from "./prompts";
@@ -24,16 +25,33 @@ async function readJson<T>(path: string, parse: (value: unknown) => T): Promise<
   return parse(JSON.parse(await readFile(resolve(path), "utf8")));
 }
 
-function computeInputHash(job: Opportunity): string {
-  const payload = JSON.stringify({
-    title: job.title,
-    company: job.company,
-    descriptionText: job.descriptionText,
-    tags: job.tags,
-    score: job.score,
-    salary: job.salary
-  });
-  return createHash("sha256").update(payload).digest("hex").slice(0, 20);
+export function computeInputHash(job: Opportunity, profile: ProfessionalProfile, github: GitHubSnapshot, model: string): string {
+  return createHash("sha256")
+    .update(
+      JSON.stringify({
+        version: TEMPLATE_VERSION,
+        job: { ...job, firstSeenAt: undefined, lastSeenAt: undefined },
+        profile: { ...profile, modifiedAt: undefined, sources: undefined },
+        github: { projects: github.projects.map((project) => ({ ...project, updatedAt: undefined, stars: undefined, forks: undefined })) },
+        model
+      })
+    )
+    .digest("hex")
+    .slice(0, 20);
+}
+
+export function applicationMode(env: Record<string, string | undefined>): "template" | "ai" {
+  const mode = env.APPLICATIONS_MODE || "template";
+  if (mode !== "template" && mode !== "ai") throw new Error("Invalid application mode");
+  if (mode === "ai" && (!paidAiEnabled(env) || !env.OPENAI_API_KEY)) throw new Error("AI mode requires ENABLE_PAID_AI=true and OPENAI_API_KEY");
+  return mode;
+}
+
+export function selectedJobId(value: string | undefined): string | undefined {
+  if (!value?.trim()) return undefined;
+  const id = value.trim().toLowerCase();
+  if (!/^[a-f0-9]{20}$/.test(id)) throw new Error("Job ID must be a normalized 20-character snapshot ID");
+  return id;
 }
 
 function toHighlightSelectionsRecord(items: RawTailoringResult["highlightSelections"]): Record<string, string[]> {
@@ -64,18 +82,18 @@ function buildSummaryMarkdown(params: { job: Opportunity; warnings: string[]; fl
   const { job, warnings, flaggedTerms, model, generatedAt } = params;
 
   const lines: string[] = [
-    `# ${job.title}${job.company ? ` @ ${job.company}` : ""}`,
+    `# ${md(job.title)}${job.company ? ` @ ${md(job.company)}` : ""}`,
     "",
-    "**AI-drafted — review before sending.**",
+    "**Draft — review before sending.**",
     "",
     `- Apply: ${job.canonicalUrl}`,
     `- Score: ${job.score} · Eligibility: ${job.eligibility} · Work arrangement: ${job.workArrangement}`,
-    ...(job.salary ? [`- Salary: ${job.salary}`] : []),
-    ...(job.location ? [`- Location: ${job.location}`] : []),
+    ...(job.salary ? [`- Salary: ${md(job.salary)}`] : []),
+    ...(job.location ? [`- Location: ${md(job.location)}`] : []),
     `- Generated: ${generatedAt} (model: ${model})`,
     "",
     "## Why this was selected",
-    ...(job.reasons.length > 0 ? job.reasons.map((reason) => `- ${reason}`) : ["_No specific reasons recorded._"])
+    ...(job.reasons.length > 0 ? job.reasons.map((reason) => `- ${md(reason)}`) : ["_No specific reasons recorded._"])
   ];
 
   if (flaggedTerms.length > 0) {
@@ -83,50 +101,60 @@ function buildSummaryMarkdown(params: { job: Opportunity; warnings: string[]; fl
       "",
       "## ⚠️ Review these terms before sending",
       "The cover letter mentions the following, which don't appear in your profile or this job posting. Verify they're accurate:",
-      ...flaggedTerms.map((term) => `- ${term}`)
+      ...flaggedTerms.map((term) => `- ${md(term)}`)
     );
   }
 
   if (warnings.length > 0) {
-    lines.push("", "## Tailoring notes", ...warnings.map((warning) => `- ${warning}`));
+    lines.push("", "## Tailoring notes", ...warnings.map((warning) => `- ${md(warning)}`));
   }
 
-  lines.push("", "## Files", "- `cv.pdf` — tailored CV variant", "- `cover-letter.pdf` — AI-drafted cover letter");
+  lines.push("", "## Files", "- `cv.pdf` — tailored CV variant", "- `cover-letter.pdf` — draft cover letter");
 
   return `${lines.join("\n")}\n`;
 }
 
-export async function generateApplications() {
-  if (!paidAiEnabled(process.env)) {
-    console.log('Paid AI generation is disabled (ENABLE_PAID_AI is not "true"); skipping. See docs/cost-policy.md.');
-    return;
-  }
-
+async function generateApplicationsInternal() {
+  const mode = applicationMode(process.env);
+  const requestedId = selectedJobId(process.env.APPLICATIONS_JOB_ID);
   const openaiApiKey = process.env.OPENAI_API_KEY;
   const deployKey = process.env.APPLICATIONS_REPO_DEPLOY_KEY;
-
-  if (!openaiApiKey || !deployKey) {
-    console.log("OPENAI_API_KEY or APPLICATIONS_REPO_DEPLOY_KEY is not set; skipping application generation.");
+  if (!deployKey) {
+    if (requestedId || mode === "ai") throw new Error("Private repository deploy key is required");
+    console.log("Private repository deploy key is not configured; skipping application generation.");
     return;
   }
-
-  const model = process.env.OPENAI_MODEL || DEFAULT_MODEL;
+  if (
+    !Number.isInteger(MIN_SCORE) ||
+    MIN_SCORE < 0 ||
+    MIN_SCORE > 100 ||
+    !Number.isInteger(MAX_NEW_PACKAGES_PER_RUN) ||
+    MAX_NEW_PACKAGES_PER_RUN < 1 ||
+    MAX_NEW_PACKAGES_PER_RUN > 5
+  ) {
+    throw new Error("Invalid application selection limits");
+  }
+  if (applicationsRepoSlug.toLowerCase() === "thavarshan/thavarshan.com") throw new Error("Application output must use the separate private repository");
+  const model = mode === "template" ? TEMPLATE_VERSION : process.env.OPENAI_MODEL || DEFAULT_MODEL;
 
   const jobs = await readJson("data/jobs.generated.json", (value) => opportunitySnapshotSchema.parse(value));
   const profile = await readJson("data/profile.generated.json", parseProfessionalProfile);
   const github = await readJson("data/github.generated.json", (value) => githubSnapshotSchema.parse(value));
 
-  console.log(`Cloning ${applicationsRepoSlug}...`);
+  if (requestedId && !jobs.opportunities.some((job) => job.id === requestedId && job.eligibility === "eligible" && job.status !== "closed")) {
+    throw new Error("Selected job is missing, closed or not eligible; confirm eligibility before preparing a package");
+  }
+  console.log("Opening private application repository...");
   const repoDir = await clonePrivateRepo(deployKey);
   const state = await readState(repoDir);
   const stateById = new Map(state.entries.map((entry) => [entry.opportunityId, entry]));
 
   const candidates = jobs.opportunities
-    .filter((job) => job.eligibility === "eligible" && job.status !== "closed" && job.score >= MIN_SCORE)
+    .filter((job) => job.eligibility === "eligible" && job.status !== "closed" && (requestedId ? job.id === requestedId : job.score >= MIN_SCORE))
     .filter((job) => stateById.get(job.id)?.status !== "applied")
     .filter((job) => {
       const existing = stateById.get(job.id);
-      return !existing || existing.inputHash !== computeInputHash(job);
+      return !existing || existing.inputHash !== computeInputHash(job, profile, github, model);
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, MAX_NEW_PACKAGES_PER_RUN);
@@ -138,14 +166,19 @@ export async function generateApplications() {
 
   for (const job of candidates) {
     try {
-      console.log(`Generating package for "${job.title}" @ ${job.company ?? "unknown company"} (score ${job.score})...`);
+      if (selectedJobId(job.id) !== job.id) throw new Error("Invalid snapshot ID");
+      console.log("Preparing private package...");
+      const preparation = prepareApplication(profile, github, job);
 
-      const raw = await generateTailoringAndCoverLetter({
-        apiKey: openaiApiKey,
-        model,
-        systemPrompt: buildSystemPrompt(),
-        userPrompt: buildUserPrompt({ profile, job })
-      });
+      const raw =
+        mode === "template"
+          ? preparation
+          : await generateTailoringAndCoverLetter({
+              apiKey: openaiApiKey!,
+              model,
+              systemPrompt: buildSystemPrompt(),
+              userPrompt: buildUserPrompt({ profile, job })
+            });
 
       const sanitized = validateCvTailoringPlan(
         {
@@ -166,7 +199,7 @@ export async function generateApplications() {
 
       const cvTexRelative = `${jobBuildDirRelative}/cv.tex`;
       await writeFile(resolve(cvTexRelative), renderResumeLatex(profile, github, sanitized), "utf8");
-      const cvPdfPath = await compileLatexToPdf(cvTexRelative, jobBuildDirRelative, sourceDateEpoch);
+      const cvPdfPath = await compileLatexToPdf(cvTexRelative, jobBuildDirRelative, sourceDateEpoch, { quiet: true });
 
       const coverLetterTexRelative = `${jobBuildDirRelative}/cover-letter.tex`;
       await writeFile(
@@ -174,13 +207,14 @@ export async function generateApplications() {
         renderCoverLetterLatex(profile, { title: job.title, company: job.company }, raw.coverLetterBody, new Date()),
         "utf8"
       );
-      const coverLetterPdfPath = await compileLatexToPdf(coverLetterTexRelative, jobBuildDirRelative, sourceDateEpoch);
+      const coverLetterPdfPath = await compileLatexToPdf(coverLetterTexRelative, jobBuildDirRelative, sourceDateEpoch, { quiet: true });
 
       const targetDir = resolve(repoDir, job.id);
       await mkdir(targetDir, { recursive: true });
       await copyFile(cvPdfPath, resolve(targetDir, "cv.pdf"));
       await copyFile(coverLetterPdfPath, resolve(targetDir, "cover-letter.pdf"));
 
+      await writeFile(resolve(targetDir, "preparation.md"), preparation.markdown, "utf8");
       const generatedAt = new Date().toISOString();
       await writeFile(
         resolve(targetDir, "summary.md"),
@@ -190,19 +224,22 @@ export async function generateApplications() {
 
       stateById.set(job.id, {
         opportunityId: job.id,
-        inputHash: computeInputHash(job),
+        inputHash: computeInputHash(job, profile, github, model),
         generatedAt,
         model,
         status: "pending",
         respondedAt: null
       });
       generated++;
-    } catch (error) {
+    } catch {
       failed++;
-      console.error(`Failed to generate package for "${job.title}": ${error instanceof Error ? error.message : error}`);
+      console.error("Package preparation failed; review inputs or private repository/compiler configuration, then retry.");
+    } finally {
+      if (/^[a-f0-9]{20}$/.test(job.id)) await rm(resolve(buildDirRelative, job.id), { recursive: true, force: true });
     }
   }
 
+  if (failed > 0) throw new Error("One or more packages failed; no private changes were published. Retry after correcting the failure.");
   const nextState: ApplicationState = { schemaVersion: 1, entries: [...stateById.values()] };
   await writeState(repoDir, nextState);
 
@@ -221,16 +258,20 @@ export async function generateApplications() {
     ];
     await writeFile(summaryPath, `${lines.join("\n")}\n`, { flag: "a" });
   }
+}
 
-  if (candidates.length > 0 && failed === candidates.length) {
-    console.error(`All ${failed} candidate(s) failed this run; marking the workflow as failed so this doesn't silently stay green.`);
-    process.exitCode = 1;
+export async function generateApplications() {
+  try {
+    await generateApplicationsInternal();
+  } finally {
+    await rm(resolve(buildDirRelative), { recursive: true, force: true });
+    await rm(resolve(".applications-private"), { recursive: true, force: true });
   }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  generateApplications().catch((error) => {
-    console.error(error instanceof Error ? error.message : error);
+  generateApplications().catch(() => {
+    console.error("Application generation failed. Check configuration and validated snapshots; private drafts were not logged.");
     process.exitCode = 1;
   });
 }
