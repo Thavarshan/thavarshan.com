@@ -19,6 +19,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: write
 
 concurrency:
   group: automated-generated-content
@@ -28,13 +30,14 @@ jobs:
   refresh:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
@@ -57,15 +60,11 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Commit generated content directly to main
+      - name: Propose generated profile updates for review
         if: steps.changes.outputs.changed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
-          git commit -m "Refresh public profile content"
-          git pull --rebase origin main
-          git push origin HEAD:main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash automation/ci/publish-generated.sh profile "Refresh public profile content" data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No generated snapshot changes detected."
@@ -74,15 +73,16 @@ jobs:
     needs: refresh
     if: always() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && (needs.refresh.result == 'success' || needs.refresh.result == 'skipped')
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
       BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: main
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm

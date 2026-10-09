@@ -1,0 +1,75 @@
+name: Deployment Smoke
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  schedule:
+    - cron: "43 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      preview_url:
+        description: "Optional HTTPS deploy-preview or branch origin for thavarshan.netlify.app"
+        type: string
+        required: false
+      revision:
+        description: "Full deployed commit SHA (required for a preview; production uses main)"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: deployment-smoke-${{ inputs.preview_url || github.event.workflow_run.head_branch || 'production' }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository && (((github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch') && github.event.workflow_run.head_branch == 'main') || (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0].number != null) || (github.event.workflow_run.event == 'workflow_dispatch' && startsWith(github.event.workflow_run.head_branch, 'automation/generated-'))))
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      # Always trusted main. Never execute fork code or download triggering-run artifacts.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify published deployment
+        env:
+          PREVIEW_URL: ${{ inputs.preview_url }}
+          PREVIEW_REVISION: ${{ inputs.revision }}
+          TRIGGER_EVENT: ${{ github.event.workflow_run.event }}
+          TRIGGER_PR: ${{ github.event.workflow_run.pull_requests[0].number }}
+          TRIGGER_SHA: ${{ github.event.workflow_run.head_sha }}
+          TRIGGER_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          export EXPECTED_REVISION="$(git rev-parse HEAD)"
+          if [ "$TRIGGER_EVENT" = "workflow_dispatch" ] && [[ "$TRIGGER_BRANCH" == automation/generated-* ]]; then
+            TRIGGER_PR="$(gh pr list --head "$TRIGGER_BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
+            if [ -z "$TRIGGER_PR" ]; then echo "Generated branch has no open pull request"; exit 1; fi
+            TRIGGER_EVENT=pull_request
+          fi
+          if [ "$TRIGGER_EVENT" = "pull_request" ]; then
+            PREVIEW_URL="https://deploy-preview-${TRIGGER_PR}--thavarshan.netlify.app"
+            PREVIEW_REVISION="$TRIGGER_SHA"
+          fi
+          if [ -n "$PREVIEW_URL" ]; then
+            export DEPLOYMENT_MODE=preview
+            export DEPLOYMENT_URL="$PREVIEW_URL"
+            export EXPECTED_REVISION="$PREVIEW_REVISION"
+          fi
+          npm run deployment:smoke
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: ${{ !cancelled() }}
+        with:
+          name: deployment-smoke-report
+          path: test-results/deployment/audit.json
+          retention-days: 1

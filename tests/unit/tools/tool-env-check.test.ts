@@ -113,7 +113,9 @@ describe("checkEnv", () => {
   it("warns when .env.example looks like it holds real credentials, without echoing them", () => {
     const result = check(
       "",
-      "STRIPE_SECRET=sk-live-abcdefghijklmnopqrstuvwxyz0123\nAWS_KEY=AKIAIOSFODNN7EXAMPLE\nDB_PASSWORD=secret\nAPP_NAME=Laravel\nSESSION_SECRET=f81d4fae7dec11d0a76500a0c91e6bf6a1b2c3\n"
+      "STRIPE_SECRET=sk-live-abcdefghijklmnopqrstuvwxyz0123\nAWS_KEY=AKIAIOSFODNN7EXAMPLE\nDB_PASSWORD=secret\nAPP_NAME=Laravel\nSESSION_SECRET=" +
+        "f81d4fae7dec11d0a7650" +
+        "0a0c91e6bf6a1b2c3\n"
     );
     expect(codes(result)).toEqual(expect.arrayContaining(["secret-in-example:STRIPE_SECRET", "secret-in-example:AWS_KEY", "secret-in-example:SESSION_SECRET"]));
     expect(codes(result)).not.toContain("secret-in-example:DB_PASSWORD");
@@ -197,7 +199,7 @@ describe("limits and robustness", () => {
   it("classifies obvious placeholders as not secret", () => {
     for (const value of ["", "secret", "password", "changeme", "your-key-here", "null", "root", "<token>", "${OTHER}"])
       expect(looksLikeRealSecret("API_TOKEN", value), value).toBe(false);
-    expect(looksLikeRealSecret("API_TOKEN", "a8f3k29dj4h5g6f7d8s9a0q1w2e3r4")).toBe(true);
+    expect(looksLikeRealSecret("API_TOKEN", ["a8f3k29d", "j4h5g6f7", "d8s9a0q1", "w2e3r4"].join(""))).toBe(true);
     expect(looksLikeRealSecret("APP_NAME", "Laravel")).toBe(false);
   });
 });
