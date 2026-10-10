@@ -1,3 +1,4 @@
+import { auditLinkGraph, maxCrawlDepth } from "../../automation/seo/link-graph";
 import { expect, test } from "@playwright/test";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { canonicalOrigin, checkDuplicates, checkPage, checkSitemap, maxAuditPages, type SeoFailure, type SeoPage } from "../../automation/seo/rules";
@@ -122,9 +123,11 @@ test("exported pages satisfy rendered SEO and HTTP invariants", async ({ page, r
           }
         }
       }
-      for (const item of pages) {
-        if (new URL(item.url).pathname !== "/" && !targets.has(new URL(item.url).pathname))
-          addFailure(item.url, "internal-discovery", "No audited page links to this sitemap page");
+      for (const item of auditLinkGraph(pages).pages) {
+        if (item.depth === null)
+          addFailure(`${canonicalOrigin}${item.path}`, "internal-discovery", "No rendered link path from the homepage reaches this sitemap page");
+        else if (item.depth > maxCrawlDepth)
+          addFailure(`${canonicalOrigin}${item.path}`, "crawl-depth", `Requires ${item.depth} clicks from home; maximum is ${maxCrawlDepth}`);
       }
     }
     const missing = await request.get("/__seo_audit_missing_page__", { maxRedirects: 0, timeout: 10_000 });
@@ -145,6 +148,7 @@ test("exported pages satisfy rendered SEO and HTTP invariants", async ({ page, r
       generatedAt: new Date().toISOString(),
       limits: { pages: maxAuditPages, internalLinks: 120, requestTimeoutMs: 10_000, redirects: 0 },
       pages,
+      linkGraph: auditLinkGraph(pages),
       failures,
       status: failures.length ? "failed" : "passed"
     };

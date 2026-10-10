@@ -1,3 +1,4 @@
+import { RelatedTools } from "@/features/tools/related-tools";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -133,6 +134,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
           <MarkdownContent blocks={insight.blocks} />
         </div>
       </article>
+      <RelatedTools path={`/insights/${slug}`} />
       {relatedInsights.length ? (
         <section aria-labelledby="related-insights" className="mx-auto w-full max-w-6xl px-5 pb-16 lg:px-8">
           <h2 id="related-insights" className="font-display text-3xl text-[var(--ink)]">

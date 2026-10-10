@@ -2,6 +2,20 @@ import { expect, test, type Page } from "@playwright/test";
 
 const SECRET = "ZZ_E2E_SECRET_VALUE_7f3a9c1d5e";
 
+for (const path of ["/projects/matrix", "/insights/observable-reliable-production-ai-workflows"]) {
+  test(`${path} links to contextual tools at mobile width`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 800 });
+    await page.goto(path);
+    const section = page.getByRole("region", { name: "Related developer tools" });
+    const link = section.locator('a[href="/tools/laravel-scheduler-cron"]');
+    await expect(link).toBeVisible();
+    await expect(link).not.toHaveText("");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+    await link.click();
+    await expect(page).toHaveURL(/\/tools\/laravel-scheduler-cron$/);
+  });
+}
+
 /** Sets a textarea the way a paste does. Playwright's fill() types large multi-line text as one editing step per line in Chromium, which is quadratic and unrepresentative. */
 async function paste(page: Page, label: string | RegExp, text: string, exact = false) {
   await page.getByLabel(label, { exact }).evaluate((element, value) => {
