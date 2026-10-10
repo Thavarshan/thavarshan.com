@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
   actions: write
 
 concurrency:
@@ -53,19 +52,19 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      # Generated changes are proposed as a PR; the helper explicitly dispatches required CI.
-      - name: Propose generated jobs updates for review
+      # Publish only validated job data; explicitly dispatch CI for the bot-authored commit.
+      - name: Commit generated jobs directly to main
         if: steps.changes.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash automation/ci/publish-generated.sh jobs "Refresh Laravel job opportunities" data/jobs.generated.json
+        run: bash automation/ci/commit-jobs.sh
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No Laravel job opportunity changes detected."
-      # Failed sources' data is carried forward. Report degradation after proposing the healthy
-      # updates for review; required PR CI still validates the resulting snapshot.
+      # Failed sources' data is carried forward. Publish validated healthy updates, then
+      # report degradation so a source outage remains visible.
       - name: Fail the run if any source failed
         if: steps.collect.outputs.degraded == 'true'
         run: |
-          echo "::error::One or more job sources failed; generated updates are proposed through reviewable PRs. See the job summary and the jobs-collector-diagnostics artifact."
+          echo "::error::One or more job sources failed; validated healthy updates were still published. See the job summary and the jobs-collector-diagnostics artifact."
           exit 1
