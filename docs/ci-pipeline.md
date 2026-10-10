@@ -22,7 +22,7 @@ Preview checks are available through **Actions → Deployment Smoke → Run work
 
 ## Required CI on main
 
-The `Required website CI` repository ruleset requires `ci-gate` from GitHub Actions (integration 15368) on `main`, without bypass actors. Keep the separate deletion-protection ruleset. `.github/rulesets/required-ci.json` is the importable configuration. Status checks are not required to be up to date with the base branch, so unrelated main commits do not invalidate existing PR checks; job publication independently rejects any main change while its checked snapshot is being prepared.
+The `Required website CI` repository ruleset requires `ci-gate` from GitHub Actions (integration 15368) on `main`, with an always-available bypass for repository administrators, as requested for this personal project. Keep the separate deletion-protection ruleset. `.github/rulesets/required-ci.json` is the importable configuration. Status checks are not required to be up to date with the base branch, so unrelated main commits do not invalidate existing PR checks; job publication independently rejects any main change while its checked snapshot is being prepared.
 
 Profile, OSS and growth content updates open PRs and explicitly dispatch CI because default-token PR events suppress normal PR CI. The Actions setting allowing PR creation must remain enabled. Job updates instead push a temporary `automation/checked-jobs-*` branch, wait for successful full CI and `ci-gate` on the exact revision, then fast-forward `main` to that same revision. No token, deploy key or admin bypass is needed. CI failure or stale main leaves main unchanged. Publication dispatches main CI again so the existing production smoke workflow runs after deployment.
 
