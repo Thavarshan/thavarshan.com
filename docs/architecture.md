@@ -17,7 +17,7 @@ This document is the source of truth for **where code lives and what may import 
 | `src/features/insights/` | Insight model, content loader, article components | build |
 | `src/features/cv/` | LaTeX rendering and CV tailoring-plan validation | build + Node |
 | `src/features/jobs/` | Snapshot contract and migration, scoring, eligibility, review rules | any (pure) |
-| `src/features/applications/` | Deterministic application preparation, cover-letter rendering, hallucination check, paid-AI switch | Node |
+| `src/features/applications/` | Deterministic application preparation, cover-letter rendering, hallucination check, free Groq AI configuration | Node |
 | `src/features/marketing/` | OSS distribution bundle rules | Node |
 | `src/features/tools/` | Cron and `.env` tools, registry; `components/` holds the client UI | browser (pure logic) |
 | `src/features/telemetry/` | Event contract, browser client, snapshot builder, UTM helper, provider | browser + edge + Node |

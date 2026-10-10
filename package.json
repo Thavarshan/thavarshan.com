@@ -65,6 +65,7 @@
     "@types/react-dom": "^19.0.0",
     "eslint": "^10.8.0",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "js-tiktoken": "^1.0.21",
     "jsdom": "^27.0.0",
     "pdfjs-dist": "^6.2.108",
     "prettier": "^3.9.9",

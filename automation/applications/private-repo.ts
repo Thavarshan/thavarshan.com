@@ -10,16 +10,16 @@ export const applicationsRepoSlug = process.env.APPLICATIONS_REPO_SLUG || "Thava
 export const privateRepoDir = resolve(".applications-private");
 
 function run(command: string, args: string[], options: { cwd?: string; env?: NodeJS.ProcessEnv } = {}) {
-  const result = spawnSync(command, args, { cwd: options.cwd, env: options.env, stdio: "pipe" });
+  const result = spawnSync(command, args, { cwd: options.cwd, env: options.env, stdio: "pipe", timeout: 120000 });
   if (result.status !== 0) {
     throw new Error(`${command} ${args[0]} failed with status ${result.status}`);
   }
 }
 
 function runCapture(command: string, args: string[], cwd?: string) {
-  const result = spawnSync(command, args, { cwd, encoding: "utf8" });
+  const result = spawnSync(command, args, { cwd, encoding: "utf8", timeout: 120000 });
   if (result.status !== 0) {
-    throw new Error(`${command} ${args[0]} failed: ${result.stderr}`);
+    throw new Error(`${command} ${args[0]} failed; private output was suppressed`);
   }
   return result.stdout.trim();
 }
@@ -43,7 +43,7 @@ async function withDeployKeyEnv<T>(deployKey: string, run: (env: NodeJS.ProcessE
     await chmod(keyPath, 0o600);
     const env: NodeJS.ProcessEnv = {
       ...process.env,
-      GIT_SSH_COMMAND: `ssh -i ${keyPath} -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=${knownHostsPath}`
+      GIT_SSH_COMMAND: `ssh -i ${keyPath} -o ConnectTimeout=15 -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=${knownHostsPath}`
     };
     return await run(env);
   } finally {

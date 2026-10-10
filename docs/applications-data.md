@@ -1,10 +1,10 @@
 # Application preparation packages
 
-The daily application workflow prepares private CV and cover-letter drafts from the existing job/profile/project snapshots. **Template mode is the default and makes no paid API calls. Nothing is submitted, emailed or posted to an employer.**
+The daily application workflow prepares private CV and cover-letter drafts from the existing job/profile/project snapshots. **Scheduled runs use Groq Free AI; explicit template mode makes no provider calls. Nothing is submitted, emailed or posted to an employer.**
 
 ## Selection and manual use
 
-Scheduled runs select open `eligible` opportunities at or above `APPLICATIONS_MIN_SCORE` (60 by default), up to `APPLICATIONS_MAX_PER_RUN` (default and maximum 5). In GitHub Actions, select **Refresh Application Packages → Run workflow**, leave `mode` as `template`, and optionally paste an opportunity's 20-character hexadecimal `id` from `data/jobs.generated.json` into `job_id`. Whitespace and uppercase are normalized; an unknown, closed or ineligible/unknown-eligibility ID fails before opening private storage. Explicit selection can bypass the score threshold, but never eligibility or the terminal `applied` state.
+Scheduled runs select open `eligible` opportunities at or above `APPLICATIONS_MIN_SCORE` (60 by default), up to `APPLICATIONS_MAX_PER_RUN` (default and maximum 5). In GitHub Actions, select **Refresh Application Packages → Run workflow**, leave `mode` as `ai` (or explicitly choose `template` for deterministic recovery), and optionally paste an opportunity's 20-character hexadecimal `id` from `data/jobs.generated.json` into `job_id`. Whitespace and uppercase are normalized; an unknown, closed or ineligible/unknown-eligibility ID fails before opening private storage. Explicit selection can bypass the score threshold, but never eligibility or the terminal `applied` state.
 
 CLI equivalent: `APPLICATIONS_JOB_ID=<snapshot-id> npm run applications:generate`. Docker must be available for the pinned LaTeX compiler. The workflow uses the existing compiler and private publisher; there is no separate application service.
 
@@ -14,13 +14,27 @@ Template preparation compares literal skill names with the title, source tags an
 
 CV changes select/reorder existing categories, roles and verbatim highlights through `validateCvTailoringPlan`; all roles remain and dates/summary stay unchanged. The template letter contains verified highlights (or the verified profile summary when none match) and fixed neutral prose. Posting text is data, never instructions. Markdown posting fields are escaped and application/source URLs must use HTTP(S). No posting URL is fetched or employer site contacted by the generator.
 
-AI remains optional: manually choose `mode: ai`, configure `OPENAI_API_KEY`, and deliberately set repository variable `ENABLE_PAID_AI=true`. All three are required; merely setting the key or spending flag leaves scheduled/template runs free of API calls. Explicit AI requests without the flag/key fail rather than silently downgrade. AI CV plans still pass the exact-highlight validator; cover-letter proper-noun flags are heuristic and require human review. `preparation.md` remains deterministic evidence even in AI mode; the AI letter is in the PDF. See `docs/cost-policy.md`.
+## Groq Free setup and limits
+
+1. Sign in to [Groq Console](https://console.groq.com/keys), remain on **Free**, and create a project API key. Do not add billing or upgrade to Developer. Check the plan in the console; an inference request cannot prove billing status.
+2. Enable **Zero Data Retention** under Settings → Data Controls before sending profile facts. See [Groq data controls](https://console.groq.com/docs/your-data).
+3. Save the key only in this repository's Actions secret `GROQ_API_KEY`. After verifying the Free plan, set repository variable `GROQ_FREE_PLAN_CONFIRMED=true`. This is an owner assertion, not an API-enforced billing lock; recheck it if account configuration changes.
+4. Install the private destination write deploy key described below. Set `APPLICATIONS_AUTOMATION_ENABLED=false` to explicitly disable generation while retaining a truthful disabled summary; restore `true` to resume.
+
+The existing OpenAI SDK calls only Groq's fixed `https://api.groq.com/openai/v1` endpoint and `openai/gpt-oss-20b`. There is no paid OpenAI route or automatic provider/template fallback. Missing secrets, unconfirmed Free status, unsupported model overrides, authentication/model-access/quota errors and timeouts fail the run. A small inference probe validates authentication, model access and current quota even on unchanged-input runs; it does not certify billing, complete-package quality or sufficient quota for every later request.
+
+[Published Free quotas](https://console.groq.com/docs/rate-limits), checked 2026-10-10, are 30 requests/minute, 1,000/day, 8,000 tokens/minute and 200,000/day for this model. Actual account limits and other usage can reduce available allowance. Requests start at least 65 seconds apart, use a 60-second timeout and retry at most once for HTTP 5xx only. Authentication, quota and timeout failures stop immediately. Each run caps at 11 requests (including probe/retries), five packages, 5,000 estimated input tokens and 2,500 maximum completion tokens per package; reasoning tokens count toward completion. The local `o200k_base` estimate includes schema plus a 512-token framing reserve, but does not guarantee provider quota accounting. Oversized inputs fail rather than silently dropping profile facts. Quota failures require waiting/reducing usage, never upgrading.
+
+Groq returns [strict JSON-schema output](https://console.groq.com/docs/structured-outputs), which also passes local bounded validation. AI CV plans must retain every role exactly once and reference known roles/categories. The model selects bounded indices into each role’s verified highlights; the client copies the original text itself and rejects unknown roles, out-of-range indices or duplicates; invalid plans fail the entire run. Cover-letter proper-noun flags are advisory heuristics and require human review: schema and CV validation cannot establish every prose claim's accuracy. `preparation.md` remains deterministic evidence even in AI mode; the AI letter is in the PDF. See [cost policy](cost-policy.md).
+
+CLI AI use requires `APPLICATIONS_MODE=ai`, `GROQ_API_KEY`, `GROQ_FREE_PLAN_CONFIRMED=true` and the private deploy key in the environment. CLI defaults to template; scheduled/manual workflow defaults to AI. Public Actions summaries distinguish disabled, no-op, published and failed outcomes, the failure stage and aggregate provider-reported token usage. They omit private package contents, identifiers and review counts.
+
 
 ## Private output and configuration
 
 This website repository is public. Drafts go only to the existing separate **private** repository (`APPLICATIONS_REPO_SLUG`, default `Thavarshan/job-applications`) via `APPLICATIONS_REPO_DEPLOY_KEY`, an SSH write deploy key scoped to that destination. Before enabling generation, the owner must verify that destination remains private and install its deploy key. The key cannot inspect repository visibility through the API; the generator rejects this public website as a destination, but cannot certify other repositories' visibility. No broader token is introduced.
 
-Template mode needs only that deploy key, not an OpenAI key. Missing deploy keys skip scheduled runs safely; a manually selected job or AI run without a key fails visibly. Generated content is never uploaded as a public Actions artifact or committed to the website.
+Template mode needs only that deploy key, not a Groq key. Missing deploy keys fail every enabled run visibly. Generated content is never uploaded as a public Actions artifact or committed to the website.
 
 Each private `<opportunityId>/` package contains:
 

@@ -10,9 +10,9 @@ on:
         type: string
         required: false
       mode:
-        description: "Template is free; AI requires explicit spending opt-in"
+        description: "Groq Free AI or explicit deterministic template recovery"
         type: choice
-        default: template
+        default: ai
         options:
           - template
           - ai
@@ -29,12 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
-      # The OpenAI API is pay-per-use. It only runs when ENABLE_PAID_AI=true (a repository variable) is
-      # set on purpose; having the key configured is not enough. See docs/cost-policy.md.
+      # Stay on Groq Free. Never enable billing or route to a paid fallback.
       APPLICATIONS_JOB_ID: ${{ inputs.job_id }}
-      APPLICATIONS_MODE: ${{ inputs.mode || 'template' }}
-      ENABLE_PAID_AI: ${{ vars.ENABLE_PAID_AI }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      APPLICATIONS_MODE: ${{ inputs.mode || 'ai' }}
+      APPLICATIONS_AUTOMATION_ENABLED: ${{ vars.APPLICATIONS_AUTOMATION_ENABLED || 'true' }}
+      GROQ_FREE_PLAN_CONFIRMED: ${{ vars.GROQ_FREE_PLAN_CONFIRMED }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,11 +44,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Generate tailored application packages
-        if: env.APPLICATIONS_REPO_DEPLOY_KEY != '' || github.event_name == 'workflow_dispatch'
         run: npm run applications:generate
-      - name: Secrets not configured
-        if: env.APPLICATIONS_REPO_DEPLOY_KEY == '' && github.event_name != 'workflow_dispatch'
-        run: echo "Private repository deploy key is not configured; skipping scheduled preparation."
       - run: npm run typecheck
       - run: npm run lint
-      - run: npm run test -- application- hallucination cover-letter latex-tailoring
+      - run: npm run test -- application- groq- hallucination cover-letter latex-tailoring
