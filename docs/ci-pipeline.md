@@ -20,17 +20,13 @@ The inspected repository has no Netlify commit status/deployment-status integrat
 
 Preview checks are available through **Actions → Deployment Smoke → Run workflow**, on main, using `https://deploy-preview-<PR>--thavarshan.netlify.app` (or a branch origin for this site) and its full Netlify commit SHA. Preview origins are allowlisted; arbitrary hosts, credentials, paths, query strings and insecure URLs are rejected. Preview smoke requires matching deploy-preview/branch-deploy context and noindex headers while retaining production canonical URLs. Same-repository preview checks are automatic after successful CI once this workflow is merged into main. The first PR introducing the workflow needs a direct/manual preview check because GitHub runs `workflow_run` definitions from the default branch. Netlify deploy previews must be enabled; a disabled, unavailable or stale preview fails within the bounded wait. Before merging indexing changes, run against a ready preview using the deployed revision. Never supply secrets in inputs.
 
-## Owner activation of merge protection
+## Required CI on main
 
-**Not activated by this PR.** The connected GitHub integration returned 403 for branch-protection administration. The existing active `Preserve long-lived branches` ruleset protects deletion only; it does not require CI.
+The `Required website CI` repository ruleset requires `ci-gate` from GitHub Actions (integration 15368) on `main`, without bypass actors. Keep the separate deletion-protection ruleset. `.github/rulesets/required-ci.json` is the importable configuration. Status checks are not required to be up to date with the base branch, so unrelated main commits do not invalidate existing PR checks; job publication independently rejects any main change while its checked snapshot is being prepared.
 
-After this PR's `ci-gate` succeeds and the generated-content PR permission below is enabled, the owner should open **Settings → Rules → Rulesets → New ruleset → Import a ruleset** and import `.github/rulesets/required-ci.json`. Confirm `main`, active enforcement, and `ci-gate` from the GitHub Actions app (integration 15368). Keep the existing deletion ruleset. Verify with a PR whose mandatory job fails: `ci-gate` must fail and GitHub must block merging; restore the PR before merging.
+Profile, OSS and growth content updates open PRs and explicitly dispatch CI because default-token PR events suppress normal PR CI. The Actions setting allowing PR creation must remain enabled. Job updates instead push a temporary `automation/checked-jobs-*` branch, wait for successful full CI and `ci-gate` on the exact revision, then fast-forward `main` to that same revision. No token, deploy key or admin bypass is needed. CI failure or stale main leaves main unchanged. Publication dispatches main CI again so the existing production smoke workflow runs after deployment.
 
-Generated profile, job, OSS and growth content updates now open PRs rather than pushing directly to main. Each trusted main workflow has `pull-requests: write` and `actions: write`, proposes a uniquely named branch without force pushing, and explicitly dispatches CI on that branch. The default token suppresses normal PR-triggered runs, but permits `workflow_dispatch`. Only one pending PR per content kind is allowed; merge or close it to allow another scheduled refresh. Required `ci-gate` checks cover generated updates too. There is no blanket bypass.
-
-Before activation, confirm **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** is enabled (the workflows only create PRs). Without that owner-controlled setting, generated publication fails with a visible GitHub error; existing main and deployed content remain intact. If branch push/PR creation succeeds but dispatch fails, rerun CI manually on the PR branch and inspect workflow permissions. Do not merge without a successful `ci-gate`.
-
-The production smoke workflow is post-deployment and cannot be required as a pre-merge check. Require `ci-gate`; use deployment smoke failures for release follow-up.
+Production smoke is post-deployment and is not a pre-merge requirement. Require `ci-gate`; use deployment smoke failures for release follow-up.
 
 ## Validation and rollback
 

@@ -16,7 +16,7 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -52,9 +52,10 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      # Publish only validated job data; explicitly dispatch CI for the bot-authored commit.
-      - name: Commit generated jobs directly to main
+      # Require full CI on the exact generated commit before advancing protected main.
+      - name: Check generated jobs and advance main
         if: steps.changes.outputs.changed == 'true'
+        timeout-minutes: 50
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash automation/ci/commit-jobs.sh
