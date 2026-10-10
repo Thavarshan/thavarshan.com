@@ -73,7 +73,7 @@ describe("deterministic application preparation", () => {
   it("keeps AI optional and validates manual mode and identifiers", () => {
     expect(applicationMode({ ENABLE_PAID_AI: "true", OPENAI_API_KEY: "configured" })).toBe("template");
     expect(() => applicationMode({ APPLICATIONS_MODE: "ai", OPENAI_API_KEY: "configured" })).toThrow();
-    expect(applicationMode({ APPLICATIONS_MODE: "ai", ENABLE_PAID_AI: "true", OPENAI_API_KEY: "configured" })).toBe("ai");
+    expect(applicationMode({ APPLICATIONS_MODE: "ai", GROQ_FREE_PLAN_CONFIRMED: "true", GROQ_API_KEY: "configured" })).toBe("ai");
     expect(() => applicationMode({ APPLICATIONS_MODE: "unexpected" })).toThrow();
     expect(selectedJobId(" 0123456789ABCDEF0123 ")).toBe(job.id);
     expect(() => selectedJobId("../../public")).toThrow();

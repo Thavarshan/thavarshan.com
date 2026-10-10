@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { paidAiEnabled } from "@/features/applications/paid-ai";
+import { groqConfiguration } from "@automation/applications/groq-client";
 
 /**
  * COST GUARD. This project must never incur infrastructure charges. Cloudflare's Free plans cannot
@@ -117,33 +117,22 @@ describe("deploy automation cannot switch anything to a paid path", () => {
   });
 });
 
-describe("paid AI is opt-in (OpenAI is pay-per-use)", () => {
-  it("defaults scheduled runs to free template mode and passes explicit AI opt-in configuration", () => {
+describe("Groq AI has no paid inference path", () => {
+  it("uses Groq credentials, explicit Free confirmation and scheduled AI", () => {
     const workflow = readFileSync(resolve(process.cwd(), ".github/workflows/applications-refresh.yml"), "utf8");
-    expect(workflow).toContain("ENABLE_PAID_AI: ${{ vars.ENABLE_PAID_AI }}");
-    expect(workflow).toContain("APPLICATIONS_MODE: ${{ inputs.mode || 'template' }}");
-    expect(workflow).toContain("default: template");
+    expect(workflow).toContain("GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}");
+    expect(workflow).toContain("GROQ_FREE_PLAN_CONFIRMED: ${{ vars.GROQ_FREE_PLAN_CONFIRMED }}");
+    expect(workflow).toContain("APPLICATIONS_MODE: ${{ inputs.mode || 'ai' }}");
+    expect(workflow).not.toMatch(/OPENAI_API_KEY|ENABLE_PAID_AI|Secrets not configured/);
+    expect(workflow).not.toMatch(/upload-artifact/);
   });
 
-  it("only treats the exact string 'true' as enabled", () => {
-    expect(paidAiEnabled({})).toBe(false);
-    expect(paidAiEnabled({ ENABLE_PAID_AI: "" })).toBe(false);
-    expect(paidAiEnabled({ ENABLE_PAID_AI: "1" })).toBe(false);
-    expect(paidAiEnabled({ ENABLE_PAID_AI: "TRUE" })).toBe(false);
-    expect(paidAiEnabled({ ENABLE_PAID_AI: "true" })).toBe(true);
-  });
-
-  it("explicit AI mode refuses to run without spending opt-in, even with every secret present", async () => {
-    const { generateApplications } = await import("@automation/applications/generate");
-    const previous = { ...process.env };
-    process.env.OPENAI_API_KEY = "sk-test-not-real";
-    process.env.APPLICATIONS_REPO_DEPLOY_KEY = "not-a-real-key";
-    delete process.env.ENABLE_PAID_AI;
-    process.env.APPLICATIONS_MODE = "ai";
-    try {
-      await expect(generateApplications()).rejects.toThrow("AI mode requires ENABLE_PAID_AI=true");
-    } finally {
-      process.env = previous;
+  it("requires exact Free confirmation and never uses legacy paid keys", () => {
+    for (const value of [undefined, "", "1", "TRUE", "false"]) {
+      expect(() => groqConfiguration({ GROQ_API_KEY: "synthetic", GROQ_FREE_PLAN_CONFIRMED: value })).toThrow();
     }
+    expect(() => groqConfiguration({ OPENAI_API_KEY: "synthetic", ENABLE_PAID_AI: "true", GROQ_FREE_PLAN_CONFIRMED: "true" })).toThrow("GROQ_API_KEY");
+    expect(groqConfiguration({ GROQ_API_KEY: "synthetic", GROQ_FREE_PLAN_CONFIRMED: "true" }).model).toBe("openai/gpt-oss-20b");
+    expect(() => groqConfiguration({ GROQ_API_KEY: "synthetic", GROQ_FREE_PLAN_CONFIRMED: "true", GROQ_MODEL: "other" })).toThrow("Unsupported");
   });
 });

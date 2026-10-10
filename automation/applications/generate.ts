@@ -10,13 +10,11 @@ import { renderResumeLatex } from "../../src/features/cv/latex";
 import { parseProfessionalProfile, type ProfessionalProfile } from "../../src/features/profile/profile-schema";
 import { compileLatexToPdf } from "../cv/build";
 import { prepareApplication, TEMPLATE_VERSION, escapeApplicationMarkdown as md } from "../../src/features/applications/template";
-import { paidAiEnabled } from "../../src/features/applications/paid-ai";
-import { generateTailoringAndCoverLetter, type RawTailoringResult } from "./openai-client";
+import { createGroqApplicationClient, groqConfiguration, GROQ_MODEL, GROQ_GENERATOR_VERSION, GroqFailure, type RawTailoringResult } from "./groq-client";
 import { buildSystemPrompt, buildUserPrompt } from "./prompts";
 import { applicationsRepoSlug, clonePrivateRepo, commitAndPush } from "./private-repo";
 import { readState, writeState, type ApplicationState } from "./state";
 
-const DEFAULT_MODEL = "gpt-4o-mini";
 const MIN_SCORE = Number(process.env.APPLICATIONS_MIN_SCORE ?? 60);
 const MAX_NEW_PACKAGES_PER_RUN = Number(process.env.APPLICATIONS_MAX_PER_RUN ?? 5);
 const buildDirRelative = ".applications-build";
@@ -43,7 +41,7 @@ export function computeInputHash(job: Opportunity, profile: ProfessionalProfile,
 export function applicationMode(env: Record<string, string | undefined>): "template" | "ai" {
   const mode = env.APPLICATIONS_MODE || "template";
   if (mode !== "template" && mode !== "ai") throw new Error("Invalid application mode");
-  if (mode === "ai" && (!paidAiEnabled(env) || !env.OPENAI_API_KEY)) throw new Error("AI mode requires ENABLE_PAID_AI=true and OPENAI_API_KEY");
+  if (mode === "ai") groqConfiguration(env);
   return mode;
 }
 
@@ -114,16 +112,27 @@ function buildSummaryMarkdown(params: { job: Opportunity; warnings: string[]; fl
   return `${lines.join("\n")}\n`;
 }
 
-async function generateApplicationsInternal() {
-  const mode = applicationMode(process.env);
-  const requestedId = selectedJobId(process.env.APPLICATIONS_JOB_ID);
-  const openaiApiKey = process.env.OPENAI_API_KEY;
-  const deployKey = process.env.APPLICATIONS_REPO_DEPLOY_KEY;
-  if (!deployKey) {
-    if (requestedId || mode === "ai") throw new Error("Private repository deploy key is required");
-    console.log("Private repository deploy key is not configured; skipping application generation.");
+interface RunReport {
+  mode: string;
+  stage: string;
+  outcome: "disabled" | "no-op" | "published" | "failed";
+  providerAccess: boolean;
+  diagnostic?: string;
+  metrics?: { requests: number; inputTokens: number; outputTokens: number };
+}
+
+async function generateApplicationsInternal(report: RunReport) {
+  if (process.env.APPLICATIONS_AUTOMATION_ENABLED === "false") {
+    report.outcome = "disabled";
     return;
   }
+  if (process.env.APPLICATIONS_AUTOMATION_ENABLED && process.env.APPLICATIONS_AUTOMATION_ENABLED !== "true")
+    throw new Error("Invalid automation enable setting");
+  const mode = applicationMode(process.env);
+  const requestedId = selectedJobId(process.env.APPLICATIONS_JOB_ID);
+  report.mode = mode;
+  const deployKey = process.env.APPLICATIONS_REPO_DEPLOY_KEY;
+  if (!deployKey) throw new Error("Private repository deploy key is required");
   if (
     !Number.isInteger(MIN_SCORE) ||
     MIN_SCORE < 0 ||
@@ -135,7 +144,15 @@ async function generateApplicationsInternal() {
     throw new Error("Invalid application selection limits");
   }
   if (applicationsRepoSlug.toLowerCase() === "thavarshan/thavarshan.com") throw new Error("Application output must use the separate private repository");
-  const model = mode === "template" ? TEMPLATE_VERSION : process.env.OPENAI_MODEL || DEFAULT_MODEL;
+  const model = mode === "template" ? TEMPLATE_VERSION : `${GROQ_GENERATOR_VERSION}:${GROQ_MODEL}`;
+  const ai = mode === "ai" ? createGroqApplicationClient(groqConfiguration(process.env).apiKey) : undefined;
+  if (ai) {
+    report.stage = "provider access";
+    report.metrics = ai.metrics;
+    await ai.verifyAccess();
+    report.providerAccess = true;
+  }
+  report.stage = "snapshot validation";
 
   const jobs = await readJson("data/jobs.generated.json", (value) => opportunitySnapshotSchema.parse(value));
   const profile = await readJson("data/profile.generated.json", parseProfessionalProfile);
@@ -144,6 +161,7 @@ async function generateApplicationsInternal() {
   if (requestedId && !jobs.opportunities.some((job) => job.id === requestedId && job.eligibility === "eligible" && job.status !== "closed")) {
     throw new Error("Selected job is missing, closed or not eligible; confirm eligibility before preparing a package");
   }
+  report.stage = "private storage";
   console.log("Opening private application repository...");
   const repoDir = await clonePrivateRepo(deployKey);
   const state = await readState(repoDir);
@@ -159,7 +177,11 @@ async function generateApplicationsInternal() {
     .sort((a, b) => b.score - a.score)
     .slice(0, MAX_NEW_PACKAGES_PER_RUN);
 
-  console.log(`${candidates.length} candidate(s) selected for tailored application packages (min score ${MIN_SCORE}, cap ${MAX_NEW_PACKAGES_PER_RUN}).`);
+  console.log("Validated package selection against private review state.");
+  if (candidates.length === 0) {
+    report.outcome = "no-op";
+    return;
+  }
 
   let generated = 0;
   let failed = 0;
@@ -170,16 +192,16 @@ async function generateApplicationsInternal() {
       console.log("Preparing private package...");
       const preparation = prepareApplication(profile, github, job);
 
+      report.stage = mode === "ai" ? "provider generation" : "template preparation";
       const raw =
         mode === "template"
           ? preparation
-          : await generateTailoringAndCoverLetter({
-              apiKey: openaiApiKey!,
-              model,
+          : await ai!.generate({
               systemPrompt: buildSystemPrompt(),
               userPrompt: buildUserPrompt({ profile, job })
             });
 
+      report.stage = "factual validation";
       const sanitized = validateCvTailoringPlan(
         {
           emphasizedSkillCategories: raw.emphasizedSkillCategories,
@@ -192,6 +214,16 @@ async function generateApplicationsInternal() {
 
       const allowlist = buildAllowlist(profile, github, job);
       const flaggedTerms = scanForUnlistedTerms(raw.coverLetterBody, allowlist);
+      if (mode === "ai") {
+        const ids = profile.experience.map((role) => role.id);
+        const invalidIds =
+          raw.experienceOrder.length !== ids.length || new Set(raw.experienceOrder).size !== ids.length || raw.experienceOrder.some((id) => !ids.includes(id));
+        const invalidSelections =
+          new Set(raw.highlightSelections.map((item) => item.experienceId)).size !== raw.highlightSelections.length ||
+          raw.highlightSelections.some((item) => !ids.includes(item.experienceId));
+        if (sanitized.warnings.length || invalidIds || invalidSelections) throw new Error("AI factual validation failed");
+      }
+      report.stage = "PDF compilation";
 
       const jobBuildDirRelative = `${buildDirRelative}/${job.id}`;
       await mkdir(resolve(jobBuildDirRelative), { recursive: true });
@@ -209,6 +241,7 @@ async function generateApplicationsInternal() {
       );
       const coverLetterPdfPath = await compileLatexToPdf(coverLetterTexRelative, jobBuildDirRelative, sourceDateEpoch, { quiet: true });
 
+      report.stage = "private package staging";
       const targetDir = resolve(repoDir, job.id);
       await mkdir(targetDir, { recursive: true });
       await copyFile(cvPdfPath, resolve(targetDir, "cv.pdf"));
@@ -231,9 +264,11 @@ async function generateApplicationsInternal() {
         respondedAt: null
       });
       generated++;
-    } catch {
+    } catch (error) {
+      if (error instanceof GroqFailure) report.diagnostic = error.message;
       failed++;
-      console.error("Package preparation failed; review inputs or private repository/compiler configuration, then retry.");
+      console.error("Package preparation failed; no private changes will be published.");
+      break;
     } finally {
       if (/^[a-f0-9]{20}$/.test(job.id)) await rm(resolve(buildDirRelative, job.id), { recursive: true, force: true });
     }
@@ -241,31 +276,46 @@ async function generateApplicationsInternal() {
 
   if (failed > 0) throw new Error("One or more packages failed; no private changes were published. Retry after correcting the failure.");
   const nextState: ApplicationState = { schemaVersion: 1, entries: [...stateById.values()] };
+  report.stage = "private publication";
   await writeState(repoDir, nextState);
 
   const pushed = await commitAndPush(repoDir, deployKey, `Generate ${generated} tailored application package(s)`);
-  console.log(`Generated ${generated} package(s), ${failed} failed. ${pushed ? "Pushed to" : "No changes to push to"} ${applicationsRepoSlug}.`);
-
-  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
-  if (summaryPath) {
-    const lines = [
-      "## Application packages",
-      "",
-      `- Candidates considered: ${candidates.length}`,
-      `- Generated: ${generated}`,
-      `- Failed: ${failed}`,
-      `- Pushed: ${pushed ? "yes" : "no changes"}`
-    ];
-    await writeFile(summaryPath, `${lines.join("\n")}\n`, { flag: "a" });
-  }
+  if (!pushed) throw new Error("Private publication produced no changes despite generated packages");
+  report.outcome = "published";
+  console.log("Validated private packages published. Review drafts before sending.");
 }
 
 export async function generateApplications() {
+  const report: RunReport = { mode: process.env.APPLICATIONS_MODE || "template", stage: "configuration", outcome: "failed", providerAccess: false };
   try {
-    await generateApplicationsInternal();
+    await generateApplicationsInternal(report);
+  } catch (error) {
+    if (error instanceof GroqFailure) report.diagnostic = error.message;
+    throw error;
   } finally {
-    await rm(resolve(buildDirRelative), { recursive: true, force: true });
-    await rm(resolve(".applications-private"), { recursive: true, force: true });
+    try {
+      if (process.env.GITHUB_STEP_SUMMARY) {
+        const mode = report.mode === "ai" || report.mode === "template" ? report.mode : "invalid";
+        const lines = [
+          "## Application preparation",
+          "",
+          `- Mode: ${mode}`,
+          `- Outcome: ${report.outcome}`,
+          `- Stage: ${report.stage}`,
+          `- Groq access probe: ${report.providerAccess ? "passed (inference access and current quota only; not a billing or full-package guarantee)" : "not verified"}`,
+          "- Private package contents, job identifiers and review counts are omitted."
+        ];
+        if (report.diagnostic) lines.push(`- Diagnostic: ${report.diagnostic}`);
+        if (report.metrics)
+          lines.push(
+            `- Provider requests: ${report.metrics.requests}; reported input/output tokens: ${report.metrics.inputTokens}/${report.metrics.outputTokens}`
+          );
+        await writeFile(process.env.GITHUB_STEP_SUMMARY, `${lines.join("\n")}\n`, { flag: "a" });
+      }
+    } finally {
+      await rm(resolve(buildDirRelative), { recursive: true, force: true });
+      await rm(resolve(".applications-private"), { recursive: true, force: true });
+    }
   }
 }
 

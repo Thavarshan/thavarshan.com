@@ -12,14 +12,14 @@ The owner cannot afford any infrastructure charge. Every service here is chosen 
 | **Plausible Cloud (optional, PAID)** | Optional second analytics sink | **Paid.** Not required: measurement works without it. | Only active if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set; leave it unset unless you choose to pay. |
 | **GitHub Actions** | Scheduled collection, CI, deploys | The repository is **public**, and Actions minutes are free for public repositories. | Keep the repository public. If it were ever made private, minutes become metered. |
 | **Netlify (static hosting)** | The public site | Netlify's free plan pauses a site when its free allowance is exhausted rather than billing. *(Stated from general knowledge of Netlify's free plan; confirm in your Netlify billing page.)* | Avoid unnecessary deploys: the collector no longer commits on unchanged days. |
-| **OpenAI API** | Optional AI mode for application packages (`APPLICATIONS_MODE=ai`) | **This one is pay-per-use and CAN bill.** | Opt-in only: API calls require explicit AI mode, an API key and repository variable `ENABLE_PAID_AI=true`; default template mode makes no API calls (see `docs/applications-data.md`). Delete/limit the `OPENAI_API_KEY` in the OpenAI dashboard to make it impossible. |
+| **Groq Free API** | AI application drafts | Free quotas reject requests; upgrading to Developer enables usage billing. | Fixed Groq endpoint/model, `GROQ_API_KEY` and `GROQ_FREE_PLAN_CONFIRMED=true`; bounded requests/tokens, no paid fallback. The assertion does not lock account billing: remain on Free. See [application setup](applications-data.md). |
 
 ## What only the account owner can verify (no tool here can see billing)
 
 1. **Cloudflare → Manage Account → Billing → Subscriptions:** every product shows Free / $0. No Workers Paid, no Zero Trust paid plan. If a card is on file, that is fine as long as nothing paid is subscribed; you can also remove it.
 2. **Cloudflare → Notifications:** add a *Billing* / usage alert so any future charge is flagged immediately.
 3. **Cloudflare Zero Trust → Settings → Plans:** confirm the *Free* plan (up to 50 seats).
-4. **OpenAI → Billing → Limits:** set the monthly budget to $0 (or revoke the key) unless you deliberately want AI drafting.
+4. **Groq → Settings → Billing:** confirm **Free**; do not upgrade, add billing or buy credits. Disable applications if free terms change. [Groq billing FAQ](https://console.groq.com/docs/billing-faqs).
 5. **Netlify → Team → Billing:** confirm the *Free* plan and that no paid add-ons are enabled.
 
 ## Rules for future changes
