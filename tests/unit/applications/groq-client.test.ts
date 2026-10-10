@@ -53,6 +53,19 @@ describe("Groq bounded inference", () => {
       max_completion_tokens: 2500,
       response_format: { type: "json_schema", json_schema: { strict: true } }
     });
+    expect(h.requests[1].body).toMatchObject({
+      response_format: {
+        json_schema: {
+          schema: {
+            properties: {
+              highlightSelections: {
+                items: { anyOf: [{ properties: { experienceId: { enum: ["verified-role"] }, highlightIndices: { items: { enum: [0] } } } }] }
+              }
+            }
+          }
+        }
+      }
+    });
     expect(h.sleep).toHaveBeenCalledWith(65000);
     expect(h.client.metrics).toMatchObject({ requests: 2, inputTokens: 40, outputTokens: 60 });
   });
@@ -94,7 +107,8 @@ describe("Groq bounded inference", () => {
       completion(JSON.stringify({ ...providerResult, coverLetterBody: 42 })),
       completion(JSON.stringify({ ...providerResult, unexpected: true })),
       completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "verified-role", highlightIndices: [99] }] })),
-      completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "unknown", highlightIndices: [0] }] }))
+      completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "unknown", highlightIndices: [0] }] })),
+      completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "verified-role", highlightIndices: [0, 0] }] }))
     ]) {
       const h = harness();
       h.response.mockResolvedValue(response);
