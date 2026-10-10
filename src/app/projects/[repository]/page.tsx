@@ -1,3 +1,4 @@
+import { RelatedTools } from "@/features/tools/related-tools";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -258,6 +259,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </aside>
         </div>
       </article>
+      <RelatedTools path={`/projects/${repository}`} />
       {relatedInsights.length ? (
         <section aria-labelledby="project-related-insights" className="mx-auto w-full max-w-5xl px-5 pb-16 lg:px-8">
           <h2 id="project-related-insights" className="font-display text-3xl text-[var(--ink)]">
