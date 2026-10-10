@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { getEncoding } from "js-tiktoken";
 import { z } from "zod";
+import type { ProfessionalProfile } from "../../src/features/profile/profile-schema";
 
 export const GROQ_MODEL = "openai/gpt-oss-20b";
 export const GROQ_GENERATOR_VERSION = "groq-v1";
@@ -34,9 +35,9 @@ export const responseJsonSchema = {
         additionalProperties: false,
         properties: {
           experienceId: { type: "string" },
-          highlights: { type: "array", items: { type: "string" } }
+          highlightIndices: { type: "array", items: { type: "integer", minimum: 0 } }
         },
-        required: ["experienceId", "highlights"]
+        required: ["experienceId", "highlightIndices"]
       }
     },
     reviewFlags: { type: "array", items: { type: "string" } },
@@ -48,7 +49,9 @@ export const responseJsonSchema = {
 const rawResultSchema = z.strictObject({
   emphasizedSkillCategories: z.array(z.enum(["leadership", "ai-architecture", "full-stack", "cloud-delivery"])).length(4),
   experienceOrder: z.array(z.string().min(1).max(100)).max(30),
-  highlightSelections: z.array(z.strictObject({ experienceId: z.string().min(1).max(100), highlights: z.array(z.string().min(1).max(3000)).max(20) })).max(30),
+  highlightSelections: z
+    .array(z.strictObject({ experienceId: z.string().min(1).max(100), highlightIndices: z.array(z.number().int().min(0).max(100)).max(20) }))
+    .max(30),
   reviewFlags: z.array(z.string().max(1000)).max(20),
   coverLetterBody: z.string().min(100).max(6000)
 });
@@ -62,10 +65,10 @@ export function groqConfiguration(env: Record<string, string | undefined>) {
 
 /** Ordinary GPT-OSS text shares o200k_base ranks; reserve 512 tokens for Harmony/schema framing.
  * This is a conservative local estimate, not a guarantee of the provider's quota accounting. */
-export function estimatedInputTokens(systemPrompt: string, userPrompt: string) {
-  if (Buffer.byteLength(systemPrompt + userPrompt, "utf8") > 100000) throw new Error("Groq input exceeds the local prompt budget");
+export function estimatedInputTokens(systemPrompt: string, userPrompt: string, schema = responseJsonSchema) {
+  if (Buffer.byteLength(systemPrompt + userPrompt, "utf8") > 100000) throw new GroqFailure("Groq input exceeds the local prompt budget");
   tokenizer ??= getEncoding("o200k_base");
-  return tokenizer.encode(systemPrompt + "\n" + userPrompt + "\n" + JSON.stringify(responseJsonSchema), [], []).length + 512;
+  return tokenizer.encode(systemPrompt + "\n" + userPrompt + "\n" + JSON.stringify(schema), [], []).length + 512;
 }
 
 export class GroqFailure extends Error {}
@@ -87,7 +90,7 @@ export function createGroqApplicationClient(apiKey: string, runtime: { fetch?: t
 
   async function request(body: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming) {
     for (let attempt = 0; attempt < 2; attempt++) {
-      if (metrics.requests >= MAX_REQUESTS) throw new Error("Groq run request budget exhausted");
+      if (metrics.requests >= MAX_REQUESTS) throw new GroqFailure("Groq run request budget exhausted");
       if (lastRequest !== undefined) await sleep(Math.max(0, REQUEST_INTERVAL_MS - (now() - lastRequest)));
       lastRequest = now();
       metrics.requests++;
@@ -103,7 +106,7 @@ export function createGroqApplicationClient(apiKey: string, runtime: { fetch?: t
         throw safeGroqError(error);
       }
     }
-    throw new Error("Groq retry budget exhausted");
+    throw new GroqFailure("Groq retry budget exhausted");
   }
 
   return {
@@ -117,10 +120,15 @@ export function createGroqApplicationClient(apiKey: string, runtime: { fetch?: t
         max_completion_tokens: 128,
         reasoning_effort: "low"
       });
-      if (!Array.isArray(response.choices) || !response.choices.length) throw new Error("Groq access probe returned no completion");
+      if (!Array.isArray(response.choices) || !response.choices.length) throw new GroqFailure("Groq access probe returned no completion");
     },
-    async generate(params: { systemPrompt: string; userPrompt: string }): Promise<RawTailoringResult> {
-      if (estimatedInputTokens(params.systemPrompt, params.userPrompt) > MAX_INPUT_TOKENS) throw new Error("Groq input exceeds the local prompt budget");
+    async generate(params: { systemPrompt: string; userPrompt: string; profile: Pick<ProfessionalProfile, "experience"> }): Promise<RawTailoringResult> {
+      const ids = params.profile.experience.map((role) => role.id);
+      const schema = structuredClone(responseJsonSchema);
+      Object.assign(schema.properties.experienceOrder.items, { enum: ids });
+      Object.assign(schema.properties.highlightSelections.items.properties.experienceId, { enum: ids });
+      if (estimatedInputTokens(params.systemPrompt, params.userPrompt, schema) > MAX_INPUT_TOKENS)
+        throw new GroqFailure("Groq input exceeds the local prompt budget");
       const response = await request({
         model: GROQ_MODEL,
         messages: [
@@ -129,15 +137,22 @@ export function createGroqApplicationClient(apiKey: string, runtime: { fetch?: t
         ],
         max_completion_tokens: MAX_OUTPUT_TOKENS,
         reasoning_effort: "low",
-        response_format: { type: "json_schema", json_schema: { name: "job_application_tailoring", strict: true, schema: responseJsonSchema } }
+        response_format: { type: "json_schema", json_schema: { name: "job_application_tailoring", strict: true, schema } }
       });
       const choice = response.choices?.[0];
       if (choice?.finish_reason !== "stop" || !choice.message.content || choice.message.refusal)
-        throw new Error("Groq returned missing, refused or truncated application output");
+        throw new GroqFailure("Groq returned missing, refused or truncated application output");
       try {
-        return rawResultSchema.parse(JSON.parse(choice.message.content));
+        const raw = rawResultSchema.parse(JSON.parse(choice.message.content));
+        const highlightSelections = raw.highlightSelections.map(({ experienceId, highlightIndices }) => {
+          const role = params.profile.experience.find((item) => item.id === experienceId);
+          if (!role || new Set(highlightIndices).size !== highlightIndices.length || highlightIndices.some((index) => index >= role.highlights.length))
+            throw new Error("Invalid profile highlight selection");
+          return { experienceId, highlights: highlightIndices.map((index) => role.highlights[index]) };
+        });
+        return { ...raw, highlightSelections };
       } catch {
-        throw new Error("Groq application output failed structured validation");
+        throw new GroqFailure("Groq application output failed structured validation");
       }
     }
   };

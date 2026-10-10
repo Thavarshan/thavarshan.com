@@ -198,7 +198,8 @@ async function generateApplicationsInternal(report: RunReport) {
           ? preparation
           : await ai!.generate({
               systemPrompt: buildSystemPrompt(),
-              userPrompt: buildUserPrompt({ profile, job })
+              userPrompt: buildUserPrompt({ profile, job }),
+              profile
             });
 
       report.stage = "factual validation";
@@ -221,7 +222,9 @@ async function generateApplicationsInternal(report: RunReport) {
         const invalidSelections =
           new Set(raw.highlightSelections.map((item) => item.experienceId)).size !== raw.highlightSelections.length ||
           raw.highlightSelections.some((item) => !ids.includes(item.experienceId));
-        if (sanitized.warnings.length || invalidIds || invalidSelections) throw new Error("AI factual validation failed");
+        if (invalidIds) throw new GroqFailure("AI factual validation failed: experience order must retain every known role once");
+        if (invalidSelections) throw new GroqFailure("AI factual validation failed: unsupported or duplicate role selections");
+        if (sanitized.warnings.length) throw new GroqFailure("AI factual validation failed: invalid category order or profile highlights");
       }
       report.stage = "PDF compilation";
 

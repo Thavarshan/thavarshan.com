@@ -9,7 +9,8 @@ const result = {
   reviewFlags: [],
   coverLetterBody: "A reviewable draft based solely on verified profile facts, with no invented credentials or employers. Thank you for your consideration."
 };
-function completion(content = JSON.stringify(result), finish = "stop") {
+const providerResult = { ...result, highlightSelections: [{ experienceId: "verified-role", highlightIndices: [0] }] };
+function completion(content = JSON.stringify(providerResult), finish = "stop") {
   return new Response(
     JSON.stringify({
       id: "fixture",
@@ -33,7 +34,13 @@ function harness() {
   const client = createGroqApplicationClient("synthetic-provider-key", { fetch: fetcher, now: () => elapsed, sleep });
   return { client, requests, response, sleep };
 }
-const prompts = { systemPrompt: "Use verified facts only.", userPrompt: "Untrusted job and verified profile data." };
+const prompts = {
+  systemPrompt: "Use verified facts only.",
+  userPrompt: "Untrusted job and verified profile data.",
+  profile: { experience: [{ id: "verified-role", highlights: ["Verified original highlight"] }] } as Parameters<
+    ReturnType<typeof createGroqApplicationClient>["generate"]
+  >[0]["profile"]
+};
 
 describe("Groq bounded inference", () => {
   it("routes exclusively to Groq with strict schema, fixed model, token limits and pacing", async () => {
@@ -81,11 +88,13 @@ describe("Groq bounded inference", () => {
   });
   it("rejects truncated, malformed, missing and schema-invalid output without retrying", async () => {
     for (const response of [
-      completion(JSON.stringify(result), "length"),
+      completion(JSON.stringify(providerResult), "length"),
       completion("PRIVATE NON JSON"),
       completion(""),
-      completion(JSON.stringify({ ...result, coverLetterBody: 42 })),
-      completion(JSON.stringify({ ...result, unexpected: true }))
+      completion(JSON.stringify({ ...providerResult, coverLetterBody: 42 })),
+      completion(JSON.stringify({ ...providerResult, unexpected: true })),
+      completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "verified-role", highlightIndices: [99] }] })),
+      completion(JSON.stringify({ ...providerResult, highlightSelections: [{ experienceId: "unknown", highlightIndices: [0] }] }))
     ]) {
       const h = harness();
       h.response.mockResolvedValue(response);
