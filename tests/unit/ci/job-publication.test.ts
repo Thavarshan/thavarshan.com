@@ -14,7 +14,8 @@ function scenario(mode: string) {
   const events = join(root, "events");
   mkdirSync(checkout);
   mkdirSync(bin);
-  const git = (args: string[], cwd = checkout) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
+  const git = (args: string[], cwd = checkout) =>
+    execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 10000 }).trim();
   try {
     git(["init", "--bare", remote]);
     git(["init", "-b", "main"]);
@@ -36,9 +37,9 @@ echo "$*" >> "$EVENTS"
 case "$1 $2" in
   'workflow run')
     if [ "$MODE" = dispatch-failure ]; then exit 1; fi
-    if [ "$MODE" = stale-main ] && [ "$4" != main ]; then
-      other="$(printf 'Concurrent main change' | git commit-tree HEAD^{tree} -p "$BASE")"
-      git --git-dir="$REMOTE" update-ref refs/heads/main "$other"
+    if [ "$MODE" = stale-main ] && [ "$5" != main ]; then
+      other="$(printf 'Concurrent main change' | git commit-tree "$BASE^{tree}" -p "$BASE")"
+      git push origin "$other:refs/heads/main"
     fi
     ;;
   'run list') echo 123 ;;
@@ -50,10 +51,12 @@ esac
       { mode: 0o755 }
     );
     let failed = false;
+    let failureOutput = "";
     try {
       execFileSync("bash", [publisher], {
         cwd: checkout,
         stdio: "pipe",
+        timeout: 15000,
         env: {
           ...process.env,
           PATH: `${bin}:${process.env.PATH}`,
@@ -67,11 +70,13 @@ esac
           BASE: base
         }
       });
-    } catch {
+    } catch (error) {
       failed = true;
+      failureOutput = String((error as { stdout?: unknown }).stdout ?? "");
     }
     return {
       failed,
+      failureOutput,
       base,
       head: git(["rev-parse", "HEAD"]),
       main: git(["--git-dir", remote, "rev-parse", "main"]),
@@ -99,6 +104,8 @@ describe("protected job publication", () => {
     it(`preserves the main snapshot after ${mode}`, () => {
       const result = scenario(mode);
       expect(result.failed).toBe(true);
+      if (mode === "failed-gate") expect(result.failureOutput).toContain("Job snapshot CI failed");
+      if (mode === "stale-main") expect(result.failureOutput).toContain("Main changed while CI ran");
       expect(result.snapshot).toBe("[]");
       expect(result.main).not.toBe(result.head);
       expect(result.events).not.toContain("workflow run ci.yml --ref main");
