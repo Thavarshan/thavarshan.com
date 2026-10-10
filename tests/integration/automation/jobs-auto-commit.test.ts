@@ -23,7 +23,17 @@ function fixture() {
   git("push", "origin", "main");
   const baseline = git("rev-parse", "HEAD");
   const gh = join(root, "gh");
-  writeFileSync(gh, '#!/usr/bin/env bash\nset -eu\nprintf "%s\\n" "$*" >> "$GH_LOG"\nif [ "$1 $2" = "pr list" ]; then echo "$GH_PENDING"; fi\n');
+  writeFileSync(
+    gh,
+    `#!/usr/bin/env bash
+set -eu
+printf "%s\\n" "$*" >> "$GH_LOG"
+case "$1 $2" in
+  'run list') echo 123 ;;
+  'run view') echo verified ;;
+esac
+`
+  );
   chmodSync(gh, 0o755);
   writeFileSync(join(cwd, "data/jobs.generated.json"), '{"value":2}\n');
   writeFileSync(join(cwd, "unrelated.txt"), "not generated\n");
@@ -33,6 +43,7 @@ function fixture() {
       cwd,
       encoding: "utf8",
       stdio: "pipe",
+      timeout: 15000,
       env: {
         ...process.env,
         PATH: `${root}:${process.env.PATH}`,
@@ -56,6 +67,8 @@ describe("automatic job snapshot publication", () => {
       expect(f.git("ls-remote", "origin", "refs/heads/main").split(/\s/)[0]).toBe(head);
       expect(f.git("show", "--pretty=format:", "--name-only", "HEAD")).toBe("data/jobs.generated.json");
       const log = readFileSync(f.log, "utf8");
+      expect(log).toContain("workflow run ci.yml --ref automation/checked-jobs-123-1");
+      expect(log).toContain(`--commit ${head} --event workflow_dispatch`);
       expect(log).toContain("workflow run ci.yml --ref main");
       expect(log).not.toContain("pr ");
     } finally {
