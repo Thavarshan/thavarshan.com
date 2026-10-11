@@ -1,3 +1,4 @@
+import { publicSearchStatusSchema } from "../search/model";
 import { z } from "zod";
 import { loadSnapshot } from "../../../src/features/jobs/snapshot";
 import { assessOpportunity, COLLECTOR_VERSION } from "../../../src/features/jobs/opportunities";
@@ -62,6 +63,7 @@ export interface Finding {
 }
 export interface ReportInput {
   now: Date;
+  searchStatus?: unknown;
   workflowRuns: Partial<Record<WorkflowFile, unknown>>;
   applicationGeneration: "ran" | "skipped" | "unknown";
   jobs: unknown;
@@ -306,6 +308,17 @@ export function buildHealthReport(input: ReportInput) {
     );
   if (input.metricsWorker !== "ok")
     add("warning", "metrics-worker", "health-unavailable", "Check Worker deployment and its public health endpoint; no synthetic collect event is sent.");
+  const parsedSearch = publicSearchStatusSchema.safeParse(input.searchStatus);
+  const searchStatus = parsedSearch.success ? parsedSearch.data.status : "unavailable";
+  if (searchStatus === "failed")
+    add("error", "search", "feedback-failed", "Inspect Search Console access/quotas and private publication; last-known-good private feedback was preserved.");
+  else if (searchStatus !== "available")
+    add(
+      "info",
+      "search",
+      "feedback-unavailable",
+      "Private search feedback is unavailable, stale or has no observed data; indexing and rankings are not established by website CI."
+    );
   const report = {
     schemaVersion: 1,
     generatedAt: input.now.toISOString(),
@@ -331,7 +344,7 @@ export function buildHealthReport(input: ReportInput) {
       revision: input.deployment.revision && /^[a-f0-9]{40}$/.test(input.deployment.revision) ? input.deployment.revision : null
     },
     workers: { metrics: input.metricsWorker, jobReview: "not-collected-access-protected" },
-    search: { indexing: "unknown", performance: "unavailable" },
+    search: { indexing: "unknown", performance: searchStatus },
     findings,
     notes: [
       "Only public snapshot data, run metadata and public health responses are collected; no private application/mailbox state, logs or application artifacts.",
@@ -363,5 +376,5 @@ export function renderHealthSummary(report: HealthReport) {
         `| ${workflow.name} | ${workflow.status ?? "unknown"} | ${workflow.lastSuccessfulRun ? `[run ${workflow.lastSuccessfulRun.id}](${workflow.lastSuccessfulRun.url})` : "unknown"} | ${workflow.ageHours ?? "—"} |`
     )
     .join("\n");
-  return `# Growth Engine health: ${report.status}\n\nAs of ${report.generatedAt}. Comparison baseline: ${report.comparison.since ?? "unavailable; initial deltas unknown"}.\n\n| Workflow | Latest state | Last successful workflow run | Age (hours) |\n| --- | --- | --- | --- |\n${rows}\n\n## Jobs\n\nActive: ${report.jobs?.active ?? "unknown"}; eligible: ${report.jobs?.eligible ?? "unknown"}; high-fit: ${report.jobs?.highFit ?? "unknown"}; unknown eligibility: ${report.jobs?.unknownEligibility ?? "unknown"}.\nNewly eligible/high-fit: ${report.jobs?.newEligibleHighFitIds?.length ?? "unknown"}; newly discovered high-fit: ${report.jobs?.newlyDiscoveredHighFitIds?.length ?? "unknown"}.\n\n${report.jobs?.sources.map((source) => `- ${source.name}: ${source.status}; records ${source.records ?? "unknown"}; retained ${source.held ?? "unknown"}; age ${source.ageHours ?? "unknown"}h.`).join("\n") ?? "Source health unavailable."}\n\n${changes}\n\n## Growth and preparation\n\nMarketing drafts recorded: ${report.marketing.generatedBundles ?? "unknown"}; latest generation: ${report.marketing.lastGeneratedAt ?? "none recorded / unknown"}.\nAnalytics period: ${report.analytics ? `${report.analytics.period.start}–${report.analytics.period.end}` : "unavailable"}; actions ${report.analytics?.events ?? "unknown"}; days with events ${report.analytics?.daysWithData ?? "unknown"}/${report.analytics?.daysInPeriod ?? "unknown"}.\nApplication generation: ${report.applications.generation}; private prepared/applied counts unavailable.\nProduction: ${report.deployment.status}; metrics Worker: ${report.workers.metrics}; private review health not collected.\nSearch indexing/performance: unknown/unavailable.\n\n## Maintenance\n\n${report.findings.map((finding) => `- **${finding.severity}** ${finding.area} / ${finding.code}: ${finding.action}`).join("\n") || "No maintenance findings."}\n\n${report.notes.map((note) => `- ${note}`).join("\n")}\n`;
+  return `# Growth Engine health: ${report.status}\n\nAs of ${report.generatedAt}. Comparison baseline: ${report.comparison.since ?? "unavailable; initial deltas unknown"}.\n\n| Workflow | Latest state | Last successful workflow run | Age (hours) |\n| --- | --- | --- | --- |\n${rows}\n\n## Jobs\n\nActive: ${report.jobs?.active ?? "unknown"}; eligible: ${report.jobs?.eligible ?? "unknown"}; high-fit: ${report.jobs?.highFit ?? "unknown"}; unknown eligibility: ${report.jobs?.unknownEligibility ?? "unknown"}.\nNewly eligible/high-fit: ${report.jobs?.newEligibleHighFitIds?.length ?? "unknown"}; newly discovered high-fit: ${report.jobs?.newlyDiscoveredHighFitIds?.length ?? "unknown"}.\n\n${report.jobs?.sources.map((source) => `- ${source.name}: ${source.status}; records ${source.records ?? "unknown"}; retained ${source.held ?? "unknown"}; age ${source.ageHours ?? "unknown"}h.`).join("\n") ?? "Source health unavailable."}\n\n${changes}\n\n## Growth and preparation\n\nMarketing drafts recorded: ${report.marketing.generatedBundles ?? "unknown"}; latest generation: ${report.marketing.lastGeneratedAt ?? "none recorded / unknown"}.\nAnalytics period: ${report.analytics ? `${report.analytics.period.start}–${report.analytics.period.end}` : "unavailable"}; actions ${report.analytics?.events ?? "unknown"}; days with events ${report.analytics?.daysWithData ?? "unknown"}/${report.analytics?.daysInPeriod ?? "unknown"}.\nApplication generation: ${report.applications.generation}; private prepared/applied counts unavailable.\nProduction: ${report.deployment.status}; metrics Worker: ${report.workers.metrics}; private review health not collected.\nSearch indexing: unknown; private feedback: ${report.search.performance}. Detailed observations and prioritized content tasks remain in the private repository.\n\n## Maintenance\n\n${report.findings.map((finding) => `- **${finding.severity}** ${finding.area} / ${finding.code}: ${finding.action}`).join("\n") || "No maintenance findings."}\n\n${report.notes.map((note) => `- ${note}`).join("\n")}\n`;
 }
