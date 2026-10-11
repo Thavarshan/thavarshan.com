@@ -87,4 +87,30 @@ describe("bounded read-only Google search API", () => {
     expect(result.current.totals).toBeNull();
     expect(result.current.queries).toEqual([]);
   });
+  it("filters legacy Domain-property URLs with the same canonical contract as the report", async () => {
+    const fetcher = get();
+    fetcher.mockImplementation(async (url, options) => {
+      if (String(url).endsWith("/token")) return Response.json({ access_token: "TOKEN", token_type: "Bearer" });
+      const body = JSON.parse(options!.body as string);
+      const pages = [
+        "https://thavarshan.com/",
+        "https://thavarshan.com/cv",
+        "https://thavarshan.com/old/",
+        "https://thavarshan.com/old.html",
+        "https://thavarshan.com/Old",
+        "https://www.thavarshan.com/",
+        "https://thavarshan.com/cv?source=old"
+      ];
+      const rows = body.dimensions.length
+        ? pages.map((page) => ({ keys: body.dimensions.length === 2 ? [page, "example query"] : [page], clicks: 2, impressions: 200, ctr: 0.01, position: 12 }))
+        : [{ keys: [], clicks: 14, impressions: 1400, ctr: 0.01, position: 12 }];
+      return Response.json({ rows, responseAggregationType: body.aggregationType });
+    });
+    const result = await collectGoogleSearch(credentials, "sc-domain:thavarshan.com", now, fetcher);
+    for (const period of [result.current, result.previous]) {
+      expect(period.pages.map((row) => row.page)).toEqual(["https://thavarshan.com/", "https://thavarshan.com/cv"]);
+      expect(period.queries.map((row) => row.page)).toEqual(["https://thavarshan.com/", "https://thavarshan.com/cv"]);
+      expect(period.totals?.clicks).toBe(14);
+    }
+  });
 });

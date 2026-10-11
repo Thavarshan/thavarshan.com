@@ -1,6 +1,6 @@
 import { createSign } from "node:crypto";
 import { z } from "zod";
-import { metricsSchema, origin, searchPolicy, searchSnapshotSchema, type SearchSnapshot } from "./model";
+import { metricsSchema, origin, pageUrl, searchPolicy, searchSnapshotSchema, type SearchSnapshot } from "./model";
 
 const tokenUrl = "https://oauth2.googleapis.com/token";
 const scope = "https://www.googleapis.com/auth/webmasters.readonly";
@@ -125,14 +125,7 @@ export async function collectGoogleSearch(
       return metricsSchema.parse({ clicks: row.clicks, impressions: row.impressions, position: row.impressions ? row.position : null });
     };
     // Filter alias/query-string URLs from Domain properties; page/query analysis is canonical-only.
-    const canonical = (page: string) => {
-      try {
-        const parsed = new URL(page);
-        return parsed.origin === origin && !parsed.search && !parsed.hash && !parsed.username && !parsed.password;
-      } catch {
-        return false;
-      }
-    };
+    const canonical = (page: string) => pageUrl.safeParse(page).success;
     return {
       ...range,
       totals: totals[0] ? metrics(totals[0]) : null,
