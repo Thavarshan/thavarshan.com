@@ -131,8 +131,10 @@ async function main() {
     localJson("data/growth/latest.json"),
     localJson("data/package-registry.generated.json")
   ]);
+  const searchStatus = await localJson("test-results/search-status/status.json");
   const { report, nextBaseline } = buildHealthReport({
     now: new Date(),
+    searchStatus,
     ...publicData,
     jobs,
     github,

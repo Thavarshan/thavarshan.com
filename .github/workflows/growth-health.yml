@@ -14,6 +14,7 @@ on:
     branches: [main]
     paths:
       - "automation/growth/health/**"
+      - "automation/growth/search/**"
       - ".github/workflows/growth-health.yml"
 
 permissions:
@@ -25,7 +26,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  search-feedback:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Prepare private search feedback
+        env:
+          GOOGLE_SEARCH_CONSOLE_CREDENTIALS: ${{ secrets.GOOGLE_SEARCH_CONSOLE_CREDENTIALS }}
+          GOOGLE_SEARCH_CONSOLE_PROPERTY: ${{ vars.GOOGLE_SEARCH_CONSOLE_PROPERTY }}
+          APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
+          APPLICATIONS_REPO_SLUG: ${{ vars.APPLICATIONS_REPO_SLUG }}
+        run: npm run growth:search
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: search-feedback-status
+          path: test-results/search-status/status.json
+          retention-days: 1
+          if-no-files-found: error
+
   report:
+    needs: search-feedback
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
@@ -40,6 +74,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v7.0.1
+        continue-on-error: true
+        with:
+          name: search-feedback-status
+          path: test-results/search-status/
       - name: Build public operational report
         id: health
         env:

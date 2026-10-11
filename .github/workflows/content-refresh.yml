@@ -42,6 +42,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Read private content-review priorities
+        env:
+          APPLICATIONS_REPO_DEPLOY_KEY: ${{ secrets.APPLICATIONS_REPO_DEPLOY_KEY }}
+          APPLICATIONS_REPO_SLUG: ${{ vars.APPLICATIONS_REPO_SLUG }}
+        run: npm run growth:search -- --content-plan
       - name: Refresh public snapshots
         run: |
           npm run profile:github

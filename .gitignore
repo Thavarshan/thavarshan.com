@@ -25,3 +25,6 @@ marketing/generated/
 .dev.vars
 .wrangler/
 .wrangler-e2e/
+
+# Private local search analysis
+.search-feedback/
