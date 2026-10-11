@@ -14,12 +14,12 @@ import { getFeaturedGitHubProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {
   title: "Professional CV",
-  description: `Professional CV for ${site.name}, covering technical leadership, AI systems architecture, full-stack engineering, open source, and cloud delivery.`,
+  description: `Professional CV for ${site.name}: Laravel/PHP, React, Vue and Inertia experience, technical leadership, AWS delivery and open-source engineering.`,
   alternates: { canonical: "/cv" },
   openGraph: {
     images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
     title: `${site.name} — Professional CV`,
-    description: "Technical leadership, AI systems architecture, full-stack engineering, and open-source work.",
+    description: "Laravel/PHP and full-stack experience, technical leadership, AWS delivery and open-source work.",
     url: "/cv",
     type: "profile"
   }

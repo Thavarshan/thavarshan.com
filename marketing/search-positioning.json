@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-11",
+  "pages": [
+    {
+      "path": "/",
+      "primaryIntent": "Evaluate Jerome for Laravel/PHP and technical leadership work",
+      "topic": "laravel-php",
+      "audience": "Hiring managers and engineering leads",
+      "supportingIntents": [
+        "Laravel with React, Vue and Inertia",
+        "AWS delivery",
+        "AI workflow architecture"
+      ],
+      "evidence": [
+        "data/profile.generated.json",
+        "src/features/home/hero.tsx"
+      ],
+      "cta": "/#hiring"
+    },
+    {
+      "path": "/cv",
+      "primaryIntent": "Review Jerome’s career evidence and download his CV",
+      "topic": "laravel-php",
+      "audience": "Recruiters and hiring managers",
+      "supportingIntents": [
+        "PHP/backend experience",
+        "Technical leadership",
+        "Cloud delivery"
+      ],
+      "evidence": [
+        "data/profile.generated.json",
+        "src/app/cv/page.tsx"
+      ],
+      "cta": "/docs/Jerome-Resume.pdf"
+    },
+    {
+      "path": "/projects",
+      "primaryIntent": "Browse maintained open-source engineering work",
+      "topic": "developer-tools",
+      "audience": "Developers and hiring managers",
+      "supportingIntents": [
+        "PHP libraries",
+        "Developer tooling"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/page.tsx"
+      ],
+      "cta": "/projects/fetch-php"
+    },
+    {
+      "path": "/insights",
+      "primaryIntent": "Browse first-hand engineering articles",
+      "topic": "leadership",
+      "audience": "Engineers and technical leads",
+      "supportingIntents": [
+        "API architecture",
+        "Modernization",
+        "AI reliability"
+      ],
+      "evidence": [
+        "content/insights",
+        "src/app/insights/page.tsx"
+      ],
+      "cta": "/insights/modernizing-legacy-platforms-during-delivery"
+    },
+    {
+      "path": "/tools",
+      "primaryIntent": "Find free browser-only Laravel/PHP utilities",
+      "topic": "developer-tools",
+      "audience": "Laravel and PHP developers",
+      "supportingIntents": [
+        "Private tooling",
+        "Deployment troubleshooting"
+      ],
+      "evidence": [
+        "src/features/tools/registry.ts"
+      ],
+      "cta": "/tools/laravel-scheduler-cron"
+    },
+    {
+      "path": "/privacy",
+      "primaryIntent": "Understand website data collection and privacy",
+      "topic": "privacy",
+      "audience": "Website visitors",
+      "supportingIntents": [
+        "Cookie-free measurement"
+      ],
+      "evidence": [
+        "src/app/privacy/page.tsx"
+      ],
+      "cta": "/"
+    },
+    {
+      "path": "/projects/fetch-php",
+      "primaryIntent": "Evaluate the Fetch PHP HTTP client",
+      "topic": "api-architecture",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "HTTP APIs",
+        "PHP library ergonomics"
+      ],
+      "evidence": [
+        "data/github.generated.json"
+      ],
+      "cta": "https://github.com/Thavarshan/fetch-php"
+    },
+    {
+      "path": "/projects/filterable",
+      "primaryIntent": "Evaluate Filterable for Laravel query filtering",
+      "topic": "laravel-php",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "Eloquent",
+        "Filtering and caching"
+      ],
+      "evidence": [
+        "data/github.generated.json"
+      ],
+      "cta": "https://github.com/Thavarshan/filterable"
+    },
+    {
+      "path": "/projects/phpvm",
+      "primaryIntent": "Evaluate PHPVM for local PHP version management",
+      "topic": "developer-tools",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "PHP development environments"
+      ],
+      "evidence": [
+        "data/github.generated.json"
+      ],
+      "cta": "https://github.com/Thavarshan/phpvm"
+    },
+    {
+      "path": "/projects/comet",
+      "primaryIntent": "Evaluate Comet for desktop media conversion",
+      "topic": "developer-tools",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "Desktop tooling"
+      ],
+      "evidence": [
+        "data/github.generated.json"
+      ],
+      "cta": "https://github.com/Thavarshan/comet"
+    },
+    {
+      "path": "/projects/matrix",
+      "primaryIntent": "Evaluate Matrix for asynchronous PHP tasks",
+      "topic": "api-architecture",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "PHP concurrency",
+        "Failure boundaries"
+      ],
+      "evidence": [
+        "data/github.generated.json"
+      ],
+      "cta": "https://github.com/Thavarshan/matrix"
+    },
+    {
+      "path": "/insights/event-driven-asynchronous-php-matrix-lessons",
+      "primaryIntent": "Understand task ownership and failure boundaries in async PHP",
+      "topic": "api-architecture",
+      "audience": "Engineers and technical leads",
+      "supportingIntents": [
+        "Matrix",
+        "Event-driven design"
+      ],
+      "evidence": [
+        "content/insights/event-driven-asynchronous-php-matrix-lessons.mdx"
+      ],
+      "cta": "/#contact"
+    },
+    {
+      "path": "/insights/maintaining-a-450-star-developer-tool-api-design",
+      "primaryIntent": "Learn API design trade-offs from maintaining Fetch PHP",
+      "topic": "api-architecture",
+      "audience": "Engineers and technical leads",
+      "supportingIntents": [
+        "Open-source maintenance",
+        "Developer experience"
+      ],
+      "evidence": [
+        "content/insights/maintaining-a-450-star-developer-tool-api-design.mdx"
+      ],
+      "cta": "/#contact"
+    },
+    {
+      "path": "/insights/modernizing-legacy-platforms-during-delivery",
+      "primaryIntent": "Plan incremental modernization while continuing delivery",
+      "topic": "modernization",
+      "audience": "Engineers and technical leads",
+      "supportingIntents": [
+        "Technical leadership",
+        "Release discipline"
+      ],
+      "evidence": [
+        "content/insights/modernizing-legacy-platforms-during-delivery.mdx"
+      ],
+      "cta": "/#contact"
+    },
+    {
+      "path": "/insights/observable-reliable-production-ai-workflows",
+      "primaryIntent": "Design observable and recoverable AI workflows",
+      "topic": "ai-cloud",
+      "audience": "Engineers and technical leads",
+      "supportingIntents": [
+        "Workflow contracts",
+        "Evaluation and fallbacks"
+      ],
+      "evidence": [
+        "content/insights/observable-reliable-production-ai-workflows.mdx"
+      ],
+      "cta": "/#contact"
+    },
+    {
+      "path": "/tools/laravel-scheduler-cron",
+      "primaryIntent": "Translate a cron expression into a Laravel scheduler call",
+      "topic": "laravel-php",
+      "audience": "Laravel developers scheduling tasks",
+      "supportingIntents": [
+        "Timezone checks",
+        "Cron troubleshooting"
+      ],
+      "evidence": [
+        "src/features/tools/registry.ts",
+        "src/features/tools/cron.ts"
+      ],
+      "cta": "/tools/laravel-scheduler-cron"
+    },
+    {
+      "path": "/tools/laravel-env-checker",
+      "primaryIntent": "Check Laravel dotenv configuration locally",
+      "topic": "laravel-php",
+      "audience": "Laravel developers reviewing deployments",
+      "supportingIntents": [
+        "Missing keys",
+        "Configuration safety"
+      ],
+      "evidence": [
+        "src/features/tools/registry.ts"
+      ],
+      "cta": "/tools/laravel-env-checker"
+    }
+  ]
+}
