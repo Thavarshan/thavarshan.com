@@ -68,7 +68,7 @@ describe("editorial review signals", () => {
   });
   it("reads only public evidence and emits no source text or private fields", async () => {
     expect(Object.keys(await publicSourceDigests())).toHaveLength(map.pages.length);
-    const report = await collectContentReview(now);
+    const report = await collectContentReview();
     expect(report.pages.map((page) => page.path)).toEqual(map.pages.map((page) => page.path));
     expect(JSON.stringify(report)).not.toMatch(/query|recommendation|client_email|sourceDigest|readmeExcerpt/);
     const traversal = structuredClone(map);

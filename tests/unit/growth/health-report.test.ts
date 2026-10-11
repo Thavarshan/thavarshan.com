@@ -39,7 +39,7 @@ const input = (): ReportInput => ({
 // Frozen public jobs fixture preserves scoring/eligibility cases across scheduled snapshot refreshes.
 describe("Growth Engine health rules", () => {
   it("surfaces public review flags while rejecting private fields and unknown routes", async () => {
-    const reviewNow = new Date("2026-10-11T12:00:00Z");
+    const reviewNow = new Date();
     const contentReview = await collectContentReview(reviewNow);
     const { report } = buildHealthReport({ ...input(), now: reviewNow, contentReview });
     expect(report.contentReview?.pages.length).toBe(contentReview.pages.length);
