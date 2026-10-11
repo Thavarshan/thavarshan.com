@@ -34,7 +34,7 @@ Once a month, compare the available search windows and first-party actions, noti
 
 ## Review records and recovery
 
-`marketing/content-review-state.json` stores public-source digests and optional owner review dates. Initial `capturedAt` is a technical baseline; every `reviewedAt` is null. `npm run content:review` writes only ignored `test-results/content-review/` signals, never the state file or page content. `npm run growth:health -- --offline` includes the same public signals without network access.
+`marketing/content-review-state.json` stores public-source digests and optional owner review dates. Calendar review dates and age boundaries use Asia/Colombo; generated report timestamps remain UTC. Initial `capturedAt` is a technical baseline; every `reviewedAt` is null. `npm run content:review` writes only ignored `test-results/content-review/` signals, never the state file or page content. `npm run growth:health -- --offline` includes the same public signals without network access.
 
 After the owner completes an actual review, update that page's `sourceDigest` to the current value and `reviewedAt` to the review date in a normal reviewed PR. Obtain current digests locally with:
 

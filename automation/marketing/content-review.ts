@@ -70,7 +70,10 @@ export function buildContentReview(
 ): ContentReview {
   if (!Number.isFinite(now.getTime())) throw new Error("Invalid content review time");
   const baseline = reviewStateSchema.parse(state);
-  const today = now.toISOString().slice(0, 10);
+  const calendarParts = new Intl.DateTimeFormat("en", { timeZone: "Asia/Colombo", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const part = (type: string) => calendarParts.find((item) => item.type === type)!.value;
+  const today = `${part("year")}-${part("month")}-${part("day")}`;
+  const daysSince = (value: string) => Math.floor((Date.parse(today) - Date.parse(value)) / 86_400_000);
   if (baseline.capturedAt > today || new Set(baseline.pages.map((page) => page.path)).size !== baseline.pages.length)
     throw new Error("Invalid content review baseline");
   const known = new Set(map.pages.map((page) => page.path));
@@ -83,11 +86,11 @@ export function buildContentReview(
       const previous = baseline.pages.find((record) => record.path === page.path);
       if (!/^[a-f0-9]{64}$/.test(digests[page.path] ?? "")) throw new Error("Missing public source digest");
       const reviewedAt = previous?.reviewedAt ?? null;
-      const ageDays = reviewedAt === null ? null : Math.floor((now.getTime() - Date.parse(`${reviewedAt}T00:00:00Z`)) / 86_400_000);
+      const ageDays = reviewedAt === null ? null : daysSince(reviewedAt);
       const intervalDays = reviewInterval(page.path);
       const sourceDate = sourceDates[page.path] === undefined ? null : date.parse(sourceDates[page.path]);
       if (sourceDate !== null && sourceDate > today) throw new Error("Future public source date");
-      const sourceAgeDays = sourceDate === null ? null : Math.floor((now.getTime() - Date.parse(`${sourceDate}T00:00:00Z`)) / 86_400_000);
+      const sourceAgeDays = sourceDate === null ? null : daysSince(sourceDate);
       return {
         path: page.path,
         reviewedAt,

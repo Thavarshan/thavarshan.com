@@ -15,6 +15,12 @@ const state = () => ({
 const now = new Date("2026-10-11T12:00:00Z");
 
 describe("editorial review signals", () => {
+  it("uses the Sri Lanka calendar day for owner review dates across UTC midnight", () => {
+    const input = state();
+    input.pages[0].reviewedAt = "2026-10-12";
+    const report = buildContentReview(map, input, digests, new Date("2026-10-11T19:00:00Z"), { "/": "2026-10-12" });
+    expect(report.pages[0]).toMatchObject({ ageDays: 0, sourceAgeDays: 0, unreviewed: false, overdue: false });
+  });
   it("starts unreviewed and never turns a snapshot into human approval", () => {
     const input = state();
     expect(buildContentReview(map, input, digests, now).pages.every((page) => page.unreviewed && page.reviewedAt === null)).toBe(true);
