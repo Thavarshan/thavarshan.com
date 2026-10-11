@@ -15,7 +15,7 @@ const metrics = z
   .strict()
   .refine((row) => row.clicks <= row.impressions && (row.impressions === 0 ? row.position === null : row.position !== null));
 export const metricsSchema = metrics;
-const pageUrl = z
+export const pageUrl = z
   .string()
   .max(500)
   .refine((value) => {
