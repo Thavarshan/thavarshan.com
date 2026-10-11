@@ -142,3 +142,8 @@ Sources: [Search Analytics query reference](https://developers.google.com/webmas
 [service-account authorization](https://developers.google.com/identity/protocols/oauth2/service-account),
 [Search Console export limits](https://support.google.com/webmasters/answer/12919797),
 [query privacy and top-row limits](https://developers.google.com/search/blog/2022/10/performance-data-deep-dive).
+
+
+## Editorial context
+
+Content Refresh’s ignored private `content-plan.json` combines fresh validated source tasks with public editorial-review flags and #54 intent/audience/CTA context. This combined output is neither a public artifact nor an approval to edit narrative. Follow [the content cadence](content-cadence.md); public weekly reports expose only source availability and public review flags.

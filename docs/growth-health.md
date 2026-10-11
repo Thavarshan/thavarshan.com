@@ -43,3 +43,8 @@ Close the feed issue to stop publication while reporting continues. Reopen it to
 ## Private search feedback
 
 The Monday workflow now runs a separate private search-feedback job first. Its only public output is a strict availability status; queries, counts and content priorities stay in the existing private repository. Public report generation continues if search collection fails. See [setup, contract and review policy](search-feedback.md). Google verification alone does not authorize the API.
+
+
+## Editorial review signals
+
+The public report now includes canonical-page review flags from repository evidence and `marketing/content-review-state.json`. Unreviewed, overdue and source-changed are requests for human inspection, not claims about content correctness or ranking. No private search queries, measurements or task counts enter this section. Missing/malformed evidence or review records show unknown status. See [publishing and review cadence](content-cadence.md).

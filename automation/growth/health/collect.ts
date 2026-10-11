@@ -1,5 +1,6 @@
 import { readFile, mkdir, writeFile, appendFile, rename, rm } from "node:fs/promises";
 import { z } from "zod";
+import { collectContentReview } from "../../marketing/content-review";
 import { buildHealthReport, renderHealthSummary, repository, workflows, type ReportInput, type WorkflowFile } from "./report";
 
 const maxBytes = 2 * 1024 * 1024;
@@ -132,9 +133,11 @@ async function main() {
     localJson("data/package-registry.generated.json")
   ]);
   const searchStatus = await localJson("test-results/search-status/status.json");
+  const contentReview = await collectContentReview().catch(() => undefined);
   const { report, nextBaseline } = buildHealthReport({
     now: new Date(),
     searchStatus,
+    contentReview,
     ...publicData,
     jobs,
     github,

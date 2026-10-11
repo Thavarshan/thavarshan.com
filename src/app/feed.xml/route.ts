@@ -1,4 +1,5 @@
 import { site } from "@/features/profile/site";
+import { profile } from "@/features/profile/profile";
 import { getAllInsights } from "@/features/insights/insights.node";
 
 export const dynamic = "force-static";
@@ -9,7 +10,11 @@ function escapeXml(value: string) {
 
 export function GET() {
   const insights = getAllInsights();
-  const latest = insights[0]?.updatedAt ?? insights[0]?.publishedAt ?? new Date().toISOString();
+  const latest =
+    insights
+      .map((insight) => insight.updatedAt ?? insight.publishedAt)
+      .sort()
+      .at(-1) ?? profile.modifiedAt;
   const items = insights
     .map((insight) => {
       const url = `${site.url}/insights/${insight.slug}`;

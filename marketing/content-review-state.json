@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-11",
+  "pages": [
+    {
+      "path": "/",
+      "sourceDigest": "a2a1feb563ea3c72a8256a6a6597544ea65b49caa557fb621dd8578e14dc7960",
+      "reviewedAt": null
+    },
+    {
+      "path": "/cv",
+      "sourceDigest": "79724972157b927bccdc12512f45f8ff197a8f02bd36af988c09fa6de3cf4e62",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects",
+      "sourceDigest": "d8cb8496ef71dee95a4af873715d26d86cf6caaf198b0786bedf096c3d5e77e5",
+      "reviewedAt": null
+    },
+    {
+      "path": "/insights",
+      "sourceDigest": "a553a3666a94d8b95acc208e4bafcbff50326ed65de736f11a2de66770f89100",
+      "reviewedAt": null
+    },
+    {
+      "path": "/tools",
+      "sourceDigest": "c72994655990f96eddce2f4793bfb858f0a3c5aca2285372d3f0fb4d195550ef",
+      "reviewedAt": null
+    },
+    {
+      "path": "/privacy",
+      "sourceDigest": "69743089d00051b42eaa16d02a5dc78df5339bf3a36bf3bc2d86744cc1e51f5a",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects/fetch-php",
+      "sourceDigest": "1c244f07cc7721e11e3e3b65f93d5b815974c19ddb45055420b01ee3b446157b",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects/filterable",
+      "sourceDigest": "b6eb2fa628f6de5f4dc9677e39553c20ecd6357f3f08c5a9be36c67ac4de9134",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects/phpvm",
+      "sourceDigest": "0d9019d231390bde5f98e1974d3e707e6a66d82e5c84ad867d8eb3e4c6e336ab",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects/comet",
+      "sourceDigest": "db72e5b980c2b9e6f68e1081cd14bbf89dc4dd81c1da02e45ef49ab689b350eb",
+      "reviewedAt": null
+    },
+    {
+      "path": "/projects/matrix",
+      "sourceDigest": "fb2f2ca807b0effd441f3699fb834089aa598e1f263bea39e420df453606c08d",
+      "reviewedAt": null
+    },
+    {
+      "path": "/insights/event-driven-asynchronous-php-matrix-lessons",
+      "sourceDigest": "86e91b2e12e6932b209c664355fab6bedbb6402b600b45b3abf12a704e0d81a3",
+      "reviewedAt": null
+    },
+    {
+      "path": "/insights/maintaining-a-450-star-developer-tool-api-design",
+      "sourceDigest": "df546742ec409de8d481a42cbd73dc256a44d99721ada8096d5ad039d65e0755",
+      "reviewedAt": null
+    },
+    {
+      "path": "/insights/modernizing-legacy-platforms-during-delivery",
+      "sourceDigest": "3cd5450c57531e9e2080c36b78baf609e05d4386e116fc67e9f9456056d197fa",
+      "reviewedAt": null
+    },
+    {
+      "path": "/insights/observable-reliable-production-ai-workflows",
+      "sourceDigest": "f5eadccb8b7b7df28d4f961ed3297a6f55b69e405eed01a31abd9ed1c0866c9f",
+      "reviewedAt": null
+    },
+    {
+      "path": "/tools/laravel-scheduler-cron",
+      "sourceDigest": "6bd10bb43bde39fdbe5ee0d2699ab63b4bc3163f68137522cec004e6a4560f00",
+      "reviewedAt": null
+    },
+    {
+      "path": "/tools/laravel-env-checker",
+      "sourceDigest": "4873d5073d671b5a8c28fa680e601b3042e686ae7549813d2b60555f6c22f55f",
+      "reviewedAt": null
+    }
+  ]
+}

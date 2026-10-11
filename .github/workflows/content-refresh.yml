@@ -51,6 +51,8 @@ jobs:
         run: |
           npm run profile:github
           npm run registry:sync
+      - name: Prepare public editorial review signals
+        run: npm run content:review
       - run: npm run cv:publish
       - run: npm run typecheck
       - run: npm run lint

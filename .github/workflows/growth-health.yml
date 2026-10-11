@@ -15,6 +15,9 @@ on:
     paths:
       - "automation/growth/health/**"
       - "automation/growth/search/**"
+      - "automation/marketing/content-review.ts"
+      - "marketing/content-review-state.json"
+      - "marketing/search-positioning.json"
       - ".github/workflows/growth-health.yml"
 
 permissions:

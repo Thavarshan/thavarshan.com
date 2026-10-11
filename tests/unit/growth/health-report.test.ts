@@ -10,6 +10,7 @@ import {
   type ReportInput
 } from "../../../automation/growth/health/report";
 import { collectPublicHealth, readPublicJson } from "../../../automation/growth/health/collect";
+import { collectContentReview } from "../../../automation/marketing/content-review";
 
 const fixture = (path: string) => JSON.parse(readFileSync(path, "utf8"));
 const now = new Date("2026-10-09T12:00:00.000Z");
@@ -37,6 +38,22 @@ const input = (): ReportInput => ({
 
 // Frozen public jobs fixture preserves scoring/eligibility cases across scheduled snapshot refreshes.
 describe("Growth Engine health rules", () => {
+  it("surfaces public review flags while rejecting private fields and unknown routes", async () => {
+    const reviewNow = new Date("2026-10-11T12:00:00Z");
+    const contentReview = await collectContentReview(reviewNow);
+    const { report } = buildHealthReport({ ...input(), now: reviewNow, contentReview });
+    expect(report.contentReview?.pages.length).toBe(contentReview.pages.length);
+    expect(renderHealthSummary(report)).toContain("need human review");
+    for (const invalid of [
+      { ...contentReview, query: "PRIVATE_QUERY_SENTINEL" },
+      { ...contentReview, pages: [{ ...contentReview.pages[0], path: "/private-query-sentinel" }, ...contentReview.pages.slice(1)] }
+    ]) {
+      const result = buildHealthReport({ ...input(), now: reviewNow, contentReview: invalid });
+      expect(result.report.contentReview).toBeNull();
+      expect(renderHealthSummary(result.report)).not.toMatch(/PRIVATE_QUERY_SENTINEL|private-query-sentinel/);
+      expect(result.report.findings.some((finding) => finding.code === "review-unavailable")).toBe(true);
+    }
+  });
   it("reports real eligibility conservatively with unknown initial deltas", () => {
     const { report, nextBaseline } = buildHealthReport(input());
     expect(report.jobs).not.toBeNull();
