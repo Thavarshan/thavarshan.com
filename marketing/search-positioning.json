@@ -14,7 +14,9 @@
       ],
       "evidence": [
         "data/profile.generated.json",
-        "src/features/home/hero.tsx"
+        "src/features/home/hero.tsx",
+        "src/app/page.tsx",
+        "src/features/profile/site.ts"
       ],
       "cta": "/#hiring"
     },
@@ -75,7 +77,8 @@
         "Deployment troubleshooting"
       ],
       "evidence": [
-        "src/features/tools/registry.ts"
+        "src/features/tools/registry.ts",
+        "src/app/tools/page.tsx"
       ],
       "cta": "/tools/laravel-scheduler-cron"
     },
@@ -102,7 +105,8 @@
         "PHP library ergonomics"
       ],
       "evidence": [
-        "data/github.generated.json"
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
       ],
       "cta": "https://github.com/Thavarshan/fetch-php"
     },
@@ -116,7 +120,8 @@
         "Filtering and caching"
       ],
       "evidence": [
-        "data/github.generated.json"
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
       ],
       "cta": "https://github.com/Thavarshan/filterable"
     },
@@ -129,7 +134,8 @@
         "PHP development environments"
       ],
       "evidence": [
-        "data/github.generated.json"
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
       ],
       "cta": "https://github.com/Thavarshan/phpvm"
     },
@@ -142,7 +148,8 @@
         "Desktop tooling"
       ],
       "evidence": [
-        "data/github.generated.json"
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
       ],
       "cta": "https://github.com/Thavarshan/comet"
     },
@@ -156,7 +163,8 @@
         "Failure boundaries"
       ],
       "evidence": [
-        "data/github.generated.json"
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
       ],
       "cta": "https://github.com/Thavarshan/matrix"
     },
@@ -170,7 +178,8 @@
         "Event-driven design"
       ],
       "evidence": [
-        "content/insights/event-driven-asynchronous-php-matrix-lessons.mdx"
+        "content/insights/event-driven-asynchronous-php-matrix-lessons.mdx",
+        "src/app/insights/[slug]/page.tsx"
       ],
       "cta": "/#contact"
     },
@@ -184,7 +193,8 @@
         "Developer experience"
       ],
       "evidence": [
-        "content/insights/maintaining-a-450-star-developer-tool-api-design.mdx"
+        "content/insights/maintaining-a-450-star-developer-tool-api-design.mdx",
+        "src/app/insights/[slug]/page.tsx"
       ],
       "cta": "/#contact"
     },
@@ -198,7 +208,8 @@
         "Release discipline"
       ],
       "evidence": [
-        "content/insights/modernizing-legacy-platforms-during-delivery.mdx"
+        "content/insights/modernizing-legacy-platforms-during-delivery.mdx",
+        "src/app/insights/[slug]/page.tsx"
       ],
       "cta": "/#contact"
     },
@@ -212,7 +223,8 @@
         "Evaluation and fallbacks"
       ],
       "evidence": [
-        "content/insights/observable-reliable-production-ai-workflows.mdx"
+        "content/insights/observable-reliable-production-ai-workflows.mdx",
+        "src/app/insights/[slug]/page.tsx"
       ],
       "cta": "/#contact"
     },
@@ -227,7 +239,9 @@
       ],
       "evidence": [
         "src/features/tools/registry.ts",
-        "src/features/tools/cron.ts"
+        "src/features/tools/cron.ts",
+        "src/features/tools/components/cron-tool.tsx",
+        "src/app/tools/[slug]/page.tsx"
       ],
       "cta": "/tools/laravel-scheduler-cron"
     },
@@ -241,7 +255,10 @@
         "Configuration safety"
       ],
       "evidence": [
-        "src/features/tools/registry.ts"
+        "src/features/tools/registry.ts",
+        "src/features/tools/env-check.ts",
+        "src/features/tools/components/env-tool.tsx",
+        "src/app/tools/[slug]/page.tsx"
       ],
       "cta": "/tools/laravel-env-checker"
     }

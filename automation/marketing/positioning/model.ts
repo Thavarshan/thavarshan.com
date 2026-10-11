@@ -1,19 +1,35 @@
 import { z } from "zod";
 
 const route = z.string().regex(/^\/(?:[a-z0-9-]+(?:\/[a-z0-9-]+)*)?$/);
-export const positioningSchema = z.object({
-  schemaVersion: z.literal(1),
-  reviewedAt: z.iso.date(),
-  pages: z.array(z.object({
-    path: route,
-    primaryIntent: z.string().min(12),
-    topic: z.enum(["laravel-php", "api-architecture", "developer-tools", "modernization", "leadership", "ai-cloud", "privacy"]),
-    audience: z.string().min(5),
-    supportingIntents: z.array(z.string().min(3)).min(1),
-    evidence: z.array(z.string().regex(/^(?:src|data|content)\/[a-zA-Z0-9/._-]+$/)).min(1),
-    cta: z.string().min(1)
-  }).strict()).min(1).max(500)
-}).strict();
+export const positioningSchema = z
+  .object({
+    schemaVersion: z.literal(1),
+    reviewedAt: z.iso.date(),
+    pages: z
+      .array(
+        z
+          .object({
+            path: route,
+            primaryIntent: z.string().min(12),
+            topic: z.enum(["laravel-php", "api-architecture", "developer-tools", "modernization", "leadership", "ai-cloud", "privacy"]),
+            audience: z.string().min(5),
+            supportingIntents: z.array(z.string().min(3)).min(1),
+            evidence: z
+              .array(
+                z
+                  .string()
+                  .regex(/^(?:src|data|content)\/[a-zA-Z0-9/._[\]-]+$/)
+                  .refine((path) => !path.split("/").some((part) => part === ".." || part === "."), "Evidence must stay inside public source directories")
+              )
+              .min(1),
+            cta: z.string().min(1)
+          })
+          .strict()
+      )
+      .min(1)
+      .max(500)
+  })
+  .strict();
 export type Positioning = z.infer<typeof positioningSchema>;
 
 /** One concrete intent per canonical page; a shared topic is not competing intent. */

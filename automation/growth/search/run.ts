@@ -7,6 +7,8 @@ import { tools } from "../../../src/features/tools/registry";
 import { githubSnapshotSchema } from "../../../src/features/github/github-model";
 import { analyzeSearch, searchPolicy, type PublicSearchStatus } from "./model";
 import { collectGoogleSearch } from "./google";
+import { collectContentReview } from "../../marketing/content-review";
+import positioning from "../../../marketing/search-positioning.json";
 
 export async function boundedPrivateJson(path: string): Promise<unknown | undefined> {
   let file;
@@ -139,7 +141,20 @@ async function main() {
       const directory = await clonePrivateRepo(key);
       const plans = await readContentPriorities(directory, await publicContentPaths());
       await mkdir(".search-feedback", { recursive: true });
-      await writeFile(".search-feedback/content-plan.json", JSON.stringify({ schemaVersion: 1, requiresHumanReview: true, sources: plans }, null, 2) + "\n");
+      await writeFile(
+        ".search-feedback/content-plan.json",
+        JSON.stringify(
+          {
+            schemaVersion: 1,
+            requiresHumanReview: true,
+            sources: plans,
+            editorialReview: await collectContentReview(),
+            positioning: positioning.pages.map(({ path, primaryIntent, topic, audience, cta }) => ({ path, primaryIntent, topic, audience, cta }))
+          },
+          null,
+          2
+        ) + "\n"
+      );
       console.log(
         plans.length
           ? "Private content priorities loaded for human review; no public content was edited."

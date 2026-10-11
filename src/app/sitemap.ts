@@ -33,7 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${site.url}/insights`,
-      lastModified: insights[0]?.updatedAt ?? insights[0]?.publishedAt ?? profile.modifiedAt,
+      lastModified:
+        insights
+          .map((insight) => insight.updatedAt ?? insight.publishedAt)
+          .sort()
+          .at(-1) ?? profile.modifiedAt,
       changeFrequency: "weekly",
       priority: 0.9
     },

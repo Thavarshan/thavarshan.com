@@ -40,6 +40,7 @@
     "seo:webmaster": "node --import tsx automation/seo/webmaster-audit.ts",
     "growth:search": "node --import tsx automation/growth/search/run.ts",
     "growth:health": "node --import tsx automation/growth/health/collect.ts",
+    "content:review": "node --import tsx automation/marketing/content-review.ts",
     "growth:notify": "node --import tsx automation/growth/health/notify.ts"
   },
   "dependencies": {
