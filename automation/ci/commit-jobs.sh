@@ -38,7 +38,12 @@ for attempt in {1..180}; do
       echo "::error::Job snapshot CI failed: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${run_id}. Main is unchanged."
       exit 1
     fi
-    if [ "$result" = verified ]; then verified=true; break; fi
+    if [ "$result" = verified ]; then
+      # workflow_dispatch job checks alone do not satisfy required branch checks.
+      # Require the latest commit status to attest this exact successful CI run.
+      status="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${revision}/status" --jq '.statuses | map(select(.context == "ci-gate")) | first | if .state == "success" and .creator.login == "github-actions[bot]" and .target_url == "https://github.com/'"${GITHUB_REPOSITORY}"'/actions/runs/'"${run_id}"'" then "verified" else "waiting" end')"
+      if [ "$status" = verified ]; then verified=true; break; fi
+    fi
   fi
   sleep 15
 done
