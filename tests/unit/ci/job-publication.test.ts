@@ -43,7 +43,7 @@ case "$1 $2" in
     fi
     ;;
   'api '*)
-    if [ "$MODE" = missing-status ]; then echo waiting; else echo verified; fi
+    printf '%s\\n' "$STATUS_FIXTURE" | jq -r "$4"
     ;;
   'run list') echo 123 ;;
   'run view')
@@ -71,7 +71,19 @@ esac
           MODE: mode,
           EVENTS: events,
           REMOTE: remote,
-          BASE: base
+          BASE: base,
+          STATUS_FIXTURE: JSON.stringify(
+            mode === "missing-status"
+              ? []
+              : [
+                  {
+                    context: "ci-gate",
+                    state: "success",
+                    creator: { login: mode === "wrong-author" ? "other" : "github-actions[bot]" },
+                    target_url: `https://github.com/fixture/site/actions/runs/${mode === "wrong-run" ? "456" : "123"}`
+                  }
+                ]
+          )
         }
       });
     } catch (error) {
@@ -101,11 +113,11 @@ describe("protected job publication", () => {
     expect(result.main).not.toBe(result.base);
     expect(result.events).toContain("workflow run ci.yml --ref automation/checked-jobs-42-1");
     expect(result.events).toContain(`--commit ${result.head} --event workflow_dispatch`);
-    expect(result.events).toContain(`api repos/fixture/site/commits/${result.head}/status`);
+    expect(result.events).toContain(`api repos/fixture/site/commits/${result.head}/statuses`);
     expect(result.events).toContain("workflow run ci.yml --ref main");
     expect(result.branches).not.toContain("checked-jobs");
   });
-  for (const mode of ["failed-gate", "dispatch-failure", "stale-main", "missing-status"]) {
+  for (const mode of ["failed-gate", "dispatch-failure", "stale-main", "missing-status", "wrong-author", "wrong-run"]) {
     it(`preserves the main snapshot after ${mode}`, () => {
       const result = scenario(mode);
       expect(result.failed).toBe(true);

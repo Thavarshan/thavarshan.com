@@ -29,7 +29,7 @@ function fixture() {
 set -eu
 printf "%s\\n" "$*" >> "$GH_LOG"
 case "$1 $2" in
-  'api '*) echo verified ;;
+  'api '*) printf '%s\\n' '[{"context":"ci-gate","state":"success","creator":{"login":"github-actions[bot]"},"target_url":"https://github.com/fixture/site/actions/runs/123"}]' | jq -r "$4" ;;
   'run list') echo 123 ;;
   'run view') echo verified ;;
 esac

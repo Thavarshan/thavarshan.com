@@ -151,3 +151,6 @@ The JSON contains only public job information and matching signals. CV variants,
 
 
 Changes to the job publication workflow, CI workflow or gate-status helper on main trigger a fresh job refresh for operational verification. Job-data-only commits do not retrigger this push path. The existing GITHUB_TOKEN is reused: the CI gate alone has `statuses: write`, while the publisher has `statuses: read`. No additional credentials, PR for each snapshot, bypass actor or relaxed branch rule is introduced. Failed or missing commit-status publication preserves main even if the workflow otherwise passed.
+
+
+Job refresh runs serialize in their own `jobs-refresh-publication` group so unrelated workflow queues do not drop/block publication. Concurrent main changes are still rejected by the exact-base and fast-forward safeguards. Status verification uses the individual commit-status list endpoint, which includes creator metadata; the combined-status response omits that field.
