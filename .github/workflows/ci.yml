@@ -169,6 +169,9 @@ jobs:
   ci-gate:
     if: ${{ always() }}
     needs: [quality, browser, seo, cv, lighthouse, security]
+    permissions:
+      contents: read
+      statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -179,7 +182,15 @@ jobs:
         with:
           node-version: 22
       - name: Require every mandatory job to succeed
+        id: gate
         env:
           JOB_RESULTS: ${{ toJSON(needs) }}
         # Plain Node: this gate must run even when dependency installation failed.
         run: node automation/ci/gate.mjs
+      - name: Record dispatched CI gate for branch protection
+        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          JOB_RESULTS: ${{ toJSON(needs) }}
+          GATE_RESULT: ${{ steps.gate.outcome }}
+        run: node automation/ci/gate-status.mjs

@@ -29,6 +29,7 @@ function fixture() {
 set -eu
 printf "%s\\n" "$*" >> "$GH_LOG"
 case "$1 $2" in
+  'api '*) echo verified ;;
   'run list') echo 123 ;;
   'run view') echo verified ;;
 esac
@@ -50,6 +51,7 @@ esac
         GH_LOG: log,
         GH_PENDING: pending,
         GITHUB_REF: ref,
+        GITHUB_REPOSITORY: "fixture/site",
         GITHUB_RUN_ID: "123",
         GITHUB_RUN_ATTEMPT: "1"
       }

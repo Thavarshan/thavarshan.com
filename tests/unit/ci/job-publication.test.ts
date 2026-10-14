@@ -42,6 +42,9 @@ case "$1 $2" in
       git push origin "$other:refs/heads/main"
     fi
     ;;
+  'api '*)
+    if [ "$MODE" = missing-status ]; then echo waiting; else echo verified; fi
+    ;;
   'run list') echo 123 ;;
   'run view')
     if [ "$MODE" = failed-gate ]; then echo failed; else echo verified; fi
@@ -50,6 +53,7 @@ esac
 `,
       { mode: 0o755 }
     );
+    writeFileSync(join(bin, "sleep"), "#!/usr/bin/env bash\nexit 1\n", { mode: 0o755 });
     let failed = false;
     let failureOutput = "";
     try {
@@ -97,10 +101,11 @@ describe("protected job publication", () => {
     expect(result.main).not.toBe(result.base);
     expect(result.events).toContain("workflow run ci.yml --ref automation/checked-jobs-42-1");
     expect(result.events).toContain(`--commit ${result.head} --event workflow_dispatch`);
+    expect(result.events).toContain(`api repos/fixture/site/commits/${result.head}/status`);
     expect(result.events).toContain("workflow run ci.yml --ref main");
     expect(result.branches).not.toContain("checked-jobs");
   });
-  for (const mode of ["failed-gate", "dispatch-failure", "stale-main"]) {
+  for (const mode of ["failed-gate", "dispatch-failure", "stale-main", "missing-status"]) {
     it(`preserves the main snapshot after ${mode}`, () => {
       const result = scenario(mode);
       expect(result.failed).toBe(true);

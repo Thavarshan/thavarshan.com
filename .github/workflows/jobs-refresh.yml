@@ -4,10 +4,18 @@ on:
   schedule:
     - cron: "41 2 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jobs-refresh.yml"
+      - ".github/workflows/ci.yml"
+      - "automation/ci/commit-jobs.sh"
+      - "automation/ci/gate-status.mjs"
 
 permissions:
   contents: write
   actions: write
+  statuses: read
 
 concurrency:
   group: automated-generated-content
