@@ -18,7 +18,8 @@ permissions:
   statuses: read
 
 concurrency:
-  group: automated-generated-content
+  # Serialize job publication independently; unrelated pending automation must not replace it.
+  group: jobs-refresh-publication
   cancel-in-progress: false
 
 jobs:
