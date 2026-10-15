@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T05:27:41.434Z",
+  "generatedAt": "2026-10-14T23:59:19.834Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-14T05:27:41.434Z",
+      "collectedAt": "2026-10-14T23:59:19.834Z",
       "status": "ok",
-      "recordsFound": 7,
-      "added": 1,
+      "recordsFound": 6,
+      "added": 0,
       "updated": 0,
       "closed": 1,
-      "durationMs": 19121,
+      "durationMs": 19358,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-14T05:27:41.434Z",
+      "collectedAt": "2026-10-14T23:59:19.834Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1081,
+      "durationMs": 1340,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,30 +52,30 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-14T05:27:41.434Z",
+      "collectedAt": "2026-10-14T23:59:19.834Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 490,
+      "durationMs": 419,
       "held": 0,
-      "skipped": 16,
+      "skipped": 15,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-14T05:27:41.434Z",
+      "collectedAt": "2026-10-14T23:59:19.834Z",
       "status": "ok",
-      "recordsFound": 1,
-      "added": 0,
+      "recordsFound": 2,
+      "added": 1,
       "updated": 0,
       "closed": 0,
-      "durationMs": 687,
+      "durationMs": 513,
       "held": 0,
-      "skipped": 24,
+      "skipped": 23,
       "rejected": 0,
       "error": null
     }
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -234,7 +234,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-16T06:35:27.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -683,7 +683,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-15T23:43:26.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -783,8 +783,8 @@
       "publishedAt": "2026-09-14T22:10:10.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-10-14T05:27:41.434Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-14T23:59:19.834Z",
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 78,
@@ -879,8 +879,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1701,6 +1701,83 @@
       ]
     },
     {
+      "id": "863cd36d973ec7bc7355",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/hr-plus-web-developer-fresh-graduate-welcome-wfh-policy-on-job-training",
+      "title": "Web Developer (Fresh graduate welcome, WFH policy, on-job-training)",
+      "company": "HR Plus",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "unknown",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: Hong Kong, Hong Kong SAR, Hong Kong URL: http://hrplus.tech About the Role: Are you a talented and driven Web Developer looking to join a young and energetic team? Look no further! Our client, a fast-growing firm in the exciting field of web development, is seeking a skilled Web Developer to join their dynamic team. With a focus on innovation and growth, they offer a supportive and collaborative work environment where you can thrive. Here's what you can gain from this opportunity: Hands-on experience in web development for various companies in different settings. Down-to-earth, hands-on training from experienced seniors. A chance to join a rapidly growing industry and build a successful career in web development. Benefits: Competitive salary package based on skills and experience. Young and energetic work environment that fosters collaboration and innovation. 5-Day work week for a healthy work-life balance. Work From Home (WFH) option available one day per week. Responsibilities: Develop and implement web applications and system enhancements. Take ownership of web projects from development to production. Revamp the company's directory website to improve functionality and enhance search engine optimization (SEO) practices. Increase website capabilities, such as advanced searching features and adherence to industry standards. Requirements: 1 year or more of related experience preferred, fresh graduates are also welcomed. Strong knowledge and experience in PHP and WordPress, MySQL, HTML, CSS, and JavaScript. Knowledge of server-side programming and web server configuration/administration is advantageous. Experience in developing web systems, API integration, and data handling. Familiarity with Git/Gitlab is a plus. Experience in UX design is a valuable asset. Self-motivated, independent, highly responsible, and able to work under pressure. Personal data provided by job applicants will be used strictly in accordance with the employer's personal data policies. All information received will be kept in strict confidence and only for employment-related purposes. \"We are an equal opportunity employer and all qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, disability status, protected veteran status, or any other characteristic protected by law.\" To apply: https://weworkremotely.com/remote-jobs/hr-plus-web-developer-fresh-graduate-welcome-wfh-policy-on-job-training",
+      "sourceId": "hr-plus-web-developer-fresh-graduate-welcome-wfh-policy-on-job-training",
+      "descriptionHash": "5b372a92bd5164c0bd32",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php",
+        "mysql"
+      ],
+      "contentFingerprint": "3dc2e049fde4315fa744",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-29T19:13:52.000Z",
+      "firstSeenAt": "2026-10-14T23:59:19.834Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 22,
+      "reasons": [
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 85,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "7f4b4507007e29216fbb",
       "source": "weworkremotely",
       "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
@@ -1735,7 +1812,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1815,7 +1892,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1904,7 +1981,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-14T23:59:19.834Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
