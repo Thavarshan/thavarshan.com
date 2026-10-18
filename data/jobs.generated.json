@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-17T02:48:56.369Z",
+  "generatedAt": "2026-10-18T02:50:05.032Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-17T02:48:56.369Z",
+      "collectedAt": "2026-10-18T02:50:05.032Z",
       "status": "ok",
       "recordsFound": 4,
       "added": 0,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 8665,
+      "closed": 0,
+      "durationMs": 7546,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-17T02:48:56.369Z",
+      "collectedAt": "2026-10-18T02:50:05.032Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1003,
+      "durationMs": 965,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,30 +52,30 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-17T02:48:56.369Z",
+      "collectedAt": "2026-10-18T02:50:05.032Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 436,
+      "durationMs": 384,
       "held": 0,
-      "skipped": 15,
+      "skipped": 13,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-17T02:48:56.369Z",
+      "collectedAt": "2026-10-18T02:50:05.032Z",
       "status": "ok",
-      "recordsFound": 2,
-      "added": 0,
+      "recordsFound": 3,
+      "added": 1,
       "updated": 0,
       "closed": 0,
-      "durationMs": 499,
+      "durationMs": 456,
       "held": 0,
-      "skipped": 23,
+      "skipped": 22,
       "rejected": 0,
       "error": null
     }
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -879,7 +879,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1636,6 +1636,91 @@
       "confidenceBreakdown": []
     },
     {
+      "id": "3e78c6de3b04f250d3f4",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/humane-world-for-animals-web-designer-ecrm-1",
+      "title": "Web Designer, eCRM",
+      "company": "Humane World for Animals",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "unknown",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: Humane World for Animals URL: https://humaneworld.org The general salary range for this full-time position is $80,000 – 115,000. Salary offers will be commensurate with experience, qualifications, skills, training and education. &nbsp; Humane World for Animals, a global leader in animal advocacy and protection, is seeking a Web Developer, eCRM to support Digital Marketing and other departments by providing front-end, global web development solutions for fundraising, advocacy engagement, and other strategic priorities — incorporating AI-assisted and agentic development tools to accelerate delivery while maintaining rigorous human oversight, quality, and security standards. &nbsp; Responsibilities: Collaborates regularly with Digital Marketing, Brand and Visuals, and IS teams to discuss project requirements and makes technical recommendations. Writes efficient code and maintains custom donation forms, advocacy forms, other webpages, and email templates. Incorporates best practices for user experience, accessibility, page speed optimization, and GDPR compliance implementation. Adheres to global regulations and standards, regional data compliance, and security compliance; Uses AI-assisted development tools and agentic coding assistants to accelerate coding, refactoring, debugging, testing, and documentation. Proactively identifies opportunities for AI-assisted and agent-built solutions and owns the ongoing maintenance, monitors their performance over time and updates or retires them as needed. Follows established guardrails and usage standards for AI tools and applies human-in-the-loop review to all AI-generated code and configurations, validating output for accuracy, security, accessibility, and brand/technical standards before deployment; Follows quality assurance procedures and troubleshoots technical issues affecting donation forms, advocacy forms, webpages, and email templates in Engaging Networks. Works closely with vendor partners; Works with the Information Security team to ensure that digital properties meet security standards, including managing script inventory, attestation, and other requirements for PCI compliance; Collaborates with the testing team to gather testing requirements and implement new features to run A/B and multivariate tests on forms; Creates and maintains clear and concise documentation of custom web development, support guides, and incident reports; Performs other duties as assigned.&nbsp; &nbsp; Qualifications and Requirements: Bachelor's degree in computer programming, web development, or related field, or equivalent work experience required;&nbsp; A minimum of four (4) years of experience in front-end web development and developing custom websites required; Demonstrated experience with Engaging Networks or other eCRMs; Proficient in HTML5, Sass and CSS, JavaScript, PHP, MySQL, GitHub, Engaging Networks modules, Webpack, Node, npm, core AWS services, and Mailgun. Familiar with Segment or other CDPs; Direct experience with AI coding assistants and agentic development tools such as Microsoft Copilot Studio, Claude Code, and GitHub Copilot; Knowledge of best practices for responsive, mobile-first web design, UX, accessibility, page speed optimization, browser support, and GDPR compliance; Familiar with cookie consent tools, preferably Iubenda, for configuring compliance settings; Experience building interactive data visualizations that translate campaigns into compelling stories for supporters to increase engagement; Excellent attention to detail when coding projects based on Adobe XD files or Figma; Understanding of digital marketing strategies for US and international audiences; Stays on top of AI trends in web development, including personalization and workflow automation, and their responsible application to fundraising and advocacy technology; Strong written and verbal communication skills; Must be able to multi-task in a fast-paced, collaborative environment to deliver high quality work on deadline. Familiarity with Jira and Confluence a plus; Data informed problem solver having experience with A/B testing platforms and Google Analytics; Proactive and ability to work both independently and as an effective team member in a team environment; Interest in animal protection issues preferred. &nbsp; This is a full-time remote position based in the United States.&nbsp;Candidates must be able to accomodate Eastern Time hours, as needed.&nbsp; &nbsp; Q ualified applicants will receive consideration for employment without regard to race, color, religion, sex, age, national origin, sexual orientation, gender identity, and disability, marital or parental status or protected veteran status.&nbsp; EOE &nbsp; To apply: https://weworkremotely.com/remote-jobs/humane-world-for-animals-web-designer-ecrm-1",
+      "sourceId": "humane-world-for-animals-web-designer-ecrm-1",
+      "descriptionHash": "dd0e2c4f3f3b23b63990",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php",
+        "mysql",
+        "aws"
+      ],
+      "contentFingerprint": "7cc3a53a637f32d9a88d",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-02T17:39:45.000Z",
+      "firstSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 30,
+      "reasons": [
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 85,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "01ee35100bceebb6172e",
       "source": "laravel-news",
       "sourceUrl": "https://laravel-news.com/",
@@ -1734,7 +1819,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1812,7 +1897,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1892,7 +1977,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1981,7 +2066,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-17T02:48:56.369Z",
+      "lastSeenAt": "2026-10-18T02:50:05.032Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
