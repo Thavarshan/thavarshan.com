@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-18T02:50:05.032Z",
+  "generatedAt": "2026-10-20T02:51:53.156Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-18T02:50:05.032Z",
+      "collectedAt": "2026-10-20T02:51:53.156Z",
       "status": "ok",
-      "recordsFound": 4,
-      "added": 0,
+      "recordsFound": 5,
+      "added": 1,
       "updated": 0,
       "closed": 0,
-      "durationMs": 7546,
+      "durationMs": 9625,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-18T02:50:05.032Z",
+      "collectedAt": "2026-10-20T02:51:53.156Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 965,
+      "durationMs": 1094,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-18T02:50:05.032Z",
+      "collectedAt": "2026-10-20T02:51:53.156Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 384,
+      "durationMs": 397,
       "held": 0,
-      "skipped": 13,
+      "skipped": 12,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-18T02:50:05.032Z",
+      "collectedAt": "2026-10-20T02:51:53.156Z",
       "status": "ok",
       "recordsFound": 3,
-      "added": 1,
+      "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 456,
+      "durationMs": 490,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -879,7 +879,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1115,6 +1115,113 @@
           "factor": "Eligibility is explicit in the posting",
           "points": 35
         },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "d7a2e3bc92446816bc4a",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3946",
+      "title": "Senior Laravel Developer",
+      "company": "Trybe",
+      "location": "London, UK (Hybrid)",
+      "workArrangement": "onsite-no-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "£70,000 - £90,000",
+      "salaryMin": 70000,
+      "salaryMax": 90000,
+      "salaryCurrency": "GBP",
+      "salaryPeriod": null,
+      "descriptionText": "Share this job SVGs not supported by this browser.Description📣 If Laravel is your tool of choice for building powerful backend systems, we want to meet you! We’re on the lookout for a senior backend developer to join the Trybe team to help us continue to grow the best software in the industry.🎯 Who is Trybe?Trybe is a startup that provides modern cloud-based software to clients in the hotel spa and wellness industries. We're on a mission to revolutionise their guest and back-of-house operational experiences. We’re a high performing, energetic team, looking for like-minded, talented individuals who want to embrace the start-up culture and work as a team as we continue to grow and take on new heights. We were founded in 2020 and are proud to list a number of leading spa and leisure operators across the world.Requirements⭐️ Who you areIf these points sound like you, we want to hear from you!You've got 5 or more years of commercial experience using Laravel or similar.You embrace AI to help you work more efficiently.You're passionate about technology and you love solving problems.You're a great communicator who works well in a team.You enjoy writing consistent, readable and well tested code.You're a self-starter who loves learning and working in a fast-paced environment.We process millions of bookings every year, so you'll have good experience with working with large amounts of traffic and data.You've got good experience building performant RESTful APIs.and for bonus points,You've got experience using MongoDB with Eloquent.You've used Elasticsearch to aggregate data for building reports.You're comfortable with dipping into a React frontend (TypeScript)📒 What the role involvesYou'll be working on the Trybe Laravel backend which powers the whole platform. That might be building APIs for our frontend engineers, building integrations to connect Trybe to partners, writing jobs to process large amounts of data, and building internal tooling to streamline operations.You'll write tests (we use Pest!) to ensure the highest quality code is shipped.You'll be working closely with other members of the engineering team to provide support, guidance, and sharing knowledge to unblock others.The engineering team works closely with the product team, so you'll collaborate with them to deliver groundbreaking features our clients need to go about their business.You'll work with the Product and Design team to feed your ideas into the features you and the team build.Check out our tech stack here https://stackshare.io/trybe-sofware/trybe-softwareBenefits✨Trybe BenefitsA competitive salary, £70k - £90kThe opportunity to have a big impact in a small team.A shiny new Apple MacBook Pro.Vitality private health insurance (including dental, optical and hearing).Central London office right near Holborn station, with coffee machines to fix up your morning brew, regular events and popups, cake Wednesdays and drinks on Thursdays.We have 3 fluffy colleagues, Sooty, Hugo and Pax 🐶Weekly team lunch.Quarterly socials.Hybrid working: Monday-Wednesday in the office, Thursday and Friday remote.26 days annual leave plus bank holidays.Apply for this job",
+      "sourceId": "3946",
+      "descriptionHash": "7230b0f256c037d6f478",
+      "applicationUrl": "https://apply.workable.com/trybe-2/j/C0887DA33E?utm_source=Larajobs",
+      "countries": [
+        "GB"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "backend",
+        "laravel",
+        "saas",
+        "senior",
+        "elasticsearch",
+        "react",
+        "typescript",
+        "pest"
+      ],
+      "contentFingerprint": "536b26fdbfd861e8f1da",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-19T08:47:02.000Z",
+      "firstSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 50,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Posting location (London, UK (Hybrid)) does not confirm remote-friendly hiring",
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
         {
           "factor": "Location is stated",
           "points": 20
@@ -1672,8 +1779,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-02T17:39:45.000Z",
       "firstSeenAt": "2026-10-18T02:50:05.032Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1819,7 +1926,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1897,7 +2004,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1977,7 +2084,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -2066,7 +2173,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-18T02:50:05.032Z",
+      "lastSeenAt": "2026-10-20T02:51:53.156Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
