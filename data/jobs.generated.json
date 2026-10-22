@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T02:51:53.156Z",
+  "generatedAt": "2026-10-22T02:53:31.775Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-22T02:53:31.775Z",
       "status": "ok",
-      "recordsFound": 5,
-      "added": 1,
-      "updated": 0,
-      "closed": 0,
-      "durationMs": 9625,
+      "recordsFound": 4,
+      "added": 0,
+      "updated": 1,
+      "closed": 1,
+      "durationMs": 13939,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-22T02:53:31.775Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1094,
+      "durationMs": 1172,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,7 +52,7 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-22T02:53:31.775Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
@@ -60,20 +60,20 @@
       "closed": 0,
       "durationMs": 397,
       "held": 0,
-      "skipped": 12,
+      "skipped": 10,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-22T02:53:31.775Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 490,
+      "durationMs": 492,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -840,105 +840,6 @@
       ]
     },
     {
-      "id": "d002460977756cc5f3fe",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3945",
-      "title": "Senior Fullstack PHP/Laravel Developer – Remote (Europe/Berlin Time Zone)",
-      "company": "Eventhub GmbH",
-      "location": "Remote (Europe/Berlin Time Zone)",
-      "workArrangement": "remote-worldwide",
-      "employmentType": "Full-Time",
-      "seniority": "senior",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "Back to Jobs Senior Fullstack PHP/Laravel Developer – Remote (Europe/Berlin Time Zone) Eventhub GmbH Open Company Description Eventhub develops digital solutions that transform major sporting events into exceptional experiences for fans. Our platform combines interactive maps, live data, and location-based information, helping fans follow their favorite athletes, discover what's happening next, and never miss a highlight – whether they're at the event or following from home. We create measurable value for event organizers: We enhance the fan experience, improve navigation and communication, provide valuable insights into fan behavior, and open up new opportunities for sponsors to engage with their audiences at the right place and time. Eventhub powers digital experiences at some of the world's most prestigious sporting events, including the PGA Championship, Ryder Cup, and DP World Tour. What started in golf has expanded well beyond the fairways. Today, our technology connects fans with tennis, motorsport, and winter sports – from international ATP tournaments to the legendary Nürburgring 24 Hours. Our technology stack includes Laravel, MapLibre, live data integrations, and modern APIs. As a small, agile team, we continuously develop and improve our platform. You'll take ownership early, contribute your ideas, and directly shape our products – without layers of management or lengthy approval processes. We're a remote-first team based in Germany. You can work from anywhere, with no requirement to live in or travel to Germany. What matters is that your working hours align with the Europe/Berlin time zone, allowing us to collaborate effectively as a team. Benefits - Fully remote position with flexible working hours and collaboration during Europe/Berlin business hours - Real ownership of features used at major live sporting events - Fast decisions and direct impact: Your ideas can shape our architecture instead of getting lost in a ticket backlog - Claude Code licenses provided - Opportunities to attend sporting events and experience our platform in action Role and Responsibilities What you'll do -Develop new features and improve existing functionality on our Laravel platform. -Build and maintain interactive mapping features using MapLibre. -Integrate external systems from the sports and events industry. -Improve platform reliability, performance, and maintainability, especially under the high traffic demands of live events. -Help manage our infrastructure across Cloudflare, Laravel Cloud, and Laravel Forge. What we're looking for - Several years of professional experience with PHP and Laravel - Experience with JavaScript, HTML, and CSS - Experience hosting and deploying Laravel applications, ideally using Cloudflare, Laravel Cloud, or Laravel Forge - An independent, proactive approach to work and the ability to make technical decisions with the bigger picture in mind - Regular use of AI coding tools such as Claude Code or Codex, with a strong sense of responsibility for reviewing and testing the code you ship - Excellent English communication skills - Ability to work primarily during Europe/Berlin business hours (CET/CEST) Nice to have - Experience with MapLibre, Mapbox, Leaflet, or GIS - Experience with real-time features (WebSockets, Laravel Reverb, queues) - An interest in sports and live events Interested? We'd love to hear from you! Submit your application through the form below. Apply for this Position",
-      "sourceId": "3945",
-      "descriptionHash": "d3eb767ac396af74f72f",
-      "applicationUrl": "https://hr.eventhubhq.com/jobs/2",
-      "countries": [
-        "DE"
-      ],
-      "regions": [
-        "europe",
-        "worldwide"
-      ],
-      "timezones": [
-        "CEST",
-        "CET"
-      ],
-      "relocation": "unknown",
-      "tags": [
-        "php",
-        "laravel"
-      ],
-      "contentFingerprint": "6c3a1d2a6de8e2f19fe6",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-10-13T16:05:13.000Z",
-      "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 78,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 100,
-      "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
       "id": "9359539798fba035b34d",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -1134,6 +1035,88 @@
       ]
     },
     {
+      "id": "d002460977756cc5f3fe",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3945",
+      "title": "Senior Fullstack PHP/Laravel Developer – Remote (Europe/Berlin Time Zone)",
+      "company": "Eventhub GmbH",
+      "location": "Remote (Europe/Berlin Time Zone)",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Company: Eventhub GmbH. Location: Remote (Europe/Berlin Time Zone). Type: Full-Time.",
+      "sourceId": "3945",
+      "descriptionHash": "dc10df6ce681e6d77245",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "europe"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php",
+        "laravel"
+      ],
+      "contentFingerprint": "6c3a1d2a6de8e2f19fe6",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-13T16:05:13.000Z",
+      "firstSeenAt": "2026-10-14T05:27:41.434Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 70,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 45,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "d7a2e3bc92446816bc4a",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -1173,8 +1156,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -1779,7 +1762,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-02T17:39:45.000Z",
       "firstSeenAt": "2026-10-18T02:50:05.032Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1926,7 +1909,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2004,7 +1987,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2085,8 +2068,8 @@
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-22T02:53:31.775Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2173,7 +2156,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-22T02:53:31.775Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
