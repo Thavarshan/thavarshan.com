@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T02:51:53.156Z",
+  "generatedAt": "2026-10-24T02:50:15.479Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-24T02:50:15.479Z",
       "status": "ok",
       "recordsFound": 5,
       "added": 1,
       "updated": 0,
-      "closed": 0,
-      "durationMs": 9625,
+      "closed": 1,
+      "durationMs": 9456,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-24T02:50:15.479Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1094,
+      "durationMs": 1248,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-24T02:50:15.479Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 397,
+      "durationMs": 417,
       "held": 0,
-      "skipped": 12,
+      "skipped": 9,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-24T02:50:15.479Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 490,
+      "durationMs": 470,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -879,7 +879,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1173,8 +1173,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -1779,7 +1779,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-02T17:39:45.000Z",
       "firstSeenAt": "2026-10-18T02:50:05.032Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1926,7 +1926,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2004,7 +2004,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2085,8 +2085,8 @@
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-24T02:50:15.479Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2173,7 +2173,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -2329,6 +2329,91 @@
         {
           "factor": "Posting has a substantive description",
           "points": 20
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "0c54e210495874d38f0b",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3948",
+      "title": "Staff Web Developer – Product and UX Focus",
+      "company": "OCALI",
+      "location": "Hybrid - Central Ohio",
+      "workArrangement": "onsite-no-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$80,000 - $90,000",
+      "salaryMin": 80000,
+      "salaryMax": 90000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Employment Opportunities Staff Web Developer – Product and UX Focus Menu Employment Opportunities Staff Web Developer – Product and UX Focus Current Request for Proposals Start Accessibility and Language Toolbar OCALI is recognized as a global leader in creating and connecting resources and relationships to ensure that people with disabilities live their best lives for their whole lives. OCALI is a trusted source of high-quality information, facilitation, coaching, professional development, and technical assistance to ensure families, educators, and service providers are equipped to effectively care for, support, educate, employ, or work with people with disabilities. Our in-house web development team works closely together on a wide range of multifaceted and customized projects. This role contributes to the development of high-quality, accessible, and maintainable websites and web applications for OCALI clients and staff. The Staff Web Developer is a developer-first, product-minded team member who looks beyond the immediate request to understand user needs, clarify goals, identify risks and solution options, and develop accessible, sustainable web solutions that effectively address the underlying problem. This staff member is expected to ask thoughtful questions, contribute technical insight, share knowledge with team members, and support the successful delivery of web solutions. This is a hybrid position based in Central Ohio. The employee must be available to work on-site and collaborate in person at the office as needed for meetings, planning, project coordination, team collaboration, and other job-related responsibilities. Responsibilities and Essential Functions: The following essential functions identify the primary duties required to perform this position, with or without reasonable accommodation. The list is not ranked in order of importance. Develop, test, deploy, modernize, and maintain custom websites, web applications, reusable components, templates, and integrations using established development standards and technology stack. Write clean, maintainable, accessible, and well-documented code that supports consistency, scalability, security, and long-term maintenance. Troubleshoot, test, resolve, and document bugs, accessibility issues, production problems, and other assigned technical needs. Participate in technical planning, solution design, quality assurance, code review, release activities, and improvement of existing websites and applications. Collaborate with product owners, technical project managers, developers, and stakeholders to understand goals, clarify requirements, identify user needs, surface risks or gaps, and translate approved requirements into functional, accessible web solutions. Communicate technical decisions, tradeoffs, project status, risks, and recommendations clearly to technical and non-technical audiences. Maintain accurate technical documentation for applications, components, workflows, and development standards, and share technical knowledge with team members. Manage assigned work according to identified priorities, including tracking time toward client contract work as required. Perform other specific job-related duties as directed by senior leadership. Minimum Qualifications: Associate degree or higher preferred, or equivalent professional experience. Strong front-end development skills, including HTML, CSS/Sass, JavaScript, responsive layouts, and reusable interface components. Experience with Bootstrap, jQuery, Alpine JS, Livewire, Laravel, Laravel Filament, NPM, and Laravel Mix or similar tools. Experience with Gitflow, pull requests, code review, testing, release practices, and collaborative development workflows. Working knowledge of web accessibility standards and best practices. Demonstrated ability to analyze requirements, ask clarifying questions, identify risks or gaps, provide technical recommendations, and deliver effective web solutions within established priorities and timelines. Ability to communicate technical concepts, recommendations, risks, and solutions clearly to both technical and non-technical audiences. Ability to manage web content and interface details with accuracy, consistency, and sound judgment. Ability to rapidly adapt to changing web technologies and quickly adopt new systems and approaches. Documentation of a clear criminal record in compliance with state statute. Complies with drug-free workplace rules and Board policies. Preferred Qualifications: Experience designing or maintaining component-based interfaces, design systems, or shared front-end patterns. Experience using Figma, Adobe Illustrator, or similar tools to support interface planning and collaboration. Experience with user-centered design, usability testing, product discovery, or related UX practices. What's in it for you? OCALI offers excellent benefits and retirement packages, including eligibility in SERS, as well as access to: A mission-driven, innovative, and growing team (more opportunities are coming!) Health, dental, and vision insurance Paid time off and generous holiday schedule Flexible and collaborative work environment Professional learning opportunities Salary: $80K to $90K, commensurate with experience. Reports To: Senior Web Developer Application Procedures: Please apply online at www.escco.org/careers Job ID 24131 - Staff Web Developer - Product and UX Focus For questions, please contact: nathan_ticknor@ocali.org Close",
+      "sourceId": "3948",
+      "descriptionHash": "e2cddd6f86e949faac05",
+      "applicationUrl": "https://ocali.org/ocali_employment_opportunities/Staff-Web-Developer",
+      "countries": [],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "livewire",
+        "laravel",
+        "filament"
+      ],
+      "contentFingerprint": "ed0f21bc7044e5e81e80",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-23T12:52:36.000Z",
+      "firstSeenAt": "2026-10-24T02:50:15.479Z",
+      "lastSeenAt": "2026-10-24T02:50:15.479Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 18,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Posting location (Hybrid - Central Ohio) does not confirm remote-friendly hiring",
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
         },
         {
           "factor": "Technology tags are present",
