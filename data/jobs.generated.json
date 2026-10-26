@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T02:51:53.156Z",
+  "generatedAt": "2026-10-26T02:55:50.187Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-26T02:55:50.187Z",
       "status": "ok",
       "recordsFound": 5,
-      "added": 1,
+      "added": 2,
       "updated": 0,
-      "closed": 0,
-      "durationMs": 9625,
+      "closed": 2,
+      "durationMs": 11044,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-26T02:55:50.187Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1094,
+      "durationMs": 1064,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-26T02:55:50.187Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 397,
+      "durationMs": 347,
       "held": 0,
-      "skipped": 12,
+      "skipped": 10,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-26T02:55:50.187Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 490,
+      "durationMs": 510,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -879,7 +879,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1173,8 +1173,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -1314,53 +1314,6 @@
           "points": 10
         }
       ]
-    },
-    {
-      "id": "9b4cee7c15ebad8a1412",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3919",
-      "title": "Additional Verification Required",
-      "company": null,
-      "location": null,
-      "workArrangement": "unknown",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "Additional Verification Required Your Ray ID for this request is a3f7c360ecb82a93 Enable JavaScript and cookies to continue (function(){window._cf_chl_opt = {cFPWv: 'g',cH: 'eewMxg7QxoqEPC8ZzHdmYrobed6V7htqiB6sRmU0vgQ-1790147778-1.2.1.1-0dKQk5nILfVyukrvwDn7oF5OaZtzKUfszCUsP_kLMGhXdyD51c0_.EGiz0gjmP11',cITimeS: '1790147778',cRay: 'a3f7c360ecb82a93',cTplB: '0',cTplC:1,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\",cvId: '3',cZone: 'www.indeed.com',fa:\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_f_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\",md: 'hsOKAf_w590p1zW2PT0HxFapNko7dvX0Et34D3Wrqxo-1790147778-1.2.1.1-u2BiRJzn5AzWshKxpsRkJl7uNY0pCXZ54A3ZF4lZzcV2Qlxq5.3jIB0AUxOt.._.0clIaiAy9U6BSxYEZMhDW0zwvQ.TIDs59brocEhBAx0LOuISVYOAE57suMMoYdeR7hz_eYrGBsV_kEhA97FHvbGaDyX.WAqz9COq4D_f.BvMkFRd4tZ9ieMFECSqjHPa7JsphyO4kEDDsllwjhAX14Jai8UxetULxNi.a9uLvbpLksLD6s.Sd7o6ddXkugIyCTCiH2iR2BdqMCQqKClhaHkO5i.2qpMl.vRsLQNYK16G79xOMehaazLQISLm_CZXRmG8ly_.yuWeAmcm6NxowUsUmayqilC2vDQTVfI1AxPgxwHtDIp73eKmW92jl38bvNKS49plkYfrQnO6sHUA8lD1aNIpqlZ8zM6p4HQXmTkdOXBahFemkRH7OMUmd5XmhxxhupzaGFOytvCKwZJ51g1FzGuF2TD86tJjxk8.r11_k3SHV56h1Vd2WgayJch.T0NQn7wsnOOBPX9y1cv74NMElNwQiOI7HKYtX9dJt1t1vmyyP_Sh7v3myxEnJv8Yvuenw0TBEzZbzcUjCEBzLfl9Y1YUdtZlLEM.K8HuyBoOdkBLmtCL0tvROozUyu5ZT7RJkgYoQQm0GjYYg8igqO_qkq0T8Uaza2ipVIDo.xltG6.2zxzW53w0VJwJjquhxbM3qWFGusev4.02JmDi.Q1jYwgZHX03EkOjc9FeCXvhT4hJIDxy6QJvGz2hejGM1LlpHRvdIYY4OWekjT_Sth3WLp4MgRjOdfDTnpWLtqsTvovaOmHJDT_2k6kVzqOkaHggLWPCBoupxYu0ABCjlUjVsxmSGFbB3wvDjN7dn1.v38r7DVme1dJKm8Mlet6lLhWbLNtsvDAUY.9zE1FdaZkpP9ldh.R02HyLrjIeRUsan0ejZ0FZRzyVCVT37sesE8zyodqnYTlWtu0lO2zEKBiso9pI7YJi0gF.lZl9L20Vo7a8NqmMO8Cuu84nGRmzhlX_FTkyCxeIPAh8lJjZbGBZwVql1B8APNg.aQasxyezaIQZv20pwmIgy5SWcZH7RW2mRxzdZTSx8nZXG1zBQoGnChHWUdVFiYF19HB5u0TvZ2pwSs6vn._BmfRyptkQV_gSYm624EP3WSkcohAc1w',mdrd: 'PFu9p0d7XLPIxXSKxiGdVQvw9P1IQ_cYw13YrkKT.Cs-1790147778-1.2.1.1-mtwWKT54YxQ3oUv5csekdGE.bj._3_ZKvslJzjrKmzEnQhJvIBzroG.eAkUUYAouiR7ikfOqHvnYKecfC0Ks3Fhye_H__5NXrAC831LUm8NqKhbjTqf0ceXUOzetX_5lwqVq1Z6HjWbuHkYn9q8YmkqxtmnRNE_fSFAqLfWg9J2ZaXbr_NKgS5rJivNoRPmjJ4gTxrp7jTIDGSdUNZNSNqk0K00eieiEheQk08KJ3ZY8604f0F7u0zIs5GvYZhQ4bXxmvlTM0MYUg04U3Sb1K7jraB22aBAnucWMOrUGSULfOLHErxb71a3uIU7QdQcNzZYjsZMmYYIEmiovrVQyq8DtAJWDNWFCYv07lrM3AwSuPk181EJAX5IY4YtL9__2jDCz76m8v7SMu3urwxqwb4yh6QzP8xsKJZmbzUF9Tq2GD68MFGeHd0MdSDT3nX4KFoiv5ytkeDLsRVsOlqZQ1oM.EMm4qOM6IWWk9z2OZq5hK_VQF1VgLrtvHKvin0W6cakXcRh8ZD2SIaQ.V2HY9Q.n9KhQr1uj5B71z8Dq.e2.Jya5Gysn_5FuNHSUrBBPWnTHPwawdNoUfB_TjZ94Wh4rba9j.FTxtgapMYOozqx_.h5vNNrRrUcmmGJMSaRoEDhAIzE8xte59WVn_A6ys13ZksncBf8D0brwtQfPL3auertdLFgxuFc_HYPx605ixoI5GLfC9MvFGKMUzv.susq5BimhQanu9526f0OOxQwdqxTRUJpuC4Jb91tP7yVi',};var a = document.createElement('script');a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=a3f7c360ecb82a93';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_rt_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}()); Return home → Troubleshooting Cloudflare Errors Need more help? Contact us",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "laravel"
-      ],
-      "contentFingerprint": "7572255b1e1d57081d26",
-      "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-23T07:16:00.010Z",
-      "status": "closed",
-      "closedAt": "2026-09-24T02:51:26.367Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 40,
-      "reasons": [
-        "Laravel is explicitly required"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
     },
     {
       "id": "d8a399c66d6738283d81",
@@ -1779,7 +1732,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-02T17:39:45.000Z",
       "firstSeenAt": "2026-10-18T02:50:05.032Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1926,7 +1879,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2004,7 +1957,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -2085,8 +2038,8 @@
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-26T02:55:50.187Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2137,6 +2090,104 @@
       ]
     },
     {
+      "id": "3cb06d5641a9d8820b2c",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3949",
+      "title": "Senior Full Stack Software Engineer (PHP/Laravel) - US Only",
+      "company": "Evolution Collect, LLC",
+      "location": "Remote/USA",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$160,000.00 - $180,000.00",
+      "salaryMin": 160000,
+      "salaryMax": 180000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Company: Evolution Collect, LLC. Location: Remote/USA. Type: Full-Time. Salary: $160,000.00 - $180,000.00.",
+      "sourceId": "3949",
+      "descriptionHash": "daa4ac6429e9f8b58785",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "full time",
+        "fullstack",
+        "laravel",
+        "mysql",
+        "vuejs",
+        "php"
+      ],
+      "contentFingerprint": "54b86efdc403dc2eeafd",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-25T18:21:28.000Z",
+      "firstSeenAt": "2026-10-26T02:55:50.187Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 20,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        },
+        {
+          "factor": "Hard exclusion cap (ineligible)",
+          "points": -10
+        }
+      ],
+      "confidence": 80,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "f048cf4fcce6f291c8a2",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -2174,8 +2225,8 @@
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-26T02:55:50.187Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2337,6 +2388,91 @@
       ]
     },
     {
+      "id": "0c54e210495874d38f0b",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3948",
+      "title": "Staff Web Developer – Product and UX Focus",
+      "company": "OCALI",
+      "location": "Hybrid - Central Ohio",
+      "workArrangement": "onsite-no-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$80,000 - $90,000",
+      "salaryMin": 80000,
+      "salaryMax": 90000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Employment Opportunities Staff Web Developer – Product and UX Focus Menu Employment Opportunities Staff Web Developer – Product and UX Focus Current Request for Proposals Start Accessibility and Language Toolbar OCALI is recognized as a global leader in creating and connecting resources and relationships to ensure that people with disabilities live their best lives for their whole lives. OCALI is a trusted source of high-quality information, facilitation, coaching, professional development, and technical assistance to ensure families, educators, and service providers are equipped to effectively care for, support, educate, employ, or work with people with disabilities. Our in-house web development team works closely together on a wide range of multifaceted and customized projects. This role contributes to the development of high-quality, accessible, and maintainable websites and web applications for OCALI clients and staff. The Staff Web Developer is a developer-first, product-minded team member who looks beyond the immediate request to understand user needs, clarify goals, identify risks and solution options, and develop accessible, sustainable web solutions that effectively address the underlying problem. This staff member is expected to ask thoughtful questions, contribute technical insight, share knowledge with team members, and support the successful delivery of web solutions. This is a hybrid position based in Central Ohio. The employee must be available to work on-site and collaborate in person at the office as needed for meetings, planning, project coordination, team collaboration, and other job-related responsibilities. Responsibilities and Essential Functions: The following essential functions identify the primary duties required to perform this position, with or without reasonable accommodation. The list is not ranked in order of importance. Develop, test, deploy, modernize, and maintain custom websites, web applications, reusable components, templates, and integrations using established development standards and technology stack. Write clean, maintainable, accessible, and well-documented code that supports consistency, scalability, security, and long-term maintenance. Troubleshoot, test, resolve, and document bugs, accessibility issues, production problems, and other assigned technical needs. Participate in technical planning, solution design, quality assurance, code review, release activities, and improvement of existing websites and applications. Collaborate with product owners, technical project managers, developers, and stakeholders to understand goals, clarify requirements, identify user needs, surface risks or gaps, and translate approved requirements into functional, accessible web solutions. Communicate technical decisions, tradeoffs, project status, risks, and recommendations clearly to technical and non-technical audiences. Maintain accurate technical documentation for applications, components, workflows, and development standards, and share technical knowledge with team members. Manage assigned work according to identified priorities, including tracking time toward client contract work as required. Perform other specific job-related duties as directed by senior leadership. Minimum Qualifications: Associate degree or higher preferred, or equivalent professional experience. Strong front-end development skills, including HTML, CSS/Sass, JavaScript, responsive layouts, and reusable interface components. Experience with Bootstrap, jQuery, Alpine JS, Livewire, Laravel, Laravel Filament, NPM, and Laravel Mix or similar tools. Experience with Gitflow, pull requests, code review, testing, release practices, and collaborative development workflows. Working knowledge of web accessibility standards and best practices. Demonstrated ability to analyze requirements, ask clarifying questions, identify risks or gaps, provide technical recommendations, and deliver effective web solutions within established priorities and timelines. Ability to communicate technical concepts, recommendations, risks, and solutions clearly to both technical and non-technical audiences. Ability to manage web content and interface details with accuracy, consistency, and sound judgment. Ability to rapidly adapt to changing web technologies and quickly adopt new systems and approaches. Documentation of a clear criminal record in compliance with state statute. Complies with drug-free workplace rules and Board policies. Preferred Qualifications: Experience designing or maintaining component-based interfaces, design systems, or shared front-end patterns. Experience using Figma, Adobe Illustrator, or similar tools to support interface planning and collaboration. Experience with user-centered design, usability testing, product discovery, or related UX practices. What's in it for you? OCALI offers excellent benefits and retirement packages, including eligibility in SERS, as well as access to: A mission-driven, innovative, and growing team (more opportunities are coming!) Health, dental, and vision insurance Paid time off and generous holiday schedule Flexible and collaborative work environment Professional learning opportunities Salary: $80K to $90K, commensurate with experience. Reports To: Senior Web Developer Application Procedures: Please apply online at www.escco.org/careers Job ID 24131 - Staff Web Developer - Product and UX Focus For questions, please contact: nathan_ticknor@ocali.org Close",
+      "sourceId": "3948",
+      "descriptionHash": "e2cddd6f86e949faac05",
+      "applicationUrl": "https://ocali.org/ocali_employment_opportunities/Staff-Web-Developer",
+      "countries": [],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "livewire",
+        "laravel",
+        "filament"
+      ],
+      "contentFingerprint": "ed0f21bc7044e5e81e80",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-23T12:52:36.000Z",
+      "firstSeenAt": "2026-10-26T02:55:50.187Z",
+      "lastSeenAt": "2026-10-26T02:55:50.187Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 18,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer"
+      ],
+      "concerns": [
+        "Posting location (Hybrid - Central Ohio) does not confirm remote-friendly hiring",
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "02f7a7425a2ee926ba9c",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -2417,50 +2553,6 @@
           "points": 10
         }
       ]
-    },
-    {
-      "id": "ecfbe860f6780b6680bc",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3920",
-      "title": "The sky is the limit at Gradient.",
-      "company": null,
-      "location": null,
-      "workArrangement": "unknown",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "The sky is the limit at Gradient.JOIN OUR CREWView Open PositionsThe kind of place you want to be a part of.Nearly 20 years ago, Gradient Financial Group got its start in a garage in Topeka, Kansas. Since then, the company has developed and grown by embracing the philosophy that when you work here, you’re family. ​ What does that mean? ​ It means your career — and your future — matter to us.Join Our CrewView Open Positions01.A Commitment to Culture02.Living Our Values03.Mission Driven04.Community is Key05.Benefits & PerksTotal Employees330+Locations3Companies12Years in Business20Commitment to CultureA Commitment to CultureWe’ve grown a lot during our nearly 20 years in business, and while we’ve created new companies and technologies and added plenty of new employees, one thing has remained constant — our commitment to culture. ​ We know that emphasizing an engaging and rewarding culture is one of the biggest reasons we’re successful. ​ But we also know that culture isn’t static — it has to be cultivated in a way that embraces change and improvement. ​ That’s where our employees come in. The Gradient crew sets the tone. When you work here, you’re expected to produce great work, but you’re also going to laugh a lot and enjoy your co-workers..comp-l9ir4gen { --wix-color-1: 222,222,222; --wix-color-2: 250,250,250; --wix-color-3: 136,166,186; --wix-color-4: 32,86,121; --wix-color-5: 14,39,54; --wix-color-6: 223,162,171; --wix-color-7: 190,112,124; --wix-color-8: 158,28,48; --wix-color-9: 105,19,32; --wix-color-10: 53,9,16; --wix-color-11: 248,229,183; --wix-color-12: 242,213,147; --wix-color-13: 235,180,50; --wix-color-14: 157,120,33; --wix-color-15: 78,60,17; --wix-color-16: 175,210,232; --wix-color-17: 132,178,208; --wix-color-18: 49,132,185; --wix-color-19: 33,88,123; --wix-color-20: 16,44,62; --wix-color-21: 216,216,211; --wix-color-22: 176,176,171; --wix-color-23: 137,137,128; --wix-color-24: 91,91,85; --wix-color-25: 46,46,43; --wix-color-26: 222,222,222; --wix-color-27: 14,39,54; --wix-color-28: 250,250,250; --wix-color-29: 136,166,186; --wix-color-30: 32,86,121; --wix-color-31: 158,28,48; --wix-color-32: 235,180,50; --wix-color-33: 190,112,124; --wix-color-34: 16,44,62; --wix-color-35: 14,39,54; --wix-color-36: 14,39,54; --wix-color-37: 32,86,121; --wix-color-38: 158,28,48; --wix-color-39: 158,28,48; --wix-color-40: 222,222,222; --wix-color-41: 222,222,222; --wix-color-42: 158,28,48; --wix-color-43: 158,28,48; --wix-color-44: 136,166,186; --wix-color-45: 136,166,186; --wix-color-46: 222,222,222; --wix-color-47: 222,222,222; --wix-color-48: 158,28,48; --wix-color-49: 158,28,48; --wix-color-50: 158,28,48; --wix-color-51: 158,28,48; --wix-color-52: 222,222,222; --wix-color-53: 222,222,222; --wix-color-54: 136,166,186; --wix-color-55: 136,166,186; --wix-font-Title: normal normal bold 100px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Title-style: normal; --wix-font-Title-variant: normal; --wix-font-Title-weight: bold; --wix-font-Title-size: 100px; --wix-font-Title-line-height: 1.4em; --wix-font-Title-family: oswald-medium,oswald,sans-serif; --wix-font-Title-text-decoration: none; --wix-font-Menu: normal normal normal 16px/1.4em din-next-w01-light,sans-serif; --wix-font-Menu-style: normal; --wix-font-Menu-variant: normal; --wix-font-Menu-weight: normal; --wix-font-Menu-size: 16px; --wix-font-Menu-line-height: 1.4em; --wix-font-Menu-family: din-next-w01-light,sans-serif; --wix-font-Menu-text-decoration: none; --wix-font-Page-title: normal normal normal 60px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Page-title-style: normal; --wix-font-Page-title-variant: normal; --wix-font-Page-title-weight: normal; --wix-font-Page-title-size: 60px; --wix-font-Page-title-line-height: 1.4em; --wix-font-Page-title-family: oswald-medium,oswald,sans-serif; --wix-font-Page-title-text-decoration: none; --wix-font-Heading-XL: normal normal normal 48px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-XL-style: normal; --wix-font-Heading-XL-variant: normal; --wix-font-Heading-XL-weight: normal; --wix-font-Heading-XL-size: 48px; --wix-font-Heading-XL-line-height: 1.4em; --wix-font-Heading-XL-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-XL-text-decoration: none; --wix-font-Heading-L: normal normal normal 32px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-L-style: normal; --wix-font-Heading-L-variant: normal; --wix-font-Heading-L-weight: normal; --wix-font-Heading-L-size: 32px; --wix-font-Heading-L-line-height: 1.4em; --wix-font-Heading-L-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-L-text-decoration: none; --wix-font-Heading-M: normal normal normal 32px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-M-style: normal; --wix-font-Heading-M-variant: normal; --wix-font-Heading-M-weight: normal; --wix-font-Heading-M-size: 32px; --wix-font-Heading-M-line-height: 1.4em; --wix-font-Heading-M-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-M-text-decoration: none; --wix-font-Heading-S: normal normal bold 22px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-S-style: normal; --wix-font-Heading-S-variant: normal; --wix-font-Heading-S-weight: bold; --wix-font-Heading-S-size: 22px; --wix-font-Heading-S-line-height: 1.4em; --wix-font-Heading-S-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-S-text-decoration: none; --wix-font-Body-L: normal normal bold 18px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-L-style: normal; --wix-font-Body-L-variant: normal; --wix-font-Body-L-weight: bold; --wix-font-Body-L-size: 18px; --wix-font-Body-L-line-height: 1.4em; --wix-font-Body-L-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-L-text-decoration: none; --wix-font-Body-M: normal normal bold 15px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-M-style: normal; --wix-font-Body-M-variant: normal; --wix-font-Body-M-weight: bold; --wix-font-Body-M-size: 15px; --wix-font-Body-M-line-height: 1.4em; --wix-font-Body-M-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-M-text-decoration: none; --wix-font-Body-S: normal normal bold 13px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-S-style: normal; --wix-font-Body-S-variant: normal; --wix-font-Body-S-weight: bold; --wix-font-Body-S-size: 13px; --wix-font-Body-S-line-height: 1.4em; --wix-font-Body-S-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-S-text-decoration: none; --wix-font-Body-XS: normal normal normal 12px/1.4em din-next-w01-light,sans-serif; --wix-font-Body-XS-style: normal; --wix-font-Body-XS-variant: normal; --wix-font-Body-XS-weight: normal; --wix-font-Body-XS-size: 12px; --wix-font-Body-XS-line-height: 1.4em; --wix-font-Body-XS-family: din-next-w01-light,sans-serif; --wix-font-Body-XS-text-decoration: none; --wix-font-LIGHT: normal normal normal 12px/1.4em HelveticaNeueW01-45Ligh; --wix-font-LIGHT-style: normal; --wix-font-LIGHT-variant: normal; --wix-font-LIGHT-weight: normal; --wix-font-LIGHT-size: 12px; --wix-font-LIGHT-line-height: 1.4em; --wix-font-LIGHT-family: HelveticaNeueW01-45Ligh; --wix-font-LIGHT-text-decoration: none; --wix-font-MEDIUM: normal normal normal 12px/1.4em HelveticaNeueW01-55Roma; --wix-font-MEDIUM-style: normal; --wix-font-MEDIUM-variant: normal; --wix-font-MEDIUM-weight: normal; --wix-font-MEDIUM-size: 12px; --wix-font-MEDIUM-line-height: 1.4em; --wix-font-MEDIUM-family: HelveticaNeueW01-55Roma; --wix-font-MEDIUM-text-decoration: none; --wix-font-STRONG: normal normal normal 12px/1.4em HelveticaNeueW01-65Medi; --wix-font-STRONG-style: normal; --wix-font-STRONG-variant: normal; --wix-font-STRONG-weight: normal; --wix-font-STRONG-size: 12px; --wix-font-STRONG-line-height: 1.4em; --wix-font-STRONG-family: HelveticaNeueW01-65Medi; --wix-font-STRONG-text-decoration: none; --wix-direction: ltr; --newItemsDetails: 1; --isVertical: 0; --gallerySize: 80; --te-padding-slider: 30; --newItemsLocation: 0; --scrollDirection: 1; --collageDensity: 80; --loveCounter: 0; --galleryLayout: 0; --galleryVerticalAlign: 1; --arrowsVerticalPosition: 0; --galleryHorizontalAlign: 1; --designedPresetId: -1; --imageMargin: 5; --textFont: normal normal bold 20px/1.4em oswald-extralight,oswald,sans-serif; --itemIconColor: 222,222,222; --itemIconColor-rgb: 222,222,222; --itemIconColor-opacity: 1; --titleColorExpand: 14,39,54; --titleColorExpand-rgb: 14,39,54; --titleColorExpand-opacity: 1; --loadMoreButtonFontColor: 14,39,54; --loadMoreButtonFontColor-rgb: 14,39,54; --loadMoreButtonFontColor-opacity: 1; --itemDescriptionFontColor: 222,222,222; --itemDescriptionFontColor-rgb: 222,222,222; --itemDescriptionFontColor-opacity: 1; --arrowsContainerBackgroundColor: 14,39,54,0.6; --arrowsContainerBackgroundColor-rgb: 14,39,54; --arrowsContainerBackgroundColor-opacity: 0.6; --customButtonBorderColor: 222,222,222; --customButtonBorderColor-rgb: 222,222,222; --customButtonBorderColor-opacity: 1; --textBoxFillColor: 250,250,250; --textBoxFillColor-rgb: 250,250,250; --textBoxFillColor-opacity: 1; --itemOpacity: 32,86,121,0.6; --itemOpacity-rgb: 32,86,121; --itemOpacity-opacity: 0.6; --loadMoreButtonColor: 222,222,222; --loadMoreButtonColor-rgb: 222,222,222; --loadMoreButtonColor-opacity: 1; --loadMoreButtonBorderColor: 14,39,54; --loadMoreButtonBorderColor-rgb: 14,39,54; --loadMoreButtonBorderColor-opacity: 1; --customButtonFontColor: 222,222,222; --customButtonFontColor-rgb: 222,222,222; --customButtonFontColor-opacity: 1; --imageLoadingColor: 250,250,250; --imageLoadingColor-rgb: 250,250,250; --imageLoadingColor-opacity: 1; --externalCustomButtonBorderColor: 14,39,54; --externalCustomButtonBorderColor-rgb: 14,39,54; --externalCustomButtonBorderColor-opacity: 1; --itemShadowOpacityAndColor: 14,39,54,0.2; --itemShadowOpacityAndColor-rgb: 14,39,54; --itemShadowOpacityAndColor-opacity: 0.2; --externalCustomButtonColor: 158,28,48,0; --externalCustomButtonColor-rgb: 158,28,48; --externalCustomButtonColor-opacity: 0; --itemFontColorSlideshow: 14,39,54; --itemFontColorSlideshow-rgb: 14,39,54; --itemFontColorSlideshow-opacity: 1; --itemFontColor: 222,222,222; --itemFontColor-rgb: 222,222,222; --itemFontColor-opacity: 1; --arrowsColor: 222,222,222; --arrowsColor-rgb: 222,222,222; --arrowsColor-opacity: 1; --itemBorderColor: 14,39,54; --itemBorderColor-rgb: 14,39,54; --itemBorderColor-opacity: 1; --itemIconColorSlideshow: 14,39,54; --itemIconColorSlideshow-rgb: 14,39,54; --itemIconColorSlideshow-opacity: 1; --foreColor: 222,222,222; --foreColor-rgb: 222,222,222; --foreColor-opacity: 1; --bgColorExpand: 222,222,222; --bgColorExpand-rgb: 222,222,222; --bgColorExpand-opacity: 1; --textBoxBorderColor: 14,39,54; --textBoxBorderColor-rgb: 14,39,54; --textBoxBorderColor-opacity: 1; --customButtonFontColorForHover: 14,39,54; --customButtonFontColorForHover-rgb: 14,39,54; --customButtonFontColorForHover-opacity: 1; --customButtonColor: 222,222,222,0; --customButtonColor-rgb: 222,222,222; --customButtonColor-opacity: 0; --descriptionColorExpand: 14,39,54; --descriptionColorExpand-rgb: 14,39,54; --descriptionColorExpand-opacity: 1; --actionsColorExpand: 14,39,54; --actionsColorExpand-rgb: 14,39,54; --actionsColorExpand-opacity: 1; --oneColorAnimationColor: 222,222,222; --oneColorAnimationColor-rgb: 222,222,222; --oneColorAnimationColor-opacity: 1; --backColor: 250,250,250; --backColor-rgb: 250,250,250; --backColor-opacity: 1; --itemDescriptionFontColorSlideshow: 14,39,54; --itemDescriptionFontColorSlideshow-rgb: 14,39,54; --itemDescriptionFontColorSlideshow-opacity: 1; --te-background-color-picker: 190,112,124; --te-background-color-picker-rgb: 190,112,124; --te-background-color-picker-opacity: 1; --overlayGradientColor2: 222,222,222; --overlayGradientColor2-rgb: 222,222,222; --overlayGradientColor2-opacity: 1; --overlayGradientColor1: 222,222,222; --overlayGradientColor1-rgb: 222,222,222; --overlayGradientColor1-opacity: 1; --backgroundColor: 136,166,186; --backgroundColor-rgb: 136,166,186; --backgroundColor-opacity: 1; --textColor:",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [],
-      "contentFingerprint": "ea96ad1f7835a8836337",
-      "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-24T02:51:26.367Z",
-      "lastSeenAt": "2026-09-24T02:51:26.367Z",
-      "status": "closed",
-      "closedAt": "2026-09-25T02:48:56.608Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 10,
-      "reasons": [],
-      "concerns": [
-        "Laravel is not explicitly mentioned",
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
     }
   ]
 }
