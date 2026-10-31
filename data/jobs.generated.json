@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T02:51:53.156Z",
+  "generatedAt": "2026-10-31T02:43:32.701Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-31T02:43:32.701Z",
       "status": "ok",
       "recordsFound": 5,
-      "added": 1,
+      "added": 2,
       "updated": 0,
-      "closed": 0,
-      "durationMs": 9625,
+      "closed": 2,
+      "durationMs": 13395,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-31T02:43:32.701Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1094,
+      "durationMs": 1256,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,13 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-31T02:43:32.701Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 397,
+      "durationMs": 395,
       "held": 0,
       "skipped": 12,
       "rejected": 0,
@@ -67,15 +67,15 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-10-20T02:51:53.156Z",
+      "collectedAt": "2026-10-31T02:43:32.701Z",
       "status": "ok",
-      "recordsFound": 3,
-      "added": 0,
+      "recordsFound": 4,
+      "added": 4,
       "updated": 0,
-      "closed": 0,
-      "durationMs": 490,
+      "closed": 3,
+      "durationMs": 562,
       "held": 0,
-      "skipped": 22,
+      "skipped": 21,
       "rejected": 0,
       "error": null
     }
@@ -121,7 +121,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -295,62 +295,6 @@
           "points": 10
         }
       ]
-    },
-    {
-      "id": "77ab33c3ec086f83dd9f",
-      "source": "weworkremotely",
-      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-6",
-      "title": "Senior React Full-stack Developer",
-      "company": "Lemon.io",
-      "location": "Anywhere in the World",
-      "workArrangement": "remote-worldwide",
-      "employmentType": null,
-      "seniority": "senior",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 75 countries. We have several open positions for Full-Stack React.js Developers - please see the details below. We also have some backend positions; the full list is included below as well. Requirements for the Senior React & Python Position: 4+ years of software development experience. Commercial experience: React.js 3+ years & Python 3+ years OR React.js 2+ years & Python 5+ years OR React.js 5+ years & Python 2+ years Experience with AWS, GCP, or Azure is required. Requirements for the Senior Node & React Position: 5+ years of software development experience Commercial experience: React.js: 3+ years, Node.js: 5+ years, and Next.js: 2+ years OR React.js: 5+ years, Node.js: 3+ years, and Next.js: 2+ years Expertise in AWS, TypeScript and AI-assisted coding is a must. Requirements for the Senior Ruby & React Position: 5+ years of software development experience. Commercial experience: React.js 2+ years & Ruby/Ruby on Rails 5+ years OR React.js 5+ years & Ruby/Ruby on Rails 2+ years Experience with AWS, GCP, or Azure is required. Other requirements: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Golang, Golang, React & Java, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-6",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "react",
-        "aws",
-        "next.js",
-        "typescript",
-        "php",
-        "vue",
-        "nuxt",
-        "laravel"
-      ],
-      "contentFingerprint": "2940c47ae6eb40a29324",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-08-27T14:16:49.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-26T02:48:02.222Z",
-      "status": "closed",
-      "closedAt": "2026-09-27T02:53:20.096Z",
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 90,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
     },
     {
       "id": "71f61c9e8f2f2aa9583d",
@@ -879,7 +823,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1173,8 +1117,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "new",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -1239,128 +1183,6 @@
           "points": 10
         }
       ]
-    },
-    {
-      "id": "27615050f0b05ce90783",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3924",
-      "title": "Laravel Developer (TALL)",
-      "company": "CRAE Group",
-      "location": null,
-      "workArrangement": "unknown",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "All open rolesREMOTEFULL-TIMEStackTALL (Tailwind, Alpine, Laravel, Livewire)Laravel Developer — Backend-FocusedWe're hiring our next engineering unicorn. Not the mythical “knows every framework ever created” kind — a Laravel developer who genuinely understands the ecosystem, knows what happens beyond the controller, and isn't afraid to get their hands dirty when things get complicated. You'll build and expand our gaming, network, marketing and CRM platforms: interconnected systems with real users, real transactions, high-frequency queues and real-time events. In other words: this isn't a CRUD factory. And the stronger the unicorn, the better the package.Annual salaryUp to€120k+ Highly competitive bonus packageSalary by levelMedior€60k–90kSenior€90k–120k🦄Unicorn€120k+, no ceiling€60k€90k€120k+Where you land depends on your level, your experience and the impact you bring. Unicorns don’t have a ceiling.Apply nowLaravel sits at the heart of what we build — the interesting part is everything happening around it: Redis, high-volume queues, workers, event-driven workflows, WebSockets and multiple interconnected applications running on Laravel Cloud, DigitalOcean and AWS.The role is backend-first, but we work heavily with the TALL stack — Tailwind, Alpine, Laravel and Livewire — so range across the stack is a real advantage. You won't be isolated inside a controller and a Blade template: you'll follow the full journey from request to database, queue, Redis, worker, WebSocket, external service and production monitoring. We automate the repetitive — GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry — and AI is already part of how we work here, not a strategy deck gathering dust. We want engineers who use it to move faster and dig deeper, not to replace their thinking.What you'll ownBuild and maintain Laravel features across several interconnected applications — CRM, gaming, network and marketingDesign and maintain APIs used by our own applications and external systemsWork with complex business logic spanning models, services, jobs, events and integrationsBuild real-time functionality on high-frequency queues, Redis, events and WebSocketsInvestigate production issues wherever they hide — the code, Redis, a worker, or five million jobs deciding today is their dayUnderstand the existing architecture before changing it, and think about how your changes behave when traffic increasesWork in two-week sprints through automated checks, AI-assisted review, colleague review and QAWhat you bringStrong professional experience with Laravel and modern PHPExcellent understanding of Eloquent, relational databases and SQLExperience designing and maintaining APIs and complex backend systemsStrong understanding of queues, jobs, events, caching and RedisExperience with asynchronous, event-driven application architectureAbility to investigate unfamiliar code and reason about existing behaviour before changing itGood understanding of application performance and scalabilityClear communication, strong ownership and comfort in an iterative review and QA processTALL stack experience (Livewire, Alpine.js, Tailwind CSS) is a major advantageRemunerationNo fixed bracketsGreat engineers get paid like great engineers.We don't believe in forcing every developer into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, your experience and your technical impact.Bring deep Laravel knowledge, strong architectural thinking, production experience and the ability to solve the problems others avoid — we're prepared to recognise exactly that. This is a seat we trust with important systems, and compensation reflects that level of trust and responsibility.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysIntro conversationA first conversation to get to know each other — your background, the role, and whether there's a real fit on both sides.02Within 1 weekTechnical testA practical exercise built on real Laravel problems — how you think, how you structure your code. No algorithm gymnastics, and paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with. Walk through your test, talk stack and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush.Application · Laravel Developer — Backend-FocusedName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub — your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV — drag & drop or clickPDF or Word · max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
-      "sourceId": "3924",
-      "descriptionHash": "4c937b7409f907ff1d8e",
-      "applicationUrl": "https://craegroup.com/careers/laravel-backend-developer?utm_source=larajobs&utm_medium=internal&utm_campaign=be_hiring&trk=MdWlgx1uHyaNC0hNn1vQYvNO&cid=fe078955-2f0f-404c-9dab-b7e73ef22c49",
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "laravel",
-        "tailwind",
-        "livewire",
-        "redis",
-        "aws",
-        "alpine.js"
-      ],
-      "contentFingerprint": "8a02722831bfde626317",
-      "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T11:06:53.709Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T19:22:18.840Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 48,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Cloud experience is relevant"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        }
-      ],
-      "confidence": 30,
-      "confidenceBreakdown": [
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "9b4cee7c15ebad8a1412",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3919",
-      "title": "Additional Verification Required",
-      "company": null,
-      "location": null,
-      "workArrangement": "unknown",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "Additional Verification Required Your Ray ID for this request is a3f7c360ecb82a93 Enable JavaScript and cookies to continue (function(){window._cf_chl_opt = {cFPWv: 'g',cH: 'eewMxg7QxoqEPC8ZzHdmYrobed6V7htqiB6sRmU0vgQ-1790147778-1.2.1.1-0dKQk5nILfVyukrvwDn7oF5OaZtzKUfszCUsP_kLMGhXdyD51c0_.EGiz0gjmP11',cITimeS: '1790147778',cRay: 'a3f7c360ecb82a93',cTplB: '0',cTplC:1,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\",cvId: '3',cZone: 'www.indeed.com',fa:\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_f_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\",md: 'hsOKAf_w590p1zW2PT0HxFapNko7dvX0Et34D3Wrqxo-1790147778-1.2.1.1-u2BiRJzn5AzWshKxpsRkJl7uNY0pCXZ54A3ZF4lZzcV2Qlxq5.3jIB0AUxOt.._.0clIaiAy9U6BSxYEZMhDW0zwvQ.TIDs59brocEhBAx0LOuISVYOAE57suMMoYdeR7hz_eYrGBsV_kEhA97FHvbGaDyX.WAqz9COq4D_f.BvMkFRd4tZ9ieMFECSqjHPa7JsphyO4kEDDsllwjhAX14Jai8UxetULxNi.a9uLvbpLksLD6s.Sd7o6ddXkugIyCTCiH2iR2BdqMCQqKClhaHkO5i.2qpMl.vRsLQNYK16G79xOMehaazLQISLm_CZXRmG8ly_.yuWeAmcm6NxowUsUmayqilC2vDQTVfI1AxPgxwHtDIp73eKmW92jl38bvNKS49plkYfrQnO6sHUA8lD1aNIpqlZ8zM6p4HQXmTkdOXBahFemkRH7OMUmd5XmhxxhupzaGFOytvCKwZJ51g1FzGuF2TD86tJjxk8.r11_k3SHV56h1Vd2WgayJch.T0NQn7wsnOOBPX9y1cv74NMElNwQiOI7HKYtX9dJt1t1vmyyP_Sh7v3myxEnJv8Yvuenw0TBEzZbzcUjCEBzLfl9Y1YUdtZlLEM.K8HuyBoOdkBLmtCL0tvROozUyu5ZT7RJkgYoQQm0GjYYg8igqO_qkq0T8Uaza2ipVIDo.xltG6.2zxzW53w0VJwJjquhxbM3qWFGusev4.02JmDi.Q1jYwgZHX03EkOjc9FeCXvhT4hJIDxy6QJvGz2hejGM1LlpHRvdIYY4OWekjT_Sth3WLp4MgRjOdfDTnpWLtqsTvovaOmHJDT_2k6kVzqOkaHggLWPCBoupxYu0ABCjlUjVsxmSGFbB3wvDjN7dn1.v38r7DVme1dJKm8Mlet6lLhWbLNtsvDAUY.9zE1FdaZkpP9ldh.R02HyLrjIeRUsan0ejZ0FZRzyVCVT37sesE8zyodqnYTlWtu0lO2zEKBiso9pI7YJi0gF.lZl9L20Vo7a8NqmMO8Cuu84nGRmzhlX_FTkyCxeIPAh8lJjZbGBZwVql1B8APNg.aQasxyezaIQZv20pwmIgy5SWcZH7RW2mRxzdZTSx8nZXG1zBQoGnChHWUdVFiYF19HB5u0TvZ2pwSs6vn._BmfRyptkQV_gSYm624EP3WSkcohAc1w',mdrd: 'PFu9p0d7XLPIxXSKxiGdVQvw9P1IQ_cYw13YrkKT.Cs-1790147778-1.2.1.1-mtwWKT54YxQ3oUv5csekdGE.bj._3_ZKvslJzjrKmzEnQhJvIBzroG.eAkUUYAouiR7ikfOqHvnYKecfC0Ks3Fhye_H__5NXrAC831LUm8NqKhbjTqf0ceXUOzetX_5lwqVq1Z6HjWbuHkYn9q8YmkqxtmnRNE_fSFAqLfWg9J2ZaXbr_NKgS5rJivNoRPmjJ4gTxrp7jTIDGSdUNZNSNqk0K00eieiEheQk08KJ3ZY8604f0F7u0zIs5GvYZhQ4bXxmvlTM0MYUg04U3Sb1K7jraB22aBAnucWMOrUGSULfOLHErxb71a3uIU7QdQcNzZYjsZMmYYIEmiovrVQyq8DtAJWDNWFCYv07lrM3AwSuPk181EJAX5IY4YtL9__2jDCz76m8v7SMu3urwxqwb4yh6QzP8xsKJZmbzUF9Tq2GD68MFGeHd0MdSDT3nX4KFoiv5ytkeDLsRVsOlqZQ1oM.EMm4qOM6IWWk9z2OZq5hK_VQF1VgLrtvHKvin0W6cakXcRh8ZD2SIaQ.V2HY9Q.n9KhQr1uj5B71z8Dq.e2.Jya5Gysn_5FuNHSUrBBPWnTHPwawdNoUfB_TjZ94Wh4rba9j.FTxtgapMYOozqx_.h5vNNrRrUcmmGJMSaRoEDhAIzE8xte59WVn_A6ys13ZksncBf8D0brwtQfPL3auertdLFgxuFc_HYPx605ixoI5GLfC9MvFGKMUzv.susq5BimhQanu9526f0OOxQwdqxTRUJpuC4Jb91tP7yVi',};var a = document.createElement('script');a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=a3f7c360ecb82a93';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,\"/job/clickhouse-and-laravel-database-expert-28355853a18e11f1?__cf_chl_rt_tk=F4hJYKjINmenwMbh1aBJG_0p_MSd75CHGqt65uAdd.I-1790147778-1.0.1.1-Wm3._SkpdxXPWC0UuU2iwGUOvhYTzco6xQ0oArgY3bA\"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}()); Return home → Troubleshooting Cloudflare Errors Need more help? Contact us",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "laravel"
-      ],
-      "contentFingerprint": "7572255b1e1d57081d26",
-      "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-23T07:16:00.010Z",
-      "status": "closed",
-      "closedAt": "2026-09-24T02:51:26.367Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 40,
-      "reasons": [
-        "Laravel is explicitly required"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
     },
     {
       "id": "d8a399c66d6738283d81",
@@ -1448,6 +1270,111 @@
         {
           "factor": "Relevance cap (not a Laravel/PHP role)",
           "points": -55
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "f7f5ec440343ae913988",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2",
+      "title": "Senior .NET Full-stack Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 50 countries. Currently, we have multiple requests, so please check the requirements. Requirements - .NET & React: 4+ years of commercial experience in software development 3+ years of commercial experience with .NET 3+ years of commercial experience with React Expertise in TypeScript is required Requirements - Angular & .NET: 5+ years of commercial experience in software development 3+ years of commercial experience with .NET and 5+ with Angular/Vue OR 5+ years of commercial experience with .NET and 3+ with Angular/Vue Expertise in TypeScript is required Requirements - C# & .NET: 5+ years of commercial experience in software development 5+ years of commercial experience with .NET and 5+ with C# Expertise in .NET Core is required You should also have: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, Enterprise Software Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, , Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). &nbsp; To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2",
+      "sourceId": "lemon-io-senior-net-full-stack-developer-2",
+      "descriptionHash": "330c5322b4eda57d14ab",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "latam",
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "react",
+        "typescript",
+        "vue",
+        "php",
+        "next.js",
+        "nuxt",
+        "laravel"
+      ],
+      "contentFingerprint": "ea70a15d7034bd61f8c2",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-08T11:41:36.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -47
         }
       ],
       "confidence": 100,
@@ -1581,6 +1508,228 @@
       ]
     },
     {
+      "id": "86e3d18b147b40602b2f",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-angular-full-stack-developer",
+      "title": "Senior Angular Full-stack Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 75 countries. We have several senior positions available. We are looking for Senior Software Engineers with strong knowledge of the following stacks: Angular & PHP, Angular & .NET & TypeScript, Angular & Node, Angular & TypeScript, React & PHP, Vue & PHP, Symfony & any front-end, and PHP & Laravel. Requirements for Senior Angular & PHP Developer experience: 4+ years of software development experience 3+ years of experience with Angular 3+ years of commercial experience with PHP 3+ years of commercial experience with Laravel Requirements for Senior Angular & .NET Developer experience: 5+ years of software development experience 3+ years of experience with Angular and 5+ years of commercial experience with .NET OR 5+ years of experience with Angular and 3+ years of commercial experience with .NET Practical experience with Typescript is required Requirements for Senior Angular & Node.js Developer experience: 5+ years of software development experience 3+ years of experience with Angular and 3+ years of commercial experience with Node.js Practical experience with Typescript is required Experience with AWS/GCP/Azure Other requirements: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Data Annotation, Angular, Python & Node, React & Node.js, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-angular-full-stack-developer",
+      "sourceId": "lemon-io-senior-angular-full-stack-developer",
+      "descriptionHash": "2bd364ea26af50ba5be5",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "latam",
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php",
+        "typescript",
+        "react",
+        "vue",
+        "laravel",
+        "aws",
+        "next.js",
+        "nuxt"
+      ],
+      "contentFingerprint": "3d02aee472ff40af1fd9",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-06T13:25:57.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -55
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "2c4cf9a87a81fd12e2e5",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
+      "title": "Senior React Full-stack Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Are you a talented Senior Developer looking for a remote job that lets you show your skills and get decent compensation? Look no further than Lemon.io — the marketplace that connects you with hand-picked startups in the US and Europe. What we offer: The rate depends on your seniority level, skills and experience. We've already paid out over $11M to our engineers. No more hunting for clients or negotiating rates — let us handle the business side of things so you can focus on what you do best. We'll manually find the best project for you according to your skills and preferences. Choose a schedule that works best for you. It’s possible to communicate async or minimally overlap within team working hours. We respect your seniority so you can expect no micromanagement or screen trackers. Communicate directly with the clients. Most of them have technical backgrounds. Sounds good, yeah? We will support you from the time you submit the application throughout all cooperation stages. Most of our projects involve working in a fast-paced startup environment. We hope you like it as much as we do. Through our community, we will connect you with the best developers from more than 75 countries. Requirements for the Senior React & Python Position: 4+ years of software development experience. Commercial experience: React.js 3+ years & Python 3+ years OR React.js 2+ years & Python 5+ years OR React.js 5+ years & Python 2+ years Experience with AWS, GCP, or Azure is required. Requirements for the Senior Node & React Position: 5+ years of software development experience Commercial experience: React.js: 3+ years, Node.js: 5+ years, and Next.js: 2+ years OR React.js: 5+ years, Node.js: 3+ years, and Next.js: 2+ years Expertise in TypeScript, AWS and AI-assisted coding is a must. Requirements for the Senior Ruby & React Position: 5+ years of software development experience Commercial experience: React.js: 2+ years, Ruby: 5+ years OR React.js: 5+ years, Ruby: 2+ years Experience with AWS, GCP, or Azure is required. Other requirements: Strong technical skills: as a Senior Developer, you are expected to be able to create projects from scratch and have a deep understanding of application architecture. Clear and effective communication in English — advanced ability to discuss business tasks, justify decisions, and communicate issues. Good self-presentation is also essential for upcoming client calls. Strong self-organizational skills — ability to work full-time remotely with no supervision. Reliability — we want to trust you and expect that you won’t let us and the client down. Adaptability and Flexibility — the ability to onboard the project promptly after accepting it and start delivering results quickly. Sounds good for you? Apply now and join the Lemon.io community! NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, Enterprise Software Engineering, React & Golang, Golang, React & Java, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana), Angular & Node.js, Vue & .NET, Python & Vue, DevOps, MLOps, Data Science, Angular & PHP, Angular & .NET, Symfony & React, Symfony & Vue, Symfony & Angular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Angular, Python & Node, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). &nbsp; To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
+      "sourceId": "lemon-io-senior-react-full-stack-developer-7",
+      "descriptionHash": "57339ddcbc0ea6a87818",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "latam",
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "react",
+        "aws",
+        "next.js",
+        "typescript",
+        "php",
+        "vue",
+        "nuxt",
+        "laravel"
+      ],
+      "contentFingerprint": "2940c47ae6eb40a29324",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-09T13:49:21.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -55
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "f4fc60edbab3224611ce",
       "source": "weworkremotely",
       "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
@@ -1686,63 +1835,6 @@
       ]
     },
     {
-      "id": "2771a2d6210fb51ceec1",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3938",
-      "title": "Full-Stack Developer (Laravel + Vue/Inertia) - UK Only",
-      "company": "Greenwood Capital",
-      "location": "Remote/Hybrid, UK Only",
-      "workArrangement": "remote-regional-restricted",
-      "employmentType": "Full-Time",
-      "seniority": "unknown",
-      "salary": "£60k",
-      "salaryMin": 60000,
-      "salaryMax": 60000,
-      "salaryCurrency": "GBP",
-      "salaryPeriod": null,
-      "descriptionText": "Full-Stack Developer (Laravel + Vue/Inertia) Location: Remote/Hybrid, UK Only Type: Full-Time Start Date: Immediate Greenwood Capital is looking for a Full-Stack Developer to join its small but growing development team, and help build & maintain end-to-end features in our Laravel + Vue/Inertia codebase. You’ll own work from schema and API through UI and tests, on a platform used daily for workflows, third-party integrations, microservices and reporting. You’ll also help design and ship AI-backed backend capabilities that support real operational tasks — grounded in deal data, built for production and ready to scale. Please note this is a UK-only role and we will not consider or respond to applications outside of the UK or direct from agencies. What You’ll Do Build and maintain features across the full application tech stack Integrate and extend third-party API services and integrations Evolve the codebase into a multi-tenant SaaS platform Extend the use of background jobs and real-time data processing Ship product-facing AI that automates workflows across the lending pipeline Write feature/unit tests to keep changes reviewable and production-safe Uphold existing conventions and set new standards for product integrity What We’re After Commercial experience using the Laravel framework and ecosystem Solid project examples using Vue 3 and Inertia.js (TypeScript preferred) Strong knowledge of microservices, queues, external APIs and webhooks Practical AI product work — not just prompt tinkering Confident owning features from schema/API through UI and tests Familiarity with Laravel Cloud/Nightwatch Prior experience in fintech or regulated financial services The ability to work independently with high individual ownership What We Offer Full-Time Remote/Hybrid Role This is a full-time UK-based role with flexibility to work remotely, hybrid, or from the office in Manchester, UK, depending on your preference. Competitive Salary We are offering a salary of £60k p/a with room to grow as the platform evolves. Holiday Entitlement You’ll start with 28 days’ annual leave (including bank holidays) per annum incrementing by one day for each full year of service, up to a maximum of 30 days. Benefits Private healthcare after successful completion of a 3-month probationary period. Direct Impact This isn’t a maintenance-only role — you’ll have genuine influence in helping define standards, challenge assumptions and shape the product as it scales. How to apply Send your CV, example GitHub code and a feature or workflow you’ve been proud to have shipped to dave@greenwoodcapital.co.uk. Apply For This Role",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "api",
-        "fullstack",
-        "laravel",
-        "tailwindcss",
-        "vuejs",
-        "vue",
-        "inertia",
-        "typescript"
-      ],
-      "contentFingerprint": "4aa9962e877a3b47e8eb",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-22T09:37:48.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-29T02:52:20.925Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T02:54:41.036Z",
-      "eligibility": "ineligible",
-      "sponsorship": "unknown",
-      "score": 32,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Frontend stack matches React/Vue/Inertia",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Restricted to candidates with UK work authorization"
-      ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
-    },
-    {
       "id": "3e78c6de3b04f250d3f4",
       "source": "weworkremotely",
       "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
@@ -1780,8 +1872,8 @@
       "publishedAt": "2026-10-02T17:39:45.000Z",
       "firstSeenAt": "2026-10-18T02:50:05.032Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-31T02:43:32.701Z",
       "eligibility": "eligible",
       "sponsorship": "unknown",
       "score": 30,
@@ -1893,6 +1985,84 @@
       ]
     },
     {
+      "id": "95d10d769ba4b0cf9c61",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/toptal-full-stack-e-commerce-developer-with-sage-x3-experience",
+      "title": "Full-Stack E-commerce Developer with Sage X3 Experience",
+      "company": "Toptal",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "unknown",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: Summary We are seeking a Full-Stack Developer to build or customize a dealer e-commerce platform connected to an existing Sage X3 ERP environment. The role is focused on selecting the right e-commerce approach, implementing the portal, and supporting dealer-facing workflows in a manufacturing context. General information This engagement centers on building an e-commerce portal for dealers on top of an existing Sage X3 ERP setup. The client is open to the e-commerce technology choice and is looking for an experienced developer who can assess the current environment, recommend an appropriate platform approach, and deliver the required solution. The work is fully remote and involves integrating the portal with Sage X3 while supporting the underlying commerce and data flows required for dealer operations. Tasks and Deliverables Assess the current Sage X3 environment and recommend the e-commerce platform approach. Build or customize a dealer e-commerce portal on top of the existing ERP. Integrate the platform with Sage X3 using SOAP and GraphQL APIs. Develop full-stack functionality using the selected commerce stack and supporting technologies. Implement dealer-facing workflows, data exchange, and platform customizations required for launch. Required experience Strong hands-on experience with Sage X3 integration. Proven full-stack development experience with Python and JavaScript. Experience with Node.js, PHP, MySQL, and CSS. Experience working with REST, SOAP and GraphQL APIs. Nice to have: Manufacturing industry experience. To apply: https://weworkremotely.com/remote-jobs/toptal-full-stack-e-commerce-developer-with-sage-x3-experience",
+      "sourceId": "toptal-full-stack-e-commerce-developer-with-sage-x3-experience",
+      "descriptionHash": "8f5587b2bc0d6b1941f1",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "graphql",
+        "php",
+        "mysql"
+      ],
+      "contentFingerprint": "0bb44263bf55d8fbc13e",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-12T13:52:56.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 22,
+      "reasons": [
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 85,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "863cd36d973ec7bc7355",
       "source": "weworkremotely",
       "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
@@ -1927,8 +2097,8 @@
       "publishedAt": "2026-09-29T19:13:52.000Z",
       "firstSeenAt": "2026-10-14T23:59:19.834Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-31T02:43:32.701Z",
       "eligibility": "eligible",
       "sponsorship": "unknown",
       "score": 22,
@@ -2005,8 +2175,8 @@
       "publishedAt": "2026-09-28T22:12:45.000Z",
       "firstSeenAt": "2026-10-10T02:56:21.343Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-31T02:43:32.701Z",
       "eligibility": "eligible",
       "sponsorship": "unknown",
       "score": 22,
@@ -2085,8 +2255,8 @@
       "publishedAt": "2026-09-21T20:01:47.000Z",
       "firstSeenAt": "2026-09-23T07:16:00.010Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-31T02:43:32.701Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2137,6 +2307,104 @@
       ]
     },
     {
+      "id": "3cb06d5641a9d8820b2c",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3949",
+      "title": "Senior Full Stack Software Engineer (PHP/Laravel) - US Only",
+      "company": "Evolution Collect, LLC",
+      "location": "Remote/USA",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$160,000.00 - $180,000.00",
+      "salaryMin": 160000,
+      "salaryMax": 180000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Company: Evolution Collect, LLC. Location: Remote/USA. Type: Full-Time. Salary: $160,000.00 - $180,000.00.",
+      "sourceId": "3949",
+      "descriptionHash": "daa4ac6429e9f8b58785",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "full time",
+        "fullstack",
+        "laravel",
+        "mysql",
+        "vuejs",
+        "php"
+      ],
+      "contentFingerprint": "54b86efdc403dc2eeafd",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-25T18:21:28.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 20,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Restricted to the United States"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        },
+        {
+          "factor": "Hard exclusion cap (ineligible)",
+          "points": -10
+        }
+      ],
+      "confidence": 80,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "f048cf4fcce6f291c8a2",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -2174,8 +2442,8 @@
       "publishedAt": "2026-09-25T20:52:41.000Z",
       "firstSeenAt": "2026-09-26T02:48:02.222Z",
       "lastSeenAt": "2026-10-20T02:51:53.156Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-10-31T02:43:32.701Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2239,56 +2507,51 @@
       ]
     },
     {
-      "id": "6195598942a39de1aafa",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3926",
-      "title": "Software Engineer",
-      "company": "Supporting Cast",
-      "location": null,
-      "workArrangement": "remote-regional-restricted",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
+      "id": "0c54e210495874d38f0b",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3948",
+      "title": "Staff Web Developer – Product and UX Focus",
+      "company": "OCALI",
+      "location": "Hybrid - Central Ohio",
+      "workArrangement": "onsite-no-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$80,000 - $90,000",
+      "salaryMin": 80000,
+      "salaryMax": 90000,
+      "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "🍪DismissPrivacy NoticeThis website uses cookies to improve your web experience. By using the site, you agree to the use of cookies.DismissSoftware EngineerRemote - US ONLYSupporting Cast – Software Engineering /Full-time /Remoteapply for this job Supporting Cast seeks a passionate, creative developer with PHP and agentic engineering experience to expand on Supporting Cast’s podcast subscription platform. As a key member of our team, you'll be helping independent creators, podcast publishers, and media companies improve their financial sustainability and better satisfy their fans. You'll be joining a small development team and will be in a position to influence our tech stack and our evolving product. Working here provides the dynamic excitement of a startup, and the stability and competitive compensation of an established employer. We will consider candidates from anywhere in the United States, provided you can largely work East Coast hours—the role is fully remote. About the Position Opportunities: Learn a lot about the podcast industry and the rapidly growing paid subscription market Scale an application as we onboard clients with tens of thousands of members and evaluate new technologies Develop and maintain user- and administrator-facing features in our existing stack Help us leverage A.I. tools to accelerate new feature development and improve code quality and security Build and maintain implementations for other websites, including embeds and third-party integrations Our Current Tech Stack: App: PHP/Laravel, Nginx, Varnish, Redis, PostgreSQL, Docker, React Dev ops: AWS, Fastly CDN Key business vendors and partners: Stripe, Spotify, Wordpress Key software vendors: Google Cloud Computing, AWS (SES/SNS/SMS), Anthropic Repo: GitHub Project management: Agile-oriented. Notion, Google Docs, Slack. Requirements 1–3 years of professional experience with PHP and a PHP framework such as Laravel 1–2 years of experience with LLM-based A.I. Familiarity with programming fundamentals and industry best practices; a CS degree is a plus but not required Willingness to adapt and learn on the job $115,000 - $135,000 a yearSupporting Cast offers a comprehensive benefits program that gives eligible employees the flexibility to choose the right benefits for themselves and their families. There are three subsidized medical plans and two dental plans, provided by Aetna, which can be paired with flexible spending accounts.WHY JOIN SUPPORTING CAST? You’ll help make workplaces more connected, informed, and interesting via the magic of podcasting. Supporting Cast built one of podcasting’s first and most successful subscription management platforms for top public podcasters before expanding to improve employee experiences at some of the most interesting companies in the world. You’ll be the first hire for this function. This is a great opportunity if you want ownership of your work, a taste of startup life, and the responsibility of setting the bar high for a new team. You’ll also enjoy competitive salary and benefits in a remote-first, mission-driven, and family-friendly team. About Supporting Cast: Supporting Cast is a podcast monetization platform that helps top publishers and creators offer premium subscription content directly to listeners. Our clients include leading podcast publishers like NPR, SiriusXM, and NBC, along with major independent shows. A proponent of the open ecosystem, we make it seamless for subscribers to access premium podcast content in their favorite app—no new app to download—and give publishers the tools to grow and manage their paying audience with flexible integrations, analytics, and payments. We’re a small, fully remote company with a strong belief in the future of audio. We’re looking for someone who is thoughtful and detail-oriented to help us bring the magic of podcasting into more corporate settings. Supporting Cast is an affiliate of the Graham Holdings Company (NYSE:GHC). GHC is a diversified holding company whose operations include educational services; home health and hospice care; television broadcasting, online, print, and local TV news; automotive dealerships; manufacturing; hospitality; and consumer internet companies.apply for this jobSlate Home PageJobs powered by {\"@context\" : \"http://schema.org\",\"@type\" : \"JobPosting\",\"title\" : \"Software Engineer\",\"hiringOrganization\" : {\"@type\" : \"Organization\",\"name\": \"Slate\",\"logo\": \"https://lever-client-logos.s3.us-west-2.amazonaws.com/43e7e35a-5671-45cb-917c-95a94a75455c-1612466755079.png\"},\"jobLocation\":{\"@type\" : \"Place\",\"address\" : {\"@type\" : \"PostalAddress\",\"addressLocality\" : \"Remote - US ONLY\",\"addressRegion\" : null,\"addressCountry\" : null,\"postalCode\" : null}},\"employmentType\" : \"Full-time\",\"datePosted\" : \"2026-08-27\",\"description\" : \" \\n Supporting Cast seeks a passionate, creative developer with PHP and agentic engineering experience to expand on Supporting Cast ’s podcast subscription platform. As a key member of our team, you'll be helping independent creators, podcast publishers, and media companies improve their financial sustainability and better satisfy their fans. You'll be joining a small development team and will be in a position to influence our tech stack and our evolving product. Working here provides the dynamic excitement of a startup, and the stability and competitive compensation of an established employer. \\n We will consider candidates from anywhere in the United States, provided you can largely work East Coast hours—the role is fully remote. \\n About the Position \\n Opportunities: \\n \\n Learn a lot about the podcast industry and the rapidly growing paid subscription market \\n Scale an application as we onboard clients with tens of thousands of members and evaluate new technologies \\n Develop and maintain user- and administrator-facing features in our existing stack \\n Help us leverage A.I. tools to accelerate new feature development and improve code quality and security \\n Build and maintain implementations for other websites, including embeds and third-party integrations \\n \\n Our Current Tech Stack: \\n \\n App : PHP/Laravel, Nginx, Varnish, Redis, PostgreSQL, Docker, React \\n Dev ops : AWS, Fastly CDN \\n Key business vendors and partners: Stripe, Spotify, Wordpress \\n Key software vendors: Google Cloud Computing, AWS (SES/SNS/SMS), Anthropic \\n Repo: GitHub \\n Project management: Agile-oriented. Notion, Google Docs, Slack. \\n \\n \\\\n Requirements \\n \\n 1–3 years of professional experience with PHP and a PHP framework such as Laravel \\n 1–2 years of experience with LLM-based A.I. \\n Familiarity with programming fundamentals and industry best practices; a CS degree is a plus but not required \\n Willingness to adapt and learn on the job \\n \\n \\\\n $115,000 - $135,000 a year Supporting Cast offers a comprehensive benefits program that gives eligible employees the flexibility to choose the right benefits for themselves and their families. There are three subsidized medical plans and two dental plans, provided by Aetna, which can be paired with flexible spending accounts. \\\\n WHY JOIN SUPPORTING CAST? \\n You’ll help make workplaces more connected, informed, and interesting via the magic of podcasting. Supporting Cast built one of podcasting’s first and most successful subscription management platforms for top public podcasters before expanding to improve employee experiences at some of the most interesting companies in the world. \\n You’ll be the first hire for this function. This is a great opportunity if you want ownership of your work, a taste of startup life, and the responsibility of setting the bar high for a new team. You’ll also enjoy competitive salary and benefits in a remote-first, mission-driven, and family-friendly team. \\n &nbsp; \\n About Supporting Cast: \\n Supporting Cast is a podcast monetization platform that helps top publishers and creators offer premium subscription content directly to listeners. Our clients include leading podcast publishers like NPR, SiriusXM, and NBC, along with major independent shows. A proponent of the open ecosystem, we make it seamless for subscribers to access premium podcast content in their favorite app—no new app to download—and give publishers the tools to grow and manage their paying audience with flexible integrations, analytics, and payments. \\n We’re a small, fully remote company with a strong belief in the future of audio. We’re looking for someone who is thoughtful and detail-oriented to help us bring the magic of podcasting into more corporate settings. \\n Supporting Cast is an affiliate of the Graham Holdings Company (NYSE:GHC). GHC is a diversified holding company whose operations include educational services; home health and hospice care; television broadcasting, online, print, and local TV news; automotive dealerships; manufacturing; hospitality; and consumer internet companies. \"}var gaCode = \"\";var gaAllowLinker = false;if (gaCode.startsWith('UA')) {window.initializeGoogleAnalytics = function() {(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', gaCode, {name: \"customer\",allowLinker: gaAllowLinker,});ga('customer.set', 'anonymizeIp', true);ga('customer.send', 'pageview');}} else {window.initializeGoogleAnalytics = function() {window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', gaCode);if (gaAllowLinker) {gtag('set', 'linker', 'lever.co');}}}/*We only want to not initialize Google Analytics and Segment on load if the following is true:- `gdpr` is enabled for the account- the account has the `cookieBanner` enabled- the account has the `optIn` cookieBanner typeThis is the only case where an applicant has to explicitly opt-in to the cookie consent before we can load GA/Segment*/window.addEventListener(\"load\", () => {window.cookieconsent.initialise({enabled: true,content: {allow: \"Accept\",deny: \"Deny\",dismiss: \"Dismiss\",message: \"This website uses cookies to improve your web experience. By using the site, you agree to the use of cookies.\",link: \"Cookie Policy\",href: \"\",target: '_blank',},cookie: {path: \"/slate\"},type: \"info\",layout: \"lever-layout\",layouts: {'lever-layout': ` &#127850; Dismiss Privacy Notice This website uses cookies to improve your web experience. By using the site, you agree to the use of cookies. Dismiss `,},showLink: false,onInitialise: function(status) {/* `onInitialise` is *only* called when cookie consent is set to `allow`/`deny`/`dismiss`,but not when the user has not indicated any consent. Thus, we cannot expect this to be calledon every page load.We check if `window.hasInitializedAnalytics` is true (which means analytics has already been initialized on page load)because double-loading Segment throws errors in the console (and potentially double-counts tracking visits).*/var hasConsentedToCookie = this.hasConsented();if (hasConsentedToCookie && !window.hasInitializedAnalytics) {/* 2022-03-08 Disabling segment tracking due to an explosion in MAU after removing identify call */}},onStatusChange: function(status) {var hasConsentedToCookie = this.hasConsented();var trackCookieBannerDismissed = function() {var segmentProperties = {status:'accepted',bannerType: \"info\",service:'postings2',accountId:\"43e7e35a-5671-45cb-917c-95a94a75455c\"};\"\";segmentProperties.postingId = \"557fe4ab-d292-4069-8c63-36752f3da91d\";\"\";/* 2022-03-08 Disabling segment tracking due to an explosion in MAU after removing identify call. */};if (hasConsentedToCookie) {/* 2022-03-08: Disabling segment tracking due to an explosion in MAU after removing identify call */} else {var subDomain = document.location.hostname;/* We want to also get the rootDomain because some of the cookies (e.g. Segment cookies) set",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
+      "descriptionText": "Employment Opportunities Staff Web Developer – Product and UX Focus Menu Employment Opportunities Staff Web Developer – Product and UX Focus Current Request for Proposals Start Accessibility and Language Toolbar OCALI is recognized as a global leader in creating and connecting resources and relationships to ensure that people with disabilities live their best lives for their whole lives. OCALI is a trusted source of high-quality information, facilitation, coaching, professional development, and technical assistance to ensure families, educators, and service providers are equipped to effectively care for, support, educate, employ, or work with people with disabilities. Our in-house web development team works closely together on a wide range of multifaceted and customized projects. This role contributes to the development of high-quality, accessible, and maintainable websites and web applications for OCALI clients and staff. The Staff Web Developer is a developer-first, product-minded team member who looks beyond the immediate request to understand user needs, clarify goals, identify risks and solution options, and develop accessible, sustainable web solutions that effectively address the underlying problem. This staff member is expected to ask thoughtful questions, contribute technical insight, share knowledge with team members, and support the successful delivery of web solutions. This is a hybrid position based in Central Ohio. The employee must be available to work on-site and collaborate in person at the office as needed for meetings, planning, project coordination, team collaboration, and other job-related responsibilities. Responsibilities and Essential Functions: The following essential functions identify the primary duties required to perform this position, with or without reasonable accommodation. The list is not ranked in order of importance. Develop, test, deploy, modernize, and maintain custom websites, web applications, reusable components, templates, and integrations using established development standards and technology stack. Write clean, maintainable, accessible, and well-documented code that supports consistency, scalability, security, and long-term maintenance. Troubleshoot, test, resolve, and document bugs, accessibility issues, production problems, and other assigned technical needs. Participate in technical planning, solution design, quality assurance, code review, release activities, and improvement of existing websites and applications. Collaborate with product owners, technical project managers, developers, and stakeholders to understand goals, clarify requirements, identify user needs, surface risks or gaps, and translate approved requirements into functional, accessible web solutions. Communicate technical decisions, tradeoffs, project status, risks, and recommendations clearly to technical and non-technical audiences. Maintain accurate technical documentation for applications, components, workflows, and development standards, and share technical knowledge with team members. Manage assigned work according to identified priorities, including tracking time toward client contract work as required. Perform other specific job-related duties as directed by senior leadership. Minimum Qualifications: Associate degree or higher preferred, or equivalent professional experience. Strong front-end development skills, including HTML, CSS/Sass, JavaScript, responsive layouts, and reusable interface components. Experience with Bootstrap, jQuery, Alpine JS, Livewire, Laravel, Laravel Filament, NPM, and Laravel Mix or similar tools. Experience with Gitflow, pull requests, code review, testing, release practices, and collaborative development workflows. Working knowledge of web accessibility standards and best practices. Demonstrated ability to analyze requirements, ask clarifying questions, identify risks or gaps, provide technical recommendations, and deliver effective web solutions within established priorities and timelines. Ability to communicate technical concepts, recommendations, risks, and solutions clearly to both technical and non-technical audiences. Ability to manage web content and interface details with accuracy, consistency, and sound judgment. Ability to rapidly adapt to changing web technologies and quickly adopt new systems and approaches. Documentation of a clear criminal record in compliance with state statute. Complies with drug-free workplace rules and Board policies. Preferred Qualifications: Experience designing or maintaining component-based interfaces, design systems, or shared front-end patterns. Experience using Figma, Adobe Illustrator, or similar tools to support interface planning and collaboration. Experience with user-centered design, usability testing, product discovery, or related UX practices. What's in it for you? OCALI offers excellent benefits and retirement packages, including eligibility in SERS, as well as access to: A mission-driven, innovative, and growing team (more opportunities are coming!) Health, dental, and vision insurance Paid time off and generous holiday schedule Flexible and collaborative work environment Professional learning opportunities Salary: $80K to $90K, commensurate with experience. Reports To: Senior Web Developer Application Procedures: Please apply online at www.escco.org/careers Job ID 24131 - Staff Web Developer - Product and UX Focus For questions, please contact: nathan_ticknor@ocali.org Close",
+      "sourceId": "3948",
+      "descriptionHash": "e2cddd6f86e949faac05",
+      "applicationUrl": "https://ocali.org/ocali_employment_opportunities/Staff-Web-Developer",
       "countries": [],
       "regions": [],
       "timezones": [],
       "relocation": "unknown",
       "tags": [
-        "php",
+        "livewire",
         "laravel",
-        "redis",
-        "docker",
-        "react",
-        "aws",
-        "stripe"
+        "filament"
       ],
-      "contentFingerprint": "17b6856099d9ee7c5946",
+      "contentFingerprint": "ed0f21bc7044e5e81e80",
       "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-09-30T10:34:04.728Z",
-      "status": "closed",
-      "closedAt": "2026-09-30T10:47:11.612Z",
-      "eligibility": "ineligible",
+      "publishedAt": "2026-10-23T12:52:36.000Z",
+      "firstSeenAt": "2026-10-31T02:43:32.701Z",
+      "lastSeenAt": "2026-10-31T02:43:32.701Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
       "sponsorship": "unknown",
-      "score": 20,
+      "score": 18,
       "reasons": [
         "Laravel is explicitly required",
-        "Frontend stack matches React/Vue/Inertia",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
+        "Seniority matches an experienced developer"
       ],
       "concerns": [
-        "Restricted to the United States"
+        "Posting location (Hybrid - Central Ohio) does not confirm remote-friendly hiring",
+        "Sri Lanka hiring eligibility is not explicit"
       ],
       "scoreBreakdown": [
         {
@@ -2300,35 +2563,27 @@
           "points": 30
         },
         {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
         },
         {
           "factor": "Eligibility concerns without sponsorship",
           "points": -40
-        },
-        {
-          "factor": "Hard exclusion cap (ineligible)",
-          "points": -12
         }
       ],
       "confidence": 65,
       "confidenceBreakdown": [
         {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
+          "factor": "Location is stated",
+          "points": 20
         },
         {
           "factor": "Posting has a substantive description",
           "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
         },
         {
           "factor": "Technology tags are present",
@@ -2417,50 +2672,6 @@
           "points": 10
         }
       ]
-    },
-    {
-      "id": "ecfbe860f6780b6680bc",
-      "source": "laravel-news",
-      "sourceUrl": "https://laravel-news.com/",
-      "canonicalUrl": "https://larajobs.com/job/3920",
-      "title": "The sky is the limit at Gradient.",
-      "company": null,
-      "location": null,
-      "workArrangement": "unknown",
-      "employmentType": null,
-      "seniority": "unknown",
-      "salary": null,
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "The sky is the limit at Gradient.JOIN OUR CREWView Open PositionsThe kind of place you want to be a part of.Nearly 20 years ago, Gradient Financial Group got its start in a garage in Topeka, Kansas. Since then, the company has developed and grown by embracing the philosophy that when you work here, you’re family. ​ What does that mean? ​ It means your career — and your future — matter to us.Join Our CrewView Open Positions01.A Commitment to Culture02.Living Our Values03.Mission Driven04.Community is Key05.Benefits & PerksTotal Employees330+Locations3Companies12Years in Business20Commitment to CultureA Commitment to CultureWe’ve grown a lot during our nearly 20 years in business, and while we’ve created new companies and technologies and added plenty of new employees, one thing has remained constant — our commitment to culture. ​ We know that emphasizing an engaging and rewarding culture is one of the biggest reasons we’re successful. ​ But we also know that culture isn’t static — it has to be cultivated in a way that embraces change and improvement. ​ That’s where our employees come in. The Gradient crew sets the tone. When you work here, you’re expected to produce great work, but you’re also going to laugh a lot and enjoy your co-workers..comp-l9ir4gen { --wix-color-1: 222,222,222; --wix-color-2: 250,250,250; --wix-color-3: 136,166,186; --wix-color-4: 32,86,121; --wix-color-5: 14,39,54; --wix-color-6: 223,162,171; --wix-color-7: 190,112,124; --wix-color-8: 158,28,48; --wix-color-9: 105,19,32; --wix-color-10: 53,9,16; --wix-color-11: 248,229,183; --wix-color-12: 242,213,147; --wix-color-13: 235,180,50; --wix-color-14: 157,120,33; --wix-color-15: 78,60,17; --wix-color-16: 175,210,232; --wix-color-17: 132,178,208; --wix-color-18: 49,132,185; --wix-color-19: 33,88,123; --wix-color-20: 16,44,62; --wix-color-21: 216,216,211; --wix-color-22: 176,176,171; --wix-color-23: 137,137,128; --wix-color-24: 91,91,85; --wix-color-25: 46,46,43; --wix-color-26: 222,222,222; --wix-color-27: 14,39,54; --wix-color-28: 250,250,250; --wix-color-29: 136,166,186; --wix-color-30: 32,86,121; --wix-color-31: 158,28,48; --wix-color-32: 235,180,50; --wix-color-33: 190,112,124; --wix-color-34: 16,44,62; --wix-color-35: 14,39,54; --wix-color-36: 14,39,54; --wix-color-37: 32,86,121; --wix-color-38: 158,28,48; --wix-color-39: 158,28,48; --wix-color-40: 222,222,222; --wix-color-41: 222,222,222; --wix-color-42: 158,28,48; --wix-color-43: 158,28,48; --wix-color-44: 136,166,186; --wix-color-45: 136,166,186; --wix-color-46: 222,222,222; --wix-color-47: 222,222,222; --wix-color-48: 158,28,48; --wix-color-49: 158,28,48; --wix-color-50: 158,28,48; --wix-color-51: 158,28,48; --wix-color-52: 222,222,222; --wix-color-53: 222,222,222; --wix-color-54: 136,166,186; --wix-color-55: 136,166,186; --wix-font-Title: normal normal bold 100px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Title-style: normal; --wix-font-Title-variant: normal; --wix-font-Title-weight: bold; --wix-font-Title-size: 100px; --wix-font-Title-line-height: 1.4em; --wix-font-Title-family: oswald-medium,oswald,sans-serif; --wix-font-Title-text-decoration: none; --wix-font-Menu: normal normal normal 16px/1.4em din-next-w01-light,sans-serif; --wix-font-Menu-style: normal; --wix-font-Menu-variant: normal; --wix-font-Menu-weight: normal; --wix-font-Menu-size: 16px; --wix-font-Menu-line-height: 1.4em; --wix-font-Menu-family: din-next-w01-light,sans-serif; --wix-font-Menu-text-decoration: none; --wix-font-Page-title: normal normal normal 60px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Page-title-style: normal; --wix-font-Page-title-variant: normal; --wix-font-Page-title-weight: normal; --wix-font-Page-title-size: 60px; --wix-font-Page-title-line-height: 1.4em; --wix-font-Page-title-family: oswald-medium,oswald,sans-serif; --wix-font-Page-title-text-decoration: none; --wix-font-Heading-XL: normal normal normal 48px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-XL-style: normal; --wix-font-Heading-XL-variant: normal; --wix-font-Heading-XL-weight: normal; --wix-font-Heading-XL-size: 48px; --wix-font-Heading-XL-line-height: 1.4em; --wix-font-Heading-XL-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-XL-text-decoration: none; --wix-font-Heading-L: normal normal normal 32px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-L-style: normal; --wix-font-Heading-L-variant: normal; --wix-font-Heading-L-weight: normal; --wix-font-Heading-L-size: 32px; --wix-font-Heading-L-line-height: 1.4em; --wix-font-Heading-L-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-L-text-decoration: none; --wix-font-Heading-M: normal normal normal 32px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-M-style: normal; --wix-font-Heading-M-variant: normal; --wix-font-Heading-M-weight: normal; --wix-font-Heading-M-size: 32px; --wix-font-Heading-M-line-height: 1.4em; --wix-font-Heading-M-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-M-text-decoration: none; --wix-font-Heading-S: normal normal bold 22px/1.4em oswald-medium,oswald,sans-serif; --wix-font-Heading-S-style: normal; --wix-font-Heading-S-variant: normal; --wix-font-Heading-S-weight: bold; --wix-font-Heading-S-size: 22px; --wix-font-Heading-S-line-height: 1.4em; --wix-font-Heading-S-family: oswald-medium,oswald,sans-serif; --wix-font-Heading-S-text-decoration: none; --wix-font-Body-L: normal normal bold 18px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-L-style: normal; --wix-font-Body-L-variant: normal; --wix-font-Body-L-weight: bold; --wix-font-Body-L-size: 18px; --wix-font-Body-L-line-height: 1.4em; --wix-font-Body-L-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-L-text-decoration: none; --wix-font-Body-M: normal normal bold 15px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-M-style: normal; --wix-font-Body-M-variant: normal; --wix-font-Body-M-weight: bold; --wix-font-Body-M-size: 15px; --wix-font-Body-M-line-height: 1.4em; --wix-font-Body-M-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-M-text-decoration: none; --wix-font-Body-S: normal normal bold 13px/1.4em oswald-extralight,oswald,sans-serif; --wix-font-Body-S-style: normal; --wix-font-Body-S-variant: normal; --wix-font-Body-S-weight: bold; --wix-font-Body-S-size: 13px; --wix-font-Body-S-line-height: 1.4em; --wix-font-Body-S-family: oswald-extralight,oswald,sans-serif; --wix-font-Body-S-text-decoration: none; --wix-font-Body-XS: normal normal normal 12px/1.4em din-next-w01-light,sans-serif; --wix-font-Body-XS-style: normal; --wix-font-Body-XS-variant: normal; --wix-font-Body-XS-weight: normal; --wix-font-Body-XS-size: 12px; --wix-font-Body-XS-line-height: 1.4em; --wix-font-Body-XS-family: din-next-w01-light,sans-serif; --wix-font-Body-XS-text-decoration: none; --wix-font-LIGHT: normal normal normal 12px/1.4em HelveticaNeueW01-45Ligh; --wix-font-LIGHT-style: normal; --wix-font-LIGHT-variant: normal; --wix-font-LIGHT-weight: normal; --wix-font-LIGHT-size: 12px; --wix-font-LIGHT-line-height: 1.4em; --wix-font-LIGHT-family: HelveticaNeueW01-45Ligh; --wix-font-LIGHT-text-decoration: none; --wix-font-MEDIUM: normal normal normal 12px/1.4em HelveticaNeueW01-55Roma; --wix-font-MEDIUM-style: normal; --wix-font-MEDIUM-variant: normal; --wix-font-MEDIUM-weight: normal; --wix-font-MEDIUM-size: 12px; --wix-font-MEDIUM-line-height: 1.4em; --wix-font-MEDIUM-family: HelveticaNeueW01-55Roma; --wix-font-MEDIUM-text-decoration: none; --wix-font-STRONG: normal normal normal 12px/1.4em HelveticaNeueW01-65Medi; --wix-font-STRONG-style: normal; --wix-font-STRONG-variant: normal; --wix-font-STRONG-weight: normal; --wix-font-STRONG-size: 12px; --wix-font-STRONG-line-height: 1.4em; --wix-font-STRONG-family: HelveticaNeueW01-65Medi; --wix-font-STRONG-text-decoration: none; --wix-direction: ltr; --newItemsDetails: 1; --isVertical: 0; --gallerySize: 80; --te-padding-slider: 30; --newItemsLocation: 0; --scrollDirection: 1; --collageDensity: 80; --loveCounter: 0; --galleryLayout: 0; --galleryVerticalAlign: 1; --arrowsVerticalPosition: 0; --galleryHorizontalAlign: 1; --designedPresetId: -1; --imageMargin: 5; --textFont: normal normal bold 20px/1.4em oswald-extralight,oswald,sans-serif; --itemIconColor: 222,222,222; --itemIconColor-rgb: 222,222,222; --itemIconColor-opacity: 1; --titleColorExpand: 14,39,54; --titleColorExpand-rgb: 14,39,54; --titleColorExpand-opacity: 1; --loadMoreButtonFontColor: 14,39,54; --loadMoreButtonFontColor-rgb: 14,39,54; --loadMoreButtonFontColor-opacity: 1; --itemDescriptionFontColor: 222,222,222; --itemDescriptionFontColor-rgb: 222,222,222; --itemDescriptionFontColor-opacity: 1; --arrowsContainerBackgroundColor: 14,39,54,0.6; --arrowsContainerBackgroundColor-rgb: 14,39,54; --arrowsContainerBackgroundColor-opacity: 0.6; --customButtonBorderColor: 222,222,222; --customButtonBorderColor-rgb: 222,222,222; --customButtonBorderColor-opacity: 1; --textBoxFillColor: 250,250,250; --textBoxFillColor-rgb: 250,250,250; --textBoxFillColor-opacity: 1; --itemOpacity: 32,86,121,0.6; --itemOpacity-rgb: 32,86,121; --itemOpacity-opacity: 0.6; --loadMoreButtonColor: 222,222,222; --loadMoreButtonColor-rgb: 222,222,222; --loadMoreButtonColor-opacity: 1; --loadMoreButtonBorderColor: 14,39,54; --loadMoreButtonBorderColor-rgb: 14,39,54; --loadMoreButtonBorderColor-opacity: 1; --customButtonFontColor: 222,222,222; --customButtonFontColor-rgb: 222,222,222; --customButtonFontColor-opacity: 1; --imageLoadingColor: 250,250,250; --imageLoadingColor-rgb: 250,250,250; --imageLoadingColor-opacity: 1; --externalCustomButtonBorderColor: 14,39,54; --externalCustomButtonBorderColor-rgb: 14,39,54; --externalCustomButtonBorderColor-opacity: 1; --itemShadowOpacityAndColor: 14,39,54,0.2; --itemShadowOpacityAndColor-rgb: 14,39,54; --itemShadowOpacityAndColor-opacity: 0.2; --externalCustomButtonColor: 158,28,48,0; --externalCustomButtonColor-rgb: 158,28,48; --externalCustomButtonColor-opacity: 0; --itemFontColorSlideshow: 14,39,54; --itemFontColorSlideshow-rgb: 14,39,54; --itemFontColorSlideshow-opacity: 1; --itemFontColor: 222,222,222; --itemFontColor-rgb: 222,222,222; --itemFontColor-opacity: 1; --arrowsColor: 222,222,222; --arrowsColor-rgb: 222,222,222; --arrowsColor-opacity: 1; --itemBorderColor: 14,39,54; --itemBorderColor-rgb: 14,39,54; --itemBorderColor-opacity: 1; --itemIconColorSlideshow: 14,39,54; --itemIconColorSlideshow-rgb: 14,39,54; --itemIconColorSlideshow-opacity: 1; --foreColor: 222,222,222; --foreColor-rgb: 222,222,222; --foreColor-opacity: 1; --bgColorExpand: 222,222,222; --bgColorExpand-rgb: 222,222,222; --bgColorExpand-opacity: 1; --textBoxBorderColor: 14,39,54; --textBoxBorderColor-rgb: 14,39,54; --textBoxBorderColor-opacity: 1; --customButtonFontColorForHover: 14,39,54; --customButtonFontColorForHover-rgb: 14,39,54; --customButtonFontColorForHover-opacity: 1; --customButtonColor: 222,222,222,0; --customButtonColor-rgb: 222,222,222; --customButtonColor-opacity: 0; --descriptionColorExpand: 14,39,54; --descriptionColorExpand-rgb: 14,39,54; --descriptionColorExpand-opacity: 1; --actionsColorExpand: 14,39,54; --actionsColorExpand-rgb: 14,39,54; --actionsColorExpand-opacity: 1; --oneColorAnimationColor: 222,222,222; --oneColorAnimationColor-rgb: 222,222,222; --oneColorAnimationColor-opacity: 1; --backColor: 250,250,250; --backColor-rgb: 250,250,250; --backColor-opacity: 1; --itemDescriptionFontColorSlideshow: 14,39,54; --itemDescriptionFontColorSlideshow-rgb: 14,39,54; --itemDescriptionFontColorSlideshow-opacity: 1; --te-background-color-picker: 190,112,124; --te-background-color-picker-rgb: 190,112,124; --te-background-color-picker-opacity: 1; --overlayGradientColor2: 222,222,222; --overlayGradientColor2-rgb: 222,222,222; --overlayGradientColor2-opacity: 1; --overlayGradientColor1: 222,222,222; --overlayGradientColor1-rgb: 222,222,222; --overlayGradientColor1-opacity: 1; --backgroundColor: 136,166,186; --backgroundColor-rgb: 136,166,186; --backgroundColor-opacity: 1; --textColor:",
-      "sourceId": null,
-      "descriptionHash": null,
-      "applicationUrl": null,
-      "countries": [],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [],
-      "contentFingerprint": "ea96ad1f7835a8836337",
-      "duplicateOfIds": [],
-      "publishedAt": null,
-      "firstSeenAt": "2026-09-24T02:51:26.367Z",
-      "lastSeenAt": "2026-09-24T02:51:26.367Z",
-      "status": "closed",
-      "closedAt": "2026-09-25T02:48:56.608Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 10,
-      "reasons": [],
-      "concerns": [
-        "Laravel is not explicitly mentioned",
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [],
-      "confidence": null,
-      "confidenceBreakdown": []
     }
   ]
 }
