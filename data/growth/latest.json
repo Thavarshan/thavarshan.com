@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-19T04:46:27.873Z",
+  "generatedAt": "2026-11-02T04:36:27.620Z",
   "period": {
-    "start": "2026-10-12",
-    "end": "2026-10-18",
-    "isoWeek": "2026-W42"
+    "start": "2026-10-26",
+    "end": "2026-11-01",
+    "isoWeek": "2026-W44"
   },
   "coverage": {
     "rows": 0,
