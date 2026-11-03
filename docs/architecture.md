@@ -89,7 +89,7 @@ Three JSX spots are marked `{/* prettier-ignore */}` because their whitespace is
 
 ## Decisions recorded here
 
-- **Duplicate PDF removed.** `assets/docs/Jerome-Resume.pdf` was byte-identical to `public/docs/Jerome-Resume-fallback.pdf` and referenced by nothing. The `public/` copy is kept because it is served at a public URL that external links may use.
+- **Duplicate PDF URL retained.** `public/docs/Jerome-Resume-fallback.pdf` is a legacy public URL. CV publishing now copies and verifies the same current generated PDF at both public paths so external links do not serve stale profile information.
 - **Cross-pipeline helpers extracted first**, since they were real coupling: Worker platform utilities (`src/shared/edge/platform.ts`), atomic file writes (`src/shared/node/fs.ts`) and retry/concurrency (`src/shared/node/async.ts`).
 
 ## Guards that keep the structure honest

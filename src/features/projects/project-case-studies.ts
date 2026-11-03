@@ -68,7 +68,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     status: "Public open-source tooling with a focused maintenance scope."
   },
   {
-    repository: "comet",
+    repository: "honeymelon",
     problem: "Converting video, audio, and image files should feel straightforward while keeping files on the user's device.",
     designDecisions: [
       "Use a React interface to keep file selection and output-format choices direct.",
@@ -81,7 +81,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
       "A focused interface can make a complex media engine approachable.",
       "Shared packages and end-to-end coverage support consistent product behavior."
     ],
-    status: "Honeymelon is the current name for the project formerly called Comet."
+    status:
+      "Honeymelon is the current name for the project formerly called Comet. Stable releases retain the previous interface; the React interface is currently in beta."
   },
   {
     repository: "matrix",

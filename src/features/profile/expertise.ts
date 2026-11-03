@@ -8,12 +8,12 @@ export type ExpertiseGroup = {
 };
 
 const summaries = {
-  "genai-ml": "LLM workflows, retrieval, embeddings, semantic search, and applied machine learning.",
-  backend: "APIs and application services across Node.js, Java, Python, and PHP.",
-  frontend: "Modern web interfaces and full-stack product development with React, Next.js, and Vue.",
-  data: "Relational, document, cache, and cloud databases for production applications.",
-  "cloud-delivery": "Cloud infrastructure, containers, automation, and reliable delivery practices.",
-  engineering: "System design, observability, code review, and automated quality checks."
+  "genai-ml": "LangGraph workflows, retrieval, embeddings, and applied machine learning.",
+  backend: "API gateways and application services across Node.js/TypeScript, Java/Spring Boot, Python, and PHP/Laravel.",
+  frontend: "Full-stack product interfaces with React, Next.js, Vue, and TypeScript.",
+  data: "Relational and document databases, caching, and semantic/vector search.",
+  "cloud-delivery": "Cloud infrastructure, containers, and deployment pipelines across AWS and GCP.",
+  engineering: "Technical leadership, system design, production reliability, observability, code review, and automated testing."
 } as const;
 
 export const expertiseGroups: ExpertiseGroup[] = Object.entries(profilePolicy.skillCategories).map(([category, title]) => ({

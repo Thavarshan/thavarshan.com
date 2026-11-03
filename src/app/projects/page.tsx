@@ -9,13 +9,13 @@ import { site } from "@/features/profile/site";
 import { getFeaturedProjects } from "@/features/projects/projects";
 
 export const metadata: Metadata = {
-  title: "Open-Source Projects",
-  description: `Selected open-source projects by ${site.name}, ranked by current GitHub adoption and covering PHP, TypeScript, developer tooling, HTTP, and concurrency.`,
+  title: "Selected Engineering Projects",
+  description: `Selected public work by ${site.name}, including TypeScript/Electron product engineering, a Python document-analysis CLI, and maintained PHP developer libraries. Repository adoption figures refresh from GitHub.`,
   alternates: { canonical: "/projects" },
   openGraph: {
     images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
-    title: `${site.name} — Open-Source Projects`,
-    description: "Developer tools and open-source libraries with measurable community adoption.",
+    title: `${site.name} — Selected Engineering Projects`,
+    description: "Product engineering, Python tooling, and open-source libraries across multiple stacks.",
     url: "/projects",
     type: "website"
   }
@@ -27,7 +27,7 @@ export default async function ProjectsPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     url: `${site.url}/projects`,
-    name: `${site.name} — Open-Source Projects`,
+    name: `${site.name} — Selected Engineering Projects`,
     hasPart: projects.map((project) => ({
       "@type": "SoftwareSourceCode",
       name: project.name,
@@ -44,10 +44,10 @@ export default async function ProjectsPage() {
         <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-32 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">Open source</p>
           <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.5rem,11vw,3.75rem)] leading-tight text-balance text-[var(--ink)] md:text-6xl">
-            Developer tools with measurable adoption.
+            Product engineering and open-source work across multiple stacks.
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--muted)]">
-            These projects are selected automatically from public, maintained GitHub repositories and ranked by current stars.
+            The list pairs current GitHub adoption data with selected cross-stack work, including a Python CLI and maintained PHP libraries.
           </p>
           <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={site.emailHref} variant="primary" icon={<Mail size={16} />} eventName="Contact">

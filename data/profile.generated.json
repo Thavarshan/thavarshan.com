@@ -12,18 +12,18 @@
     "github": "https://github.com/Thavarshan",
     "avatar": "/images/avatar.jpg",
     "specialtyLine": "Node.js / React | Java / Spring Boot | Python | PHP / Laravel",
-    "availability": "Open to remote roles and relocation",
+    "availability": "Remote work preferred; open to relocation",
     "phone": "+94 74 272 9879"
   },
-  "summary": "Technical lead and full-stack engineer with 11+ years building web platforms, enterprise integrations and cloud services. Hands-on across Node.js, React, Java/Spring Boot, Python and Laravel, with GenAI experience in LangGraph workflows, semantic search and production chatbot infrastructure. Led platform modernisation at Brompton Bicycle, saving £130K per month and reducing checkout latency from 4.2 seconds to 1.5 seconds.",
+  "summary": "Technical Lead and full-stack engineer with 11+ years across product engineering, enterprise integrations and cloud services. Hands-on with Node.js/TypeScript, React, Java/Spring Boot, Python and PHP/Laravel; GenAI work spans workflow engines, semantic/vector search and chatbot infrastructure. I lead platform modernisation, cloud reliability and open-source maintenance.",
   "experience": [
     {
       "id": "sino-lanka-group-technical-lead-2026-05",
-      "role": "Technical Lead",
+      "role": "Technical Lead (Independent Contractor)",
       "company": "Sino Lanka Group",
       "startDate": "2026-05",
       "endDate": null,
-      "summary": "Lead architecture and engineering work for EduSight as an independent contractor, spanning AI features, enterprise integrations and cloud reliability.",
+      "summary": "Independent contractor leading architecture and engineering for AI features, enterprise integrations and cloud reliability across Sino Lanka Group and its EduSight platform.",
       "highlights": [
         "Lead architecture and engineering work for EduSight as an independent contractor, spanning AI features, enterprise integrations and cloud reliability.",
         "Work on the Java 17/Spring Boot chatbot API gateway, addressing OkHttp connection pooling, MongoDB client reuse, retries and GCP Cloud Run/NAT connectivity.",
@@ -152,7 +152,7 @@
     },
     {
       "name": "Semantic/vector search",
-      "category": "genai-ml"
+      "category": "data"
     },
     {
       "name": "PyTorch",
@@ -271,6 +271,10 @@
       "category": "engineering"
     },
     {
+      "name": "Technical leadership",
+      "category": "engineering"
+    },
+    {
       "name": "Observability",
       "category": "engineering"
     },
@@ -362,11 +366,11 @@
     {
       "id": "honeymelon",
       "name": "Honeymelon (formerly Comet)",
-      "role": "Founder and builder",
-      "description": "Built a TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
+      "role": "Creator and maintainer",
+      "description": "TypeScript/Electron media converter with a React interface currently in beta. Stable releases use the previous interface; conversion runs locally with FFmpeg and bundled tools.",
       "highlights": [
-        "React interface and FFmpeg media engine.",
-        "Shared packages and Playwright end-to-end tests."
+        "Converts video, audio and images locally without uploads or cloud processing.",
+        "The repository includes shared packages and Playwright end-to-end coverage."
       ],
       "tags": [
         "TypeScript",
@@ -376,7 +380,7 @@
         "FFmpeg",
         "Playwright"
       ],
-      "url": "https://honeymelon.app"
+      "url": "https://honeymelon-site.tjthavarshan.workers.dev"
     }
   ],
   "sources": {
@@ -391,14 +395,18 @@
       "syncedAt": "2026-07-30T00:00:00.000Z"
     }
   },
-  "modifiedAt": "2026-11-03T00:00:00.000Z",
+  "modifiedAt": "2026-11-03T15:00:30.365Z",
   "resumeProjects": [
     {
       "id": "honeymelon",
       "name": "Honeymelon (formerly Comet)",
-      "role": "React and Node.js",
-      "description": "Built a TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
-      "highlights": [],
+      "role": "Creator and maintainer",
+      "description": "TypeScript/Electron desktop media converter with a React interface currently in beta. Stable releases use the previous interface; conversions run locally with FFmpeg and bundled tools. The repository includes shared packages and Playwright end-to-end coverage.",
+      "highlights": [
+        "Stable releases retain the previous interface; the React interface is available in the beta line.",
+        "Converts video, audio and images locally without uploads or cloud processing.",
+        "Uses shared packages and Playwright end-to-end tests."
+      ],
       "tags": [
         "TypeScript",
         "Electron",
@@ -412,41 +420,37 @@
     {
       "id": "dokimos",
       "name": "Dokimos",
-      "role": "Python",
-      "description": "Built a Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis, with Pydantic validation, document ingestion and structured reports.",
-      "highlights": [],
+      "role": "Creator and maintainer",
+      "description": "Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis. It ingests text, Markdown, DOCX and PDF documents, validates inputs with Pydantic and produces structured reports. AI-likeness scores are heuristic signals, not proof of authorship.",
+      "highlights": [
+        "Supports text, Markdown, DOCX and PDF inputs with JSON report output.",
+        "Can combine free remote plagiarism sources with an optional indexed local corpus.",
+        "AI-likeness analysis is heuristic and does not prove AI authorship."
+      ],
       "tags": [
         "Python",
         "Pydantic",
-        "CLI"
+        "CLI",
+        "Document ingestion",
+        "Structured reports"
       ],
       "url": "https://github.com/Thavarshan/dokimos"
     },
     {
-      "id": "self-supervised-learning-research",
-      "name": "Self-supervised learning research",
-      "role": "Python and PyTorch",
-      "description": "Built reproducible experiments comparing pseudo-labelling on frozen DINOv2, DINO and CLIP features, with statistical analysis and automated experiment workflows.",
-      "highlights": [],
-      "tags": [
-        "Python",
-        "PyTorch",
-        "DINOv2",
-        "DINO",
-        "CLIP"
-      ],
-      "url": "https://github.com/Thavarshan/dinov2-ssl-cifar"
-    },
-    {
       "id": "fetch-php-and-filterable",
-      "name": "Fetch PHP and Filterable",
-      "role": "PHP and Laravel",
-      "description": "Maintain an async HTTP client and reusable Eloquent filtering package, with 451 and 195 GitHub stars respectively.",
-      "highlights": [],
+      "name": "Fetch PHP, Filterable and Matrix",
+      "role": "Open-source creator and maintainer",
+      "description": "Maintain a Guzzle-based Fetch-inspired HTTP client and reusable Eloquent filtering for PHP/Laravel, plus Matrix async primitives for ReactPHP. These public libraries demonstrate API design, framework integration, event-driven programming and long-term open-source maintenance.",
+      "highlights": [
+        "Fetch PHP provides a familiar HTTP API with PSR-7/18, streaming, middleware, retries and optional caching.",
+        "Filterable organizes request-driven Eloquent filters; Matrix adds promise composition, cancellation, timeouts and concurrency limits for ReactPHP."
+      ],
       "tags": [
         "PHP",
         "Laravel",
-        "Eloquent"
+        "Eloquent",
+        "ReactPHP",
+        "HTTP APIs"
       ],
       "links": [
         {
@@ -456,6 +460,10 @@
         {
           "label": "Filterable",
           "url": "https://github.com/Thavarshan/filterable"
+        },
+        {
+          "label": "Matrix",
+          "url": "https://github.com/Thavarshan/matrix"
         }
       ]
     }

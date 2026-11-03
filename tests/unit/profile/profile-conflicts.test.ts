@@ -8,7 +8,7 @@ import { parseProfessionalProfile } from "@/features/profile/profile-schema";
 describe("profile source precedence", () => {
   it("reports outdated GitHub employer data without changing LinkedIn career data", () => {
     const profile = parseProfessionalProfile(profileData);
-    const warnings = findProfileConflicts(profile, githubSnapshotSchema.parse(githubData));
+    const warnings = findProfileConflicts(profile, githubSnapshotSchema.parse({ ...githubData, company: "An outdated employer" }));
 
     expect(profile.experience[0].company).toBe("Sino Lanka Group");
     expect(warnings.join(" ")).toContain("current LinkedIn employer");

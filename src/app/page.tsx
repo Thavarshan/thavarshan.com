@@ -59,7 +59,6 @@ export default async function Home() {
         email: site.email,
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Colombo",
           addressCountry: "LK"
         },
         sameAs: sameAsProfiles,
@@ -82,8 +81,8 @@ export default async function Home() {
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">
           <MetricCounter value={11} suffix="+" label="Years experience" detail="Technical leadership and product engineering" />
           <MetricCounter value={starMetric.value} suffix={starMetric.suffix} label="Open-source stars" detail="Across the featured GitHub projects" />
-          <MetricCounter value={100} suffix="K+" label="Daily users" detail="Platforms built for high-volume operations" />
-          <MetricCounter value={6} label="Skill groups" detail="GenAI, backend, frontend, data, cloud, and engineering" />
+          <MetricCounter value={64} suffix="%" label="Checkout latency reduction" detail="Brompton Bicycle: 4.2 seconds to 1.5 seconds" />
+          <MetricCounter value={6} label="Major projects" detail="Three each at NetWatch Global and MacroActive" />
         </div>
       </Section>
 

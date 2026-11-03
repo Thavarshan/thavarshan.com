@@ -12,13 +12,13 @@ import { formatProfilePeriod, profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
 
 export const metadata: Metadata = {
-  title: "Professional CV",
-  description: `Professional CV for ${site.name}: technical leadership, full-stack engineering, and generative AI systems.`,
+  title: `CV | ${profile.identity.headline}`,
+  description: `CV for ${site.name}: 11+ years in full-stack engineering, technical leadership, GenAI workflows, enterprise integrations and platform modernisation.`,
   alternates: { canonical: "/cv" },
   openGraph: {
     images: [{ url: "/images/Banner.jpg", width: 1200, height: 630, alt: site.name }],
-    title: `${site.name} — Professional CV`,
-    description: "Technical leadership, full-stack engineering, generative AI, and open-source work.",
+    title: `${site.name} — ${profile.identity.headline}`,
+    description: site.description,
     url: "/cv",
     type: "profile"
   }
