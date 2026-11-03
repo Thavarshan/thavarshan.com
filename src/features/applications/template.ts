@@ -52,7 +52,7 @@ export function prepareApplication(profile: ProfessionalProfile, github: GitHubS
     ...(job.workArrangement === "unknown" ? ["Work arrangement is unknown in the snapshot."] : []),
     ...job.concerns
   ];
-  const categories = ["leadership", "ai-architecture", "full-stack", "cloud-delivery"];
+  const categories = ["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"];
   categories.sort((a, b) => matchedSkills.filter((skill) => skill.category === b).length - matchedSkills.filter((skill) => skill.category === a).length);
   const selectedEvidence = roleMatches.flatMap(({ role, highlights }) => highlights.map((text) => ({ source: `profile.experience.${role.id}`, text })));
   const letterEvidence = selectedEvidence.slice(0, 3);

@@ -33,15 +33,16 @@ export type ProductProject = {
 
 import { profile } from "@/features/profile/profile";
 
-const primaryProduct = profile.professionalProjects[0];
+const resumeHoneymelon = profile.resumeProjects?.find((project) => project.id === "honeymelon");
+const primaryProduct = profile.professionalProjects.find((project) => project.id === "honeymelon") ?? profile.professionalProjects[0];
 
 export const honeymelon: ProductProject = {
   name: primaryProduct.name,
-  role: primaryProduct.role,
+  role: resumeHoneymelon?.role ?? primaryProduct.role,
   url: primaryProduct.url ?? profile.identity.website,
-  summary: primaryProduct.description,
-  highlights: primaryProduct.highlights,
-  tags: primaryProduct.tags
+  summary: resumeHoneymelon?.description ?? primaryProduct.description,
+  highlights: resumeHoneymelon?.highlights ?? primaryProduct.highlights,
+  tags: resumeHoneymelon?.tags ?? primaryProduct.tags
 };
 
 export const projectDefinitions: ProjectDefinition[] = [
@@ -83,12 +84,12 @@ export const projectDefinitions: ProjectDefinition[] = [
     displayOrder: 3
   },
   {
-    name: "Comet",
+    name: "Honeymelon (formerly Comet)",
     repository: "comet",
     role: "Creator and maintainer",
-    summary: "A TypeScript project for building developer-facing workflows with clear structure and modern tooling.",
-    highlights: ["Demonstrates TypeScript architecture and package-focused engineering.", "Balances open-source usability with maintainable internals."],
-    tags: ["TypeScript", "Developer tooling", "Packages"],
+    summary: "A TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
+    highlights: ["Converts video, audio, and images locally.", "Uses a React interface and bundled media tools."],
+    tags: ["TypeScript", "Electron", "React", "FFmpeg", "Playwright"],
     displayOrder: 4
   },
   {

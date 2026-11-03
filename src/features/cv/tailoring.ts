@@ -1,6 +1,6 @@
 import type { ProfessionalProfile, SkillRecord } from "../profile/profile-schema";
 
-const knownSkillCategories: SkillRecord["category"][] = ["leadership", "ai-architecture", "full-stack", "cloud-delivery"];
+const knownSkillCategories: SkillRecord["category"][] = ["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"];
 
 export interface RawCvTailoringPlan {
   emphasizedSkillCategories?: unknown;

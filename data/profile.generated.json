@@ -4,532 +4,298 @@
     "name": "Jerome Thayananthajothy",
     "givenName": "Jerome",
     "familyName": "Thayananthajothy",
-    "headline": "Technical Lead | AI-Driven Systems Architect | AWS & Full-Stack Expert | Open Source Contributor",
-    "location": "Colombo, Western Province, Sri Lanka",
+    "headline": "Technical Lead | Full Stack and Generative AI Engineer",
+    "location": "Sri Lanka",
     "email": "tjthavarshan@gmail.com",
     "website": "https://thavarshan.com",
     "linkedin": "https://www.linkedin.com/in/thavarshan",
     "github": "https://github.com/Thavarshan",
-    "avatar": "/images/avatar.jpg"
+    "avatar": "/images/avatar.jpg",
+    "specialtyLine": "Node.js / React | Java / Spring Boot | Python | PHP / Laravel",
+    "availability": "Open to remote roles and relocation",
+    "phone": "+94 74 272 9879"
   },
-  "summary": "I’m a Technical Lead and Generative AI Engineer focused on building intelligent, high-scale systems that merge traditional full-stack engineering with next-generation AI capabilities.  Over the past decade, I’ve led architecture modernization initiatives across e-commerce, analytics, and workflow automation driving multimillion-pound cost reductions, boosting performance, and introducing AI-augmented features like semantic search and agentic workflows.  I’m particularly interested in AI-enhanced infrastructure, multi-cloud orchestration (AWS, Azure, GCP), and scalable developer ecosystems. My engineering philosophy is rooted in system design, observability, and enabling teams to ship fast with confidence.",
+  "summary": "Technical lead and full-stack engineer with 11+ years building web platforms, enterprise integrations and cloud services. Hands-on across Node.js, React, Java/Spring Boot, Python and Laravel, with GenAI experience in LangGraph workflows, semantic search and production chatbot infrastructure. Led platform modernisation at Brompton Bicycle, saving £130K per month and reducing checkout latency from 4.2 seconds to 1.5 seconds.",
   "experience": [
     {
       "id": "sino-lanka-group-technical-lead-2026-05",
       "role": "Technical Lead",
       "company": "Sino Lanka Group",
-      "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2026-05",
       "endDate": null,
-      "summary": "Leading architecture and engineering strategy for scalable business systems at Sino Lanka Group.",
+      "summary": "Lead architecture and engineering work for EduSight as an independent contractor, spanning AI features, enterprise integrations and cloud reliability.",
       "highlights": [
-        "Guides architecture direction across full-stack systems and cloud delivery.",
-        "Focuses on reliable engineering practices and observability."
+        "Lead architecture and engineering work for EduSight as an independent contractor, spanning AI features, enterprise integrations and cloud reliability.",
+        "Work on the Java 17/Spring Boot chatbot API gateway, addressing OkHttp connection pooling, MongoDB client reuse, retries and GCP Cloud Run/NAT connectivity.",
+        "Contribute to WhatsApp Business integration and Embedded Signup configuration across QA and production environments."
       ]
     },
     {
       "id": "kaya-technical-lead-2025-10",
       "role": "Technical Lead",
       "company": "KAYA",
-      "location": "Colombo",
       "startDate": "2025-10",
       "endDate": "2026-05",
-      "summary": "Led full-stack systems and AI workflow engineering for the KAYA platform and client-facing applications.",
+      "summary": "Designed LangGraph-based AI workflow engines and led distributed application development for the KAYA platform and client-facing applications.",
       "highlights": [
-        "Designed AI workflow engines with LangGraph.",
-        "Led distributed application work across Kubernetes clusters.",
-        "Worked across Node.js, TypeScript, Laravel, and PostgreSQL."
+        "Designed LangGraph-based AI workflow engines using Node.js and TypeScript, working across Laravel and PostgreSQL application services.",
+        "Led distributed application development across Kubernetes clusters for the KAYA platform and client-facing applications."
       ]
     },
     {
       "id": "brompton-bicycle-technical-lead-2024-12",
       "role": "Technical Lead",
       "company": "Brompton Bicycle",
-      "location": "Greenford, England, United Kingdom",
       "startDate": "2024-12",
       "endDate": "2025-09",
-      "summary": "Led architecture modernization by migrating from a fragmented multi-vendor headless stack (Vue Storefront + Alokai) to a unified Laravel + Vue.js 3 platform on AWS, cutting costs by £130K/month (~£1.56M/yr) and eliminating revenue-based fees.",
+      "summary": "Led migration from Vue Storefront/Alokai to Laravel and Vue.js 3 on AWS, saving £130K per month (approximately £1.56M annually) and eliminating revenue-based fees.",
       "highlights": [
-        "Built an AI-powered full-text search engine, augmenting MySQL’s native capabilities with semantic and vector-based search for product discovery and analytics.",
-        "Integrated and orchestrated multi-stack systems, including MuleSoft for service orchestration and Oracle NetSuite for ERP synchronization and order lifecycle automation.",
-        "Reduced checkout latency from 4.2s → 1.5s (60%+ improvement), boosting conversion rates by 12%.",
-        "Shifted release cadence from monthly to biweekly and reduced technical debt by 30%, enforcing new internal architecture and CI/CD standards."
+        "Led migration from Vue Storefront/Alokai to Laravel and Vue.js 3 on AWS, saving £130K per month (approximately £1.56M annually) and eliminating revenue-based fees.",
+        "Reduced checkout latency from 4.2 seconds to 1.5 seconds, a 64% reduction.",
+        "Built semantic/vector product search on MySQL and integrated MuleSoft with Oracle NetSuite for ERP synchronisation and order lifecycle automation.",
+        "Introduced architecture and CI/CD standards, moving releases from monthly to every two weeks."
       ]
     },
     {
       "id": "netwatch-global-senior-software-engineer-2023-07",
       "role": "Senior Software Engineer",
-      "company": "NetWatch Global®",
-      "location": "Birmingham, England, United Kingdom",
+      "company": "NetWatch Global",
       "startDate": "2023-07",
       "endDate": "2024-12",
-      "summary": "Rebuilt and scaled up a mature 10-year-old project from scratch, ensuring enhanced performance and reliability.",
+      "summary": "Rebuilt a decade-old platform and delivered three major projects using PHP, TypeScript, Vue.js, AWS DynamoDB, MySQL and PostgreSQL.",
       "highlights": [
-        "Established and enforced industry standards for the engineering department and all company software, contributing to a more efficient and cohesive development process.",
-        "Worked extensively with PHP, TypeScript, VueJS, AWS DynamoDB, and MySQL/PostgreSQL, leveraging these technologies to deliver robust and scalable solutions.",
-        "Designed, developed, and deployed three major projects, each meeting critical business objectives and user needs."
+        "Rebuilt a decade-old platform and delivered three major projects using PHP, TypeScript, Vue.js, AWS DynamoDB, MySQL and PostgreSQL.",
+        "Established engineering standards across the department to improve consistency and maintainability."
       ]
     },
     {
       "id": "macroactive-senior-software-engineer-2021-06",
       "role": "Senior Software Engineer",
-      "company": "MacroActive™",
-      "location": "Auckland, Auckland, New Zealand",
+      "company": "MacroActive",
       "startDate": "2021-06",
       "endDate": "2022-11",
-      "summary": "Worked extensively with PHP, TypeScript, VueJS, ReactJS AWS Dynamo DB and MongoDB.",
+      "summary": "Designed and delivered projects across React, Vue.js, TypeScript and PHP with AWS DynamoDB and MongoDB.",
       "highlights": [
-        "Designed, developed and deployed three major projects and was working on fourth project before resignation.",
-        "Responsibilities included but was not limited to training new recruits, performing code reviews and planning weekly sprints."
-      ]
-    },
-    {
-      "id": "elegant-media-australia-senior-software-engineer-2020-01",
-      "role": "Senior Software Engineer",
-      "company": "Elegant Media Australia",
-      "location": "Colombo, Western Province, Sri Lanka",
-      "startDate": "2020-01",
-      "endDate": "2020-07",
-      "summary": "Delivered client and platform features as a Senior Software Engineer at Elegant Media Australia.",
-      "highlights": [
-        "Progressed from Software Engineer to Senior Software Engineer in January 2020."
+        "Designed, developed and deployed three major projects using React, Vue.js, TypeScript and PHP, with AWS DynamoDB and MongoDB.",
+        "Trained new recruits, reviewed code and planned weekly sprints."
       ]
     },
     {
       "id": "elegant-media-australia-software-engineer-2019-04",
-      "role": "Software Engineer",
+      "role": "Software Engineer; Senior Software Engineer",
       "company": "Elegant Media Australia",
-      "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2019-04",
-      "endDate": "2020-01",
-      "summary": "Developed client and platform features as a Software Engineer at Elegant Media Australia.",
-      "highlights": [
-        "Contributed to client-facing software before progressing to Senior Software Engineer."
-      ]
+      "endDate": "2020-07",
+      "summary": ""
     },
     {
-      "id": "seven-s-idea-pvt-ltd-software-engineer-2018-01",
+      "id": "seven-s-idea-software-engineer-2018-01",
       "role": "Software Engineer",
-      "company": "Seven's Idea (PVT) Ltd",
-      "location": "Colombo, Western Province, Sri Lanka",
+      "company": "Seven's Idea",
       "startDate": "2018-01",
       "endDate": "2019-03",
-      "summary": "Built application features and client integrations as a Software Engineer at Seven's Idea.",
-      "highlights": [
-        "Worked on both product features and client integration work."
-      ]
+      "summary": ""
     },
     {
-      "id": "alta-vision-solar-software-engineer-2017-01",
-      "role": "Software Engineer",
+      "id": "alta-vision-solar-software-engineer-2015-06",
+      "role": "Associate Software Engineer; Software Engineer",
       "company": "Alta Vision Solar",
-      "location": "Colombo, Western Province, Sri Lanka",
-      "startDate": "2017-01",
-      "endDate": "2018-01",
-      "summary": "Delivered business systems and web applications as a Software Engineer at Alta Vision Solar.",
-      "highlights": [
-        "Progressed from Associate Software Engineer to Software Engineer in January 2017."
-      ]
-    },
-    {
-      "id": "sri-lanka-telecom-telecommunications-engineering-intern-2016-10",
-      "role": "Telecommunications Engineering Intern",
-      "company": "Sri Lanka Telecom",
-      "location": "Trincomalee, Eastern Province, Sri Lanka",
-      "startDate": "2016-10",
-      "endDate": "2016-12",
-      "summary": "Completed a telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
-      "highlights": [
-        "Returned to Sri Lanka Telecom for a second telecommunications engineering internship."
-      ]
-    },
-    {
-      "id": "sri-lanka-telecom-telecommunications-engineering-intern-2015-10",
-      "role": "Telecommunications Engineering Intern",
-      "company": "Sri Lanka Telecom",
-      "location": "Trincomalee, Eastern Province, Sri Lanka",
-      "startDate": "2015-10",
-      "endDate": "2016-01",
-      "summary": "Completed a telecommunications engineering internship at Sri Lanka Telecom in Trincomalee.",
-      "highlights": [
-        "Gained early-career experience in telecommunications engineering."
-      ]
-    },
-    {
-      "id": "alta-vision-solar-associate-software-engineer-2015-06",
-      "role": "Associate Software Engineer",
-      "company": "Alta Vision Solar",
-      "location": "Colombo, Western Province, Sri Lanka",
       "startDate": "2015-06",
-      "endDate": "2017-01",
-      "summary": "Built business systems and web applications as an Associate Software Engineer at Alta Vision Solar.",
-      "highlights": [
-        "Progressed to Software Engineer at Alta Vision Solar in January 2017."
-      ]
+      "endDate": "2018-01",
+      "summary": ""
     }
   ],
   "education": [
     {
-      "id": "university-of-sunderland-bachelor-of-science-bs",
-      "qualification": "Bachelor of Science - BS",
+      "id": "university-of-sunderland-bsc-hons-computer-systems-engineering",
+      "qualification": "BSc (Hons) Computer Systems Engineering — First Class",
       "institution": "University of Sunderland",
       "startDate": "2022-09",
       "endDate": "2023-07"
     },
     {
-      "id": "icbt-campus-higher-national-diploma",
-      "qualification": "Higher National Diploma",
+      "id": "icbt-campus-higher-diploma-computing-software-engineering",
+      "qualification": "Higher Diploma in Computing and Software Engineering",
       "institution": "ICBT Campus",
       "startDate": "2020-08",
       "endDate": "2022-03"
-    },
-    {
-      "id": "t-r-k-m-sri-koneswara-hindu-college-high-school",
-      "qualification": "High School",
-      "institution": "T/R.K.M.Sri Koneswara Hindu College",
-      "startDate": "2001-01",
-      "endDate": "2014-01"
     }
   ],
   "certifications": [
     {
-      "id": "aws-certified-solutions-architect",
-      "name": "AWS Certified Solutions Architect",
-      "authority": "Amazon Web Services (AWS)",
-      "issuedDate": "2025-10",
-      "expiresDate": "2028-10",
-      "credentialUrl": "https://www.credly.com/earner/earned/share/80bfeffb-044a-4462-89a5-c6278a1653ca"
+      "id": "aws-certified-solutions-architect-associate",
+      "name": "AWS Certified Solutions Architect - Associate",
+      "authority": "AWS"
     },
     {
-      "id": "amazon-web-services-cloud-practitioner",
-      "name": "Amazon Web Services Cloud Practitioner",
-      "authority": "Amazon Web Services (AWS)",
-      "issuedDate": "2025-09",
-      "expiresDate": "2028-09"
-    },
-    {
-      "id": "associate-member",
-      "name": "Associate Member",
-      "authority": "Institution of Engineers Sri Lanka",
-      "issuedDate": "2019-03"
+      "id": "aws-certified-cloud-practitioner",
+      "name": "AWS Certified Cloud Practitioner",
+      "authority": "AWS"
     }
   ],
   "skills": [
     {
-      "name": "SOC",
-      "category": "full-stack"
+      "name": "LangGraph",
+      "category": "genai-ml"
     },
     {
-      "name": "IAM",
-      "category": "full-stack"
+      "name": "LLM workflows",
+      "category": "genai-ml"
     },
     {
-      "name": "Artificial Intelligence (AI)",
-      "category": "ai-architecture"
+      "name": "RAG",
+      "category": "genai-ml"
     },
     {
-      "name": "Search Engines",
-      "category": "full-stack"
+      "name": "Embeddings",
+      "category": "genai-ml"
     },
     {
-      "name": "Microsoft Azure",
-      "category": "cloud-delivery"
+      "name": "Semantic/vector search",
+      "category": "genai-ml"
+    },
+    {
+      "name": "PyTorch",
+      "category": "genai-ml"
+    },
+    {
+      "name": "Node.js",
+      "category": "backend"
+    },
+    {
+      "name": "TypeScript",
+      "category": "backend"
+    },
+    {
+      "name": "Java",
+      "category": "backend"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "backend"
+    },
+    {
+      "name": "Python",
+      "category": "backend"
+    },
+    {
+      "name": "PHP",
+      "category": "backend"
+    },
+    {
+      "name": "Laravel",
+      "category": "backend"
+    },
+    {
+      "name": "REST APIs",
+      "category": "backend"
+    },
+    {
+      "name": "React.js",
+      "category": "frontend"
+    },
+    {
+      "name": "Next.js",
+      "category": "frontend"
+    },
+    {
+      "name": "Vue.js",
+      "category": "frontend"
+    },
+    {
+      "name": "Inertia.js",
+      "category": "frontend"
+    },
+    {
+      "name": "JavaScript",
+      "category": "frontend"
+    },
+    {
+      "name": "HTML",
+      "category": "frontend"
+    },
+    {
+      "name": "CSS",
+      "category": "frontend"
+    },
+    {
+      "name": "MySQL",
+      "category": "data"
     },
     {
       "name": "PostgreSQL",
-      "category": "full-stack"
+      "category": "data"
     },
     {
-      "name": "GenAI",
-      "category": "ai-architecture"
+      "name": "Redis",
+      "category": "data"
+    },
+    {
+      "name": "MongoDB",
+      "category": "data"
+    },
+    {
+      "name": "DynamoDB",
+      "category": "data"
     },
     {
       "name": "AWS",
       "category": "cloud-delivery"
     },
     {
-      "name": "MuleSoft Anypoint Platform",
-      "category": "full-stack"
-    },
-    {
-      "name": "Technical Staff Management",
-      "category": "leadership"
-    },
-    {
-      "name": "Amazon Web Services (AWS)",
+      "name": "GCP",
       "category": "cloud-delivery"
     },
     {
-      "name": "Cloud Computing",
+      "name": "Docker",
       "category": "cloud-delivery"
     },
     {
-      "name": "Scrum",
-      "category": "full-stack"
+      "name": "Kubernetes",
+      "category": "cloud-delivery"
     },
     {
-      "name": "Agile Methodologies",
-      "category": "full-stack"
+      "name": "Terraform",
+      "category": "cloud-delivery"
     },
     {
-      "name": "Microservices",
-      "category": "ai-architecture"
+      "name": "GitHub Actions",
+      "category": "cloud-delivery"
     },
     {
-      "name": "MongoDB",
-      "category": "full-stack"
+      "name": "CI/CD",
+      "category": "cloud-delivery"
     },
     {
-      "name": "Software Documentation",
-      "category": "full-stack"
+      "name": "System design",
+      "category": "engineering"
     },
     {
-      "name": "Web Applications",
-      "category": "full-stack"
+      "name": "Observability",
+      "category": "engineering"
     },
     {
-      "name": "Managing Technical Personnel",
-      "category": "full-stack"
+      "name": "Code reviews",
+      "category": "engineering"
     },
     {
-      "name": "Node.js",
-      "category": "full-stack"
-    },
-    {
-      "name": "Inertia.js",
-      "category": "full-stack"
-    },
-    {
-      "name": "React.js",
-      "category": "full-stack"
-    },
-    {
-      "name": ".NET Framework",
-      "category": "full-stack"
-    },
-    {
-      "name": "C#",
-      "category": "full-stack"
-    },
-    {
-      "name": "Jira",
-      "category": "full-stack"
-    },
-    {
-      "name": "GraphQL",
-      "category": "full-stack"
-    },
-    {
-      "name": "Eloquent",
-      "category": "full-stack"
-    },
-    {
-      "name": "RestAPI",
-      "category": "full-stack"
-    },
-    {
-      "name": "Databases",
-      "category": "full-stack"
-    },
-    {
-      "name": "SQL",
-      "category": "full-stack"
-    },
-    {
-      "name": "Query",
-      "category": "full-stack"
-    },
-    {
-      "name": "Cybersecurity",
-      "category": "full-stack"
-    },
-    {
-      "name": "TypeScript",
-      "category": "full-stack"
-    },
-    {
-      "name": "VueJS",
-      "category": "full-stack"
-    },
-    {
-      "name": "GitHub",
-      "category": "full-stack"
-    },
-    {
-      "name": "JavaScript Libraries",
-      "category": "full-stack"
-    },
-    {
-      "name": "AJAX",
-      "category": "full-stack"
-    },
-    {
-      "name": "JSON",
-      "category": "full-stack"
-    },
-    {
-      "name": "JavaScript Frameworks",
-      "category": "full-stack"
-    },
-    {
-      "name": "Mocha (JavaScript Framework)",
-      "category": "full-stack"
+      "name": "Playwright",
+      "category": "engineering"
     },
     {
       "name": "Jest",
-      "category": "full-stack"
+      "category": "engineering"
     },
     {
-      "name": "JavaScriptMVC",
-      "category": "full-stack"
-    },
-    {
-      "name": "Vanilla JavaScript",
-      "category": "full-stack"
-    },
-    {
-      "name": "Server Side JavaScript",
-      "category": "full-stack"
-    },
-    {
-      "name": "MySQL",
-      "category": "full-stack"
-    },
-    {
-      "name": "Object-Oriented Programming (OOP)",
-      "category": "full-stack"
-    },
-    {
-      "name": "PHP",
-      "category": "full-stack"
-    },
-    {
-      "name": "JavaScript",
-      "category": "full-stack"
-    },
-    {
-      "name": "Python",
-      "category": "full-stack"
-    },
-    {
-      "name": "Algorithms",
-      "category": "full-stack"
-    },
-    {
-      "name": "Computer Networking",
-      "category": "full-stack"
-    },
-    {
-      "name": "Adobe Photoshop",
-      "category": "full-stack"
-    },
-    {
-      "name": "Cascading Style Sheets (CSS)",
-      "category": "full-stack"
-    },
-    {
-      "name": "WordPress",
-      "category": "full-stack"
-    },
-    {
-      "name": "jQuery",
-      "category": "full-stack"
-    },
-    {
-      "name": "HTML",
-      "category": "full-stack"
-    },
-    {
-      "name": "Bootstrap",
-      "category": "full-stack"
-    },
-    {
-      "name": "HTML5",
-      "category": "full-stack"
-    },
-    {
-      "name": "Laravel",
-      "category": "full-stack"
-    },
-    {
-      "name": "Django",
-      "category": "full-stack"
-    },
-    {
-      "name": "Vue.js",
-      "category": "full-stack"
-    },
-    {
-      "name": "PhpStorm",
-      "category": "full-stack"
-    },
-    {
-      "name": "PHP Applications",
-      "category": "full-stack"
+      "name": "pytest",
+      "category": "engineering"
     },
     {
       "name": "PHPUnit",
-      "category": "full-stack"
-    },
-    {
-      "name": "PHP Frameworks",
-      "category": "full-stack"
-    },
-    {
-      "name": "Emberfuse",
-      "category": "full-stack"
-    },
-    {
-      "name": "Java",
-      "category": "full-stack"
-    },
-    {
-      "name": "C++",
-      "category": "full-stack"
-    },
-    {
-      "name": "C",
-      "category": "full-stack"
-    },
-    {
-      "name": "Go",
-      "category": "full-stack"
-    },
-    {
-      "name": "JavaSE",
-      "category": "full-stack"
-    },
-    {
-      "name": "Vue",
-      "category": "full-stack"
-    },
-    {
-      "name": "Vuex",
-      "category": "full-stack"
-    },
-    {
-      "name": "Nuxt.js",
-      "category": "full-stack"
-    },
-    {
-      "name": "Symfony",
-      "category": "full-stack"
+      "category": "engineering"
     }
   ],
-  "languages": [
-    {
-      "name": "English",
-      "proficiency": "Native or bilingual proficiency"
-    },
-    {
-      "name": "Sinhala",
-      "proficiency": "Limited working proficiency"
-    },
-    {
-      "name": "Tamil",
-      "proficiency": "Native or bilingual proficiency"
-    }
-  ],
+  "languages": [],
   "professionalProjects": [
     {
       "id": "euclidius",
@@ -595,18 +361,20 @@
     },
     {
       "id": "honeymelon",
-      "name": "Honeymelon",
+      "name": "Honeymelon (formerly Comet)",
       "role": "Founder and builder",
-      "description": "A premium Apple Silicon macOS app for fast, reliable media conversion, built as a focused commercial product.",
+      "description": "Built a TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
       "highlights": [
-        "Product-led work covering UX, packaging, performance, and release quality.",
-        "Connects engineering craft with market-facing product judgment."
+        "React interface and FFmpeg media engine.",
+        "Shared packages and Playwright end-to-end tests."
       ],
       "tags": [
-        "macOS",
-        "Media tooling",
-        "Product engineering",
-        "Performance"
+        "TypeScript",
+        "Electron",
+        "React",
+        "Node.js",
+        "FFmpeg",
+        "Playwright"
       ],
       "url": "https://honeymelon.app"
     }
@@ -623,5 +391,73 @@
       "syncedAt": "2026-07-30T00:00:00.000Z"
     }
   },
-  "modifiedAt": "2026-09-23T10:39:16.554Z"
+  "modifiedAt": "2026-11-03T00:00:00.000Z",
+  "resumeProjects": [
+    {
+      "id": "honeymelon",
+      "name": "Honeymelon (formerly Comet)",
+      "role": "React and Node.js",
+      "description": "Built a TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
+      "highlights": [],
+      "tags": [
+        "TypeScript",
+        "Electron",
+        "React",
+        "Node.js",
+        "FFmpeg",
+        "Playwright"
+      ],
+      "url": "https://github.com/Thavarshan/honeymelon"
+    },
+    {
+      "id": "dokimos",
+      "name": "Dokimos",
+      "role": "Python",
+      "description": "Built a Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis, with Pydantic validation, document ingestion and structured reports.",
+      "highlights": [],
+      "tags": [
+        "Python",
+        "Pydantic",
+        "CLI"
+      ],
+      "url": "https://github.com/Thavarshan/dokimos"
+    },
+    {
+      "id": "self-supervised-learning-research",
+      "name": "Self-supervised learning research",
+      "role": "Python and PyTorch",
+      "description": "Built reproducible experiments comparing pseudo-labelling on frozen DINOv2, DINO and CLIP features, with statistical analysis and automated experiment workflows.",
+      "highlights": [],
+      "tags": [
+        "Python",
+        "PyTorch",
+        "DINOv2",
+        "DINO",
+        "CLIP"
+      ],
+      "url": "https://github.com/Thavarshan/dinov2-ssl-cifar"
+    },
+    {
+      "id": "fetch-php-and-filterable",
+      "name": "Fetch PHP and Filterable",
+      "role": "PHP and Laravel",
+      "description": "Maintain an async HTTP client and reusable Eloquent filtering package, with 451 and 195 GitHub stars respectively.",
+      "highlights": [],
+      "tags": [
+        "PHP",
+        "Laravel",
+        "Eloquent"
+      ],
+      "links": [
+        {
+          "label": "Fetch PHP",
+          "url": "https://github.com/Thavarshan/fetch-php"
+        },
+        {
+          "label": "Filterable",
+          "url": "https://github.com/Thavarshan/filterable"
+        }
+      ]
+    }
+  ]
 }

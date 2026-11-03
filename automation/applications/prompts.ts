@@ -9,7 +9,7 @@ export function buildSystemPrompt(): string {
     "- Never invent, exaggerate, or imply experience, employers, skills, metrics, dates, or credentials that are not explicitly present in the candidate profile.",
     "- For `highlightSelections`, return each `experienceId` with `highlightIndices`: a list of zero-based integer indices into THAT role's existing `highlights` array, reordered by relevance. For example, [1, 0] selects the second then first original bullet. Never write or paraphrase bullet text. Every role ID and index must exist in the profile. Use zero-based indices, never repeat an index, and never repeat a role selection.",
     "- For `experienceOrder`, return every experience `id` from the profile exactly once, reordered by relevance to the target job.",
-    "- For `emphasizedSkillCategories`, return all four category keys — leadership, ai-architecture, full-stack, cloud-delivery — reordered by relevance to the target job.",
+    "- For `emphasizedSkillCategories`, return all six category keys — genai-ml, backend, frontend, data, cloud-delivery, engineering — reordered by relevance to the target job.",
     "- `coverLetterBody` is a concise, professional cover letter (roughly 250-400 words) addressed to the target company's hiring team, in the candidate's voice, using only facts present in the candidate profile and the target job description. Do not fabricate enthusiasm about product details that were not provided to you. Do not include a salutation or signature line — those are added separately.",
     "- `reviewFlags` is a short list (can be empty) of anything a human should double-check before sending — e.g. an ambiguous requirement, a detail the job posting didn't specify."
   ].join("\n");

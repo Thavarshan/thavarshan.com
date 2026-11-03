@@ -83,7 +83,7 @@ export default async function Home() {
           <MetricCounter value={11} suffix="+" label="Years experience" detail="Technical leadership and product engineering" />
           <MetricCounter value={starMetric.value} suffix={starMetric.suffix} label="Open-source stars" detail="Across the featured GitHub projects" />
           <MetricCounter value={100} suffix="K+" label="Daily users" detail="Platforms built for high-volume operations" />
-          <MetricCounter value={4} label="Core strengths" detail="AI, architecture, full stack, and delivery" />
+          <MetricCounter value={6} label="Skill groups" detail="GenAI, backend, frontend, data, cloud, and engineering" />
         </div>
       </Section>
 

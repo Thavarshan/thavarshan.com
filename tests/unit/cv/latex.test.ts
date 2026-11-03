@@ -21,6 +21,10 @@ describe("LaTeX CV generation", () => {
     expect(escapeLatex("It’s a “test” → done")).toBe("It's a \"test\" -> done");
   });
 
+  it("renders pound amounts with the textcomp symbol", () => {
+    expect(escapeLatex("£130K")).toBe("\\pounds{}130K");
+  });
+
   it("strips emoji the CV font has no glyph for", () => {
     expect(escapeLatex("\u{1F50D} Enhance Laravel queries")).toBe(" Enhance Laravel queries");
   });
@@ -34,7 +38,7 @@ describe("LaTeX CV generation", () => {
     expect(output).toContain("\\documentclass");
     expect(output).toContain("Jerome Thayananthajothy");
     expect(output).toContain("Selected Open-Source Work");
-    expect(output).toContain("\\href{tel:+94742729879}{+94742729879}");
+    expect(output).toContain("\\href{tel:+94742729879}{+94 74 272 9879}");
     expect(output).not.toContain("\\includegraphics");
   });
 });

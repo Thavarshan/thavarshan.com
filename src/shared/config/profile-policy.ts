@@ -3,11 +3,13 @@ export const profilePolicy = {
   featuredRepositoryCount: 5,
   excludedRepositories: ["thavarshan.com", "github-templates"],
   publicPhone: false,
-  seoTopics: ["Technical leadership", "AI systems architecture", "Platform engineering", "Cloud architecture", "Full-stack engineering"],
+  seoTopics: ["Technical leadership", "Generative AI", "Full-stack engineering", "Platform engineering", "Cloud architecture"],
   skillCategories: {
-    leadership: "Engineering Leadership",
-    "ai-architecture": "AI & Architecture",
-    "full-stack": "Full Stack",
-    "cloud-delivery": "Cloud & Delivery"
+    "genai-ml": "GenAI and ML",
+    backend: "Backend",
+    frontend: "Frontend",
+    data: "Data",
+    "cloud-delivery": "Cloud and delivery",
+    engineering: "Engineering"
   }
 } as const;

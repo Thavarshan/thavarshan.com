@@ -25,9 +25,9 @@ export const responseJsonSchema = {
   properties: {
     emphasizedSkillCategories: {
       type: "array",
-      minItems: 4,
-      maxItems: 4,
-      items: { type: "string", enum: ["leadership", "ai-architecture", "full-stack", "cloud-delivery"] }
+      minItems: 6,
+      maxItems: 6,
+      items: { type: "string", enum: ["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"] }
     },
     experienceOrder: { type: "array", items: { type: "string" } },
     highlightSelections: {
@@ -49,7 +49,7 @@ export const responseJsonSchema = {
 };
 
 const rawResultSchema = z.strictObject({
-  emphasizedSkillCategories: z.array(z.enum(["leadership", "ai-architecture", "full-stack", "cloud-delivery"])).length(4),
+  emphasizedSkillCategories: z.array(z.enum(["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"])).length(6),
   experienceOrder: z.array(z.string().min(1).max(100)).max(30),
   highlightSelections: z
     .array(z.strictObject({ experienceId: z.string().min(1).max(100), highlightIndices: z.array(z.number().int().min(0).max(100)).max(20) }))
