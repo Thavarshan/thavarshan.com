@@ -40,12 +40,14 @@ All nine deployed legacy rules returned a direct 301 with the configured Locatio
 | `/blog/fetch-php`, `/blog/fetch-php-2` | `https://github.com/Thavarshan/fetch-php` |
 | `/blog/filterable` | `https://github.com/Thavarshan/filterable` |
 | `/blog/phpvm` | `https://github.com/Thavarshan/phpvm` |
-| `/blog/comet` | `https://github.com/Thavarshan/comet` |
+| `/blog/comet` | `https://github.com/Thavarshan/honeymelon` |
 | `/blog/matrix-php` | `https://github.com/Thavarshan/matrix` |
 | `/blog/formlink` | `https://github.com/Thavarshan/formlink` |
 | `/blog/secrets-loader` | `https://github.com/Thavarshan/secrets-loader` |
 
 External target availability can change. Review external destination changes with a bounded request and redirects disabled. CI validates HTTPS URL syntax and configured graph topology; it does not depend on external GitHub uptime. Production smoke verifies each deployed source's response/Location and every explicit retirement. It does not fetch external destinations. Preview smoke executes trusted main and intentionally skips content-policy checks that might differ from the PR; the PR rendered audit validates its own exported rules.
+
+The Comet repository is now named Honeymelon. `/projects/comet` permanently redirects to `/projects/honeymelon`, and the historical `/blog/comet` rule points to the repository's current GitHub URL. The old project path remains accounted for in URL history; the new canonical page is registered as `/projects/honeymelon`.
 
 ## Checks and recovery
 

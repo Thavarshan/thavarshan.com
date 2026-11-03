@@ -43,6 +43,11 @@ const interfaces: Array<{ path: string; why: string; consumers: string[] }> = [
     why: "the stable public CV URL",
     consumers: [".github/workflows/content-refresh.yml", "automation/cv/publish.ts", "automation/profile/publish.ts"]
   },
+  {
+    path: "public/docs/Jerome-Resume-fallback.pdf",
+    why: "a legacy public CV URL kept in sync with the current generated artifact",
+    consumers: [".github/workflows/content-refresh.yml", "automation/cv/publish.ts", "automation/profile/publish.ts"]
+  },
   { path: "cv/generated", why: "rendered LaTeX", consumers: [".github/workflows/content-refresh.yml", "automation/cv/render.ts", "automation/cv/build.ts"] }
 ];
 
@@ -78,5 +83,6 @@ describe("generated paths are stable interfaces", () => {
   it("the stable CV URL, the fallback and the page that links them all exist together", () => {
     expect(existsSync("public/docs/Jerome-Resume.pdf")).toBe(true);
     expect(existsSync("public/docs/Jerome-Resume-fallback.pdf")).toBe(true);
+    expect(readFileSync("public/docs/Jerome-Resume-fallback.pdf")).toEqual(readFileSync("public/docs/Jerome-Resume.pdf"));
   });
 });

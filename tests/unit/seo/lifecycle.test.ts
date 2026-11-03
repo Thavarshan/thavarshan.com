@@ -21,7 +21,7 @@ describe("URL lifecycle", () => {
     expect(
       checkLifecycle(
         current,
-        rules("# retained aliases\n/old /projects/new 301!\n/cv-old /docs/cv.pdf 301!\n/legacy https://github.com/Thavarshan/comet 301!"),
+        rules("# retained aliases\n/old /projects/new 301!\n/cv-old /docs/cv.pdf 301!\n/legacy https://github.com/Thavarshan/honeymelon 301!"),
         files
       )
     ).toEqual([]);

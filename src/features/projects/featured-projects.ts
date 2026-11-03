@@ -85,20 +85,29 @@ export const projectDefinitions: ProjectDefinition[] = [
   },
   {
     name: "Honeymelon (formerly Comet)",
-    repository: "comet",
+    repository: "honeymelon",
     role: "Creator and maintainer",
-    summary: "A TypeScript/Electron media converter with a React interface, FFmpeg engine, shared packages and Playwright end-to-end tests.",
-    highlights: ["Converts video, audio, and images locally.", "Uses a React interface and bundled media tools."],
-    tags: ["TypeScript", "Electron", "React", "FFmpeg", "Playwright"],
+    summary: "A TypeScript/Electron converter with a React interface in beta, local FFmpeg processing, shared packages and Playwright tests.",
+    highlights: ["Stable releases retain the previous interface; the React interface is in the beta line.", "Converts media locally without uploads."],
+    tags: ["TypeScript", "Electron", "React", "Node.js", "FFmpeg", "Playwright"],
     displayOrder: 4
   },
   {
     name: "Matrix",
     repository: "matrix",
     role: "Creator and maintainer",
-    summary: "A PHP concurrency and async-oriented library exploring cleaner primitives for complex application flows.",
-    highlights: ["Designed for expressive async patterns in a PHP ecosystem context.", "Rounds out the portfolio with lower-level library design."],
-    tags: ["PHP", "Async", "Library design", "Concurrency"],
+    summary: "Event-driven asynchronous helpers for ReactPHP, including promise composition, cancellation, timeouts and concurrency limits.",
+    highlights: ["Includes retries, rate limiting, events and metrics.", "Uses nonblocking work on a single event loop."],
+    tags: ["PHP", "ReactPHP", "Async", "Concurrency"],
     displayOrder: 5
+  },
+  {
+    name: "Dokimos",
+    repository: "dokimos",
+    role: "Creator and maintainer",
+    summary: "A Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis with structured reports.",
+    highlights: ["Ingests text, Markdown, DOCX and PDF documents.", "AI-likeness scores are heuristic signals, not proof of authorship."],
+    tags: ["Python", "Pydantic", "CLI", "Document ingestion"],
+    displayOrder: 6
   }
 ];

@@ -108,12 +108,14 @@ jobs:
       - run: npm run cv:publish
       - name: Verify free application PDFs without private credentials
         run: node --import tsx automation/applications/verify-template.ts
-      - run: git diff --exit-code -- cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
+      - run: git diff --exit-code -- cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf public/docs/Jerome-Resume-fallback.pdf
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: ${{ !cancelled() }}
         with:
           name: professional-cv-preview
-          path: public/docs/Jerome-Resume.pdf
+          path: |
+            public/docs/Jerome-Resume.pdf
+            public/docs/Jerome-Resume-fallback.pdf
           retention-days: 1
 
   lighthouse:

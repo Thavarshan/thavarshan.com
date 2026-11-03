@@ -49,7 +49,7 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 | `/sitemap.xml` | Sitemap containing all indexable profile and project routes |
 | `/robots.txt` | Crawler rules and sitemap discovery |
 
-The PDF is checked in at `public/docs/Jerome-Resume.pdf` and is refreshed from the generated LaTeX build during CV publishing. The `cv-latest` GitHub release is a secondary distribution copy of the same verified artifact.
+The current PDF is checked in at `public/docs/Jerome-Resume.pdf`; the legacy `/docs/Jerome-Resume-fallback.pdf` URL is retained and refreshed from the same generated LaTeX build. Both files are verified during CV publishing. The `cv-latest` GitHub release is a secondary distribution copy of the same verified artifact.
 
 ## Getting Started
 
@@ -106,6 +106,8 @@ data/github.generated.json    Last-known public GitHub profile and projects
 ```
 
 The initial snapshots reflect the currently verified profile. Future updates should be made through the import and synchronization commands rather than by editing website components.
+
+`Profile.md` is the human-readable GitHub profile copy maintained alongside this model. It is not read by the website build or automated refresh, so update it in the same reviewed change as the profile. Do not place time-sensitive repository counts there; the site reads those from `data/github.generated.json`.
 
 ### Download LinkedIn Data
 
@@ -204,7 +206,7 @@ Verify that the PDF is at most two pages, has extractable ATS-readable text, con
 npm run cv:verify
 ```
 
-Build, verify, and copy the stable public PDF into `public/docs/Jerome-Resume.pdf`:
+Build, verify, and copy the current CV to both stable public PDF paths (`public/docs/Jerome-Resume.pdf` and the legacy `public/docs/Jerome-Resume-fallback.pdf`):
 
 ```bash
 npm run cv:publish
@@ -216,7 +218,7 @@ The CV deliberately uses a one-column layout, standard text, semantic section he
 
 The website renders project pages, metrics, Open Graph images, and sitemap entries from `data/github.generated.json`. Runtime builds do not request GitHub; live public metadata is fetched only by `npm run profile:github` and the content-refresh workflow.
 
-Only the five qualifying highest-starred repositories receive detail pages. This avoids thin automatically generated pages for every repository.
+The five qualifying highest-starred repositories receive detail pages, with Dokimos included as additional Python evidence for the broader profile. Private repositories are not included. Repository names and statistics come from the current GitHub refresh; a renamed repository keeps its former site URL through an explicit redirect.
 
 ## Package Registry Evidence
 

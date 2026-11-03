@@ -21,12 +21,13 @@ export const metadata: Metadata = {
   keywords: [
     "Jerome Thayananthajothy",
     "Technical Lead",
-    "AI Systems Architect",
-    "Platform Engineering",
-    "Full-Stack Engineer",
-    "AWS Solutions Architect",
-    "Open Source Developer",
-    "Sri Lanka"
+    "Senior Full Stack Engineer",
+    "Generative AI Engineer",
+    "Node.js",
+    "React",
+    "Java and Spring Boot",
+    "Python",
+    "PHP and Laravel"
   ],
   alternates: {
     canonical: "/",
