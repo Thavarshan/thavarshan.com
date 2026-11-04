@@ -21,7 +21,7 @@ The Growth Engine turns verified public/professional evidence into four coordina
   - `workers/job-review`: private, Access-gated review of job opportunities with review state in KV, because private writable state cannot live in the public static build (`docs/job-review-worker.md`, `docs/adr/0001-cloudflare-worker-for-private-job-review.md`).
   - `workers/site-metrics`: a public first-party event collector that stores daily aggregate counters in KV (`docs/measurement.md`).
   Both deploy from GitHub Actions; the static site still builds and deploys without either.
-- **Netlify remains the deployment target** until a migration has a measurable benefit. Do not introduce a second hosting platform only for architectural symmetry.
+- **Cloudflare Workers static assets is the deployment target**, migrated from Netlify at the owner’s request. The existing static export and CI gates remain authoritative.
 - **Docker is the reproducibility boundary** for tooling that requires system dependencies such as LaTeX.
 
 ## Generated-data safety

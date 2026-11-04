@@ -41,7 +41,10 @@
     "growth:search": "node --import tsx automation/growth/search/run.ts",
     "growth:health": "node --import tsx automation/growth/health/collect.ts",
     "content:review": "node --import tsx automation/marketing/content-review.ts",
-    "growth:notify": "node --import tsx automation/growth/health/notify.ts"
+    "growth:notify": "node --import tsx automation/growth/health/notify.ts",
+    "site:deploy": "wrangler deploy --config wrangler.json --env \"\" && wrangler deploy --config wrangler.redirect.json",
+    "site:deploy:check": "wrangler deploy --config wrangler.json --env \"\" --dry-run && wrangler deploy --config wrangler.redirect.json --dry-run",
+    "site:dev": "wrangler dev --config wrangler.json"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
@@ -91,6 +94,7 @@
     "source-map-js": "^1.2.2",
     "@next/eslint-plugin-next": {
       "fast-glob": "npm:tinyglobby@^0.2.17"
-    }
+    },
+    "minimatch": "^11.0.4"
   }
 }

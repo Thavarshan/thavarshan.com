@@ -30,7 +30,7 @@ The raw LinkedIn ZIP is never committed. Only the sanitized generated profile sn
 - GitHub REST API with six-hour Next.js revalidation
 - LaTeX compiled with LuaLaTeX in a pinned TeX Live container
 - Vitest, Testing Library, Playwright, and Lighthouse CI
-- Netlify serving the static Next.js export from `out/`
+- Cloudflare Workers serving the static Next.js export from `out/`
 
 ## Public Routes
 
@@ -82,7 +82,7 @@ BING_INDEXNOW_KEY=
 - `GITHUB_TOKEN` is optional and server-only. A fine-grained token with public repository metadata access increases API limits for `npm run profile:github` and automation.
 - `GOOGLE_SITE_VERIFICATION` adds the Google Search Console verification metadata.
 - `BING_SITE_VERIFICATION` adds the Bing Webmaster Tools verification metadata.
-- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. Set it to `thavarshan.com` in Netlify to enable analytics.
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` sets the Plausible site domain. Set the GitHub Actions variable to `thavarshan.com` only if you already use Plausible; first-party metrics works without it.
 - `BING_INDEXNOW_KEY` enables `npm run seo:indexnow` to submit updated public URLs and builds `/indexnow-key.txt`.
 
 Never prefix tokens with `NEXT_PUBLIC_`; public variables can be included in browser JavaScript.
@@ -90,11 +90,10 @@ Never prefix tokens with `NEXT_PUBLIC_`; public variables can be included in bro
 The CV publishing workflow also accepts this GitHub Actions secret:
 
 ```bash
-NETLIFY_BUILD_HOOK=
 BING_INDEXNOW_KEY=
 ```
 
-When configured, the scheduled content refresh workflow can trigger a fresh Netlify deployment and submit updated URLs to Bing IndexNow.
+Merged content changes deploy through the required CI pipeline. When configured, the CV publishing workflow also submits updated URLs to Bing IndexNow. No external hosting build hook is required.
 
 ## Profile Data
 
@@ -332,7 +331,7 @@ The SEO implementation includes:
 
 After production deployment:
 
-1. Set the Google and Bing verification values in Netlify.
+1. Set the Google and Bing verification values in GitHub Actions secrets, then deploy again.
 2. Verify the domain in Google Search Console and Bing Webmaster Tools.
 3. Submit `https://thavarshan.com/sitemap.xml`.
 4. Inspect `/`, `/cv`, `/projects`, and one project URL.
@@ -396,9 +395,9 @@ Coverage includes archive variants and partial imports, invalid dates, source co
 `.github/workflows/content-refresh.yml` runs every Monday, manually, and after profile/CV-related changes land on `main`. It has two lanes:
 
 - `refresh` runs on scheduled/manual events only. It updates public generated snapshots, builds and verifies the public CV PDF, validates the site, and opens or updates a reviewable pull request when generated files change.
-- `publish-cv` runs on manual events and matching `main` pushes. It verifies the checked-in public PDF, publishes the stable `cv-latest` release asset, optionally triggers Netlify through `NETLIFY_BUILD_HOOK`, and optionally submits URLs through IndexNow.
+- `publish-cv` runs on manual events and matching `main` pushes. It verifies the checked-in public PDF, publishes the stable `cv-latest` release asset, and optionally submits URLs through IndexNow.
 
-Netlify configuration is stored in `netlify.toml`. The production project should use the `main` branch, run `npm run build`, and publish the generated `out/` directory.
+Cloudflare configuration is stored in `wrangler.json` (public static site) and `wrangler.redirect.json` (www redirect). CI deploys production only after `ci-gate` passes on `main`. See [Cloudflare deployment](docs/cloudflare-deployment.md) for configuration, previews, environment variables and rollback.
 
 ## Privacy and Maintenance
 

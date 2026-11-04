@@ -72,7 +72,7 @@ async function main() {
         }
       }
       if (mode === "production") {
-        for (const alias of ["https://www.thavarshan.com", "https://thavarshan.netlify.app"]) {
+        for (const alias of ["https://www.thavarshan.com"]) {
           const response = await fetch(`${alias}/projects`, { redirect: "manual", signal: AbortSignal.timeout(10_000) });
           failures.push(...checkRedirect(`${alias}/projects`, response.status, response.headers.get("location"), "https://thavarshan.com/projects"));
         }

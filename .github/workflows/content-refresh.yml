@@ -83,7 +83,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
       BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -102,9 +101,6 @@ jobs:
         run: |
           gh release view cv-latest >/dev/null 2>&1 || gh release create cv-latest --title "Latest professional CV" --notes "Automatically generated from the validated professional profile and current GitHub metadata." --latest=false
           gh release upload cv-latest public/docs/Jerome-Resume.pdf --clobber
-      - name: Trigger Netlify refresh
-        if: ${{ env.NETLIFY_BUILD_HOOK != '' }}
-        run: curl --fail --silent --show-error --request POST --data '{}' "$NETLIFY_BUILD_HOOK"
       - name: Submit URLs to IndexNow
         if: ${{ env.BING_INDEXNOW_KEY != '' }}
         run: npm run seo:indexnow

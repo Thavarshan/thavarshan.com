@@ -53,8 +53,8 @@ test("Honeymelon keeps the Comet project URL as a permanent redirect", async ({ 
   const response = await request.get("/_redirects");
   const redirects = await response.text();
 
-  expect(redirects).toContain("/projects/comet /projects/honeymelon 301!");
-  expect(redirects).toContain("/blog/comet https://github.com/Thavarshan/honeymelon 301!");
+  expect(redirects).toContain("/projects/comet /projects/honeymelon 301");
+  expect(redirects).toContain("/blog/comet https://github.com/Thavarshan/honeymelon 301");
 });
 
 test("exported project links resolve and are discoverable", async ({ page, request }) => {
@@ -230,12 +230,12 @@ test("contact primary link remains readable while active", async ({ page }) => {
   expect(activeColors.color).not.toBe(activeColors.background);
 });
 
-test("old blog routes are preserved in the Netlify redirect manifest", async ({ request }) => {
+test("old blog routes are preserved in the static redirect manifest", async ({ request }) => {
   const response = await request.get("/_redirects");
   const redirects = await response.text();
 
-  expect(redirects).toContain("/blog/fetch-php https://github.com/Thavarshan/fetch-php 301!");
-  expect(redirects).toContain("/blog /projects 301!");
+  expect(redirects).toContain("/blog/fetch-php https://github.com/Thavarshan/fetch-php 301");
+  expect(redirects).toContain("/blog /projects 301");
 });
 
 test("resume is served from public docs", async ({ request }) => {

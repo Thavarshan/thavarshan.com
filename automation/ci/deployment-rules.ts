@@ -9,11 +9,9 @@ export interface DeploymentFailure {
 export function deploymentOrigin(input: string, mode: DeploymentMode): string {
   const url = new URL(input);
   const validHost =
-    mode === "production"
-      ? url.hostname === "thavarshan.com"
-      : /^(?:deploy-preview-\d+|[a-z0-9]+(?:-[a-z0-9]+)*)--thavarshan\.netlify\.app$/.test(url.hostname);
+    mode === "production" ? url.hostname === "thavarshan.com" : /^thavarshan-site-(?:preview|pr-\d+)\.tjthavarshan\.workers\.dev$/.test(url.hostname);
   if (!validHost || url.protocol !== "https:" || url.username || url.password || url.port || url.pathname !== "/" || url.search || url.hash) {
-    throw new Error("Deployment URL must be the production origin or an HTTPS preview origin for this Netlify site");
+    throw new Error("Deployment URL must be the production origin or an HTTPS preview origin for this Cloudflare Worker");
   }
   return url.origin;
 }

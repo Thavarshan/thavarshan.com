@@ -46,4 +46,4 @@ Each page has a unique title and description, a canonical URL, OpenGraph/Twitter
 
 ## Cost
 
-Static pages and client-side JavaScript on the existing Netlify site: no server, function, database or paid API. See `docs/cost-policy.md`.
+Static pages and client-side JavaScript on the Cloudflare static site: no server, function, database or paid API. See `docs/cost-policy.md`.

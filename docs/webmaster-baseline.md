@@ -1,6 +1,6 @@
 # Search verification and measurement baseline
 
-The owner is @Thavarshan. The production origin is `https://thavarshan.com`; submit `https://thavarshan.com/sitemap.xml`. Preview URLs and the Netlify alias are not webmaster properties for the portfolio. Search Console/Bing are free; no paid SEO tool or Google Analytics is required for this baseline.
+The owner is @Thavarshan. The production origin is `https://thavarshan.com`; submit `https://thavarshan.com/sitemap.xml`. Workers preview URLs are not webmaster properties for the portfolio. Search Console/Bing are free; no paid SEO tool or Google Analytics is required for this baseline.
 
 ## What the repository already provides
 
@@ -11,7 +11,7 @@ The owner is @Thavarshan. The production origin is `https://thavarshan.com`; sub
 ## Owner setup
 
 1. Open [Google Search Console](https://search.google.com/search-console). Add a **URL-prefix** property for `https://thavarshan.com/`. Choose HTML tag and obtain its `content` value. This method does not verify a Domain property; choose DNS TXT verification if you want the broader `thavarshan.com` Domain property instead.
-2. In the existing Netlify site's environment-variable settings, add `GOOGLE_SITE_VERIFICATION` for the **production context**, including the build scope. Trigger a new production build; editing a variable alone cannot change an already exported site. Keep real values out of Deploy Previews and GitHub test jobs.
+2. In GitHub Actions repository secrets, add `GOOGLE_SITE_VERIFICATION`. Only the production deploy job consumes this build value. Trigger a new production build; editing a variable alone cannot change an already exported site. Keep real values out of Deploy Previews and GitHub test jobs.
 3. Run `npm run seo:webmaster`. A `present` Google tag confirms the code reached the initial HTML head. Return to Search Console and click **Verify**. Record confirmation privately; our public audit always says account ownership is unknown, since it has no authenticated console access. DNS-verified accounts can be valid with no meta tag.
 4. In the verified property, submit `sitemap.xml` in Sitemaps. Confirm Google can fetch it. Use URL Inspection on the homepage and representative project, Insight and tool pages. Compare the Google-selected canonical with the declared canonical; inspect crawl/index status and last crawl. A successful live test means Google can access a page, not that the page is indexed. Request indexing for important changed pages when appropriate, rather than repeatedly submitting all URLs.
 5. Open [Bing Webmaster Tools](https://www.bing.com/webmasters/). Either import the verified Search Console property (owner-controlled Google authorization), or add the HTTPS site and choose meta-tag verification. Put only its ownership value in production build variable `BING_SITE_VERIFICATION`, rebuild, confirm the `msvalidate.01` tag, and complete verification in Bing. Submit the same canonical sitemap and use Bing's URL Inspection.
@@ -52,6 +52,6 @@ After significant releases: check the production audit, inspect affected pages i
 
 ## Ownership and rotation
 
-Keep one durable owner-controlled account with access to each property; review delegated access periodically. Store values in Netlify production build settings and account records privately. When rotating, add/verify the replacement method **before** removing the previous ownership method. Rebuild after changes and confirm live tag presence, then confirm ownership in each console. Keep valid verification tags/DNS records after verification so ownership can be rechecked. Never rotate or remove `BING_INDEXNOW_KEY` merely because a webmaster meta value changed: they serve different purposes.
+Keep one durable owner-controlled account with access to each property; review delegated access periodically. Store values in GitHub Actions production build secrets and account records privately. When rotating, add/verify the replacement method **before** removing the previous ownership method. Rebuild after changes and confirm live tag presence, then confirm ownership in each console. Keep valid verification tags/DNS records after verification so ownership can be rechecked. Never rotate or remove `BING_INDEXNOW_KEY` merely because a webmaster meta value changed: they serve different purposes.
 
 IndexNow already runs after content refresh and submits the homepage/Insights URLs when configured. `BING_INDEXNOW_KEY` is separate from Bing ownership verification, and an accepted submission does not mean indexing. This issue does not expand submissions, add a new search API or automate account setup.

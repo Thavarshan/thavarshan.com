@@ -35,6 +35,10 @@ jobs:
       - run: npm run insights:bundle
       - run: npm run audit
       - run: npm run build
+        env:
+          COMMIT_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+          CONTEXT: ${{ github.ref == 'refs/heads/main' && 'production' || 'deploy-preview' }}
+      - run: npm run site:deploy:check
       - name: Public URL inventory is unchanged
         run: npm run structure:routes
       - name: Concrete URLs and redirect lifecycle
@@ -196,3 +200,39 @@ jobs:
           JOB_RESULTS: ${{ toJSON(needs) }}
           GATE_RESULT: ${{ steps.gate.outcome }}
         run: node automation/ci/gate-status.mjs
+
+  deploy:
+    needs: ci-gate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build production export
+        run: npm run build
+        env:
+          CONTEXT: production
+          NEXT_PUBLIC_PLAUSIBLE_DOMAIN: ${{ vars.NEXT_PUBLIC_PLAUSIBLE_DOMAIN }}
+          GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
+          BING_SITE_VERIFICATION: ${{ secrets.BING_SITE_VERIFICATION }}
+          BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
+      - name: Deploy public site and www redirect
+        run: npm run site:deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Verify production revision, headers, redirects and PDF
+        run: npm run deployment:smoke
+        env:
+          EXPECTED_REVISION: ${{ github.sha }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: cloudflare-production-smoke
+          path: test-results/deployment/audit.json
+          retention-days: 7
