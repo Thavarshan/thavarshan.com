@@ -31,7 +31,7 @@ export function checkHeaders(
   status: number,
   headers: Headers,
   mode: DeploymentMode,
-  kind: "html" | "pdf" | "missing" = "html"
+  kind: "html" | "pdf" | "image" | "missing" = "html"
 ): DeploymentFailure[] {
   const failures: DeploymentFailure[] = [];
   const require = (ok: boolean, rule: string, detail: string) => {
@@ -47,7 +47,9 @@ export function checkHeaders(
   const noindex = /\b(noindex|none)\b/i.test(headers.get("x-robots-tag") || "");
   require(mode === "preview" || kind === "pdf" ? noindex : kind === "missing" || !noindex, "indexability", "Unexpected X-Robots-Tag");
   if (kind !== "missing")
-    require((headers.get("content-type") || "").includes(kind === "pdf" ? "application/pdf" : "text/html"), "content-type", `Expected ${kind}`);
+    require((headers.get("content-type") || "").includes(
+      kind === "pdf" ? "application/pdf" : kind === "image" ? "image/png" : "text/html"
+    ), "content-type", `Expected ${kind}`);
   return failures;
 }
 
