@@ -54,6 +54,10 @@ async function main() {
           failures.push(...checkHeaders(`${origin}${retired.path}`, response.status, response.headers, mode, "missing"));
         }
       }
+      for (const path of ["/opengraph-image", "/projects/fetch-php/opengraph-image"]) {
+        const response = await request(path);
+        failures.push(...checkHeaders(`${origin}${path}`, response.status, response.headers, mode, "image"));
+      }
       const missing = await request("/__ci_missing_page__");
       failures.push(...checkHeaders(`${origin}/__ci_missing_page__`, missing.status, missing.headers, mode, "missing"));
       const pdf = await request("/docs/Jerome-Resume.pdf");

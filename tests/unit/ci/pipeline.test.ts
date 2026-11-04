@@ -71,6 +71,13 @@ describe("deployment boundaries", () => {
     expect(checkHeaders(url, 200, pdf, "production", "pdf")).toEqual([]);
     expect(checkHeaders(url, 200, headers(), "production", "pdf").map((f) => f.rule)).toEqual(["indexability", "content-type"]);
   });
+  it("requires an image MIME type for extensionless social preview assets", () => {
+    const image = headers();
+    image.set("content-type", "image/png");
+    expect(checkHeaders(url, 200, image, "production", "image")).toEqual([]);
+    image.delete("content-type");
+    expect(checkHeaders(url, 200, image, "production", "image").map((f) => f.rule)).toEqual(["content-type"]);
+  });
   it("rejects temporary, missing, malformed and off-origin redirects", () => {
     expect(checkRedirect(url + "/", 301, "/projects", url)).toEqual([]);
     expect(checkRedirect(url + "/", 308, url, url)).toEqual([]);
