@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T16:33:46.166Z",
+  "generatedAt": "2026-11-05T02:42:48.951Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-04T16:33:46.166Z",
+      "collectedAt": "2026-11-05T02:42:48.951Z",
       "status": "ok",
       "recordsFound": 6,
-      "added": 3,
+      "added": 0,
       "updated": 1,
-      "closed": 2,
-      "durationMs": 12762,
+      "closed": 0,
+      "durationMs": 12628,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-04T16:33:46.166Z",
+      "collectedAt": "2026-11-05T02:42:48.951Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 748,
+      "durationMs": 1172,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,13 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-04T16:33:46.166Z",
+      "collectedAt": "2026-11-05T02:42:48.951Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 708,
+      "durationMs": 483,
       "held": 0,
       "skipped": 11,
       "rejected": 0,
@@ -67,13 +67,13 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-04T16:33:46.166Z",
+      "collectedAt": "2026-11-05T02:42:48.951Z",
       "status": "ok",
       "recordsFound": 4,
-      "added": 4,
+      "added": 0,
       "updated": 0,
-      "closed": 3,
-      "durationMs": 628,
+      "closed": 0,
+      "durationMs": 557,
       "held": 0,
       "skipped": 21,
       "rejected": 0,
@@ -622,7 +622,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -877,87 +877,6 @@
       ]
     },
     {
-      "id": "15c33fccfe13e297f8ed",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3950",
-      "title": "Senior Laravel Developer",
-      "company": "Shout About Us",
-      "location": "Remote (3 to 4 hours overlap with US Pacific)",
-      "workArrangement": "unknown",
-      "employmentType": "Contractor",
-      "seniority": "senior",
-      "salary": "$6,000 USD per month",
-      "salaryMin": 6000,
-      "salaryMax": 6000,
-      "salaryCurrency": "USD",
-      "salaryPeriod": "month",
-      "descriptionText": "Company: Shout About Us. Location: Remote (3 to 4 hours overlap with US Pacific). Type: Contractor. Salary: $6,000 USD per month.",
-      "sourceId": "3950",
-      "descriptionHash": "07b4b744cbcfbef5bac9",
-      "applicationUrl": null,
-      "countries": [
-        "US"
-      ],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "laravel"
-      ],
-      "contentFingerprint": "b13308faed49ffd6d3c4",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-10-29T15:31:18.000Z",
-      "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
-      "closedAt": null,
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 70,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 45,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
       "id": "d7a2e3bc92446816bc4a",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -997,7 +916,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1095,7 +1014,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1179,8 +1098,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-08T11:41:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1391,8 +1310,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-06T13:25:57.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1502,8 +1421,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-09T13:49:21.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1692,8 +1611,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-12T13:52:56.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -2017,8 +1936,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
       "sponsorship": "unknown",
@@ -2212,8 +2131,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-04T16:33:46.166Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -2252,6 +2171,99 @@
         },
         {
           "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "15c33fccfe13e297f8ed",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3950",
+      "title": "Lead Product Engineer",
+      "company": "API-first B2B software company",
+      "location": "Remote, EU only (overlap until 10 a.m. Pacific)",
+      "workArrangement": "remote-regional-restricted",
+      "employmentType": "Contractor",
+      "seniority": "lead",
+      "salary": "From $10,000 USD per month",
+      "salaryMin": 10000,
+      "salaryMax": null,
+      "salaryCurrency": "USD",
+      "salaryPeriod": "month",
+      "descriptionText": "Company: API-first B2B software company. Location: Remote, EU only (overlap until 10 a.m. Pacific). Type: Contractor. Salary: From $10,000 USD per month.",
+      "sourceId": "3950",
+      "descriptionHash": "143b2cd9350e397cff07",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "europe"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "api",
+        "aws",
+        "full time",
+        "senior"
+      ],
+      "contentFingerprint": "aa49afd80f63e627587d",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-29T15:31:18.000Z",
+      "firstSeenAt": "2026-11-04T16:33:46.166Z",
+      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "status": "active",
+      "closedAt": null,
+      "eligibility": "ineligible",
+      "sponsorship": "unknown",
+      "score": 8,
+      "reasons": [
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Restricted to Europe",
+        "Laravel is not explicitly mentioned"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
+        }
+      ],
+      "confidence": 80,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
           "points": 20
         },
         {
