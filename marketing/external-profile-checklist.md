@@ -1,35 +1,33 @@
 # External Profile Consistency Checklist
 
-Use this after each material profile update. These profiles are external systems, so changes stay review-based and manual.
+Use after each material profile update. External account settings and pins require owner action. Record what has actually been published; do not mark planned changes as complete.
 
 ## Canonical Positioning
 
-Name: Jerome Thayananthajothy
+- **Name:** Jerome Thayananthajothy
+- **Professional headline:** Technical Lead | Full Stack and Generative AI Engineer
+- **Core strengths:** PHP/Laravel, Node.js/TypeScript, React/Vue, practical GenAI workflows, Java/Spring Boot, Python, cloud systems and developer tooling
+- **Experience:** 11+ years in full-stack engineering; 3 years in technical leadership
+- **Public location:** Sri Lanka (confirm any more specific location before publishing)
+- **Website:** https://thavarshan.com
+- **Public contact:** tjthavarshan@gmail.com
+- **Availability:** Open to remote engineering opportunities, relocation and focused consulting
+- **Employment history:** The current website snapshot still marks Sino Lanka Group as an ongoing role. Confirm employment dates and preferred public status with Jerome before changing the source-driven CV, site or any external profile. Don't imply that the headline is a current employer title.
 
-Current role: Technical Lead at Sino Lanka Group
+## Profiles to Review
 
-Headline: Technical Lead for AI workflows, scalable platforms, cloud architecture, and developer tooling
-
-Location: Colombo, Sri Lanka
-
-Website: https://thavarshan.com
-
-Public contact: tjthavarshan@gmail.com
-
-Availability: Open to selected global technical-leadership conversations.
-
-## Profiles to Update
-
-- LinkedIn: confirm current Sino Lanka Group role, public visibility, headline, location, website link, and featured website/CV links.
-- GitHub: update bio, company field, website, pinned repositories, and README links so they match the current positioning.
-- DEV Community: update profile headline, website, GitHub link, and canonical links from any republished Insights.
-- Stack Overflow: update display profile, website, location, and professional summary where available.
-- Packagist: confirm author profile and package links point back to the canonical website or GitHub profile where supported.
+- **GitHub:** publish the prepared [profile README](github-profile/README.md) to a separate `Thavarshan/Thavarshan` repository; set bio, website, location, pins and project links. Publication steps and limitations are in [publication.md](github-profile/publication.md).
+- **LinkedIn:** verify headline, real employment dates, availability, website and featured projects/CV.
+- **Portfolio:** ensure the site, HTML CV, downloaded PDF and structured metadata use the same current factual story. Source-derived fields must be updated through the proper import workflow.
+- **DEV Community:** align headline and profile links; retain canonical links on syndicated articles.
+- **Stack Overflow:** align public bio, location and portfolio URL where relevant.
+- **Packagist:** check package descriptions and source links for Fetch PHP, Filterable and Matrix.
 
 ## Monthly Review
 
-- Compare Google Search Console branded and non-branded queries.
-- Compare Bing indexed pages and IndexNow submissions.
-- Review Plausible goals: Contact, Resume Download, LinkedIn Visit, GitHub Visit, Repository Visit, Newsletter Visit, Insight 75% Read.
-- Review LinkedIn profile appearances, content views, follower demographics, and qualified senior-role conversations.
-- Update this checklist if the positioning changes.
+- Record actual GitHub README/pins/About changes and repository health, not drafts alone.
+- Check Google Search Console and Bing discovery of branded pages; inspect the sitemap and canonical links.
+- Review Plausible high-intent events where enabled: Contact, Resume Download, LinkedIn Visit, GitHub Visit, Repository Visit, Newsletter Visit.
+- Record substantive outside contributions, reproducible bug reports, stable releases and response times. Do not treat stars as unique users.
+- Privately track qualified recruiter contacts, interviews, consulting enquiries and source channels.
+- Recheck every identity or availability claim after an employment change.
