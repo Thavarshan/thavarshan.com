@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T02:42:48.951Z",
+  "generatedAt": "2026-11-06T02:42:59.613Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-05T02:42:48.951Z",
+      "collectedAt": "2026-11-06T02:42:59.613Z",
       "status": "ok",
-      "recordsFound": 6,
+      "recordsFound": 5,
       "added": 0,
-      "updated": 1,
-      "closed": 0,
-      "durationMs": 12628,
+      "updated": 0,
+      "closed": 1,
+      "durationMs": 13061,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-05T02:42:48.951Z",
+      "collectedAt": "2026-11-06T02:42:59.613Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1172,
+      "durationMs": 1403,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,30 +52,30 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-05T02:42:48.951Z",
+      "collectedAt": "2026-11-06T02:42:59.613Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 483,
+      "durationMs": 458,
       "held": 0,
-      "skipped": 11,
+      "skipped": 10,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-05T02:42:48.951Z",
+      "collectedAt": "2026-11-06T02:42:59.613Z",
       "status": "ok",
-      "recordsFound": 4,
+      "recordsFound": 3,
       "added": 0,
       "updated": 0,
-      "closed": 0,
-      "durationMs": 557,
+      "closed": 1,
+      "durationMs": 692,
       "held": 0,
-      "skipped": 21,
+      "skipped": 22,
       "rejected": 0,
       "error": null
     }
@@ -161,101 +161,6 @@
         {
           "factor": "Cloud experience is relevant",
           "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 65,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "71f61c9e8f2f2aa9583d",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3930",
-      "title": "Full-Stack Engineer",
-      "company": "Fans API (previously OnlyFans API)",
-      "location": "Remote / Prague, Czech Republic",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "senior",
-      "salary": "$60,000 - $100,069",
-      "salaryMin": 60000,
-      "salaryMax": 100069,
-      "salaryCurrency": "USD",
-      "salaryPeriod": null,
-      "descriptionText": "Senior Full-Stack Engineer - FansAPI.comRemote / Prague · Laravel 13 + Inertia + ReactWho we areWe build APIs and tools for businesses working with creators. We're profitable, growing 30% month over month, and our founders have sold three businesses for seven figures or more.We're expanding into a single API for multiple creator and social platforms. Customers should be able to integrate once and get consistent responses, webhooks and SDKs.The workSome platforms have undocumented APIs, bot detection and changes that arrive without notice. We need someone who can understand how those integrations work and keep them reliable when the platform, traffic or data changes.We're hiring a senior full-stack engineer to keep production reliable and customer data correct. You'll plan for a workload of 50 million jobs a day, including bursts, slow upstream services and retries. You'll also build integrations and customer-facing features in Laravel 13, Inertia and React.What you'll doInvestigate production problems using logs, metrics and the actual request and job flow. Identify who is affected, contain the problem and verify the fix.Keep queues and webhook delivery reliable. Handle retries, duplicate events, rate limits and worker failures without losing data or letting one account hold up everyone else.Reverse engineer undocumented APIs and maintain integrations for authentication, posting, messaging, media and analytics.Make different platforms work through a consistent API. Keep documentation, SDKs and MCP tools aligned with the behaviour customers receive.Build useful dashboards and internal tools in Laravel 13, Inertia and React. Make the data accurate and the interface clear.Improve database queries, worker capacity and scheduling based on measurements. Add tests for the failures we cannot afford to repeat.Protect our APIs against abuse and check integrations when upstream behaviour changes.Challenge a decision when you think we're solving the wrong problem. Explain the alternative and its tradeoffs.Production incidents and incorrect customer data take priority. We agree with the team which integration and product work comes next.What we need from youYou've shipped and maintained Laravel applications with real users, and you're comfortable building in React. Inertia experience helps, but is not required.You have operated queue or worker systems in production at substantial volume. You understand concurrency, retries, duplicate execution, backpressure and how databases and external services limit throughput.You can describe a production incident you personally investigated, the evidence that led to the cause and how you proved the fix worked. Explain the workload you owned in concrete numbers.You have reverse engineered an API, web client or similar integration. You can reason about HTTP headers, cookies, request signing, TLS fingerprints and rate limits.You check that data means what the product says it means. Missing information, failed requests and legitimate zero values need different handling.You use AI regularly and can show how it improves your work. You verify its output and understand the code you ship.You investigate problems independently, keep the team informed and raise blockers early. You know when to involve someone else in a decision.You don't need to have handled exactly 50 million jobs a day. Tell us what you have operated, how it failed and how you measured its limits.Nice to haveProxy infrastructure, published SDKs, OpenAPI, MCP tools, security testing, PostHog or experience with creator platforms. Public code is welcome; confidential commercial work also counts if you can explain your contribution.How we workWe're a small team. We work asynchronously and review progress weekly. Keep the team informed about decisions, blockers and incidents. We care about work reaching customers and continuing to work after release.We will discuss working-hour overlap, incident coverage, response expectations and any on-call arrangement before an offer.Remote, with a Prague office available. Czech Republic, Ukraine, Poland or UK preferred.How we hireA debugging exercise, a 30-minute technical walkthrough, then a decision. You have six-seven 🤷‍♂️ hours, including setup. The process usually takes under two weeks. You can use AI throughout; we'll ask you to explain your code and decisions.ApplyEmail join@fansapi.com with your CV or LinkedIn and links to work you can share.Briefly describe a production problem you investigated, how you found and verified the fix, and the traffic or job volume involved. Tell us how you use AI and give an example of something you caught it getting wrong. A concrete example gives us more to talk about than a cover letter.",
-      "sourceId": "3930",
-      "descriptionHash": "fe320b0f0f946f6cd8ff",
-      "applicationUrl": "https://fansapi.notion.site/Senior-Full-Stack-Engineer-FansAPI-com-3d12f91f226b8032ae90ca0a41c1a4a3",
-      "countries": [
-        "CZ"
-      ],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "api",
-        "backend",
-        "fullstack",
-        "laravel",
-        "react",
-        "inertia"
-      ],
-      "contentFingerprint": "00db60be6db109c973ab",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-05T08:49:39.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-05T03:00:46.545Z",
-      "status": "closed",
-      "closedAt": "2026-10-06T02:54:52.165Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 82,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
         },
         {
           "factor": "Remote work is mentioned",
@@ -622,7 +527,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -916,7 +821,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1015,8 +920,8 @@
       "publishedAt": "2026-10-06T19:24:09.000Z",
       "firstSeenAt": "2026-10-07T02:57:05.655Z",
       "lastSeenAt": "2026-11-05T02:42:48.951Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-11-06T02:42:59.613Z",
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 40,
@@ -1098,7 +1003,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-08T11:41:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1311,8 +1216,8 @@
       "publishedAt": "2026-10-06T13:25:57.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
       "lastSeenAt": "2026-11-05T02:42:48.951Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-11-06T02:42:59.613Z",
       "eligibility": "eligible",
       "sponsorship": "unknown",
       "score": 35,
@@ -1421,7 +1326,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-09T13:49:21.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1611,7 +1516,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-12T13:52:56.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1936,7 +1841,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -2131,7 +2036,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2219,7 +2124,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-05T02:42:48.951Z",
+      "lastSeenAt": "2026-11-06T02:42:59.613Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
