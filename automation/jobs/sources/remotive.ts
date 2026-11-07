@@ -77,8 +77,9 @@ export function parseRemotiveJobs(json: unknown, now = new Date().toISOString())
   return { opportunities, skipped, rejected };
 }
 
-export async function collectRemotiveJobs(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
-  const response = await withRetry(() => request.get(remotiveUrl), { retries: 2, baseDelayMs: 500 });
+export async function collectRemotiveJobs(request: PoliteRequest, now = new Date().toISOString(), signal?: AbortSignal): Promise<SourceCollectionSuccess> {
+  const response = await withRetry(() => request.get(remotiveUrl), { retries: 2, baseDelayMs: 500, signal });
+  signal?.throwIfAborted();
   if (!response.ok()) throw new Error(`Remotive API returned ${response.status()}`);
   const { opportunities, skipped, rejected } = parseRemotiveJobs(await response.json(), now);
   return { source: "remotive", opportunities, skipped, rejected };

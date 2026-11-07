@@ -62,11 +62,13 @@ export function parseWeWorkRemotelyFeed(xml: string, now = new Date().toISOStrin
   return { opportunities, skipped, rejected };
 }
 
-export async function collectWeWorkRemotely(request: PoliteRequest, now = new Date().toISOString()): Promise<SourceCollectionSuccess> {
+export async function collectWeWorkRemotely(request: PoliteRequest, now = new Date().toISOString(), signal?: AbortSignal): Promise<SourceCollectionSuccess> {
   const response = await withRetry(() => request.get(weWorkRemotelyUrl, { headers: { Accept: "application/rss+xml, application/xml;q=0.9" } }), {
     retries: 2,
-    baseDelayMs: 500
+    baseDelayMs: 500,
+    signal
   });
+  signal?.throwIfAborted();
   if (!response.ok()) throw new Error(`WeWorkRemotely feed returned ${response.status()}`);
   const { opportunities, skipped, rejected } = parseWeWorkRemotelyFeed(await response.text(), now);
   return { source: "weworkremotely", opportunities, skipped, rejected };
