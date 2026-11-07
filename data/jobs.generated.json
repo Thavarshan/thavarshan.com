@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-06T02:42:59.613Z",
+  "generatedAt": "2026-11-07T02:42:45.930Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-06T02:42:59.613Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
-      "recordsFound": 5,
-      "added": 0,
+      "recordsFound": 6,
+      "added": 1,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 13061,
+      "closed": 0,
+      "durationMs": 13704,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-06T02:42:59.613Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1403,
+      "durationMs": 1579,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-06T02:42:59.613Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 458,
+      "durationMs": 460,
       "held": 0,
-      "skipped": 10,
+      "skipped": 12,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-06T02:42:59.613Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 3,
       "added": 0,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 692,
+      "closed": 0,
+      "durationMs": 514,
       "held": 0,
       "skipped": 22,
       "rejected": 0,
@@ -527,7 +527,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -821,7 +821,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -964,6 +964,81 @@
       ]
     },
     {
+      "id": "bd0ab189a7f37b69f8b1",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3952",
+      "title": "Tech Lead",
+      "company": "MailerLite",
+      "location": "Remote / EMEA",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "By clicking “Accept all cookies”, you agree to the storing of cookies on your device and the use of similar technologies to enhance site navigation, analyze site usage, personalize advertising, and assist in our marketing efforts. View our Cookie Policy. Cookies settingsReject allAccept all cookiesAllow selectionStrictly Necessary Cookies (48)Show details (Strictly Necessary Cookies)These cookies are crucial to a website, they are necessary to provide you with Services available through our website and to use some of its features, such as access to secure areas, login-related cookies, which we use when you are logged in so that we can remember this fact. This prevents you from having to log in every single time you visit a new page. You can refuse or delete these cookies, but in this case, our website page might not function properly. NameProviderPurposeMaximum Storage DurationType__cf_bm [x8]MailerLiteOpenAILinkedInTwitter Inc.ThinkificVimeoThis cookie is used to distinguish between humans and bots. This is beneficial for the website, in order to make valid reports on the use of their website.1 dayHTTP Cookie_thinkific_sessionMailerLitePreserves the visitor's session state across page requests.SessionHTTP CookieCookieConsent [x7]CookiebotMailerLiteStores the user's cookie consent state for the current domain1 yearHTTP Cookiesso_sessionMailerLiteThis cookie maintains login state for the user and is used to recognize the user when he moves from page to page within a website and to remember any information the user has entered.7 daysHTTP CookieXSRF-TOKEN [x3]MailerLiteEnsures visitor browsing-security by preventing cross-site request forgery. This cookie is essential for the security of the website and visitor. 7 daysHTTP Cookiegbuuid [x3]cdn.jsdelivr.netThis cookie is required to provide a consistent user experience to our website vistors.400 daysHTTP CookiePHPSESSIDMailerLitePreserves user session state across page requests.SessionHTTP Cookie_cfuvid [x2]OpenAIThis cookie is a part of the services provided by Cloudflare - Including load-balancing, deliverance of website content and serving DNS connection for website operators. SessionHTTP Cookiecf.turnstile.uCloudflareThis cookie is used to distinguish between humans and bots. PersistentHTML Local Storagemailerlite_session [x2]MailerLiteSession cookie set by MailerLite7 daysHTTP CookiethemeMailerLiteThis cookie is part of a bundle of cookies which serve the purpose of content delivery and presentation. The cookies keep the correct state of font, blog/picture sliders, color themes and other website settings.PersistentHTML Local Storagetest_cookieGoogleUsed to check if the user's browser supports cookies.1 dayHTTP CookieSERVERIDEyeotaThis cookie is used to assign the visitor to a specific server - this function is necessary for the functionality of the website.1 dayHTTP Cookiefastcomments-eu.sidfastcomments.comPending30 daysHTTP Cookie_GRECAPTCHAGoogleThis cookie is used to distinguish between humans and bots. This is beneficial for the website, in order to make valid reports on the use of their website.180 daysHTTP Cookie_grecaptchaGoogleThis cookie is used to distinguish between humans and bots. This is beneficial for the website, in order to make valid reports on the use of their website.PersistentHTML Local Storagerc::aGoogleThis cookie is used to distinguish between humans and bots. This is beneficial for the website, in order to make valid reports on the use of their website.PersistentHTML Local Storagerc::bGoogleThis cookie is used to distinguish between humans and bots. SessionHTML Local Storagerc::cGoogleThis cookie is used to distinguish between humans and bots. SessionHTML Local Storagerc::fGoogleThis cookie is used to distinguish between humans and bots. PersistentHTML Local Storage1.gifCookiebotUsed to count the number of sessions to the website, necessary for optimizing CMP product delivery. SessionPixel TrackercsrftokenInstagramHelps prevent Cross-Site Request Forgery (CSRF) attacks.400 daysHTTP CookiebcookieLinkedInUsed in order to detect spam and improve the website's security. 1 yearHTTP Cookieli_gcLinkedInStores the user's cookie consent state for the current domain180 daysHTTP Cookiedmn_chk_#eu.posthog.comThis cookie is set to track user activity across the website.SessionHTTP Cookieml_lp_offerMailerLiteRemembers which partner offer page the visitor came from, so the correct partner discount is shown in the app.43 daysHTTP Cookie_gtmeecserver-side-tagging-europe-west4-dbmaajtc3q-ez.a.run.appThis cookie allows to count visits and traffic sources so we can measure and improve the performance of our site. It helps us to know which pages are the most and least popular, and see how visitors move around the site.SessionHTTP Cookiecf_clearanceVimeoThis cookie is used to distinguish between humans and bots. 1 yearHTTP Cookiear_debugAdroll GroupChecks whether a technical debugger-cookie is present. SessionHTTP Cookie Functional Cookies (52)Show details (Functional Cookies)These cookies are used to improve the performance and functionality of our websites, allow to remember the choices you make, to provide enhanced and more personal features. Functional cookies will not track your activity on other websites. These cookies are not strictly necessary, however, without them, certain services may be unavailable. NameProviderPurposeMaximum Storage DurationTypeadroll#adroll [x5]MailerLiteStores the user's cookie consent state for the current domainPersistentIndexedDBlp_custom [x5]MailerLiteStores custom preferences or settings related to the website's functionality, providing users with a personalized browsing experience tailored to their preferences.SessionHTML Local Storagelocale [x2]MailerLiteThe cookie determines the preferred language and country-setting of the visitor - This allows the website to show content most relevant to that region and language.10 daysHTTP CookietopicsLastReferenceTime Meta Platforms, Inc.Used to store the timestamp of the user's last interaction with a specific topic or content area on a website.PersistentHTML Local StoragelidcLinkedInRegisters which server-cluster is serving the visitor. This is used in context with load balancing, in order to optimize user experience. 1 dayHTTP Cookielp_customMailerLiteStores custom preferences or settings related to the website's functionality, providing users with a personalized browsing experience tailored to their preferences.2 yearsHTTP Cookiepartnero_session_uuidapp.partnero.comA session identifier used by the Partnero service, essential for maintaining user session states and facilitating core functionality within the service.10 yearsHTTP Cookiemailerlite_forms_shown_110541771342088029MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_110543809549436494MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_110544050711430182MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_114441468159985415MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_117498885673322179MailerLitePending7 daysHTTP Cookiemailerlite_forms_shown_118958057942156450MailerLitePending7 daysHTTP Cookiemailerlite_forms_shown_137434144647939451MailerLitePending30 daysHTTP Cookiemailerlite_forms_shown_144805026799290125MailerLitePending30 daysHTTP Cookiemailerlite_forms_shown_148245412925408666MailerLitePending30 daysHTTP Cookiemailerlite_forms_shown_38312045129500146MailerLitePending21 daysHTTP Cookiemailerlite_forms_shown_38498049026164280MailerLitePending21 daysHTTP Cookiemailerlite_forms_shown_38765150908450684MailerLitePending30 daysHTTP Cookiemailerlite_forms_shown_38966659778610895MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_38966739601458900MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_38968860523628281MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_52082293319140792MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81285868513396109MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81286262005172119MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81286350741964370MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81286495340594253MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81286571129571288MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81286647102047519MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81287178774120296MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81287298778399797MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81287348733609460MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_81287483749303782MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_82644067026994511MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_85176877905347971MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_87264270066124331MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_87867192329110988MailerLitePending1 dayHTTP Cookiemailerlite_forms_shown_93567024347743522MailerLitePending30 daysHTTP Cookiemailerlite_forms_shown_96660545776649694MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_96661727055185533MailerLitePending14 daysHTTP Cookiemailerlite_forms_shown_96661766717572136MailerLitePending14 daysHTTP CookieselectedLanguageMailerLiteStores the language selected by the user and ensures that the website is displayed in the preferred language.PersistentHTML Local StoragecurrentAccountIdZapierThis type of cookie helps us maintain session continuity with the selected account.SessionHTTP Cookie Performance Cookies (39)Show details (Performance Cookies)These cookies help improve the way a website and Service work. They may measure usage of our website, track things, such as how long you spend on the site and the pages that you visit. For example, performance cookies may show the most frequently visited pages, help to record any difficulties with a website and show whether advertising on a website is effective or not. Performance cookies do not collect Personal Data and all the information that is collected by these cookies is aggregated and anonymous. NameProviderPurposeMaximum Storage DurationType__mp_opt_in_out_#cdn.mxpnl.comTracks user preferences regarding opting in or out of tracking by Matomo analytics, while also collecting anonymized data on user interactions and behavior for website analysis and optimization purposes.SessionHTTP CookiemixpanelBrowserDb#mixpanelRecordingEventsMailerLiteUsed to store user-specific information for tracking and analytics. Specifically, it helps Mixpanel uniquely identify a user or a browser session to record events like clicks, page views, or navigation behavior.PersistentIndexedDBmixpanelBrowserDb#mixpanelRecordingRegistryMailerLiteUsed to store user-specific information for tracking and analytics. Specifically, it helps Mixpanel uniquely identify a user or a browser session to record events like clicks, page views, or navigation behavior.PersistentIndexedDBph_#_posthog [x4]eu.posthog.comMailerLiteeu-assets.i.posthog.comUsed to track anonymized user website activity for analytics purposes.SessionHTTP Cookieph_#_primary_window_exists [x3]MailerLiteeu.posthog.comeu-assets.i.posthog.comUsed to track anonymized user website activity for analytic purposes.SessionHTML Local Storageph_#_window_id [x3]MailerLiteeu.posthog.comeu-assets.i.posthog.comUsed to track anonymized user website activity for analytics purposes.SessionHTML Local StoragegbFeaturesCachecdn.jsdelivr.netThis cookie is used by the website’s operator in context with multi-variate testing. This is a tool used to combine or change content on the website. This allows the website to find the best variation/edition of the site.PersistentHTML Local Storagemp_gen_new_tab_id_mixpanel_701ed958e7064de3f652cdd89f300847cdn.mxpnl.comHelps to track user sessions across browser tabs. It helps determine whether a new tab is opened as part of the same session or a new oneSessionHTML Local Storagemp_tab_id_mixpanel_701ed958e7064de3f652cdd89f300847cdn.mxpnl.com",
+      "sourceId": "3952",
+      "descriptionHash": "597f29fd0bcfb638a306",
+      "applicationUrl": "https://www.mailerlite.com/jobs/tech-lead",
+      "countries": [],
+      "regions": [
+        "emea"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [],
+      "contentFingerprint": "a1398e15766495c311c3",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-11-06T07:06:38.000Z",
+      "firstSeenAt": "2026-11-07T02:42:45.930Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 40,
+      "reasons": [
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 55,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        }
+      ]
+    },
+    {
       "id": "f7f5ec440343ae913988",
       "source": "weworkremotely",
       "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
@@ -1003,7 +1078,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-08T11:41:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1326,7 +1401,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-09T13:49:21.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1516,7 +1591,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-12T13:52:56.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1841,7 +1916,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -2036,7 +2111,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2124,7 +2199,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-06T02:42:59.613Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
