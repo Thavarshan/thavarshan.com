@@ -31,6 +31,14 @@ export function SiteNav() {
       closeMenu();
     };
 
+    const handleFocusIn = (event: FocusEvent) => {
+      const target = event.target as Node;
+      // This is a disclosure, not a modal. Keyboard users may tab into the page;
+      // dismiss the panel once focus leaves the toggle and its links.
+      if (panelRef.current?.contains(target) || toggleRef.current?.contains(target)) return;
+      closeMenu();
+    };
+
     const desktop = window.matchMedia(DESKTOP_QUERY);
     const handleBreakpoint = () => {
       if (desktop.matches) closeMenu();
@@ -41,12 +49,14 @@ export function SiteNav() {
 
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("focusin", handleFocusIn);
     desktop.addEventListener("change", handleBreakpoint);
 
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("focusin", handleFocusIn);
       desktop.removeEventListener("change", handleBreakpoint);
     };
   }, [closeMenu, menuOpen]);

@@ -11,7 +11,9 @@ install_tool() {
 }
 install_tool actionlint https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
 install_tool gitleaks https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
-"$ci_tools_dir/actionlint" -shellcheck=""
+# actionlint 1.7.12 predates GitHub's supported concurrency.queue setting.
+# Ignore ONLY that documented parser false positive; keep every other lint rule active.
+"$ci_tools_dir/actionlint" -shellcheck="" -ignore 'unexpected key "queue" for "concurrency" section'
 node --import tsx automation/ci/workflow-pins.ts
 # Prove detection and redaction using an ephemeral token; no token enters repository or logs.
 mkdir "$ci_tools_dir/fixture"
