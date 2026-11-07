@@ -122,6 +122,11 @@ describe("Groq AI has no paid inference path", () => {
     const workflow = readFileSync(resolve(process.cwd(), ".github/workflows/applications-refresh.yml"), "utf8");
     expect(workflow).toContain("GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}");
     expect(workflow).toContain("GROQ_FREE_PLAN_CONFIRMED: ${{ vars.GROQ_FREE_PLAN_CONFIRMED }}");
+    expect(workflow).toContain("APPLICATIONS_REPO_SLUG: ${{ vars.APPLICATIONS_REPO_SLUG }}");
+    for (const name of ["applications-refresh.yml", "growth-health.yml", "content-refresh.yml"]) {
+      const configured = readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8");
+      expect(configured, name).toContain("APPLICATIONS_REPO_SLUG: ${{ vars.APPLICATIONS_REPO_SLUG }}");
+    }
     expect(workflow).toContain("APPLICATIONS_MODE: ${{ inputs.mode || 'ai' }}");
     expect(workflow).not.toMatch(/OPENAI_API_KEY|ENABLE_PAID_AI|Secrets not configured/);
     expect(workflow).not.toMatch(/upload-artifact/);

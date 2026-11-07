@@ -51,7 +51,7 @@ The Comet repository is now named Honeymelon. `/projects/comet` permanently redi
 
 ## Checks and recovery
 
-Run `npm run build`, `npm run seo:lifecycle`, and `npm run seo:audit`. To compare history locally, set `LIFECYCLE_BASE_REVISION=<full-base-SHA>` for `seo:lifecycle`; CI supplies the PR base or pre-push commit and fetches two history levels. The initial register has no earlier register, but existing legacy redirects are still protected. Missing/unfetchable base commits fail rather than skip the check.
+Run `npm run build`, `npm run seo:lifecycle`, and `npm run seo:audit`. To compare history locally, set `LIFECYCLE_BASE_REVISION=<full-base-SHA>` for `seo:lifecycle`; CI supplies the PR base or pre-push commit and fetches full history in its quality job. This covers multi-commit pushes where the pre-push SHA is more than two commits behind. The initial register has no earlier register, but existing legacy redirects are still protected. Missing/unfetchable base commits fail rather than skip the check.
 
 The rendered audit additionally rejects internal anchors targeting known moved/retired URLs, validates permanent HTTP responses with redirects disabled, and verifies real 404 behavior. Its JSON report remains the existing `rendered-seo-audit` artifact. The local static server models only the owned exact forced rules, including query pass-through; production remains the authoritative check for Cloudflare behavior.
 
