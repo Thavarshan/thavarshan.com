@@ -6,8 +6,15 @@ export const ROBOTS_AGENT = "JeromeJobCollector";
 
 /** Minimum spacing between requests to the same host. */
 export const MIN_HOST_INTERVAL_MS = 1_000;
-/** Wall-clock budget for one source, including retries and enrichment; exceeding it marks the source failed. */
-export const SOURCE_DEADLINE_MS = 6 * 60_000;
+/** Four sequential source budgets total 9 minutes; the workflow allows 12 minutes. */
+export const SOURCE_BUDGET_MS: Record<Opportunity["source"], number> = {
+  larajobs: 210_000,
+  "laravel-news": 180_000,
+  remotive: 75_000,
+  weworkremotely: 75_000
+};
+/** Bounded source-isolation cleanup and final snapshot validation need room within the CI step. */
+export const SOURCE_CLEANUP_MS = 5_000;
 export const REQUEST_TIMEOUT_MS = 30_000;
 
 export interface SourcePolicy {
@@ -56,5 +63,13 @@ export const sourcePolicies: Record<Opportunity["source"], SourcePolicy> = {
 };
 
 export function isRobotsExempt(source: Opportunity["source"], url: string): boolean {
-  return sourcePolicies[source].robotsExemptions.some((entry) => url.startsWith(entry.urlPrefix));
+  try {
+    const target = new URL(url);
+    return sourcePolicies[source].robotsExemptions.some((entry) => {
+      const endpoint = new URL(entry.urlPrefix);
+      return target.origin === endpoint.origin && target.pathname === endpoint.pathname;
+    });
+  } catch {
+    return false;
+  }
 }

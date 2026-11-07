@@ -1,8 +1,8 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from "vitest";
-import type { APIResponse } from "@playwright/test";
+import type { APIResponse, Page, Route } from "@playwright/test";
 import { SkipEnrichmentError } from "@automation/jobs/concurrency";
-import { HostThrottle, RobotsDisallowedError, createPoliteRequest, resolveRedirectTarget, withDeadline } from "@automation/jobs/http";
+import { HostThrottle, RobotsDisallowedError, createPoliteRequest, navigateChecked, resolveRedirectTarget, withDeadline } from "@automation/jobs/http";
 import { MIN_HOST_INTERVAL_MS, USER_AGENT, isRobotsExempt, sourcePolicies } from "@automation/jobs/policy";
 import type { RobotsGuard } from "@automation/jobs/robots";
 
@@ -71,6 +71,75 @@ describe("createPoliteRequest", () => {
     await request.get("https://remotive.com/api/remote-jobs?category=software-dev");
     expect(get).toHaveBeenCalledTimes(1);
     await expect(request.get("https://remotive.com/api/other-endpoint")).rejects.toThrow(RobotsDisallowedError);
+    await expect(request.get("https://remotive.com/api/remote-jobs-extra")).rejects.toThrow(RobotsDisallowedError);
+  });
+
+  it("checks every actual GET redirect hop, including redirects that differ from HEAD", async () => {
+    const start = "https://allowed.example/job";
+    const forbidden = "https://blocked.example/private";
+    const get = vi.fn(async (url: string, options?: unknown) => {
+      expect(options).toMatchObject({ maxRedirects: 0 });
+      return url === start ? response(302, { location: forbidden }) : response(200);
+    });
+    const request = createPoliteRequest({ request: { get } as never, guard: deny("https://blocked.example"), throttle: throttle(), source: "larajobs" });
+    await expect(request.get(start)).rejects.toThrow(RobotsDisallowedError);
+    expect(get.mock.calls.map((call) => call[0])).toEqual([start]);
+    expect(get.mock.calls[0][1]).toMatchObject({ maxRedirects: 0 });
+  });
+
+  it("follows allowed GET redirects with spacing, but rejects redirect loops", async () => {
+    const get = vi.fn(async (url: string) => (url === "https://a.example/start" ? response(302, { location: "https://b.example/final" }) : response(200)));
+    const request = createPoliteRequest({ request: { get } as never, guard: allowAll, throttle: throttle(), source: "larajobs" });
+    expect((await request.get("https://a.example/start")).status()).toBe(200);
+    expect(get.mock.calls.map((call) => call[0])).toEqual(["https://a.example/start", "https://b.example/final"]);
+    const loop = createPoliteRequest({
+      request: { get: async () => response(302, { location: "/loop" }) } as never,
+      guard: allowAll,
+      throttle: throttle(),
+      source: "larajobs"
+    });
+    await expect(loop.get("https://a.example/loop")).rejects.toThrow(/too many redirects/i);
+  });
+});
+
+describe("navigateChecked", () => {
+  function browser(first: APIResponse, follow: APIResponse) {
+    let handler: (route: Route) => Promise<void> = async () => {};
+    const route = {
+      request: () => ({ isNavigationRequest: () => true, url: () => "https://allowed.example/job" }),
+      fetch: vi.fn(async () => first),
+      fulfill: vi.fn(async () => undefined),
+      abort: vi.fn(async () => undefined)
+    } as unknown as Route;
+    const get = vi.fn(async () => follow);
+    const page = {
+      route: async (_: string, callback: (route: Route) => Promise<void>) => (handler = callback),
+      unroute: async () => undefined,
+      goto: async () => {
+        await handler(route);
+        if (vi.mocked(route.abort).mock.calls.length) throw new Error("Navigation aborted");
+      },
+      context: () => ({ request: { get } })
+    } as unknown as Page;
+    return { page, route, get };
+  }
+
+  it("blocks a forbidden browser GET redirect before issuing a content request to that host", async () => {
+    const { page, route, get } = browser(response(302, { location: "https://blocked.example/private" }), response(200));
+    await expect(
+      navigateChecked(page, "https://allowed.example/job", { guard: deny("https://blocked.example"), throttle: new HostThrottle(0) })
+    ).rejects.toThrow(SkipEnrichmentError);
+    expect(route.fetch).toHaveBeenCalledTimes(1);
+    expect(route.abort).toHaveBeenCalledTimes(1);
+    expect(get).not.toHaveBeenCalled();
+  });
+
+  it("fulfills the browser navigation from the allowed final GET and records the landing URL", async () => {
+    const { page, route, get } = browser(response(302, { location: "https://employer.example/careers" }), response(200));
+    const landed = await navigateChecked(page, "https://allowed.example/job", { guard: allowAll, throttle: new HostThrottle(0) });
+    expect(landed).toBe("https://employer.example/careers");
+    expect(get).toHaveBeenCalledWith("https://employer.example/careers", expect.objectContaining({ maxRedirects: 0 }));
+    expect(route.fulfill).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -119,6 +188,19 @@ describe("withDeadline", () => {
 
   it("rejects a hung task at the deadline", async () => {
     await expect(withDeadline("Slow source", 20, () => new Promise(() => {}))).rejects.toThrow(/Slow source exceeded its 0s deadline|Slow source exceeded/);
+  });
+
+  it("signals cancellation when a source deadline expires", async () => {
+    const controller = new AbortController();
+    await expect(
+      withDeadline(
+        "Timed source",
+        5,
+        () => new Promise(() => {}),
+        () => controller.abort(new Error("expired"))
+      )
+    ).rejects.toThrow(/deadline/);
+    expect(controller.signal.aborted).toBe(true);
   });
 });
 

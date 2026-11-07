@@ -18,6 +18,7 @@ export function isUnusableScrape(scraped: { title: string | null; description: s
 
 /** Resolves a board link to its final URL, throwing SkipEnrichmentError when robots.txt or the chain forbids it. */
 export type ResolveUrl = (url: string) => Promise<string>;
+export type NavigateUrl = (page: Page, url: string) => Promise<string>;
 
 export interface ScrapedPage {
   title: string | null;
@@ -31,17 +32,26 @@ export interface ScrapedPage {
  * external destinations (company career pages, ATSes, and occasionally an auth-wall) — every
  * other source hosts its own description directly and never needs this.
  */
-export async function scrapeRedirectTarget(page: Page, url: string, resolveUrl: ResolveUrl = async (value) => value): Promise<ScrapedPage | null> {
+export async function scrapeRedirectTarget(
+  page: Page,
+  url: string,
+  resolveUrl: ResolveUrl = async (value) => value,
+  signal?: AbortSignal,
+  navigate?: NavigateUrl
+): Promise<ScrapedPage | null> {
   try {
     return await withRetry(
       async () => {
+        signal?.throwIfAborted();
         // Resolve the redirect chain first so robots.txt is honoured for every host before it is requested.
         const target = await resolveUrl(url);
-        await page.goto(target, { waitUntil: "domcontentloaded", timeout: 45_000 });
+        signal?.throwIfAborted();
+        const landed = navigate ? await navigate(page, target) : (await page.goto(target, { waitUntil: "domcontentloaded", timeout: 45_000 }), page.url());
+        signal?.throwIfAborted();
         // Single-page ATS sites render after DOMContentLoaded; give them a bounded moment to settle
         // so we capture the posting rather than a loading shell ("Apply for this job").
         await page.waitForLoadState("networkidle", { timeout: 6_000 }).catch(() => undefined);
-        if (unusableRedirectHosts.has(new URL(page.url()).hostname)) {
+        if (unusableRedirectHosts.has(new URL(landed).hostname)) {
           throw new SkipEnrichmentError(`${url} redirects to an unusable auth-wall host`);
         }
 
@@ -65,11 +75,11 @@ export async function scrapeRedirectTarget(page: Page, url: string, resolveUrl: 
             .catch(() => null)) ??
           "";
 
-        const scraped = { title: title || null, description, finalUrl: page.url() };
+        const scraped = { title: title || null, description, finalUrl: landed };
         if (isUnusableScrape(scraped)) throw new SkipEnrichmentError(`${url} returned a bot-wall or challenge page`);
         return scraped;
       },
-      { retries: 1, baseDelayMs: 750, isRetryable: (error) => !(error instanceof SkipEnrichmentError) }
+      { retries: 1, baseDelayMs: 750, isRetryable: (error) => !(error instanceof SkipEnrichmentError), signal }
     );
   } catch (error) {
     if (error instanceof SkipEnrichmentError) return null;
@@ -87,18 +97,26 @@ export async function enrichAndFinalize<D>(
   drafts: D[],
   getUrl: (draft: D) => string,
   finalize: (draft: D, now: string, scrapedDescription: string | null, applicationUrl: string | null) => Opportunity,
-  opts: { concurrency: number; resolveUrl?: ResolveUrl },
+  opts: { concurrency: number; resolveUrl?: ResolveUrl; navigate?: NavigateUrl; signal?: AbortSignal },
   now = new Date().toISOString()
 ): Promise<Opportunity[]> {
-  const results = await mapWithConcurrency(drafts, opts.concurrency, async (draft) => {
-    const page = await context.newPage();
-    try {
-      const scraped = await scrapeRedirectTarget(page, getUrl(draft), opts.resolveUrl);
-      return finalize(draft, now, scraped?.description ?? null, scraped?.finalUrl ?? null);
-    } finally {
-      await page.close();
-    }
-  });
+  const results = await mapWithConcurrency(
+    drafts,
+    opts.concurrency,
+    async (draft) => {
+      opts.signal?.throwIfAborted();
+      const page = await context.newPage();
+      try {
+        const scraped = await scrapeRedirectTarget(page, getUrl(draft), opts.resolveUrl, opts.signal, opts.navigate);
+        opts.signal?.throwIfAborted();
+        return finalize(draft, now, scraped?.description ?? null, scraped?.finalUrl ?? null);
+      } finally {
+        await page.close().catch(() => undefined);
+      }
+    },
+    opts.signal
+  );
 
+  opts.signal?.throwIfAborted();
   return results.map((result, index) => (result.status === "fulfilled" ? result.value : finalize(drafts[index], now, null, null)));
 }
