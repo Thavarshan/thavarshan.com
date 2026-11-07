@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { buildInventory, diffInventories, type Inventory } from "@automation/structure/routes";
+import { buildInventory, diffInventories, validateSocialPng, type Inventory } from "@automation/structure/routes";
 
 const baseFiles = [
   "index.html",
@@ -31,6 +31,21 @@ const baseFiles = [
 const expected = (): Inventory => buildInventory(baseFiles);
 
 describe("public URL inventory", () => {
+  it("rejects social-image format, dimensions and oversized binary regressions", () => {
+    const png = (width: number, height: number, length = 100) => {
+      const bytes = Buffer.alloc(length);
+      Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]).copy(bytes);
+      bytes.write("IHDR", 12);
+      bytes.writeUInt32BE(width, 16);
+      bytes.writeUInt32BE(height, 20);
+      return bytes;
+    };
+    expect(validateSocialPng(png(1200, 630))).toBeNull();
+    expect(validateSocialPng(Buffer.from("not a png"))).toContain("not a valid PNG");
+    expect(validateSocialPng(png(800, 800))).toContain("incorrect dimensions");
+    expect(validateSocialPng(png(1200, 630, 2_000_001))).toContain("image too large");
+  });
+
   it("normalises per-item pages to patterns and ignores build internals and RSC payloads", () => {
     const inventory = expected();
     expect(inventory.pages).toEqual(["/", "/404", "/cv", "/insights", "/insights/[slug]", "/privacy", "/projects/[slug]", "/tools", "/tools/[slug]"]);

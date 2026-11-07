@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
+import upstreamFixtures from "../../fixtures/tools/phpdotenv-v5.6.2.json";
 import {
   MAX_INPUT_CHARS,
   MAX_LINES,
@@ -21,6 +22,21 @@ function check(env: string, example: string): CheckResult {
 const codes = (result: CheckResult) => result.findings.map((finding) => `${finding.code}${finding.key ? `:${finding.key}` : ""}`);
 
 describe("parseEnv", () => {
+  it("matches pinned phpdotenv 5.6.2 fixtures for comments, quotes and escapes", () => {
+    for (const fixture of upstreamFixtures.cases) {
+      const parsed = parseEnv(fixture.source, "env");
+      if ("error" in fixture && fixture.error) {
+        expect(
+          parsed.findings.some((finding) => finding.severity === "error"),
+          fixture.name
+        ).toBe(true);
+      } else if ("values" in fixture && fixture.values) {
+        expect(parsed.findings, fixture.name).toEqual([]);
+        expect(Object.fromEntries(parsed.entries.map(({ key, value }) => [key, value])), fixture.name).toEqual(fixture.values);
+      }
+    }
+  });
+
   it("parses plain, exported, quoted and commented values", () => {
     const { entries, findings } = parseEnv(`# comment\nA=1\nexport B=two\nC="three # not a comment"\nD='four'\nE=five # trailing comment\nF=\n`, "env");
     expect(findings).toEqual([]);
@@ -46,6 +62,11 @@ describe("parseEnv", () => {
     const { findings } = parseEnv("APP_NAME=My Great App\n", "env");
     expect(findings[0]).toMatchObject({ code: "unquoted-whitespace", severity: "error", line: 1, key: "APP_NAME" });
     expect(parseEnv('APP_NAME="My Great App"\n', "env").findings).toEqual([]);
+  });
+
+  it("parses adjacent hash comments before production debug checks", () => {
+    const result = check(`APP_ENV=production#deploy\nAPP_DEBUG=true#danger\nAPP_KEY=${"x".repeat(32)}\n`, "");
+    expect(codes(result)).toContain("debug-in-production:APP_DEBUG");
   });
 
   it("flags malformed lines with line numbers", () => {
@@ -178,6 +199,18 @@ describe("privacy: values never appear in output", () => {
   it("only echoes non-sensitive example defaults into the missing-keys block", () => {
     const result = check("A=1\n", 'A=1\nAPP_URL=http://localhost\nDB_PORT=3306\nMAIL_FROM_NAME="Hello World"\nCACHE_KEY_PREFIX=abc\n');
     expect(result.missingBlock.split("\n")).toEqual(["APP_URL=http://localhost", "DB_PORT=3306", 'MAIL_FROM_NAME="Hello World"', "CACHE_KEY_PREFIX="]);
+  });
+
+  it("redacts synthetic values in quoted-escape, adjacent-comment and invalid-key errors", () => {
+    const sentinel = "ZZ_SENTINEL_9f8e7d6c5b";
+    const result = check(
+      `APP_ENV=production#${sentinel}\nAPP_DEBUG=true#${sentinel}\nINVALID-${sentinel}=x\nPATH="\\q${sentinel}"\nSECRET='a\\'${sentinel}'\nAPP_KEY=${"x".repeat(32)}\n`,
+      ""
+    );
+    expect(codes(result)).toContain("debug-in-production:APP_DEBUG");
+    expect(codes(result)).toContain("invalid-escape:PATH");
+    expect(codes(result)).toContain("trailing-after-quote:SECRET");
+    expect(JSON.stringify(result) + formatReport(result)).not.toContain(sentinel);
   });
 });
 

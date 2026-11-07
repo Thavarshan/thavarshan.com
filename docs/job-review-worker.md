@@ -7,7 +7,7 @@ A server-rendered review page for the opportunities in `data/jobs.generated.json
 - `workers/job-review/` — the Worker (`index.ts` handlers, `access.ts` JWT verification, `render.ts` HTML, `wrangler.toml`).
 - `src/features/jobs/review.ts` — pure filter/sort/validation logic, unit-tested and free of Worker APIs.
 - **Data:** fetched live from the public `main` copy of `jobs.generated.json` and validated with `opportunitySnapshotSchema`. A failure renders an error state (HTTP 502); data older than 48h shows a stale banner. No redeploy is needed when the daily refresh commits.
-- **Review state:** one JSON blob (`reviews`) in Workers KV, keyed by opportunity id: `{status: new|reviewed|shortlisted|dismissed, note, updatedAt}`. Nothing is written to git, the Next.js build, or logs.
+- **Review state:** each opportunity has its own Workers KV key, `review:<20-character-id>`, containing `{status: new|reviewed|shortlisted|dismissed, note, updatedAt}`. The pre-migration aggregate `reviews` blob remains read-only as a recovery fallback. Unrelated opportunity saves therefore never overwrite one another; nothing is written to git, the Next.js build, or logs.
 - **UI:** no client JavaScript. Filters are a GET form, review actions are POST forms, so it is keyboard accessible and works on any device. Default sort: eligible first, then fit score, then confidence, then freshness. Filters: eligibility, min score, source, technology, remote scope, sponsorship, compensation, age, review state, closed. Each job shows its `scoreBreakdown`, reasons and concerns, and never shows a bare "unknown": missing fields say what the posting did not state (e.g. "Sponsorship: not mentioned", "Scope: Remote / Cyprus (unclassified)"), concerns and stack are visible without expanding, and an "All details and posting text" section lists every captured field (dates, seniority, employment type, salary range, duplicates) plus the escaped posting text. Confidence (0–100, with its own breakdown) measures how well-evidenced the extracted signals are and is shown next to fit; snapshots written before it existed show it as unknown until the next collection.
 
 ## Security model
@@ -45,7 +45,7 @@ See `docs/adr/0001-cloudflare-worker-for-private-job-review.md` for the decision
 - `GET /healthz` returns `{status, version, environment, kv, time}` (behind Access, like every route).
 - Every response carries `X-Request-Id`; logs are one JSON line per request with no notes, emails, tokens or query strings.
 - No CORS: cross-origin callers are refused. Only `application/x-www-form-urlencoded` bodies up to 8 KiB are accepted for saves.
-- If KV is unavailable the page still renders with a notice; saves refuse instead of overwriting.
+- If KV is unavailable or a review record cannot be validated, the page still renders with a notice; saves refuse instead of overwriting.
 - **Previews:** pull requests touching the Worker get a read-only preview version (`pr-<number>-job-review.<subdomain>.workers.dev`), protected by the same Access application. It cannot modify production review data.
 - **Deploy:** production is deployed by GitHub Actions from `main`; the short git SHA is reported by `/healthz`.
 
@@ -70,11 +70,12 @@ Workers Free (100k requests/day) and KV Free (1k writes/day) are far above singl
 
 ## Recovering malformed review state
 
-Saved reviews live in one KV key, `reviews`. The Worker validates it on every read (object of `{ status, note, updatedAt }` entries, status one of `new|reviewed|shortlisted|dismissed`, note at most 500 characters). If anything is malformed, the page stays up with the "Saved reviews are temporarily unavailable" notice, `/healthz` reports `degraded`, and saves are refused with a 503. The stored value is never overwritten or reset automatically.
+Each new review is stored under `review:<id>`; the original `reviews` JSON aggregate is still loaded as a read-only legacy fallback. Per-opportunity entries override the aggregate, while a record with `status: "new"` and an empty note acts as a tombstone to clear a legacy review without deleting the original backup. Both formats are validated on every read (status one of `new|reviewed|shortlisted|dismissed`, note at most 500 characters). If anything is malformed or a listing is incomplete, the page shows the "Saved reviews are temporarily unavailable" notice, `/healthz` reports `degraded`, and saves fail with a 503. No stored value is overwritten or reset automatically.
 
-To recover: export the value (`npx wrangler kv key get reviews --binding JOBS_KV --remote > reviews.bak.json`), fix the JSON by hand (or delete the bad entries), then write it back (`npx wrangler kv key put reviews --binding JOBS_KV --remote --path reviews.json`). Deleting the key (`wrangler kv key delete`) starts from an empty review list.
+To recover a malformed legacy blob: first export its exact value using the Wrangler CLI into a private local backup, then repair it and put the corrected JSON back. For a malformed individual review, list keys with prefix `review:` and export the affected record before editing it. Never delete the legacy aggregate as a migration step; it is a recoverable source of historical notes. Avoid publishing backups, review notes or private KV values in issues/CI logs.
 
 ## Known limitations
 
-- Review state is per-Worker KV, not exported; there is no history beyond `updatedAt`.
-- The single-blob state assumes one reviewer.
+- Review state is per-Worker KV, not exported; there is no history beyond `updatedAt`. Independent opportunity IDs are isolated; simultaneous edits **to the same ID** remain last-write-wins.
+- Workers KV is eventually consistent: freshly saved records may not appear in other locations immediately. The Worker does not claim global read-after-write consistency.
+- A read is limited to 400 individual review records (plus the legacy blob), keeping storage calls below the Workers Free per-invocation limit. On overflow or incomplete pagination, reads and writes fail closed; the UI cannot pretend it saved. Reassess storage architecture before exceeding that bound. No paid service is introduced.

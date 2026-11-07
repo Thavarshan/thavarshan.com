@@ -1,0 +1,41 @@
+{
+  "package": "vlucas/phpdotenv",
+  "version": "5.6.2",
+  "cases": [
+    {
+      "name": "unquoted-hash-without-space",
+      "source": "APP_ENV=production#deploy\nAPP_DEBUG=true#danger\n",
+      "values": { "APP_ENV": "production", "APP_DEBUG": "true" }
+    },
+    {
+      "name": "quoted-hashes-remain-literal",
+      "source": "FIRST='a#b'\nSECOND=\"c#d\" # note\n",
+      "values": { "FIRST": "a#b", "SECOND": "c#d" }
+    },
+    {
+      "name": "allowed-double-quote-escapes",
+      "source": "NEWLINE=\"line\\nnext\"\nBACKSLASH=\"C:\\\\projects\"\n",
+      "values": { "NEWLINE": "line\nnext", "BACKSLASH": "C:\\projects" }
+    },
+    {
+      "name": "single-quote-backslashes-are-literal",
+      "source": "PATH='C:\\projects\\app'\n",
+      "values": { "PATH": "C:\\projects\\app" }
+    },
+    {
+      "name": "invalid-double-quote-escape",
+      "source": "PATH=\"C:\\projects\\app\"\n",
+      "error": true
+    },
+    {
+      "name": "invalid-single-quote-escape",
+      "source": "PASSWORD='a\\'b'\n",
+      "error": true
+    },
+    {
+      "name": "unquoted-whitespace",
+      "source": "APP_NAME=Hello World\n",
+      "error": true
+    }
+  ]
+}
