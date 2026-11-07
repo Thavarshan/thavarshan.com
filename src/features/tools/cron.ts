@@ -253,12 +253,17 @@ export function explainCron(cron: ParsedCron): string {
   else time = `At minutes ${list(describeRuns(minute.values))} past hour${hour.values.length > 1 ? "s" : ""} ${list(describeRuns(hour.values))}`;
 
   const dayParts: string[] = [];
-  const domRestricted = !dayOfMonth.star;
-  const dowRestricted = !dayOfWeek.star;
+  // `*/2` starts with a wildcard but still selects only some days. The star
+  // marker controls cron's AND/OR interaction; it does not erase those values.
+  const domRestricted = !isFull(dayOfMonth, "dayOfMonth");
+  const dowRestricted = !isFull(dayOfWeek, "dayOfWeek");
   if (domRestricted) {
-    const days = dayOfMonth.values.map((day) => `${day}${ordinal(day)}`);
-    if (dayOfMonth.lastDay) days.push("the last day");
-    dayParts.push(`on day ${list(days)} of the month`);
+    if (dayOfMonth.star && !dayOfMonth.lastDay) dayParts.push(`on day-of-month values ${dayOfMonth.raw}`);
+    else {
+      const days = dayOfMonth.values.map((day) => `${day}${ordinal(day)}`);
+      if (dayOfMonth.lastDay) days.push("the last day");
+      dayParts.push(`on day ${list(days)} of the month`);
+    }
   }
   if (dowRestricted) {
     const names = dayOfWeek.values.map((day) => weekdayLong[day]);
@@ -266,7 +271,7 @@ export function explainCron(cron: ParsedCron): string {
     dayParts.push(`on ${runs ?? list(names)}`);
   }
   let days = "";
-  if (dayParts.length === 2) days = `${dayParts[0]} ${dayParts[1].replace(/^on /, "or on ")}`;
+  if (dayParts.length === 2) days = `${dayParts[0]} ${dayParts[1].replace(/^on /, !dayOfMonth.star && !dayOfWeek.star ? "or on " : "and on ")}`;
   else if (dayParts.length === 1) days = dayParts[0];
 
   const months = !month.star || !isFull(month, "month") ? (isFull(month, "month") ? "" : `in ${list(month.values.map((value) => monthLong[value - 1]))}`) : "";
@@ -409,7 +414,7 @@ function dayMatches(cron: ParsedCron, year: number, month: number, day: number):
   const domMatch = dom.values.includes(day) || (dom.lastDay && day === daysIn(year, month));
   const dowMatch = dow.values.includes(weekdayOf(year, month, day));
   // Classic cron: when both day fields are restricted, either may match; otherwise both must.
-  return !dom.star && !dow.star ? domMatch || dowMatch : (dom.star || domMatch) && (dow.star || dowMatch);
+  return !dom.star && !dow.star ? domMatch || dowMatch : domMatch && dowMatch;
 }
 
 /** Next wall-clock time strictly after `from` (a naive local time) that matches the schedule, or null within `maxYears`. */

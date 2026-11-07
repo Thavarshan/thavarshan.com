@@ -28,6 +28,7 @@ permissions:
 concurrency:
   group: automated-generated-content
   cancel-in-progress: false
+  queue: max
 
 jobs:
   snapshot:

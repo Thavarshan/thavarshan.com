@@ -113,6 +113,11 @@ describe("explainCron", () => {
   it("describes both day fields as an either/or", () => {
     expect(explain("0 0 15 * 1")).toMatch(/on day 15th of the month or on Monday/);
   });
+
+  it("describes wildcard steps as day restrictions with AND semantics", () => {
+    expect(explain("0 0 */2 * 1")).toMatch(/day-of-month values \*\/2 and on Monday/);
+    expect(explain("0 0 1 * */2")).toMatch(/day 1st of the month and on Sunday, Tuesday, Thursday, and Saturday/);
+  });
 });
 
 /**
@@ -319,6 +324,20 @@ describe("nextRuns", () => {
     // 15th OR any Monday
     const runs = nextRuns(parsed("0 0 15 * 1"), new Date("2026-10-01T00:00:00Z"), 4);
     expect(iso(runs)).toEqual(["2026-10-05T00:00:00.000Z", "2026-10-12T00:00:00.000Z", "2026-10-15T00:00:00.000Z", "2026-10-19T00:00:00.000Z"]);
+  });
+
+  it("applies stepped day-of-month and weekday restrictions to actual calendar dates", () => {
+    const from = new Date("2026-10-01T00:00:00Z");
+    // `*/2` in day-of-month means the 1st, 3rd, 5th, etc.; intersect it with Mondays.
+    expect(iso(nextRuns(parsed("0 0 */2 * 1"), from, 4))).toEqual([
+      "2026-10-05T00:00:00.000Z",
+      "2026-10-19T00:00:00.000Z",
+      "2026-11-09T00:00:00.000Z",
+      "2026-11-23T00:00:00.000Z"
+    ]);
+    // `*/2` in day-of-week selects Sunday, Tuesday, Thursday and Saturday.
+    expect(iso(nextRuns(parsed("0 0 1 * */2"), from, 3))).toEqual(["2026-11-01T00:00:00.000Z", "2026-12-01T00:00:00.000Z", "2027-04-01T00:00:00.000Z"]);
+    expect(toLaravelChain(parsed("0 0 */2 * 1"))).toEqual({ chain: "->cron('0 0 */2 * 1')", fluent: false });
   });
 
   it("converts wall-clock times in a fixed-offset zone", () => {

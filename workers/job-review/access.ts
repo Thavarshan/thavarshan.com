@@ -13,7 +13,11 @@ interface Jwk extends JsonWebKey {
 }
 
 const certCache = new Map<string, { keys: Jwk[]; fetchedAt: number }>();
+const pendingCertFetches = new Map<string, Promise<Jwk[]>>();
+const unknownKidRefreshAttempts = new Map<string, number>();
 const CERT_TTL_MS = 10 * 60_000;
+// Unknown key IDs are untrusted input. At most one extra refresh per team every 30 seconds.
+const UNKNOWN_KID_REFRESH_COOLDOWN_MS = 30_000;
 
 function decodeBase64Url(value: string) {
   const padded = value
@@ -30,16 +34,42 @@ function decodeJson<T>(segment: string): T {
 async function loadKeys(teamDomain: string, fetcher: typeof fetch, now: number): Promise<Jwk[]> {
   const cached = certCache.get(teamDomain);
   if (cached && now - cached.fetchedAt < CERT_TTL_MS) return cached.keys;
-  const response = await fetcher(`https://${teamDomain}/cdn-cgi/access/certs`);
-  if (!response.ok) throw new Error(`Access certs request failed (${response.status})`);
-  const body = (await response.json()) as { keys?: Jwk[] };
-  const keys = body.keys ?? [];
-  certCache.set(teamDomain, { keys, fetchedAt: now });
-  return keys;
+  return fetchKeys(teamDomain, fetcher, now);
+}
+
+function fetchKeys(teamDomain: string, fetcher: typeof fetch, now: number): Promise<Jwk[]> {
+  const pending = pendingCertFetches.get(teamDomain);
+  if (pending) return pending;
+  const request = (async () => {
+    const response = await fetcher(`https://${teamDomain}/cdn-cgi/access/certs`);
+    if (!response.ok) throw new Error(`Access certs request failed (${response.status})`);
+    const body = (await response.json()) as { keys?: Jwk[] };
+    const keys = body.keys ?? [];
+    certCache.set(teamDomain, { keys, fetchedAt: now });
+    return keys;
+  })();
+  pendingCertFetches.set(teamDomain, request);
+  void request
+    .finally(() => {
+      if (pendingCertFetches.get(teamDomain) === request) pendingCertFetches.delete(teamDomain);
+    })
+    .catch(() => undefined);
+  return request;
+}
+
+function refreshUnknownKid(teamDomain: string, fetcher: typeof fetch, now: number): Promise<Jwk[]> {
+  const pending = pendingCertFetches.get(teamDomain);
+  if (pending) return pending;
+  const lastAttempt = unknownKidRefreshAttempts.get(teamDomain);
+  if (lastAttempt !== undefined && now - lastAttempt < UNKNOWN_KID_REFRESH_COOLDOWN_MS) return Promise.resolve(certCache.get(teamDomain)?.keys ?? []);
+  unknownKidRefreshAttempts.set(teamDomain, now);
+  return fetchKeys(teamDomain, fetcher, now);
 }
 
 export function clearAccessCertCache() {
   certCache.clear();
+  pendingCertFetches.clear();
+  unknownKidRefreshAttempts.clear();
 }
 
 /** Returns the authenticated email, or null when the token is missing, invalid, expired or not for this app/user. */
@@ -59,7 +89,14 @@ export async function verifyAccessJwt(
     const header = decodeJson<{ alg?: string; kid?: string }>(headerSegment);
     if (header.alg !== "RS256" || !header.kid) return null;
 
-    const jwk = (await loadKeys(config.teamDomain, fetcher, nowMs)).find((key) => key.kid === header.kid);
+    const cached = certCache.get(config.teamDomain);
+    const wasFresh = cached !== undefined && nowMs - cached.fetchedAt < CERT_TTL_MS;
+    const keys = await loadKeys(config.teamDomain, fetcher, nowMs);
+    // A rotated signing key may be published while our regular 10-minute cache is fresh.
+    // Only refresh early on a key miss, with a shared promise and a per-team cooldown.
+    const jwk =
+      keys.find((key) => key.kid === header.kid) ??
+      (wasFresh ? (await refreshUnknownKid(config.teamDomain, fetcher, nowMs)).find((key) => key.kid === header.kid) : undefined);
     if (!jwk) return null;
 
     const key = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);

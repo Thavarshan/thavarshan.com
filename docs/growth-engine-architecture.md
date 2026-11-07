@@ -34,6 +34,16 @@ Generated public files may be committed directly to `main` when the workflow:
 - preserves the last-known-good committed state when a run fails;
 - uses a shared concurrency group when multiple workflows can push generated content.
 
+Content refresh, growth metrics, OSS distribution and growth-health reporting share the
+`automated-generated-content` lock. GitHub Actions `queue: max` retains up to **100 pending
+runs** in arrival order (instead of silently replacing an older pending run); the jobs
+collector has a separate queued publication lock. If a queue reaches its limit,
+GitHub cancels new arrivals: inspect the canceled run under **Actions**, then manually
+rerun that workflow once the queue has drained. Each generated change still passes
+the existing checks and review/approval process. The pinned `actionlint` version
+predates GitHub's `queue` field, so CI suppresses only its known false-positive
+message for that field; all other workflow checks remain enabled.
+
 Human-authored source changes continue through pull requests and CI.
 
 ## Privacy and secrets

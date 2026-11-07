@@ -144,6 +144,31 @@ test("mobile navigation is accessible and closes with Escape", async ({ page }) 
   await expect(page.locator("#mobile-navigation")).toBeHidden();
 });
 
+test("mobile disclosure closes on forward Tab beyond its last link", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open navigation menu" }).click();
+  const panel = page.locator("#mobile-navigation");
+  await panel.locator("a").last().focus();
+  await expect(panel).toBeVisible();
+  await page.keyboard.press("Tab");
+  await expect(panel).toBeHidden();
+  expect(await page.evaluate(() => Boolean(document.activeElement?.closest("#mobile-navigation")))).toBe(false);
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+});
+
+test("mobile disclosure closes on reverse Shift+Tab away from its toggle", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Open navigation menu" });
+  await toggle.focus();
+  await toggle.press("Enter");
+  await expect(page.locator("#mobile-navigation")).toBeVisible();
+  await page.keyboard.press("Shift+Tab");
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+  await expect(page.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
+});
+
 test("the menu toggle stays inside the viewport on narrow screens", async ({ page }) => {
   for (const width of [320, 375, 430, 768, 900]) {
     await page.setViewportSize({ width, height: 812 });
