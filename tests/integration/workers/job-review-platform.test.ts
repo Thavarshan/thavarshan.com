@@ -15,6 +15,7 @@ import { makeOpportunity } from "../../helpers/opportunity";
 import type { OpportunitySnapshot } from "@/features/jobs/opportunities";
 
 const ID = "0123456789abcdef0123";
+const OTHER_ID = "abcdef0123456789abcd";
 const now = new Date("2026-09-30T00:00:00.000Z");
 const snapshot: OpportunitySnapshot = {
   schemaVersion: 2,
@@ -28,7 +29,13 @@ const dataFetcher = (async () => new Response(JSON.stringify(snapshot))) as type
 
 function kv(overrides: Partial<KVLike> = {}): KVLike & { store: Map<string, string> } {
   const store = new Map<string, string>();
-  return { store, get: async (key) => store.get(key) ?? null, put: async (key, value) => void store.set(key, value), ...overrides };
+  return {
+    store,
+    get: async (key) => store.get(key) ?? null,
+    put: async (key, value) => void store.set(key, value),
+    list: async ({ prefix }) => ({ keys: [...store.keys()].filter((key) => key.startsWith(prefix)).map((name) => ({ name })), list_complete: true }),
+    ...overrides
+  };
 }
 const env = (store: KVLike, extra: Partial<Env> = {}): Env => ({
   JOBS_KV: store,
@@ -289,6 +296,58 @@ describe("rate limiting", () => {
 });
 
 describe("graceful degradation and data safety", () => {
+  it("preserves two independent saves even when both requests read the same stale aggregate", async () => {
+    let aggregateReads = 0;
+    let releaseReads: () => void = () => {};
+    const readsReady = new Promise<void>((resolve) => (releaseReads = resolve));
+    const store = kv({
+      get: async (key) => {
+        if (key === "reviews") {
+          aggregateReads++;
+          if (aggregateReads === 2) releaseReads();
+          await readsReady;
+          return null;
+        }
+        return saved.store.get(key) ?? null;
+      }
+    });
+    const saved = store;
+    const responses = await Promise.all([
+      run(post({ id: ID, status: "shortlisted", note: "first review" }), env(store)),
+      run(post({ id: OTHER_ID, status: "reviewed", note: "second review" }), env(store))
+    ]);
+    expect(responses.map((response) => response.status)).toEqual([303, 303]);
+    expect(JSON.parse(store.store.get(`review:${ID}`)!)).toMatchObject({ note: "first review" });
+    expect(JSON.parse(store.store.get(`review:${OTHER_ID}`)!)).toMatchObject({ note: "second review" });
+    expect(store.store.has("reviews")).toBe(false);
+  });
+
+  it("keeps legacy reviews readable while new per-opportunity writes migrate without erasing them", async () => {
+    const store = kv();
+    store.store.set("reviews", JSON.stringify({ [ID]: { status: "shortlisted", note: "legacy", updatedAt: "x" } }));
+    expect((await run(post({ id: OTHER_ID, status: "reviewed", note: "new" }), env(store))).status).toBe(303);
+    expect(JSON.parse(store.store.get("reviews")!)[ID]).toMatchObject({ note: "legacy" });
+    expect(await (await run(get("/"), env(store))).text()).toContain("legacy");
+    expect((await run(post({ id: ID, status: "new", note: "" }), env(store))).status).toBe(303);
+    expect(await (await run(get("/"), env(store))).text()).not.toContain("legacy");
+    // The original aggregate is never deleted and remains available for recovery.
+    expect(JSON.parse(store.store.get("reviews")!)[ID]).toMatchObject({ note: "legacy" });
+  });
+
+  it("fails closed on an unavailable key listing and never reports a successful save", async () => {
+    let writes = 0;
+    const store = kv({
+      list: async () => {
+        throw new Error("KV list unavailable");
+      },
+      put: async () => {
+        writes++;
+      }
+    });
+    expect((await run(post({ id: ID, status: "reviewed" }), env(store))).status).toBe(503);
+    expect(writes).toBe(0);
+  });
+
   it("never overwrites saved reviews when the store cannot be read", async () => {
     const store = kv();
     store.store.set("reviews", JSON.stringify({ [ID]: { status: "shortlisted", note: "keep me", updatedAt: "x" } }));
@@ -383,7 +442,8 @@ describe("graceful degradation and data safety", () => {
       expect(await (await run(get("/"), env(store))).text()).not.toContain("Saved reviews are temporarily unavailable");
       const saved = await run(post({ id: ID, status: "reviewed", note: "updated" }), env(store));
       expect(saved.status).toBeLessThan(400);
-      expect(JSON.parse(store.store.get("reviews")!)[ID]).toMatchObject({ status: "reviewed", note: "updated" });
+      expect(JSON.parse(store.store.get(`review:${ID}`)!)).toMatchObject({ status: "reviewed", note: "updated" });
+      expect(JSON.parse(store.store.get("reviews")!)[ID]).toMatchObject({ status: "shortlisted", note: "keep" });
     });
   });
 });

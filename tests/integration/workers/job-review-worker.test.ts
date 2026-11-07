@@ -114,7 +114,12 @@ describe("verifyAccessJwt", () => {
 
 function fakeKv(): KVLike & { store: Map<string, string> } {
   const store = new Map<string, string>();
-  return { store, get: async (key) => store.get(key) ?? null, put: async (key, value) => void store.set(key, value) };
+  return {
+    store,
+    get: async (key) => store.get(key) ?? null,
+    put: async (key, value) => void store.set(key, value),
+    list: async ({ prefix }) => ({ keys: [...store.keys()].filter((key) => key.startsWith(prefix)).map((name) => ({ name })), list_complete: true })
+  };
 }
 
 const ID = "0123456789abcdef0123";
@@ -210,7 +215,7 @@ describe("job-review worker", () => {
     const ok = await post({ id: ID, status: "shortlisted", note: "call Monday", return: "min=50&evil=<x>" });
     expect(ok.status).toBe(303);
     expect(ok.headers.get("Location")).toBe(`/?min=50&evil=%3Cx%3E#job-${ID}`);
-    expect(JSON.parse(kv.store.get("reviews")!)[ID]).toMatchObject({ status: "shortlisted", note: "call Monday" });
+    expect(JSON.parse(kv.store.get(`review:${ID}`)!)).toMatchObject({ status: "shortlisted", note: "call Monday" });
 
     const page = await (await handleRequest(new Request("http://localhost/?review=shortlisted"), devEnv(kv), { fetcher: dataFetcher, now })).text();
     expect(page).toContain("call Monday");
@@ -220,6 +225,6 @@ describe("job-review worker", () => {
     expect((await post({ id: ID, status: "reviewed" }, "https://evil.example")).status).toBe(403);
 
     await post({ id: ID, status: "new", note: "" });
-    expect(JSON.parse(kv.store.get("reviews")!)[ID]).toBeUndefined();
+    expect(JSON.parse(kv.store.get(`review:${ID}`)!)).toMatchObject({ status: "new", note: "" });
   });
 });
