@@ -26,6 +26,11 @@ function matchesSomething(pattern: string): boolean {
 }
 
 describe("workflow path references", () => {
+  it("quality CI fetches enough history to compare the exact pre-push URL lifecycle base", () => {
+    const ci = readFileSync(join(workflowDirectory, "ci.yml"), "utf8");
+    expect(ci).toContain("fetch-depth: 0");
+    expect(ci).toContain("LIFECYCLE_BASE_REVISION: ${{ github.event.pull_request.base.sha || github.event.before }}");
+  });
   it.each(workflows)("$name: every trigger path filter still matches something", ({ text }) => {
     const filters = [...text.matchAll(/^\s+-\s+"([^"]+)"\s*$/gm)].map((match) => match[1]).filter(looksLikePath);
     const stale = filters.filter((filter) => !matchesSomething(filter));
