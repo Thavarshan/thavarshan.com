@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T19:30:17.609Z",
+  "generatedAt": "2026-11-07T02:42:45.930Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-07T19:30:17.609Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 6,
-      "added": 0,
+      "added": 1,
       "updated": 0,
       "closed": 0,
-      "durationMs": 14394,
+      "durationMs": 13704,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-07T19:30:17.609Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1068,
+      "durationMs": 1579,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,13 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-07T19:30:17.609Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 447,
+      "durationMs": 460,
       "held": 0,
       "skipped": 12,
       "rejected": 0,
@@ -67,15 +67,15 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-07T19:30:17.609Z",
+      "collectedAt": "2026-11-07T02:42:45.930Z",
       "status": "ok",
-      "recordsFound": 2,
+      "recordsFound": 3,
       "added": 0,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 735,
+      "closed": 0,
+      "durationMs": 514,
       "held": 0,
-      "skipped": 23,
+      "skipped": 22,
       "rejected": 0,
       "error": null
     }
@@ -527,7 +527,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-13T16:05:13.000Z",
       "firstSeenAt": "2026-10-14T05:27:41.434Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -560,6 +560,201 @@
         {
           "factor": "Remote work is mentioned",
           "points": 12
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "9359539798fba035b34d",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3931",
+      "title": "Senior Product Engineer (Laravel - Remote)",
+      "company": "Hospitable",
+      "location": "Remote",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$134,450.00 - $167,258.30 USD",
+      "salaryMin": 134450,
+      "salaryMax": 167258.3,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional $380,895.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
+      "sourceId": "3931",
+      "descriptionHash": "866a4ed18cd3ecd12014",
+      "applicationUrl": "https://apply.workable.com/hospitable/j/A0F082F91A/",
+      "countries": [
+        "AU",
+        "US"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "backend",
+        "laravel",
+        "mysql",
+        "php",
+        "senior",
+        "kubernetes"
+      ],
+      "contentFingerprint": "db0c5b6ef597384b132a",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-07T08:03:05.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
+      "status": "closed",
+      "closedAt": "2026-10-08T02:55:43.768Z",
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 78,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 65,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "2a7f2e33f750c79b80aa",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3932",
+      "title": "Intermediate Full-Stack Laravel Developer - SaaS for K–12 Schools",
+      "company": "Frogtummy",
+      "location": "Utah-based",
+      "workArrangement": "relocation-sponsorship",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": "$60,000-$80,000",
+      "salaryMin": 60000,
+      "salaryMax": 80000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Log In Show password Login Forgot password? Sign Up Sign up Already have an account? Log in Reset Password Enter the email address associated with your account, and we’ll email you a link to reset your password. Back to Login Send Reset Link Update Your Password Update Choose One Guest Checkout Login Sign up Please enter your email address Cancel Continue Recommended by a Pearl Stylist? Select {{representative_term}} I don't have a {{representative_term}} {{#each sponsors}} {{first_name}} {{last_name}} {{/each}} {{#if hasSponsor}} {{#if replicated_site_can_select_sponsor}} Select {{representative_term}} I don't have a {{representative_term}} {{#each sponsors}} {{first_name}} {{last_name}} {{/each}} {{else}} Your sponsor is : {{sponsorName}} {{/if}} {{else}} Select {{representative_term}} I don't have a {{representative_term}} {{#each sponsors}} {{first_name}} {{last_name}} {{/each}} {{/if}} toggle header English Français Italiano Español தமிழ் తెలుగు Русский 简体中文 繁體中文 Products The platform The Ecosystem Dashboards & reporting Integrations Automations Products frogtummy websitesBrand, website + CMS frogtummy lotteryRun lottery & enrollment frogtummy inboxSend messages to contacts frogtummy attendanceAbsence & attendance management frogtummy paymentsSchool fees, lunch & school store frogtummy carpoolFamily online carpooling frogtummy newsletterBuild & send newsletters frogtummy signupsVolunteer & attendee sign-ups Impact Our reach Frogtummy School MapOver 50% of Utah charters,and others nationally Success StoriesStreamlined school systemsworking in your favor Client reviews Ecosystem Websites Lottery Inbox Attendance Payments Carpool Newsletter Signups Photo/Video Industries Charter schools District schools Private schools Resources Learn Blog Working Groups Current Job Openings Support Log a ticket User Documentation Contact Us 5 stars for our support team support@frogtummy.com Schedule Demo Products The platform The Ecosystem Dashboards & reporting Integrations Automations Products frogtummy websitesBrand, website + CMS frogtummy lotteryRun lottery & enrollment frogtummy inboxSend messages to contacts frogtummy attendanceAbsence & attendance management frogtummy paymentsSchool fees, lunch & school store frogtummy carpoolFamily online carpooling frogtummy newsletterBuild & send newsletters frogtummy signupsVolunteer & attendee sign-ups Impact Our reach Frogtummy School MapOver 50% of Utah charters,and others nationally Success StoriesStreamlined school systemsworking in your favor Client reviews Ecosystem Websites Lottery Inbox Attendance Payments Carpool Newsletter Signups Photo/Video Industries Charter schools District schools Private schools Resources Learn Blog Working Groups Current Job Openings Support Log a ticket User Documentation Contact Us 5 stars for our support team support@frogtummy.com Schedule Demo Intermediate Full-Stack Laravel Developer — SaaS for K-12 SchoolsUtah-based (Hybrid or Local Preferred)About FrogtummyFrogtummy is a SaaS provider in the Charter School industry.We create software that makes everyday school operations smoother, simpler, and more enjoyable for staff and families alike.Our ecosystem of products helps schools increase enrollments, save money, generate revenue, and strengthen school-to-family connections.Our platform supports everything from student data and communications to operations, lottery, application, enrollment, carpool, payment systems, and attendance — all connected through a seamless web experience and mobile app.We build tools that make complex systems simple for teachers, administrators, parents, and students.Role DescriptionWe are looking for an Intermediate Developer who can independently deliver well-scoped features and bug fixes in a mature Laravel application. This person should be comfortable maintaining existing systems while helping us refactor a large legacy codebase toward a cleaner, modern architecture..You’ll collaborate with a small, creative team where your ideas matter. This role offers plenty of room to learn, experiment, and grow your skills while contributing to meaningful software that impacts real schools.What You'll Work WithPHP 8 and LaravelThe TALL stack: Tailwind CSS, Alpine.js, Laravel, and LivewireLegacy frontend code using jQuery, Bootstrap, Sass, and BladePostgreSQL and EloquentRedis queues, scheduled jobs, and Laravel HorizonPest and automated browser testingThird-party APIs, webhooks, imports, and exportsLaravel Forge, Sentry, AWS S3, and GitAI-assisted and agentic coding toolsWhat We're Looking ForRoughly 5 or more years of professional PHP or Laravel experience, or equivalent practical experienceStrong understanding of object-oriented programming and SOLID principlesExperience organizing code into small, focused, reusable classes with clear responsibilitiesPractical experience building responsive and accessible interfaces with the TALL stackExperience maintaining frontend applications built with jQuery and BootstrapAbility to safely modernize legacy code incrementally while preserving existing behaviourFamiliarity with common Laravel patterns, including:Thin controllers and Livewire componentsService and Action classesDTOs and typed data boundariesForm Requests, policies, events, listeners, and jobsEloquent relationships, transactions, and query optimizationExperience creating reusable Blade components using Atomic Design principlesAbility to write focused feature and unit tests with PestExperience debugging queues, scheduled jobs, external integrations, and production issuesUnderstanding of authentication, authorization, validation, tenant scoping, and secure data handlingExperience using AI-assisted and agentic coding tools to investigate problems, implement changes, write tests, and document decisionsAbility to critically review AI-generated code for correctness, security, maintainability, and alignment with the project’s architectureStrong written communication and the ability to explain technical decisions and tradeoffs clearlyNice to HaveExperience with modular Laravel architecture, including organizing features into self-contained modules and loading them through service providersExperience with education technology or student information systemsExperience with payment, messaging, attendance, enrollment, or parent-facing applicationsFamiliarity with Laravel Pennant, Sanctum, Horizon, Spatie Laravel Data, and feature flagsExperience integrating with systems such as Skyward, Aspire, OneRoster, or similar platformsExperience with CSV or Excel imports and exportsExperience monitoring applications with Sentry and managing deployments through Laravel ForgeWhat You’ll Love About Working HereA creative, people-first team that values quality and curiosityWork that matters — your code directly helps schools run betterThe chance to shape real SaaS products used nationwideA hybrid, flexible setup with local Utah collaborationCompetitive pay based on experienceLow bureaucracy, high ownership, and visible impactHow to ApplySend your resume or portfolio link to info@frogtummy.com. Include a short note about a project you’re proud of and what you learned from it.Subject line: Laravel Developer – [Your Name] The Frogtummy Ecosystem A giant leap forward. Frogtummy specializes in branding schools of all shapes and sizes—from new start-ups to large, multi-campus districts and charter schools.We infuse your stunning brand into a custom-designed website powered by our easy-to-use CMS.The Frogtummy suite includes school websites, lottery, school communications, attendance, payments, signups, newsletter and carpool! Projects Helpful Links What exactly do we do? Who are our clients? Schools of all shapes and sizes! Check out some of our favorite branding + website projects Contact Us We would love to hear from you! Learn how Frogtummy can transform your school technology & marketing presence. Contact Us By frogtummy Terms of Use Privacy Policy © 2026 Frogtummy. all rights reserved. Log in Log out English Français Italiano Español தமிழ் తెలుగు Русский 简体中文 繁體中文 (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \"https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0\"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk')); // var ffimage = $('div.content-area img')[0].src; // console.log(ff); // $('meta[property=og\\\\:image]').attr('content', ffimage); window.gtranslateSettings = {\"default_language\":\"en\",\"native_language_names\":true,\"languages\":[\"en\",\"fr\",\"it\",\"es\",\"ta\",\"te\",\"ru\",\"zh-CN\",\"zh-TW\"],\"wrapper_selector\":\".gtranslate_wrapper\",\"alt_flags\":{\"en\":\"usa\",\"es\":\"mexico\"}} window.vaharaLibsNoAutoLoadCss = 1; // don't load the CSS for any Vahara library window.vaharaLocationContactHtmlLocation = '/assets/templates/location/location-contact.tpl'; // don't load the HTML for the location library window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-178863406-1');",
+      "sourceId": "3932",
+      "descriptionHash": "cc780a5e7b3dfde3f827",
+      "applicationUrl": "https://www.frogtummy.com/intermediate-full-stack-laravel-developer",
+      "countries": [],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "laravel",
+        "tailwind",
+        "alpine.js",
+        "aws",
+        "php",
+        "livewire"
+      ],
+      "contentFingerprint": "38c93adc3d445faf21ca",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-09-07T19:38:52.000Z",
+      "firstSeenAt": "2026-09-23T07:16:00.010Z",
+      "lastSeenAt": "2026-10-07T02:57:05.655Z",
+      "status": "closed",
+      "closedAt": "2026-10-08T02:55:43.768Z",
+      "eligibility": "eligible",
+      "sponsorship": "confirmed",
+      "score": 76,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Sponsorship or relocation is mentioned"
+      ],
+      "concerns": [
+        "Posting location (Utah-based) does not confirm remote-friendly hiring"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Sponsorship or relocation is mentioned",
+          "points": 10
         }
       ],
       "confidence": 100,
@@ -626,7 +821,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -799,8 +994,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
-      "status": "active",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
+      "status": "new",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -884,8 +1079,8 @@
       "publishedAt": "2026-10-08T11:41:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
       "lastSeenAt": "2026-11-07T02:42:45.930Z",
-      "status": "closed",
-      "closedAt": "2026-11-07T19:30:17.609Z",
+      "status": "active",
+      "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
       "score": 35,
@@ -1206,7 +1401,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-09T13:49:21.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1396,7 +1591,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-12T13:52:56.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1721,7 +1916,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1916,7 +2111,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2004,7 +2199,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-07T19:30:17.609Z",
+      "lastSeenAt": "2026-11-07T02:42:45.930Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",

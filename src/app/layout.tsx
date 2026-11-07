@@ -100,7 +100,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             strategy="afterInteractive"
           />
         ) : null}
-        <TelemetryProvider />
+        <TelemetryProvider
+          config={{
+            endpoint: process.env.NEXT_PUBLIC_METRICS_URL ?? site.metricsUrl,
+            activeHost: new URL(site.url).hostname,
+            activeEverywhere: process.env.NEXT_PUBLIC_METRICS_LOCAL === "1"
+          }}
+        />
         {children}
       </body>
     </html>
