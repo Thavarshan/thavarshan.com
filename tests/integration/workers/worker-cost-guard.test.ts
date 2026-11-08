@@ -92,6 +92,27 @@ describe.each(configPaths)("Worker config %s is free-plan safe (allowlist)", (co
   });
 });
 
+describe("isolated recruitment D1 Worker stays on the free tier", () => {
+  const config = readFileSync(resolve(process.cwd(), "workers/recruitment/wrangler.toml"), "utf8");
+  const { topLevelKeys, sections } = parse(config);
+
+  it("allows D1 only in this explicitly reviewed private Worker, not in the existing Workers", () => {
+    expect(topLevelKeys).toEqual(["name", "main", "compatibility_date"]);
+    expect(sections).toEqual(["vars", "d1_databases", "kv_namespaces"]);
+    expect(config).toContain('binding = "RECRUITMENT_DB"');
+    expect(config).toContain('database_name = "recruitment-private"');
+    expect(config).toContain('migrations_dir = "migrations"');
+    expect(config).toContain('binding = "JOBS_KV"');
+  });
+
+  it("requires manual D1 provisioning and contains no paid-tier or public-routing configuration", () => {
+    expect(config).toContain('database_id = "00000000-0000-0000-0000-000000000000"');
+    expect(config).not.toMatch(/\b(compatibility_flags|usage_model|route|routes|custom_domain|cpu_ms|limits)\s*=/);
+    expect(config).not.toMatch(/^\s*\[\[(r2_buckets|durable_objects|queues|containers|ai)\]\]/m);
+    expect(config).not.toContain("workers_dev = false");
+  });
+});
+
 describe("deploy automation cannot switch anything to a paid path", () => {
   const workflows = ["job-review-deploy.yml", "job-review-preview.yml", "site-metrics-deploy.yml"]
     .map((name) => readFileSync(resolve(process.cwd(), ".github/workflows", name), "utf8"))

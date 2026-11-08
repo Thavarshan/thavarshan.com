@@ -1,0 +1,2 @@
+# Only works at localhost/127.0.0.1; never set this on a deployed Worker.
+DEV_AUTH_BYPASS=1

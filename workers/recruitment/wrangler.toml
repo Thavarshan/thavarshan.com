@@ -1,0 +1,21 @@
+name = "recruitment-storage"
+main = "index.ts"
+compatibility_date = "2026-09-01"
+
+# Separate private Worker: no public Next.js routes and no automatic production deploy.
+# Configure Cloudflare Access (ACCESS_TEAM_DOMAIN, ACCESS_AUD, ALLOWED_EMAIL)
+# before exposing this hostname. The Worker also verifies the JWT itself.
+[vars]
+JOBS_DATA_URL = "https://raw.githubusercontent.com/Thavarshan/thavarshan.com/main/data/jobs.generated.json"
+
+# Replace the placeholder only after creating `recruitment-private` with Wrangler.
+[[d1_databases]]
+binding = "RECRUITMENT_DB"
+database_name = "recruitment-private"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# Read-only in this Worker: the existing review UI remains the sole KV writer.
+[[kv_namespaces]]
+binding = "JOBS_KV"
+id = "2af3f7fa62964db6bafcb510c8420a27"
