@@ -2,7 +2,7 @@ import { constants } from "node:fs";
 import { lstat, mkdir, open, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { applicationsRepoSlug, clonePrivateRepo, commitAndPush, privateRepoDir } from "../../applications/private-repo";
-import { getAllInsights } from "../../../src/features/insights/insights.node";
+import { getAllInsights } from "../../../src/features/insights/insights.node.js";
 import { tools } from "../../../src/features/tools/registry";
 import { githubSnapshotSchema } from "../../../src/features/github/github-model";
 import { analyzeSearch, searchPolicy, type PublicSearchStatus } from "./model";
