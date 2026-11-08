@@ -72,6 +72,21 @@ describe("Growth Engine health rules", () => {
     expect(report.jobs!.newEligibleHighFitIds).toEqual(report.jobs!.eligibleHighFitIds);
     expect(report.comparison.since).toBe(state.generatedAt);
   });
+  it("does not propose timestamp-only baseline PRs until the weekly refresh is due", () => {
+    const first = buildHealthReport(input()).nextBaseline!;
+    const unchanged = buildHealthReport({ ...input(), baseline: first });
+    expect(unchanged.nextBaseline).toBeNull();
+    expect(unchanged.report.comparison.since).toBe(first.generatedAt);
+
+    const reordered = { ...first, knownIds: [...first.knownIds].reverse(), eligibleHighFitIds: [...first.eligibleHighFitIds].reverse() };
+    expect(buildHealthReport({ ...input(), baseline: reordered }).nextBaseline).toBeNull();
+
+    const older = { ...first, generatedAt: "2026-10-02T12:00:00.000Z" };
+    expect(buildHealthReport({ ...input(), baseline: older }).nextBaseline?.generatedAt).toBe(now.toISOString());
+
+    const changed = { ...first, knownIds: [...first.knownIds, "00000000000000000000"] };
+    expect(buildHealthReport({ ...input(), baseline: changed }).nextBaseline).not.toBeNull();
+  });
   it("does not replace a malformed or future comparison baseline", () => {
     for (const baseline of [{ schemaVersion: 99 }, { ...buildHealthReport(input()).nextBaseline!, generatedAt: "2027-01-01T00:00:00.000Z" }]) {
       const result = buildHealthReport({ ...input(), baseline });
