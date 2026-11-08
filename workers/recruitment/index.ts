@@ -5,6 +5,16 @@ import { OPPORTUNITY_ID_PATTERN, reviewStatuses } from "../../src/features/jobs/
 import { fetchJsonBounded, formatLog, RateLimiter, requestIdFor } from "../../src/shared/edge/platform";
 import { exportLegacyKV, type ReadOnlyKV } from "./legacy";
 import {
+  OAuthInvalidState,
+  OAuthRejected,
+  OAuthUnavailable,
+  beginGmailAuthorization,
+  completeGmailAuthorization,
+  gmailConnectionStatus,
+  oauthReady,
+  type GmailOAuthSettings
+} from "./gmail-oauth";
+import {
   VersionConflict,
   databaseReady,
   getLegacyImport,
@@ -17,7 +27,7 @@ import {
   type Database
 } from "./storage";
 
-export interface Env {
+export interface Env extends GmailOAuthSettings {
   RECRUITMENT_DB: Database;
   JOBS_KV: ReadOnlyKV;
   JOBS_DATA_URL: string;
@@ -38,7 +48,10 @@ export const routes = [
   "GET /v1/reviews",
   "POST /v1/reviews/:id",
   "GET /v1/legacy/export",
-  "POST /v1/legacy/import"
+  "POST /v1/legacy/import",
+  "GET /v1/gmail/status",
+  "POST /v1/gmail/authorize",
+  "GET /v1/gmail/callback"
 ] as const;
 
 /** Unknown request paths are untrusted input and must not appear in private logs. */
@@ -128,7 +141,8 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
   const decision = limiter.check(`${write ? "write" : "read"}:${request.headers.get("cf-connecting-ip") ?? "local"}`);
   if (!decision.allowed) return json(429, { error: "Too many requests" }, { "Retry-After": String(decision.retryAfterSeconds) });
   if (write && !isSameOrigin(request, url)) return json(403, { error: "Cross-origin request rejected" });
-  if (write && env.READ_ONLY === "1") return json(403, { error: "Preview is read-only" });
+  // The OAuth callback is a state-changing GET; previews must refuse it too.
+  if (env.READ_ONLY === "1" && (write || url.pathname === "/v1/gmail/callback")) return json(403, { error: "Preview is read-only" });
 
   if (!env.RECRUITMENT_DB || !env.JOBS_KV || !env.JOBS_DATA_URL) return json(503, { error: "Private storage is not configured" });
   const db = env.RECRUITMENT_DB;
@@ -144,6 +158,19 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
   }
 
   if (!(await databaseReady(db))) return json(503, { error: "Database migrations have not been applied" });
+
+  if (url.pathname.startsWith("/v1/gmail/")) {
+    if (!(await oauthReady(db))) return json(503, { error: "Gmail OAuth migration has not been applied" });
+    if (request.method === "GET" && url.pathname === "/v1/gmail/status") return json(200, await gmailConnectionStatus(db, env));
+    if (request.method === "POST" && url.pathname === "/v1/gmail/authorize") return json(200, await beginGmailAuthorization(db, env, url, new Date(now)));
+    if (request.method === "GET" && url.pathname === "/v1/gmail/callback") {
+      await completeGmailAuthorization(db, env, url, new Date(now), fetcher);
+      return new Response(null, {
+        status: 303,
+        headers: { ...headers, Location: `${url.origin}/v1/gmail/status` }
+      });
+    }
+  }
 
   if (request.method === "GET" && url.pathname === "/v1/snapshot") {
     const snapshot = validateSnapshot(await fetchJsonBounded(env.JOBS_DATA_URL, fetcher));
@@ -202,6 +229,9 @@ export async function handleRequest(
     response = await dispatch(request, env, options.fetcher ?? fetch, (options.now ?? new Date()).toISOString());
   } catch (error) {
     if (error instanceof VersionConflict) response = json(409, { error: "State changed; reload or re-export before retrying" });
+    else if (error instanceof OAuthInvalidState) response = json(409, { error: "Gmail authorization expired or was already used; start again" });
+    else if (error instanceof OAuthRejected) response = json(403, { error: "Gmail authorization was denied or did not match the owner" });
+    else if (error instanceof OAuthUnavailable) response = json(503, { error: "Gmail connection is unavailable; no token was acknowledged" });
     else if (error instanceof OversizedBody) response = json(413, { error: "Request is too large" });
     else if (error instanceof UnsupportedType) response = json(415, { error: "Expected application/json" });
     else if (error instanceof RangeError || error instanceof SyntaxError || error instanceof z.ZodError) response = json(400, { error: "Invalid request" });

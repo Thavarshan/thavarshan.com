@@ -1,6 +1,6 @@
 # Private recruitment database (issue #99)
 
-This is the storage foundation for the later Gmail sync and recruiter-action features (#100–#102). It **does not connect Gmail, send applications, or change the public website**.
+This is the storage foundation for Gmail sync and later recruiter-action features (#100–#102). Its optional owner-only Gmail OAuth connection is described in [Gmail OAuth setup](recruitment-gmail-oauth.md); **message synchronization is not yet implemented**. It never sends applications or changes the public website.
 
 ## What is actually built
 
@@ -11,7 +11,7 @@ This is the storage foundation for the later Gmail sync and recruiter-action fea
 - A versioned review-write endpoint using compare-and-swap (`expectedRevision`) so concurrent saves cannot silently overwrite one another. Every successful write has an audit record in the same transaction.
 - Pagination, limited request bodies, same-origin write checks, defensive security headers, private logs, and a read-only preview option.
 
-The database tables for tasks, sync cursors, interactions and pipeline events are **schema only** until their owning issues (#100–#102) implement the business workflows. Nothing is silently synchronized or submitted.
+The database tables for tasks, interactions and pipeline events are **schema only** until their owning issues (#100–#102) implement the business workflows. The Gmail OAuth connection can initialize a sync cursor, but nothing is silently synchronized or submitted.
 
 ## Why this is a separate Worker
 

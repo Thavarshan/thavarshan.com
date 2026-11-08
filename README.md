@@ -21,7 +21,7 @@ Source ownership is explicit:
 
 The raw LinkedIn ZIP is never committed. Only the sanitized generated profile snapshot is retained.
 
-The private recruitment storage foundation uses a **separately deployed Cloudflare Worker and D1 database**, not public Next.js routes. It is opt-in until the owner provisions a database and Access policy; see [private recruitment storage setup](docs/recruitment-storage.md) (issue #99). The existing KV job-review page remains unchanged.
+The private recruitment storage foundation uses a **separately deployed Cloudflare Worker and D1 database**, not public Next.js routes. It is opt-in until the owner provisions a database and Access policy; see [private recruitment storage setup](docs/recruitment-storage.md) (issue #99) and [owner-only read-only Gmail OAuth setup](docs/recruitment-gmail-oauth.md) (first phase of issue #100). Gmail messages are not synchronized yet. The existing KV job-review page remains unchanged.
 
 ## Stack
 
