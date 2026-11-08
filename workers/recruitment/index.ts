@@ -160,7 +160,16 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
   const limiter = write ? writeLimiter : readLimiter;
   const decision = limiter.check(`${write ? "write" : "read"}:${request.headers.get("cf-connecting-ip") ?? "local"}`);
   if (!decision.allowed) return json(429, { error: "Too many requests" }, { "Retry-After": String(decision.retryAfterSeconds) });
-  if (write && !isSameOrigin(request, url)) return json(403, { error: "Cross-origin request rejected" });
+  const browserForm =
+    write &&
+    url.pathname === "/v1/gmail/authorize" &&
+    (request.headers.get("content-type") ?? "").split(";", 1)[0].trim().toLowerCase() === "application/x-www-form-urlencoded";
+  const sameOriginBrowserNavigation =
+    browserForm &&
+    request.headers.get("Sec-Fetch-Site") === "same-origin" &&
+    request.headers.get("Sec-Fetch-Mode") === "navigate" &&
+    request.headers.get("Sec-Fetch-Dest") === "document";
+  if (write && !isSameOrigin(request, url) && !sameOriginBrowserNavigation) return json(403, { error: "Cross-origin request rejected" });
   // The OAuth callback is a state-changing GET; previews must refuse it too.
   if (env.READ_ONLY === "1" && (write || url.pathname === "/v1/gmail/callback")) return json(403, { error: "Preview is read-only" });
 
@@ -192,7 +201,6 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
       });
     if (request.method === "GET" && url.pathname === "/v1/gmail/status") return json(200, await gmailConnectionStatus(db, env));
     if (request.method === "POST" && url.pathname === "/v1/gmail/authorize") {
-      const browserForm = (request.headers.get("content-type") ?? "").split(";", 1)[0].trim().toLowerCase() === "application/x-www-form-urlencoded";
       if (browserForm) {
         const form = await request.formData();
         if (form.get("flow") !== "connect") return json(400, { error: "Invalid authorization request" });
