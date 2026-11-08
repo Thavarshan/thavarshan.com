@@ -1,0 +1,35 @@
+{
+  "eventId": "downloads-milestone:filterable:50000",
+  "type": "downloads-milestone",
+  "repository": "filterable",
+  "projectName": "Filterable",
+  "generatedAt": "2026-10-29T05:18:24.991Z",
+  "generatorVersion": "1.0.0",
+  "canonicalUrl": "https://thavarshan.com/projects/filterable",
+  "trackedUrls": {
+    "linkedin": "https://thavarshan.com/projects/filterable?utm_source=linkedin&utm_medium=social&utm_campaign=downloads-milestone--filterable--50000",
+    "devto": "https://thavarshan.com/projects/filterable?utm_source=devto&utm_medium=referral&utm_campaign=downloads-milestone--filterable--50000",
+    "reddit": "https://github.com/Thavarshan/filterable?utm_source=reddit&utm_medium=community&utm_campaign=downloads-milestone--filterable--50000",
+    "github": "https://thavarshan.com/projects/filterable?utm_source=github&utm_medium=referral&utm_campaign=downloads-milestone--filterable--50000"
+  },
+  "evidence": [
+    {
+      "label": "Total installs",
+      "value": 50505,
+      "source": "data/package-registry.generated.json",
+      "jsonPath": "packages[packageName=jerome/filterable].downloads",
+      "observedAt": "2026-10-19T03:37:28.805Z",
+      "url": "https://packagist.org/packages/jerome/filterable"
+    },
+    {
+      "label": "Milestone passed",
+      "value": 50000,
+      "source": "data/package-registry.generated.json",
+      "jsonPath": "(threshold table in lib/oss-marketing.ts)",
+      "observedAt": "2026-10-19T03:37:28.805Z"
+    }
+  ],
+  "needsHumanInput": true,
+  "placeholders": 3,
+  "autoPosted": false
+}

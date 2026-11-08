@@ -150,6 +150,12 @@
       "repository": "matrix",
       "decidedAt": "2026-09-30T17:10:52.519Z",
       "outcome": "baseline"
+    },
+    "downloads-milestone:filterable:50000": {
+      "type": "downloads-milestone",
+      "repository": "filterable",
+      "decidedAt": "2026-10-29T05:18:24.991Z",
+      "outcome": "generated"
     }
   },
   "lastSeenVersion": {
@@ -157,5 +163,7 @@
     "jerome/filterable": "2.1.2",
     "jerome/matrix": "4.0.0-beta.1"
   },
-  "lastGeneratedAt": {}
+  "lastGeneratedAt": {
+    "filterable": "2026-10-29T05:18:24.991Z"
+  }
 }
