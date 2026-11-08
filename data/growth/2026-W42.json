@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-19T04:46:27.873Z",
+  "period": {
+    "start": "2026-10-12",
+    "end": "2026-10-18",
+    "isoWeek": "2026-W42"
+  },
+  "coverage": {
+    "rows": 0,
+    "events": 0,
+    "daysWithData": 0,
+    "daysInPeriod": 7
+  },
+  "totals": {
+    "byStage": {
+      "engagement": 0,
+      "intent": 0
+    },
+    "byEvent": {
+      "repo_click": 0,
+      "demo_click": 0,
+      "cv_download": 0,
+      "contact_cta": 0,
+      "hire_cta": 0,
+      "consulting_cta": 0,
+      "tool_completed": 0,
+      "tool_output_copied": 0,
+      "profile_click": 0,
+      "insight_read": 0,
+      "newsletter_click": 0
+    }
+  },
+  "acquisition": {
+    "byReferrer": {},
+    "byCampaign": [],
+    "attributed": 0,
+    "unattributed": 0,
+    "unattributedShare": 0
+  },
+  "intent": {
+    "byProject": {},
+    "byTool": {},
+    "byLocation": {}
+  },
+  "content": {
+    "topPaths": [],
+    "insightsRead": []
+  },
+  "comparison": {
+    "previousIsoWeek": null,
+    "byEvent": {}
+  },
+  "notes": [
+    "Counts are actions by visitors whose browsers allowed the beacon. Visitors using Do Not Track / Global Privacy Control, blockers, or no JavaScript are not counted, so treat every number as a lower bound.",
+    "Page views are deliberately not collected, so conversion RATES cannot be computed. These are counts of actions, not percentages of visitors.",
+    "0% of counted actions have no campaign or referrer signal (direct visits, copied links, or stripped referrers). That share is unknown attribution and is reported as such, not assigned to a channel.",
+    "The collector accepts unauthenticated events from the site's origin, so counts are indicative rather than audited.",
+    "Only 0 of 7 days in this period recorded any events; quiet days and collection gaps look the same.",
+    "No events were recorded in this period."
+  ]
+}

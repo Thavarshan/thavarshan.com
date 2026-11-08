@@ -1,6 +1,6 @@
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { chromium, type Page } from "@playwright/test";
+import { chromium, type BrowserContext, type Page } from "@playwright/test";
 import {
   COLLECTOR_VERSION,
   mergeOpportunities,
@@ -15,8 +15,8 @@ import { writeJsonAtomic } from "../../src/shared/node/fs";
 import { recordSourceFailure } from "./diagnostics";
 import { enrichAndFinalize } from "./enrichment";
 import { assessRunHealth, isMaterialChange, renderRunSummary, summarizeError } from "./health";
-import { HostThrottle, RobotsDisallowedError, createPoliteRequest, resolveRedirectTarget, robotsFetcherFor, withDeadline } from "./http";
-import { MIN_HOST_INTERVAL_MS, ROBOTS_AGENT, SOURCE_DEADLINE_MS, USER_AGENT } from "./policy";
+import { HostThrottle, RobotsDisallowedError, createPoliteRequest, navigateChecked, resolveRedirectTarget, robotsFetcherFor, withDeadline } from "./http";
+import { MIN_HOST_INTERVAL_MS, ROBOTS_AGENT, SOURCE_BUDGET_MS, SOURCE_CLEANUP_MS, USER_AGENT } from "./policy";
 import { createRobotsGuard } from "./robots";
 import { buildOpportunity } from "./opportunity-builder";
 import { collectLaraJobsDrafts, finalizeLaraJobsDraft, laraJobsFeedUrl } from "./sources/larajobs";
@@ -87,43 +87,76 @@ async function setWorkflowOutputs(outputs: Record<string, string>) {
 export async function collectJobs() {
   const browser = await chromium.launch({ headless: true });
   try {
-    const context = await browser.newContext({ userAgent: USER_AGENT });
-    const discoveryPage = await context.newPage();
     const now = new Date().toISOString();
     const existing = await readExisting();
 
-    const guard = createRobotsGuard(robotsFetcherFor(context.request), ROBOTS_AGENT);
     const throttle = new HostThrottle(MIN_HOST_INTERVAL_MS);
-    const politeFor = (source: Opportunity["source"]) => createPoliteRequest({ request: context.request, guard, throttle, source });
-    const resolveUrl = (url: string) => resolveRedirectTarget(url, { request: context.request, guard, throttle });
 
     const results: SourceCollectionOutcome[] = [];
     const durations: Partial<Record<Opportunity["source"], number>> = {};
     let laraJobsCanonicalUrls = new Set((existing?.opportunities ?? []).filter((item) => item.source === "larajobs").map((item) => item.canonicalUrl));
 
-    /** Runs one source under its own deadline, so a failure or hang is contained, timed and reported. */
-    async function runSource(source: Opportunity["source"], label: string, task: () => Promise<SourceCollectionSuccess>, page?: Page) {
+    /** Each source owns a disposable browser context and abort signal; expired work cannot escape into the next source. */
+    async function runSource(
+      source: Opportunity["source"],
+      label: string,
+      task: (deps: {
+        context: BrowserContext;
+        page: Page;
+        guard: ReturnType<typeof createRobotsGuard>;
+        polite: ReturnType<typeof createPoliteRequest>;
+        resolveUrl: (url: string) => Promise<string>;
+        navigate: (page: Page, url: string) => Promise<string>;
+        signal: AbortSignal;
+      }) => Promise<SourceCollectionSuccess>,
+      capturePage = false
+    ) {
       const startedAt = Date.now();
+      const controller = new AbortController();
+      let sourceContext: BrowserContext | undefined;
+      let page: Page | undefined;
       try {
-        results.push(await withDeadline(label, SOURCE_DEADLINE_MS, task));
+        sourceContext = await browser.newContext({ userAgent: USER_AGENT, serviceWorkers: "block" });
+        page = await sourceContext.newPage();
+        const guard = createRobotsGuard(robotsFetcherFor(sourceContext.request), ROBOTS_AGENT);
+        const polite = createPoliteRequest({ request: sourceContext.request, guard, throttle, source, signal: controller.signal });
+        const resolveUrl = (url: string) => resolveRedirectTarget(url, { request: sourceContext!.request, guard, throttle, signal: controller.signal });
+        const navigate = (targetPage: Page, url: string) => navigateChecked(targetPage, url, { guard, throttle, signal: controller.signal });
+        results.push(
+          await withDeadline(
+            label,
+            SOURCE_BUDGET_MS[source],
+            () => task({ context: sourceContext!, page: page!, guard, polite, resolveUrl, navigate, signal: controller.signal }),
+            () => controller.abort(new Error(`${label} source deadline expired`))
+          )
+        );
       } catch (error) {
         const message = summarizeError(error);
         console.error(`${label} collection failed: ${message}`);
-        await recordSourceFailure(source, error, page);
+        await recordSourceFailure(source, error, capturePage && !controller.signal.aborted ? page : undefined);
         results.push({ source, failed: true, error: message });
       } finally {
+        controller.abort(new Error(`${label} source finished`));
+        if (sourceContext) {
+          try {
+            await withDeadline(`${label} cleanup`, SOURCE_CLEANUP_MS, () => sourceContext!.close());
+          } catch {
+            console.warn(`${label} browser context cleanup exceeded ${SOURCE_CLEANUP_MS / 1000}s; continuing to the next isolated context.`);
+          }
+        }
         durations[source] = Date.now() - startedAt;
       }
     }
 
-    await runSource("larajobs", "LaraJobs", async () => {
-      const drafts = await collectLaraJobsDrafts(politeFor("larajobs"));
+    await runSource("larajobs", "LaraJobs", async ({ context, polite, resolveUrl, navigate, signal }) => {
+      const drafts = await collectLaraJobsDrafts(polite);
+      signal.throwIfAborted();
       const opportunities = await enrichAndFinalize(
         context,
         drafts,
         (draft) => draft.canonicalUrl,
         (draft, finalizeNow, scrapedDescription, applicationUrl) => finalizeLaraJobsDraft(draft, finalizeNow, scrapedDescription, applicationUrl),
-        { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl },
+        { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl, navigate, signal },
         now
       );
       laraJobsCanonicalUrls = new Set([...laraJobsCanonicalUrls, ...opportunities.map((item) => item.canonicalUrl)]);
@@ -133,10 +166,13 @@ export async function collectJobs() {
     await runSource(
       "laravel-news",
       "Laravel News",
-      async () => {
+      async ({ context, page, guard, resolveUrl, navigate, signal }) => {
         if (!(await guard.isAllowed(laravelNewsUrl))) throw new RobotsDisallowedError(laravelNewsUrl);
+        signal.throwIfAborted();
         await throttle.wait(new URL(laravelNewsUrl).host);
-        const drafts = (await collectLaravelNewsLinks(discoveryPage)).filter((draft) => !laraJobsCanonicalUrls.has(draft.canonicalUrl)).slice(0, 20);
+        signal.throwIfAborted();
+        const drafts = (await collectLaravelNewsLinks(page, navigate)).filter((draft) => !laraJobsCanonicalUrls.has(draft.canonicalUrl)).slice(0, 20);
+        signal.throwIfAborted();
         // Title/company come from Laravel News's own listing; the scrape only supplies description text.
         const opportunities = await enrichAndFinalize(
           context,
@@ -155,16 +191,16 @@ export async function collectJobs() {
               },
               finalizeNow
             ),
-          { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl },
+          { concurrency: ENRICHMENT_CONCURRENCY, resolveUrl, navigate, signal },
           now
         );
         return { source: "laravel-news", opportunities, skipped: 0, rejected: 0 };
       },
-      discoveryPage
+      true
     );
 
-    await runSource("remotive", "Remotive", () => collectRemotiveJobs(politeFor("remotive"), now));
-    await runSource("weworkremotely", "WeWorkRemotely", () => collectWeWorkRemotely(politeFor("weworkremotely"), now));
+    await runSource("remotive", "Remotive", ({ polite, signal }) => collectRemotiveJobs(polite, now, signal));
+    await runSource("weworkremotely", "WeWorkRemotely", ({ polite, signal }) => collectWeWorkRemotely(polite, now, signal));
 
     const health = assessRunHealth(results);
     await mkdir(diagnosticsDir, { recursive: true });

@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 
 export function buildMetadata(revision: string, context: string) {
   if (!/^[a-f0-9]{40}$/.test(revision)) throw new Error("Build revision must be a full commit SHA");
@@ -15,7 +15,7 @@ async function main() {
   const revision = process.env.COMMIT_REF || process.env.GITHUB_SHA || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
   const context = process.env.CONTEXT || "local";
   await writeFile("out/build-info.json", JSON.stringify(buildMetadata(revision, context)) + "\n");
-  await writeFile("out/_headers", deploymentHeaders(context));
+  await writeFile("out/_headers", (await readFile("public/_headers", "utf8")) + deploymentHeaders(context));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();

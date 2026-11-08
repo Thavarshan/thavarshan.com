@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail, Network } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
-import { conversationHref, conversionProjects, conversionSkills } from "@/features/profile/conversion";
+import { conversationHref, conversionProjects } from "@/features/profile/conversion";
 import { profile } from "@/features/profile/profile";
 import { site } from "@/features/profile/site";
 
@@ -11,7 +11,7 @@ export function ContactBand() {
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-16 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#f0c37b]">Work with me</p>
         <h2 id="contact-title" className="mt-4 max-w-3xl font-display text-[clamp(2rem,9vw,3rem)] leading-tight text-balance md:text-5xl">
-          Laravel, backend and cloud engineering.
+          Full-stack engineering, technical leadership and generative AI.
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-8 text-white/72">
           Explore my experience and work, then tell me about the role or problem you have in mind.
@@ -19,11 +19,13 @@ export function ContactBand() {
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <section id="hiring" aria-labelledby="hiring-title" className="rounded-lg border border-white/20 p-5 sm:p-6">
             <h3 id="hiring-title" className="text-xl font-semibold">
-              Hiring an engineer?
+              Hiring for technical leadership, full-stack or GenAI engineering?
             </h3>
             <p className="mt-3 text-sm leading-7 text-white/72">{profile.identity.headline}</p>
-            {conversionSkills.length ? <p className="mt-3 text-sm font-medium text-[#f0c37b]">{conversionSkills.join(" · ")}</p> : null}
-            <p className="mt-3 text-sm leading-7 text-white/72">Review my experience, CV and public code to assess fit for your team.</p>
+            {profile.identity.specialtyLine ? <p className="mt-3 text-sm font-medium text-[#f0c37b]">{profile.identity.specialtyLine}</p> : null}
+            <p className="mt-3 text-sm leading-7 text-white/72">
+              Open to Technical Lead, Senior Full Stack Engineer and Generative AI Engineer roles. Remote work preferred; open to relocation.
+            </p>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3 text-sm">
               <Link href="/#experience" className="underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
                 Career experience
@@ -49,7 +51,7 @@ export function ContactBand() {
               Have a project to discuss?
             </h3>
             <p className="mt-3 text-sm leading-7 text-white/72">
-              Explore my work on PHP/Laravel developer tools and practical notes on platform modernization.
+              Explore product engineering, AI workflows, enterprise integrations and platform modernization, alongside maintained PHP/Laravel libraries.
             </p>
             <ul className="mt-4 space-y-4 text-sm leading-7">
               {conversionProjects.map((project) => (

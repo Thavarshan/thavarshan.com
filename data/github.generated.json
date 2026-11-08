@@ -1,13 +1,13 @@
 {
   "username": "Thavarshan",
   "name": "Jerome Thayananthajothy",
-  "company": "@edusight-ai",
+  "company": null,
   "location": "Colombo, Sri Lanka",
   "bio": "I code...? 🤷‍♂️",
   "profileUrl": "https://github.com/Thavarshan",
   "followers": 72,
-  "publicRepositories": 49,
-  "syncedAt": "2026-10-19T03:37:27.724Z",
+  "publicRepositories": 52,
+  "syncedAt": "2026-11-03T15:08:31.955Z",
   "projects": [
     {
       "repository": "fetch-php",
@@ -27,15 +27,15 @@
         "php"
       ],
       "primaryLanguage": "PHP",
-      "stars": 450,
-      "forks": 28,
+      "stars": 451,
+      "forks": 27,
       "homepage": "https://fetch-php.thavarshan.com",
       "repositoryUrl": "https://github.com/Thavarshan/fetch-php",
-      "updatedAt": "2026-10-12T21:28:51Z",
+      "updatedAt": "2026-10-31T03:50:15Z",
       "readmeExcerpt": [
-        "Fetch PHP is a modern HTTP client library for PHP that brings JavaScript's fetch API experience to PHP. Built on top of Guzzle, Fetch PHP allows you to write HTTP code with a clean, intuitive JavaScript-like syntax while still maintaining PHP's familiar patterns.",
-        "With support for both synchronous and asynchronous requests, a fluent chainable API, and powerful retry mechanics, Fetch PHP streamlines HTTP operations in your PHP applications.",
-        "Key Features JavaScript-like Syntax : Write HTTP requests just like you would in JavaScript with the fetch() function and async / await patterns Promise-based API : Use familiar .then() , .catch() , and .finally() methods for async operations Fluent Interface : Build requests with a clean, chainable API Built on Guzzle : Benefit from Guzzle's robust functionality with a more elegant API Streaming & Server-Sent Eve…"
+        "Fetch PHP is a Guzzle-based HTTP client for PHP with a small global fetch() helper, an object-oriented client, PSR-7 and PSR-18 support, streaming, middleware, retries, and optional caching.",
+        "The API takes inspiration from JavaScript Fetch. It uses PHP values and Guzzle request options, and it does not implement the browser Fetch API or its security model.",
+        "Runtime packages: Guzzle 7.9+, PSR-7 1.x/2.x, PSR-3 1.x/2.x/3.x, ReactPHP event-loop and promise packages, and jerome/matrix ^4.0"
       ]
     },
     {
@@ -52,14 +52,14 @@
         "laravel"
       ],
       "primaryLanguage": "PHP",
-      "stars": 194,
-      "forks": 11,
+      "stars": 195,
+      "forks": 10,
       "repositoryUrl": "https://github.com/Thavarshan/filterable",
-      "updatedAt": "2026-10-05T01:52:46Z",
+      "updatedAt": "2026-10-29T06:33:04Z",
       "readmeExcerpt": [
-        "Filterable is a Laravel package for turning HTTP request parameters into rich, composable Eloquent query filters. The base Filter class exposes a stateful pipeline that you can extend, toggle, and compose with traits to add validation, caching, logging, rate limiting, memory management, and more. Everything is opt-in, so you enable only the behaviour you need while keeping type-safe, testable filters.",
-        "Laravel 11.x, 12.x, or 13.x components ( illuminate/cache , illuminate/contracts , illuminate/database , illuminate/http , illuminate/support )",
-        "A configured cache store when you enable caching features"
+        "Filterable turns HTTP request parameters into explicit, reusable Eloquent query filters. Declare handlers with attributes or existing properties, then opt into validation, transformations, permissions, caching, complexity limits, logging, optimization, streaming, and query chaining.",
+        "This README is the complete usage guide. Examples below use an application Post model with ordinary fields such as title , body , status , price , is available , published at , and tenant id ; adapt those names and relationships to your schema.",
+        "Registering filters: attributes, properties, and aliases"
       ]
     },
     {
@@ -82,53 +82,53 @@
         "version-manager"
       ],
       "primaryLanguage": "Shell",
-      "stars": 172,
+      "stars": 171,
       "forks": 11,
       "repositoryUrl": "https://github.com/Thavarshan/phpvm",
-      "updatedAt": "2026-10-17T15:58:02Z",
+      "updatedAt": "2026-11-02T20:59:22Z",
       "readmeExcerpt": [
         "phpvm is a lightweight PHP Version Manager that allows you to easily install, switch between, and manage multiple PHP versions via the command line.",
         "Seamlessly switch between installed PHP versions. Run commands with a specific PHP version without globally switching ( phpvm exec , phpvm run ). List available remote PHP versions from your system package manager ( phpvm ls-remote ). Install the latest available remote PHP version with phpvm install latest-remote . Update phpvm in place using phpvm self-update to pull the latest stable script version. Resolve ver…",
-        "Auto-switch PHP versions based on project .phpvmrc (configurable depth via PHPVM PHPVMRC MAX DEPTH )."
+        "Auto-switch PHP versions based on project .phpvmrc (configurable depth via PHPVM PHPVMRC MAX DEPTH ). Composer-aware version detection — phpvm use , phpvm install , and phpvm resolve read the PHP requirement from composer.json ( config.platform.php or require.php ) when no version is given."
       ]
     },
     {
-      "repository": "comet",
-      "name": "Comet",
-      "description": "A cross-platform desktop app powered by FFmpeg for easy, beautiful media conversion.",
+      "repository": "honeymelon",
+      "name": "Honeymelon",
+      "description": "Honeymelon - free, open-source desktop media conversion for video, audio and images. Local processing, no account or uploads.",
       "topics": [
-        "comet",
+        "audio-converter",
         "cross-platform",
         "electron",
         "eslint",
         "ffmpeg",
-        "ffmpeg-static",
         "ffprobe",
+        "honeymelon",
+        "image-converter",
         "javascript",
         "json",
-        "tailwlindcss",
+        "media-converter",
+        "react",
         "typescript",
         "video",
-        "video-converter",
-        "vue3",
-        "vuejs"
+        "video-converter"
       ],
       "primaryLanguage": "TypeScript",
       "stars": 157,
       "forks": 11,
-      "homepage": "https://comet.thavarshan.com",
-      "repositoryUrl": "https://github.com/Thavarshan/comet",
-      "updatedAt": "2026-10-19T01:48:29Z",
+      "homepage": "https://honeymelon-site.tjthavarshan.workers.dev",
+      "repositoryUrl": "https://github.com/Thavarshan/honeymelon",
+      "updatedAt": "2026-10-29T02:08:00Z",
       "readmeExcerpt": [
+        "Previously Comet. The next desktop build is 3.0.0-beta.2 ; published legacy releases retain their original names, filenames and checksums.",
         "A compact desktop app for converting video, audio, and images. Choose your files, pick an output format, and convert them locally with bundled media tools.",
-        "No account, upload, or cloud processing is required.",
-        "Unsigned beta: v3.0.0-beta.1 is available for testing with the React interface shown below. macOS builds are not Developer ID signed or notarized; Windows installers are not Authenticode signed, so operating-system trust warnings are expected. Verify downloads with the release's SHA256SUMS . v2.2.3 remains the latest stable release and uses the previous interface."
+        "No account, upload, or cloud processing is required."
       ]
     },
     {
       "repository": "matrix",
       "name": "Matrix",
-      "description": "Bringing JavaScript-style async to PHP! Manage asynchronous tasks with ease using a modern, fiber-powered API for seamless concurrency and error handling.",
+      "description": "Event-driven async helpers for ReactPHP with promise composition, cancellation, timeouts, concurrency limits, and rate limiting.",
       "topics": [
         "async",
         "fiber",
@@ -142,11 +142,34 @@
       "stars": 60,
       "forks": 3,
       "repositoryUrl": "https://github.com/Thavarshan/matrix",
-      "updatedAt": "2026-10-05T01:52:35Z",
+      "updatedAt": "2026-10-29T17:26:59Z",
       "readmeExcerpt": [
-        "Matrix provides small, event-driven async helpers for ReactPHP. It makes promise composition, concurrency limits, retries, timeouts, cancellation, and rate limiting consistent without pretending to create threads or process-level parallelism.",
-        "PHP 8.3 or newer react/event-loop 1.6 or newer react/promise 3.3 or newer",
-        "No pcntl , posix , or sockets extension is required."
+        "Matrix provides event-driven async helpers for ReactPHP: promise composition, concurrency limits, retries, timeouts, cancellation, rate limiting, events, and metrics. Work runs cooperatively on one event loop; callbacks must use nonblocking I/O.",
+        "This README is the repository's documentation, including the API reference, migration guide, and release history.",
+        "Matrix requires PHP 8.3 or newer, react/event-loop ^1.6, and react/promise ^3.3. Composer installs the ReactPHP dependencies. The pcntl , posix , and sockets extensions are optional."
+      ]
+    },
+    {
+      "repository": "dokimos",
+      "name": "Dokimos",
+      "description": "CLI for plagiarism evidence discovery and AI-writing-risk analysis",
+      "topics": [
+        "ai-detection",
+        "cli",
+        "plagiarism",
+        "python",
+        "text-analysis"
+      ],
+      "primaryLanguage": "Python",
+      "stars": 5,
+      "forks": 0,
+      "homepage": "https://thavarshan.github.io/dokimos",
+      "repositoryUrl": "https://github.com/Thavarshan/dokimos",
+      "updatedAt": "2026-06-15T12:02:57Z",
+      "readmeExcerpt": [
+        "Dokimos discovers plagiarism evidence from free remote sources, optionally checks a local indexed corpus, and scores documents for AI-likeness using stylometric heuristics.",
+        "The Python distribution name is still dokimos-cli , but the primary command is dokimos .",
+        "Supports .txt , .md , .docx , and .pdf inputs."
       ]
     }
   ]

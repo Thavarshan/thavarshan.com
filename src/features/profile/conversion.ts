@@ -3,7 +3,6 @@ import { githubSnapshotSchema } from "@/features/github/github-model";
 import { profile } from "@/features/profile/profile";
 
 const snapshot = githubSnapshotSchema.parse(githubData);
-export const conversionSkills = ["Laravel", "PHP", "AWS", "React.js", "Vue.js"].filter((name) => profile.skills.some((skill) => skill.name === name));
 export const conversionProjects = snapshot.projects.filter((project) => ["fetch-php", "filterable"].includes(project.repository));
 
 /** Fixed prompts stay in the visitor's email client and never enter telemetry. */

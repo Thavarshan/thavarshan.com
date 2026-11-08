@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { createGroqApplicationClient, GROQ_BASE_URL, GROQ_MODEL, estimatedInputTokens } from "@automation/applications/groq-client";
 
 const result = {
-  emphasizedSkillCategories: ["leadership", "ai-architecture", "full-stack", "cloud-delivery"],
+  emphasizedSkillCategories: ["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"],
   experienceOrder: ["verified-role"],
   highlightSelections: [{ experienceId: "verified-role", highlights: ["Verified original highlight"] }],
   reviewFlags: [],

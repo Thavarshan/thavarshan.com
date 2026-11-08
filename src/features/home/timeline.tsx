@@ -21,7 +21,7 @@ export function Timeline({ items }: TimelineProps) {
               <div className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-6">
                 <h3 className="break-anywhere text-xl font-semibold text-[var(--ink)]">{item.role}</h3>
                 <p className="mt-1 text-sm font-medium text-[var(--cool)]">{item.company}</p>
-                <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{item.summary}</p>
+                {item.summary && item.highlights.length === 0 ? <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{item.summary}</p> : null}
                 {item.highlights.length > 0 ? (
                   <ul className="mt-5 space-y-2 text-sm leading-6 text-[var(--ink)]">
                     {item.highlights.map((highlight) => (

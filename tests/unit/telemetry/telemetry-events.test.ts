@@ -36,6 +36,14 @@ describe("validateWireEvent: strict allowlist at the trust boundary", () => {
     expect(valid("newsletter_click").ok).toBe(true);
   });
 
+  it("rejects inherited Object property names from parsed JSON without throwing", () => {
+    for (const key of ["constructor", "toString", "valueOf", "hasOwnProperty", "__proto__"]) {
+      const props = JSON.parse(`{"project":"fetch-php","${key}":"hello"}`);
+      expect(valid("repo_click", props), key).toEqual({ ok: false, reason: `property "${key}" is not allowed for repo_click` });
+    }
+    expect(valid("repo_click", { project: "fetch-php" }).ok).toBe(true);
+  });
+
   it.each([
     ["an unknown event", () => valid("purchase", {})],
     ["a prototype-pollution event name", () => valid("__proto__", {})],

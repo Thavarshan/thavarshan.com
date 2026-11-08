@@ -91,6 +91,8 @@ describe("rejecting bad input", () => {
       "{not json",
       "[]",
       JSON.stringify({ ...event, event: "purchase" }),
+      JSON.stringify({ ...event, props: JSON.parse('{"project":"fetch-php","toString":"bad"}') }),
+      JSON.stringify({ ...event, props: JSON.parse('{"project":"fetch-php","__proto__":"bad"}') }),
       JSON.stringify({ ...event, props: { project: "a@b.com" } }),
       JSON.stringify({ ...event, path: "/cv?e=a@b.com" }),
       JSON.stringify({ ...event, visitorId: "abc" })

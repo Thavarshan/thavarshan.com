@@ -68,20 +68,21 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     status: "Public open-source tooling with a focused maintenance scope."
   },
   {
-    repository: "comet",
-    problem: "Developer-facing workflows need enough structure to remain maintainable while still feeling quick to use and iterate on.",
+    repository: "honeymelon",
+    problem: "Converting video, audio, and image files should feel straightforward while keeping files on the user's device.",
     designDecisions: [
-      "Use TypeScript to make the internal shape easier to reason about.",
-      "Keep the project focused on clear user flows rather than broad platform ambition.",
-      "Treat packaging and release quality as part of the product experience."
+      "Use a React interface to keep file selection and output-format choices direct.",
+      "Run conversions locally with bundled media tools; no account, upload, or cloud processing is required.",
+      "Cover core user flows with Playwright end-to-end tests."
     ],
-    architecture: "A TypeScript project organized around developer-facing workflow structure and practical release ergonomics.",
-    constraints: [
-      "The implementation needs to balance experimentation with maintainable internals.",
-      "Public project signals should stay aligned with what the repository actually does."
+    architecture: "A TypeScript/Electron desktop app with a React interface, FFmpeg engine, shared packages, and Playwright end-to-end tests.",
+    constraints: ["Video, audio, and image conversion have to fit into a clear desktop workflow.", "Processing stays local to the user's device."],
+    lessons: [
+      "A focused interface can make a complex media engine approachable.",
+      "Shared packages and end-to-end coverage support consistent product behavior."
     ],
-    lessons: ["Typed project structure helps small tools stay adaptable as they grow.", "Product polish and engineering discipline reinforce each other."],
-    status: "Public repository used as evidence of TypeScript tooling and product-minded engineering."
+    status:
+      "Honeymelon is the current name for the project formerly called Comet. Stable releases retain the previous interface; the React interface is currently in beta."
   },
   {
     repository: "matrix",

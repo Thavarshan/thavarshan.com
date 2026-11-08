@@ -8,6 +8,7 @@ on:
       - "data/github.generated.json"
       - "data/package-registry.generated.json"
       - "public/docs/Jerome-Resume.pdf"
+      - "public/docs/Jerome-Resume-fallback.pdf"
       - "src/features/cv/latex.ts"
       - "cv/**"
       - "automation/cv/**"
@@ -25,6 +26,7 @@ permissions:
 concurrency:
   group: automated-generated-content
   cancel-in-progress: false
+  queue: max
 
 jobs:
   refresh:
@@ -37,7 +39,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -62,7 +64,7 @@ jobs:
       - name: Detect generated changes
         id: changes
         run: |
-          if git diff --quiet -- data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf; then
+          if git diff --quiet -- data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf public/docs/Jerome-Resume-fallback.pdf; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -71,7 +73,7 @@ jobs:
         if: steps.changes.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash automation/ci/publish-generated.sh profile "Refresh public profile content" data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf
+        run: bash automation/ci/publish-generated.sh profile "Refresh public profile content" data/github.generated.json data/package-registry.generated.json cv/generated/Jerome-Resume.tex public/docs/Jerome-Resume.pdf public/docs/Jerome-Resume-fallback.pdf
       - name: No generated changes
         if: steps.changes.outputs.changed == 'false'
         run: echo "No generated snapshot changes detected."
@@ -82,14 +84,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
       BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -101,9 +102,6 @@ jobs:
         run: |
           gh release view cv-latest >/dev/null 2>&1 || gh release create cv-latest --title "Latest professional CV" --notes "Automatically generated from the validated professional profile and current GitHub metadata." --latest=false
           gh release upload cv-latest public/docs/Jerome-Resume.pdf --clobber
-      - name: Trigger Netlify refresh
-        if: ${{ env.NETLIFY_BUILD_HOOK != '' }}
-        run: curl --fail --silent --show-error --request POST --data '{}' "$NETLIFY_BUILD_HOOK"
       - name: Submit URLs to IndexNow
         if: ${{ env.BING_INDEXNOW_KEY != '' }}
         run: npm run seo:indexnow

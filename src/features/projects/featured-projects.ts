@@ -33,15 +33,16 @@ export type ProductProject = {
 
 import { profile } from "@/features/profile/profile";
 
-const primaryProduct = profile.professionalProjects[0];
+const resumeHoneymelon = profile.resumeProjects?.find((project) => project.id === "honeymelon");
+const primaryProduct = profile.professionalProjects.find((project) => project.id === "honeymelon") ?? profile.professionalProjects[0];
 
 export const honeymelon: ProductProject = {
   name: primaryProduct.name,
-  role: primaryProduct.role,
+  role: resumeHoneymelon?.role ?? primaryProduct.role,
   url: primaryProduct.url ?? profile.identity.website,
-  summary: primaryProduct.description,
-  highlights: primaryProduct.highlights,
-  tags: primaryProduct.tags
+  summary: resumeHoneymelon?.description ?? primaryProduct.description,
+  highlights: resumeHoneymelon?.highlights ?? primaryProduct.highlights,
+  tags: resumeHoneymelon?.tags ?? primaryProduct.tags
 };
 
 export const projectDefinitions: ProjectDefinition[] = [
@@ -83,21 +84,30 @@ export const projectDefinitions: ProjectDefinition[] = [
     displayOrder: 3
   },
   {
-    name: "Comet",
-    repository: "comet",
+    name: "Honeymelon (formerly Comet)",
+    repository: "honeymelon",
     role: "Creator and maintainer",
-    summary: "A TypeScript project for building developer-facing workflows with clear structure and modern tooling.",
-    highlights: ["Demonstrates TypeScript architecture and package-focused engineering.", "Balances open-source usability with maintainable internals."],
-    tags: ["TypeScript", "Developer tooling", "Packages"],
+    summary: "A TypeScript/Electron converter with a React interface in beta, local FFmpeg processing, shared packages and Playwright tests.",
+    highlights: ["Stable releases retain the previous interface; the React interface is in the beta line.", "Converts media locally without uploads."],
+    tags: ["TypeScript", "Electron", "React", "Node.js", "FFmpeg", "Playwright"],
     displayOrder: 4
   },
   {
     name: "Matrix",
     repository: "matrix",
     role: "Creator and maintainer",
-    summary: "A PHP concurrency and async-oriented library exploring cleaner primitives for complex application flows.",
-    highlights: ["Designed for expressive async patterns in a PHP ecosystem context.", "Rounds out the portfolio with lower-level library design."],
-    tags: ["PHP", "Async", "Library design", "Concurrency"],
+    summary: "Event-driven asynchronous helpers for ReactPHP, including promise composition, cancellation, timeouts and concurrency limits.",
+    highlights: ["Includes retries, rate limiting, events and metrics.", "Uses nonblocking work on a single event loop."],
+    tags: ["PHP", "ReactPHP", "Async", "Concurrency"],
     displayOrder: 5
+  },
+  {
+    name: "Dokimos",
+    repository: "dokimos",
+    role: "Creator and maintainer",
+    summary: "A Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis with structured reports.",
+    highlights: ["Ingests text, Markdown, DOCX and PDF documents.", "AI-likeness scores are heuristic signals, not proof of authorship."],
+    tags: ["Python", "Pydantic", "CLI", "Document ingestion"],
+    displayOrder: 6
   }
 ];

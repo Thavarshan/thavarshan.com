@@ -5,11 +5,11 @@
 
 ## Decision
 
-Cloudflare Workers are used for exactly **one** capability: the private, writable job-review page (`workers/job-review/`). Everything else stays on GitHub Actions (batch/scheduled work) and Netlify static hosting (the public site).
+The original dynamic Worker capability is the private, writable job-review page (`workers/job-review/`). Batch/scheduled work stays on GitHub Actions. The public site subsequently moved from Netlify to Cloudflare static assets; see [the hosting migration](../cloudflare-deployment.md). The site-metrics Worker is also separately reviewed.
 
 ## The concrete need
 
-The job dataset is public, but reviewing it needs **private, writable state** (shortlist / dismiss / notes) that must never reach the public repo or the static build. A static site cannot hold per-user writable state, and GitHub Actions cannot serve an interactive request. This is the first and only request-time requirement in the repository.
+The job dataset is public, but reviewing it needs **private, writable state** (shortlist / dismiss / notes) that must never reach the public repo or the static build. A static site cannot hold per-user writable state, and GitHub Actions cannot serve an interactive request. This was the first stateful request-time requirement in the repository.
 
 ## Alternatives rejected
 
@@ -63,3 +63,7 @@ Design consequences: a failed KV **read** never leads to a write (this used to b
 - Any additional Worker capability needs its own justification here and must pass the cost guard.
 - Revisit if a second request-time need appears (for example public analytics collection, #47) — that would need a *public* route, which changes the auth model and must be a separate decision.
 - If the Free limits are ever approached, the answer is to reduce usage, not to upgrade the plan.
+
+## Public static hosting migration (November 2026)
+
+At the owner's request, `wrangler.json` now serves the existing static `out/` export and isolated PR previews. `wrangler.redirect.json` owns only the www-to-apex redirect Worker. [Static asset requests are free](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/); the tiny redirect script uses the existing Workers Free allowance. No storage, paid binding or subscription change is introduced. `tests/integration/workers/static-hosting-cost-guard.test.ts` separately allowlists both JSON configs, the exact domains and preview overrides. Existing private Worker allowlists remain unchanged.

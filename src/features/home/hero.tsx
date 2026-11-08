@@ -12,14 +12,14 @@ export function Hero() {
       <div className="mx-auto grid min-h-[calc(100svh-72px)] w-full max-w-6xl content-center gap-8 px-5 pb-14 pt-28 sm:gap-10 md:min-h-[720px] md:grid-cols-[minmax(0,1fr)_220px] md:items-center md:pb-16 lg:px-8">
         <div className="max-w-4xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)] sm:text-sm sm:tracking-[0.18em]">
-            Laravel/PHP, backend and cloud engineering, with technical leadership for AI systems
+            {profile.identity.specialtyLine ?? profile.identity.headline}
           </p>
           <h1 className="break-words mt-5 font-display text-[clamp(2.25rem,10vw,3rem)] leading-[1.04] text-balance text-[var(--ink)] sm:text-5xl lg:text-6xl xl:text-7xl">
             {site.name}
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-pretty text-[var(--muted)] sm:text-xl sm:leading-9">{profile.identity.headline}</p>
           <p className="mt-4 max-w-2xl text-xs font-semibold uppercase tracking-[0.12em] text-[var(--cool)] sm:text-sm sm:tracking-[0.14em]">
-            Open to selected global technical-leadership conversations.
+            {profile.identity.availability ?? "Open to selected global technical-leadership conversations."}
           </p>
           <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">{profile.summary}</p>
           <div className="mobile-stack-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

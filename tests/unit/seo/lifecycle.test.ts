@@ -17,11 +17,18 @@ const rules = (value: string) => parseContentRedirects(value);
 const names = (value: ReturnType<typeof checkLifecycle>) => value.map((item) => item.rule);
 
 describe("URL lifecycle", () => {
+  it("supports only exact slash normalization to its own canonical path", () => {
+    expect(rules("/projects/new/ /projects/new 301")).toEqual([{ from: "/projects/new/", to: "/projects/new", status: 301 }]);
+    expect(() => rules("/projects/new/ /elsewhere 301")).toThrow();
+  });
+  it("preserves historical Netlify syntax for Git revision comparisons", () => {
+    expect(rules("/old /projects/new 301!")).toEqual(rules("/old /projects/new 301"));
+  });
   it("accepts exact permanent moves to real pages or static assets", () => {
     expect(
       checkLifecycle(
         current,
-        rules("# retained aliases\n/old /projects/new 301!\n/cv-old /docs/cv.pdf 301!\n/legacy https://github.com/Thavarshan/comet 301!"),
+        rules("# retained aliases\n/old /projects/new 301\n/cv-old /docs/cv.pdf 301\n/legacy https://github.com/Thavarshan/honeymelon 301"),
         files
       )
     ).toEqual([]);
@@ -32,15 +39,15 @@ describe("URL lifecycle", () => {
     expect(names(checkLifecycle(current, [], [...files, "projects/unregistered.html"]))).toContain("page-unregistered");
   });
   it("rejects chains, cycles, duplicate sources and self redirects", () => {
-    expect(names(checkLifecycle(current, rules("/a /b 301!\n/b /projects/new 301!"), files))).toContain("redirect-chain");
-    expect(names(checkLifecycle(current, rules("/a /b 301!\n/b /a 301!"), files))).toContain("redirect-loop");
-    expect(names(checkLifecycle(current, rules("/a /a 301!"), files))).toContain("redirect-loop");
-    expect(names(checkLifecycle(current, rules("/a / 301!\n/a /projects/new 301!"), files))).toContain("redirect-duplicate");
+    expect(names(checkLifecycle(current, rules("/a /b 301\n/b /projects/new 301"), files))).toContain("redirect-chain");
+    expect(names(checkLifecycle(current, rules("/a /b 301\n/b /a 301"), files))).toContain("redirect-loop");
+    expect(names(checkLifecycle(current, rules("/a /a 301"), files))).toContain("redirect-loop");
+    expect(names(checkLifecycle(current, rules("/a / 301\n/a /projects/new 301"), files))).toContain("redirect-duplicate");
   });
   it("recognizes same-origin absolute targets and rejects missing or retired targets", () => {
-    expect(names(checkLifecycle(current, rules(`/old ${canonicalOrigin}/missing 301!`), files))).toContain("redirect-target");
+    expect(names(checkLifecycle(current, rules(`/old ${canonicalOrigin}/missing 301`), files))).toContain("redirect-target");
     expect(
-      names(checkLifecycle({ ...current, retired: [{ path: "/removed", status: 404, reason: "No successor" }] }, rules("/old /removed 301!"), files))
+      names(checkLifecycle({ ...current, retired: [{ path: "/removed", status: 404, reason: "No successor" }] }, rules("/old /removed 301"), files))
     ).toContain("redirect-target");
   });
   it("retirement must genuinely remove exported files and cannot remain active", () => {
@@ -49,7 +56,7 @@ describe("URL lifecycle", () => {
     expect(checkLifecycle({ ...current, retired: [{ path: "/removed", status: 404, reason: "No useful replacement" }] }, [], files)).toEqual([]);
   });
   it("blocks forced redirects over active/exported source pages", () => {
-    expect(names(checkLifecycle(current, rules("/projects/new / 301!"), files))).toContain("redirect-source-conflict");
+    expect(names(checkLifecycle(current, rules("/projects/new / 301"), files))).toContain("redirect-source-conflict");
   });
   it("blocks internal links to moved/retired paths, including encoded and relative links", () => {
     const pages = [
@@ -58,38 +65,41 @@ describe("URL lifecycle", () => {
         links: ["/old?utm=x", "../removed", `${canonicalOrigin}/%6Fld`, "https://example.com/old", "#section", "mailto:me@example.com"]
       }
     ];
-    const failures = checkLifecycleLinks(pages, rules("/old / 301!"), [{ path: "/removed", status: 404, reason: "Removed" }]);
+    const failures = checkLifecycleLinks(pages, rules("/old / 301"), [{ path: "/removed", status: 404, reason: "Removed" }]);
     expect(failures).toHaveLength(3);
     expect(failures.every((item) => item.rule === "internal-link-lifecycle")).toBe(true);
   });
   it("cannot erase published pages or legacy redirects by editing their registers", () => {
     const previous = { ...current, pages: [...current.pages, "/older"] };
     expect(names(checkPreviousLifecycle(previous, current, []))).toContain("url-history-lost");
-    expect(checkPreviousLifecycle(previous, current, rules("/older /projects/new 301!"))).toEqual([]);
+    expect(checkPreviousLifecycle(previous, current, rules("/older /projects/new 301"))).toEqual([]);
     expect(checkPreviousLifecycle(previous, { ...current, retired: [{ path: "/older", status: 404, reason: "No equivalent" }] }, [])).toEqual([]);
-    expect(names(checkPreviousLifecycle(current, current, [], rules("/legacy / 301!")))).toContain("url-history-lost");
+    expect(names(checkPreviousLifecycle(current, current, [], rules("/legacy / 301")))).toContain("url-history-lost");
   });
   it.each([
     "/a / 200!",
     "/a / 302!",
-    "/a / 301",
-    "/a/* / 301!",
-    "/a /missing?x=1 301!",
-    "/a https://user:pass@example.com/ 301!",
-    "/a javascript:alert(1) 301!",
-    "/a //evil.example/ 301!",
-    "/a / 301! Country=US",
-    "/../a / 301!"
+    "/a / 307",
+    "/a/* / 301",
+    "/a /missing?x=1 301",
+    "/a https://user:pass@example.com/ 301",
+    "/a javascript:alert(1) 301",
+    "/a //evil.example/ 301",
+    "/a / 301 Country=US",
+    "/../a / 301"
   ])("fails closed on unsupported or unsafe rules: %s", (rule) => {
     expect(() => rules(rule)).toThrow();
   });
   it("prevents content rules and chains through alias hosts from bypassing the owned graph", () => {
-    const block = '[[redirects]]\nfrom = "https://thavarshan.netlify.app/*"\nto = "https://thavarshan.com/:splat"\nstatus = 301\nforce = true\n';
-    expect(checkHostRedirectOwnership(block)).toEqual([]);
-    expect(checkHostRedirectOwnership(block + '[[redirects]]\nfrom = "/old"\nto = "/"\nstatus = 301\n').map((item) => item.rule)).toContain(
-      "redirect-ownership"
-    );
-    expect(() => rules("/old https://www.thavarshan.com/projects 301!")).toThrow();
+    const config = {
+      name: "thavarshan-site-redirect",
+      main: "workers/site-redirect/index.ts",
+      routes: [{ pattern: "www.thavarshan.com", custom_domain: true }]
+    };
+    expect(checkHostRedirectOwnership(JSON.stringify(config))).toEqual([]);
+    expect(checkHostRedirectOwnership(JSON.stringify({ ...config, assets: { directory: "out" } })).map((item) => item.rule)).toContain("redirect-ownership");
+    expect(checkHostRedirectOwnership("invalid JSON")).toHaveLength(1);
+    expect(() => rules("/old https://www.thavarshan.com/projects 301")).toThrow();
     expect(
       checkLifecycleLinks([{ url: canonicalOrigin, links: ["https://www.thavarshan.com/projects", "http://thavarshan.com/projects"] }], [], [])
     ).toHaveLength(2);

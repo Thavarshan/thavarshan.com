@@ -8,10 +8,12 @@ export type ExpertiseGroup = {
 };
 
 const summaries = {
-  leadership: "Technical direction, standards, mentoring, delivery planning, and cross-functional product collaboration.",
-  "ai-architecture": "Workflow orchestration, system design, semantic search, event-driven systems, and scalable service boundaries.",
-  "full-stack": "Modern frontend and backend engineering across typed applications, APIs, data stores, and product interfaces.",
-  "cloud-delivery": "Production-minded infrastructure, observability, and release practices for distributed applications."
+  "genai-ml": "LangGraph workflows, retrieval, embeddings, and applied machine learning.",
+  backend: "API gateways and application services across Node.js/TypeScript, Java/Spring Boot, Python, and PHP/Laravel.",
+  frontend: "Full-stack product interfaces with React, Next.js, Vue, and TypeScript.",
+  data: "Relational and document databases, caching, and semantic/vector search.",
+  "cloud-delivery": "Cloud infrastructure, containers, and deployment pipelines across AWS and GCP.",
+  engineering: "Technical leadership, system design, production reliability, observability, code review, and automated testing."
 } as const;
 
 export const expertiseGroups: ExpertiseGroup[] = Object.entries(profilePolicy.skillCategories).map(([category, title]) => ({

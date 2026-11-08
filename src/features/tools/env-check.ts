@@ -38,6 +38,18 @@ export interface ParsedEnv {
 }
 
 const keyPattern = /^[A-Za-z_][A-Za-z0-9_.]*$/;
+// phpdotenv v5.6.2 accepts these escapes only inside double quotes.
+// Single-quoted values are literal: backslashes cannot escape a quote.
+const doubleQuotedEscapes: Record<string, string> = {
+  '"': '"',
+  "\\": "\\",
+  $: "$",
+  f: "\f",
+  n: "\n",
+  r: "\r",
+  t: "\t",
+  v: "\v"
+};
 
 export function parseEnv(text: string, source: Source): ParsedEnv {
   const entries: EnvEntry[] = [];
@@ -81,7 +93,7 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
         severity: "error",
         code: "bad-key",
         line: lineNumber,
-        message: `Line ${lineNumber}: "${key.length > 40 ? `${key.slice(0, 40)}…` : key}" is not a valid variable name (use letters, digits and underscores, not starting with a digit).`
+        message: `Line ${lineNumber} has an invalid variable name (use letters, digits, underscores or dots, not starting with a digit).`
       });
       continue;
     }
@@ -96,40 +108,45 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
       quote = mark === '"' ? "double" : "single";
       let body = rest.slice(1);
       let closed = false;
+      let invalid = false;
       for (;;) {
-        let escaped = false;
-        let end = -1;
         for (let position = 0; position < body.length; position++) {
           const char = body[position];
-          if (escaped) {
-            escaped = false;
-            continue;
-          }
-          if (char === "\\" && (mark === '"' || body[position + 1] === "'")) {
-            escaped = true;
+          if (mark === '"' && char === "\\") {
+            const escape = body[position + 1];
+            if (escape !== undefined && Object.hasOwn(doubleQuotedEscapes, escape)) {
+              value += doubleQuotedEscapes[escape];
+              position++;
+              continue;
+            }
+            add({
+              severity: "error",
+              code: "invalid-escape",
+              line: startLine,
+              key,
+              message: `Line ${startLine}: ${key} contains a double-quoted escape not supported by Laravel's dotenv parser.`
+            });
+            invalid = true;
             continue;
           }
           if (char === mark) {
-            end = position;
+            const after = body.slice(position + 1).trim();
+            if (after !== "" && !after.startsWith("#")) {
+              add({
+                severity: "error",
+                code: "trailing-after-quote",
+                line: startLine,
+                key,
+                message: `Line ${startLine}: unexpected text after the closing quote of ${key}.`
+              });
+              invalid = true;
+            }
+            closed = true;
             break;
           }
+          value += char;
         }
-        if (end !== -1) {
-          value += body.slice(0, end);
-          const after = body.slice(end + 1).trim();
-          if (after !== "" && !after.startsWith("#")) {
-            add({
-              severity: "error",
-              code: "trailing-after-quote",
-              line: startLine,
-              message: `Line ${startLine}: unexpected text after the closing quote of ${key}.`
-            });
-          }
-          closed = true;
-          break;
-        }
-        value += body;
-        if (index + 1 >= lines.length) break;
+        if (closed || mark === "'" || index + 1 >= lines.length) break;
         index += 1;
         value += "\n";
         body = lines[index];
@@ -144,8 +161,10 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
         });
         continue;
       }
+      if (invalid) continue;
     } else {
-      const commentAt = rest.search(/\s#/);
+      // A hash always starts a comment outside of quotes, even with no preceding space.
+      const commentAt = rest.indexOf("#");
       if (commentAt !== -1) rest = rest.slice(0, commentAt);
       value = rest.trim();
       if (/\s/.test(value)) {
@@ -155,15 +174,6 @@ export function parseEnv(text: string, source: Source): ParsedEnv {
           line: lineNumber,
           key,
           message: `Line ${lineNumber}: ${key} has spaces in an unquoted value. Laravel's dotenv parser rejects this ("unexpected whitespace") and the whole app fails to boot — wrap the value in double quotes.`
-        });
-      }
-      if (value.includes("#")) {
-        add({
-          severity: "info",
-          code: "hash-in-value",
-          line: lineNumber,
-          key,
-          message: `Line ${lineNumber}: the value of ${key} contains "#". It is kept because no whitespace precedes it, but quote the value to make the intent unambiguous.`
         });
       }
     }

@@ -9,11 +9,9 @@ export interface DeploymentFailure {
 export function deploymentOrigin(input: string, mode: DeploymentMode): string {
   const url = new URL(input);
   const validHost =
-    mode === "production"
-      ? url.hostname === "thavarshan.com"
-      : /^(?:deploy-preview-\d+|[a-z0-9]+(?:-[a-z0-9]+)*)--thavarshan\.netlify\.app$/.test(url.hostname);
+    mode === "production" ? url.hostname === "thavarshan.com" : /^thavarshan-site-(?:preview|pr-\d+)\.tjthavarshan\.workers\.dev$/.test(url.hostname);
   if (!validHost || url.protocol !== "https:" || url.username || url.password || url.port || url.pathname !== "/" || url.search || url.hash) {
-    throw new Error("Deployment URL must be the production origin or an HTTPS preview origin for this Netlify site");
+    throw new Error("Deployment URL must be the production origin or an HTTPS preview origin for this Cloudflare Worker");
   }
   return url.origin;
 }
@@ -33,7 +31,7 @@ export function checkHeaders(
   status: number,
   headers: Headers,
   mode: DeploymentMode,
-  kind: "html" | "pdf" | "missing" = "html"
+  kind: "html" | "pdf" | "image" | "missing" = "html"
 ): DeploymentFailure[] {
   const failures: DeploymentFailure[] = [];
   const require = (ok: boolean, rule: string, detail: string) => {
@@ -49,7 +47,9 @@ export function checkHeaders(
   const noindex = /\b(noindex|none)\b/i.test(headers.get("x-robots-tag") || "");
   require(mode === "preview" || kind === "pdf" ? noindex : kind === "missing" || !noindex, "indexability", "Unexpected X-Robots-Tag");
   if (kind !== "missing")
-    require((headers.get("content-type") || "").includes(kind === "pdf" ? "application/pdf" : "text/html"), "content-type", `Expected ${kind}`);
+    require((headers.get("content-type") || "").includes(
+      kind === "pdf" ? "application/pdf" : kind === "image" ? "image/png" : "text/html"
+    ), "content-type", `Expected ${kind}`);
   return failures;
 }
 

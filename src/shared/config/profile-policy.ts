@@ -1,13 +1,16 @@
 export const profilePolicy = {
   githubUsername: "Thavarshan",
   featuredRepositoryCount: 5,
+  additionalFeaturedRepositories: ["dokimos"],
   excludedRepositories: ["thavarshan.com", "github-templates"],
   publicPhone: false,
-  seoTopics: ["Technical leadership", "AI systems architecture", "Platform engineering", "Cloud architecture", "Full-stack engineering"],
+  seoTopics: ["Technical leadership", "Generative AI", "Full-stack engineering", "Platform engineering", "Cloud architecture"],
   skillCategories: {
-    leadership: "Engineering Leadership",
-    "ai-architecture": "AI & Architecture",
-    "full-stack": "Full Stack",
-    "cloud-delivery": "Cloud & Delivery"
+    "genai-ml": "Generative AI and ML",
+    backend: "Backend engineering",
+    frontend: "Frontend engineering",
+    data: "Data and search",
+    "cloud-delivery": "Cloud and delivery",
+    engineering: "Technical leadership and engineering quality"
   }
 } as const;
