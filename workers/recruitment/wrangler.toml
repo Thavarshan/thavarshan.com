@@ -8,11 +8,12 @@ compatibility_date = "2026-09-01"
 [vars]
 JOBS_DATA_URL = "https://raw.githubusercontent.com/Thavarshan/thavarshan.com/main/data/jobs.generated.json"
 
-# Replace the placeholder only after creating `recruitment-private` with Wrangler.
+# Dedicated private recruitment storage. Verify the Cloudflare account and D1 state
+# before remote migrations; this UUID identifies the database but is not a credential.
 [[d1_databases]]
 binding = "RECRUITMENT_DB"
-database_name = "recruitment-private"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_name = "thavarshan_com"
+database_id = "c1d06bf1-f33c-4f75-a7cd-afa30effd2dc"
 migrations_dir = "migrations"
 
 # Read-only in this Worker: the existing review UI remains the sole KV writer.
