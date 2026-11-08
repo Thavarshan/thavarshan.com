@@ -1,7 +1,8 @@
 // @vitest-environment node
 import { DatabaseSync } from "node:sqlite";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { copyFileSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { handleRequest, type Env } from "@workers/recruitment/index";
 import { exportLegacyKV, type ReadOnlyKV } from "@workers/recruitment/legacy";
@@ -243,13 +244,25 @@ describe("private D1 recruitment boundary", () => {
       { [A]: { status: "reviewed", note: "Synthetic fixture only", updatedAt: now.toISOString() } },
       now.toISOString()
     );
-    const binary = (db.sqlite as DatabaseSync & { serialize(): Uint8Array }).serialize();
-    const restored = new DatabaseSync(":memory:");
-    (restored as DatabaseSync & { deserialize(input: Uint8Array): void }).deserialize(binary);
-    expect(restored.prepare("SELECT count(*) AS n FROM opportunities").get()).toEqual({ n: 1 });
-    expect(restored.prepare("SELECT note FROM reviews WHERE opportunity_id = ?").get(A)).toEqual({ note: "Synthetic fixture only" });
-    expect(restored.prepare("SELECT checksum FROM completed_imports").get()).toEqual({ checksum: "f".repeat(64) });
-    restored.close();
+    // VACUUM INTO works on older Node 22 SQLite releases, unlike serialize()/deserialize().
+    // Copy the exported database to a separate path to rehearse a file-based restore.
+    const directory = mkdtempSync(join(tmpdir(), "recruitment-d1-restore-"));
+    try {
+      const backup = join(directory, "backup.sqlite");
+      const recovered = join(directory, "recovered.sqlite");
+      db.sqlite.prepare("VACUUM INTO ?").run(backup);
+      copyFileSync(backup, recovered);
+      const restored = new DatabaseSync(recovered);
+      try {
+        expect(restored.prepare("SELECT count(*) AS n FROM opportunities").get()).toEqual({ n: 1 });
+        expect(restored.prepare("SELECT note FROM reviews WHERE opportunity_id = ?").get(A)).toEqual({ note: "Synthetic fixture only" });
+        expect(restored.prepare("SELECT checksum FROM completed_imports").get()).toEqual({ checksum: "f".repeat(64) });
+      } finally {
+        restored.close();
+      }
+    } finally {
+      rmSync(directory, { recursive: true, force: true });
+    }
   });
 
   it("fails closed on malformed or incomplete KV and never logs secrets or job query strings", async () => {
