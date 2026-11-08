@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import positioning from "../../marketing/search-positioning.json";
 import { positioningSchema, type Positioning } from "./positioning/model";
-import { getAllInsights } from "../../src/features/insights/insights.node";
+import { getAllInsights } from "../../src/features/insights/insights.node.js";
 import { tools } from "../../src/features/tools/registry";
 import { profile } from "../../src/features/profile/profile";
 import github from "../../data/github.generated.json";
