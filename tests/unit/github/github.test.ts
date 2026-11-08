@@ -46,6 +46,20 @@ describe("GitHub source adapter", () => {
             fork: false,
             archived: false,
             disabled: false
+          },
+          {
+            name: "dokimos",
+            description: "Python document analysis CLI",
+            topics: ["python", "cli"],
+            language: "Python",
+            stargazers_count: 1,
+            forks_count: 0,
+            homepage: "",
+            html_url: "https://github.com/Thavarshan/dokimos",
+            updated_at: "2026-07-02T00:00:00.000Z",
+            fork: false,
+            archived: false,
+            disabled: false
           }
         ]);
       }
@@ -65,6 +79,7 @@ describe("GitHub source adapter", () => {
       description: "Example developer library",
       stars: 25
     });
+    expect(snapshot.projects.map((project) => project.repository)).toContain("dokimos");
     expect(snapshot.projects[0].readmeExcerpt[0]).toContain("approachable developer workflow");
   });
 });

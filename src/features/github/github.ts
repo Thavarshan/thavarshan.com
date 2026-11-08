@@ -119,8 +119,16 @@ export async function fetchGitHubSnapshot(options: GitHubFetchOptions = {}): Pro
   }));
 
   const featured = selectFeaturedRepositories(candidates, profilePolicy.featuredRepositoryCount, profilePolicy.excludedRepositories);
+  const additionalFeaturedRepositories = new Set<string>(profilePolicy.additionalFeaturedRepositories.map((repository) => repository.toLowerCase()));
+  const additionalFeatured = selectFeaturedRepositories(
+    candidates.filter((repository) => additionalFeaturedRepositories.has(repository.repository.toLowerCase())),
+    profilePolicy.additionalFeaturedRepositories.length,
+    profilePolicy.excludedRepositories
+  );
+  const selected = new Map([...featured, ...additionalFeatured].map((project) => [project.repository.toLowerCase(), project]));
+  const selectedProjects = [...selected.values()].sort((a, b) => b.stars - a.stars || b.updatedAt.localeCompare(a.updatedAt));
   const projects = await Promise.all(
-    featured.map(async (project) => ({
+    selectedProjects.map(async (project) => ({
       ...project,
       readmeExcerpt: extractReadmeExcerpt(await requestReadme(project.repository, options))
     }))

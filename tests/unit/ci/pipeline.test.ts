@@ -22,14 +22,14 @@ function headers() {
 describe("deployment boundaries", () => {
   it("only permits HTTPS origins for this site and its previews", () => {
     expect(deploymentOrigin("https://thavarshan.com", "production")).toBe("https://thavarshan.com");
-    expect(deploymentOrigin("https://deploy-preview-106--thavarshan.netlify.app", "preview")).toContain("deploy-preview-106");
+    expect(deploymentOrigin("https://thavarshan-site-pr-106.tjthavarshan.workers.dev", "preview")).toContain("thavarshan-site-pr-106");
     for (const input of [
       "http://thavarshan.com",
       "https://thavarshan.com/path",
       "https://user@thavarshan.com",
       "https://evil.netlify.app",
       "https://thavarshan.com.evil.test",
-      "https://main--thavarshan.netlify.app:443/?x=1",
+      "https://thavarshan-site-preview.tjthavarshan.workers.dev:443/?x=1",
       "http://127.0.0.1"
     ])
       expect(() => deploymentOrigin(input, "preview")).toThrow();
@@ -71,6 +71,13 @@ describe("deployment boundaries", () => {
     expect(checkHeaders(url, 200, pdf, "production", "pdf")).toEqual([]);
     expect(checkHeaders(url, 200, headers(), "production", "pdf").map((f) => f.rule)).toEqual(["indexability", "content-type"]);
   });
+  it("requires an image MIME type for extensionless social preview assets", () => {
+    const image = headers();
+    image.set("content-type", "image/png");
+    expect(checkHeaders(url, 200, image, "production", "image")).toEqual([]);
+    image.delete("content-type");
+    expect(checkHeaders(url, 200, image, "production", "image").map((f) => f.rule)).toEqual(["content-type"]);
+  });
   it("rejects temporary, missing, malformed and off-origin redirects", () => {
     expect(checkRedirect(url + "/", 301, "/projects", url)).toEqual([]);
     expect(checkRedirect(url + "/", 308, url, url)).toEqual([]);
@@ -84,7 +91,7 @@ describe("deployment boundaries", () => {
   });
   it("requires production canonicals even on previews", () => {
     expect(checkHtml(url, `<link rel="canonical" href="${url}"/>`, "production")).toEqual([]);
-    expect(checkHtml("https://deploy-preview-106--thavarshan.netlify.app/projects", `<link rel="canonical" href="${url}"/>`, "preview")).toEqual([]);
+    expect(checkHtml("https://thavarshan-site-pr-106.tjthavarshan.workers.dev/projects", `<link rel="canonical" href="${url}"/>`, "preview")).toEqual([]);
     expect(checkHtml(url, '<link rel="canonical" href="https://elsewhere.com/projects"/>', "production")).toContainEqual(
       expect.objectContaining({ rule: "canonical" })
     );

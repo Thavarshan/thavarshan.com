@@ -57,7 +57,7 @@ describe("track", () => {
   it("never sets cookies or writes anything except the four-string attribution record", () => {
     track("cv_download", { location: "home" });
     expect(document.cookie).toBe("");
-    expect(Object.keys(localStorage)).toEqual([]);
+    expect(window.localStorage?.length ?? 0).toBe(0);
     expect(Object.keys(sessionStorage)).toEqual(["ge.attribution"]);
     expect(Object.keys(JSON.parse(sessionStorage.getItem("ge.attribution")!)).sort()).toEqual(["campaign", "medium", "referrer", "source"]);
   });

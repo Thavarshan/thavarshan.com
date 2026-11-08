@@ -20,7 +20,8 @@ test("indexable CV and projects pages expose canonical metadata", async ({ page 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/cv");
 
   await page.goto("/projects");
-  await expect(page.getByRole("heading", { name: /developer tools with measurable adoption/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /product engineering and open-source work across multiple stacks/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dokimos" })).toBeVisible();
   await expect(page.getByRole("link", { name: /project details/i }).first()).toHaveAttribute("href", /\/projects\//);
 });
 
@@ -33,6 +34,27 @@ test("project details render source-driven metadata and structured data", async 
   await expect(page.getByText(new RegExp(`${fetchPhp!.stars.toLocaleString()} stars`, "i"))).toBeVisible();
   expect(await page.locator('script[type="application/ld+json"]').textContent()).toContain("SoftwareSourceCode");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/projects/fetch-php");
+});
+
+test("cross-stack project pages describe current release and analysis limits", async ({ page }) => {
+  await page.goto("/projects/honeymelon");
+  await expect(page.getByRole("heading", { name: "Honeymelon (formerly Comet)" })).toBeVisible();
+  await expect(page.getByText(/React interface is currently in beta/i)).toBeVisible();
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/projects/honeymelon");
+
+  await page.goto("/projects/dokimos");
+  await expect(page.getByRole("heading", { name: "Dokimos" })).toBeVisible();
+  const about = page.getByRole("region", { name: "About the project" });
+  await expect(about.getByText(/heuristic signals, not proof of authorship/i)).toBeVisible();
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://thavarshan.com/projects/dokimos");
+});
+
+test("Honeymelon keeps the Comet project URL as a permanent redirect", async ({ request }) => {
+  const response = await request.get("/_redirects");
+  const redirects = await response.text();
+
+  expect(redirects).toContain("/projects/comet /projects/honeymelon 301");
+  expect(redirects).toContain("/blog/comet https://github.com/Thavarshan/honeymelon 301");
 });
 
 test("exported project links resolve and are discoverable", async ({ page, request }) => {
@@ -58,6 +80,8 @@ test("SEO discovery endpoints list public profile routes", async ({ request }) =
   const robots = await request.get("/robots.txt");
 
   expect(await sitemap.text()).toContain("https://thavarshan.com/projects/fetch-php");
+  expect(await sitemap.text()).toContain("https://thavarshan.com/projects/honeymelon");
+  expect(await sitemap.text()).toContain("https://thavarshan.com/projects/dokimos");
   expect(await sitemap.text()).toContain("https://thavarshan.com/cv");
   expect(await sitemap.text()).toContain("https://thavarshan.com/insights/observable-reliable-production-ai-workflows");
   expect(await robots.text()).toContain("https://thavarshan.com/sitemap.xml");
@@ -90,7 +114,7 @@ test("mobile layout has no horizontal overflow", async ({ page }) => {
 test("narrow mobile layout stays readable and overflow-free", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
 
-  for (const route of ["/", "/projects", "/cv", "/insights", "/privacy"]) {
+  for (const route of ["/", "/projects", "/projects/honeymelon", "/projects/dokimos", "/cv", "/insights", "/privacy"]) {
     await page.goto(route);
     const dimensions = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -118,6 +142,31 @@ test("mobile navigation is accessible and closes with Escape", async ({ page }) 
   await page.keyboard.press("Escape");
   await expect(page.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
   await expect(page.locator("#mobile-navigation")).toBeHidden();
+});
+
+test("mobile disclosure closes on forward Tab beyond its last link", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open navigation menu" }).click();
+  const panel = page.locator("#mobile-navigation");
+  await panel.locator("a").last().focus();
+  await expect(panel).toBeVisible();
+  await page.keyboard.press("Tab");
+  await expect(panel).toBeHidden();
+  expect(await page.evaluate(() => Boolean(document.activeElement?.closest("#mobile-navigation")))).toBe(false);
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+});
+
+test("mobile disclosure closes on reverse Shift+Tab away from its toggle", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Open navigation menu" });
+  await toggle.focus();
+  await toggle.press("Enter");
+  await expect(page.locator("#mobile-navigation")).toBeVisible();
+  await page.keyboard.press("Shift+Tab");
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+  await expect(page.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
 });
 
 test("the menu toggle stays inside the viewport on narrow screens", async ({ page }) => {
@@ -206,12 +255,12 @@ test("contact primary link remains readable while active", async ({ page }) => {
   expect(activeColors.color).not.toBe(activeColors.background);
 });
 
-test("old blog routes are preserved in the Netlify redirect manifest", async ({ request }) => {
+test("old blog routes are preserved in the static redirect manifest", async ({ request }) => {
   const response = await request.get("/_redirects");
   const redirects = await response.text();
 
-  expect(redirects).toContain("/blog/fetch-php https://github.com/Thavarshan/fetch-php 301!");
-  expect(redirects).toContain("/blog /projects 301!");
+  expect(redirects).toContain("/blog/fetch-php https://github.com/Thavarshan/fetch-php 301");
+  expect(redirects).toContain("/blog /projects 301");
 });
 
 test("resume is served from public docs", async ({ request }) => {
@@ -231,7 +280,7 @@ test("audience paths are keyboard accessible and remain readable on mobile", asy
   await entry.focus();
   await entry.press("Enter");
   await expect(page).toHaveURL(/#hiring$/);
-  const hiring = page.getByRole("region", { name: "Hiring an engineer?" });
+  const hiring = page.getByRole("region", { name: "Hiring for technical leadership, full-stack or GenAI engineering?" });
   await expect(hiring.getByRole("link", { name: "Discuss a role" })).toBeVisible();
   const consulting = page.getByRole("region", { name: "Have a project to discuss?" });
   await expect(consulting.getByRole("link", { name: "Discuss a project" })).toHaveAttribute("href", /^mailto:.*subject=Consulting/);

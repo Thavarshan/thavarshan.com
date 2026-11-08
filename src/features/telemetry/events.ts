@@ -152,8 +152,9 @@ export function validateWireEvent(input: unknown): ValidationResult {
   if (typeof rawProps !== "object" || rawProps === null || Array.isArray(rawProps)) return { ok: false, reason: "invalid props" };
   const props: Record<string, string> = {};
   for (const [key, value] of Object.entries(rawProps)) {
+    // A wire property must be declared by the event, not inherited from Object.prototype.
+    if (!Object.hasOwn(definition.props, key)) return { ok: false, reason: `property "${key}" is not allowed for ${name}` };
     const rule = definition.props[key];
-    if (!rule) return { ok: false, reason: `property "${key}" is not allowed for ${name}` };
     if (typeof value !== "string" || !rule.valid(value)) return { ok: false, reason: `invalid value for ${key}` };
     props[key] = value;
   }

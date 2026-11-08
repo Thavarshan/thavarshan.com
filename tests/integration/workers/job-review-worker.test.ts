@@ -12,20 +12,20 @@ const now = new Date("2026-09-30T00:00:00.000Z");
 
 const b64url = (input: string | ArrayBuffer) => Buffer.from(typeof input === "string" ? input : new Uint8Array(input)).toString("base64url");
 
-async function makeIdentity() {
+async function makeIdentity(kid = "k1") {
   const pair = await crypto.subtle.generateKey(
     { name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" },
     true,
     ["sign", "verify"]
   );
-  const jwk = { ...(await crypto.subtle.exportKey("jwk", pair.publicKey)), kid: "k1" };
+  const jwk = { ...(await crypto.subtle.exportKey("jwk", pair.publicKey)), kid };
   const fetcher = (async () => new Response(JSON.stringify({ keys: [jwk] }))) as typeof fetch;
-  const sign = async (payload: Record<string, unknown>, header: Record<string, unknown> = { alg: "RS256", kid: "k1" }) => {
+  const sign = async (payload: Record<string, unknown>, header: Record<string, unknown> = { alg: "RS256", kid }) => {
     const signingInput = `${b64url(JSON.stringify(header))}.${b64url(JSON.stringify(payload))}`;
     const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", pair.privateKey, new TextEncoder().encode(signingInput));
     return `${signingInput}.${b64url(signature)}`;
   };
-  return { fetcher, sign };
+  return { fetcher, sign, jwk };
 }
 
 const goodClaims = { aud: [AUD], iss: `https://${TEAM}`, email: EMAIL, exp: now.getTime() / 1000 + 600 };
@@ -48,11 +48,78 @@ describe("verifyAccessJwt", () => {
     expect(await verify(await sign(goodClaims, { alg: "none", kid: "k1" }))).toBeNull();
     expect(await verify(await sign(goodClaims, { alg: "RS256", kid: "unknown" }))).toBeNull();
   });
+
+  it("refreshes a warm certificate cache when Cloudflare rotates its signing key", async () => {
+    const original = await makeIdentity("original");
+    const rotated = await makeIdentity("rotated");
+    let publishedKeys = [original.jwk];
+    let requests = 0;
+    const fetcher = (async () => {
+      requests++;
+      return new Response(JSON.stringify({ keys: publishedKeys }));
+    }) as typeof fetch;
+    const verify = (token: string) => verifyAccessJwt(token, config, { fetcher, now: now.getTime() });
+
+    expect(await verify(await original.sign(goodClaims))).toBe(EMAIL);
+    expect(requests).toBe(1);
+    publishedKeys = [original.jwk, rotated.jwk];
+    expect(await verify(await rotated.sign(goodClaims))).toBe(EMAIL);
+    expect(await verify(await original.sign(goodClaims))).toBe(EMAIL);
+    expect(requests).toBe(2);
+  });
+
+  it("coalesces simultaneous unknown-key refreshes and cools down arbitrary unknown IDs", async () => {
+    const original = await makeIdentity("original");
+    const rotated = await makeIdentity("rotated");
+    let keys = [original.jwk];
+    let requests = 0;
+    const fetcher = (async () => {
+      requests++;
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      return new Response(JSON.stringify({ keys }));
+    }) as typeof fetch;
+    const verify = (token: string, offset = 0) => verifyAccessJwt(token, config, { fetcher, now: now.getTime() + offset });
+
+    expect(await verify(await original.sign(goodClaims))).toBe(EMAIL);
+    keys = [original.jwk, rotated.jwk];
+    const token = await rotated.sign(goodClaims);
+    expect(await Promise.all(Array.from({ length: 12 }, () => verify(token)))).toEqual(Array(12).fill(EMAIL));
+    expect(requests).toBe(2);
+    const bad = await rotated.sign(goodClaims, { alg: "RS256", kid: "attacker-key" });
+    expect(await verify(bad)).toBeNull();
+    expect(await verify(bad, 20_000)).toBeNull();
+    expect(requests).toBe(2);
+    expect(await verify(bad, 31_000)).toBeNull();
+    expect(requests).toBe(3);
+  });
+
+  it("fails closed when the early refresh fails and retains valid cached-key verification", async () => {
+    const original = await makeIdentity("original");
+    const rotated = await makeIdentity("rotated");
+    let fail = false;
+    let requests = 0;
+    const fetcher = (async () => {
+      requests++;
+      return fail ? new Response(null, { status: 503 }) : new Response(JSON.stringify({ keys: [original.jwk] }));
+    }) as typeof fetch;
+    const verify = (token: string) => verifyAccessJwt(token, config, { fetcher, now: now.getTime() });
+
+    expect(await verify(await original.sign(goodClaims))).toBe(EMAIL);
+    fail = true;
+    expect(await verify(await rotated.sign(goodClaims))).toBeNull();
+    expect(await verify(await original.sign(goodClaims))).toBe(EMAIL);
+    expect(requests).toBe(2);
+  });
 });
 
 function fakeKv(): KVLike & { store: Map<string, string> } {
   const store = new Map<string, string>();
-  return { store, get: async (key) => store.get(key) ?? null, put: async (key, value) => void store.set(key, value) };
+  return {
+    store,
+    get: async (key) => store.get(key) ?? null,
+    put: async (key, value) => void store.set(key, value),
+    list: async ({ prefix }) => ({ keys: [...store.keys()].filter((key) => key.startsWith(prefix)).map((name) => ({ name })), list_complete: true })
+  };
 }
 
 const ID = "0123456789abcdef0123";
@@ -148,7 +215,7 @@ describe("job-review worker", () => {
     const ok = await post({ id: ID, status: "shortlisted", note: "call Monday", return: "min=50&evil=<x>" });
     expect(ok.status).toBe(303);
     expect(ok.headers.get("Location")).toBe(`/?min=50&evil=%3Cx%3E#job-${ID}`);
-    expect(JSON.parse(kv.store.get("reviews")!)[ID]).toMatchObject({ status: "shortlisted", note: "call Monday" });
+    expect(JSON.parse(kv.store.get(`review:${ID}`)!)).toMatchObject({ status: "shortlisted", note: "call Monday" });
 
     const page = await (await handleRequest(new Request("http://localhost/?review=shortlisted"), devEnv(kv), { fetcher: dataFetcher, now })).text();
     expect(page).toContain("call Monday");
@@ -158,6 +225,6 @@ describe("job-review worker", () => {
     expect((await post({ id: ID, status: "reviewed" }, "https://evil.example")).status).toBe(403);
 
     await post({ id: ID, status: "new", note: "" });
-    expect(JSON.parse(kv.store.get("reviews")!)[ID]).toBeUndefined();
+    expect(JSON.parse(kv.store.get(`review:${ID}`)!)).toMatchObject({ status: "new", note: "" });
   });
 });

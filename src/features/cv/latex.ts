@@ -34,7 +34,10 @@ export function escapeLatex(value: string) {
   // \texttrademark{}/\textregistered{} are real LaTeX commands, inserted only AFTER the special-
   // character escaping pass above \u2014 inserting them before would have their own backslash/braces
   // re-escaped into literal text (confirmed: this was a real bug, not hypothetical).
-  return escaped.replace(/\u2122/g, "\\texttrademark{}").replace(/\u00ae/g, "\\textregistered{}");
+  return escaped
+    .replace(/\u00a3/g, "\\pounds{}")
+    .replace(/\u2122/g, "\\texttrademark{}")
+    .replace(/\u00ae/g, "\\textregistered{}");
 }
 
 function escapeUrl(value: string) {
@@ -81,20 +84,22 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     skillGroups.set(skill.category, [...(skillGroups.get(skill.category) ?? []), skill.name]);
   }
   const skillLabels: Record<string, string> = {
-    leadership: "Leadership",
-    "ai-architecture": "AI \\& Architecture",
-    "full-stack": "Full Stack",
-    "cloud-delivery": "Cloud \\& Delivery"
+    "genai-ml": "GenAI and ML",
+    backend: "Backend",
+    frontend: "Frontend",
+    data: "Data",
+    "cloud-delivery": "Cloud and delivery",
+    engineering: "Engineering"
   };
 
   const skillCategoryOrder = tailoring?.emphasizedSkillCategories ?? [...skillGroups.keys()];
 
-  // Chronologically oldest entries beyond this count are condensed into a single "Early Career"
+  // Chronologically oldest entries beyond this count are condensed into a single "Earlier Experience"
   // line instead of a full heading each, to keep the CV within its two-page limit regardless of
   // how many positions the profile accumulates. This is always based on chronological age, not
   // tailoring's relevance-based reorder below — an old internship shouldn't earn a full page-one
   // heading just because a job description happens to mention a matching keyword.
-  const EARLY_CAREER_ENTRY_LIMIT = 4;
+  const EARLY_CAREER_ENTRY_LIMIT = 5;
   const chronologicalExperience = [...profile.experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
   const featuredPool = chronologicalExperience.slice(0, EARLY_CAREER_ENTRY_LIMIT);
   const condensedExperience = chronologicalExperience.slice(EARLY_CAREER_ENTRY_LIMIT);
@@ -120,45 +125,37 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
     })
     .join("\n\n");
 
-  const yearOf = (date: string) => date.slice(0, 4);
-
-  const earlyCareerSection =
+  const earlierExperienceSection =
     condensedExperience.length > 0
       ? (() => {
-          const overallStartYear = yearOf(
-            condensedExperience.reduce((min, role) => (role.startDate < min ? role.startDate : min), condensedExperience[0].startDate)
-          );
-          const hasOngoing = condensedExperience.some((role) => !role.endDate);
-          const overallEndYear = hasOngoing
-            ? "Present"
-            : yearOf(
-                condensedExperience.reduce(
-                  (max, role) => (role.endDate && role.endDate > max ? role.endDate : max),
-                  condensedExperience[0].endDate ?? condensedExperience[0].startDate
-                )
-              );
           const items = condensedExperience
-            .map((role) => {
-              const startYear = yearOf(role.startDate);
-              const endYear = role.endDate ? yearOf(role.endDate) : "Present";
-              const range = endYear !== startYear ? `${startYear}--${endYear}` : startYear;
-              return `${escapeLatex(role.role)}, ${escapeLatex(role.company)} (${range})`;
-            })
+            .map((role) => `${escapeLatex(role.company)} | ${escapeLatex(role.role)} | ${escapeLatex(formatPeriod(role.startDate, role.endDate))}`)
             .join("; ");
 
-          return `\\textbf{Early Career} \\hfill ${overallStartYear}--${overallEndYear}\\\\\n${items}.`;
+          return `\\textbf{Earlier Experience}\\\\\n${items}.`;
         })()
       : "";
 
-  const projects = github.projects
-    .slice(0, 5)
-    .map(
-      (project) =>
-        `\\projectHeading{${href(project.repositoryUrl, project.name)}}{${project.stars.toLocaleString()} stars \\enspace|\\enspace ${escapeLatex(
-          project.primaryLanguage ?? "Open source"
-        )}}\n${escapeLatex(project.description)}`
-    )
-    .join("\n\n");
+  const projects = profile.resumeProjects
+    ? profile.resumeProjects
+        .map((project) => {
+          const title = project.links?.length
+            ? project.links.map((link) => href(link.url, link.label)).join(" and ")
+            : project.url
+              ? href(project.url, project.name)
+              : escapeLatex(project.name);
+          return `\\projectHeading{${title}}{${escapeLatex(project.role)}}\n${escapeLatex(project.description)}`;
+        })
+        .join("\n\n")
+    : github.projects
+        .slice(0, 5)
+        .map(
+          (project) =>
+            `\\projectHeading{${href(project.repositoryUrl, project.name)}}{${project.stars.toLocaleString()} stars \\enspace|\\enspace ${escapeLatex(
+              project.primaryLanguage ?? "Open source"
+            )}}\n${escapeLatex(project.description)}`
+        )
+        .join("\n\n");
 
   // Primary/secondary schooling is kept in the profile data for completeness but omitted from
   // the CV itself — standard practice once a candidate has post-secondary qualifications listed.
@@ -171,15 +168,6 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
         )}}{}`
     )
     .join("\n");
-
-  const professionalProjects = profile.professionalProjects
-    .map((project) => {
-      const title = project.url ? href(project.url, project.name) : escapeLatex(project.name);
-      return `\\projectHeading{${title}}{${escapeLatex(project.role)}}\n${escapeLatex(project.description)}\n${itemize(
-        project.highlights.slice(0, 2)
-      )}`;
-    })
-    .join("\n\n");
 
   const certifications = profile.certifications
     .map((certification) =>
@@ -232,18 +220,19 @@ export function renderResumeLatex(profile: ProfessionalProfile, github: GitHubSn
 \hypersetup{
   pdftitle={${escapeLatex(profile.identity.name)} - Professional CV},
   pdfauthor={${escapeLatex(profile.identity.name)}},
-  pdfsubject={Technical leadership, AI systems architecture, and full-stack engineering}
+  pdfsubject={Technical leadership, generative AI, and full-stack engineering}
 }
 \begin{document}
 
 \begin{center}
   {\LARGE\bfseries ${escapeLatex(profile.identity.name)}}\\[3pt]
   {\large ${escapeLatex(profile.identity.headline)}}\\[4pt]
-  ${escapeLatex(profile.identity.location)}
-  \enspace|\enspace ${href(`mailto:${profile.identity.email}`, profile.identity.email)}
+  ${profile.identity.specialtyLine ? `{\\small ${escapeLatex(profile.identity.specialtyLine)}}\\\\[2pt]` : ""}
+  ${escapeLatex(profile.identity.location)}${profile.identity.availability ? ` \\enspace|\\enspace ${escapeLatex(profile.identity.availability)}` : ""}\\
+  ${href(`mailto:${profile.identity.email}`, profile.identity.email)}
+  \enspace|\enspace ${href(`tel:${cvPhoneNumber}`, profile.identity.phone ?? cvPhoneNumber)}
   \enspace|\enspace ${href(profile.identity.website, "thavarshan.com")}\\
-  ${href(`tel:${cvPhoneNumber}`, cvPhoneNumber)}
-  \enspace|\enspace ${href(profile.identity.linkedin, "linkedin.com/in/thavarshan")}
+  ${href(profile.identity.linkedin, "linkedin.com/in/thavarshan")}
   \enspace|\enspace ${href(profile.identity.github, "github.com/Thavarshan")}
 \end{center}
 
@@ -256,12 +245,10 @@ ${skills}
 \cvsection{Experience}
 ${experience}
 
-${earlyCareerSection}
+${earlierExperienceSection}
 
 \cvsection{Selected Open-Source Work}
 ${projects}
-
-${profile.professionalProjects.length > 0 ? `\\cvsection{Product Work}\n${professionalProjects}` : ""}
 
 \cvsection{Education}
 ${education}

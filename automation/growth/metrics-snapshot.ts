@@ -60,7 +60,6 @@ async function cloudflare(path: string, token: string, asText = false): Promise<
   return withRetry(
     async () => {
       const response = await fetch(`${API}${path}`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
-      if (response.status === 404 && asText) return null;
       if (!response.ok) throw new Error(`Cloudflare API ${response.status} for ${path.split("?")[0].replace(/[0-9a-f]{32}/g, "…")}`);
       return asText ? response.text() : response.json();
     },
@@ -77,23 +76,42 @@ export async function readRowsFromKv(period: Period, credentials: { token: strin
     let cursor = "";
     do {
       const query = new URLSearchParams({ prefix: `m|${day}|`, limit: "1000", ...(cursor ? { cursor } : {}) });
-      const page = (await cloudflare(`${base}/keys?${query}`, credentials.token)) as { result?: Array<{ name: string }>; result_info?: { cursor?: string } };
-      for (const item of page.result ?? []) keys.push(item.name);
-      cursor = page.result_info?.cursor ?? "";
+      const page = (await cloudflare(`${base}/keys?${query}`, credentials.token)) as {
+        success?: boolean;
+        result?: Array<{ name: string }>;
+        result_info?: { cursor?: string };
+      };
+      if (
+        page?.success !== true ||
+        !Array.isArray(page.result) ||
+        !page.result.every((item) => item && typeof item.name === "string") ||
+        !page.result_info ||
+        (page.result_info.cursor !== undefined && typeof page.result_info.cursor !== "string")
+      )
+        throw new Error("Incomplete Cloudflare KV key listing; refusing to publish a partial snapshot");
+      for (const item of page.result) keys.push(item.name);
+      cursor = page.result_info.cursor ?? "";
       if (keys.length > MAX_KEYS) throw new Error(`Refusing to read more than ${MAX_KEYS} keys (found ${keys.length}); the collector may be under abuse.`);
     } while (cursor);
   }
 
   const rows: AggregateRow[] = [];
-  const results = await mapWithConcurrency(keys, 5, async (key) => {
-    const text = (await cloudflare(`${base}/values/${encodeURIComponent(key)}`, credentials.token, true)) as string | null;
+  const validKeys = keys.flatMap((key) => {
     const parsed = parseAggregateKey(key);
+    return parsed ? [{ key, parsed }] : [];
+  });
+  const results = await mapWithConcurrency(validKeys, 5, async ({ key, parsed }) => {
+    const text = (await cloudflare(`${base}/values/${encodeURIComponent(key)}`, credentials.token, true)) as string;
+    // Valid aggregate keys are committed data, so a missing/unreadable count is a failed
+    // collection, not a zero or a row we may silently drop.
+    if (!/^\d+$/.test(text)) throw new Error("Invalid Cloudflare KV aggregate count");
     const count = Number(text);
-    // Anything that is not a well-formed key with a sane count is ignored, never trusted.
-    if (!parsed || !Number.isInteger(count) || count < 0 || count > 1_000_000) return null;
+    if (!Number.isSafeInteger(count) || count > 1_000_000) throw new Error("Invalid Cloudflare KV aggregate count");
     return { ...parsed, count } satisfies AggregateRow;
   });
-  for (const result of results) if (result.status === "fulfilled" && result.value) rows.push(result.value);
+  if (results.some((result) => result.status === "rejected"))
+    throw new Error("Incomplete Cloudflare KV aggregate values; refusing to publish a partial snapshot");
+  for (const result of results) if (result.status === "fulfilled") rows.push(result.value);
   return rows;
 }
 

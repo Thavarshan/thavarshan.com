@@ -192,22 +192,20 @@ describe("readRowsFromKv", () => {
     return calls;
   }
 
-  it("lists each day with pagination, reads values, and ignores forged keys and absurd counts", async () => {
+  it("lists each day with pagination, reads values, and ignores forged keys", async () => {
     const pages: Record<string, string[]> = {
       "": [good, "m|2026-09-22|forged|/|-|-|-|direct|-"],
-      next: ["m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv", "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home"]
+      next: ["m|2026-09-22|forged|/cv|-|-|-|direct|location=cv"]
     };
     const values: Record<string, string> = {
-      [good]: "4",
-      "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=cv": "2000000",
-      "m|2026-09-22|cv_download|/cv|-|-|-|direct|location=home": "not-a-number"
+      [good]: "4"
     };
     stub((url) => {
       if (url.includes("/keys?")) {
         const params = new URL(url).searchParams;
-        if (!params.get("prefix")!.startsWith("m|2026-09-22|")) return Response.json({ result: [], result_info: {} });
+        if (!params.get("prefix")!.startsWith("m|2026-09-22|")) return Response.json({ success: true, result: [], result_info: {} });
         const cursor = params.get("cursor") ?? "";
-        return Response.json({ result: (pages[cursor] ?? []).map((name) => ({ name })), result_info: cursor === "" ? { cursor: "next" } : {} });
+        return Response.json({ success: true, result: (pages[cursor] ?? []).map((name) => ({ name })), result_info: cursor === "" ? { cursor: "next" } : {} });
       }
       const key = decodeURIComponent(url.split("/values/")[1]);
       return key in values ? new Response(values[key]) : new Response("", { status: 404 });
@@ -219,7 +217,7 @@ describe("readRowsFromKv", () => {
 
   it("refuses to read an unbounded number of keys (abuse protection)", async () => {
     const many = Array.from({ length: MAX_KEYS + 1 }, (_, i) => ({ name: `m|2026-09-22|repo_click|/p${i}|-|-|-|direct|project=x` }));
-    stub(() => Response.json({ result: many, result_info: {} }));
+    stub(() => Response.json({ success: true, result: many, result_info: {} }));
     await expect(readRowsFromKv(period, credentials)).rejects.toThrow(/Refusing to read more than/);
   });
 
@@ -233,4 +231,33 @@ describe("readRowsFromKv", () => {
     expect(message).not.toContain("TOKEN-SENTINEL");
     expect(message).not.toContain(credentials.accountId);
   });
+
+  it("distinguishes a genuinely empty period from an incomplete API listing", async () => {
+    stub(() => Response.json({ success: true, result: [], result_info: {} }));
+    expect(await readRowsFromKv(period, credentials)).toEqual([]);
+    vi.unstubAllGlobals();
+    for (const payload of [
+      { success: false, result: [], result_info: {} },
+      { success: true, result_info: {} },
+      { success: true, result: [] }
+    ]) {
+      stub(() => Response.json(payload));
+      await expect(readRowsFromKv(period, credentials)).rejects.toThrow(/Incomplete Cloudflare KV key listing/);
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("fails if even one listed valid aggregate counter is missing, unreadable or invalid", async () => {
+    for (const valueResponse of [
+      new Response(null, { status: 404 }),
+      new Response(null, { status: 503 }),
+      new Response(""),
+      new Response("not-a-count"),
+      new Response("2000000")
+    ]) {
+      stub((url) => (url.includes("/keys?") ? Response.json({ success: true, result: [{ name: good }], result_info: {} }) : valueResponse.clone()));
+      await expect(readRowsFromKv(period, credentials)).rejects.toThrow(/Incomplete Cloudflare KV aggregate values/);
+      vi.unstubAllGlobals();
+    }
+  }, 15_000);
 });

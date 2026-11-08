@@ -19,6 +19,7 @@ const ALLOWED: Record<string, string[]> = {
   "features/github": ["shared/config"],
   "features/profile": ["features/github", "shared/config", "shared/edge"],
   "features/telemetry": ["features/profile"],
+  "features/seo": [],
   "features/cv": ["features/github", "features/profile"],
   "features/applications": ["features/cv", "features/profile", "features/github", "features/jobs"],
   "features/projects": ["components/ui", "features/github", "features/profile"],
@@ -27,7 +28,7 @@ const ALLOWED: Record<string, string[]> = {
   "features/tools": ["features/profile", "features/telemetry"],
   "features/jobs": ["shared/edge"],
   "features/home": ["components/ui", "features/profile"],
-  "components/ui": ["features/telemetry"],
+  "components/ui": ["features/telemetry", "features/seo"],
   "components/layout": ["components/ui", "features/profile"],
   app: [
     "components/layout",

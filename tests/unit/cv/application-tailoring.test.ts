@@ -25,7 +25,7 @@ describe("validateCvTailoringPlan", () => {
   it("keeps a valid plan as-is", () => {
     const result = validateCvTailoringPlan(
       {
-        emphasizedSkillCategories: ["full-stack", "cloud-delivery", "ai-architecture", "leadership"],
+        emphasizedSkillCategories: ["backend", "cloud-delivery", "genai-ml", "frontend", "data", "engineering"],
         experienceOrder: ["role-2", "role-1"],
         highlightSelections: { "role-1": ["Led project B"], "role-2": ["Owned the API layer", "Reduced latency by 40%"] },
         reviewFlags: ["Job posting did not mention seniority explicitly"]
@@ -36,7 +36,7 @@ describe("validateCvTailoringPlan", () => {
     expect(result.experienceOrder).toEqual(["role-2", "role-1"]);
     expect(result.highlightSelections["role-1"]).toEqual(["Led project B"]);
     expect(result.highlightSelections["role-2"]).toEqual(["Owned the API layer", "Reduced latency by 40%"]);
-    expect(result.emphasizedSkillCategories).toEqual(["full-stack", "cloud-delivery", "ai-architecture", "leadership"]);
+    expect(result.emphasizedSkillCategories).toEqual(["backend", "cloud-delivery", "genai-ml", "frontend", "data", "engineering"]);
     expect(result.warnings).toEqual([]);
     expect(result.reviewFlags).toEqual(["Job posting did not mention seniority explicitly"]);
   });
@@ -74,13 +74,13 @@ describe("validateCvTailoringPlan", () => {
 
   it("falls back to the default category order when the model returns an invalid permutation", () => {
     const result = validateCvTailoringPlan({ emphasizedSkillCategories: ["full-stack", "full-stack"] }, profile);
-    expect(result.emphasizedSkillCategories).toEqual(["leadership", "ai-architecture", "full-stack", "cloud-delivery"]);
+    expect(result.emphasizedSkillCategories).toEqual(["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"]);
   });
 
   it("handles a completely empty or malformed raw plan gracefully", () => {
     const result = validateCvTailoringPlan(null, profile);
     expect(result.experienceOrder).toEqual(["role-1", "role-2"]);
     expect(result.highlightSelections).toEqual({});
-    expect(result.emphasizedSkillCategories).toHaveLength(4);
+    expect(result.emphasizedSkillCategories).toHaveLength(6);
   });
 });

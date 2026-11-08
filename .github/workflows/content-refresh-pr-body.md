@@ -5,7 +5,7 @@ This updates generated public snapshots and CV source from current public data:
 - GitHub repository metadata
 - Package registry metrics
 - Generated LaTeX CV source
-- Public stable CV PDF
+- Public stable CV PDF and legacy fallback URL copy
 
 Validation run:
 

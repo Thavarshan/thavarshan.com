@@ -4,13 +4,16 @@ import { buildCv } from "./build";
 import { verifyCv } from "./verify";
 
 export const publicCvPath = resolve("public/docs/Jerome-Resume.pdf");
+export const legacyPublicCvPath = resolve("public/docs/Jerome-Resume-fallback.pdf");
 
 export async function publishCv() {
   const builtCvPath = await buildCv();
   await verifyCv(builtCvPath);
   await mkdir(resolve("public/docs"), { recursive: true });
-  await copyFile(builtCvPath, publicCvPath);
-  await verifyCv(publicCvPath);
+  for (const path of [publicCvPath, legacyPublicCvPath]) {
+    await copyFile(builtCvPath, path);
+    await verifyCv(path);
+  }
   return publicCvPath;
 }
 

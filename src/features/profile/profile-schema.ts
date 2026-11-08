@@ -8,8 +8,11 @@ export const profileIdentitySchema = z.object({
   givenName: z.string().min(1),
   familyName: z.string().min(1),
   headline: z.string().min(1),
+  specialtyLine: z.string().optional(),
+  availability: z.string().optional(),
   location: z.string().min(1),
   email: z.string().email(),
+  phone: z.string().optional(),
   website: z.string().url(),
   linkedin: z.string().url(),
   github: z.string().url(),
@@ -48,7 +51,7 @@ export const certificationRecordSchema = z.object({
 
 export const skillRecordSchema = z.object({
   name: z.string().min(1),
-  category: z.enum(["leadership", "ai-architecture", "full-stack", "cloud-delivery"])
+  category: z.enum(["genai-ml", "backend", "frontend", "data", "cloud-delivery", "engineering"])
 });
 
 export const languageRecordSchema = z.object({
@@ -63,6 +66,7 @@ export const professionalProjectSchema = z.object({
   description: z.string().min(1),
   highlights: z.array(z.string().min(1)).default([]),
   tags: z.array(z.string().min(1)).default([]),
+  links: z.array(z.object({ label: z.string().min(1), url: z.string().url() })).optional(),
   url: optionalUrlSchema,
   startDate: yearMonthSchema.optional(),
   endDate: yearMonthSchema.nullable().optional()
@@ -78,6 +82,7 @@ export const professionalProfileSchema = z.object({
   skills: z.array(skillRecordSchema),
   languages: z.array(languageRecordSchema),
   professionalProjects: z.array(professionalProjectSchema),
+  resumeProjects: z.array(professionalProjectSchema).optional(),
   sources: z.object({
     linkedin: z.object({
       kind: z.literal("linkedin-archive"),

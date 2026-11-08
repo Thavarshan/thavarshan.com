@@ -21,12 +21,13 @@ export const metadata: Metadata = {
   keywords: [
     "Jerome Thayananthajothy",
     "Technical Lead",
-    "AI Systems Architect",
-    "Platform Engineering",
-    "Full-Stack Engineer",
-    "AWS Solutions Architect",
-    "Open Source Developer",
-    "Sri Lanka"
+    "Senior Full Stack Engineer",
+    "Generative AI Engineer",
+    "Node.js",
+    "React",
+    "Java and Spring Boot",
+    "Python",
+    "PHP and Laravel"
   ],
   alternates: {
     canonical: "/",
@@ -99,7 +100,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             strategy="afterInteractive"
           />
         ) : null}
-        <TelemetryProvider />
+        <TelemetryProvider
+          config={{
+            endpoint: process.env.NEXT_PUBLIC_METRICS_URL ?? site.metricsUrl,
+            activeHost: new URL(site.url).hostname,
+            activeEverywhere: process.env.NEXT_PUBLIC_METRICS_LOCAL === "1"
+          }}
+        />
         {children}
       </body>
     </html>

@@ -30,6 +30,10 @@ Analytics only counts button clicks via Plausible tagged-event classes: `Tool Ex
 
 **Robustness.** Inputs are size-limited (256,000 characters / 5,000 lines) with clear errors; hostile input never throws (tested); all output is rendered as escaped text by React.
 
+**Laravel dotenv parsing.** The checker follows the relevant `vlucas/phpdotenv` **v5.6.2** rules: a `#` outside quotes starts a comment even without preceding whitespace; single quotes treat backslashes literally; double quotes accept only `\\"`, `\\\\`, `\\$`, `\\f`, `\\n`, `\\r`, `\\t` and `\\v`. Unsupported escapes produce a parse error. Only successfully parsed values undergo production/debug and other semantic checks. These are static checks, not a full simulation of Laravel's environment repository or interpolation precedence.
+
+`tests/fixtures/tools/phpdotenv-v5.6.2.json` pins synthetic upstream-equivalence cases, exercised in TypeScript unit tests. To independently verify the fixture expectations against the actual PHP parser on a development machine with PHP and Composer, install `vlucas/phpdotenv:5.6.2` **in a temporary directory outside this repo**, then run `php tests/fixtures/tools/check-phpdotenv-oracle.php /absolute/path/to/temp/vendor/autoload.php`. This is an optional fixture oracle; neither the browser bundle nor the application build requires PHP or Composer. Never use live `.env` content as fixtures.
+
 **Accessibility.** Native labelled controls, keyboard-operable buttons, `aria-live` result regions, errors as `role="alert"`, severity conveyed by text and icon rather than colour alone, visible focus outlines, tables with captions and scoped headers. Lighthouse CI asserts accessibility ≥ 0.95 on all three tool routes (`.lighthouserc.json`).
 
 ## SEO
@@ -46,4 +50,4 @@ Each page has a unique title and description, a canonical URL, OpenGraph/Twitter
 
 ## Cost
 
-Static pages and client-side JavaScript on the existing Netlify site: no server, function, database or paid API. See `docs/cost-policy.md`.
+Static pages and client-side JavaScript on the Cloudflare static site: no server, function, database or paid API. See `docs/cost-policy.md`.

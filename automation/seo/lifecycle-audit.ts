@@ -7,7 +7,10 @@ import { checkLifecycle, checkHostRedirectOwnership, checkPreviousLifecycle, lif
 export async function auditLifecycle(root = resolve("out")) {
   const lifecycle = lifecycleSchema.parse(JSON.parse(await readFile("data/url-lifecycle.json", "utf8")));
   const redirects = parseContentRedirects(await readFile(resolve(root, "_redirects"), "utf8"));
-  const failures = [...checkLifecycle(lifecycle, redirects, await listFiles(root)), ...checkHostRedirectOwnership(await readFile("netlify.toml", "utf8"))];
+  const failures = [
+    ...checkLifecycle(lifecycle, redirects, await listFiles(root)),
+    ...checkHostRedirectOwnership(await readFile("wrangler.redirect.json", "utf8"))
+  ];
   const base = process.env.LIFECYCLE_BASE_REVISION;
   if (base && !/^0{40}$/.test(base)) {
     if (!/^[a-f0-9]{40}$/.test(base)) throw new Error("Invalid lifecycle base revision");

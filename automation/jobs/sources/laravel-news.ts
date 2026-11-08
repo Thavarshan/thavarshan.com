@@ -51,8 +51,9 @@ export function extractLaravelNewsAnchors(anchors: Element[]): LaravelNewsRawLin
   });
 }
 
-export async function collectLaravelNewsLinks(page: Page): Promise<LaravelNewsDraft[]> {
-  await page.goto(laravelNewsUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
+export async function collectLaravelNewsLinks(page: Page, navigate?: (page: Page, url: string) => Promise<string>): Promise<LaravelNewsDraft[]> {
+  if (navigate) await navigate(page, laravelNewsUrl);
+  else await page.goto(laravelNewsUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
   const raw = await page.locator(laravelNewsJobSelector).evaluateAll(extractLaravelNewsAnchors);
   return normalizeLaravelNewsLinks(raw);
 }

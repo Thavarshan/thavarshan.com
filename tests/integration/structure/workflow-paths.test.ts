@@ -26,6 +26,24 @@ function matchesSomething(pattern: string): boolean {
 }
 
 describe("workflow path references", () => {
+  it("queues concurrent generated publications rather than dropping the middle of three arrivals", () => {
+    const names = ["content-refresh.yml", "growth-metrics.yml", "oss-bundles.yml", "growth-health.yml"];
+    for (const name of names) {
+      const workflow = readFileSync(join(workflowDirectory, name), "utf8");
+      expect(workflow, name).toMatch(/concurrency:\s+group: automated-generated-content\s+cancel-in-progress: false\s+queue: max/);
+    }
+    const jobs = readFileSync(join(workflowDirectory, "jobs-refresh.yml"), "utf8");
+    expect(jobs).toMatch(/concurrency:[^]*?group: jobs-refresh-publication\s+cancel-in-progress: false\s+queue: max/);
+    // With one running content job, the metrics and health arrivals both stay pending.
+    // This checks the configuration; actual scheduling is owned by GitHub Actions.
+    const security = readFileSync("automation/ci/security.sh", "utf8");
+    expect(security).toContain('-ignore \'unexpected key "queue" for "concurrency" section\'');
+  });
+  it("quality CI fetches enough history to compare the exact pre-push URL lifecycle base", () => {
+    const ci = readFileSync(join(workflowDirectory, "ci.yml"), "utf8");
+    expect(ci).toContain("fetch-depth: 0");
+    expect(ci).toContain("LIFECYCLE_BASE_REVISION: ${{ github.event.pull_request.base.sha || github.event.before }}");
+  });
   it.each(workflows)("$name: every trigger path filter still matches something", ({ text }) => {
     const filters = [...text.matchAll(/^\s+-\s+"([^"]+)"\s*$/gm)].map((match) => match[1]).filter(looksLikePath);
     const stale = filters.filter((filter) => !matchesSomething(filter));

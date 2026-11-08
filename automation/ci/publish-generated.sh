@@ -9,7 +9,7 @@ if [ "${GITHUB_REF:-}" != refs/heads/main ]; then echo "Generated content may on
 # Narrative, profile claims and review approvals are human-maintained. Never stage them in scheduled publication.
 allowed_argument() {
   case "$purpose:$1" in
-    profile:data/github.generated.json|profile:data/package-registry.generated.json|profile:cv/generated/Jerome-Resume.tex|profile:public/docs/Jerome-Resume.pdf|jobs:data/jobs.generated.json|growth:data/growth|growth-health:data/growth-health/baseline.json|oss:marketing/oss|oss:marketing/oss-ledger.json) return 0 ;;
+    profile:data/github.generated.json|profile:data/package-registry.generated.json|profile:cv/generated/Jerome-Resume.tex|profile:public/docs/Jerome-Resume.pdf|profile:public/docs/Jerome-Resume-fallback.pdf|jobs:data/jobs.generated.json|growth:data/growth|growth-health:data/growth-health/baseline.json|oss:marketing/oss|oss:marketing/oss-ledger.json) return 0 ;;
     *) return 1 ;;
   esac
 }

@@ -27,6 +27,7 @@ import { renderPage } from "./render";
 export interface KVLike {
   get(key: string): Promise<string | null>;
   put(key: string, value: string): Promise<void>;
+  list(options: { prefix: string; cursor?: string; limit?: number }): Promise<{ keys: { name: string }[]; list_complete: boolean; cursor?: string }>;
 }
 
 export interface Env {
@@ -44,6 +45,9 @@ export interface Env {
 }
 
 const REVIEWS_KEY = "reviews";
+const REVIEW_PREFIX = "review:";
+// Leave ample headroom beneath the free Workers KV 1,000-operations/request limit.
+const MAX_REVIEW_RECORDS = 400;
 
 function baseHeaders(contentType = "text/html; charset=utf-8"): Record<string, string> {
   return {
@@ -84,9 +88,39 @@ type ReviewsResult = { ok: true; reviews: ReviewMap } | { ok: false };
 async function loadReviews(env: Env): Promise<ReviewsResult> {
   try {
     const raw = await env.JOBS_KV.get(REVIEWS_KEY);
-    if (!raw) return { ok: true, reviews: {} };
-    const reviews = parseReviewMap(JSON.parse(raw));
-    return reviews ? { ok: true, reviews } : { ok: false };
+    // Read-only migration: retain the original aggregate forever as a recovery source.
+    // Per-opportunity keys override legacy entries without updating the shared aggregate.
+    const reviews = raw ? parseReviewMap(JSON.parse(raw)) : {};
+    if (!reviews) return { ok: false };
+    const keys: string[] = [];
+    let cursor: string | undefined;
+    let hasMore = true;
+    while (hasMore) {
+      const page = await env.JOBS_KV.list({ prefix: REVIEW_PREFIX, cursor, limit: 400 });
+      if (!Array.isArray(page.keys) || typeof page.list_complete !== "boolean") return { ok: false };
+      for (const { name } of page.keys) {
+        if (!name.startsWith(REVIEW_PREFIX) || !OPPORTUNITY_ID_PATTERN.test(name.slice(REVIEW_PREFIX.length)) || keys.includes(name)) return { ok: false };
+        keys.push(name);
+        if (keys.length > MAX_REVIEW_RECORDS) return { ok: false };
+      }
+      if (page.list_complete) hasMore = false;
+      else {
+        if (!page.cursor || page.cursor === cursor) return { ok: false };
+        cursor = page.cursor;
+      }
+    }
+
+    const saved = await Promise.all(keys.map(async (key) => ({ key, raw: await env.JOBS_KV.get(key) })));
+    for (const entry of saved) {
+      if (!entry.raw) return { ok: false };
+      const id = entry.key.slice(REVIEW_PREFIX.length);
+      const validated = parseReviewMap({ [id]: JSON.parse(entry.raw) });
+      if (!validated) return { ok: false };
+      const review = validated[id];
+      if (review.status === "new" && review.note === "") delete reviews[id];
+      else reviews[id] = review;
+    }
+    return { ok: true, reviews };
   } catch {
     return { ok: false };
   }
@@ -241,12 +275,11 @@ async function route(
       log({ level: "error", msg: "refusing to save: review state unreadable" });
       return text(503, "Review state is temporarily unavailable; nothing was saved. Try again shortly.");
     }
-    const reviews = stored.reviews;
     const note = sanitizeNote(form.get("note"));
-    if (status === "new" && !note) delete reviews[id];
-    else reviews[id] = { status: status as ReviewStatus, note, updatedAt: now.toISOString() };
     try {
-      await env.JOBS_KV.put(REVIEWS_KEY, JSON.stringify(reviews));
+      // Never read-modify-write a shared blob: concurrent saves to different IDs must
+      // target different KV keys. A blank "new" record is a tombstone for legacy data.
+      await env.JOBS_KV.put(`${REVIEW_PREFIX}${id}`, JSON.stringify({ status: status as ReviewStatus, note, updatedAt: now.toISOString() }));
     } catch {
       log({ level: "error", msg: "review write failed" });
       return text(503, "Review state is temporarily unavailable; nothing was saved. Try again shortly.");

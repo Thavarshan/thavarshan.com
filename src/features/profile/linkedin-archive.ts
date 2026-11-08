@@ -175,16 +175,25 @@ function categoryForSkill(name: string, previous: ProfessionalProfile): SkillRec
     return known.category;
   }
 
-  if (/lead|mentor|management|strategy|planning|architecture review|product/i.test(name)) {
-    return "leadership";
+  if (/ai|llm|langgraph|machine learning|semantic|vector|embedding|pytorch|rag/i.test(name)) {
+    return "genai-ml";
   }
-  if (/ai|llm|langgraph|machine learning|semantic|vector|microservice|architecture|event|api design/i.test(name)) {
-    return "ai-architecture";
-  }
-  if (/aws|azure|gcp|cloud|docker|kubernetes|terraform|ci\/?cd|devops|observability|datadog/i.test(name)) {
+  if (/aws|azure|gcp|cloud|docker|kubernetes|terraform|ci\/?cd|devops|github actions/i.test(name)) {
     return "cloud-delivery";
   }
-  return "full-stack";
+  if (/mysql|postgres|redis|mongo|dynamo|database|\bsql\b/i.test(name)) {
+    return "data";
+  }
+  if (/react|next|vue|inertia|javascript|html|css|frontend/i.test(name)) {
+    return "frontend";
+  }
+  if (/node|typescript|java|spring|python|php|laravel|rest|backend|api/i.test(name)) {
+    return "backend";
+  }
+  if (/system design|observability|code review|playwright|jest|pytest|phpunit|engineering/i.test(name)) {
+    return "engineering";
+  }
+  return "backend";
 }
 
 function importExperience(rows: CsvRow[]): ExperienceRecord[] {

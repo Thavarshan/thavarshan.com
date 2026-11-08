@@ -3,9 +3,9 @@ import { profile } from "@/features/profile/profile";
 export const site = {
   name: profile.identity.name,
   shortName: "Jerome T.",
-  title: `${profile.identity.name} | Laravel/PHP Engineer & Technical Lead`,
+  title: `${profile.identity.name} | ${profile.identity.headline}`,
   description:
-    "Laravel/PHP engineer and technical lead building full-stack applications with React, Vue and Inertia, alongside AWS delivery and production AI workflows.",
+    "Technical Lead with 11+ years across full-stack product engineering, GenAI workflows, enterprise integrations, cloud reliability and open-source maintenance.",
   url: profile.identity.website,
   locale: "en",
   location: profile.identity.location,

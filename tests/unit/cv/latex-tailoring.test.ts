@@ -38,8 +38,8 @@ const profile: ProfessionalProfile = {
   education: [],
   certifications: [],
   skills: [
-    { name: "Leadership skill", category: "leadership" },
-    { name: "Laravel", category: "full-stack" }
+    { name: "Engineering skill", category: "engineering" },
+    { name: "Laravel", category: "backend" }
   ],
   languages: [],
   professionalProjects: [],
@@ -59,7 +59,7 @@ describe("renderResumeLatex with a tailoring plan", () => {
 
   it("reorders experience and selects highlights per the tailoring plan", () => {
     const tex = renderResumeLatex(profile, github, {
-      emphasizedSkillCategories: ["full-stack", "cloud-delivery", "ai-architecture", "leadership"],
+      emphasizedSkillCategories: ["backend", "cloud-delivery", "genai-ml", "frontend", "data", "engineering"],
       experienceOrder: ["role-2", "role-1"],
       highlightSelections: { "role-1": ["Acme highlight two"] },
       reviewFlags: [],
@@ -75,15 +75,15 @@ describe("renderResumeLatex with a tailoring plan", () => {
 
   it("never drops a skill category even if it has no matching skills in the profile", () => {
     const tex = renderResumeLatex(profile, github, {
-      emphasizedSkillCategories: ["cloud-delivery", "leadership", "full-stack", "ai-architecture"],
+      emphasizedSkillCategories: ["cloud-delivery", "engineering", "backend", "genai-ml", "frontend", "data"],
       experienceOrder: [],
       highlightSelections: {},
       reviewFlags: [],
       warnings: []
     });
 
-    expect(tex).toContain("Leadership");
-    expect(tex).toContain("Full Stack");
+    expect(tex).toContain("Engineering");
+    expect(tex).toContain("Backend");
   });
 });
 
@@ -105,19 +105,19 @@ describe("renderResumeLatex early-career condensing", () => {
     ]
   };
 
-  it("condenses chronologically old entries beyond the featured limit into one Early Career line", () => {
+  it("condenses chronologically old entries beyond the featured limit into one Earlier Experience line", () => {
     const tex = renderResumeLatex(longProfile, github);
     expect(tex).toContain("Role 0");
     expect(tex).toContain("Role 8");
     expect(tex).not.toContain("\\resumeHeading{Intern}");
-    expect(tex).toContain("Early Career");
-    expect(tex).toContain("Intern, Old Co (2015)");
-    expect(tex).toContain("Intern, Older Co (2014)");
+    expect(tex).toContain("Earlier Experience");
+    expect(tex).toContain("Old Co | Intern | Jun 2015 -- Sep 2015");
+    expect(tex).toContain("Older Co | Intern | Jun 2014 -- Sep 2014");
   });
 
   it("never pulls a chronologically-condensed entry back into the featured section via tailoring", () => {
     const tex = renderResumeLatex(longProfile, github, {
-      emphasizedSkillCategories: ["full-stack", "cloud-delivery", "ai-architecture", "leadership"],
+      emphasizedSkillCategories: ["backend", "cloud-delivery", "genai-ml", "frontend", "data", "engineering"],
       experienceOrder: ["intern1", "r0"],
       highlightSelections: {},
       reviewFlags: [],
@@ -125,6 +125,6 @@ describe("renderResumeLatex early-career condensing", () => {
     });
 
     expect(tex).not.toContain("\\resumeHeading{Intern}");
-    expect(tex).toContain("Early Career");
+    expect(tex).toContain("Earlier Experience");
   });
 });

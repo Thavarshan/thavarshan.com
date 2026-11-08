@@ -6,7 +6,7 @@ Published URLs are durable contracts. Keep existing Insight, project and tool sl
 
 - `data/url-lifecycle.json` records every concrete active HTML page and explicit 404 retirement decisions. It covers individual slugs that the existing route-pattern inventory intentionally normalizes away.
 - `public/_redirects` is the sole owner of content moves and historical path aliases. Use exact canonical source paths and forced `301!` rules with final destinations.
-- `netlify.toml` owns production-host redirects. The exact Netlify production alias points to the canonical domain; preview and branch hosts remain separate. Domain provisioning/www behavior is also verified by the existing deployment smoke test.
+- `wrangler.redirect.json` owns only the www alias through a small redirect Worker. The old Netlify alias is retired; isolated Workers preview hosts remain separate. Domain provisioning/www behavior is also verified by the existing deployment smoke test.
 - Content authors and coding agents must update the register, content, sitemap/internal links and redirect or retirement decision in the same PR. A new page requires an explicit register entry. Review target relevance; a homepage redirect is not a substitute for a removed article.
 
 CI checks the current static export and the prior revision's register/redirect sources. Deleting a register entry or old redirect does not erase a URL's history: it must remain active, redirect permanently, or have a documented 404 retirement. No new route or retirement is automatically invented to make CI green.
@@ -23,12 +23,12 @@ CI checks the current static export and the prior revision's register/redirect s
 
 | Status | Use |
 |---|---|
-| 301 | Permanent content moves for these GET/HEAD static pages; the supported Netlify content rule is `301!`. |
+| 301 | Permanent content moves for these GET/HEAD static pages; the supported Cloudflare content rule is `301`. |
 | 308 | A permanent move requiring method preservation. This site's static content does not need it; extend the parser/hosting tests only after verifying support and a concrete need. |
 | 404 | Unknown routes and removed content without a relevant successor. This is the implemented retirement policy, with a genuine missing-page response and noindex. |
 | 410 | An intentional permanent removal where an explicit Gone response is needed. It is not enabled here: verify hosting behavior and add HTTP tests before introducing it. A recorded 404 remains the safe default. |
 
-Never use `/* /index.html 200` or redirect unrelated missing pages to `/`: both conceal missing content behind successful responses. Wildcards, conditional rules, temporary redirects, rewrites/proxies and query-specific content rules are intentionally unsupported by this audit. Introduce them only with dedicated matching/precedence tests; the checker fails closed instead of pretending to model Netlify's complete routing engine.
+Never use `/* /index.html 200` or redirect unrelated missing pages to `/`: both conceal missing content behind successful responses. Wildcards, conditional rules, temporary redirects, rewrites/proxies and query-specific content rules are intentionally unsupported by this audit. Introduce them only with dedicated matching/precedence tests; the checker fails closed instead of pretending to model Cloudflare's complete routing engine.
 
 ## Legacy audit: 2026-10-09
 
@@ -40,19 +40,21 @@ All nine deployed legacy rules returned a direct 301 with the configured Locatio
 | `/blog/fetch-php`, `/blog/fetch-php-2` | `https://github.com/Thavarshan/fetch-php` |
 | `/blog/filterable` | `https://github.com/Thavarshan/filterable` |
 | `/blog/phpvm` | `https://github.com/Thavarshan/phpvm` |
-| `/blog/comet` | `https://github.com/Thavarshan/comet` |
+| `/blog/comet` | `https://github.com/Thavarshan/honeymelon` |
 | `/blog/matrix-php` | `https://github.com/Thavarshan/matrix` |
 | `/blog/formlink` | `https://github.com/Thavarshan/formlink` |
 | `/blog/secrets-loader` | `https://github.com/Thavarshan/secrets-loader` |
 
 External target availability can change. Review external destination changes with a bounded request and redirects disabled. CI validates HTTPS URL syntax and configured graph topology; it does not depend on external GitHub uptime. Production smoke verifies each deployed source's response/Location and every explicit retirement. It does not fetch external destinations. Preview smoke executes trusted main and intentionally skips content-policy checks that might differ from the PR; the PR rendered audit validates its own exported rules.
 
+The Comet repository is now named Honeymelon. `/projects/comet` permanently redirects to `/projects/honeymelon`, and the historical `/blog/comet` rule points to the repository's current GitHub URL. The old project path remains accounted for in URL history; the new canonical page is registered as `/projects/honeymelon`.
+
 ## Checks and recovery
 
-Run `npm run build`, `npm run seo:lifecycle`, and `npm run seo:audit`. To compare history locally, set `LIFECYCLE_BASE_REVISION=<full-base-SHA>` for `seo:lifecycle`; CI supplies the PR base or pre-push commit and fetches two history levels. The initial register has no earlier register, but existing legacy redirects are still protected. Missing/unfetchable base commits fail rather than skip the check.
+Run `npm run build`, `npm run seo:lifecycle`, and `npm run seo:audit`. To compare history locally, set `LIFECYCLE_BASE_REVISION=<full-base-SHA>` for `seo:lifecycle`; CI supplies the PR base or pre-push commit and fetches full history in its quality job. This covers multi-commit pushes where the pre-push SHA is more than two commits behind. The initial register has no earlier register, but existing legacy redirects are still protected. Missing/unfetchable base commits fail rather than skip the check.
 
-The rendered audit additionally rejects internal anchors targeting known moved/retired URLs, validates permanent HTTP responses with redirects disabled, and verifies real 404 behavior. Its JSON report remains the existing `rendered-seo-audit` artifact. The local static server models only the owned exact forced rules, including query pass-through; production remains the authoritative check for Netlify behavior.
+The rendered audit additionally rejects internal anchors targeting known moved/retired URLs, validates permanent HTTP responses with redirects disabled, and verifies real 404 behavior. Its JSON report remains the existing `rendered-seo-audit` artifact. The local static server models only the owned exact forced rules, including query pass-through; production remains the authoritative check for Cloudflare behavior.
 
 A failed gate blocks merge. Correct the page/register/rule together, or revert this scoped change to restore the prior export/configuration. Do not auto-delete or regenerate the URL register from the build to hide removals. There is no paid service, runtime database, additional publishing workflow or private data involved.
 
-Netlify's official [redirect options](https://docs.netlify.com/manage/routing/redirects/redirect-options/) document forced rules, query pass-through and automatic `404.html` handling. [Redirect processing order](https://docs.netlify.com/manage/routing/redirects/overview/) documents `_redirects` versus TOML precedence.
+Cloudflare's [static redirects](https://developers.cloudflare.com/workers/static-assets/redirects/) apply before assets without the Netlify `!` suffix. The parser still accepts `301!` solely to compare historical Git revisions. [Static asset routing](https://developers.cloudflare.com/workers/static-assets/routing/) provides real `404.html` responses and clean URLs. The host Worker preserves paths and query strings; content redirects remain in `public/_redirects`.

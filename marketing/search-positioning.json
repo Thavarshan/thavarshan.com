@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-11",
+  "reviewedAt": "2026-11-03",
   "pages": [
     {
       "path": "/",
-      "primaryIntent": "Evaluate Jerome for Laravel/PHP and technical leadership work",
-      "topic": "laravel-php",
+      "primaryIntent": "Evaluate Jerome for Technical Lead, Senior Full Stack Engineer, or Generative AI Engineer roles",
+      "topic": "leadership",
       "audience": "Hiring managers and engineering leads",
       "supportingIntents": [
-        "Laravel with React, Vue and Inertia",
-        "AWS delivery",
-        "AI workflow architecture"
+        "Node.js/React and Java/Spring Boot engineering",
+        "Python and PHP/Laravel product development",
+        "GenAI workflows, integrations and cloud reliability"
       ],
       "evidence": [
         "data/profile.generated.json",
@@ -23,33 +23,18 @@
     {
       "path": "/cv",
       "primaryIntent": "Review Jerome’s career evidence and download his CV",
-      "topic": "laravel-php",
+      "topic": "leadership",
       "audience": "Recruiters and hiring managers",
       "supportingIntents": [
-        "PHP/backend experience",
-        "Technical leadership",
-        "Cloud delivery"
+        "Hands-on full-stack experience",
+        "GenAI workflows and enterprise integrations",
+        "Cloud engineering and open-source maintenance"
       ],
       "evidence": [
         "data/profile.generated.json",
         "src/app/cv/page.tsx"
       ],
       "cta": "/docs/Jerome-Resume.pdf"
-    },
-    {
-      "path": "/projects",
-      "primaryIntent": "Browse maintained open-source engineering work",
-      "topic": "developer-tools",
-      "audience": "Developers and hiring managers",
-      "supportingIntents": [
-        "PHP libraries",
-        "Developer tooling"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/page.tsx"
-      ],
-      "cta": "/projects/fetch-php"
     },
     {
       "path": "/insights",
@@ -66,107 +51,6 @@
         "src/app/insights/page.tsx"
       ],
       "cta": "/insights/modernizing-legacy-platforms-during-delivery"
-    },
-    {
-      "path": "/tools",
-      "primaryIntent": "Find free browser-only Laravel/PHP utilities",
-      "topic": "developer-tools",
-      "audience": "Laravel and PHP developers",
-      "supportingIntents": [
-        "Private tooling",
-        "Deployment troubleshooting"
-      ],
-      "evidence": [
-        "src/features/tools/registry.ts",
-        "src/app/tools/page.tsx"
-      ],
-      "cta": "/tools/laravel-scheduler-cron"
-    },
-    {
-      "path": "/privacy",
-      "primaryIntent": "Understand website data collection and privacy",
-      "topic": "privacy",
-      "audience": "Website visitors",
-      "supportingIntents": [
-        "Cookie-free measurement"
-      ],
-      "evidence": [
-        "src/app/privacy/page.tsx"
-      ],
-      "cta": "/"
-    },
-    {
-      "path": "/projects/fetch-php",
-      "primaryIntent": "Evaluate the Fetch PHP HTTP client",
-      "topic": "api-architecture",
-      "audience": "Developers evaluating this repository",
-      "supportingIntents": [
-        "HTTP APIs",
-        "PHP library ergonomics"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/[repository]/page.tsx"
-      ],
-      "cta": "https://github.com/Thavarshan/fetch-php"
-    },
-    {
-      "path": "/projects/filterable",
-      "primaryIntent": "Evaluate Filterable for Laravel query filtering",
-      "topic": "laravel-php",
-      "audience": "Developers evaluating this repository",
-      "supportingIntents": [
-        "Eloquent",
-        "Filtering and caching"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/[repository]/page.tsx"
-      ],
-      "cta": "https://github.com/Thavarshan/filterable"
-    },
-    {
-      "path": "/projects/phpvm",
-      "primaryIntent": "Evaluate PHPVM for local PHP version management",
-      "topic": "developer-tools",
-      "audience": "Developers evaluating this repository",
-      "supportingIntents": [
-        "PHP development environments"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/[repository]/page.tsx"
-      ],
-      "cta": "https://github.com/Thavarshan/phpvm"
-    },
-    {
-      "path": "/projects/comet",
-      "primaryIntent": "Evaluate Comet for desktop media conversion",
-      "topic": "developer-tools",
-      "audience": "Developers evaluating this repository",
-      "supportingIntents": [
-        "Desktop tooling"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/[repository]/page.tsx"
-      ],
-      "cta": "https://github.com/Thavarshan/comet"
-    },
-    {
-      "path": "/projects/matrix",
-      "primaryIntent": "Evaluate Matrix for asynchronous PHP tasks",
-      "topic": "api-architecture",
-      "audience": "Developers evaluating this repository",
-      "supportingIntents": [
-        "PHP concurrency",
-        "Failure boundaries"
-      ],
-      "evidence": [
-        "data/github.generated.json",
-        "src/app/projects/[repository]/page.tsx"
-      ],
-      "cta": "https://github.com/Thavarshan/matrix"
     },
     {
       "path": "/insights/event-driven-asynchronous-php-matrix-lessons",
@@ -229,19 +113,138 @@
       "cta": "/#contact"
     },
     {
-      "path": "/tools/laravel-scheduler-cron",
-      "primaryIntent": "Translate a cron expression into a Laravel scheduler call",
-      "topic": "laravel-php",
-      "audience": "Laravel developers scheduling tasks",
+      "path": "/privacy",
+      "primaryIntent": "Understand website data collection and privacy",
+      "topic": "privacy",
+      "audience": "Website visitors",
       "supportingIntents": [
-        "Timezone checks",
-        "Cron troubleshooting"
+        "Cookie-free measurement"
+      ],
+      "evidence": [
+        "src/app/privacy/page.tsx"
+      ],
+      "cta": "/"
+    },
+    {
+      "path": "/projects",
+      "primaryIntent": "Review selected public product engineering and open-source work across multiple stacks",
+      "topic": "developer-tools",
+      "audience": "Developers and hiring managers",
+      "supportingIntents": [
+        "TypeScript/Electron and React product work",
+        "Python document-analysis tooling",
+        "Maintained PHP libraries and live GitHub adoption"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/page.tsx"
+      ],
+      "cta": "/projects/dokimos"
+    },
+    {
+      "path": "/projects/dokimos",
+      "primaryIntent": "Evaluate Dokimos, a Python CLI for plagiarism evidence discovery and heuristic AI-likeness analysis",
+      "topic": "developer-tools",
+      "audience": "Developers and technical teams evaluating document-analysis tools",
+      "supportingIntents": [
+        "Text, Markdown, DOCX and PDF ingestion",
+        "Pydantic validation and structured reports",
+        "Heuristic scores are not proof of AI authorship"
+      ],
+      "evidence": [
+        "data/profile.generated.json",
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/dokimos"
+    },
+    {
+      "path": "/projects/fetch-php",
+      "primaryIntent": "Evaluate the Fetch PHP HTTP client",
+      "topic": "api-architecture",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "HTTP APIs",
+        "PHP library ergonomics"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/fetch-php"
+    },
+    {
+      "path": "/projects/filterable",
+      "primaryIntent": "Evaluate Filterable for Laravel query filtering",
+      "topic": "laravel-php",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "Eloquent",
+        "Filtering and caching"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/filterable"
+    },
+    {
+      "path": "/projects/honeymelon",
+      "primaryIntent": "Evaluate Honeymelon desktop media conversion",
+      "topic": "developer-tools",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "TypeScript and Electron",
+        "Local FFmpeg conversion",
+        "React interface in beta"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/honeymelon"
+    },
+    {
+      "path": "/projects/matrix",
+      "primaryIntent": "Evaluate Matrix for asynchronous PHP tasks",
+      "topic": "api-architecture",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "PHP concurrency",
+        "Failure boundaries"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/matrix"
+    },
+    {
+      "path": "/projects/phpvm",
+      "primaryIntent": "Evaluate PHPVM for local PHP version management",
+      "topic": "developer-tools",
+      "audience": "Developers evaluating this repository",
+      "supportingIntents": [
+        "PHP development environments"
+      ],
+      "evidence": [
+        "data/github.generated.json",
+        "src/app/projects/[repository]/page.tsx"
+      ],
+      "cta": "https://github.com/Thavarshan/phpvm"
+    },
+    {
+      "path": "/tools",
+      "primaryIntent": "Find free browser-only Laravel/PHP utilities",
+      "topic": "developer-tools",
+      "audience": "Laravel and PHP developers",
+      "supportingIntents": [
+        "Private tooling",
+        "Deployment troubleshooting"
       ],
       "evidence": [
         "src/features/tools/registry.ts",
-        "src/features/tools/cron.ts",
-        "src/features/tools/components/cron-tool.tsx",
-        "src/app/tools/[slug]/page.tsx"
+        "src/app/tools/page.tsx"
       ],
       "cta": "/tools/laravel-scheduler-cron"
     },
@@ -261,6 +264,23 @@
         "src/app/tools/[slug]/page.tsx"
       ],
       "cta": "/tools/laravel-env-checker"
+    },
+    {
+      "path": "/tools/laravel-scheduler-cron",
+      "primaryIntent": "Translate a cron expression into a Laravel scheduler call",
+      "topic": "laravel-php",
+      "audience": "Laravel developers scheduling tasks",
+      "supportingIntents": [
+        "Timezone checks",
+        "Cron troubleshooting"
+      ],
+      "evidence": [
+        "src/features/tools/registry.ts",
+        "src/features/tools/cron.ts",
+        "src/features/tools/components/cron-tool.tsx",
+        "src/app/tools/[slug]/page.tsx"
+      ],
+      "cta": "/tools/laravel-scheduler-cron"
     }
   ]
 }

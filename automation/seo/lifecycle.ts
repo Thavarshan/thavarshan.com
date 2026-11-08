@@ -25,8 +25,9 @@ export function parseContentRedirects(input: string): ContentRedirect[] {
     const value = line.replace(/\s+#.*$/, "").trim();
     if (!value || value.startsWith("#")) return [];
     const [from, to, status, ...extra] = value.split(/\s+/);
-    if (!pathSchema.safeParse(from).success || !to || status !== "301!" || extra.length)
-      throw new Error(`Unsupported content redirect on line ${index + 1}; use an exact canonical path and 301!`);
+    const normalization = from?.endsWith("/") && from !== "/" && from.slice(0, -1) === to && pathSchema.safeParse(to).success;
+    if ((!pathSchema.safeParse(from).success && !normalization) || !to || !["301", "301!"].includes(status) || extra.length)
+      throw new Error(`Unsupported content redirect on line ${index + 1}; use an exact canonical path and 301`);
     const target = new URL(to, canonicalOrigin);
     if (["www.thavarshan.com", "thavarshan.netlify.app"].includes(target.hostname))
       throw new Error(`Redirect target must use the final canonical host on line ${index + 1}`);
@@ -147,32 +148,28 @@ export function checkPreviousLifecycle(
     }));
 }
 
-/** Keep content rules out of TOML so the owned graph cannot be bypassed by precedence. */
-export function checkHostRedirectOwnership(toml: string): SeoFailure[] {
-  const blocks = toml.split(/^\[\[redirects\]\]\s*$/m).slice(1);
-  const expected = { from: '"https://thavarshan.netlify.app/*"', to: '"https://thavarshan.com/:splat"', status: "301", force: "true" };
-  const valid =
-    blocks.length === 1 &&
-    blocks.every((block) => {
-      const fields = block
-        .split(/^\[/m)[0]
-        .split(/\r?\n/)
-        .map((line) => line.replace(/\s+#.*$/, "").trim())
-        .filter((line) => line && !line.startsWith("#"));
-      const pairs = fields.map((line) => line.match(/^(\w+)\s*=\s*(.+)$/));
-      return (
-        pairs.length === Object.keys(expected).length &&
-        pairs.every((pair) => pair && Object.hasOwn(expected, pair[1]) && expected[pair[1] as keyof typeof expected] === pair[2]) &&
-        new Set(pairs.map((pair) => pair?.[1])).size === pairs.length
-      );
-    });
+/** Host redirects live in a separate Worker; content moves belong in _redirects. */
+export function checkHostRedirectOwnership(config: string): SeoFailure[] {
+  let valid = false;
+  try {
+    const value = JSON.parse(config);
+    valid =
+      value.name === "thavarshan-site-redirect" &&
+      value.main === "workers/site-redirect/index.ts" &&
+      value.routes?.length === 1 &&
+      value.routes[0].pattern === "www.thavarshan.com" &&
+      value.routes[0].custom_domain === true &&
+      !value.assets;
+  } catch {
+    // Invalid configuration must fail closed.
+  }
   return valid
     ? []
     : [
         {
           url: canonicalOrigin,
           rule: "redirect-ownership",
-          detail: "netlify.toml must contain only the audited production-alias rule; put exact content moves in public/_redirects"
+          detail: "wrangler.redirect.json must own only the www alias; put content moves in public/_redirects"
         }
       ];
 }

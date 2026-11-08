@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "thavarshan-site",
+  "compatibility_date": "2026-10-03",
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "thavarshan.com",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./out",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "env": {
+    "preview": {
+      "name": "thavarshan-site-preview",
+      "routes": [],
+      "assets": {
+        "directory": "./out",
+        "html_handling": "drop-trailing-slash",
+        "not_found_handling": "404-page"
+      }
+    }
+  }
+}

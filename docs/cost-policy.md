@@ -11,7 +11,7 @@ The owner cannot afford any infrastructure charge. Every service here is chosen 
 | **Cloudflare Access (Zero Trust Free)** | Login in front of the Worker | Free up to 50 users; this project has 1. | Documented; owner check below. |
 | **Plausible Cloud (optional, PAID)** | Optional second analytics sink | **Paid.** Not required: measurement works without it. | Only active if `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set; leave it unset unless you choose to pay. |
 | **GitHub Actions** | Scheduled collection, CI, deploys | The repository is **public**, and Actions minutes are free for public repositories. | Keep the repository public. If it were ever made private, minutes become metered. |
-| **Netlify (static hosting)** | The public site | Netlify's free plan pauses a site when its free allowance is exhausted rather than billing. *(Stated from general knowledge of Netlify's free plan; confirm in your Netlify billing page.)* | Avoid unnecessary deploys: the collector no longer commits on unchanged days. |
+| **Cloudflare Workers static assets (Free plan)** | Public site and static previews; a separate www redirect Worker | Static asset requests are free; the redirect script uses the existing Free-plan request allowance. No plan upgrade or usage-billed binding is configured. | JSON config allowlists in the cost guard cover both hosting configs and preview overrides. |
 | **Search Console feedback** | Read-only aggregate collection | No paid SEO service or BigQuery export; existing public runner/private storage reused. | Seven bounded Google requests per collection; no billing setup or paid fallback. See [setup](search-feedback.md). |
 | **Groq Free API** | AI application drafts | Free quotas reject requests; upgrading to Developer enables usage billing. | Fixed Groq endpoint/model, `GROQ_API_KEY` and `GROQ_FREE_PLAN_CONFIRMED=true`; bounded requests/tokens, no paid fallback. The assertion does not lock account billing: remain on Free. See [application setup](applications-data.md). |
 
@@ -21,7 +21,7 @@ The owner cannot afford any infrastructure charge. Every service here is chosen 
 2. **Cloudflare → Notifications:** add a *Billing* / usage alert so any future charge is flagged immediately.
 3. **Cloudflare Zero Trust → Settings → Plans:** confirm the *Free* plan (up to 50 seats).
 4. **Groq → Settings → Billing:** confirm **Free**; do not upgrade, add billing or buy credits. Disable applications if free terms change. [Groq billing FAQ](https://console.groq.com/docs/billing-faqs).
-5. **Netlify → Team → Billing:** confirm the *Free* plan and that no paid add-ons are enabled.
+5. **Cloudflare static hosting:** keep the same Free account subscription; hosting deployment never changes the plan.
 
 ## Rules for future changes
 
