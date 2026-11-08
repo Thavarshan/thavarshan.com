@@ -369,11 +369,18 @@ describe("workflow safety", () => {
     expect(workflow).toContain("timeout-minutes");
   });
 
-  it("the committed ledger is valid and records a baseline, so the first scheduled run drafts nothing stale", async () => {
+  it("the committed ledger retains its baseline and every generated event has a review-only draft", async () => {
     const { readFileSync } = await import("node:fs");
     const ledger = ledgerSchema.parse(JSON.parse(readFileSync("./marketing/oss-ledger.json", "utf8")));
     expect(Object.keys(ledger.entries).length).toBeGreaterThan(0);
-    expect(Object.values(ledger.entries).every((entry) => entry.outcome === "baseline")).toBe(true);
+    expect(Object.values(ledger.entries).some((entry) => entry.outcome === "baseline")).toBe(true);
+    for (const [eventId, entry] of Object.entries(ledger.entries)) {
+      if (entry.outcome !== "generated") continue;
+      const draftDirectory = `./marketing/oss/${bundleDirectoryName(eventId)}`;
+      const metadata = JSON.parse(readFileSync(`${draftDirectory}/metadata.json`, "utf8"));
+      expect(metadata).toMatchObject({ eventId, repository: entry.repository, autoPosted: false });
+      expect(readFileSync(`${draftDirectory}/summary.md`, "utf8")).toContain("DRAFT");
+    }
     expect(Object.keys(ledger.lastSeenVersion).length).toBeGreaterThan(0);
   });
 });
