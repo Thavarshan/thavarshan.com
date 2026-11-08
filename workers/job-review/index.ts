@@ -12,6 +12,8 @@ import {
   type ReviewStatus
 } from "../../src/features/jobs/review";
 import { verifyAccessJwt } from "./access";
+import { isSameOrigin } from "../../src/shared/edge/origin";
+export { isSameOrigin } from "../../src/shared/edge/origin";
 import {
   PayloadTooLargeError,
   RateLimiter,
@@ -123,22 +125,6 @@ async function loadReviews(env: Env): Promise<ReviewsResult> {
     return { ok: true, reviews };
   } catch {
     return { ok: false };
-  }
-}
-
-/**
- * The browser-set Origin must match this request's own host. Comparing against the Host header as
- * well as the URL keeps this correct behind proxies/dev servers that rewrite the request URL.
- */
-export function isSameOrigin(request: Request, url: URL): boolean {
-  const origin = request.headers.get("Origin");
-  if (!origin || origin === "null") return false;
-  if (origin === url.origin) return true;
-  try {
-    const host = request.headers.get("Host");
-    return host !== null && new URL(origin).host === host;
-  } catch {
-    return false;
   }
 }
 

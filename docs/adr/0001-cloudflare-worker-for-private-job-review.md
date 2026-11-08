@@ -25,7 +25,7 @@ The job dataset is public, but reviewing it needs **private, writable state** (s
 The owner cannot afford any infrastructure charge. Therefore:
 
 - The Worker runs on the **Workers Free plan only**. On the Free plan, exceeding a limit makes requests **fail**; it never produces a charge. A charge requires someone to subscribe to a paid plan or enable a paid product.
-- The configuration is restricted by an **allowlist** (`tests/unit/worker-cost-guard.test.ts`, run in CI): only plain variables and one KV namespace are permitted. R2, D1, Durable Objects, Queues, AI, Browser Rendering, Vectorize, Hyperdrive, custom limits/`usage_model`, placement, log push, observability, routes/zones and any other product fail the build until they are proven free and reviewed here.
+- The configuration is restricted by an **allowlist** (`tests/integration/workers/worker-cost-guard.test.ts`, run in CI): only plain variables and one KV namespace are permitted for **this Worker**. R2, D1, Durable Objects, Queues, AI, Browser Rendering, Vectorize, Hyperdrive, custom limits/`usage_model`, placement, log push, observability, routes/zones and any other product fail the build unless reviewed. The later, **separate** recruitment Worker has its own D1-only allowlist and [free-tier/privacy rationale](../recruitment-storage.md); this does not weaken the original Worker's restrictions.
 - Access (Cloudflare Zero Trust) is free for up to 50 users; this project has one.
 - See `docs/cost-policy.md` for every service in the project and the dashboard checks only the account owner can perform.
 
