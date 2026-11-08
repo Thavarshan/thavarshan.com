@@ -2,6 +2,8 @@
 
 **Snapshot: 2026-11-06.** This is a **planning and verification document**, not a claim that every repository was rebuilt or updated.
 
+Live work after this snapshot is recorded in the [November 2026 progress tracker](repository-maintenance-progress-2026-11.md).
+
 ## Scope and approach
 
 GitHub connector inventory: **63 owned repositories** = **56 public** (45 active + 11 archived) and **7 private**. Public repository About metadata and top-level files were inspected; `.github` directories were inventoried. Seven private repositories were intentionally **not listed or described here**. Do not copy private repository names, dotfiles, work samples, or credentials into this public report.
