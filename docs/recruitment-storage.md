@@ -34,7 +34,7 @@ This project does not enable a paid Workers plan, R2, Durable Objects, Queues, C
 3. `cp workers/recruitment/.dev.vars.example workers/recruitment/.dev.vars`
 4. `npm run recruitment:dev` and visit `http://localhost:8787/healthz`.
 
-The `DEV_AUTH_BYPASS=1` variable works **only** for `localhost` or `127.0.0.1`. It is not a substitute for Cloudflare Access. Do not deploy that variable. Local Wrangler stores test D1 and KV state under ignored `.wrangler/` directories, not in git. Production uses a different, explicitly provisioned D1 ID.
+The `DEV_AUTH_BYPASS=1` variable works **only** for `localhost` or `127.0.0.1`. It is not a substitute for Cloudflare Access. Do not deploy that variable. Local Wrangler stores test D1 and KV state under ignored `.wrangler/` directories, not in git. The production binding points to the owner-provisioned D1 database; local migrations still use separate local state.
 
 Run the focused checks:
 
@@ -48,17 +48,28 @@ These checks run with **synthetic fixture data**. The integration suite applies 
 
 ## One-time production setup — owner action required
 
-The repository intentionally contains an all-zero **placeholder database ID**, not a real account binding. **Nothing will deploy automatically** when this code merges. Do not substitute an existing, unrelated D1 database.
+The owner has provisioned the D1 database `thavarshan_com`; `workers/recruitment/wrangler.toml` points to its UUID. A name alone does not prove that a database is exclusive to recruitment or safe to migrate. On 2026-11-08, read-only inspection of this UUID confirmed zero application tables. **No remote migration or Worker deployment has been run.** Nothing deploys automatically when this code merges.
 
-1. Sign into the intended Cloudflare account. Verify it is on **Workers Free** and has capacity for another D1 database.
-2. Create a new D1 database: `npx wrangler d1 create recruitment-private`. Copy the returned database UUID into `workers/recruitment/wrangler.toml` (review the change before deploying). This binding is an identifier, **not a credential**.
-3. Apply the remote schema with `npm run recruitment:migrate:remote`. Keep the migration files in source control; never update a live schema by editing a previously applied migration.
-4. Create a self-hosted Cloudflare Access application for the new Worker's `workers.dev` hostname, with an **Allow** rule limited to the owner's exact email. Record its audience tag (`ACCESS_AUD`) and the team's domain (`ACCESS_TEAM_DOMAIN`). The new app must protect the **recruitment** Worker, not only the existing job-review Worker.
-5. Deploy manually with `npm run recruitment:deploy`. Before configuring Access secrets, all remote requests fail closed with 403.
-6. Set `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` and `ALLOWED_EMAIL` as Worker secrets with `npx wrangler secret put NAME --config workers/recruitment/wrangler.toml` (repeat for each name). Enter values at the interactive prompt; do not put tokens or email data into a public issue, command-line argument, or repository file.
-7. Verify an unauthenticated request to `/healthz` is blocked (Access login or HTTP 403). Authenticate as the allowed owner, confirm `/healthz` reports `{ "status": "ok", "schema": 1 }`. Try a different account and verify refusal. A missing D1 binding or unapplied schema must return 503 after authentication.
+Before any production setup:
 
-CI deliberately has **no production D1 migrations, deploy, KV export, or real Gmail fixture**. Wrangler needs the owner's Cloudflare login and the new database ID before live setup can proceed.
+1. Sign into the intended Cloudflare account and verify the configured database name and UUID match. Confirm the account remains on Workers Free and Zero Trust Free, current billable usage is $0, and no paid product is needed. Do not upgrade or enable paid services.
+2. Recheck the D1 state using read-only operations. For example, `npx wrangler d1 info thavarshan_com` reports the table count, and this query lists schema objects without reading recruitment records:
+
+   ```sql
+   SELECT type, name
+   FROM sqlite_master
+   WHERE name NOT LIKE 'sqlite_%'
+   ORDER BY type, name;
+   ```
+
+   If you find unknown application tables or data, stop and identify the owner and purpose before applying any migration. Never treat the database name alone as evidence that it is empty or safe to change.
+3. Create a self-hosted Cloudflare Access application for the recruitment Worker's `workers.dev` hostname with an **Allow** rule limited to the owner's exact email. Verify that the rule matches only that one owner account. An existing Access application does not protect this Worker unless the recruitment hostname is explicitly included. Record the application's audience tag (`ACCESS_AUD`) and the team's domain (`ACCESS_TEAM_DOMAIN`).
+4. Take a private backup of the D1 database, then apply the remote schema with `npm run recruitment:migrate:remote`. Keep migration files in source control; never edit a previously applied migration.
+5. Deploy manually with `npm run recruitment:deploy`. There is no automatic production deployment.
+6. Set `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` and `ALLOWED_EMAIL` as Worker secrets with `npx wrangler secret put NAME --config workers/recruitment/wrangler.toml` (repeat for each name). Enter values at the interactive prompt; do not put tokens or email data into a public issue, command-line argument, or repository file. Do not set `DEV_AUTH_BYPASS` in production.
+7. Verify an unauthenticated request to `/healthz` is blocked (Access login or HTTP 403). Authenticate as the allowed owner and confirm `/healthz` reports `{ "status": "ok", "schema": 1 }`. Try a different account and verify refusal. A missing D1 binding or unapplied schema must return 503 after authentication.
+
+CI deliberately has **no production D1 migrations, deploy, KV export, or real Gmail fixture**. Wrangler's local login is not used by CI; remote provisioning, migration and deploy remain owner-controlled.
 
 ## API and import order
 
@@ -97,7 +108,7 @@ All endpoints require a verified Cloudflare Access RS256 JWT for the **exact con
 Before any remote schema change, export a private SQL backup:
 
 ```bash
-npx wrangler d1 export recruitment-private --remote --config workers/recruitment/wrangler.toml --output /private/recruitment-backup.sql
+npx wrangler d1 export thavarshan_com --remote --config workers/recruitment/wrangler.toml --output /private/recruitment-backup.sql
 ```
 
 Treat the file as sensitive: it can contain recruiter correspondence and notes once later features ship. Store it encrypted, outside the repo. For a **restore rehearsal**, create a *separate disposable local/remote database* and import the exported SQL there, using `npx wrangler d1 execute <new-database> --file /private/recruitment-backup.sql --local` (or `--remote` for the deliberately separate target). Never execute a full schema-and-data backup into a live database with existing records. Follow the [official D1 import/export guidance](https://developers.cloudflare.com/d1/best-practices/import-export-data/).
