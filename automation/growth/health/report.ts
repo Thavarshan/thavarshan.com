@@ -14,6 +14,7 @@ export const policy = {
   jobsHours: 36,
   sourceHours: 36,
   metricsHours: 216,
+  baselineRefreshHours: 168,
   profileHours: 216,
   marketingSnapshotHours: 336,
   activeJobHours: 168,
@@ -225,7 +226,17 @@ export function buildHealthReport(input: ReportInput) {
       snapshot.collectorVersion === COLLECTOR_VERSION &&
       sources.every((source) => source.status === "ok" && source.held === 0 && source.ageHours !== null && source.ageHours <= policy.sourceHours)
     ) {
-      nextBaseline = baselineSchema.parse({ schemaVersion: 1, generatedAt: input.now.toISOString(), knownIds: ids.sort(), eligibleHighFitIds: highFitIds });
+      const previousKnownIds = new Set(baseline?.knownIds);
+      const previousEligibleIds = new Set(baseline?.eligibleHighFitIds);
+      const changed =
+        !baseline ||
+        ids.length !== previousKnownIds.size ||
+        highFitIds.length !== previousEligibleIds.size ||
+        ids.some((id) => !previousKnownIds.has(id)) ||
+        highFitIds.some((id) => !previousEligibleIds.has(id));
+      const refreshDue = baseline && (ageHours(baseline.generatedAt, input.now) ?? Infinity) >= policy.baselineRefreshHours;
+      if (changed || refreshDue)
+        nextBaseline = baselineSchema.parse({ schemaVersion: 1, generatedAt: input.now.toISOString(), knownIds: ids.sort(), eligibleHighFitIds: highFitIds });
     } else
       add("warning", "comparison", "baseline-preserved", "No new comparison baseline will be proposed until job collection is fresh, complete and consistent.");
   } catch {
