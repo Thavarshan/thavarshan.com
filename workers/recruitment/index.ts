@@ -49,6 +49,7 @@ export const routes = [
   "POST /v1/reviews/:id",
   "GET /v1/legacy/export",
   "POST /v1/legacy/import",
+  "GET /v1/gmail/connect",
   "GET /v1/gmail/status",
   "POST /v1/gmail/authorize",
   "GET /v1/gmail/callback"
@@ -71,6 +72,25 @@ const headers: Record<string, string> = {
   "Cross-Origin-Resource-Policy": "same-origin",
   "Cross-Origin-Opener-Policy": "same-origin"
 };
+const gmailConnectPage = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connect Gmail</title>
+  </head>
+  <body>
+    <main>
+      <h1>Connect Gmail</h1>
+      <p>Continue to Google to connect the owner account with Gmail read-only access.</p>
+      <p>This first step does not download or change any messages.</p>
+      <form method="post" action="/v1/gmail/authorize">
+        <input type="hidden" name="flow" value="connect">
+        <button type="submit">Continue to Google</button>
+      </form>
+    </main>
+  </body>
+</html>`;
 const readLimiter = new RateLimiter(90, 60_000);
 const writeLimiter = new RateLimiter(20, 60_000);
 const reviewInput = z
@@ -140,7 +160,16 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
   const limiter = write ? writeLimiter : readLimiter;
   const decision = limiter.check(`${write ? "write" : "read"}:${request.headers.get("cf-connecting-ip") ?? "local"}`);
   if (!decision.allowed) return json(429, { error: "Too many requests" }, { "Retry-After": String(decision.retryAfterSeconds) });
-  if (write && !isSameOrigin(request, url)) return json(403, { error: "Cross-origin request rejected" });
+  const browserForm =
+    write &&
+    url.pathname === "/v1/gmail/authorize" &&
+    (request.headers.get("content-type") ?? "").split(";", 1)[0].trim().toLowerCase() === "application/x-www-form-urlencoded";
+  const sameOriginBrowserNavigation =
+    browserForm &&
+    request.headers.get("Sec-Fetch-Site") === "same-origin" &&
+    request.headers.get("Sec-Fetch-Mode") === "navigate" &&
+    request.headers.get("Sec-Fetch-Dest") === "document";
+  if (write && !isSameOrigin(request, url) && !sameOriginBrowserNavigation) return json(403, { error: "Cross-origin request rejected" });
   // The OAuth callback is a state-changing GET; previews must refuse it too.
   if (env.READ_ONLY === "1" && (write || url.pathname === "/v1/gmail/callback")) return json(403, { error: "Preview is read-only" });
 
@@ -161,8 +190,34 @@ async function dispatch(request: Request, env: Env, fetcher: typeof fetch, now: 
 
   if (url.pathname.startsWith("/v1/gmail/")) {
     if (!(await oauthReady(db))) return json(503, { error: "Gmail OAuth migration has not been applied" });
+    if (request.method === "GET" && url.pathname === "/v1/gmail/connect")
+      return new Response(gmailConnectPage, {
+        status: 200,
+        headers: {
+          ...headers,
+          "Content-Type": "text/html; charset=utf-8",
+          "Content-Security-Policy": "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self' https://accounts.google.com"
+        }
+      });
     if (request.method === "GET" && url.pathname === "/v1/gmail/status") return json(200, await gmailConnectionStatus(db, env));
-    if (request.method === "POST" && url.pathname === "/v1/gmail/authorize") return json(200, await beginGmailAuthorization(db, env, url, new Date(now)));
+    if (request.method === "POST" && url.pathname === "/v1/gmail/authorize") {
+      if (browserForm) {
+        const form = await request.formData();
+        if (form.get("flow") !== "connect") return json(400, { error: "Invalid authorization request" });
+      }
+      const authorization = await beginGmailAuthorization(db, env, url, new Date(now));
+      if (browserForm)
+        return new Response(null, {
+          status: 303,
+          headers: {
+            "Cache-Control": "no-store",
+            Location: authorization.authorizationUrl,
+            "Referrer-Policy": "no-referrer",
+            "X-Content-Type-Options": "nosniff"
+          }
+        });
+      return json(200, authorization);
+    }
     if (request.method === "GET" && url.pathname === "/v1/gmail/callback") {
       await completeGmailAuthorization(db, env, url, new Date(now), fetcher);
       return new Response(null, {

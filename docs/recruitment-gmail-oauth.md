@@ -49,7 +49,7 @@ Once the D1 and Access setup from issue #99 is complete, the production sequence
 2. Run `npm run recruitment:migrate:remote` and confirm migration `0002_gmail_oauth.sql` succeeds.
 3. Deploy manually with `npm run recruitment:deploy` (there is no CI auto-deploy).
 4. Open the private Worker using an Access session for the exact permitted account; `GET /v1/gmail/status` returns `not-connected` until consent succeeds.
-5. Send a **same-origin POST** to `/v1/gmail/authorize` using your authenticated browser session. Its JSON response includes a short-lived `authorizationUrl`; navigate to that Google URL in the same browser. Do not paste its `state` parameter into logs or chats.
+5. Open `/v1/gmail/connect` in the same authenticated browser session and select **Continue to Google**. The page submits a same-origin form and redirects directly to Google; no DevTools console or copied authorization URL is needed.
 6. Sign into the matching Gmail account and grant read-only permission. Google redirects to `/v1/gmail/callback`; the Worker exchanges the code, verifies the **actual Gmail profile email**, saves an AES-GCM encrypted refresh token, and redirects to `/v1/gmail/status`.
 7. Confirm authenticated `GET /v1/gmail/status` returns `connected:true`. Check that unauthenticated traffic and another account cannot access the endpoint. No Gmail messages are downloaded at this stage.
 

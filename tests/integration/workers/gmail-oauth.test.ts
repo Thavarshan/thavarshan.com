@@ -141,6 +141,78 @@ describe("owner-only read-only Gmail OAuth foundation", () => {
     expect(db.sqlite.prepare("SELECT count(*) AS n FROM gmail_oauth_credentials").get()).toEqual({ n: 0 });
   });
 
+  it("serves a protected browser connect page with same-origin form submission only", async () => {
+    const db = new LocalDatabase();
+    const response = await call(new Request("http://localhost/v1/gmail/connect"), environment(db));
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/html");
+    expect(response.headers.get("content-security-policy")).toContain("form-action 'self' https://accounts.google.com");
+    expect(response.headers.get("content-security-policy")).not.toContain("connect-src");
+    const page = await response.text();
+    expect(page).toContain('<form method="post" action="/v1/gmail/authorize">');
+    expect(page).toContain('name="flow" value="connect"');
+    expect(page).not.toContain("<script");
+    expect((await call(new Request("http://localhost/v1/gmail/connect"), environment(db, { DEV_AUTH_BYPASS: undefined }))).status).toBe(403);
+  });
+
+  it("redirects the same-origin browser form directly to the read-only Google consent screen", async () => {
+    const db = new LocalDatabase();
+    const response = await call(
+      new Request("http://localhost/v1/gmail/authorize", {
+        method: "POST",
+        headers: { Origin: "http://localhost", "Content-Type": "application/x-www-form-urlencoded" },
+        body: "flow=connect"
+      }),
+      environment(db)
+    );
+    expect(response.status).toBe(303);
+    expect(await response.text()).toBe("");
+    const location = new URL(response.headers.get("Location") ?? "");
+    expect(location.origin).toBe("https://accounts.google.com");
+    expect(location.searchParams.get("scope")).toBe(GMAIL_SCOPE);
+    expect(db.sqlite.prepare("SELECT count(*) AS n FROM gmail_oauth_pending").get()).toEqual({ n: 1 });
+  });
+
+  it("accepts a browser same-origin navigation when a proxy rewrites Origin", async () => {
+    const db = new LocalDatabase();
+    const response = await call(
+      new Request("http://localhost/v1/gmail/authorize", {
+        method: "POST",
+        headers: {
+          Origin: "https://access.example",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Sec-Fetch-Site": "same-origin",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Dest": "document"
+        },
+        body: "flow=connect"
+      }),
+      environment(db)
+    );
+    expect(response.status).toBe(303);
+    expect(new URL(response.headers.get("Location") ?? "").origin).toBe("https://accounts.google.com");
+  });
+
+  it("rejects cross-site browser form submissions even when they target OAuth authorize", async () => {
+    const db = new LocalDatabase();
+    const response = await call(
+      new Request("http://localhost/v1/gmail/authorize", {
+        method: "POST",
+        headers: {
+          Origin: "https://attacker.example",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Sec-Fetch-Site": "cross-site",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Dest": "document"
+        },
+        body: "flow=connect"
+      }),
+      environment(db)
+    );
+    expect(response.status).toBe(403);
+    expect(db.sqlite.prepare("SELECT count(*) AS n FROM gmail_oauth_pending").get()).toEqual({ n: 0 });
+  });
+
   it("uses an unguessable single-use state, S256 PKCE and never requests send/modify scopes", async () => {
     const db = new LocalDatabase();
     const flow = await start(db);
