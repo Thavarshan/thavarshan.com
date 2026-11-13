@@ -18,6 +18,7 @@ const fetcher = (overrides: Record<string, () => Response> = {}) =>
     if (overrides[url]) return overrides[url]();
     if (url.endsWith("/robots.txt")) return response(robots, 200, "text/plain");
     if (url.endsWith("/sitemap.xml")) return response(xml(), 200, "application/xml");
+    if (url.endsWith("/__seo_missing_page__")) return response('<meta name="robots" content="noindex"><h1>Not found</h1>', 404);
     return response(html);
   });
 
@@ -65,7 +66,7 @@ describe("production webmaster audit", () => {
     expect(report.indexing).toBe("unknown");
     expect(JSON.stringify(report)).not.toContain("fixture-google");
     expect(JSON.stringify(report)).not.toContain(html);
-    expect(get).toHaveBeenCalledTimes(3);
+    expect(get).toHaveBeenCalledTimes(6);
     for (const [, options] of get.mock.calls) expect(options).toMatchObject({ redirect: "manual" });
   });
   it.each([
@@ -96,6 +97,22 @@ describe("production webmaster audit", () => {
     expect(report.status).toBe("failed");
     expect(report.auditedPages).toBe(1);
     expect(JSON.stringify(report)).not.toContain("secret-network-error");
+  });
+  it.each([200, 301, 500])("rejects missing-page responses with status %s", async (status) => {
+    const report = await auditWebmaster(fetcher({ [`${canonicalOrigin}/projects/__seo_missing_page__`]: () => response(html, status) }));
+    expect(report.status).toBe("failed");
+    expect(report.failures.map((failure) => failure.rule)).toEqual(expect.arrayContaining(["missing-http-status", "missing-noindex"]));
+  });
+  it("reports a missing-page request failure without retaining error details", async () => {
+    const report = await auditWebmaster(
+      fetcher({
+        [`${canonicalOrigin}/__seo_missing_page__`]: () => {
+          throw new Error("private-network-detail");
+        }
+      })
+    );
+    expect(report.status).toBe("failed");
+    expect(JSON.stringify(report)).not.toContain("private-network-detail");
   });
   it("rejects redirecting or noindex pages", async () => {
     for (const override of [

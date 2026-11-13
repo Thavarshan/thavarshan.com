@@ -165,6 +165,22 @@ export async function auditWebmaster(fetcher: typeof fetch = fetch) {
       }
     }
     failures.push(...checkDuplicates(pages));
+    // A sitemap-only crawl misses SPA fallbacks that return 200 for unknown URLs.
+    for (const path of ["/__seo_missing_page__", "/projects/__seo_missing_page__", "/insights/__seo_missing_page__"]) {
+      const url = `${canonicalOrigin}${path}`;
+      try {
+        const { response, text } = await request(url);
+        if (response.status !== 404) add(url, "missing-http-status", `Expected 404 without redirect; received ${response.status}`);
+        const document = new JSDOM(text).window.document;
+        const directives = [
+          response.headers.get("x-robots-tag") ?? "",
+          ...Array.from(document.querySelectorAll('meta[name="robots"]'), (node) => node.getAttribute("content") ?? "")
+        ].join(",");
+        if (!/\b(noindex|none)\b/i.test(directives)) add(url, "missing-noindex", "Expected missing-page noindex directive");
+      } catch {
+        add(url, "request-or-parse", "Unable to read a valid, bounded missing-page response");
+      }
+    }
   }
   return {
     schemaVersion: 1,
