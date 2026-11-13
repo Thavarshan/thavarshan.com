@@ -14,6 +14,8 @@ npm run site:deploy
 
 Wrangler is already a locked development dependency. Production CI runs the mandatory quality/browser/SEO/CV/Lighthouse/security gate, builds with production values, deploys both configs, then checks the exact revision, security headers, redirects, missing pages and public PDF. Main pushes and manual main CI runs deploy; PR code never deploys production. The existing CI concurrency prevents overlapping main runs. `build-info.json` uses the GitHub commit and production context and is never cached or indexed.
 
+The `Deploy to Cloudflare` job targets GitHub's existing `Production` environment with URL `https://thavarshan.com`. GitHub records the commit, workflow link and deployment status in the repository's **Deployments** history. Success includes the post-deployment smoke checks; a failed deployment or smoke check is recorded as failed. Only this job receives `deployments: write`; CI checks retain their existing permissions. These records track deployments performed by this workflow, not manual Wrangler deployments outside GitHub Actions.
+
 PNG content types are explicit for root and nested extensionless Open Graph images, and deployment smoke verifies both. Security and document headers moved from `netlify.toml` into `public/_headers`. The metadata step appends marker/preview headers instead of overwriting that file. Legacy `_redirects` use Cloudflare's `301` syntax, including permanent slash-to-clean-path normalization; the lifecycle validator retains historical `301!` parsing for Git comparisons. No wildcard SPA fallback is used.
 
 ## Credentials and build values

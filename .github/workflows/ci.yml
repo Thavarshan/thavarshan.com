@@ -204,6 +204,13 @@ jobs:
         run: node automation/ci/gate-status.mjs
 
   deploy:
+    name: Deploy to Cloudflare
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: Production
+      url: https://thavarshan.com
     needs: ci-gate
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
