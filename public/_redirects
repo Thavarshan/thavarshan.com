@@ -9,6 +9,18 @@
 /blog/formlink https://github.com/Thavarshan/formlink 301
 /blog/secrets-loader https://github.com/Thavarshan/secrets-loader 301
 
+# Retain trailing-slash variants of moved legacy URLs, directly to final targets.
+/blog/ /projects 301
+/blog/fetch-php/ https://github.com/Thavarshan/fetch-php 301
+/blog/fetch-php-2/ https://github.com/Thavarshan/fetch-php 301
+/blog/filterable/ https://github.com/Thavarshan/filterable 301
+/blog/phpvm/ https://github.com/Thavarshan/phpvm 301
+/blog/comet/ https://github.com/Thavarshan/honeymelon 301
+/projects/comet/ /projects/honeymelon 301
+/blog/matrix-php/ https://github.com/Thavarshan/matrix 301
+/blog/formlink/ https://github.com/Thavarshan/formlink 301
+/blog/secrets-loader/ https://github.com/Thavarshan/secrets-loader 301
+
 # Permanent clean-URL normalization (Workers defaults to temporary slash redirects).
 /cv/ /cv 301
 /insights/ /insights 301
