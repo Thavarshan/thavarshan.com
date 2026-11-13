@@ -40,6 +40,8 @@ The site and first-party metrics work without these optional values. The Netlify
 
 ## Previews
 
+After the same mandatory CI gate as production, main pushes and manual main CI runs publish a stable preview at `https://thavarshan-site-preview.tjthavarshan.workers.dev`. GitHub's `Preview` environment links directly to that Worker and records its deployment status. This is a separate export of the tested main commit with `CONTEXT=deploy-preview`: it has noindex/nofollow headers, production canonical URLs, no custom-domain routes, and no production-only verification or analytics build values. The preview smoke check verifies its exact revision and these indexing boundaries. It is a public preview of main, not a private staging environment or a substitute for per-PR previews.
+
 Successful same-repository PR CI publishes its already-tested static artifact under `thavarshan-site-pr-<number>.tjthavarshan.workers.dev`. The trusted main workflow validates the repository, marker and origin; it does not execute PR code with credentials. Previews are noindex, retain production canonical URLs and have no custom-domain routes. Closing a same-repository PR deletes only its numbered preview Worker.
 
 Manual smoke checks accept `thavarshan-site-preview.tjthavarshan.workers.dev` or numbered PR hosts plus the full deployed revision. For a manual preview build use `CONTEXT=deploy-preview npm run build` and `npx wrangler deploy --config wrangler.json --env preview`.

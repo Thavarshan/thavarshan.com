@@ -245,3 +245,44 @@ jobs:
           name: cloudflare-production-smoke
           path: test-results/deployment/audit.json
           retention-days: 7
+
+  deploy-preview:
+    name: Deploy preview to Cloudflare
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: Preview
+      url: https://thavarshan-site-preview.tjthavarshan.workers.dev
+    needs: ci-gate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build unindexed preview export
+        run: npm run build
+        env:
+          CONTEXT: deploy-preview
+      - name: Deploy dedicated preview Worker
+        run: npx wrangler deploy --config wrangler.json --env preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Verify preview revision, noindex headers and canonicals
+        run: npm run deployment:smoke
+        env:
+          DEPLOYMENT_MODE: preview
+          DEPLOYMENT_URL: https://thavarshan-site-preview.tjthavarshan.workers.dev
+          EXPECTED_REVISION: ${{ github.sha }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ !cancelled() }}
+        with:
+          name: cloudflare-preview-smoke
+          path: test-results/deployment/audit.json
+          retention-days: 7
