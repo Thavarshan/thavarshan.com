@@ -1,6 +1,6 @@
 # Owner-only Gmail connection (issue #100, first phase)
 
-The recruitment Worker now supports connecting **one Gmail account** using Google's OAuth consent flow. It requests only `gmail.readonly`; there is no send, compose, modify, or delete permission. The refresh token is encrypted before storage in private D1. The code does **not** yet scan messages, synchronize recruitment conversations, or send applications. Issue #100 remains open for that work.
+The recruitment Worker now supports connecting **one Gmail account** using Google's OAuth consent flow. It requests only `gmail.readonly`; there is no send, compose, modify, or delete permission. The refresh token is encrypted before storage in private D1. The code does **not** yet scan messages, synchronize recruitment conversations, or send applications. The remaining synchronization work in #100, the action queue in #101, and outcome reporting in #102 were deferred as not planned during the 2026-11-14 backlog review. The closed issues retain the proposals and can be reopened if this private application becomes a priority; existing OAuth/storage code remains intact.
 
 This is deliberately separate from the public portfolio and the existing KV review page. The private Worker must be deployed and protected by Cloudflare Access first; see [recruitment database setup](recruitment-storage.md).
 
