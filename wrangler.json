@@ -18,7 +18,6 @@
   "env": {
     "preview": {
       "name": "thavarshan-site-preview",
-      "workers_dev": true,
       "routes": [],
       "assets": {
         "directory": "./out",
