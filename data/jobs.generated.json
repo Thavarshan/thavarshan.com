@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T02:42:20.053Z",
+  "generatedAt": "2026-11-13T20:33:20.854Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-13T02:42:20.053Z",
+      "collectedAt": "2026-11-13T20:33:20.854Z",
       "status": "ok",
       "recordsFound": 8,
       "added": 0,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 16933,
+      "closed": 0,
+      "durationMs": 17323,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-13T02:42:20.053Z",
+      "collectedAt": "2026-11-13T20:33:20.854Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1994,
+      "durationMs": 2194,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-13T02:42:20.053Z",
+      "collectedAt": "2026-11-13T20:33:20.854Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 380,
+      "durationMs": 179,
       "held": 0,
-      "skipped": 14,
+      "skipped": 16,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-13T02:42:20.053Z",
+      "collectedAt": "2026-11-13T20:33:20.854Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 371,
+      "durationMs": 310,
       "held": 0,
       "skipped": 25,
       "rejected": 0,
@@ -169,111 +169,6 @@
       ],
       "confidence": 65,
       "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "9538bf997aad37bfcfc6",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3933",
-      "title": "Product Lead (Strategy + Full Stack)",
-      "company": "Optimizee Group",
-      "location": "Remote",
-      "workArrangement": "remote-worldwide",
-      "employmentType": "Full-Time",
-      "seniority": "lead",
-      "salary": "$48,000–90,000",
-      "salaryMin": 48000,
-      "salaryMax": 90000,
-      "salaryCurrency": "USD",
-      "salaryPeriod": null,
-      "descriptionText": "PORTFOLIO TEAM JOBS NEWS ADVERTISE Dashboard > Product Lead (Strategy + Full Stack) html.gr__ventureoptimize_com #breadcrumbs { display: none; } Product Lead (Strategy + Full Stack) Do you want to join the company behind Northern Europe’s largest crypto and stock market comparison platforms? Do you want to own the product roadmap end to end and build it yourself? Do you want to decide what we build next as we expand globally? We’re looking for a hands-on Product Lead to join our small but driven 100% remote team. This is a rare hybrid role: roughly 60% product leadership (roadmap, prioritization, specs, analytics) and 40% full stack development. You’ll work alongside our full-stack web developer, and as we expand the Product Team, your focus will shift increasingly toward product and team leadership, running 1-on-1s, recruiting, and building your own team to improve our products, with a clear path toward Head of Product. Who are Optimizee Group? Optimizee Group has been delivering results for 450+ partners worldwide through financial comparison platforms since 2017. Our portfolio includes CryptoRunner.com (the largest cryptocurrency comparison platform in Northern Europe), InvestoRunner.com (the largest stock market comparison platform in Sweden), and CreditRunner.com (a new credit card comparison platform launching soon). Our mission is to build the world’s biggest and most trusted portfolio of financial comparison platforms, helping millions of people make better financial decisions. To date, we’ve generated over 8 million views and delivered more than 1.8 million referrals to our partners. With approximately 44,000 monthly active users and 35,000+ subscribers, you’ll have a strong existing audience and foundation to build on. In 2026, we relaunched our websites on fully custom-built platforms, replacing our previous WordPress setup (see full tech stack below). The new platforms are connected to our in-house admin system, with integrations to multiple AI models and third-party API providers, giving us greater flexibility, scalability, and control as we grow. AI is deeply integrated into the admin system and across development, content, and operations. Over the past year we’ve shipped 970+ updates, and our product backlog holds 350+ tasks. Your job: review our platforms and product backlog, decide what to prioritize, and turn ideas into new features — with direct support from the founder, a former web developer who built our first platforms line by line. Why Join Optimizee Group: Be Part of a Market Leader – Help shape our established platforms, our group includes the largest stock and crypto comparison platforms in Northern Europe. Full Ownership, Real Impact – High autonomy, meaningful ownership, and the opportunity to influence company decisions. Join Early, Grow Faster – Join a small, fast-growing team where your role, responsibilities, and opportunities grow alongside the company. Join an Ambitious Team – Work alongside high-performing teammates who value ownership, continuous improvement, and long-term thinking. Benefits: 🚀 Clear path to Head of Product as the team scales 🤝 Work directly with the founder on strategy and growth ⏰ High autonomy, flexible working hours, and strong ownership 📈 Competitive compensation package + performance-based bonus 🌎 Fully remote role — work from most countries worldwide 🧰 All the AI and tools you need to do your best work 💻 Home office setup — laptop and required equipment provided ✈️ Annual business trips for team building, networking, and fun (past trips include Dubai, Singapore & Hong Kong) Responsibilities: Own the product roadmap across our platforms — prioritize, spec, and drive execution from idea to launch Build and ship features hands-on alongside our web developer, improving site architecture, performance, and conversion flows Lead and grow the product team — manage team members, run 1-on-1s and performance reviews, and take part in recruitment as we scale Build our engineering workflow — set up development routines, code review, testing and deployment processes so multiple developers can ship safely, with documentation so knowledge is never siloed Make data-first decisions — turn user data, market insights, and analytics into actions that move traffic, conversion, and revenue per visitor Requirements: 5+ years of full stack development experience — you can independently build, deploy, and maintain production web applications, and set up the workflows (Git, code review, CI/CD) for your team to do the same A track record you can show — live products, sites, or projects you’ve built or led, and the ability to walk us through the decisions behind them Strong backend, database, and architecture skills — data accuracy is critical to us, as we track and report statistics to 450+ partners Proven product ownership with commercial instincts — you’ve decided what to build, not just built what was decided, and you understand how those decisions translate into revenue Independent and async-first — you drive your own work in a small remote team and document decisions clearly in writing Genuine interest in cryptocurrencies, investing, and personal finance — and high standards for what a great comparison platform looks like Tech Stack: Backend: PHP 8.2+ / Laravel 12 — one codebase powering the public sites and our in-house admin CMS/API Frontend: Server-rendered Laravel Blade with Alpine.js, Livewire (admin), Tailwind CSS, and Vite — no React/Next.js Database: MySQL, with Redis for cache, queues, and realtime (Laravel Reverb) Infrastructure: Linux VPS with Nginx and PHP-FPM, automated deploys via GitHub Actions Integrations: AI models via multiple providers (e.g. Anthropic, OpenAI, Google) plus third-party API integrations powering our platforms and admin system Our Team Values: Full Ownership – If you see it, you own it. Take full ownership from start to finish. Data First – Data first, decision second. Always put data first before making decisions. Long Game – We are building for decades, not quarters. Always play the long game. AI Speed – The fastest teams win. Use AI to move like a team ten times our size. Location & Availability: This is a fully remote position; however, candidates should be able to maintain reasonable overlap with European business hours (CET/CEST) for meetings and team collaboration. We welcome applications from candidates worldwide, except residents of the United States. Compensation: USD 48,000–90,000 gross per year, consisting of a fixed base salary (USD 48,000–60,000, based on experience) and a revenue-tied performance bonus. You’ll receive paid time off and public holidays in line with the standards of your country of employment. Additional benefits and reimbursements may apply depending on your location. We employ through a global HR partner, enabling compliant employment in 95+ countries. Apply: Send in your application here: https://forms.gle/4yqiWvhiCMnC6xdx7 Hiring process: 1-minute intro video → intro call with the founder → portfolio walkthrough → offer. Applications reviewed continuously, start date by agreement. You’ll receive an automatic confirmation on submission. Due to high application volume as a remote company, we can only follow up with candidates who are a fit for the role. See all available jobs here: https://optimizeegroup.com/#jobs Keywords: Product Lead, Product Manager, Project Manager, Senior Product Manager, Head of Product, Product Owner, Technical Product Manager, Product Strategy, Product Roadmap, Product Development, Web Products, SaaS, Fintech, UX/UI, User Experience, Conversion Rate Optimization (CRO), A/B Testing, Product Analytics, Google Analytics, Agile, Scrum, Jira, Stakeholder Management, Cross-functional Leadership, Full Stack Web Developer, Full Stack Developer, Frontend Development, Backend Development, PHP, Laravel, JavaScript, Alpine.js, Tailwind CSS, MySQL, AI, AI Native, Remote Job, Flexible Hours Optimizee Group LLC. All rights reserved.Registered address: 1111B S Governors Ave, STE 34128Dover, Delaware, 19904, USA.Operated by our global team.Terms & Conditions | Privacy Policy /* */ wp.i18n.setLocaleData( { 'text direction\\u0004ltr': [ 'ltr' ] } ); /* */ /* */ var wpcf7 = { \"api\": { \"root\": \"https:\\/\\/optimizeegroup.com\\/wp-json\\/\", \"namespace\": \"contact-form-7\\/v1\" } }; /* */",
-      "sourceId": "3933",
-      "descriptionHash": "63f08b55d0a5662be5bb",
-      "applicationUrl": "https://optimizeegroup.com/product-lead/",
-      "countries": [],
-      "regions": [
-        "worldwide"
-      ],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "backend",
-        "frontend",
-        "fullstack",
-        "lead",
-        "management",
-        "php",
-        "laravel",
-        "alpine.js",
-        "livewire",
-        "tailwind",
-        "react",
-        "next.js",
-        "mysql",
-        "redis"
-      ],
-      "contentFingerprint": "24a1b80a38a8c731dcf2",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-12T11:14:53.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-10T02:56:21.343Z",
-      "status": "closed",
-      "closedAt": "2026-10-14T05:27:41.434Z",
-      "eligibility": "eligible",
-      "sponsorship": "unknown",
-      "score": 82,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Remote work is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 100,
-      "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
         {
           "factor": "Location is stated",
           "points": 20
@@ -528,7 +423,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -720,7 +615,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -812,7 +707,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -985,7 +880,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1801,7 +1696,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1996,7 +1891,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2083,7 +1978,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2163,7 +2058,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T02:42:20.053Z",
+      "lastSeenAt": "2026-11-13T20:33:20.854Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
