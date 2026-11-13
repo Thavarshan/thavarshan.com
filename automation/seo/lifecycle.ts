@@ -25,8 +25,8 @@ export function parseContentRedirects(input: string): ContentRedirect[] {
     const value = line.replace(/\s+#.*$/, "").trim();
     if (!value || value.startsWith("#")) return [];
     const [from, to, status, ...extra] = value.split(/\s+/);
-    const normalization = from?.endsWith("/") && from !== "/" && from.slice(0, -1) === to && pathSchema.safeParse(to).success;
-    if ((!pathSchema.safeParse(from).success && !normalization) || !to || !["301", "301!"].includes(status) || extra.length)
+    const exactSlashSource = from?.endsWith("/") && from.length > 2 && pathSchema.safeParse(from.slice(0, -1)).success;
+    if ((!pathSchema.safeParse(from).success && !exactSlashSource) || !to || !["301", "301!"].includes(status) || extra.length)
       throw new Error(`Unsupported content redirect on line ${index + 1}; use an exact canonical path and 301`);
     const target = new URL(to, canonicalOrigin);
     if (["www.thavarshan.com", "thavarshan.netlify.app"].includes(target.hostname))

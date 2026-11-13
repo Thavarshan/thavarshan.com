@@ -17,9 +17,11 @@ const rules = (value: string) => parseContentRedirects(value);
 const names = (value: ReturnType<typeof checkLifecycle>) => value.map((item) => item.rule);
 
 describe("URL lifecycle", () => {
-  it("supports only exact slash normalization to its own canonical path", () => {
+  it("supports exact slash normalization and legacy moves directly to final targets", () => {
     expect(rules("/projects/new/ /projects/new 301")).toEqual([{ from: "/projects/new/", to: "/projects/new", status: 301 }]);
-    expect(() => rules("/projects/new/ /elsewhere 301")).toThrow();
+    expect(rules("/blog/ /projects/new 301")).toEqual([{ from: "/blog/", to: "/projects/new", status: 301 }]);
+    expect(checkLifecycle(current, rules("/blog/ /projects/new 301"), files)).toEqual([]);
+    expect(checkLifecycle(current, rules("/blog/ https://github.com/Thavarshan/fetch-php 301"), files)).toEqual([]);
   });
   it("preserves historical Netlify syntax for Git revision comparisons", () => {
     expect(rules("/old /projects/new 301!")).toEqual(rules("/old /projects/new 301"));
@@ -81,6 +83,9 @@ describe("URL lifecycle", () => {
     "/a / 302!",
     "/a / 307",
     "/a/* / 301",
+    "/a// / 301",
+    "/a/../ / 301",
+    "// / 301",
     "/a /missing?x=1 301",
     "/a https://user:pass@example.com/ 301",
     "/a javascript:alert(1) 301",

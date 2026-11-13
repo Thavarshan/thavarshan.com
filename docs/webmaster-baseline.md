@@ -28,6 +28,7 @@ The audit uses initial HTTP responses, with scripts/subresources disabled, and e
 - A well-formed sitemap urlset: canonical origin, no duplicate URLs/query strings/fragments, maximum 60 pages. Invalid sitemaps are refused before crawling pages.
 - General, Googlebot and Bingbot rules, including wildcard patterns, longest-match Allow exceptions and exclusions for `/api/` and `/profile-imports/`.
 - Every sitemap page returns 200 directly and satisfies canonical, HTML/HTTP indexing, metadata, heading, social and JSON-LD checks.
+- Unknown root, project and Insight URLs return a true 404 with noindex, without redirecting to the homepage. This catches soft-404 fallback regressions outside the sitemap.
 - Homepage verification tags are absent, present or invalid. Missing tags are informational because DNS/import verification may apply; malformed/duplicate tags fail.
 
 Each request has a ten-second timeout, two-MiB response limit and no followed redirects. Only the exact production origin is requested. Reports contain timestamp, page counts, tag-presence states and safe failure identifiers; they never retain raw HTML or ownership codes. Request failure is reported rather than silently treating the site as healthy. Fix the named rule, redeploy and rerun. Revert the PR to remove the new audit; it has no storage migrations or generated public data.
