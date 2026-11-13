@@ -410,3 +410,7 @@ Cloudflare configuration is stored in `wrangler.json` (public static site) and `
 - Review automated pull requests before merging professional profile changes.
 - Do not add speculative achievements or AI-generated career claims.
 - Do not restore Nuxt build artifacts such as `.nuxt/` or `.output/`; this project is now a Next.js static export.
+
+## License
+
+Licensed under the [MIT License](LICENSE). Third-party dependencies retain their respective licenses.
