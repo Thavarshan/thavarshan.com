@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T20:33:20.854Z",
+  "generatedAt": "2026-11-14T02:42:36.755Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-13T20:33:20.854Z",
+      "collectedAt": "2026-11-14T02:42:36.755Z",
       "status": "ok",
       "recordsFound": 8,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 17323,
+      "durationMs": 17606,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-13T20:33:20.854Z",
+      "collectedAt": "2026-11-14T02:42:36.755Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 2194,
+      "durationMs": 2036,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,13 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-13T20:33:20.854Z",
+      "collectedAt": "2026-11-14T02:42:36.755Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 179,
+      "durationMs": 148,
       "held": 0,
       "skipped": 16,
       "rejected": 0,
@@ -67,13 +67,13 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-13T20:33:20.854Z",
+      "collectedAt": "2026-11-14T02:42:36.755Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 310,
+      "durationMs": 486,
       "held": 0,
       "skipped": 25,
       "rejected": 0,
@@ -286,103 +286,6 @@
       ]
     },
     {
-      "id": "d8fbe4a0245efeb57f05",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3934",
-      "title": "Lead Developer — Rebuild, Modernize, & Scale (Social Good SaaS, Remote)",
-      "company": "Track it Forward",
-      "location": "Remote / USA / Canada",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "lead",
-      "salary": "Competitive",
-      "salaryMin": null,
-      "salaryMax": null,
-      "salaryCurrency": null,
-      "salaryPeriod": null,
-      "descriptionText": "Lead Laravel Developer — Rebuild, Modernize, & Scale (Social Good SaaS, Remote)Track it Forward is a company revolutionizing how volunteer organizations around the world engage their volunteers to build vibrant communities. We are at a great moment at our company where we are ready to rebuild our app from the ground up while fully harnessing the power of AI. We are looking for a lead developer to lead us in a greenfield rebuild of our legacy SaaS app into Laravel, modernize our mobile apps, and lead the tech effort to scale our app. You will get to architect the technical foundation in your own way, implement modern AI powered systems, and completely modernize an app with AI from the ground up.About Track it Forward Track it Forward is the leading volunteer time-tracking application for nonprofits and schools. For 15 years, we’ve helped thousands of organizations mobilize volunteers and track over 30 million hours. We are a profitable, bootstrapped team of 4 focused on a great work-life balance, high-impact work, and a fun, puzzle-loving culture (daily crosswords, monthly virtual escape rooms, and annual retreats). We are not a VC-funded startup. We grew organically, stayed profitable, and prioritize high-quality work and personal fulfillment without growth-at-all-costs pressure. The team is led by the original founder and developer.The Modernization Strategy We have a solid footing in our market, know exactly what we need to build, and are excited to build off a brand new tech stack. Our hope is that you can build this greenfield system, migrate over legacy features, help build a business wiki, and then move over customers in a phased approach. Currently we are on a Drupal 6 website hosted on Pantheon, paired with two Ionic/Capacitor mobile apps.Some Tech DetailsCodebase: LaravelData Isolation: All sensitive customer data should never be available to the end userDatabase & Files: We have a 10GB legacy Drupal 6 / MySQL schema that needs to be transferred to a PostgreSQL database, and we need to offload 100GB+ of media files to AWS S3 or Cloudflare R2.Documentation & Test Drive Development: Establish automated testing pipelines and document everything in a wiki so the codebase remains maintainable long-term.Mobile App Maintenance: Maintain and update our two Ionic/Capacitor mobile apps using AI coding tools. Mobile is a small fraction of the overall role—you just need to leverage AI to keep them functional without being a native mobile expert.Candidate QualificationsPre-AI Engineering Foundation: You must have 5+ years of core software engineering and architectural experience in Laravel established before generative AI existed. We want you to be actively critically thinking and using AI to help speed up the process.Proven Migration Experience: You have successfully architected and led at least one legacy monolith migration. This job should not feel intimidating for you and you should be able to tell us what to do to make you feel successful in accomplishing it.Modernized AI Velocity: You actively use AI tools and are on top of the ever evolving new processes, but do not sacrifice documentation or code quality for the sake of speed.Location & Remote FlexibilityLocation: We prefer the Americas only because of the timezone.Core Sync Hours: Mandatory availability from 9:00 AM – 12:00 PM PST for daily team syncs and real-time collaboration. Flexible hours outside this window.Native English: We are looking only for a native English speaker.Travel-Friendly: We are 100% remote. You are welcome to travel or be a digital nomad—provided you can consistently hit our core sync hours.Compensation & BenefitsBase Salary: Competitive w/ modern tech salariesTax Status: We are open to both contractors and US based W2 employees.Benefits: If W2 in the US, 401(k) w/ company match, Health Insurance, vacation, PTO, and holidaysComputer: Must provide your own for the first 30 days regardless of W2 statusCulture: High autonomy, direct project ownership, and zero venture-capital growth pressureHow to Apply Fill out the Google Form. To filter out automated spam: include the most authentically human, non-AI reason why this specific role resonates with you. Specifically include a short Loom video of you in the “Why should we choose you over any one else?” question. This isn’t required but will sure stand out. Be authentic, no need to do crazy rehearsals, just be you.",
-      "sourceId": "3934",
-      "descriptionHash": "ad57967fa7fe48a2e617",
-      "applicationUrl": "https://app.notion.com/p/Lead-Laravel-Developer-Rebuild-Modernize-Scale-Social-Good-SaaS-Remote-3dbd515a8442800d898fc5c8e3360788",
-      "countries": [
-        "CA",
-        "US"
-      ],
-      "regions": [],
-      "timezones": [
-        "PST"
-      ],
-      "relocation": "unknown",
-      "tags": [
-        "laravel",
-        "mysql",
-        "aws"
-      ],
-      "contentFingerprint": "a347e2fd69e6b8a589a7",
-      "duplicateOfIds": [
-        "d8a399c66d6738283d81"
-      ],
-      "publishedAt": "2026-09-14T22:10:10.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-14T05:27:41.434Z",
-      "status": "closed",
-      "closedAt": "2026-10-14T23:59:19.834Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 78,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 65,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
       "id": "d9cf3e0c9954c02ecf5a",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -423,7 +326,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -615,7 +518,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -707,7 +610,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -880,7 +783,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1696,7 +1599,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1891,7 +1794,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1978,7 +1881,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2058,7 +1961,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-13T20:33:20.854Z",
+      "lastSeenAt": "2026-11-14T02:42:36.755Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
