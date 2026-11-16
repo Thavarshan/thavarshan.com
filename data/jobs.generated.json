@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T02:42:27.733Z",
+  "generatedAt": "2026-11-16T02:43:36.555Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-15T02:42:27.733Z",
+      "collectedAt": "2026-11-16T02:43:36.555Z",
       "status": "ok",
       "recordsFound": 9,
-      "added": 1,
+      "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 25544,
+      "durationMs": 24594,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-15T02:42:27.733Z",
+      "collectedAt": "2026-11-16T02:43:36.555Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1627,
+      "durationMs": 1713,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,13 +52,13 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-15T02:42:27.733Z",
+      "collectedAt": "2026-11-16T02:43:36.555Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 168,
+      "durationMs": 180,
       "held": 0,
       "skipped": 16,
       "rejected": 0,
@@ -67,15 +67,15 @@
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-15T02:42:27.733Z",
+      "collectedAt": "2026-11-16T02:43:36.555Z",
       "status": "ok",
-      "recordsFound": 0,
-      "added": 0,
+      "recordsFound": 1,
+      "added": 1,
       "updated": 0,
       "closed": 0,
-      "durationMs": 199,
+      "durationMs": 396,
       "held": 0,
-      "skipped": 25,
+      "skipped": 24,
       "rejected": 0,
       "error": null
     }
@@ -203,9 +203,9 @@
       "salaryMax": 120000,
       "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.1RDkikeWLeM.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.jcQoSJVLJso.L.X.O\",\"AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\",\"AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.1RDkikeWLeM.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.jcQoSJVLJso.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1016961019.0\",18,null,0,0,null,null,null,null,\"3700949,119852746,119852748,120281895,120281898,120462041,120462044,121313039,121313042\",null,null,null,\"Fxz5apPOEKfpwbkPqqby4Ag\",0,0,0,null,2,5,\"ug\",230,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [170,170,170,193,null,193,1794710551083];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
+      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.1RDkikeWLeM.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.jcQoSJVLJso.L.X.O\",\"AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\",\"AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.1RDkikeWLeM.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.jcQoSJVLJso.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1016961019.0\",18,null,0,0,null,null,null,null,\"3700949,120281895,120281898,120462041,120462044,121313039,121313042\",null,null,null,\"2236aoezDPeej94P65TWQQ\",0,0,0,null,2,5,\"ie\",30,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [154,154,154,179,null,179,1794797019027];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
       "sourceId": "3956",
-      "descriptionHash": "8c104a16952909ad16d8",
+      "descriptionHash": "30918daed6bc1aea94fb",
       "applicationUrl": "https://drive.google.com/file/d/1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm/view?usp=sharing",
       "countries": [
         "US"
@@ -231,8 +231,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-13T19:00:11.000Z",
       "firstSeenAt": "2026-11-15T02:42:27.733Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -270,104 +270,6 @@
       ],
       "confidence": 65,
       "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
-      "id": "6a2828ae871bf76fea66",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3935",
-      "title": "Senior Software Engineer, Integrations",
-      "company": "Givebutter",
-      "location": "Remote/USA",
-      "workArrangement": "relocation-sponsorship",
-      "employmentType": "Full-Time",
-      "seniority": "lead",
-      "salary": "$170,000-185,000",
-      "salaryMin": 170000,
-      "salaryMax": 185000,
-      "salaryCurrency": "USD",
-      "salaryPeriod": null,
-      "descriptionText": "You need to enable JavaScript to run this app. GivebutterSenior Software Engineer, Integrations LocationRemote; Austin, TX; Denver, CO; Indianapolis, IN; Los Angeles, CA; Minneapolis, MN; Nashville, TN; New York, NY; Salt Lake City, UT; San Francisco, CA; Seattle, WAEmployment TypeFull timeLocation TypeRemoteDepartmentProduct, Design, and EngineeringEngineeringDeadline to ApplyOctober 16, 2026 at 7:00 AM UTCCompensation$170K – $185K • Offers EquityOverviewApplicationCompany DescriptionGivebutter is the most-loved nonprofit fundraising and CRM platform, empowering millions of changemakers to raise more, pay less, and give better. Nonprofits use Givebutter to replace multiple tools so they can launch fundraisers and events, use donation forms and donor management (CRM), send emails and text blasts—all in one place. Use of the Givebutter platform is completely free with a 100% transparent tip-or-fee model.Givebutter has been certified as a Great Place to Work® every year since 2021, and is the #1 rated nonprofit software company on G2 across multiple categories.Our mission is to empower the changemaker in all of us. We believe giving should be fun, so you’ll want to do it again, and we also believe that work should be fun, so that you’ll have the greatest impact. We are excited to hear from talented people who want to work with other talented people in making the world a butter place—and have fun along the way. Role DescriptionGivebutter is hiring a Senior Software Engineer, Integrations, to join our Growth pod. Nonprofits live inside dozens of tools they already love: CRMs, accounting, volunteer platforms, AI assistants. This role decides how well Givebutter meets them there. You'll shape our public API into something builders and their AI agents actually want to reach for, and hold the partner surfaces we care about most as they grow with us.Most of this work happens in the space between two systems: reading partner docs, spiking to see what breaks, sitting on calls with external engineers, closing the ambiguity that turns \"maybe we could\" into \"here's how.\"Why join the Givebutter Engineering team?Democracy of code. We value equal contributions from all engineers and foster an environment of open discussion on architecture and ideas.Autonomy in work. We keep meetings to a minimum. Engineers have the freedom to manage their own calendars and block out uninterrupted time for focused work.Automated CI/CD. Our build and deployment processes are fully automated and hands-off, allowing engineers to focus on problem-solving through code.Mission-driven, full stop. You'll be working with inspiring nonprofits, charities, and organizations that are making a positive impact around the world.Peer ownership of production surfaces. You'll take an integration or an API surface and hold it, cycle over cycle, as sales, success, and product shape it further.AI-native workflow. We use terminal-based agents (Claude Code and similar) daily. We review what they hand us. You'll have opinions about your setup, and we'll want to hear them.We want to hear from people who…Read someone else's API docs carefully, and know why the choices in them matterCare as much about the person calling the API as the person writing itKnow that a good integration keeps a nonprofit inside the tools they already love, instead of dragging them into oursSpike, learn what breaks, and turn that into an engineering conversation without needing a project manager to translateGet on a call with a partner engineer and come out with less ambiguity than you startedTake your development setup seriously (terminal, editor, agent) and have probably built one or two custom skills to make them work harderResponsibilitiesOwn one or more of our partner integration surfaces end-to-end, and hold them coherent as sales, success, and product shape them furtherShape our public API as its audience grows to include AI agents building on behalf of nonprofits who don't code themselvesSpike, prototype, and de-risk new partnerships, including the ones we don't yet know how to build, and the ones that only ship because someone had an aha momentDesign and defend API contracts, webhook shapes, and data flows that other engineers (and other agents) will build against for yearsPartner with an existing integrations lead on the surfaces they hold today, and grow into shared ownership over timePartner with Product, Growth, Marketing, and occasionally an external partner engineer, as a natural translator between what each group needsRequirements4+ years shipping production backend services, ideally on a modern web frameworkStrong proficiency in PHP / Laravel, or the kind of adjacent framework fluency that ramps quickly (we won't rule you out for having lived in Rails, Django, or Spring)Deep familiarity with REST API design, HTTP semantics, and the patterns that make an API worth building againstSolid SQL, MySQL specifically or comfortable enough with another relational database to speak to the trade-offs you've madeExperience building against real-world third-party APIs, not just the pristine documented examplesComfortable designing async job workflows, queued work, and observable failure pathsStrong instincts around OAuth, webhooks, and the trust-boundary decisions that keep a public API safe and honestActive use of terminal-based AI development tools (Claude Code, Cursor, or similar) with a clear review discipline for what the agent producesExperience contributing to on-call rotation for production servicesComfortable navigating an existing monorepo (ours is real, and PHP / Laravel is most of the backend)Nice to haveContributions to a public API you helped design (bonus if it survived a v2)You've built your own AI tooling, custom skills, or agent workflows, not just used the defaultsFamiliarity with the emerging surface where AI agents consume APIs on behalf of end users, and opinions about what a legible API looks like to a non-human callerYou have opinions about the difference between a specification and an implementation (OAuth 1 vs 2, JSON:API vs REST, GraphQL and what came after: any of it, all of it)Nonprofit or mission-driven experienceMore about GivebutterBenefitsRemote Work: Work remotely from one of our 10 hubs (Austin, Denver, Indianapolis, Los Angeles, San Francisco, New York, Salt Lake City, Minneapolis, Seattle, and Nashville). Health Insurance: We offer Medical, Dental, and Vision insurance covered 100% for employees as well as HSA and FSA accounts.Dependent Care Coverage: We offer coverage for dependents, with 50% of Medical, Dental, and Vision premiums covered for all eligible dependents.Mental Health: Givebutter health insurance plans come with access to a TalkSpace membership.401k: We offer a 3% 401k match for all eligible employee's. Vacation and Holidays: Givebutter offers a Flexible PTO policy with uncapped vacation days and company-recognized holidays.Wellness Week: Givebutter closes for one week each summer to prioritize rest and recharge for the entire team.Parental Leave: We offer 12 weeks of paid leave for all parents and comprehensive leave planning management through Aidora.Family Care Support: Access a company-paid UrbanSitter membership plus care credits to book trusted, background-checked caregivers for childcare, senior care, pet care, and household support when you need it most.Home Office Stipend: Upgrade your home office with company-sponsored expenses, including high-quality laptops, monitors, and modern technology.Coworking Stipend: Enjoy a monthly stipend that gives you the freedom to work from coworking spaces or cafés whenever you need connection, community, or a change of scenery.Charitable Giving: Employees are encouraged to donate up to $50/month to any verified nonprofit they wish to support on Givebutter.Professional Development: We offer learning and development reimbursement opportunities.Love What You Do: We are a mission-driven company serving the charitable sector. Feel good about the work you're doing and the company you work for.Interview ProcessBelow is a high-level outline of our standard interview processRecruiter Screen: A 30-minute conversation to learn more about your background, walk through the role, and ensure mutual alignment on expectations, values, and logistics.Hiring Manager Interview: A deeper dive into your relevant experience, skillset, and working style. This is your first opportunity to connect directly with the person who may be your future manager.Assessment (technical or non-technical): This stage will vary based on the role. It could involve a live coding session, case study, or take-home project. Some roles may include two parts to this stage to evaluate both practical skills and problem-solving approachesValues Interview: A conversation with team members focused on how you align with our core values and leadership principles. References: We connect with a few folks you’ve worked closely with to get a better picture of your working style and impact.Offer: If all goes well, we’ll move to the offer stage!Please note, we will have an AI note-taking tool join most of our interviews.Hi potential new butterslice! A recent study from LinkedIn showed that most women apply to jobs only when they meet 100% of the requirements, whereas men will hit the apply button if they hit 60%. Givebutter is committed to building a diverse and inclusive team. So to the women and nonbinary folks out there feeling unsure if you're a perfect fit, we strongly encourage you to apply!Compensation Range: $170K - $185KApply for this JobPowered by AshbyPrivacy PolicySecurityVulnerability Disclosure window.__appData = {\"ddRumApplicationId\":\"80e0bf43-e772-45ac-858b-1e6dc0f1f415\",\"ddRumClientToken\":\"pub1a87c7036063ee7d4b7914b397e6324e\",\"environment\":\"production\",\"maintenanceMode\":false,\"schedulingMaintenanceMode\":false,\"organization\":{\"organizationId\":\"f8e80409-df1a-4a75-ba2e-261f2b036664\",\"name\":\"Givebutter\",\"publicWebsite\":\"https://givebutter.com/\",\"customJobsPageUrl\":null,\"hostedJobsPageSlug\":\"givebutter\",\"allowJobPostIndexing\":true,\"isDemoOrg\":false,\"theme\":{\"colors\":{\"version\":\"1\",\"colorPrimary600\":\"#FFBF00\",\"colorPrimary900\":\"#8C8C8C\"},\"showJobFilters\":true,\"showLocationAddress\":false,\"showTeams\":true,\"showAutofillApplicationsBox\":true,\"logoWordmarkImageUrl\":null,\"logoSquareImageUrl\":null,\"applicationSubmittedSuccessMessage\":\"Your application was successfully submitted. We'll contact you with any next steps.\",\"jobBoardTopDescriptionHtml\":null,\"jobBoardBottomDescriptionHtml\":\" Hi potential new butterslice! A recent study from LinkedIn showed that most women apply to jobs only when they meet 100% of the requirements, whereas men will hit the apply button if they hit 60%. Givebutter is committed to building a diverse and inclusive team - so to the women and nonbinary folks out there feeling unsure if you're a perfect fit, we strongly encourage you to apply! \",\"jobPostingBackUrl\":null,\"__typename\":\"Theme\"},\"appConfirmationTrackingPixelHtml\":null,\"recruitingPrivacyPolicyUrl\":null,\"activeFeatureFlags\":[\"AiInterviewer\",\"AiNotetakerCandidateConsentPolicies\",\"AiVideoInterview\",\"ApplicationForReferrals\",\"ApprovalNotesFromEmail\",\"BookingLinkRescheduleLimits\",\"CanonicalizeSchools\",\"CoreMultipleBrands\",\"CoreMultipleBrandsFeedFiltering\",\"CoreMultipleBrandsLinkedInJobWrappingStreamingFix\",\"DemoOrgBanners\",\"EducationHistoryFormField\",\"ExplicitAutomatedProcessingOptOutConfirmation\",\"JobBoardCookieConsentControls\",\"JobBoardEtagValidation\",\"JobPostingApplicationDeadlines\",\"JobPostingListV2\",\"JobPostingWorkplaceTypeOverrideSecondaryLocationsToo\",\"LinkedInIntegrationRequireCompanyId\",\"LinkedInTOSUpdate\",\"LocationExternalName\",\"MigrateGoogleRecaptchaAutomatedLegal\",\"RejectBase64EncodedResumesFrontEnd\",\"RejectBase64EncodedResumesThrowErrorFrontEnd\",\"RejectInvalidFileTypeOnUpload\",\"RejectUrlsInCandidateName\",\"SchedulingCandidateAvailabilityNote\",\"SchedulingDirectBookingLogDirectBookingEventsJson\",\"SchedulingGCalSendUpdatesForCance",
-      "sourceId": "3935",
-      "descriptionHash": "dfe7b650c7f079389dd0",
-      "applicationUrl": "https://jobs.ashbyhq.com/givebutter/eea6dcd5-55c0-461d-9dee-79211668291b",
-      "countries": [
-        "US"
-      ],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "api",
-        "engineer",
-        "laravel",
-        "php",
-        "senior",
-        "mysql",
-        "graphql"
-      ],
-      "contentFingerprint": "5d8360fc927badca4df7",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-15T23:43:26.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-14T23:59:19.834Z",
-      "status": "closed",
-      "closedAt": "2026-10-16T02:50:45.160Z",
-      "eligibility": "eligible",
-      "sponsorship": "confirmed",
-      "score": 80,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Remote work is mentioned",
-        "Sponsorship or relocation is mentioned"
-      ],
-      "concerns": [],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        },
-        {
-          "factor": "Sponsorship or relocation is mentioned",
-          "points": 10
-        }
-      ],
-      "confidence": 100,
-      "confidenceBreakdown": [
-        {
-          "factor": "Eligibility is explicit in the posting",
-          "points": 35
-        },
         {
           "factor": "Location is stated",
           "points": 20
@@ -427,7 +329,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -619,7 +521,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -711,7 +613,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -884,7 +786,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1229,6 +1131,113 @@
         {
           "factor": "Relevance cap (not a Laravel/PHP role)",
           "points": -55
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "858b0e819542c810257d",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/lemon-io-senior-vue-developer-1",
+      "title": "Senior Vue Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "senior",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://lemon.io Lemon.io helps companies in the US and Europe hire experienced engineers, from funded startups to teams like Klarna, Retool, and Pinterest. We’ve been doing this since 2015, and more than 1,500 companies have hired engineers through us. New roles for Senior Angular Engineers come in all the time, and several are open right now. Two ways to work with clients Contract: most roles are contract-based. You join the client’s team and work as part of it. Direct hire: some clients hire engineers full-time, and we support you through the process. Because companies trust our vetting, applying through Lemon.io is often a shortcut. You get to the client faster than going through their full hiring process on your own. What you get Competitive rate, based on your seniority and skills We find the projects. No client hunting or rate negotiations. We match you manually based on your skills and preferences. Flexible schedule. Work async or with a small overlap with the team’s hours. No micromanagement, no screen trackers Direct work with clients, most of them with technical backgrounds Ongoing support from your application through every project, plus a community of engineers from 75+ countries Who we’re looking for Requirements for Senior Vue.js & Nuxt.js Developer: 4+ years of software development experience 4+ years of experience with Vue.js 2+ years of experience with Nuxt.js & JavaScript Experience with Typescript is a must Requirements for Senior Vue.js & PHP Developer: 4+ years of software development experience 3+ years of experience with Vue.js & 3+ years with PHP Experience with Laravel is a must Requirements for Senior Vue.js & Node.js Developer: 4+ years of software development experience 3+ years of experience with Vue.js & 3+ years with Node.js Experience with Nuxt.js is a must Requirements for Senior Vue.js & .NET Developer: 5+ years of software development experience 3+ years of experience with Vue.js & 5+ years with .NET OR 5+ years of experience with Vue.js & 3+ years with .NET Experience with Typescript is a must Requirements for Senior Vue.js & Python Developer: 4+ years of software development experience 3+ years of experience with Vue.js 3+ years with Python &nbsp; You own problems end-to-end: you spot the issue, design and build the solution, and ship it to production You can show the business impact of your work with concrete results (e.g., faster processing, lower costs, more users, fewer incidents) Advanced English: you discuss business tasks, explain your decisions, raise issues early, and present yourself and your results well on client calls You work full-time remotely and deliver without supervision You onboard quickly and start shipping in your first weeks How it works Apply and complete your profile Verify your role Once approved, we match you with a project. Typical time to first project: 3 weeks Ready? Apply and join the Lemon.io community. NOT YOUR TECH STACK? We're placing Senior Developers (4+ yrs commercial experience) across AI Agent Architecture, AI Automation Architecture, AI Engineering, Site Reliability Engineering, Platform Engineering, Enterprise Software Engineering, React & Python, React & Golang, Golang, React & Java, React & Ruby, Ruby, PHP & Vue, Vue & Node.js, React & .NET, Android & iOS, iOS & Swift, Flutter & Firebase, Solutions Engineer, Blockchain (Ethereum/Ethers.js/Wagmi/Viem/Solana),&nbsp;Vue & .NET, Python & Vue, DevOps, MLOps, Data Science,&nbsp;Symfony & React, Symfony & Vue, Symfony & An gular, Python, Symfony & JavaScript & Next.js & TypeScript, Data Analysis, React & PHP, Data Engineering, Project Management, Product Management, QA Automation, QA Manual, Embedded Software Engineering, React Native & Node, React Native & React, React Native & Ruby, React Native & Python, WordPress, Android, Angular, Python & Node, React & Node.js, Node & TypeScript, Java & Spring, Svelte & Python, Svelte & Node.js, Svelte & TypeScript, Rust, Shopify & JavaScript, Vue & Nuxt, PHP & Laravel, UI/UX Design, Animation, Graphic Design, React & Node & React Native, .NET & C#, Electron, Scala, C++, Unreal Engine & C++, Python & LLM, Unity, or Machine Learning Engineering and more. Reach out and we'll match you. We do not provide visa assistance, and our cooperation model does not include the benefits typically offered with direct hire. We work with developers from 75+ countries across Europe, Latin America, North America (the U.S. and Canada), selected countries in Asia (Japan, Singapore, South Korea, the Philippines, Indonesia, Malaysia, Vietnam, Thailand, and Israel), Oceania (Australia, New Zealand, and Papua New Guinea), and Africa (including Morocco and South Africa). To apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-vue-developer-1",
+      "sourceId": "lemon-io-senior-vue-developer-1",
+      "descriptionHash": "f50d8a259dce64549b47",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [
+        "latam",
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "vue",
+        "vue.js",
+        "nuxt.js",
+        "typescript",
+        "php",
+        "laravel",
+        "react",
+        "next.js",
+        "nuxt"
+      ],
+      "contentFingerprint": "8e3ef2350409be18349d",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-21T12:54:56.000Z",
+      "firstSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -47
         }
       ],
       "confidence": 100,
@@ -1700,7 +1709,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1895,7 +1904,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1982,7 +1991,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2062,7 +2071,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-15T02:42:27.733Z",
+      "lastSeenAt": "2026-11-16T02:43:36.555Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
