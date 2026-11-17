@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T02:43:36.555Z",
+  "generatedAt": "2026-11-17T02:42:52.961Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-16T02:43:36.555Z",
+      "collectedAt": "2026-11-17T02:42:52.961Z",
       "status": "ok",
-      "recordsFound": 9,
-      "added": 0,
-      "updated": 0,
+      "recordsFound": 10,
+      "added": 1,
+      "updated": 1,
       "closed": 0,
-      "durationMs": 24594,
+      "durationMs": 25505,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-16T02:43:36.555Z",
+      "collectedAt": "2026-11-17T02:42:52.961Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1713,
+      "durationMs": 1906,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-16T02:43:36.555Z",
+      "collectedAt": "2026-11-17T02:42:52.961Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 180,
+      "durationMs": 184,
       "held": 0,
-      "skipped": 16,
+      "skipped": 17,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-16T02:43:36.555Z",
+      "collectedAt": "2026-11-17T02:42:52.961Z",
       "status": "ok",
       "recordsFound": 1,
-      "added": 1,
+      "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 396,
+      "durationMs": 372,
       "held": 0,
       "skipped": 24,
       "rejected": 0,
@@ -82,119 +82,13 @@
   ],
   "opportunities": [
     {
-      "id": "7e09612f0ad00ae51f2b",
-      "source": "larajobs",
-      "sourceUrl": "https://larajobs.com/feed",
-      "canonicalUrl": "https://larajobs.com/job/3936",
-      "title": "Laravel DevOps Unicorn 🦄",
-      "company": "CRAE Group",
-      "location": "Remote / Cyprus",
-      "workArrangement": "unknown",
-      "employmentType": "Full-Time",
-      "seniority": "senior",
-      "salary": "Up to €100k",
-      "salaryMin": null,
-      "salaryMax": 100000,
-      "salaryCurrency": "EUR",
-      "salaryPeriod": null,
-      "descriptionText": "All open rolesREMOTE / LIMASSOL, CYPRUSFULL-TIMEStackLaravel · Cloudflare · AWSDevOps EngineerWe're looking to onboard another unicorn — this time, one who feels equally comfortable inside Laravel, Linux, Cloudflare and AWS. Not someone whose answer to every problem is “the server looks fine”: a DevOps engineer who deeply understands the applications running on the infrastructure, can follow a Laravel request all the way through queues, Redis, workers, databases and WebSockets, and isn't afraid to open the codebase when infrastructure and application behaviour start overlapping. Our infrastructure spans DigitalOcean, Laravel Forge, Laravel Cloud, AWS and Cloudflare Enterprise, supporting multiple interconnected applications, APIs, workers, real-time systems and a large domain network. In other words: this isn't keeping a few Ubuntu boxes alive.Annual salaryUp to€100k+ Highly competitive bonus packageSalary by levelSenior€75k–100k🦄Unicorn€100k+, no ceiling€75k€100k+This seat is hired at senior level and above — where you land depends on your experience and the impact you bring. Unicorns don’t have a ceiling.Apply nowLaravel sits at the centre of our ecosystem, so strong Laravel knowledge matters here — and you should be comfortable around our Nuxt and Vue applications even if you never build a frontend component. The environment: Laravel and modern PHP, Nuxt and Vue, Livewire, Alpine, Nova, MySQL, Redis, REST APIs, WebSockets and high-frequency queues, running on Laravel Cloud, a tailor-made AWS setup, DigitalOcean App Platform, Laravel Forge and Ubuntu — managed platforms where they are enough, considerably more control where they are not.Cloudflare is a major part of the picture rather than an afterthought: hundreds of domains run through Cloudflare Enterprise — DNS, WAF and security rules, redirects, SSL/TLS, origins, caching, geographic access rules — and hands-on Cloudflare experience is required. Managing hundreds of domains by hand gets boring very quickly, so a big part of this role is building the internal tooling that manages infrastructure at scale: if something needs doing 100 times, your first instinct should be “why are we doing this manually?”. The same applies to observability — a green deployment badge doesn't mean everything is fine, and because our applications run across different markets, what a user actually sees from a particular GEO matters as much as whether the origin returned 200. When something breaks, we want to know before someone tells us on Slack. We work with GitHub Actions, CodeRabbit, SonarQube, PHPStan, Sentry and Laravel Nightwatch, with AI-powered engineering workflows wired straight into Slack — AI is already part of how we operate, as a tool for removing repetitive work while still understanding what is happening underneath.What you'll ownMaintain and evolve the infrastructure behind our Laravel and Nuxt applications across Laravel Cloud, AWS, DigitalOcean App Platform and Laravel ForgeRun Ubuntu-based environments and production services; keep Redis, queues, workers and real-time infrastructure healthy and fastUnderstand how Laravel applications behave in production rather than treating them as black boxes, and support the deployment and runtime needs of Nuxt and VueManage hundreds of domains through Cloudflare Enterprise, and build the tools that automate Cloudflare, domain, DNS, certificate and infrastructure managementImprove deployment and CI/CD workflows; automate server configuration, environment management and every repetitive operational process you canBuild and maintain uptime and infrastructure monitoring, including checks from multiple geographic locations and the systems that proxy requests through different GEOs for testingInvestigate production incidents across both layers — performance, networking, DNS, SSL, caching, connectivity — and work closely with developers when the line between application problem and infrastructure problem blursImprove security, reliability, scalability and observability across the platform, documenting the decisions that matterWhat you bringStrong professional experience in DevOps, SRE, platform engineering or infrastructure, operating production cloud infrastructureDeep understanding of Laravel and its production architecture, PHP deployment and runtime behaviour, and how a request moves through queues, workers, Redis, schedulers and WebSocketsStrong Linux and Ubuntu experienceStrong hands-on Cloudflare experience — ideally Cloudflare Enterprise — managing DNS, WAF rules, SSL/TLS, caching, redirects and networking at scaleExperience with AWS and DigitalOceanExperience with CI/CD and GitHub-based workflowsStrong understanding of HTTP, DNS, networking, proxies and TLSStrong monitoring and production-debugging skills, able to diagnose issues across both the application and infrastructure layersAbility to automate infrastructure and operational workflows through APIs and scripting rather than dashboardsStrong sense of ownership and reliability, with clear and early communicationNice to haveLaravel Cloud, Laravel Forge and DigitalOcean App PlatformNuxt and Vue.js deploymentsHigh-frequency queues, large Redis workloads, WebSockets and real-time systemsManaging large numbers of domains and building internal infrastructure-management toolsMulti-region or geographically distributed systems; testing services through proxies from different locationsInfrastructure-as-code and automated provisioningHigh-volume transactional, gaming, fintech, CRM or similarly complex platformsRemunerationSenior and unicorn onlyGreat engineers get paid like great engineers.We don't believe in forcing everyone into the same salary bracket regardless of what they bring to the table. Remuneration is aligned with your actual level, experience and technical impact — and this seat is hired at senior level and above.If you can understand Laravel deeply, design reliable infrastructure, tame Cloudflare at scale, automate away repetitive work and remain suspiciously calm when production gets interesting, we're prepared to recognise that accordingly.In shortThe stronger the unicorn, the better the package.The BenefitscompensationTop-of-market payIndustry-leading base comp plus aggressive bonus packages. If you're a unicorn, you're paid like one.time offPaid annual leavePaid time off for both contractors and local employees. Take a proper break, then come back sharper.momentsReal giftsBirthdays and work anniversaries come with actual gifts, not just Slack emojis.processPaid trialsIf we ask for practical work, it is paid at a premium rate from the first hour.equipmentPremium Apple gearTop-spec hardware and peripherals, always bought new for you.healthGym allowanceYour membership is on us. Sharp minds need healthy bodies.foodLunch on usDaily delivery-platform credits to order what you actually want.peopleElite teamInternational, ambitious colleagues selected purely on talent and output.ApplicationApply for this role.Submit your details and CV. We will review your application and contact you if there is a fit.Hiring processWhat happens after you apply.01Within a few daysHR introductionA first conversation to understand your background and make sure there's a good overall fit — on both sides.02Within 1 weekTechnical testA practical exercise designed around the kind of problems you could actually encounter with us. Paid at a premium rate from the first hour.03Within 2 weeksTeam callMeet the people you'd actually work with, discuss the exercise, dive into our infrastructure and architecture, and make sure the fit works both ways. If everyone is happy, you get a top-of-the-line offer. No seven-round marathon, no whiteboard ambush, no explaining DNS while balancing on one leg.Application · DevOps EngineerName *Email *PhoneLeave this field emptyCountry *Select your countryAlbaniaArgentinaArmeniaAustraliaAustriaAzerbaijanBelarusBelgiumBosnia and HerzegovinaBrazilBulgariaCanadaChileColombiaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandIsraelItalyJapanKazakhstanKosovoKyrgyzstanLatviaLiechtensteinLithuaniaLuxembourgMaltaMexicoMoldovaMontenegroNetherlandsNew ZealandNorth MacedoniaNorwayPolandPortugalRomaniaRussiaSerbiaSingaporeSlovakiaSloveniaSouth KoreaSpainSwedenSwitzerlandTaiwanUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanRelevant years of experience *Link (portfolio, LinkedIn, GitHub — your best one)Referred by someone at CRAE? Tell us who.CV *Upload your CV — drag & drop or clickPDF or Word · max 10 MBRelevant experience *250 more characters neededI consent to CRAE Group storing and processing my personal data for the purpose of this application. *We review every application and will contact you if we would like to proceed.Send application",
-      "sourceId": "3936",
-      "descriptionHash": "171f4facd4b4b23cab1d",
-      "applicationUrl": "https://craegroup.com/careers/devops-engineer-laravel-nuxt",
-      "countries": [
-        "CY"
-      ],
-      "regions": [],
-      "timezones": [],
-      "relocation": "unknown",
-      "tags": [
-        "cloud",
-        "devops",
-        "laravel",
-        "aws",
-        "redis",
-        "nuxt",
-        "vue",
-        "php",
-        "livewire",
-        "nova",
-        "mysql",
-        "vue.js"
-      ],
-      "contentFingerprint": "e134cc8ee70db42d8468",
-      "duplicateOfIds": [],
-      "publishedAt": "2026-09-16T06:35:27.000Z",
-      "firstSeenAt": "2026-09-23T07:16:00.010Z",
-      "lastSeenAt": "2026-10-16T02:50:45.160Z",
-      "status": "closed",
-      "closedAt": "2026-10-17T02:48:56.369Z",
-      "eligibility": "unknown",
-      "sponsorship": "unknown",
-      "score": 90,
-      "reasons": [
-        "Laravel is explicitly required",
-        "Seniority matches an experienced developer",
-        "Frontend stack matches React/Vue/Inertia",
-        "Cloud experience is relevant",
-        "Remote work is mentioned"
-      ],
-      "concerns": [
-        "Sri Lanka hiring eligibility is not explicit"
-      ],
-      "scoreBreakdown": [
-        {
-          "factor": "Baseline",
-          "points": 10
-        },
-        {
-          "factor": "Laravel is explicitly required",
-          "points": 30
-        },
-        {
-          "factor": "Seniority matches an experienced developer",
-          "points": 18
-        },
-        {
-          "factor": "Frontend stack matches React/Vue/Inertia",
-          "points": 12
-        },
-        {
-          "factor": "Cloud experience is relevant",
-          "points": 8
-        },
-        {
-          "factor": "Remote work is mentioned",
-          "points": 12
-        }
-      ],
-      "confidence": 65,
-      "confidenceBreakdown": [
-        {
-          "factor": "Location is stated",
-          "points": 20
-        },
-        {
-          "factor": "Posting has a substantive description",
-          "points": 20
-        },
-        {
-          "factor": "Seniority is stated",
-          "points": 15
-        },
-        {
-          "factor": "Technology tags are present",
-          "points": 10
-        }
-      ]
-    },
-    {
       "id": "6022069f01a367ade0fd",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
       "canonicalUrl": "https://larajobs.com/job/3956",
-      "title": "Senior Full Stack Software Engineer (Remote)",
+      "title": "Senior Full Stack Software Engineer (Remote, USA or Brazil)",
       "company": "Emergent 3",
-      "location": "Remote / USA",
+      "location": "Remote / USA / Brazil",
       "workArrangement": "unknown",
       "employmentType": "Full-Time",
       "seniority": "lead",
@@ -203,11 +97,12 @@
       "salaryMax": 120000,
       "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.1RDkikeWLeM.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.jcQoSJVLJso.L.X.O\",\"AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\",\"AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.1RDkikeWLeM.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.jcQoSJVLJso.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1016961019.0\",18,null,0,0,null,null,null,null,\"3700949,120281895,120281898,120462041,120462044,121313039,121313042\",null,null,null,\"2236aoezDPeej94P65TWQQ\",0,0,0,null,2,5,\"ie\",30,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [154,154,154,179,null,179,1794797019027];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
+      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.1RDkikeWLeM.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.jcQoSJVLJso.L.X.O\",\"AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\",\"AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.1RDkikeWLeM.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.jcQoSJVLJso.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1016961019.0\",18,null,0,0,null,null,null,null,\"3700938,120462041,120462044,121313039,121313042\",null,null,null,\"L7_7as3eI82jptQPtIjAkQ8\",0,0,0,null,2,5,\"gh\",140,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [126,126,126,162,null,162,1794883375431];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
       "sourceId": "3956",
-      "descriptionHash": "30918daed6bc1aea94fb",
+      "descriptionHash": "6084b5476ce5232b5855",
       "applicationUrl": "https://drive.google.com/file/d/1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm/view?usp=sharing",
       "countries": [
+        "BR",
         "US"
       ],
       "regions": [],
@@ -227,11 +122,11 @@
         "pest",
         "phpunit"
       ],
-      "contentFingerprint": "071af1057c4c8a63b767",
+      "contentFingerprint": "d7798c843355d82cfa6f",
       "duplicateOfIds": [],
       "publishedAt": "2026-11-13T19:00:11.000Z",
       "firstSeenAt": "2026-11-15T02:42:27.733Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -329,7 +224,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -486,6 +381,94 @@
       ]
     },
     {
+      "id": "7bef91fe961c95282e83",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3957",
+      "title": "Senior Product Engineer",
+      "company": "Paul Xavier International LLC",
+      "location": "Remote",
+      "workArrangement": "unknown",
+      "employmentType": "Full-Time",
+      "seniority": "senior",
+      "salary": "$70,000-120,000 + performance bonuses (Depending on experience & skills)",
+      "salaryMin": 70000,
+      "salaryMax": 120000,
+      "salaryCurrency": "USD",
+      "salaryPeriod": null,
+      "descriptionText": "Company: Paul Xavier International LLC. Location: Remote. Type: Full-Time. Salary: $70,000-120,000 + performance bonuses (Depending on experience & skills).",
+      "sourceId": "3957",
+      "descriptionHash": "05dd0dd3754dd7017e3f",
+      "applicationUrl": null,
+      "countries": [],
+      "regions": [],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "aws",
+        "laravel",
+        "postgres",
+        "tailwindcss",
+        "vuejs"
+      ],
+      "contentFingerprint": "5ea553843c8e664f8b4b",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-11-16T16:51:21.000Z",
+      "firstSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "unknown",
+      "sponsorship": "unknown",
+      "score": 78,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Sri Lanka hiring eligibility is not explicit"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 45,
+      "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
       "id": "a8e05f7b0721aee07c4c",
       "source": "larajobs",
       "sourceUrl": "https://larajobs.com/feed",
@@ -521,7 +504,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -613,7 +596,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -786,7 +769,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1199,8 +1182,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-21T12:54:56.000Z",
       "firstSeenAt": "2026-11-16T02:43:36.555Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
       "sponsorship": "unknown",
@@ -1709,7 +1692,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1904,7 +1887,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1991,7 +1974,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2071,7 +2054,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-16T02:43:36.555Z",
+      "lastSeenAt": "2026-11-17T02:42:52.961Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
