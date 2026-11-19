@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T02:42:52.961Z",
+  "generatedAt": "2026-11-19T02:42:27.387Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-17T02:42:52.961Z",
+      "collectedAt": "2026-11-19T02:42:27.387Z",
       "status": "ok",
-      "recordsFound": 10,
-      "added": 1,
-      "updated": 1,
-      "closed": 0,
-      "durationMs": 25505,
+      "recordsFound": 9,
+      "added": 0,
+      "updated": 0,
+      "closed": 1,
+      "durationMs": 26984,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-17T02:42:52.961Z",
+      "collectedAt": "2026-11-19T02:42:27.387Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1906,
+      "durationMs": 2554,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,30 +52,30 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-17T02:42:52.961Z",
+      "collectedAt": "2026-11-19T02:42:27.387Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 184,
+      "durationMs": 166,
       "held": 0,
-      "skipped": 17,
+      "skipped": 16,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-17T02:42:52.961Z",
+      "collectedAt": "2026-11-19T02:42:27.387Z",
       "status": "ok",
-      "recordsFound": 1,
-      "added": 0,
+      "recordsFound": 3,
+      "added": 2,
       "updated": 0,
       "closed": 0,
-      "durationMs": 372,
+      "durationMs": 305,
       "held": 0,
-      "skipped": 24,
+      "skipped": 22,
       "rejected": 0,
       "error": null
     }
@@ -97,9 +97,9 @@
       "salaryMax": 120000,
       "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.1RDkikeWLeM.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.jcQoSJVLJso.L.X.O\",\"AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\",\"AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.1RDkikeWLeM.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTu2tztgNQh79UXccPK_0tOH3OEMfw\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.jcQoSJVLJso.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTvs15nCn1ZvUOdmzseHkICQmwpk2A\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1016961019.0\",18,null,0,0,null,null,null,null,\"3700938,120462041,120462044,121313039,121313042\",null,null,null,\"L7_7as3eI82jptQPtIjAkQ8\",0,0,0,null,2,5,\"gh\",140,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [126,126,126,162,null,162,1794883375431];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
+      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.vhu2sjS8fs4.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.CGMCi4f2mp0.L.X.O\",\"AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\",\"AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.vhu2sjS8fs4.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.CGMCi4f2mp0.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1022420972.0\",18,null,0,0,null,null,null,null,\"121313039,121313042\",null,null,null,\"GGL-au30BsLyptQP_oHFwQk\",0,0,0,null,2,5,\"gh\",35,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [154,154,154,212,null,212,1795056151911];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
       "sourceId": "3956",
-      "descriptionHash": "6084b5476ce5232b5855",
+      "descriptionHash": "ef2ca8bd36f4c22af325",
       "applicationUrl": "https://drive.google.com/file/d/1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm/view?usp=sharing",
       "countries": [
         "BR",
@@ -126,7 +126,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-13T19:00:11.000Z",
       "firstSeenAt": "2026-11-15T02:42:27.733Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -199,9 +199,9 @@
       "salaryMax": 134450,
       "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional $380,895.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
+      "descriptionText": "Share this job SVGs not supported by this browser.Descriptiontldr; We build software for Airbnbs to rent themselves, with a state-of-the-art product and user experience.We have crafted an Applicant Handbook, which we highly recommend you check out, where you can find out more about the company, culture, how we recruit, what we do, and how we do it: https://hsptb.com/hndbk We are bold, like risks, and take on big challenges together. Our customers love the product, provide valuable feedback, and trust us to rapidly help them with more of their problems.Feel free to join in one of our upcoming Townhalls on YouTube to experience it for yourself: https://hsptb.com/twnhll Hospitable.com is a remote-only and fully distributed company. We hire based on timezones, not countries.The Product: Core & GrowthOur Core platform is comprised of properties, calendar, messaging, metrics, operations, and guest experience. The Growth component is about guiding our customers through sign-up, their first experiences with our platform, setting them up for success, helping them adopt our features and ultimately growing their own businesses with Hospitable. Our more than 22,000 customers rely on our core and connectivity product to manage $500M+ in monthly reservations. To help with maintaining and improving Hospitable’s core platform and growth strategies, our remote-first, fully-distributed team is looking for a Senior Product Engineer to maintain momentum and stability.\"Working at Hospitable is both the most intense and the most rewarding professional experiences of my life. The momentum isn't for everyone, neither is the laser focus on shipping value, but the right person will flourish and grow here more so than just about anywhere else.\" - Nik, Principal Product Engineer.What you will be working onYou will be diving deep into our foundational codebase, which glues together our entire product lines, to develop new features, maintain existing features, and build product workflows that help our customers grow. Your work will have a direct impact on thousands of customers’ short-term rental operations.Add your voice to product shaping discussions, ship new core platform features 0→1, and iterate based on customer feedback.Work with Ben whose favourite fruit is Strawberry. Use your software engineering chops to build magical user experiences, which are both simple for customers to use and simple for other engineers to understand and maintain.Partner with product, sales, customer success, and other engineers to develop and ship features that solve the right problems.Work within our “majestic” monolithic codebase, sitting on a Kubernetes-powered infrastructure-as-code stack.Implement and use observability tooling to track and debug post-deployment.Seek out and remedy performance/resource issues and feature bugs that have the most impact on business operations and customer experience.Refactor core platform code to make it easier to understand, maintain, and test.As an engineering team we are all in on Laravel and Angular. Our self-defined tech stack acronym is 🌴 PALM-B; PHP, Angular, Laravel, MySQL and Beanstalk.We consider ourselves AI forward, all in on Cursor 🤖. 90-95% of the code we ship to production is AI generated. It's made us a lot faster. It makes the reviewing part even more important, so you'll need to actually understand what's being written on your behalf before it gets shipped to our customers.RequirementsHospitable is a remote-only and distributed company. For this position, your location is not a requirement. The ideal fit could work under European or American (up to East Coast) timezones.Don’t tick all the boxes? Talk to us about why you’re still an amazing fit. In the meantime, here’s what we’re paying attention to:5+ years of software engineering experience, with a focus on backend technologies.Significant experience with Laravel, PHP 7+, MySQL, and testing pipelines in a deployed web application used by paying customers. We are all in on Laravel; this is non-negotiable.Hands-on with agentic coding tools (Cursor, Claude Code, Copilot or similar) in a real production codebase, not just side projects.An eye for testable, maintainable, and intuitive code, but also...The mentality of “Code is a means, not an end,” avoids unnecessary abstraction. Your compass points toward customer and business value.The ability to think through non-obvious usage scenarios and explore ripple effects within complex systems.High degree of empathy both toward customers and teammates.Exceptional communication skills - especially written. We are a remote-first, fully distributed company. Most communication happens on Slack and Notion.Self-motivated and able to make decisions when surrounded by uncertainty. You don’t require a support system to maintain momentum.Experience with queue/job-centric backends is a plus.Experience with building production systems where data ingestion from third-party APIs is critical to the business is a big plus.BenefitsThe company itself is also a product, one that we iterate on. We're always improving and creating an environment where we all love to work.A supportive, radically transparent, and caring team environment, where you are trusted, not managed—and a culture that is focused on results and output.The total budget for this role is between USD$134,450.00 - USD $167,258.30 depending on the cost of living in your location. We can hire talent internationally as contractors—or employees if you are based in the United States, the European Union, or Australia, taking into account payroll taxes to determine your gross compensation. For US employees, the gross compensation could be anywhere between USD$123,993.09 - USD$154,249.72.We also offer options into the company equity through our $HOST token (RSU's), with a grant value of up to $76,026.50, to share in the long-term upside value of the company.Separately, this role is eligible for up to an additional USD$268,000.00 per year in Performance Share Units (PSUs). These PSUs do not vest over time and are granted only upon the achievement of clearly defined business performance targets. The size and payout of this award are directly tied to measurable outcomes and are intended to strongly align compensation with company impact.For US employees: healthcare (including EPO, PPO and HSA), 401(k).35 days off per year, encouraged (including self-serve public holidays) and parental leave.Complimentary mental health and emotional support with therapists on call through Slack by Spill.Earn virtual coins through our peer recognition platform and redeem them through gift cards, donations, or monetary rewards.Apply for this job",
       "sourceId": "3955",
-      "descriptionHash": "866a4ed18cd3ecd12014",
+      "descriptionHash": "67ac0c08b5ac6cf7a22c",
       "applicationUrl": "https://apply.workable.com/hospitable/j/A0F082F91A/",
       "countries": [
         "AU",
@@ -224,7 +224,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -415,8 +415,8 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-16T16:51:21.000Z",
       "firstSeenAt": "2026-11-17T02:42:52.961Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
-      "status": "new",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
+      "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
       "sponsorship": "unknown",
@@ -504,7 +504,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -538,6 +538,99 @@
       ],
       "confidence": 65,
       "confidenceBreakdown": [
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "b4f15bad376f4d1d0d5d",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/cambridge-information-group-inc-front-end-developer",
+      "title": "Front-End Developer",
+      "company": "Cambridge Information Group Inc",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "lead",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: New York, NY URL: https://edconic.com/ Job Title: Front-End Developer Location: Fully Remote (US) Department: Global Enrollment Marketing and Sales Reports to: Director of Web Development Classification: Regular, Full-time FLSA Status: Exempt Prepared by: Global Head of Creative Prepared Date: 10/1/26 Salary range: &nbsp;$85,000–$100,000 About Edconic Edconic is a leading player in the alternative, experiential education space. We partner with the world's largest and most well-known brands to create and run schools that capture the legacy and value of each brand. Our students get truly unique, once-in-a-lifetime experiences that help shape their future and give them the skills they need to reach their goals. The Role We're looking for an experienced Front-End Developer to join our web team, which owns every Edconic digital property – from our school websites to landing pages and email templates. You'll work alongside designers, IT, and MarTech to build solutions that serve real business needs while protecting each brand's unique identity. You'll be one of two developers on the team, working directly with our lead developer. That means real ownership of your work, a genuine voice in how we build, very little process overhead, and a codebase that is actively moving toward a modern, standardized WordPress stack. We value craft: fast pages and code that the next developer can read. What You'll Do Build and maintain public-facing websites, micro-sites, and landing pages in collaboration with our lead developer, IT, and MarTech. Work with UX/UI designers to confirm the technical feasibility of designs, then translate them into polished, responsive pages that stay true to each brand. Build and maintain custom WordPress themes across both of our stacks: modern block-based builds (ACF Blocks, core blocks, block patterns, theme.json) and established classic themes built on PHP templates, Advanced Custom Fields, and Sass. Collaborate with our lead developer to shape the team's coding standards, tooling, and workflow, and help migrate our existing sites toward our new modern stack. Stay current on emerging web standards and bring ideas to the table where they genuinely fit. What You Bring 4+ years of front-end web development experience, with strong skills in semantic HTML, CSS, JavaScript, PHP, and WordPress. The ability to build a custom WordPress theme from scratch using PHP templates and Advanced Custom Fields. Strong CSS skills across Sass and modern native CSS (custom properties, nesting), and solid vanilla JavaScript. Comfort working in Git/GitHub with pull requests and code reviews, and with npm-based build tools and the command line. A habit of writing semantic, well-structured HTML that covers accessibility basics, with an eye for reuse, cross-browser compatibility, performance, and SEO. Experience building and testing HTML emails. Strong UX/UI sensibilities and a desire to sweat the small stuff. A proactive, self-directed working style – you can run with a project independently and prioritize across several at once. Excellent written and verbal communication – you're positive, collaborative, objective, and solution-oriented. Bonus Experience Modern WordPress block development: ACF Blocks, block.json, theme.json, and block patterns. Composer, Bedrock or other Roots tooling (Sage/Blade, Trellis), Vite, or CI/CD with GitHub Actions. Deeper accessibility experience (WCAG, ARIA, assistive-technology testing). CRM and marketing automation integration (Salesforce, Pardot/Account Engagement). Multilingual WordPress sites. A modern JavaScript framework such as React or Vue. UX or UI design, and design tools such as Figma and Adobe Creative Suite. How We Use AI AI-assisted development is a new and evolving part of our workflow. We use AI coding tools to speed up research, scaffolding, review, and routine work, and you're welcome to do the same. AI is a tool here, not a substitute for expertise. You are accountable for every line of code that you ship, which means you must be able to write, review, debug, and explain production code entirely on your own. Expect to demonstrate those skills without AI assistance during the interview process. Location, Travel & Eligibility Fully remote within the United States. Occasional travel to our New York office may be required. Must be legally authorized to work in the US. Bachelor's degree preferred (Computer Science, Interaction Design, Graphic Design, Communications, or a related field); equivalent professional experience is equally welcome. Our Commitment Edconic supports and embraces diversity and inclusiveness, and we encourage candidates from all backgrounds to apply, even if you don't meet every requirement listed here. Reasonable accommodations are available to enable individuals with disabilities to perform the essential functions of the role and to participate in the interview process. The above statements describe the general nature and level of work for this position. They are not an exhaustive list of all duties, responsibilities, and skills. Edconic reserves the right to modify this job description at its sole discretion. &nbsp; Apply Here PI288024528 To apply: https://weworkremotely.com/remote-jobs/cambridge-information-group-inc-front-end-developer",
+      "sourceId": "cambridge-information-group-inc-front-end-developer",
+      "descriptionHash": "0bb08035d9a807a51f59",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php",
+        "react",
+        "vue"
+      ],
+      "contentFingerprint": "47ffde32ce6ca61f5557",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-28T21:42:43.000Z",
+      "firstSeenAt": "2026-11-19T02:42:27.387Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 52,
+      "reasons": [
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
         {
           "factor": "Location is stated",
           "points": 20
@@ -597,8 +690,8 @@
       "publishedAt": "2026-10-19T08:47:02.000Z",
       "firstSeenAt": "2026-10-20T02:51:53.156Z",
       "lastSeenAt": "2026-11-17T02:42:52.961Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-11-19T02:42:27.387Z",
       "eligibility": "unknown",
       "sponsorship": "unknown",
       "score": 50,
@@ -769,7 +862,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1182,7 +1275,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-21T12:54:56.000Z",
       "firstSeenAt": "2026-11-16T02:43:36.555Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1221,6 +1314,97 @@
         {
           "factor": "Relevance cap (not a Laravel/PHP role)",
           "points": -47
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "5bb8e82a086ddca5a75e",
+      "source": "weworkremotely",
+      "sourceUrl": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+      "canonicalUrl": "https://weworkremotely.com/remote-jobs/simpletiger-web-developer-wordpress-hubspot-u-s-based-remote-contractor",
+      "title": "Web Developer: WordPress & HubSpot (U.S. Based, Remote Contractor)",
+      "company": "SimpleTiger",
+      "location": "Anywhere in the World",
+      "workArrangement": "remote-worldwide",
+      "employmentType": null,
+      "seniority": "lead",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Headquarters: Sarasota, FL URL: https://www.simpletiger.com/ SimpleTiger is hiring a part-time contract web developer to build, improve, and troubleshoot client websites in WordPress and HubSpot, with the potential to grow into a larger role. We’re a B2B SaaS marketing agency helping software companies grow through SEO, content marketing, paid media, and answer engine optimization (AEO). Our clients’ websites are where much of that work comes to life, and we’re looking for a developer who can turn ideas into clean, functional pages quickly. As part of our delivery team, you’ll work primarily on client websites, translating designs, campaign concepts, and SEO recommendations into effective web experiences. From building new pages to fixing issues on existing sites, you’ll help turn our marketing strategy into work that’s ready to launch. Key responsibilities Build, update, or troubleshoot client websites in WordPress and HubSpot CMS Make technical fixes and improvements to live client sites, with clear details on what was tested, implemented, and performance comparisons using tools like Screaming Frog, pagespeed insights, and Lighthouse Build and connect forms, lead routing, and simple automations between a site and the client’s marketing tools Set up and check tracking, like GA4, Google Tag Manager, and HubSpot tracking in Tandem with the SEO Manager Keep sites fast, accessible, and friendly to SEO (page speed, Core Web Vitals, clean markup, image optimizations, cache lifetime improvements, and so on) Write clear and timely notes on what you are actively working on, and any updates pushed live so our team and the client can follow along Qualifications and skills You’re a hands-on developer who can build from scratch, troubleshoot existing sites, and make improvements without disrupting what’s already working. Required skills WordPress development: Strong experience with custom themes, child themes, blocks, page builders, and Advanced Custom Fields (ACF). You can build a page from the ground up—not just edit an existing one. HubSpot CMS development: Strong experience with HubL templates, modules, and themes, including building and troubleshooting pages, forms, and email templates. Front-end development: Solid HTML, CSS, and JavaScript skills, with the ability to navigate existing code and understand how changes affect the live site. APIs and integrations: Experience working with the HubSpot or WordPress REST APIs, plus CRMs and marketing tools such as Salesforce, Zapier, n8n, Airtable, and Slack. Technical audits and fixes: Experience using Screaming Frog to audit WordPress and HubSpot sites, interpret findings, and resolve technical issues. Code review and cleanup: Comfort working within WordPress and HubSpot codebases to identify legacy or unused JavaScript and CSS, determine what’s still needed, and safely remove what isn’t. Async communication: Clear, timely written communication, especially through Slack. Independent work: Strong time management and the ability to meet deadlines, flag blockers early, and keep projects moving without close supervision. Nice-to-have skills Webflow development and auditing experience, including building a clean CMS structure. PHP development experience. Previous work at a marketing agency or with B2B SaaS clients. Familiarity with SEO and conversion best practices. Experience with Git and version control. What success looks like Success means delivering clean, reliable development work that helps our team turn marketing plans into live client experiences. Designs, campaign concepts, and SEO requests become functional pages in WordPress and HubSpot. Technical audit findings lead to practical fixes, with changes tested to avoid breaking existing functionality. Legacy and unused code is cleaned up thoughtfully, while essential code and front-end behavior remain intact. Forms, templates, and integrations work as intended and support the client’s marketing workflows. Projects stay on track because you manage your workload, meet agreed deadlines, and raise questions or blockers early. Teammates have clear visibility into progress through timely updates and straightforward communication in Slack. To apply: https://weworkremotely.com/remote-jobs/simpletiger-web-developer-wordpress-hubspot-u-s-based-remote-contractor",
+      "sourceId": "simpletiger-web-developer-wordpress-hubspot-u-s-based-remote-contractor",
+      "descriptionHash": "86616873de49dbeeedcc",
+      "applicationUrl": null,
+      "countries": [
+        "US"
+      ],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "php"
+      ],
+      "contentFingerprint": "02b741702cd3d8436127",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-10-28T16:49:37.000Z",
+      "firstSeenAt": "2026-11-19T02:42:27.387Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 35,
+      "reasons": [
+        "Seniority matches an experienced developer",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Laravel is not explicitly mentioned",
+        "Laravel/PHP is not central to this role"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Relevance cap (not a Laravel/PHP role)",
+          "points": -5
         }
       ],
       "confidence": 100,
@@ -1692,7 +1876,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
@@ -1887,7 +2071,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-23T12:52:36.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1974,7 +2158,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2054,7 +2238,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-17T02:42:52.961Z",
+      "lastSeenAt": "2026-11-19T02:42:27.387Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
