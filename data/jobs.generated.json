@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-23T02:42:43.821Z",
+  "generatedAt": "2026-11-25T02:42:54.937Z",
   "collectorVersion": "1.1.0",
   "candidate": {
     "location": "Sri Lanka",
@@ -22,13 +22,13 @@
     {
       "name": "LaraJobs RSS",
       "url": "https://larajobs.com/feed",
-      "collectedAt": "2026-11-23T02:42:43.821Z",
+      "collectedAt": "2026-11-25T02:42:54.937Z",
       "status": "ok",
       "recordsFound": 8,
-      "added": 0,
+      "added": 1,
       "updated": 0,
       "closed": 1,
-      "durationMs": 25911,
+      "durationMs": 26120,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -37,13 +37,13 @@
     {
       "name": "Laravel News",
       "url": "https://laravel-news.com/",
-      "collectedAt": "2026-11-23T02:42:43.821Z",
+      "collectedAt": "2026-11-25T02:42:54.937Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 1980,
+      "durationMs": 1699,
       "held": 0,
       "skipped": 0,
       "rejected": 0,
@@ -52,28 +52,28 @@
     {
       "name": "Remotive",
       "url": "https://remotive.com/api/remote-jobs?category=software-dev",
-      "collectedAt": "2026-11-23T02:42:43.821Z",
+      "collectedAt": "2026-11-25T02:42:54.937Z",
       "status": "ok",
       "recordsFound": 0,
       "added": 0,
       "updated": 0,
       "closed": 0,
-      "durationMs": 143,
+      "durationMs": 152,
       "held": 0,
-      "skipped": 16,
+      "skipped": 15,
       "rejected": 0,
       "error": null
     },
     {
       "name": "WeWorkRemotely",
       "url": "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-      "collectedAt": "2026-11-23T02:42:43.821Z",
+      "collectedAt": "2026-11-25T02:42:54.937Z",
       "status": "ok",
       "recordsFound": 1,
       "added": 0,
       "updated": 0,
-      "closed": 1,
-      "durationMs": 593,
+      "closed": 0,
+      "durationMs": 396,
       "held": 0,
       "skipped": 24,
       "rejected": 0,
@@ -97,9 +97,9 @@
       "salaryMax": 120000,
       "salaryCurrency": "USD",
       "salaryPeriod": null,
-      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.vhu2sjS8fs4.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.CGMCi4f2mp0.L.X.O\",\"AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\",\"AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.vhu2sjS8fs4.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.CGMCi4f2mp0.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1022420972.0\",18,null,0,0,null,null,null,null,\"\",null,null,null,\"J6gDa9WcEcLBp84PtZizmAU\",0,0,0,null,2,5,\"nn\",65,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [22,22,22,36,null,36,1795401767250];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
+      "descriptionText": "window['_DRIVE_VIEWER_ctiming']['shs']=performance.now(); EMERGENT3-Senior-Software-Engineer.pdfFileDownloadCtrl+DDetailsDPrintCtrl+PViewShowThumbnailOutlineCommentsHide commentsShow commentsShow all commentsZoomFit50%75%100%125%150%200%Full screenInsertToolsFindCtrl+FHelpSend feedback to GoogleReport abuseKeyboard shortcutsCtrl+/DebugVE highlighterTelemetry event monitorMoreSave changesOpen withSign in;this.gbar_={CONFIG:[[[0,\"www.gstatic.com\",\"og.asy.en_US.vhu2sjS8fs4.es5.O\",\"com\",\"en\",\"25\",null,null,null,null,null,null,\"og.asy.CGMCi4f2mp0.L.X.O\",\"AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\",\"AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\",\"\",null,null,null,null,null,null,\"25\",\"25\",null,null,null,72175901,null,0,null,1,0],[[null,null,null,\"https://www.gstatic.com/og/_/js/k=og.asy.en_US.vhu2sjS8fs4.es5.O/rt=j/m=_ac,ada,lldp,qads/exm=/d=1/ed=1/rs=AA2YrTv4W28JlBuCk43jhRwoSKyXLzVoiA\"],[null,null,null,\"https://www.gstatic.com/og/_/ss/k=og.asy.CGMCi4f2mp0.L.X.O/m=adcgm3/excm=/d=1/ed=1/ct=zgms/rs=AA2YrTt47OmbJwvwkRGy6DIYmEdc-pY6kw\"]],[1,null,null,27043,25,\"USA\",\"en\",\"1022420972.0\",18,null,0,0,null,null,null,null,\"3700940\",null,null,null,\"MksGa6_VKr2xkvQPhbThgAg\",0,0,0,null,2,5,\"ug\",27,0,0,null,null,1,72175901,0,0],[0,0,0,null,\"\",\"\",\"\",\"\",0,0,null,\"\",1,\"\",\"https://lh3.googleusercontent.com/ogw/default-user=s83\",\"\"],null,null,null,[0.009999999776482582,\"com\",\"25\",[null,\"\",\"0\",null,1,5184000,null,null,\"\",null,null,null,null,null,0,null,0,null,1,0,0,0,null,null,0,0,null,0,0,0,0,0],null,null,null,0]]]};Page/2DownloadPrintFull screenZoom outPage zoom controlZoom inHide file headerPreviousNextHide thumbnailsHide navigation pane12ApproveRejectView DetailsRequest a reviewLearn moreSignature pendingSignRejectView detailsReviewNot SpamRemove foreverNot SpamLoading…{\"id\": \"1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm\", \"title\": \"EMERGENT3-Senior-Software-Engineer.pdf\", \"mimeType\": \"application\\/pdf\"}Page 1 of 2Emergent 3 Senior Software Engineer Role overview Emergent 3 is hiring a full-stack Senior Software Engineer to own its web administration portal and backend APIs, Chrome extension, and Windows and macOS desktop application. These products help schools and organizations manage emergency alerts, coordinate incident response, and account for people during an emergency. You will lead work across three codebases, from technical design through production release. You will collaborate with product, design, QA, and mobile engineering to keep alerts reliable and ensure that supported clients continue to work as services and applications evolve. Key responsibilities Web administration and APIs. Build and maintain Laravel features across the admin portal, REST APIs, and MySQL. Own changes to alert workflows, role-based permissions, integrations, and the background jobs that support them. Desktop application. Maintain the Electron app on Windows and macOS, including native notifications, tray behavior, deep links, and automatic updates. Own installer packaging, code signing, macOS notarization, and release verification. Chrome extension. Maintain the Manifest V3 alert extension, including permissions, device registration, background processing, and audible alerts. Prepare, validate, and release extension updates. Trace alert delivery from queued jobs and real-time broadcasts through to the desktop or browser. Verify behavior after reconnects, sleep and resume, and client restarts. Investigate missed, delayed, or duplicate alerts. Improve automated tests, deployment checks, and production monitoring. Lead technical design and code reviews, mentor engineers, and document operational and release procedures. EMERGENT3 / ENGINEERING 1 / 2 Job Description Page 2 of 2Emergent 3 Required qualifications Senior-level experience building and operating production full-stack applications with Laravel, PHP, and MySQL. Proficiency with Eloquent, schema migrations, indexing, query performance, and authenticated REST APIs. Strong JavaScript, TypeScript, and React skills. Familiarity with server-rendered Laravel interfaces, Node.js and npm tooling, Composer dependency management, and collaborative Git workflows. Hands-on experience developing and releasing desktop applications on Windows and macOS. Working knowledge of Electron’s main and renderer processes, preload scripts, and secure inter-process communication. Experience with installers, code signing, and update validation. Familiarity with Chrome extensions and Manifest V3, including service worker lifecycles, content scripts, extension messaging, and permissions. Experience with Redis-backed queues or caching and real-time features using WebSockets or an equivalent transport. Ability to diagnose failures across client, server, and infrastructure boundaries. Familiarity with local development tooling including Laravel Valet, OrbStack, Takeout, MinIO for S3-compatible storage, and MailHog for email testing. Experience securing authentication, permissions, and sensitive data, and verifying changes through automated tests, cross-platform testing, and production diagnostics. Demonstrated technical ownership and experience mentoring engineers. Preferred qualifications Experience with Blade, Livewire, Alpine.js, Tailwind CSS, and Vite, and with Laravel Horizon, Octane, Sanctum, or Reverb. Experience publishing extensions through the Chrome Web Store or distributing desktop software to managed fleets. Familiarity with electron-builder, MSI, NSIS, DMG, and S3-backed update delivery. Experience with Bitbucket Pipelines or comparable CI/CD tooling, Pest or PHPUnit, PHPStan, Sentry, or Laravel Echo and Pusher-compatible broadcasting. Experience with SAML single sign-on, roster integrations, or emergency communications and other time-sensitive systems. EMERGENT3 / ENGINEERING 2 / 2 Job Description How to apply Email your résumé as a PDF to careers@emergent3.com with the subject Senior Software Engineer | Your name. In the same email, include a viewable link to a 60 to 90 second video introducing yourself and describing one relevant project you shipped or maintained. Both items are required for interview consideration. Email the hiring inbox to request an accommodation. DetailsCommentsGeneral InfoTypeDimensionsSizeDurationLocationModifiedCreatedOpened by meSharingDescriptionCould not preview the file There was a problem loading the details.Loading…BackTranscriptClose side sheet/* Copyright The Closure Library Authors. SPDX-License-Identifier: Apache-2.0 */ function c(a,e,f){a._preloadFailed||a.complete&&a.naturalWidth===void 0?f():a.complete&&a.naturalWidth?e():(a.addEventListener(\"load\",function(){e()},!1),a.addEventListener(\"error\",function(){f()},!1))} for(var d=function(a,e,f){function k(){b.style.display=\"none\"}var g=document.body.getElementsByClassName(a)[0],b;g&&(b=g.getElementsByClassName(f)[0])&&(b._preloadStartTime=Date.now(),b.onerror=function(){this._preloadFailed=!0},c(b,function(){if(b.naturalWidth {l.media = 'all'};if (l.sheet)l.media = 'all';l.removeAttribute('id');} window['_DRIVE_VIEWER_ctiming']['jls']=performance.now(); window['_DRIVE_VIEWER_stiming'] = [182,182,183,211,null,211,1795574578497];CopyAdd a commentDisplaying EMERGENT3-Senior-Software-Engineer.pdf.",
       "sourceId": "3956",
-      "descriptionHash": "d1fe16039991c88c53e3",
+      "descriptionHash": "cfb534af5a06c56ceb4b",
       "applicationUrl": "https://drive.google.com/file/d/1IyAfvrBdYdfRcJl-FJaE-nUHuhWVcJXm/view?usp=sharing",
       "countries": [
         "BR",
@@ -126,7 +126,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-13T19:00:11.000Z",
       "firstSeenAt": "2026-11-15T02:42:27.733Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -224,7 +224,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T17:34:54.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -415,7 +415,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-16T16:51:21.000Z",
       "firstSeenAt": "2026-11-17T02:42:52.961Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -504,7 +504,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-08T23:10:54.000Z",
       "firstSeenAt": "2026-11-09T02:42:41.881Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -623,6 +623,113 @@
         {
           "factor": "Remote work is mentioned",
           "points": 12
+        }
+      ],
+      "confidence": 100,
+      "confidenceBreakdown": [
+        {
+          "factor": "Eligibility is explicit in the posting",
+          "points": 35
+        },
+        {
+          "factor": "Location is stated",
+          "points": 20
+        },
+        {
+          "factor": "Posting has a substantive description",
+          "points": 20
+        },
+        {
+          "factor": "Seniority is stated",
+          "points": 15
+        },
+        {
+          "factor": "Technology tags are present",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "12a6adbd709b32945894",
+      "source": "larajobs",
+      "sourceUrl": "https://larajobs.com/feed",
+      "canonicalUrl": "https://larajobs.com/job/3959",
+      "title": "Lead Software Engineer",
+      "company": "Founders Law",
+      "location": "London, Greater London (Hybrid)",
+      "workArrangement": "remote-worldwide",
+      "employmentType": "Full-Time",
+      "seniority": "lead",
+      "salary": null,
+      "salaryMin": null,
+      "salaryMax": null,
+      "salaryCurrency": null,
+      "salaryPeriod": null,
+      "descriptionText": "Privacy Policy{\"@context\":\"http://schema.org\",\"@type\":\"JobPosting\",\"title\":\"Lead Software Engineer\",\"description\":\" We're super proud to have recently been named one of the ''Best Places to Work'' in 2026, as well as listed in the ''Top 50 Places To Work For People Development'' in 2026. \\n \\n Job purpose \\n Founders Law is hiring a hands-on Lead Software Engineer to build the systems our firm runs on, the internal tools our lawyers use, and our client-facing tech products. \\n \\n You’ll spend most of your time shipping code, lead one senior engineer, and have a clear route to Head of Software Engineering should you want it. \\n \\n In the words of the hiring manager \\n I’m Chris, the Chief Transformation Officer. You’d be joining my team. \\n \\n I am a lawyer and software engineer by background. Nowadays I spend most of my time figuring out how we apply the right mix of deterministic and non-deterministic technology to both the business and practice of law. \\n \\n I need a Lead Software Engineer to take ownership of engineering so I can focus on product, legal engineering and our firm-wide operating model. \\n \\n This is a hands-on job. You’ll be on the tools most of the time, with one senior engineer reporting to you. \\n \\n You’ll set technical direction, make the architecture calls and ship alongside a small team. \\n \\n You’ll need to be comfortable working two ways: \\n \\n \\n Where limited domain expertise is required, I’ll expect you to work with me on big product calls, but otherwise take the lead end-to-end. \\n Where deep domain expertise is required, I’ll typically build a version 1 that captures the core requirements. You’ll work with the team and users to flesh it out further and iterate on it. \\n \\n \\n Over the next 6–12 months I’ll increasingly need to shift my focus to product, legal engineering and our firm-wide operating model, leaving scope for the right candidate to progress into a Head of Software Engineering role. \\n \\n What we’re looking for \\n You’re a strong full-stack engineer who is comfortable leading a small team but still wants to work on code every day. \\n \\n Essential: \\n \\n Deep experience with Laravel and React, and confidence with Postgres. \\n An AI-native way of working. Most if not all of your code is written by agents, with you focusing on architecture, quality assurance and improved ways of working. \\n You are a Laravel artisan. You value code that is fluent and leans into the framework, even if most of it is now written by agents. \\n You’ve led engineers before, as a line manager or technical lead for at least one other person. \\n Startup or scale-up experience. You’re comfortable with a small team, ambiguity and shipping without heavy process. \\n \\n \\n Strongly preferred: \\n \\n Time in LegalTech or another regulated sector where confidential data and compliance shape how you build. \\n Basic familiarity with Domain-Driven Design (we only use the good bits!). \\n You’ve shipped LLM-powered features in a production setting. \\n You have built, tested and deployed robust task-focused MCP servers. \\n \\n \\n Nice to have: \\n \\n Working knowledge of other ecosystems (e.g. Go or Rust) where our core technology stack isn’t the right tool for the job. \\n \\n \\n Key accountabilities \\n You’ll own engineering across everything we build. In your first 12 months that covers four areas: \\n \\n Founders Law Operating System. Work directly with Chris on our firm-wide operating system, shaped around how we actually work, with a view to taking ownership of the platform as product cadence settles. \\n Lawyer-facing tools. Build the context layer and tools our lawyers use day to day, working closely with the people who use them. \\n Client-facing products. Own and iterate on our existing client-facing applications, including our client portal, Tilder, our Founders Law Store and DocGen platform. \\n DevOps and application security. Own DevOps, from how we plan and code through to CI/CD and deployments on Laravel Cloud. Own application security across everything we build. \\n \\n \\n Around that, you’ll: \\n \\n Lead, review and develop our senior engineer, and set the engineering standards we hold ourselves to. \\n Work with Chris to turn product and legal engineering requirements into shipped applications. \\n Shape how the engineering function grows as the product portfolio expands. \\n \\n \\n How we build \\n We’re an AI-native engineering team: agentic coding tools are central to how we build, not an add-on. \\n \\n We expect you to work this way too. That means you: \\n \\n are hot on architecture; \\n effectively delegate to agents to write and review code; and \\n take ownership of the quality of what ships. \\n \\n \\n We operate in a regulated space. Even with agents writing most of the code, we value simple, well-architected code that is secure, easy to maintain and easy for someone else to pick up. \\n \\n Our stack is Laravel, React, Inertia, Tailwind and Postgres. We deploy predominantly on Laravel Cloud. \\n \\n We are building everything to be agent-first or at the very least agent-ready. That means users can do nearly everything they can in the UI from their favourite chat assistant. \\n \\n The team is small, so the path from idea to production is short. You’ll work directly with leadership, our lawyers and the people using what you build. \\n \\n Who are we? \\n We are absolutely not your traditional law firm. \\n \\n We’re on a mission to stand in as a turnkey in-house legal team for founder-led businesses, with a particular focus on seed to Series C. \\n \\n Our client base spans the full breadth of the UK, European, Middle Eastern and US tech scene, from fintechs to edtechs, AI to fashion, FMCG to EV, and VCs, accelerators and incubators. \\n \\n We are part of the Founders Forum Group and are plugged into the tech ecosystem by our very nature. \\n \\n We’re growing rapidly, but we’re firm believers in sustainable & profitable growth. This year we’ve grown revenue by 40% (up from 23% last year), with margin growth to match. \\n \\n We’re more than a law firm \\n Most law firms bend the way they work around off-the-shelf IT. We’re doing the opposite. \\n \\n We’re building the Founders Law Operating System: core technology designed around our business model, not the other way around. It’s built with agents and chat assistants as first-class users. \\n \\n Not only that, we are building: \\n \\n Tooling for our own lawyers to better service our clients, whether that’s for speed, quality or surfacing the right knowledge in the right place. \\n Client-facing products that help clients allocate valuable human lawyer time where it will have the highest impact. \\n \\n \\n We recently acquired Tilder, the tech behind one of the first AI-native contract review services. \\n \\n We expect to grow our application portfolio rapidly over the next 12–18 months. \\n \\n What you want to know \\n We’re working to keep building an environment where talented individuals with lots of energy can thrive. \\n \\n This role is remote within the UK, with some days in London to work in person with Chris, the team and our lawyers. \\n \\n Beyond that we’re hybrid, so you can work from the office, home or Narnia; it’s your choice. \\n \\n We just need you to be on the UK tax system. We’ll set you up on a MacBook Pro or Surface Business with a home office allowance, so you have everything you need. \\n \\n When you do come in, we have a beautiful, shiny office with a terrace overlooking Temple Park, Big Ben* and The Shard. In the office, the team currently offers a free corporate chair massage once a month, weekly yoga sessions, free bike servicing once a quarter, and various other events. \\n \\n We have some pretty good perks too: \\n \\n Salary up to £110k, dependent on experience. \\n “Surprise and delight” gifts for going the extra mile. \\n 25 days annual leave. Don’t worry, bank holidays are on top. \\n Day off on your birthday and other significant life events. \\n 5 days leave for education a year, plus a dedicated annual education budget. \\n Private healthcare with Vitality. \\n Private dental care, plus hearing cover and discounts with Boots Opticians. \\n £350 home setup allowance. \\n Worldwide travel insurance, including winter sports. \\n Annual emergency childcare allowance. \\n Half-price gym membership at Virgin Active, PureGym and Nuffield Health. \\n Electric car leasing salary sacrifice scheme, saving up to 40% on electric cars. \\n Cycle to work scheme, saving up to 32% on a bike and splitting your payments over 12 months. \\n Access to a tech and home scheme with discounts and 12-month interest-free payment options through partners including Currys PC World, IKEA and John Lewis. \\n Socials every four weeks if you want to join us, from bars and restaurants to experiences at the F1 Arcade, Gamebox, Fairgame and many more. \\n \\n \\n Plus lots more. \\n \\n *In autumn and winter, when the leaves fall off the trees. \",\"identifier\":{\"@type\":\"PropertyValue\",\"name\":\"Founders Law\",\"value\":\"95\"},\"datePosted\":\"2026-11-24\",\"employmentType\":\"OTHER\",\"hiringOrganization\":{\"@type\":\"Organization\",\"name\":\"Founders Law\",\"logo\":\"https://images4.bamboohr.com/440974/logos/cropped.jpg?v=45\"},\"jobLocation\":{\"@type\":\"Place\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"London\",\"addressRegion\":\"Greater London\",\"postalCode\":\"EC4Y 0HA\",\"addressCountry\":\"United Kingdom\"}},\"url\":\"https://founderslaw.bamboohr.com/careers/95\"}Job OpeningsLead Software EngineerLondon, Greater London (Hybrid)We're super proud to have recently been named one of the ''Best Places to Work'' in 2026, as well as listed in the ''Top 50 Places To Work For People Development'' in 2026. Job purpose Founders Law is hiring a hands-on Lead Software Engineer to build the systems our firm runs on, the internal tools our lawyers use, and our client-facing tech products. You’ll spend most of your time shipping code, lead one senior engineer, and have a clear route to Head of Software Engineering should you want it. In the words of the hiring manager I’m Chris, the Chief Transformation Officer. You’d be joining my team. I am a lawyer and software engineer by background. Nowadays I spend most of my time figuring out how we apply the right mix of deterministic and non-deterministic technology to both the business and practice of law. I need a Lead Software Engineer to take ownership of engineering so I can focus on product, legal engineering and our firm-wide operating model. This is a hands-on job. You’ll be on the tools most of the time, with one senior engineer reporting to you. You’ll set technical direction, make the architecture calls and ship alongside a small team. You’ll need to be comfortable working two ways: Where limited domain expertise is required, I’ll expect you to work with me on big product calls, but otherwise take the lead end-to-end. Where deep domain expertise is required, I’ll typically build a version 1 that captures the core requirements. You’ll work with the team and users to flesh it out further and iterate on it. Over the next 6–12 months I’ll increasingly need to shift my focus to product, legal engineering and our firm-wide operating model, leaving scope for the right candidate to progress into a Head of Software Engineering role. What we’re looking for You’re a strong full-stack engineer who is comfortable leading a small team but still wants to work on code every day. Essential: Deep experience with Laravel and React, and confidence with Postgres. An AI-native way of working. Most if not all of your code is written by agents, with you focusing on architecture, quality assurance and improved ways of working. You are a Laravel artisan. You value code that is fluent and leans into the framework, even if most of it is now written by agents. You’ve led engineers before, as a line manager or technical lead for at least one other person. Startup or scale-up experience. You’re comfortable with a small team, ambiguity and shipping without heavy process. Strongly prefer",
+      "sourceId": "3959",
+      "descriptionHash": "e02381f34e52b7cab4b5",
+      "applicationUrl": "https://founderslaw.bamboohr.com/careers/95?source=aWQ9Mjg%3D",
+      "countries": [],
+      "regions": [
+        "worldwide"
+      ],
+      "timezones": [],
+      "relocation": "unknown",
+      "tags": [
+        "laravel",
+        "react",
+        "postgres",
+        "inertia",
+        "tailwind"
+      ],
+      "contentFingerprint": "fd604d44f98ec553acd0",
+      "duplicateOfIds": [],
+      "publishedAt": "2026-11-24T11:55:45.000Z",
+      "firstSeenAt": "2026-11-25T02:42:54.937Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
+      "status": "new",
+      "closedAt": null,
+      "eligibility": "eligible",
+      "sponsorship": "unknown",
+      "score": 50,
+      "reasons": [
+        "Laravel is explicitly required",
+        "Seniority matches an experienced developer",
+        "Frontend stack matches React/Vue/Inertia",
+        "Cloud experience is relevant",
+        "Remote work is mentioned"
+      ],
+      "concerns": [
+        "Posting location (London, Greater London (Hybrid)) does not confirm remote-friendly hiring"
+      ],
+      "scoreBreakdown": [
+        {
+          "factor": "Baseline",
+          "points": 10
+        },
+        {
+          "factor": "Laravel is explicitly required",
+          "points": 30
+        },
+        {
+          "factor": "Seniority matches an experienced developer",
+          "points": 18
+        },
+        {
+          "factor": "Frontend stack matches React/Vue/Inertia",
+          "points": 12
+        },
+        {
+          "factor": "Cloud experience is relevant",
+          "points": 8
+        },
+        {
+          "factor": "Remote work is mentioned",
+          "points": 12
+        },
+        {
+          "factor": "Eligibility concerns without sponsorship",
+          "points": -40
         }
       ],
       "confidence": 100,
@@ -862,7 +969,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-06T07:06:38.000Z",
       "firstSeenAt": "2026-11-07T02:42:45.930Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -1375,7 +1482,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-28T16:49:37.000Z",
       "firstSeenAt": "2026-11-19T02:42:27.387Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "eligible",
@@ -1877,8 +1984,8 @@
       "publishedAt": "2026-10-25T18:21:28.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
       "lastSeenAt": "2026-11-23T02:42:43.821Z",
-      "status": "active",
-      "closedAt": null,
+      "status": "closed",
+      "closedAt": "2026-11-25T02:42:54.937Z",
       "eligibility": "ineligible",
       "sponsorship": "unknown",
       "score": 20,
@@ -2158,7 +2265,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-11-10T12:54:43.000Z",
       "firstSeenAt": "2026-11-11T02:43:00.131Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "unknown",
@@ -2238,7 +2345,7 @@
       "duplicateOfIds": [],
       "publishedAt": "2026-10-29T15:31:18.000Z",
       "firstSeenAt": "2026-11-04T16:33:46.166Z",
-      "lastSeenAt": "2026-11-23T02:42:43.821Z",
+      "lastSeenAt": "2026-11-25T02:42:54.937Z",
       "status": "active",
       "closedAt": null,
       "eligibility": "ineligible",
